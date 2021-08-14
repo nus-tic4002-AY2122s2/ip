@@ -1,17 +1,34 @@
+import java.util.Scanner;
+
 public class Duke {
+    private static String line = "_______________________________________\n"; // To shift to UI class
     public static void main(String[] args) {
-        initialize();
+        greet();
+        echo();
+        exit();
     }
-    private static void initialize(){
+    private static void greet(){                                          // To shift to UI class
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
+        String greet = " Hello! I'm Duke \n What can I do for you?\n";
+        System.out.println(logo + line + greet + line);
+    }
 
-        String line = "_______________________________________\n";
-        String greet = " Hello! I', Duke \n What can I do for you?\n";
+    private static void exit(){                                                 // To shift to UI class
         String bye = "Bye. Hope to see you again soon!\n";
-        System.out.println(logo + line + greet + line + bye + line);
+        System.out.println(line + bye + line);
+    }
+
+    private static void echo(){
+        while (true) {
+            Scanner in = new Scanner(System.in);
+            String userInput = in.nextLine();
+            if (userInput.equalsIgnoreCase("bye"))
+                return;
+            System.out.println(line + userInput + "\n" + line);
+        }
     }
 }
