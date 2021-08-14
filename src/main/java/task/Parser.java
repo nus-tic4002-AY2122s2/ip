@@ -1,9 +1,7 @@
 package task;
 
 import command.*;
-import exception.DukeMissingDescException;
-import exception.DukeMissingParamException;
-import exception.DukeUnknownException;
+import exception.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -111,7 +109,7 @@ public class Parser {
      * @throws DukeUnknownException     if Parser is unable to understand inputStr
      * @throws DukeMissingDescException if Parser finds that action is missing a description
      */
-    public static Command parseInput(String inputStr) throws DukeUnknownException, DukeMissingDescException, IndexOutOfBoundsException {
+    public static Command parseInput(String inputStr) throws DukeException {
         Command parsedCommand;
         String[] strings = inputStr.split("[\\s]+");
         String firstStr = strings[0].strip().toLowerCase();
@@ -130,7 +128,7 @@ public class Parser {
                     throw new IndexOutOfBoundsException("invalid number detected, please input a number starting from 1.");
                 }
                 UpdateCommand.Operation op = UpdateCommand.Operation.valueOf(firstStr.substring(0, 1).toUpperCase() + firstStr.substring(1));
-                parsedCommand = (firstStr != "edit") ? new UpdateCommand(op, pos) : new UpdateCommand(UpdateCommand.Operation.Edit, pos);
+                parsedCommand = (!firstStr.equals("edit")) ? new UpdateCommand(op, pos) : new UpdateCommand(UpdateCommand.Operation.Edit, pos);
                 break;
             case "check":
                 if(strings.length > 1){
