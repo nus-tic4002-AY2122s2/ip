@@ -23,16 +23,8 @@ public class Duke {
                 System.out.println("   Bye. Hope to see you again soon!");
                 break;
             }
-            if (myString.equals("List") || myString.equals("list") || myString.equals("LIST")) {
-                for (int j=1;j<=i; j++) {
-                    System.out.println("   " + j + ". " + list[j - 1]);
-                    if (j==i)
-                        System.out.println("\n");
-                }
-            }else {
-                list[i] = myString;
-                i++;
-                System.out.println("   added: " + myString + "\n");
+            else {
+                System.out.println("   " + myString + "\n");
             }
         }
     }
