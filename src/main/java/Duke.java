@@ -8,7 +8,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("___________________________________________");
-        System.out.println("Hello! I'm Duke\nWHat can I do for you?");
+        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         System.out.println("___________________________________________\n");
 
         String list[];
@@ -23,8 +23,17 @@ public class Duke {
                 System.out.println("   Bye. Hope to see you again soon!");
                 break;
             }
+            if (myString.equals("List") || myString.equals("list") || myString.equals("LIST")) {
+                for (int j=1;j<=i; j++) {
+                    System.out.println("   " + j + ". " + list[j - 1]);
+                    if (j==i)
+                        System.out.println("\n");
+                }
+            }
             else {
-                System.out.println("   " + myString + "\n");
+                list[i] = myString;
+                i++;
+                System.out.println("   added: " + myString + "\n");
             }
         }
     }
