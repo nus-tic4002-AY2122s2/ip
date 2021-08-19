@@ -1,8 +1,10 @@
-import java.sql.SQLOutput;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class Duke {
+    static LinkedHashSet<String> table = new LinkedHashSet<>(100);
+
     static void greet(){
         System.out.println("Hello! I'm LisGenie");
         System.out.println("What can I do for you?");
@@ -10,12 +12,6 @@ public class Duke {
 
     static void bye(){
         System.out.printf("Bye. Hope to see you again soon!%n");
-    }
-
-    static void lineDraw(){
-        System.out.print("          ");
-        Stream.generate(() -> "_").limit(65).forEach(System.out::print);
-        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -28,25 +24,46 @@ public class Duke {
         greet();
 
         Scanner sc = new Scanner(System.in);
-        String input = "";
-
-        while(true) {
+        String input;
+        do {
             System.out.println();
             System.out.print("MasterOm : ");
             input = sc.nextLine();
             lineDraw();
-
-            if (input.equals("bye")) {
-                System.out.print("LisGenie : ");
-                bye();
-                lineDraw();
-                break;
-            } else {
-                System.out.println("LisGenie : " + input);
-                lineDraw();
-            }
-        }
+        } while (!echoBye(input));
 
         sc.close();
+    }
+
+    static void lineDraw(){
+        System.out.print("          ");
+        Stream.generate(() -> "_").limit(65).forEach(System.out::print);
+        System.out.println();
+    }
+
+    private static boolean echoBye(String input) {
+        if (input.equals("bye")) {
+            System.out.print("LisGenie : ");
+            bye();
+            lineDraw();
+            return true;
+        } else {
+            switch (input.split(" ")[0]) {
+                case "list":
+                    int i = 1;
+                    for (String s : table) {
+                        System.out.printf("%12d. %s%n", i++, s);
+                    }
+                    break;
+                default:
+                    table.add(input);
+                    System.out.println("LisGenie : added: " + input);
+                    break;
+            }
+
+            lineDraw();
+        }
+
+        return false;
     }
 }
