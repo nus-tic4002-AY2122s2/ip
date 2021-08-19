@@ -1,3 +1,5 @@
+import tasklist.Task;
+
 import java.util.ArrayList;
 
 public class UI {
@@ -21,16 +23,17 @@ public class UI {
         UI.addSpaces("%s____________________________________________________________",4);
     }
 
-    public static void printTask(ArrayList<String> taskList) {
+    public static void printTask(ArrayList<Task> taskList) {
         UI.printLine();
-        UI.addSpaces("%sadded: " + taskList.get(taskList.size() - 1),5);
+        UI.addSpaces("%sadded: " + taskList.get(taskList.size() - 1).toString(),5);
         UI.printLine();
     }
 
-    public static void printOutput(ArrayList<String> taskList) {
+    public static void printOutput(ArrayList<Task> taskList) {
         UI.printLine();
+        UI.addSpaces("%sHere are the tasks in your list:",5);
         for (int i = 0; i < taskList.size(); i++) {
-            UI.addSpaces("%s" + (i + 1) + ". " + taskList.get(i),5);
+            UI.addSpaces("%s" + (i + 1) + ". " + taskList.get(i).toString(),5);
         }
         UI.printLine();
     }
@@ -38,6 +41,13 @@ public class UI {
     public static void printListEmpty() {
         UI.printLine();
         UI.addSpaces("%sList is empty!",5);
+        UI.printLine();
+    }
+
+    public static void printMarkedAsDone(Task t) {
+        UI.printLine();
+        UI.addSpaces( "%sNice! I've marked this task(s) as done:",5);
+        UI.addSpaces("%s" + t.toString(),7);
         UI.printLine();
     }
 
