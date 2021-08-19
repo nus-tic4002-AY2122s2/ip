@@ -10,10 +10,18 @@ public class UI {
     }
 
     public static void bye() {
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(addSpaces("%sBye. Hope to see you again soon!"));
     }
 
     public static void printLine() {
-        System.out.println("____________________________________________________________");
+        System.out.println(addSpaces("%s____________________________________________________________"));
+    }
+
+    public static void printUserInput(String text) {
+        System.out.println(addSpaces("%s" + text));
+    }
+
+    public static String addSpaces(String text) {
+        return (String.format(text, " ".repeat(4)));
     }
 }
