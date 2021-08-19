@@ -1,5 +1,7 @@
 package duke.ui;
 
+import duke.task.Task;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -26,9 +28,9 @@ public final class Message implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        var list = (ArrayList<String>) evt.getNewValue();
-        String newTask = list.get(list.size() - 1);
-        this.addTask(newTask);
+        var list = (ArrayList<Task>) evt.getNewValue();
+        String title = list.get(list.size() - 1).getTitle();
+        this.addTask(title);
     }
 
     public static void greeting() {
