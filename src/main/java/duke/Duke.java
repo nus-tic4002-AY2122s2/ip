@@ -1,5 +1,7 @@
 package main.java.duke;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -17,14 +19,23 @@ public class Duke {
         System.out.println(separateLine);
 
         String line="";
+        List<String> list = new ArrayList<String>();
         Scanner in = new Scanner(System.in);
         while(!( line = in.nextLine()).equals("bye")) {
-                System.out.println(separateLine + "\n" + line + "\n" + separateLine);
+                if(!line.equals("list")){
+                    list.add(line);
+                    System.out.println(separateLine + "\n" + "Added: " + line + "\n" + separateLine);
+                }else{
+                    System.out.println(separateLine);
+                    for(int i = 1; i <= list.size(); i++)
+                    {
+                        System.out.println(i + ". " + list.get(i-1));
+                    }
+                    System.out.println(separateLine);
+                }
         }
-
-            System.out.println(separateLine+"\nBye. Hope to see you again soon!");
-            System.exit(0);
-
+        System.out.println(separateLine+"\nBye. Hope to see you again soon!");
+        System.exit(0);
 
     }
 }
