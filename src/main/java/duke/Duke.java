@@ -15,7 +15,15 @@ public class Duke {
         System.out.println(separateLine);
         System.out.println("Hello! I am Duke\nWhat can I do for you?");
         System.out.println(separateLine);
-        System.out.println("Bye. Hope to see you again soon!");
+
+        String line="";
+        Scanner in = new Scanner(System.in);
+        while(!( line = in.nextLine()).equals("bye")) {
+                System.out.println(separateLine + "\n" + line + "\n" + separateLine);
+        }
+
+            System.out.println(separateLine+"\nBye. Hope to see you again soon!");
+            System.exit(0);
 
 
     }
