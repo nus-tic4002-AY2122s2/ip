@@ -10,7 +10,11 @@ public class Duke {
         System.out.println(horizLine);
 
         Scanner userInput = new Scanner(System.in);
-        System.out.println(userInput.nextLine());
+        String inputTxt = userInput.nextLine();
+        while (!inputTxt.equals("bye")) {
+            System.out.println(inputTxt);
+            inputTxt = userInput.nextLine();
+        }
         //System.out.println("Bye. Hope to see you again soon!");
         //System.out.println(horizLine);
     }
