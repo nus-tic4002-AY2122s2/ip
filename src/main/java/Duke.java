@@ -3,12 +3,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.time.LocalDate;
 
 public class Duke {
-    //
-    public static ArrayList<String> list = new ArrayList<>();
-    public static ArrayList<Boolean> mark = new ArrayList<>();
+
+    //public static ArrayList<String> list = new ArrayList<>();
+    //public static ArrayList<Boolean> mark = new ArrayList<>();
+    public static ArrayList<Task> taskList = new ArrayList<Task>();
 
     public static void main(String[] args) {
 
@@ -42,12 +42,18 @@ public class Duke {
             case "done":
                 int index = Integer.valueOf(splitStr[1]) - 1;
                 System.out.println("Nice! I've marked this task as done: \n" +
-                        "       [X] " + list.get(index));
-                mark.set(index, true);
+                        "       [X] " + taskList.get(index).getDescription());
+                //mark.set(index, true);
+                taskList.get(index).setMark(true);
                 return true;
             default:
-                list.add(userInput);
-                mark.add(false);
+               // list.add(userInput);
+                Task newTask = new Task(userInput, false);
+                taskList.add(newTask);
+                newTask.setDescription(userInput);
+                newTask.setMark(false);
+                //System.out.println("IN " + newTask.getDescription());
+                //mark.add(false);
                 System.out.println("added: " + userInput);
                 return true;
         }
@@ -55,14 +61,15 @@ public class Duke {
 
     public static void printList(){
         String markToString;
-        for(int i = 0; i < list.size(); i++){
-            if(mark.get(i)){
+        for(int i = 0; i < taskList.size(); i++){
+            if(taskList.get(i).getMark()){
                 markToString = "X";
             }
             else {
                 markToString = "";
             }
-            System.out.println(i+1 + ". [" + markToString + "] " + list.get(i));
+            //System.out.println(i+1 + ". [" + markToString + "] " + list.get(i));
+            System.out.println(i+1 + ". [" + markToString + "] " + taskList.get(i).getDescription());
         }
     }
 }
