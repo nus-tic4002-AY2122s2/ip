@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -18,24 +19,40 @@ public class Duke {
         System.out.println("Hello! I'm Duke \n  " +
                 "What can I do for you?");
         System.out.println("____________________________________________________________");
-        System.out.println("Bye. Hope to see you again soon!");
-
+        ArrayList<String> tasks = new ArrayList<>();
         boolean isExit = false;
         while (!isExit) {
 
             String line;
+
             Scanner in = new Scanner(System.in);
             System.out.println("Type something: ");
             line = in.nextLine();
             System.out.println("____________________________________________________________");
-            if(line.toLowerCase().equalsIgnoreCase("bye")){
-                isExit = true;
-                System.out.println("See you!");
-                System.out.println("____________________________________________________________");
-                break;
+
+            switch(line.toLowerCase()){
+                case ("list"):
+                    System.out.println(tasks.size());
+                    for(int i = 0; i< tasks.size(); i++){
+                        System.out.println(tasks.get(i));
+                    }
+                    System.out.println("____________________________________________________________");
+                    break;
+                case("bye"):
+                    isExit = true;
+                    System.out.println("See you!");
+                    System.out.println("____________________________________________________________");
+                    break;
+
+                default:
+
+                    System.out.println("line added");
+                    tasks.add(line);
+                    System.out.println("____________________________________________________________");
+
+
             }
-            System.out.println(line);
-            System.out.println("____________________________________________________________");
+
 
         }
     }
