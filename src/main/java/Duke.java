@@ -17,10 +17,16 @@ public class Duke {
         for (int i = 0; i < inputList.length; i++) {
             if (inputTxt.equals("bye")) {
                 break;
+            } else if (inputTxt.equals("list")) {
+                for (int j = 0; j < i; j++) {
+                    System.out.println((j + 1) + ". " + inputList[j]);
+                }
+                i--;
+            } else {
+                inputList[i] = inputTxt;
+                System.out.println("added: " + inputTxt);
             }
 
-            inputList[i] = inputTxt;
-            System.out.println("added: " + inputTxt);
             System.out.println(horizLine);
             inputTxt = userInput.nextLine();
         }
