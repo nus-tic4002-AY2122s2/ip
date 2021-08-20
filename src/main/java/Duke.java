@@ -4,6 +4,7 @@ public class Duke {
     public static void main(String[] args) {
         // Variables
         String horizLine = "____________________________________________________________";
+        String[] inputList = new String[100];
 
         // Init
         System.out.println("Hello! I'm Jarvis");
@@ -13,8 +14,13 @@ public class Duke {
         // Read user input
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
-        while (!inputTxt.equals("bye")) {
-            System.out.println(inputTxt);
+        for (int i = 0; i < inputList.length; i++) {
+            if (inputTxt.equals("bye")) {
+                break;
+            }
+
+            inputList[i] = inputTxt;
+            System.out.println("added: " + inputTxt);
             System.out.println(horizLine);
             inputTxt = userInput.nextLine();
         }
