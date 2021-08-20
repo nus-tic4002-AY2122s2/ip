@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Duke {
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -19,7 +20,7 @@ public class Duke {
         System.out.println("Hello! I'm Duke \n  " +
                 "What can I do for you?");
         System.out.println("____________________________________________________________");
-        ArrayList<String> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         boolean isExit = false;
         while (!isExit) {
 
@@ -29,29 +30,39 @@ public class Duke {
             System.out.println("Type something: ");
             line = in.nextLine();
             System.out.println("____________________________________________________________");
+            try{
+                switch(line.split(" ")[0].toLowerCase()){
+                    case ("list"):
 
-            switch(line.toLowerCase()){
-                case ("list"):
-                    System.out.println(tasks.size());
-                    for(int i = 0; i< tasks.size(); i++){
-                        System.out.println(tasks.get(i));
-                    }
-                    System.out.println("____________________________________________________________");
-                    break;
-                case("bye"):
-                    isExit = true;
-                    System.out.println("See you!");
-                    System.out.println("____________________________________________________________");
-                    break;
+                        for(int i = 0; i< tasks.size(); i++){
+                            System.out.println((i+1) + ". [" + tasks.get(i).getStatusIcon() + "]"+ tasks.get(i).getDescription());
+                        }
+                        System.out.println("____________________________________________________________");
+                        break;
+                    case ("done"):
+                        int i = Integer.parseInt(line.split(" ")[1]);
+                        tasks.get(i-1).markAsDone();
+                        System.out.println("Nice! I've marked this task as done: \n" +
+                                "[" +  tasks.get(i-1).getStatusIcon() + "] return book");
+                        break;
+                    case("bye"):
+                        isExit = true;
+                        System.out.println("See you!");
+                        System.out.println("____________________________________________________________");
+                        break;
 
-                default:
+                    default:
+                        Task task = new Task(line);
+                        tasks.add(task);
+                        System.out.println("line added");
+                        System.out.println("____________________________________________________________");
 
-                    System.out.println("line added");
-                    tasks.add(line);
-                    System.out.println("____________________________________________________________");
 
-
+                }
+            }catch (Exception e){
+                System.out.println("error:" + e.toString() + ". Please type again");
             }
+
 
 
         }
