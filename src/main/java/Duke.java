@@ -18,6 +18,7 @@ public class Duke {
             if (inputTxt.equals("bye")) {
                 break;
             } else if (inputTxt.equals("list")) {
+                System.out.println("Here are the tasks in your list:");
                 for (int j = 0; j < i; j++) {
                     System.out.println((j + 1) + ". " + inputList[j].getTask());
                 }
