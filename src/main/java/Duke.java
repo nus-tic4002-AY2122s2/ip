@@ -19,7 +19,7 @@ public class Duke {
                 break;
             } else if (inputTxt.equals("list")) {
                 for (int j = 0; j < i; j++) {
-                    System.out.println((j + 1) + ". " + inputList[j].getTaskName());
+                    System.out.println((j + 1) + ". " + inputList[j].getTask());
                 }
                 i--;
             } else {

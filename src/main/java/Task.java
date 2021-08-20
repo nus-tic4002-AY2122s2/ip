@@ -9,7 +9,8 @@ public class Task {
     }
 
     // Getter
-    public String getTaskName() {
-        return taskName;
+    public String getTask() {
+        String taskStatus = isDone ? "X" : "";
+        return ("[" + taskStatus + "] " + taskName);
     }
 }
