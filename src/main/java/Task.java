@@ -7,4 +7,9 @@ public class Task {
     public Task(String taskName) {
         this.taskName = taskName;
     }
+
+    // Getter
+    public String getTaskName() {
+        return taskName;
+    }
 }
