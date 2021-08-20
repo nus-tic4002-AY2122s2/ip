@@ -4,7 +4,7 @@ public class Duke {
     public static void main(String[] args) {
         // Variables
         String horizLine = "____________________________________________________________";
-        String[] inputList = new String[100];
+        Task[] inputList = new Task[100];
 
         // Init
         System.out.println("Hello! I'm Jarvis");
@@ -19,11 +19,11 @@ public class Duke {
                 break;
             } else if (inputTxt.equals("list")) {
                 for (int j = 0; j < i; j++) {
-                    System.out.println((j + 1) + ". " + inputList[j]);
+                    System.out.println((j + 1) + ". " + inputList[j].getTaskName());
                 }
                 i--;
             } else {
-                inputList[i] = inputTxt;
+                inputList[i] = new Task(inputTxt);
                 System.out.println("added: " + inputTxt);
             }
 
