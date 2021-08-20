@@ -17,6 +17,16 @@ public class Duke {
         for (int i = 0; i < inputList.length; i++) {
             if (inputTxt.equals("bye")) {
                 break;
+            } else if (inputTxt.startsWith("done")) {
+                int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
+                if (idx < i) {
+                    inputList[idx].setDone();
+                    System.out.println("Nice! I've marked this as done:");
+                    System.out.println(inputList[idx].getTask());
+                } else {
+                    System.out.println("Task out of limit");
+                }
+                i--;
             } else if (inputTxt.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
                 for (int j = 0; j < i; j++) {
