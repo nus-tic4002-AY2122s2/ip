@@ -13,4 +13,9 @@ public class Task {
         String taskStatus = isDone ? "X" : "";
         return ("[" + taskStatus + "] " + taskName);
     }
+
+    // Setter
+    public void setDone() {
+        this.isDone = true;
+    }
 }
