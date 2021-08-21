@@ -11,21 +11,38 @@ public class Duke {
          */
         System.out.println("Hello! I'm Duke");
         System.out.println("what can i do for you?\n");
+        getMsg();
+    }
 
+    public static void getMsg(){
         String line;
         Scanner sc = new Scanner(System.in);
+        String[] messageArr = new String[100];
+        int counter = 1;
         while (true) {
             line = sc.nextLine();
             if (line.equals("list")) {
-                System.out.println("list\n");
-            }else if(line.equals("blah")){
-                System.out.println("blah\n");
+                printListFunction(messageArr, counter);
             }else if(line.equals("bye"))  {
                 System.out.println("Bye.Hope to see you again soon!");
                 sc.close();
                 break;
+            }else{
+                storeFunction(messageArr, line, counter);
+                counter ++;
             }
+        }
+    }
 
+    public static String[] storeFunction(String[] messageArr, String line, int counter){
+        messageArr[counter] = line;
+        System.out.println("added: " + line);
+        return messageArr;
+    }
+
+    public static void printListFunction(String[] messageArr, int counter){
+        for(int i = 1; i < counter; i++){
+            System.out.println(i + "." + messageArr[i]);
         }
     }
 }
