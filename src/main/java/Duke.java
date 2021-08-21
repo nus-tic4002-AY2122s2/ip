@@ -1,7 +1,19 @@
 public class Duke {
-    public static void main(String[] args) {
+    private Duke(){ }
+
+    private void run(){
         UI ui = new UI();
         ui.welcome();
-        ui.byeMessage();
+        boolean isExit = false;
+        while(!isExit){
+            String fullCommand = UI.readCommand();
+            Command c = new Command(fullCommand);
+            c.execute();
+            isExit = c.isExit;
+        }
+    }
+
+    public static void main(String[] args) {
+        new Duke().run();
     }
 }
