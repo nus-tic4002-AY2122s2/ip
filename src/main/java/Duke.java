@@ -1,19 +1,23 @@
 import java.util.Scanner;
 
+
+/**
+    Duke version 2.0 for TIC4001
+ */
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo =   "  .\" \".    ____        _        \n"
+                +       " / o o \\   |  _ \\ _   _| | _____ \n"
+                +       " |/\\v/\\|   | | | | | | | |/ / _ \\\n"
+                +       "/|     |\\  | |_| | |_| |   <  __/\n"
+                +       "\\|_^_^_|/  |____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
 	while(true) {
-		System.out.println("Input Test\n");
-		Scanner in = new Scanner(System.in);
-		String input = in.nextLine();
-		System.out.println("You Entered : " + input );
+        // Level 0 - Greet
+		System.out.println("Hello! I'm Duke \nWhat can I do for you?");
+		System.out.println("Bye. Hope to see you again soon!");
+		break;
 	}
     }
 }
