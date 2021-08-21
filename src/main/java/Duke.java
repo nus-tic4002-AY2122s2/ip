@@ -17,32 +17,44 @@ public class Duke {
     public static void getMsg(){
         String line;
         Scanner sc = new Scanner(System.in);
-        String[] messageArr = new String[100];
+        Task[] taskList = new Task[100];
         int counter = 1;
         while (true) {
             line = sc.nextLine();
             if (line.equals("list")) {
-                printListFunction(messageArr, counter);
+                System.out.println("Here are the tasks in your list:\n");
+                printListFunction(taskList, counter);
             }else if(line.equals("bye"))  {
                 System.out.println("Bye.Hope to see you again soon!");
                 sc.close();
                 break;
+            }else if(line.contains("done")){
+                int listLocation = Integer.valueOf(line.substring(5,line.length()));
+                System.out.println("Nice! I've marked this task as done:");
+                doneFunction(taskList, listLocation);
             }else{
-                storeFunction(messageArr, line, counter);
+                storeFunction(taskList, line, counter);
                 counter ++;
             }
         }
     }
 
-    public static String[] storeFunction(String[] messageArr, String line, int counter){
-        messageArr[counter] = line;
+    public static Task[] storeFunction(Task[] taskList, String line, int counter){
         System.out.println("added: " + line);
-        return messageArr;
+        Task newTask = new Task(line);
+        newTask.description = line;
+        taskList[counter] = newTask;
+        return taskList;
     }
 
-    public static void printListFunction(String[] messageArr, int counter){
+    public static void printListFunction(Task[] taskList, int counter){
         for(int i = 1; i < counter; i++){
-            System.out.println(i + "." + messageArr[i]);
-        }
+            System.out.println(i + "." + "[" + taskList[i].getStatusIcon() + "] " + taskList[i].getDescription());        }
+    }
+
+    public static void doneFunction(Task[] taskList, int listLocation){
+        Task t = taskList[listLocation];
+        t.markAsDone();
+        System.out.println("[" + t.getStatusIcon() + "] " + t.getDescription());
     }
 }
