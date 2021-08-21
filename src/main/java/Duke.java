@@ -37,10 +37,28 @@ public class Duke {
     }
 
     private static void addToList (String userInput){
-        Task newTask = new Task(userInput);
-        list.add(newTask);
-        dukeReply("added: " + userInput + "\n");
+        String[] splitString = userInput.trim().split(" ", 2);
+        switch (splitString[0]) {
+            case "todo":
+                ToDo newTodo = new ToDo(splitString[1]);
+                list.add(newTodo);
+                break;
+            case "event":
+                String[] eventDescription = splitString[1].split("/at ", 2);
+                Events newEvent = new Events(eventDescription[0], eventDescription[1]);
+                list.add(newEvent);
+                break;
+            case "deadline":
+                String[] deadlineDescription = splitString[1].split("/by ", 2);
+                DeadLines newDeadline = new DeadLines(deadlineDescription[0], deadlineDescription[1]);
+                list.add(newDeadline);
+                break;
+            default:
+                break;
+        }
+        dukeReply("Got it. I've added this task:\n" + list.get(list.size()-1).getFullStatus() + "Now you have " + list.size() + " tasks in the list.\n");
     }
+
 
     private static void showList(){
         String taskList = new String();
@@ -58,7 +76,7 @@ public class Duke {
         dukeReply("Nice! I've marked this task as done: \n" + list.get(Integer.parseInt(taskNumber) - 1).getFullStatus());
     }
 
-    private static void dukeReply (String reply){
+    private static void dukeReply(String reply){
         System.out.println(line + reply + line);
     }
 
