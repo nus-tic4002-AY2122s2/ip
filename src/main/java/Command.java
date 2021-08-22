@@ -7,17 +7,19 @@ public class Command {
         this.isExit = false;
     }
 
-    public void execute() {
+    public void execute(TaskList taskList) {
         String command = fullCommand;
 
         switch (command) {
+            case "list":
+                UI.listMessage(taskList.taskList);
+                break;
             case "bye":
                 UI.byeMessage();
                 isExit = true;
                 break;
             default:
-                UI.echoMessage(command);
-                isExit = false;
+                taskList.addTaskCommand(fullCommand);
                 break;
         }
     }

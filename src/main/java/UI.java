@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
@@ -14,6 +15,13 @@ public class UI {
         System.out.println("What can I do for you?");
         splitLine();
     }
+    public static void listMessage(ArrayList<Task> tasks) {
+        splitLine();
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println(i + 1 + "." + tasks.get(i).toString());
+        }
+        splitLine();
+    }
 
     public static void byeMessage(){
         splitLine();
@@ -21,9 +29,9 @@ public class UI {
         splitLine();
     }
 
-    public static void echoMessage(String fullCommand){
+    public static void addMessage(String fullCommand){
         splitLine();
-        System.out.println(fullCommand);
+        System.out.println("added: " + fullCommand);
         splitLine();
     }
 
