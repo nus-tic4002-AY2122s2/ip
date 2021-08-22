@@ -10,14 +10,16 @@ public class Duke {
         this.taskList = new TaskList(tasks);
     }
 
-    private void run(){
+    private void run() {
         ui.welcome();
         boolean isExit = false;
-        while(!isExit){
+        while(!isExit) {
             String fullCommand = UI.readCommand();
             Command c = new Command(fullCommand);
+            ui.splitLine();
             c.execute(taskList);
             isExit = c.isExit;
+            ui.splitLine();
         }
     }
 

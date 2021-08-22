@@ -8,11 +8,14 @@ public class Command {
     }
 
     public void execute(TaskList taskList) {
-        String command = fullCommand;
+        String command = Parser.command(fullCommand);
 
         switch (command) {
             case "list":
                 UI.listMessage(taskList.taskList);
+                break;
+            case "done":
+                taskList.doneCommand(fullCommand);
                 break;
             case "bye":
                 UI.byeMessage();

@@ -13,4 +13,9 @@ public class TaskList {
         taskList.add(t);
         UI.addMessage(t.description);
     }
+
+    public void doneCommand (String fullCommand) {
+        taskList.get(Parser.taskNumber(fullCommand)).markAsDone();
+        UI.doneMessage(taskList, Parser.taskNumber(fullCommand));
+    }
 }
