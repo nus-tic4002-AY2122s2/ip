@@ -8,7 +8,7 @@ public class Duke {
 
     //public static ArrayList<String> list = new ArrayList<>();
     //public static ArrayList<Boolean> mark = new ArrayList<>();
-    public static ArrayList<Task> taskList = new ArrayList<Task>();
+    public static ArrayList<Task> taskList = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -21,7 +21,7 @@ public class Duke {
 
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
 
-        while (echo()) ;
+        while (echo());
     }
 
     public static boolean echo() {
@@ -46,15 +46,35 @@ public class Duke {
                 //mark.set(index, true);
                 taskList.get(index).setMark(true);
                 return true;
-            default:
-               // list.add(userInput);
-                Task newTask = new Task(userInput, false);
+            case "todo":
+                userInput = userInput.replace("todo ","");
+                Task newTask = new Task(userInput, false, 'T', "");
                 taskList.add(newTask);
-                newTask.setDescription(userInput);
-                newTask.setMark(false);
-                //System.out.println("IN " + newTask.getDescription());
-                //mark.add(false);
-                System.out.println("added: " + userInput);
+                //newTask.setDescription(userInput);
+                System.out.println("Got it. I've added this task: \n" +
+                     "      [T][ ] " + userInput + "\n" +
+                             "Now you have " + taskList.size() + " tasks in the list.");
+                return true;
+            case "deadline":
+                userInput = userInput.replace("deadline ","");
+                System.out.println(userInput);
+                String[] deadline = userInput.split("/");
+                Task newTask1 = new Task(deadline[0], false, 'D', deadline[1]);
+                taskList.add(newTask1);
+                System.out.println("Got it. I've added this task: \n" +
+                        "      [D][ ] " + deadline[0] + "(" + deadline[1] + ")\n" +
+                        "Now you have " + taskList.size() + " tasks in the list.");
+                return true;
+            case "event":
+                userInput = userInput.replace("event ","");
+                String[] event = userInput.split("/");
+                Task newTask2 = new Task(event[0], false, 'E', event[1]);
+                taskList.add(newTask2);
+                System.out.println("Got it. I've added this task: \n" +
+                        "      [E][ ] " + event[0] + "(" + event[1] + ")\n" +
+                        "Now you have " + taskList.size() + " tasks in the list.");
+                return true;
+            default:
                 return true;
         }
     }
@@ -62,14 +82,16 @@ public class Duke {
     public static void printList(){
         String markToString;
         for(int i = 0; i < taskList.size(); i++){
+            if(i==0){
+                System.out.println("Here are the tasks in your list:");
+            }
             if(taskList.get(i).getMark()){
                 markToString = "X";
             }
             else {
                 markToString = "";
             }
-            //System.out.println(i+1 + ". [" + markToString + "] " + list.get(i));
-            System.out.println(i+1 + ". [" + markToString + "] " + taskList.get(i).getDescription());
+            System.out.println(i+1 + ". [" + taskList.get(i).getToDo() + "][" + markToString + "] " + taskList.get(i).getDescription() + taskList.get(i).getAdditionalDetails());
         }
     }
 }
