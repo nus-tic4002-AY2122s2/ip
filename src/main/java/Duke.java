@@ -1,6 +1,7 @@
 import java.util.Vector;
 
-import System_output.Greeting;
+import System_output.Output_On_Screen;
+import Task_Classes.Task;
 import User_Input.Input_Scanner;
 
 public class Duke {
@@ -12,12 +13,12 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        Greeting.Separated_Line();
-        Greeting.Greeting_Output();
-        Greeting.Separated_Line();
+        Output_On_Screen.Separated_Line();
+        Output_On_Screen.Greeting_Output();
+        Output_On_Screen.Separated_Line();
         System.out.println("");
 
-        Vector<String> List = new Vector<String>();
+        Vector<Task> List = new Vector<Task>();
 
         boolean n = true;
         while(n){

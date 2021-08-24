@@ -1,7 +1,11 @@
 package System_output;
 
 
-public class Greeting {
+import Task_Classes.Task;
+
+import java.util.List;
+
+public class Output_On_Screen {
 
     /**
      * The greeting with some instruction
@@ -31,5 +35,14 @@ public class Greeting {
      */
     public static void GoodBye(){
         System.out.println("     Bye. Hope to see you again soon!");
+    }
+
+    /**
+     * Output after mark particular task status as done
+     */
+    public static void MarkAsDone_Output(List<Task> List, int n){
+        System.out.println("     Nice! I've marked this task as done:");
+        System.out.println("       [" + List.get(n).getStatusIcon() + "] " + List.get(n).getDescription());
+        Separated_Line();
     }
 }
