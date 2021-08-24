@@ -15,8 +15,10 @@ public class UI {
         splitLine();
     }
 
-    public static void addMessage(String fullCommand) {
-        System.out.println("added: " + fullCommand);
+    public static void addMessage(Task t, int size) {
+        System.out.println("Got it. I've added this task: ");
+        System.out.println("  " + t.toString());
+        System.out.println("Now you have " + size + " tasks in the list.");
     }
 
     public static void listMessage(ArrayList<Task> tasks) {

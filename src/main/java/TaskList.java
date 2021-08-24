@@ -7,15 +7,31 @@ public class TaskList {
         this.taskList = taskList;
     }
 
-    public void addTaskCommand (String fullCommand) {
-        String description = fullCommand;
-        Task t = new Task(description);
-        taskList.add(t);
-        UI.addMessage(t.description);
-    }
-
     public void doneCommand (String fullCommand) {
         taskList.get(Parser.taskNumber(fullCommand)).markAsDone();
         UI.doneMessage(taskList, Parser.taskNumber(fullCommand));
+    }
+
+    public void addTodoCommand (String fullCommand) {
+        String description = Parser.description(fullCommand);
+        Task t = new Todo(description);
+        taskList.add(t);
+        UI.addMessage(t, taskList.size());
+    }
+
+    public void addDeadlineCommand (String fullCommand) {
+        String description = Parser.description(fullCommand);
+        String date = Parser.deadlineDate(fullCommand);
+        Task t = new Deadline(description, date);
+        taskList.add(t);
+        UI.addMessage(t, taskList.size());
+    }
+
+    public void addEventCommand (String fullCommand) {
+        String description = Parser.description(fullCommand);
+        String date = Parser.eventDate(fullCommand);
+        Task t = new Event(description, date);
+        taskList.add(t);
+        UI.addMessage(t, taskList.size());
     }
 }

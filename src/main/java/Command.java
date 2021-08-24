@@ -21,8 +21,14 @@ public class Command {
                 UI.byeMessage();
                 isExit = true;
                 break;
-            default:
-                taskList.addTaskCommand(fullCommand);
+            case "todo":
+                taskList.addTodoCommand(fullCommand);
+                break;
+            case "deadline":
+                taskList.addDeadlineCommand(fullCommand);
+                break;
+            case "event":
+                taskList.addEventCommand(fullCommand);
                 break;
         }
     }
