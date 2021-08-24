@@ -9,7 +9,7 @@ public class Duke {
 
         Greeting.Separated_Line();
         Greeting.Greeting_Output();
-        Greeting.Separated_Line();
+        
         Greeting.GoodBye();
         Greeting.Separated_Line();
     }
