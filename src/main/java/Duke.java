@@ -1,3 +1,8 @@
+import java.util.Vector;
+
+import System_output.Greeting;
+import User_Input.Input_Scanner;
+
 public class Duke {
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -12,9 +17,11 @@ public class Duke {
         Greeting.Separated_Line();
         System.out.println("");
 
-        int n = 0;
-        while(n!=2){
-            n = Echo.Chat_Echo();
+        Vector<String> List = new Vector<String>();
+
+        boolean n = true;
+        while(n){
+            n = Input_Scanner.input_start(List);
             System.out.println("");
         }
     }
