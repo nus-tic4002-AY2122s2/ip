@@ -9,12 +9,24 @@ public class Duke {
         boolean running = true;
         String input;
         Scanner sc = new Scanner(System.in);
+        List<String> list = new ArrayList<>();
         while(running){
             input = sc.nextLine();
             if(input.matches("bye")){
                 break;
             }
-            System.out.println(input);
+
+            if(input.matches("list")){
+                for(int i = 0; i < list.size(); i++){
+                    System.out.println(i + 1 + ". " + list.get(i));
+                }
+            }else{
+                list.add(input);
+                System.out.println("Added: " + input);
+
+            }
+
+
         }
 
         System.out.println(bye);
