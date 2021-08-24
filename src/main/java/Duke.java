@@ -9,8 +9,13 @@ public class Duke {
 
         Greeting.Separated_Line();
         Greeting.Greeting_Output();
-        
-        Greeting.GoodBye();
         Greeting.Separated_Line();
+        System.out.println("");
+
+        int n = 0;
+        while(n!=2){
+            n = Echo.Chat_Echo();
+            System.out.println("");
+        }
     }
 }
