@@ -117,7 +117,7 @@ public class Duke {
             case "":
                 break;
             default:
-                System.out.printf("%11s", " ");
+                System.out.print("LisGenie : ");
                 System.out.println("An incorrect command, Master?");
                 break;
             }
@@ -157,7 +157,7 @@ public class Duke {
 
     private static void echoAdded(Task input) {
         int count = index + 1;
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("Got it. I've added this task:");
         System.out.printf("%13s", " ");
         System.out.printf("[%s][%s] %s%n", input.getId(), input.getStatusIcon(), input);
@@ -166,7 +166,7 @@ public class Duke {
     }
 
     private static void echoDone(Task item) {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("Nice! I've marked this task as done:");
         System.out.printf("%13s", " ");
         System.out.printf("[%s] %s%n", item.getStatusIcon(), item);
@@ -174,12 +174,12 @@ public class Duke {
     }
 
     private static void echoEmptyInput() {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("eh...Om! Empty string to skip here, O Master! Retry again?");
     }
 
     private static void echoList() {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.printf("Here are the tasks in your list:%n");
 
         int i = 1;
@@ -190,37 +190,37 @@ public class Duke {
     }
 
     private static void echoNoAt() {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("The event...and happening at what time? O Master?");
     }
 
     private static void echoNoBy() {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("The task...and by what dateline? O Master?");
     }
 
     private static void echoNoDesc() {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("Eh...forgot The task description, O Master?");
     }
 
     private static void echoNoEntries() {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("O! Task not in list, Master? Add a task? Retry?");
     }
 
     private static void echoNoTaskNum() {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("Om? O Master...forgot the Task's digit number after 'done'?");
     }
 
     private static void echoNotNum() {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("O Master...Task number must use digit(s) only! Omm!");
     }
 
     private static void echoOffList(int idx) {
-        System.out.printf("%11s", " ");
+        System.out.print("LisGenie : ");
         System.out.println("Item position outside of list (1 - 100): " + (idx+1) + " Omm??");
     }
 }
