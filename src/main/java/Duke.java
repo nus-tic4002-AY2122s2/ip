@@ -25,7 +25,7 @@ public class Duke {
 
     }
 
-    //Will be refactored
+    //Will be refactored and in better components
     public static void controller(String input, List<Task> list ){
         int index = 0;
         String secPart;
