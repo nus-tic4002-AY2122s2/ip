@@ -5,6 +5,12 @@ import java.util.ArrayList;
 
 public class Input_Parser {
 
+    /**
+     * To extract task description information from user input
+     *
+     * @param Input_Words all user input in String[] type
+     * @return the description in String type
+     */
     public static String toGetDescription (String[] Input_Words) {
         String Input_Description = "";
         ArrayList<String> buffer = new ArrayList<String>();
@@ -30,6 +36,12 @@ public class Input_Parser {
         return Input_Description;
     }
 
+    /**
+     * To extract time/date information from user input
+     *
+     * @param Input_Words all user input in String[] type
+     * @return the time/date information in String type
+     */
     public static String toGetDate (String[] Input_Words) {
         String Input_Date = "";
         ArrayList<String> buffer = new ArrayList<String>();
@@ -53,6 +65,12 @@ public class Input_Parser {
         return Input_Date;
     }
 
+    /**
+     * To convert String[] to String type
+     *
+     * @param strArr String[] information
+     * @return String[] information in String type
+     */
     private static String convertStringArrayToString(ArrayList<String> strArr) {
         StringBuilder sb = new StringBuilder();
         for (String str : strArr)

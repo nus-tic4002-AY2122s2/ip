@@ -40,8 +40,11 @@ public class Output_On_Screen {
 
     /**
      * Output after mark particular task status as done
+     *
+     * @param List The entire Task List
+     * @param n is the Task Sequence number in the Task List
      */
-    public static void MarkAsDone_Output(List<Task> List, int n){
+    public static void MarkAsDone_Output(Vector<Task> List, int n){
         System.out.println("     Nice! I've marked this task as done:");
         System.out.println("       [" +
                 List.get(n).getType() + "][" +
@@ -52,8 +55,10 @@ public class Output_On_Screen {
 
     /**
      * Print the list onto screen
+     *
+     * @param List The entire Task List
      */
-    public static void Print_Out_List(List<Task> List){
+    public static void Print_Out_List(Vector<Task> List){
         System.out.println("     Here are the task(s) in your list:");
         for (int i = 0; i < List.size(); i++) {
             int j = i + 1;
@@ -68,6 +73,9 @@ public class Output_On_Screen {
 
     /**
      * Output after add Todo task into the list
+     *
+     * @param newTask the new task detected from user input and needs to be added to List, type is Todo
+     * @param List_Qty the total quantity of task in the List after added current new task
      */
     public static void Output_TodoAdded(Todo newTask, int List_Qty){
         System.out.println("     Got it. I've added this task:");
@@ -78,6 +86,9 @@ public class Output_On_Screen {
 
     /**
      * Output after add Deadline task into the list
+     *
+     * @param newTask the new task detected from user input and needs to be added to List, type is Deadline
+     * @param List_Qty the total quantity of task in the List after added current new task
      */
     public static void Output_DeadlineAdded(Deadline newTask, int List_Qty){
         System.out.println("     Got it. I've added this task:");
@@ -90,6 +101,9 @@ public class Output_On_Screen {
 
     /**
      * Output after add Event task into the list
+     *
+     * @param newTask the new task detected from user input and needs to be added to List, type is Event
+     * @param List_Qty the total quantity of task in the List after added current new task
      */
     public static void Output_EventAdded (Event newTask, int List_Qty){
         System.out.println("     Got it. I've added this task:");

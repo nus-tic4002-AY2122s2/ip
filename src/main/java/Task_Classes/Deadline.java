@@ -10,6 +10,11 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * To get the /by time of the Deadline task
+     *
+     * @return the time/date of the Deadline task
+     */
     public String getBy(){
         return this.by;
     }

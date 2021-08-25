@@ -7,6 +7,17 @@ import java.util.List;
 import java.util.Vector;
 
 public class MarkAsDone {
+
+    /**
+     * The method to mark the task status as done
+     * If the is not format "done + Integer", system will add the entire input as Todo type task into the entire task list
+     *
+     * @param List the entire task list
+     * @param Input_Words the string array of the user input
+     * @param Input
+     *
+     * @return to return true
+     */
     public static boolean Mark_As_Done (Vector<Task> List, String[] Input_Words, String Input){
         switch(Input_Words.length){
             case 2:

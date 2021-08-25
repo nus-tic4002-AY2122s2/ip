@@ -22,7 +22,7 @@ public class Duke {
 
         boolean n = true;
         while(n){
-            n = Input_Scanner.input_start(List);
+            n = Input_Scanner.InputStart(List);
             System.out.println("");
         }
     }

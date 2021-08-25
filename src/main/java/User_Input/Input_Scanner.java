@@ -9,7 +9,14 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class Input_Scanner {
-    public static boolean input_start(Vector<Task> List){
+
+    /**
+     * To parse the user input information type
+     *
+     * @param List entire task list
+     * @return true or false, only "bye" input will return false
+     */
+    public static boolean InputStart(Vector<Task> List){
         String Ending = "bye";
         String Input;
 

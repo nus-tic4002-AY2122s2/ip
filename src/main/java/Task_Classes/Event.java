@@ -10,6 +10,11 @@ public class Event extends Task {
         this.at = at;
     }
 
+    /**
+     * The method to get /at time of the Event task
+     *
+     * @return time/date of the Event task
+     */
     public String getAt(){
         return this.at;
     }
