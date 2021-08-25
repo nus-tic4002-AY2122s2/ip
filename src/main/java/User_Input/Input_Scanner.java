@@ -40,7 +40,7 @@ public class Input_Scanner {
                 return true;
             case "done":
 
-                return MarkAsDone.Mark_As_Done(List, Input_Words, Input);
+                return MarkAsDone.markAsDone(List, Input_Words, Input);
             case "deadline":
                 Add.addDeadlineTask(List, Input_Words);
 

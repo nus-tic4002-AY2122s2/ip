@@ -18,7 +18,7 @@ public class MarkAsDone {
      *
      * @return to return true
      */
-    public static boolean Mark_As_Done (Vector<Task> List, String[] Input_Words, String Input){
+    public static boolean markAsDone(Vector<Task> List, String[] Input_Words, String Input){
         switch(Input_Words.length){
             case 2:
                 // check whether the second string is an integer
