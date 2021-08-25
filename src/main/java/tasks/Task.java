@@ -19,6 +19,10 @@ public class Task {
         return this.description;
     }
 
+    public int getCumulatedTasksAdded(){
+        return this.cumulatedTasksAdded;
+    }
+
     public String toString() {
         String symbol;
 

@@ -27,6 +27,9 @@ public class Duke {
 
     //Will be refactored
     public static void controller(String input, List<Task> list ){
+        int index = 0;
+        String secPart;
+        String description;
         if(input.matches("list")){
             for(int i = 0; i < list.size(); i++){
                 System.out.println(i + 1 + ". " + list.get(i).toString());
@@ -39,9 +42,40 @@ public class Duke {
                 System.out.println(" " + list.get(option-1).toString());
             }
 
+
+        }else if(input.contains("todo")){
+            description = input.replaceFirst("todo","").trim();
+            list.add(new ToDo(description));
+            System.out.println("Got it. I've added this task:");
+            System.out.println(list.get(list.size()-1).toString() );
+            System.out.println("Now you have " + list.get(0).getCumulatedTasksAdded() + " tasks in the list.");
+
+        }else if(input.contains("deadline")){
+            index = input.indexOf("/by");
+            secPart = input.substring(index).replaceFirst("/by","").trim();
+            description = input.substring(0, index).replaceFirst("deadline","").trim();
+
+            list.add(new Deadline(description,secPart));
+            System.out.println("Got it. I've added this task:");
+            System.out.println(list.get(list.size()-1).toString() );
+            System.out.println("Now you have " + list.get(0).getCumulatedTasksAdded() + " tasks in the list.");
+
+        }else if(input.contains("event")){
+            index = input.indexOf("/at");
+            secPart = input.substring(index).replaceFirst("/at","").trim();
+            description = input.substring(0, index).replaceFirst("event","").trim();
+
+            list.add(new Event(description,secPart));
+
+            System.out.println("Got it. I've added this task:");
+            System.out.println(list.get(list.size()-1).toString() );
+            System.out.println("Now you have " + list.get(0).getCumulatedTasksAdded() + " tasks in the list.");
+
         }else{
             list.add(new Task(input));
-            System.out.println("Added: " + input);
+            System.out.println("Got it. I've added this task:");
+            System.out.println(list.get(list.size()-1).toString() );
+            System.out.println("Now you have " + list.get(0).getCumulatedTasksAdded() + " tasks in the list.");
         }
     }
 
