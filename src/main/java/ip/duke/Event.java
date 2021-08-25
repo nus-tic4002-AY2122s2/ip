@@ -1,7 +1,6 @@
 package ip.duke;
 
-public class Event extends Deadline {
-
+    public class Event extends Deadline {
     protected Event(String description, String at) {
         super(description, at);
         setId("E");

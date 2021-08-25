@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 /**
- * LisGenie Chat Bot - tasks management assistant app.
+ * LisGenie Chat Bot App - tasks management assistant.
  *
  * </P>Deals with user tasks registry, chat service and administration.
  *
@@ -15,20 +15,21 @@ import java.util.stream.Stream;
  * @version 1.0
  */
 public class Duke {
+    // TASKS array to store Task objects
     private static final Task[] TASKS = new Task[100];
+    // index variable to track each Task stored in array
     private static int index;
 
-    // Opening Greetings
     static void greet() {
         System.out.println("Hello! I'm LisGenie");
         System.out.println("What can I do for you?");
     }
-    // Bye Message
+    // Exit message
     static void bye() {
         System.out.printf("Bye. Hope to see you again soon!%n");
     }
 
-    // horizontal line draws method
+    // This method draws a horizontal line
     static void drawLine() {
         System.out.print("          ");
         Stream.generate(() -> "_").limit(65).forEach(System.out::print);
@@ -36,6 +37,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        // Greeting screen display
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -43,6 +45,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         greet();
+        // Get user input
         try (Scanner sc = new Scanner(System.in)) {
             String input;
             // conversions loop
@@ -56,19 +59,19 @@ public class Duke {
             } while (!echoBye(input));
         }
     }
-
+    // This method processes tasks and generates dialogues
     private static boolean echoBye(String input) {
         drawLine();
-        // Exit Program branch
+        // Exit program
         if (input.equals("bye")) {
             System.out.print("LisGenie : ");
             bye();
             drawLine();
             return true;
         } else {
-            // Conversation runs
+            // Parse user inputs, output corresponding tasks
             String[] words = null;
-            // check & split multiple words in input to a string array
+            // Check multiple words presence in input before splitting into a string array
             if(input.indexOf(" ") > 0){
                 words = input.split(" ", 2);
                 input = words[0].trim();
@@ -81,7 +84,7 @@ public class Duke {
                     if (idx < 0 || idx > 99) {
                         echoOffList(idx);
                     } else {
-                        updateDone(idx);
+                        updateDoneStatus(idx);
                     }
                 } catch (NumberFormatException ex) {
                     echoNotNum();
@@ -96,10 +99,9 @@ public class Duke {
                 try {
                     addTodo(words[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    echoNoDesc();
+                    echoNoDescription();
                 }
                 break;
-
             case "deadline":
                 try {
                     addDeadline(words[1].trim());
@@ -145,7 +147,7 @@ public class Duke {
         ++index;
     }
 
-    private static void updateDone(int idx){
+    private static void updateDoneStatus(int idx){
         Task item = TASKS[idx];
         if(item != null) {
             item.setDone();
@@ -199,7 +201,7 @@ public class Duke {
         System.out.println("The task...and by what dateline? O Master?");
     }
 
-    private static void echoNoDesc() {
+    private static void echoNoDescription() {
         System.out.print("LisGenie : ");
         System.out.println("Eh...forgot The task description, O Master?");
     }
@@ -224,4 +226,3 @@ public class Duke {
         System.out.println("Item position outside of list (1 - 100): " + (idx+1) + " Omm??");
     }
 }
-

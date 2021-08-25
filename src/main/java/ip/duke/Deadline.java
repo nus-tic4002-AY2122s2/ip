@@ -2,7 +2,6 @@ package ip.duke;
 
 public class Deadline extends Todo {
     private final String by;
-
     protected Deadline(String description, String by) {
         super(description);
         setId("D");
