@@ -1,9 +1,10 @@
 package System_output;
 
 
-import Task_Classes.Task;
+import Task_Classes.*;
 
 import java.util.List;
+import java.util.Vector;
 
 public class Output_On_Screen {
 
@@ -42,7 +43,60 @@ public class Output_On_Screen {
      */
     public static void MarkAsDone_Output(List<Task> List, int n){
         System.out.println("     Nice! I've marked this task as done:");
-        System.out.println("       [" + List.get(n).getStatusIcon() + "] " + List.get(n).getDescription());
+        System.out.println("       [" +
+                List.get(n).getType() + "][" +
+                List.get(n).getStatusIcon() + "] " + List.get(n).getDescription());
+
+        Separated_Line();
+    }
+
+    /**
+     * Print the list onto screen
+     */
+    public static void Print_Out_List(List<Task> List){
+        System.out.println("     Here are the task(s) in your list:");
+        for (int i = 0; i < List.size(); i++) {
+            int j = i + 1;
+            System.out.println("     " + j + "." +
+                    "[" + List.get(i).getType() + "]" +
+                    "[" + List.get(i).getStatusIcon() + "] " + List.get(i).getDescription());
+        }
+
+        Output_On_Screen.Separated_Line();
+    }
+
+
+    /**
+     * Output after add Todo task into the list
+     */
+    public static void Output_TodoAdded(Todo newTask, int List_Qty){
+        System.out.println("     Got it. I've added this task:");
+        System.out.println("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
+        System.out.println("     Now you have " + List_Qty + " tasks in the list.");
+        Separated_Line();
+    }
+
+    /**
+     * Output after add Deadline task into the list
+     */
+    public static void Output_DeadlineAdded(Deadline newTask, int List_Qty){
+        System.out.println("     Got it. I've added this task:");
+        System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
+
+        System.out.println(" (by: " + newTask.getBy() + ")");
+        System.out.println("     Now you have " + List_Qty + " tasks in the list.");
+        Separated_Line();
+    }
+
+    /**
+     * Output after add Event task into the list
+     */
+    public static void Output_EventAdded (Event newTask, int List_Qty){
+        System.out.println("     Got it. I've added this task:");
+        System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
+
+        System.out.println(" (by: " + newTask.getAt() + ")");
+        System.out.println("     Now you have " + List_Qty + " tasks in the list.");
         Separated_Line();
     }
 }
