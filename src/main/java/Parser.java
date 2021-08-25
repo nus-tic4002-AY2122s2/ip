@@ -15,11 +15,9 @@ public class Parser {
         return s2[0].replace(s1[0] + " ", "");
     }
 
-    public static String deadlineDate(String fullCommand) {
-        return fullCommand.split("/by ")[1];
-    }
-
-    public static String eventDate(String fullCommand) {
-        return fullCommand.split("/at ")[1];
+    public static String date(String fullCommand) {
+        String[] s1 = fullCommand.split("/");
+        String[] s2 = s1[1].split(" ");
+        return s1[1].replace(s2[0] + " ", "");
     }
 }

@@ -21,7 +21,7 @@ public class TaskList {
 
     public void addDeadlineCommand (String fullCommand) {
         String description = Parser.description(fullCommand);
-        String date = Parser.deadlineDate(fullCommand);
+        String date = Parser.date(fullCommand);
         Task t = new Deadline(description, date);
         taskList.add(t);
         UI.addMessage(t, taskList.size());
@@ -29,7 +29,7 @@ public class TaskList {
 
     public void addEventCommand (String fullCommand) {
         String description = Parser.description(fullCommand);
-        String date = Parser.eventDate(fullCommand);
+        String date = Parser.date(fullCommand);
         Task t = new Event(description, date);
         taskList.add(t);
         UI.addMessage(t, taskList.size());
