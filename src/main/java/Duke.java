@@ -33,9 +33,9 @@ public class Duke {
                     System.out.println((j + 1) + ". " + tasks[j].getTask());
                 }
                 i--;
-            } else {
-                tasks[i] = new Task(inputTxt);
-                System.out.println("added: " + inputTxt);
+            } else if (inputTxt.startsWith("todo")) {
+                tasks[i] = new Todo(inputTxt.substring(5));
+                System.out.println("added: " + tasks[i].getTask());
             }
 
             System.out.println(horizLine);
