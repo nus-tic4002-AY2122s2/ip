@@ -36,6 +36,10 @@ public class Duke {
             } else if (inputTxt.startsWith("todo")) {
                 tasks[i] = new Todo(inputTxt.substring(5));
                 System.out.println("added: " + tasks[i].getTask());
+            } else if (inputTxt.startsWith("deadline")) {
+                String[] deadlineSplit = inputTxt.substring(9).split("/by");
+                tasks[i] = new Deadline(deadlineSplit[0].trim(), deadlineSplit[1].trim());
+                System.out.println("added: " + tasks[i].getTask());
             } else {
                 System.out.println("Invalid input");
                 i--;
