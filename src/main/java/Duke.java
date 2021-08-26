@@ -1,15 +1,16 @@
 import java.util.Scanner;
 
 public class Duke {
+    // Variables
+    static final String HORIZ_LINE = "____________________________________________________________";
+
     public static void main(String[] args) {
-        // Variables
-        String horizLine = "____________________________________________________________";
         Task[] tasks = new Task[100];
 
         // Init
         System.out.println("Hello! I'm Jarvis");
         System.out.println("What can I do for you?");
-        System.out.println(horizLine);
+        System.out.println(HORIZ_LINE);
 
         // Read user input
         Scanner userInput = new Scanner(System.in);
@@ -50,12 +51,12 @@ public class Duke {
             }
 
             System.out.println("Total tasks: " + (i + 1));
-            System.out.println(horizLine);
+            System.out.println(HORIZ_LINE);
             inputTxt = userInput.nextLine();
         }
 
         // Finalise
         System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(horizLine);
+        System.out.println(HORIZ_LINE);
     }
 }
