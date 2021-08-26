@@ -41,6 +41,7 @@ public class Duke {
                 i--;
             }
 
+            System.out.println("Total tasks: " + (i + 1));
             System.out.println(horizLine);
             inputTxt = userInput.nextLine();
         }
