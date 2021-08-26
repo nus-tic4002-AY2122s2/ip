@@ -1,7 +1,7 @@
 public class Task {
     // Variables
-    private String taskName;
-    private boolean isDone = false;
+    protected String taskName;
+    protected boolean isDone = false;
 
     // Constructor
     public Task(String taskName) {
