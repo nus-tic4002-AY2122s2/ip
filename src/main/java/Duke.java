@@ -36,6 +36,9 @@ public class Duke {
             } else if (inputTxt.startsWith("todo")) {
                 tasks[i] = new Todo(inputTxt.substring(5));
                 System.out.println("added: " + tasks[i].getTask());
+            } else {
+                System.out.println("Invalid input");
+                i--;
             }
 
             System.out.println(horizLine);
