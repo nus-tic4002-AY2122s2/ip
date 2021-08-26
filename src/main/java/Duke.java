@@ -4,7 +4,7 @@ public class Duke {
     public static void main(String[] args) {
         // Variables
         String horizLine = "____________________________________________________________";
-        Task[] inputList = new Task[100];
+        Task[] tasks = new Task[100];
 
         // Init
         System.out.println("Hello! I'm Jarvis");
@@ -14,15 +14,15 @@ public class Duke {
         // Read user input
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
-        for (int i = 0; i < inputList.length; i++) {
+        for (int i = 0; i < tasks.length; i++) {
             if (inputTxt.equals("bye")) {
                 break;
             } else if (inputTxt.startsWith("done")) {
                 int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
                 if (idx < i) {
-                    inputList[idx].setDone();
+                    tasks[idx].setDone();
                     System.out.println("Nice! I've marked this as done:");
-                    System.out.println(inputList[idx].getTask());
+                    System.out.println(tasks[idx].getTask());
                 } else {
                     System.out.println("Task out of limit");
                 }
@@ -30,11 +30,11 @@ public class Duke {
             } else if (inputTxt.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
                 for (int j = 0; j < i; j++) {
-                    System.out.println((j + 1) + ". " + inputList[j].getTask());
+                    System.out.println((j + 1) + ". " + tasks[j].getTask());
                 }
                 i--;
             } else {
-                inputList[i] = new Task(inputTxt);
+                tasks[i] = new Task(inputTxt);
                 System.out.println("added: " + inputTxt);
             }
 
