@@ -14,7 +14,7 @@ public class Duke {
         ui.welcome();
         boolean isExit = false;
         while(!isExit) {
-            String fullCommand = UI.readCommand();
+            String fullCommand = ui.readCommand();
             Command c = new Command(fullCommand);
             ui.splitLine();
             c.execute(taskList);
