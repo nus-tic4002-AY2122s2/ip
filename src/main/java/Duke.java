@@ -40,6 +40,10 @@ public class Duke {
                 String[] deadlineSplit = inputTxt.substring(9).split("/by");
                 tasks[i] = new Deadline(deadlineSplit[0].trim(), deadlineSplit[1].trim());
                 System.out.println("added: " + tasks[i].getTask());
+            } else if (inputTxt.startsWith("event")) {
+                String[] eventSplit = inputTxt.substring(6).split("/at");
+                tasks[i] = new Event(eventSplit[0].trim(), eventSplit[1].trim());
+                System.out.println("added: " + tasks[i].getTask());
             } else {
                 System.out.println("Invalid input");
                 i--;
