@@ -1,5 +1,6 @@
 public class Task {
     // Variables
+    protected char prefix = ' ';
     protected String taskName;
     protected boolean isDone = false;
 
@@ -11,7 +12,7 @@ public class Task {
     // Getter
     public String getTask() {
         String taskStatus = isDone ? "X" : " ";
-        return ("[" + taskStatus + "] " + taskName);
+        return ("[" + prefix + "]" + "[" + taskStatus + "] " + taskName);
     }
 
     // Setter
