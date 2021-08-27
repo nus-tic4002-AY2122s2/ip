@@ -1,107 +1,124 @@
 import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
-        /*
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        */
-        System.out.println("Hello! I'm Duke");
         System.out.println("what can i do for you?\n");
         getMsg();
     }
 
-    public static void getMsg(){
+    private static void getMsg(){
         String line;
         Scanner sc = new Scanner(System.in);
         Task[] taskList = new Task[100];
         int counter = 1;
+        // user input loops
         while (true) {
-            line = sc.nextLine();
-            if (line.equals("list")) {
-                System.out.println("Here are the tasks in your list:\n");
-                printListFunction(taskList, counter);
-            }else if(line.equals("bye"))  {
+            line = sc.nextLine().trim();
+            // exit program
+            if (line.equals("bye")){
                 System.out.println("Bye.Hope to see you again soon!");
                 sc.close();
                 break;
-            }else if(line.contains("done")){
-                int listLocation = Integer.valueOf(line.substring(5,line.length()));
-                System.out.println("Nice! I've marked this task as done:");
-                doneFunction(taskList, listLocation);
-            }else if(line.contains("todo")){
-                String description = line.substring(5, line.length());
-                System.out.println("Got it. I've added this task:");
-                todoFunction(taskList, description , counter);
-                System.out.println("    " + taskList[counter].toString());
-                System.out.println("Now you have " + counter + " tasks in the list.");
-                counter++;
-            }else if(line.contains("deadline")){
-                String description = line.substring(line.indexOf("deadline")+9, line.indexOf("by")-1);
-                String date = line.substring(line.indexOf("by")+3, line.length());
-                System.out.println("Got it. I've added this task:");
-                deadlineFunction(taskList, description, date, counter);
-                System.out.println("    " + taskList[counter].toString());
-                System.out.println("Now you have " + counter + " tasks in the list.");
-                counter++;
-            }
-            else if(line.contains("event")){
-                String description = line.substring(line.indexOf("event")+6, line.indexOf("at")-1);
-                String date = line.substring(line.indexOf("at")+3, line.length());
-                System.out.println("Got it. I've added this task:");
-                eventFunction(taskList, description, date, counter);
-                System.out.println("   " + taskList[counter].toString());
-                System.out.println("Now you have " + counter + " tasks in the list.");
-                counter++;
             }else{
-                storeFunction(taskList, line, counter);
-                counter ++;
+                // any other user input
+                String[] userInput = null;
+                String command;
+                String input;
+                // check for user command and input
+                if(line.indexOf(" ") > 0){
+                    userInput = line.split(" ",2);
+                    command = userInput[0].trim();
+                    input = userInput[1].trim();
+                    if(command.equals("todo")){
+                        System.out.println("Got it. I've added this task:");
+                        todoFunction(taskList, input , counter);
+                        System.out.println("    " + taskList[counter].toString());
+                        System.out.println("Now you have " + counter + " tasks in the list.\n");
+                        counter++;
+                    }else if(command.equals("done")){
+                        int listLocation = Integer.valueOf(input);
+                        System.out.println("Nice! I've marked this task as done:");
+                        doneFunction(taskList, listLocation);
+                    }else if(command.equals("deadline")){
+                        String description = input.substring(0, input.indexOf("/by")-1);
+                        String date = input.substring(input.indexOf("/by")+3, input.length());
+                        System.out.println("Got it. I've added this task:");
+                        deadlineFunction(taskList, description, date, counter);
+                        System.out.println("    " + taskList[counter].toString());
+                        System.out.println("Now you have " + counter + " tasks in the list.");
+                        counter++;
+                    }else if(command.contains("event")) {
+                        String description = input.substring(0, input.indexOf("/at") - 1);
+                        String date = input.substring(input.indexOf("/at") + 3, input.length());
+                        System.out.println("Got it. I've added this task:");
+                        eventFunction(taskList, description, date, counter);
+                        System.out.println("    " + taskList[counter].toString());
+                        System.out.println("Now you have " + counter + " tasks in the list.");
+                        counter++;
+                    }else{
+                        wrongCommand();
+                    }
+                }else if(line.isEmpty()) {
+                    // empty user input
+                    emptyInput();
+                }else if(line.equals("list")) {
+                    System.out.println("Here are the tasks in your list:\n");
+                    printListFunction(taskList, counter);
+                }else{
+                    wrongInput();
+                }
             }
         }
     }
 
-    public static Task[] storeFunction(Task[] taskList, String line, int counter){
-        System.out.println("added: " + line);
-        Task newTask = new Task(line);
-        newTask.description = line;
-        taskList[counter] = newTask;
-        return taskList;
-    }
-
-    public static void printListFunction(Task[] taskList, int counter){
+    private static void printListFunction(Task[] taskList, int counter){
         for(int i = 1; i < counter; i++){
             System.out.println(i + "." +  taskList[i].toString());
         }
     }
 
-    public static void doneFunction(Task[] taskList, int listLocation){
+    private static void doneFunction(Task[] taskList, int listLocation){
         Task t = taskList[listLocation];
         t.markAsDone();
-        System.out.println(taskList[listLocation].toString());
+        System.out.println("    " + taskList[listLocation].toString()) ;
     }
 
-    public static Task[] todoFunction(Task[] taskList, String description, int counter){
+    private static Task[] todoFunction(Task[] taskList, String description, int counter){
         Task newTask = new Todo(description);
         newTask.description = description;
         taskList[counter] = newTask;
         return taskList;
     }
 
-    public static Task[] eventFunction(Task[] taskList, String description, String date, int counter){
+    private static Task[] eventFunction(Task[] taskList, String description, String date, int counter){
         Task newTask = new Event(description, date);
         newTask.description = description;
         taskList[counter] = newTask;
         return taskList;
     }
 
-    public static Task[] deadlineFunction(Task[] taskList, String description, String date, int counter){
+    private static Task[] deadlineFunction(Task[] taskList, String description, String date, int counter){
         Task newTask = new Deadline(description, date);
         newTask.description = description;
         taskList[counter] = newTask;
         return taskList;
     }
 
+    private static void emptyInput() {
+        System.out.println("You have enter an empty string!!!");
+    }
+
+    private static void wrongCommand(){
+        System.out.print("You have enter an invalid command!!!");
+    }
+
+    private static void wrongInput(){
+        System.out.println("You have enter an invalid input!!!");
+    }
 }
