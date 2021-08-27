@@ -25,7 +25,9 @@ public class UI {
 
     public static void printTask(ArrayList<Task> taskList) {
         UI.printLine();
-        UI.addSpaces("%sadded: " + taskList.get(taskList.size() - 1).toString(),5);
+        UI.addSpaces("%sGot it. I've added this task:",5);
+        UI.addSpaces("%s" + taskList.get(taskList.size() - 1).toString(),6);
+        UI.addSpaces("%sNow you have " + (taskList.size()) + " tasks in the list.",5);
         UI.printLine();
     }
 
@@ -53,5 +55,9 @@ public class UI {
 
     public static void addSpaces(String text, Integer value) {
         System.out.printf((text) + "%n", " ".repeat(value));
+    }
+
+    public static void printParseException() {
+        System.out.println("☹ OOPS!!! Please enter DD MMM YYYY date format.");
     }
 }
