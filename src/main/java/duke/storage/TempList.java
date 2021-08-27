@@ -1,14 +1,13 @@
 package duke.storage;
 
-import duke.ui.Message;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.stream.Stream;
 
 public class TempList<T> implements Iterable<T>{
-    private ArrayList<T> list;
+    protected ArrayList<T> list;
     private PropertyChangeSupport support;
 
     public TempList() {
@@ -23,7 +22,9 @@ public class TempList<T> implements Iterable<T>{
     }
 
 
-
+    public Stream<T> stream() {
+        return list.stream();
+    }
 
     public T get(int index) {return list.get(index);}
     public Integer size() {return list.size();}

@@ -18,7 +18,7 @@ public final class Message implements PropertyChangeListener {
     }
 
     public static void addTask(String input) {
-        System.out.print("\t added:");
+        System.out.print("\tadded:");
         echo(input);
     }
 
@@ -31,6 +31,7 @@ public final class Message implements PropertyChangeListener {
         var list = (ArrayList<Task>) evt.getNewValue();
         String title = list.get(list.size() - 1).getTitle();
         this.addTask(title);
+        echo("Now " + list.size() + " tasks in Total");
     }
 
     public static void greeting() {

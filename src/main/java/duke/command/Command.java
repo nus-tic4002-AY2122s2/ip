@@ -1,7 +1,6 @@
 package duke.command;
 
+@FunctionalInterface
 public interface Command {
-    void run();
-//    void undo();
-//    void redo();
+    void run(String[] args);
 }

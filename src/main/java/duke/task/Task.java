@@ -1,5 +1,12 @@
 package duke.task;
 
+import duke.ui.Message;
+
+/**
+ * SuperClass
+ * Also, a Receiver Class in Command Pattern
+ */
+
 public class Task {
     protected String title;
     protected boolean isDone;
@@ -19,8 +26,16 @@ public class Task {
 
     public String getTitle() {return title;}
     public boolean isDone() {return isDone;}
-    public void markDone() {this.isDone = true;}
-    public void markUnDone() {this.isDone = false;}
+    public void markDone() {
+        this.isDone = true;
+        Message.echo("Marked below as DONE:");
+        Message.echo(toString());
+    }
+    public void markUnDone() {
+        this.isDone = false;
+        Message.echo("Marked below as UNDONE:");
+        Message.echo(toString());
+    }
     public int getTaskNo() {return taskNo;}
 
 
@@ -30,6 +45,6 @@ public class Task {
         if (isDone()) {
             status = "[✓]";
         }
-        return taskNo + ". " + status + " " + title;
+        return  status + " " + title;
     }
 }

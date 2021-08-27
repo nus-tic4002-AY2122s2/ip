@@ -1,17 +1,31 @@
 package duke;
 
-import duke.storage.TempList;
+import duke.command.CommandCaller;
+import duke.command.CommandFactory;
+import duke.command.TaskMarkDoneCmd;
+import duke.parse.StringParser;
+import duke.storage.TempTaskList;
 import duke.task.Task;
 import duke.ui.Message;
 
+import java.io.File;
 import java.util.Scanner;
 
+/**
+ * @author      Li Shihao
+ * @since       2021 Aug
+ */
 public class Duke {
-    private TempList<Task> list = new TempList<>();
+    private TempTaskList<Task> list = new TempTaskList<>();
+    private File file;
+    private CommandFactory commandFactory = new CommandFactory(list, file);
+    private StringParser strParser = new StringParser();
+    private CommandCaller commandCaller = new CommandCaller(commandFactory);
 
     public Duke() {
         Message messager = new Message();
         list.addPropertyChangeListener(messager);
+        strParser.addPropertyChangeListener(commandCaller);
     }
 
     public static void main(String[] args)  {
@@ -24,29 +38,20 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String userInput = in.nextLine();
 
-        if(userInput.equals("bye")) return;
-        if(userInput.equals("list")) { print();
-        } else if(userInput.contains("done")) {
-            var index = userInput.split(" ")[1];
-            markDone(Integer.parseInt(index)-1);
-        } else { list.add(new Task(userInput));}
-
+        switch(userInput.trim()) {
+            case "bye":
+                return;
+            case "list":
+                list.print();
+                break;
+            default:
+                strParser.passToCaller(userInput);
+        }
 
         start();
     }
 
-    public void markDone(int index) {
-        var task = list.get(index);
-        task.markDone();
-        Message.echo("Marked below as Done:");
-        Message.echo(task.toString());
-    }
 
-    public void print() {
-        for (Task task : list) {
-           Message.echo(task.toString());
-        }
-    }
 }
 
 
