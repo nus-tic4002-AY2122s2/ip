@@ -1,4 +1,4 @@
-package task;
+package task; // Shifted all various types of task class to a package
 
 public abstract class Task {
     protected String description;
