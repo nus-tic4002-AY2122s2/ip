@@ -1,1 +1,1 @@
-Added increment previously on master branch. Now just commit to achieve requirement.
+Now I have merged both branches.
