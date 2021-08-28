@@ -9,10 +9,6 @@ public class Events extends Task {
         this.details = "(at: " + details + ")";
     }
 
-    public String getDetails(){
-        return details;
-    }
-
     public String getFullStatus(){
         return ("[" + this.type + "]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + this.details + "\n");
     }

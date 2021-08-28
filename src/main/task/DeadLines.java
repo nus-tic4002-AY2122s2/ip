@@ -8,10 +8,6 @@ public class DeadLines extends Task {
         this.details = "(by: "+ details + ")";
         this.type = 'D';
     }
-
-    public String getDetails(){
-        return details;
-    }
     public String getFullStatus(){
         return ("[" + this.type + "]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + this.details + "\n");
     }
