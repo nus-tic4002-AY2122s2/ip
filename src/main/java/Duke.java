@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Duke {
     private static String line = "_______________________________________\n"; // To shift to UI class
     private static ArrayList<Task> list = new ArrayList<Task>();
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args){
         greet();
         while (process(read()));
         exit();
