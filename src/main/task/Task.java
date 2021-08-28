@@ -10,7 +10,7 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    public abstract String getFullStatus();
+    public abstract String getFullStatus(); // Abstract method
 
     public String getStatusIcon(){
         return (isDone ? "X" : " ");
