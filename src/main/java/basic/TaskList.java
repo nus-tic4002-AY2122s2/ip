@@ -8,7 +8,7 @@ public class TaskList {
     /**
      * Constructs a new task list and initialises it with an empty ArrayList.
      */
-    public ArrayList<Task> task = new ArrayList<Task>();
+    public ArrayList<Task> tasks = new ArrayList<Task>();
 
     /**
      * Checks if the task was marked as done
@@ -47,7 +47,7 @@ public class TaskList {
     }
 
     ArrayList<Task> returnList() {
-        return task;
+        return tasks;
     }
 
     /**
@@ -57,7 +57,7 @@ public class TaskList {
      * @return Task The task at the specified index.
      */
     public Task returnTask(int num) {
-        return task.get(num);
+        return tasks.get(num);
     }
 
     /**
@@ -66,7 +66,7 @@ public class TaskList {
      * @param task1 The task that is required to be added to the task list.
      */
     public void addTask(Task task1) {        
-        task.add(task1);
+        tasks.add(task1);
     }
 
     /**
@@ -75,7 +75,7 @@ public class TaskList {
      * @param num The index of a task that is required to be removed from the task list.
      */
     public void deleteTask(int num) {
-        task.remove(num);
+        tasks.remove(num);
     }
 
     /**
@@ -84,7 +84,7 @@ public class TaskList {
      * @return int  The size of the current task list.
      */
     public int sizeOfTask() {
-        return task.size();
+        return tasks.size();
     }
 
 }
