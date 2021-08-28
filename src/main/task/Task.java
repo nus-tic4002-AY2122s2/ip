@@ -1,6 +1,8 @@
-public class Task {
+package task;
+
+public abstract class Task {
     protected String description;
-    protected boolean isDone;
+    public boolean isDone;
     protected char type;
 
     public Task (String description) {
@@ -8,12 +10,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public abstract String getFullStatus();
+
     public String getStatusIcon(){
         return (isDone ? "X" : " ");
-    }
-
-    public String getFullStatus(){
-        return ("[" + this.getStatusIcon() + "] " + this.getDescription() + "\n");
     }
 
     public String getDescription(){

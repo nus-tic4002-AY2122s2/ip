@@ -1,3 +1,8 @@
+import task.DeadLines;
+import task.Events;
+import task.Task;
+import task.ToDo;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,7 +10,7 @@ import java.util.Scanner;
 public class Duke {
     private static String line = "_______________________________________\n"; // To shift to UI class
     private static ArrayList<Task> list = new ArrayList<Task>();
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         greet();
         while (process(read()));
         exit();
@@ -38,6 +43,9 @@ public class Duke {
 
     private static void addToList (String userInput){
         String[] splitString = userInput.trim().split(" ", 2);
+        if (splitString[1] == "" || splitString[1] == " "){
+            throw new ArrayIndexOutOfBoundsException();
+        }
         switch (splitString[0]) {
             case "todo":
                 ToDo newTodo = new ToDo(splitString[1]);
@@ -54,14 +62,17 @@ public class Duke {
                 list.add(newDeadline);
                 break;
             default:
-                break;
+                return;
         }
         dukeReply("Got it. I've added this task:\n" + list.get(list.size()-1).getFullStatus() + "Now you have " + list.size() + " tasks in the list.\n");
     }
 
 
-    private static void showList(){
+    private static void showList() throws DukeException {
         String taskList = new String();
+        if (list.size() == 0){
+            throw new DukeException();
+        }
         int counter = 1;
         for (Task task : list){
             taskList = taskList.concat(counter + "." + task.getFullStatus());
@@ -70,9 +81,17 @@ public class Duke {
         dukeReply(taskList);
     }
 
-    private static void markDone(String userInput){
+    private static void markDone(String userInput) throws DukeExceptionInvalidTaskNumberDone, DukeException {
+        if (userInput.length() < 5 || userInput.charAt(4) != ' ' || userInput.charAt(5) == ' ') { // Handling errors: When user types done1 done2 or done   2
+            throw new DukeExceptionInvalidTaskNumberDone();
+        }
         String taskNumber = userInput.substring(userInput.indexOf("done")+5);
-        list.get(Integer.parseInt(taskNumber) - 1).isDone = true;
+        try {
+            list.get(Integer.parseInt(taskNumber) - 1).isDone = true;
+        }
+        catch (IndexOutOfBoundsException e){
+            throw new DukeException();
+        }
         dukeReply("Nice! I've marked this task as done: \n" + list.get(Integer.parseInt(taskNumber) - 1).getFullStatus());
     }
 
@@ -87,22 +106,40 @@ public class Duke {
             return "list";
         else if (userInput.contains("bye"))
             return "bye";
-        else
+        else if (userInput.contains("todo") || userInput.contains("event") || userInput.contains("deadline"))
             return "addToList";
-
+        return "unknown";
     }
 
     private static boolean process(String userInput){
-        String command = commandIdentifier(userInput);
+            String command = commandIdentifier(userInput);
         switch(command) {
             case "list":
-                showList();
+                try{
+                 showList();
+                }
+                catch (DukeException e){
+                    dukeReply("There's nothing in your task list.\n");
+            }
                 return true;
             case "addToList":
-                addToList(userInput);
+                try {
+                    addToList(userInput);
+                }
+                catch (ArrayIndexOutOfBoundsException e) {
+                    dukeReply("☹ OOPS!!! The description of a task cannot be empty. \n  If you're adding a todo task, please include the description. \n If you're adding an event task, please include /at in the description.\n If you're adding a deadline task, please include /by in the description.\n");
+                }
                 return true;
             case "done":
-                markDone(userInput);
+                try {
+                    markDone(userInput);
+                }
+                catch (DukeExceptionInvalidTaskNumberDone | DukeException e){
+                    dukeReply("You've entered an invalid task number, please enter a valid task number again.\n");
+                }
+                return true;
+            case "unknown":
+                dukeReply("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-(\n");
                 return true;
             default:
                 return false;

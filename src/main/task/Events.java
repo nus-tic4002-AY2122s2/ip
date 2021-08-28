@@ -1,15 +1,18 @@
-public class DeadLines extends Task {
+package task;
+
+public class Events extends Task {
     String details;
 
-    public DeadLines(String description, String details){
+    public Events(String description, String details){
         super(description);
-        this.details = "(by: "+ details + ")";
-        this.type = 'D';
+        this.type = 'E';
+        this.details = "(at: " + details + ")";
     }
 
     public String getDetails(){
         return details;
     }
+
     public String getFullStatus(){
         return ("[" + this.type + "]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + this.details + "\n");
     }
