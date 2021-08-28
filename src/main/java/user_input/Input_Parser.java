@@ -1,6 +1,6 @@
-package User_Input;
+package user_input;
 
-import java.lang.*;
+
 import java.util.ArrayList;
 
 public class Input_Parser {
@@ -8,61 +8,61 @@ public class Input_Parser {
     /**
      * To extract task description information from user input
      *
-     * @param Input_Words all user input in String[] type
+     * @param inputWords all user input in String[] type
      * @return the description in String type
      */
-    public static String toGetDescription (String[] Input_Words) {
-        String Input_Description = "";
+    public static String toGetDescription (String[] inputWords) {
+        String inputDescription = "";
         ArrayList<String> buffer = new ArrayList<String>();
 
         int i = 1;
 
-        if(Input_Words.length == 2){
-            return Input_Words[1];
+        if(inputWords.length == 2){
+            return inputWords[1];
         }
 
-        for(; i < Input_Words.length; i++) {
+        for(; i < inputWords.length; i++) {
 
-            if(Input_Words[i].equals("/by") || Input_Words[i].equals("/at")){
+            if(inputWords[i].equals("/by") || inputWords[i].equals("/at")){
 
-                Input_Description = convertStringArrayToString(buffer);
+                inputDescription = convertStringArrayToString(buffer);
 
                 break;
             }
 
-            buffer.add(Input_Words[i]);
+            buffer.add(inputWords[i]);
         }
 
-        return Input_Description;
+        return inputDescription;
     }
 
     /**
      * To extract time/date information from user input
      *
-     * @param Input_Words all user input in String[] type
+     * @param inputWords all user input in String[] type
      * @return the time/date information in String type
      */
-    public static String toGetDate (String[] Input_Words) {
-        String Input_Date = "";
+    public static String toGetDate (String[] inputWords) {
+        String inputDate = "";
         ArrayList<String> buffer = new ArrayList<String>();
 
         int i = 1;
 
-        for(; i < Input_Words.length; i++) {
+        for(; i < inputWords.length; i++) {
 
-            if(Input_Words[i].equals("/by") || Input_Words[i].equals("/at")){
+            if(inputWords[i].equals("/by") || inputWords[i].equals("/at")){
 
-                for(i++; i < Input_Words.length; i++){
-                    buffer.add(Input_Words[i]);
+                for(i++; i < inputWords.length; i++){
+                    buffer.add(inputWords[i]);
                 }
 
                 break;
             }
         }
 
-        Input_Date = convertStringArrayToString(buffer);
+        inputDate = convertStringArrayToString(buffer);
 
-        return Input_Date;
+        return inputDate;
     }
 
     /**

@@ -1,4 +1,4 @@
-package Task_Classes;
+package task_classes;
 
 public class Todo extends Task {
 
