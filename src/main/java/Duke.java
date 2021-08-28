@@ -10,7 +10,11 @@ import java.util.Scanner;
 public class Duke {
     private static String line = "_______________________________________\n"; // To shift to UI class
     private static ArrayList<Task> list = new ArrayList<Task>();
+<<<<<<< HEAD
     public static void main(String[] args){
+=======
+    public static void main(String[] args) {
+>>>>>>> branch-A-CodeQuality
         greet();
         while (process(read()));
         exit();
@@ -127,7 +131,10 @@ public class Duke {
                     addToList(userInput);
                 }
                 catch (ArrayIndexOutOfBoundsException e) {
-                    dukeReply("☹ OOPS!!! The description of a task cannot be empty. \n  If you're adding a todo task, please include the description. \n If you're adding an event task, please include /at in the description.\n If you're adding a deadline task, please include /by in the description.\n");
+                    dukeReply("☹ OOPS!!! The description of a task cannot be empty. \n  " +
+                            "If you're adding a todo task, please include the description. \n " +
+                            "If you're adding an event task, please include /at in the description.\n " +
+                            "If you're adding a deadline task, please include /by in the description.\n");
                 }
                 return true;
             case "done":
