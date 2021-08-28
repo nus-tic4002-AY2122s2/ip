@@ -10,11 +10,7 @@ import java.util.Scanner;
 public class Duke {
     private static String line = "_______________________________________\n"; // To shift to UI class
     private static ArrayList<Task> list = new ArrayList<Task>();
-<<<<<<< HEAD
     public static void main(String[] args){
-=======
-    public static void main(String[] args) {
->>>>>>> branch-A-CodeQuality
         greet();
         while (process(read()));
         exit();
