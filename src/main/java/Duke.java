@@ -57,13 +57,13 @@ public class Duke {
             if(!userInput.equals("list")){
                 System.out.println(userInput);
                 printLines(line);
-                System.out.println("     " + userInput);
-//                System.out.println("     added: " + userInput);
+//                System.out.println("     " + userInput);
+                System.out.println("     added: " + userInput);
                 printLines(line);
             }
         }
 
-        return true;
+            return true;
     }
 
     public static void displayList(String input){
