@@ -50,6 +50,8 @@ public class Duke {
 		case "LIST":
 			list_items(itemLists);
 			break;
+		case "DONE":
+			System.out.println("Opps, this has not yet been implemented!"); // TODO: Implement Tuple Data Structure
 		default:
 			
 	}
