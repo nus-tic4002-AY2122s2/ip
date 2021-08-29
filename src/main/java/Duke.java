@@ -14,12 +14,17 @@ public class Duke {
         ui.welcome();
         boolean isExit = false;
         while(!isExit) {
-            String fullCommand = ui.readCommand();
-            Command c = new Command(fullCommand);
-            ui.splitLine();
-            c.execute(taskList);
-            isExit = c.isExit;
-            ui.splitLine();
+            try {
+                String fullCommand = ui.readCommand();
+                Execution execution = new Execution(fullCommand);
+                ui.splitLine();
+                execution.execute(taskList);
+                isExit = execution.isExit;
+            } catch (Exception e) {
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            } finally {
+                ui.splitLine();
+            }
         }
     }
 

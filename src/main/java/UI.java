@@ -44,7 +44,6 @@ public class UI {
     public static String readCommand() {
         Scanner in = new Scanner(System.in);
         String fullCommand = in.nextLine();
-        assert fullCommand.length() > 0: "The command can't be empty!";
         return fullCommand;
     }
 }
