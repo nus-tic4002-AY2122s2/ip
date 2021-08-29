@@ -1,6 +1,7 @@
 package task_manipulation;
 
 
+import exceptions.DukeTaskInputException;
 import system_output.Output_On_Screen;
 import task_classes.*;
 import user_input.Input_Parser;
@@ -16,7 +17,7 @@ public class Add {
      * @param list the entire task list
      * @param input the description of the todo task
      */
-    public static void addTask(Vector<Task> list, String input){
+    public static void addTodoTask(Vector<Task> list, String input){
         Todo inputTask = new Todo (input);
         list.add(inputTask);
 
@@ -30,10 +31,11 @@ public class Add {
      * @param list the entire task list
      * @param inputWords the string array of the user input
      */
-    public static void addDeadlineTask (Vector<Task> list, String[] inputWords){
+    public static void addDeadlineTask (Vector<Task> list, String[] inputWords) throws DukeTaskInputException {
 
-        String description = Input_Parser.toGetDescription(inputWords);
-        String date = Input_Parser.toGetDate(inputWords);
+        String description = Input_Parser.toExtractDescription(inputWords);
+
+        String date = Input_Parser.toExtractDate(inputWords);
 
         Deadline newTask = new Deadline(description, date);
 
@@ -49,10 +51,10 @@ public class Add {
      * @param list the entire task list
      * @param inputWords the string array of the user input
      */
-    public static void addEventTask (Vector<Task> list, String[] inputWords){
+    public static void addEventTask (Vector<Task> list, String[] inputWords) throws DukeTaskInputException {
 
-        String description = Input_Parser.toGetDescription(inputWords);
-        String date = Input_Parser.toGetDate(inputWords);
+        String description = Input_Parser.toExtractDescription(inputWords);
+        String date = Input_Parser.toExtractDate(inputWords);
 
         Event newTask = new Event(description, date);
 

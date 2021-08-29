@@ -1,5 +1,6 @@
 package user_input;
 
+import exceptions.DukeTaskInputException;
 import system_output.Output_On_Screen;
 import task_classes.Task;
 import task_manipulation.Add;
@@ -14,45 +15,84 @@ public class Input_Scanner {
      * To parse the user input information type
      *
      * @param List entire task list
-     * @return true or false, only "bye" input will return false
      */
-    public static boolean InputStart(Vector<Task> List){
+    public static void InputStart(Vector<Task> List){
 
         String input;
-
         Scanner in = new Scanner(System.in);
         input = in.nextLine();
 
-        String[] inputWords = input.split(" ");
+        try {
+            String[] inputWords = input.split(" ");
+            String firstWord = inputWords[0].toLowerCase();
 
+            Input_Parser.Input_Length_Checking(firstWord, inputWords);
 
-        Output_On_Screen.toPrintSeparateLine();
+            Output_On_Screen.toPrintSeparateLine();
 
-        switch(inputWords[0].toLowerCase()) {
-            case "bye":
-                Output_On_Screen.printGoodbyeOutput();
-                Output_On_Screen.toPrintSeparateLine();
+            switch(firstWord) {
+                case "bye":
+                    Output_On_Screen.printGoodbyeOutput();
+                    return;
+                case "list":
+                    Output_On_Screen.printOutList(List);
+                    break;
+                case "done":
+                    MarkAsDone.markAsDone(List, inputWords);
+                    break;
+                case "deadline":
+                    Add.addDeadlineTask(List, inputWords);
+                    break;
+                case "event":
+                    Add.addEventTask(List, inputWords);
+                    break;
+                case "todo":
+                    Add.addTodoTask(List, input.substring(5, input.length()));
+            }
+        } catch (DukeTaskInputException e) {
+            String firstWord = DukeTaskInputException.getFirstWord();
+            String errorType = DukeTaskInputException.getErrorType();
 
-                return false;
-            case "list":
-                Output_On_Screen.printOutList(List);
-
-                return true;
-            case "done":
-
-                return MarkAsDone.markAsDone(List, inputWords, input);
-            case "deadline":
-                Add.addDeadlineTask(List, inputWords);
-
-                return true;
-            case "event":
-                Add.addEventTask(List, inputWords);
-
-                return true;
-            default:
-                Add.addTask(List, input);
-
-                return true;
+            switch(errorType){
+                case "descriptionMissing":
+                    switch(firstWord){
+                        case "todo":
+                        case "event":
+                        case "deadline":
+                            DukeTaskInputException.descriptionMissing(firstWord);
+                            break;
+                        default:
+                            DukeTaskInputException.invalidFirstWordInput();
+                            break;
+                    }
+                    break;
+                case "dateTime":
+                    DukeTaskInputException.dateTimeMissing();
+                    break;
+                case "markAsDoneTaskNumberMissing":
+                    DukeTaskInputException.markAsDoneTaskNumberMissing();
+                    break;
+                case "markAsDoneTaskNumberNotInteger":
+                    DukeTaskInputException.markAsDoneTaskNumberNotInteger();
+                    break;
+                case "markAsDoneTaskNumberNotInTaskList":
+                    DukeTaskInputException.markAsDoneTaskNumberNotInTaskList();
+                    break;
+                case "markAsDoneFormatWrong":
+                    DukeTaskInputException.markAsDoneFormatWrong();
+                    break;
+                case "markAsDoneTaskNumberOutOfRange":
+                    DukeTaskInputException.markAsDoneTaskNumberOutOfRange();
+                    break;
+                case "Interesting":
+                    DukeTaskInputException.Interesting();
+                    break;
+                case "listIsEmtpy":
+                    DukeTaskInputException.listIsEmtpy();
+                    break;
+            }
         }
+
+        InputStart(List);
     }
 }

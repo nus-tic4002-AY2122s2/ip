@@ -20,10 +20,6 @@ public class Duke {
 
         Vector<Task> list = new Vector<Task>();
 
-        boolean shouldContinue = true;
-        while(shouldContinue){
-            shouldContinue = Input_Scanner.InputStart(list);
-            System.out.println("");
-        }
+        Input_Scanner.InputStart(list);
     }
 }

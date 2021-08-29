@@ -1,11 +1,11 @@
 package task_classes;
 
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
     protected String type;
 
-    public Task(String description){
+    Task(String description){
         this.description = description;
         this.isDone = false;
     }

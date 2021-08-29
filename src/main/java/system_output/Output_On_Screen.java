@@ -38,6 +38,7 @@ public class Output_On_Screen {
      */
     public static void printGoodbyeOutput(){
         System.out.println("     Bye. Hope to see you again soon!");
+        toPrintSeparateLine();
     }
 
     /**
@@ -113,6 +114,14 @@ public class Output_On_Screen {
 
         System.out.println(" (by: " + newTask.getAt() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
+        toPrintSeparateLine();
+    }
+
+    /**
+     * To print message when user input an invalid input
+     */
+    public static void toPrintNotUnderstandableInputMessage(){
+        System.out.println("    Invalid Input! Please try again!");
         toPrintSeparateLine();
     }
 }

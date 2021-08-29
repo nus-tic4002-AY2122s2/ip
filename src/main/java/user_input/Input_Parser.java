@@ -1,7 +1,10 @@
 package user_input;
 
 
+import exceptions.DukeTaskInputException;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Input_Parser {
 
@@ -11,29 +14,51 @@ public class Input_Parser {
      * @param inputWords all user input in String[] type
      * @return the description in String type
      */
-    public static String toGetDescription (String[] inputWords) {
-        String inputDescription = "";
-        ArrayList<String> buffer = new ArrayList<String>();
+    public static String toExtractDescription(String[] inputWords) throws DukeTaskInputException {
+        ArrayList<String> bufferA = new ArrayList<String>();
 
-        int i = 1;
-
+        /* If the input is to add todo task, then the length of the array must greater then 1 or there is no description */
         if(inputWords.length == 2){
-            return inputWords[1];
+            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
         }
 
-        for(; i < inputWords.length; i++) {
+        if(inputWords[0].equals("todo")){
+            bufferA.addAll(Arrays.asList(inputWords).subList(1, inputWords.length));
 
-            if(inputWords[i].equals("/by") || inputWords[i].equals("/at")){
+            return convertStringArrayToString(bufferA);
+        }else if (inputWords[0].equals("deadline")){
+            for(int n = inputWords.length - 1; n > 0; n--) {
+                if (inputWords[n].equals("/by")) {
+                    if(n == 1){
+                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                    }
+                    if (n == inputWords.length - 1) {
+                        throw new DukeTaskInputException(inputWords[0], "dateTime");
+                    }
 
-                inputDescription = convertStringArrayToString(buffer);
+                    bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
 
-                break;
+                    return convertStringArrayToString(bufferA);
+                }
             }
+        } else if (inputWords[0].equals("event")){
+            for(int n = inputWords.length - 1; n > 0; n--) {
+                if (inputWords[n].equals("/at")) {
+                    if(n == 1){
+                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                    }
+                    if (n == inputWords.length - 1) {
+                        throw new DukeTaskInputException(inputWords[0], "dateTime");
+                    }
 
-            buffer.add(inputWords[i]);
+                    bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
+
+                    return convertStringArrayToString(bufferA);
+                }
+            }
         }
 
-        return inputDescription;
+        throw new DukeTaskInputException(inputWords[0], "dateTime");
     }
 
     /**
@@ -42,27 +67,67 @@ public class Input_Parser {
      * @param inputWords all user input in String[] type
      * @return the time/date information in String type
      */
-    public static String toGetDate (String[] inputWords) {
-        String inputDate = "";
-        ArrayList<String> buffer = new ArrayList<String>();
+    public static String toExtractDate(String[] inputWords) throws DukeTaskInputException {
+        ArrayList<String> bufferA = new ArrayList<String>();
 
-        int i = 1;
+        /* If the input is to add todo task, then the length of the array must greater then 1 or there is no description */
+        if(inputWords.length == 2){
+            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+        }
 
-        for(; i < inputWords.length; i++) {
+        if(inputWords[0].equals("todo")){
+            bufferA.addAll(Arrays.asList(inputWords).subList(1, inputWords.length));
 
-            if(inputWords[i].equals("/by") || inputWords[i].equals("/at")){
+            return convertStringArrayToString(bufferA);
+/*        }else{
+            for(int n = inputWords.length - 1; n > 0; n--) {
+                if (inputWords[n].equals("/by") || inputWords[n].equals("/at")) {
+                    if (n == 1) {
+                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                    }
 
-                for(i++; i < inputWords.length; i++){
-                    buffer.add(inputWords[i]);
+                    if (n == inputWords.length - 1) {
+                        throw new DukeTaskInputException(inputWords[0], "dateTime");
+                    }
+
+                    bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
+
+                    return convertStringArrayToString(bufferA);
                 }
+            }*/
+        }else if (inputWords[0].equals("deadline")){
+            for(int n = inputWords.length - 1; n > 0; n--) {
+                if (inputWords[n].equals("/by")) {
+                    if(n == 1){
+                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                    }
+                    if (n == inputWords.length - 1) {
+                        throw new DukeTaskInputException(inputWords[0], "dateTime");
+                    }
 
-                break;
+                    bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
+
+                    return convertStringArrayToString(bufferA);
+                }
+            }
+        } else if (inputWords[0].equals("event")){
+            for(int n = inputWords.length - 1; n > 0; n--) {
+                if (inputWords[n].equals("/at")) {
+                    if(n == 1){
+                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                    }
+                    if (n == inputWords.length - 1) {
+                        throw new DukeTaskInputException(inputWords[0], "dateTime");
+                    }
+
+                    bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
+
+                    return convertStringArrayToString(bufferA);
+                }
             }
         }
 
-        inputDate = convertStringArrayToString(buffer);
-
-        return inputDate;
+        throw new DukeTaskInputException(inputWords[0], "dateTime");
     }
 
     /**
@@ -76,5 +141,28 @@ public class Input_Parser {
         for (String str : strArr)
             sb.append(str).append(" ");
         return sb.substring(0, sb.length() - 1);
+    }
+
+    /**
+     * To check customer input String. If the input only has one word and not "list" and "bye".
+     * This function will throw an error which will tell user that the input in incorrect and please try again;
+     * @param First_Word The first word of the customer input which used to compare the condition;
+     * @param Input_Words The customer input which used to check length;
+     * @throws DukeTaskInputException The error which the input is not correct.
+     */
+    public static void Input_Length_Checking(String First_Word, String[] Input_Words) throws DukeTaskInputException {
+        if(!First_Word.equals("list") &&
+                !First_Word.equals("bye") &&
+                !First_Word.equals("help") &&
+                !First_Word.equals("update") &&
+                !First_Word.equals("search") &&
+                !First_Word.equals("datetype") &&
+                !First_Word.equals("timetype") &&
+                !First_Word.equals("find") &&
+                !First_Word.equals("todoafter") &&
+                !First_Word.equals("processing") &&
+                Input_Words.length == 1){
+            throw new DukeTaskInputException(First_Word, "descriptionMissing");
+        }
     }
 }
