@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 
 /**
@@ -14,8 +14,9 @@ public class Duke {
                 +       "\\|_^_^_|/  |____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-	// TODO: Refactor variable out of class
+	// TODO: Refactor below
 	boolean isActive = true;
+	ArrayList<String> itemLists =new ArrayList<String>(); // to re-create into a persistant class
 
         // Level 0 - Greet
 	System.out.println("Hello! I'm Duke \nWhat can I do for you?");
@@ -23,13 +24,22 @@ public class Duke {
 	// TODO: Customise Display Output of Duke
 	while(isActive) {
 	// Level 1 - Greet, Echo, Exit		
-		Scanner in = new  Scanner(System.in);
+		Scanner in = new Scanner(System.in);
 		String input = in.nextLine();
-		command_action(input,isActive);
-	}
+
+		if (!input.toUpperCase().equals("LIST") && !input.equals("")) {
+			itemLists.add(input); // Quick fix solution - to refactor
+			System.out.println("added: " + input);
+		}
+			
+		
+
+		command_action(input,isActive, itemLists);
+
+		}
     }
 
-   public static void command_action(String input, boolean isActive){
+   public static void command_action(String input, boolean isActive, ArrayList<String> itemLists){
 	
 	switch(input.toUpperCase()) {
 		
@@ -37,9 +47,20 @@ public class Duke {
 			System.out.println("Bye. Hope to see you again soon!");
 			isActive = false;
 			break;
+		case "LIST":
+			list_items(itemLists);
+			break;
 		default:
-			System.out.println(input);
+			
 	}
 
+   }
+
+   public static void list_items (ArrayList<String> itemLists) {
+	   int i = 1;
+	   for (String s : itemLists) {
+		   System.out.println( i + ". " + s);
+		   i++;
+	   }
    }
 }
