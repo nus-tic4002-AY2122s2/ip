@@ -19,4 +19,12 @@ public class Task {
         return description;
     }
 
+    public String getTask(){
+        return description;
+    }
+
+    public String toString() {
+        return " [" + this.getStatusIcon() + "] " + this.getTask();
+    }
+
 }

@@ -11,10 +11,12 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        new Duke().run(); 
+        new Duke().run();
 
 
     }
+
+
 
     public void run() {
         System.out.println("Hello! I'm Duke \n  " +
@@ -23,29 +25,61 @@ public class Duke {
         ArrayList<Task> tasks = new ArrayList<>();
         boolean isExit = false;
         while (!isExit) {
-
             String line;
-
             Scanner in = new Scanner(System.in);
             System.out.println("Type something: ");
             line = in.nextLine();
             System.out.println("____________________________________________________________");
+            int spaceIndex = line.indexOf(" ");
+            String instruction;
             try{
                 switch(line.split(" ")[0].toLowerCase()){
                     case ("list"):
-
-                        for(int i = 0; i< tasks.size(); i++){
-                            System.out.println((i+1) + ". [" + tasks.get(i).getStatusIcon() + "]"+ tasks.get(i).getDescription());
+                        for (int i = 0; i < tasks.size(); i++) {
+                            System.out.println((i + 1) + ". " + tasks.get(i).toString());
                         }
                         System.out.println("____________________________________________________________");
                         break;
                     case ("done"):
                         int i = Integer.parseInt(line.split(" ")[1]);
-                        tasks.get(i-1).markAsDone();
+                        tasks.get(i - 1).markAsDone();
                         System.out.println("Nice! I've marked this task as done: \n" +
-                                "[" +  tasks.get(i-1).getStatusIcon() + "] return book");
+                                "[" + tasks.get(i - 1).getStatusIcon() + "] " + tasks.get(i - 1).getTask());
                         break;
-                    case("bye"):
+
+                    case ("deadline"):
+                        instruction = line.substring(spaceIndex);
+                        if(instruction.contains("/by")){
+                            String description = instruction.split("/by")[0];
+                            String time = instruction.split("/by")[1];
+                            tasks.add(new Deadline(description,time));
+                            System.out.println("I have added the deadline task");
+                        }
+                        else {
+                            System.out.println("You forgot to include a date using /by");
+                        }
+                        break;
+
+                    case("event"):
+                        instruction = line.substring(spaceIndex);
+                        if(instruction.contains("/at")){
+                            String description = instruction.split("/at")[0];
+                            String time = instruction.split("/at")[1];
+                            tasks.add(new Event(description,time));
+                            System.out.println("I have added the event task");
+                        }
+                        else{
+                            System.out.println("You forgot to include a date using /at");
+                        }
+                        break;
+
+                    case("todo"):
+                        instruction = line.substring(spaceIndex);
+                        tasks.add(new ToDo(instruction));
+                        System.out.println("I have added the todo task");
+                        break;
+
+                    case ("bye"):
                         isExit = true;
                         System.out.println("See you!");
                         System.out.println("____________________________________________________________");
