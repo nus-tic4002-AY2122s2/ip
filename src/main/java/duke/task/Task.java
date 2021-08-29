@@ -1,4 +1,4 @@
-package main.java.duke;
+package main.java.duke.task;
 
 public class Task {
     private String description;
@@ -19,5 +19,10 @@ public class Task {
 
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String toString(){
+        return "["+getStatusIcon()+"] "+getDescription();
     }
 }
