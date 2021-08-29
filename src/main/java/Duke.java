@@ -90,7 +90,7 @@ public class Duke {
                         tasks.add(task);
                         System.out.println("line added");
                         System.out.println("____________________________________________________________");
-
+                        System.out.println("____________________________________________________________");
 
                 }
             }catch (Exception e){
