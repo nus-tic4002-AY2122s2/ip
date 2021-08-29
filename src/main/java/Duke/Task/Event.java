@@ -1,3 +1,7 @@
+package Duke.Task;
+
+
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -8,7 +12,7 @@ public class Event extends Task {
     protected String taskDateString;
 
     /**
-     * Constructs the Event class without a time
+     * Constructs the Duke.Task.Event class without a time
      * @param description the description the user input
      * @param taskDate the date that the user input
      */
