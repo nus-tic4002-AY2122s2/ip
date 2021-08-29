@@ -31,7 +31,7 @@ public class Execution {
 
         switch (command) {
             case "list":
-                UI.listMessage(taskList.taskList);
+                UI.listMessage(taskList.tasks);
                 break;
             case "done":
                 try {
