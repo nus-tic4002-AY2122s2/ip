@@ -56,7 +56,7 @@ public class Duke {
                             System.out.println("I have added the deadline task");
                         }
                         else {
-                            System.out.println("You forgot to include a date using /by");
+                            throw new DukeException("You forgot to include a date using /by");
                         }
                         break;
 
@@ -69,7 +69,7 @@ public class Duke {
                             System.out.println("I have added the event task");
                         }
                         else{
-                            System.out.println("You forgot to include a date using /at");
+                            throw new DukeException("You forgot to include a date using /at");
                         }
                         break;
 
@@ -93,8 +93,10 @@ public class Duke {
 
 
                 }
+            }catch (DukeException e){
+                System.out.println("error:" + e.getMessage() + ". Please type again");
             }catch (Exception e){
-                System.out.println("error:" + e.toString() + ". Please type again");
+                System.out.println("error:" + e.getMessage() + ". Please type again");
             }
 
 
