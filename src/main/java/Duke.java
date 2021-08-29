@@ -72,15 +72,14 @@ public class Duke {
                     return true;
 
                 default:
-                    Task task = new Task(line);
-                    tasks.add(task);
-                    System.out.println("line added");
-                    System.out.println("____________________________________________________________");
+                    throw new DukeException("Please key in a valid command");
+
 
 
             }
         }catch (DukeException e){
             System.out.println("error:" + e.getMessage() + ". Please type again");
+            System.out.println("____________________________________________________________");
         }catch (Exception e){
             System.out.println("error:" + e.getMessage() + ". Please type again");
         }
