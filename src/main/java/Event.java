@@ -5,7 +5,7 @@ public class Event extends Task {
     protected LocalDate taskDate;
     protected LocalTime taskTime;
     protected boolean hasTime = false;
-    protected String stringDate;
+    protected String taskDateString;
 
     /**
      * Constructs the Event class without a time
@@ -17,15 +17,15 @@ public class Event extends Task {
         this.taskDate = taskDate;
     }
 
-    public Event(String description, String stringDate) {
+    public Event(String description, String taskDateString) {
         super(description);
-        this.stringDate = stringDate;
+        this.taskDateString = taskDateString;
     }
 
 
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + stringDate + ")";
+        return "[E]" + super.toString() + " (at: " + taskDateString + ")";
     }
 }

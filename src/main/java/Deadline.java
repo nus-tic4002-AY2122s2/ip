@@ -5,7 +5,7 @@ public class Deadline extends Task {
     protected LocalDate taskDate;
     protected LocalTime taskTime;
     protected boolean hasTime = false;
-    protected String stringDate;
+    protected String taskDateString;
 
     public Deadline(String description, LocalDate taskDate) {
         super(description);
@@ -14,7 +14,7 @@ public class Deadline extends Task {
 
     public Deadline(String description, String stringDate) {
         super(description);
-        this.stringDate = stringDate;
+        this.taskDateString = stringDate;
     }
 
 
@@ -22,6 +22,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + stringDate + ")";
+        return "[D]" + super.toString() + " (by: " + taskDateString + ")";
     }
 }
