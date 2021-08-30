@@ -15,9 +15,9 @@ public class UI {
         splitLine();
     }
 
-    public static void addMessage(Task t, int size) {
+    public static void addMessage(Task task, int size) {
         System.out.println("Got it. I've added this task: ");
-        System.out.println("  " + t.toString());
+        System.out.println("  " + task.toString());
         System.out.println("Now you have " + size + " tasks in the list.");
     }
 

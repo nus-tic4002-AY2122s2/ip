@@ -4,39 +4,30 @@ public class TaskList {
     protected ArrayList<Task> tasks;
     protected int size;
 
-    public TaskList(ArrayList<Task> tasks){
+    public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
         this.size = tasks.size();
     }
 
-    public void doneCommand (String fullCommand) {
-        tasks.get(Parser.taskNumber(fullCommand)).markAsDone();
-        UI.doneMessage(tasks, Parser.taskNumber(fullCommand));
+    public void done(int index) {
+        tasks.get(index).markAsDone();
     }
 
-    public void addTodoCommand (String fullCommand) {
-        String description = Parser.description(fullCommand);
-        Task t = new Todo(description);
-        tasks.add(t);
+    public void addTodo(String description) {
+        Task task = new Todo(description);
+        tasks.add(task);
         size++;
-        UI.addMessage(t, size);
     }
 
-    public void addDeadlineCommand (String fullCommand) {
-        String description = Parser.description(fullCommand);
-        String date = Parser.date(fullCommand);
-        Task t = new Deadline(description, date);
-        tasks.add(t);
+    public void addDeadline(String description, String date) {
+        Task task = new Deadline(description, date);
+        tasks.add(task);
         size++;
-        UI.addMessage(t, size);
     }
 
-    public void addEventCommand (String fullCommand) {
-        String description = Parser.description(fullCommand);
-        String date = Parser.date(fullCommand);
-        Task t = new Event(description, date);
-        tasks.add(t);
+    public void addEvent(String description, String date) {
+        Task task = new Event(description, date);
+        tasks.add(task);
         size++;
-        UI.addMessage(t, size);
     }
 }

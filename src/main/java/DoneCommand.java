@@ -1,0 +1,24 @@
+public class DoneCommand extends Command {
+    public DoneCommand(String fullCommand) {
+        super(fullCommand);
+    }
+
+    private static void CheckElement(String fullCommand) throws LackOfIndexException {
+        if (fullCommand.trim().equals("done") ) {
+            throw new LackOfIndexException();
+        }
+    }
+
+    public void run(TaskList taskList) {
+        try {
+            CheckElement(fullCommand);
+            int index = Parser.taskNumber(fullCommand);
+            taskList.done(index);
+            UI.doneMessage(taskList.tasks, index);
+        } catch (LackOfIndexException e) {
+            System.out.println("OOPS!!! Pls key in the number of the task");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("OOPS!!! The number of task is invalid! Please key in again!");
+        }
+    }
+}
