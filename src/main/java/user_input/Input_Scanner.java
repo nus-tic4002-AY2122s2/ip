@@ -17,7 +17,7 @@ public class Input_Scanner {
      * @param List entire task list
      */
     public static void InputStart(Vector<Task> List){
-        
+
         String input;
         Scanner in = new Scanner(System.in);
         input = in.nextLine();
