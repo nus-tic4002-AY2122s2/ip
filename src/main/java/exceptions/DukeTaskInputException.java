@@ -57,12 +57,6 @@ public class DukeTaskInputException extends Exception {
         Output_On_Screen.toPrintSeparateLine();
     }
 
-    public static void Interesting(){
-        //Output_On_Screen.toPrintSeparateLine();
-        System.out.println("     ☹ OOPS!!! Interesting.");
-        Output_On_Screen.toPrintSeparateLine();
-    }
-
     public static void markAsDoneFormatWrong(){
         System.out.println("     ☹ OOPS!!! The 'Done' format wrong.");
         Output_On_Screen.toPrintSeparateLine();
