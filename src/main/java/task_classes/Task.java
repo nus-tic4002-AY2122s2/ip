@@ -1,9 +1,9 @@
 package task_classes;
 
 public abstract class Task {
-    private String description;
-    private boolean isDone;
-    protected String type;
+    String description;
+    boolean isDone;
+    String type;
 
     Task(String description){
         this.description = description;
