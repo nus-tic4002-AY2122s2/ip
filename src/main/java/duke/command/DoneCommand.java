@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.Parser;
+import duke.TaskList;
+import duke.UI;
+import duke.exception.LackOfIndexException;
+
 public class DoneCommand extends Command {
     public DoneCommand(String fullCommand) {
         super(fullCommand);

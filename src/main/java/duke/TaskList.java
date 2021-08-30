@@ -1,8 +1,15 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.util.ArrayList;
 
 public class TaskList {
-    protected ArrayList<Task> tasks;
-    protected int size;
+    public ArrayList<Task> tasks;
+    public int size;
 
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;

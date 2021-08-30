@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.Parser;
+import duke.TaskList;
+import duke.UI;
+import duke.exception.LackOfDescriptionException;
+
 public class AddTodoCommand extends Command {
     public AddTodoCommand(String fullCommand) {
         super(fullCommand);

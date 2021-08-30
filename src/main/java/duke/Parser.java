@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
     public static String command(String fullCommand) {
         return fullCommand.split(" ")[0].toLowerCase();

@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.Parser;
+import duke.TaskList;
+import duke.UI;
+import duke.exception.LackOfDateException;
+import duke.exception.LackOfDescriptionException;
+
 public class AddDeadlineCommand extends Command {
     public AddDeadlineCommand(String fullCommand) {
         super(fullCommand);
