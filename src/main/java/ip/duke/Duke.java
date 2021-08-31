@@ -21,11 +21,12 @@ public class Duke {
     private static int index;
 
     static void greet() {
-        System.out.println("Hello! I'm LisGenie");
+        System.out.print("Hello! I'm LisGenie");
         System.out.println("What can I do for you?");
     }
     // Exit message
     static void bye() {
+        System.out.print("LisGenie : ");
         System.out.printf("Bye. Hope to see you again soon!%n");
     }
 
@@ -46,8 +47,9 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         greet();
         // Get user input
-        try (Scanner sc = new Scanner(System.in)) {
+            Scanner sc = new Scanner(System.in);
             String input;
+            boolean isBye = false;
             // conversions loop
             do {
                 System.out.printf("%nMasterOm : ");
@@ -56,17 +58,22 @@ public class Duke {
                     sc.nextLine();
                     echoEmptyInput();
                 }
-            } while (!echoBye(input));
-        }
+                drawLine();
+                try {
+                    isBye = echoBye(input);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }finally {
+                    drawLine();
+                }
+            } while (!isBye);
+            sc.close();
     }
     // This method processes tasks and generates dialogues
-    private static boolean echoBye(String input) {
-        drawLine();
+    private static boolean echoBye(String input) throws DukeException {
         // Exit program
         if (input.equals("bye")) {
-            System.out.print("LisGenie : ");
             bye();
-            drawLine();
             return true;
         } else {
             // Parse user inputs, output corresponding tasks
@@ -99,7 +106,7 @@ public class Duke {
                 try {
                     addTodo(words[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    echoNoDescription();
+                    throw new DukeException(echoNoDescription("todo"));
                 }
                 break;
             case "deadline":
@@ -123,7 +130,6 @@ public class Duke {
                 System.out.println("An incorrect command, Master?");
                 break;
             }
-            drawLine();
         }
         return false;
     }
@@ -201,9 +207,8 @@ public class Duke {
         System.out.println("The task...and by what dateline? O Master?");
     }
 
-    private static void echoNoDescription() {
-        System.out.print("LisGenie : ");
-        System.out.println("Eh...forgot The task description, O Master?");
+    private static String echoNoDescription(String task) {
+        return String.format("LisGenie : OOPS!!! The description of a %s cannot be empty, Master?", task);
     }
 
     private static void echoNoEntries() {
