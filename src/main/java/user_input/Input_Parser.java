@@ -134,7 +134,7 @@ public class Input_Parser {
      * @param Input_Words The customer input which used to check length;
      * @throws DukeTaskInputException The error which the input is not correct.
      */
-    public static void Input_Length_Checking(String First_Word, String[] Input_Words) throws DukeTaskInputException {
+    static void Input_Length_Checking(String First_Word, String[] Input_Words) throws DukeTaskInputException {
         if(!First_Word.equals("list") &&
                 !First_Word.equals("bye") &&
                 !First_Word.equals("help") &&

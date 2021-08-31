@@ -1,4 +1,4 @@
-package system_output;
+package screen_output;
 
 
 import task_classes.Deadline;

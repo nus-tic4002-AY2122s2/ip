@@ -1,7 +1,7 @@
 package user_input;
 
 import exceptions.DukeTaskInputException;
-import system_output.Output_On_Screen;
+import screen_output.Output_On_Screen;
 import task_classes.Task;
 import task_manipulation.Add;
 import task_manipulation.MarkAsDone;
