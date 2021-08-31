@@ -1,6 +1,6 @@
 package exceptions;
 
-import system_output.Output_On_Screen;
+import screen_output.Output_On_Screen;
 
 public class DukeTaskInputException extends Exception {
 

@@ -2,7 +2,7 @@ package task_manipulation;
 
 
 import exceptions.DukeTaskInputException;
-import system_output.Output_On_Screen;
+import screen_output.Output_On_Screen;
 import task_classes.*;
 import user_input.Input_Parser;
 
