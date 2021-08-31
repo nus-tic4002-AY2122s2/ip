@@ -39,6 +39,7 @@ public class Output_On_Screen {
     public static void printGoodbyeOutput(){
         System.out.println("     Bye. Hope to see you again soon!");
         toPrintSeparateLine();
+        System.out.println("");
     }
 
     /**
@@ -54,6 +55,7 @@ public class Output_On_Screen {
                 list.get(n).getStatusIcon() + "] " + list.get(n).getDescription());
 
         toPrintSeparateLine();
+        System.out.println("");
     }
 
     /**
@@ -71,8 +73,8 @@ public class Output_On_Screen {
         }
 
         Output_On_Screen.toPrintSeparateLine();
+        System.out.println("");
     }
-
 
     /**
      * Output after add Todo task into the list
@@ -85,6 +87,7 @@ public class Output_On_Screen {
         System.out.println("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
         System.out.println("     Now you have " + listQty + " tasks in the list.");
         toPrintSeparateLine();
+        System.out.println("");
     }
 
     /**
@@ -100,6 +103,7 @@ public class Output_On_Screen {
         System.out.println(" (by: " + newTask.getBy() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
         toPrintSeparateLine();
+        System.out.println("");
     }
 
     /**
@@ -115,6 +119,7 @@ public class Output_On_Screen {
         System.out.println(" (by: " + newTask.getAt() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
         toPrintSeparateLine();
+        System.out.println("");
     }
 
     /**
@@ -123,5 +128,6 @@ public class Output_On_Screen {
     public static void toPrintNotUnderstandableInputMessage(){
         System.out.println("    Invalid Input! Please try again!");
         toPrintSeparateLine();
+        System.out.println("");
     }
 }

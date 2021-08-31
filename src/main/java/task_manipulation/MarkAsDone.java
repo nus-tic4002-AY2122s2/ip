@@ -23,13 +23,9 @@ public class MarkAsDone {
 
         if (inputWords.length == 2) {
             if (inputWords[1].matches("\\d+")) {// check whether the second string is an integer
-
-                System.out.println("The Task to mark: " + Integer.parseInt(inputWords[1]));
-                System.out.println("The Task list size: " + list.size());
-
                 if (Integer.parseInt(inputWords[1]) > 0) {
                     if (Integer.parseInt(inputWords[1]) > list.size()) {
-                        throw new DukeTaskInputException(inputWords[0], "Interesting");
+                        throw new DukeTaskInputException(inputWords[0], "markAsDoneTaskNumberOutOfRange");
                     }
                     list.get(Integer.parseInt(inputWords[1]) - 1).markAsDone();
                     Output_On_Screen.printMarkAsDoneOutput(list, Integer.parseInt(inputWords[1]) - 1);

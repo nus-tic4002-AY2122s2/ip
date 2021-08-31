@@ -79,22 +79,6 @@ public class Input_Parser {
             bufferA.addAll(Arrays.asList(inputWords).subList(1, inputWords.length));
 
             return convertStringArrayToString(bufferA);
-/*        }else{
-            for(int n = inputWords.length - 1; n > 0; n--) {
-                if (inputWords[n].equals("/by") || inputWords[n].equals("/at")) {
-                    if (n == 1) {
-                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
-                    }
-
-                    if (n == inputWords.length - 1) {
-                        throw new DukeTaskInputException(inputWords[0], "dateTime");
-                    }
-
-                    bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
-
-                    return convertStringArrayToString(bufferA);
-                }
-            }*/
         }else if (inputWords[0].equals("deadline")){
             for(int n = inputWords.length - 1; n > 0; n--) {
                 if (inputWords[n].equals("/by")) {

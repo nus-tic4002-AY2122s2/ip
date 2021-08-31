@@ -55,6 +55,7 @@ public class Input_Scanner {
 
             switch(errorType){
                 case "descriptionMissing":
+                    Output_On_Screen.toPrintSeparateLine();
                     switch(firstWord){
                         case "todo":
                         case "event":
@@ -84,13 +85,12 @@ public class Input_Scanner {
                 case "markAsDoneTaskNumberOutOfRange":
                     DukeTaskInputException.markAsDoneTaskNumberOutOfRange();
                     break;
-                case "Interesting":
-                    DukeTaskInputException.Interesting();
-                    break;
                 case "listIsEmtpy":
                     DukeTaskInputException.listIsEmtpy();
                     break;
             }
+
+            System.out.println("");
         }
 
         InputStart(List);
