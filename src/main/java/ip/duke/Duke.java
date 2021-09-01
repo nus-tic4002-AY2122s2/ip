@@ -31,7 +31,7 @@ public class Duke {
     }
 
     // This method draws a horizontal line
-    static void drawLine() {
+    static void drawALine() {
         System.out.print("          ");
         Stream.generate(() -> "_").limit(65).forEach(System.out::print);
         System.out.println();
@@ -47,51 +47,54 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         greet();
         // Get user input
-            Scanner sc = new Scanner(System.in);
+            Scanner in = new Scanner(System.in);
             String input;
             boolean isBye = false;
             // conversions loop
             do {
                 System.out.printf("%nMasterOm : ");
-                input = sc.nextLine().trim();
-                drawLine();
+                input = in.nextLine().trim();
+                drawALine();
+
                 if (input.isEmpty()) {
-                    sc.nextLine();
+                    // flush buffer
+                    in.nextLine();
                     echoEmptyInput();
                 }
+
                 try {
                     isBye = echoBye(input);
                 } catch (DukeException e) {
                     System.out.println(e.getMessage());
                 }finally {
-                    drawLine();
+                    drawALine();
                 }
             } while (!isBye);
-            sc.close();
+
+            in.close();
     }
     // This method processes tasks and generates dialogues
-    private static boolean echoBye(String input) throws DukeException {
+    private static boolean echoBye(String command) throws DukeException {
         // Exit program
-        if (input.equals("bye")) {
+        if (command.equals("bye")) {
             bye();
             return true;
         } else {
             // Parse user inputs, output corresponding tasks
             String[] words = null;
             // Check multiple words presence in input before splitting into a string array
-            if(input.indexOf(" ") > 0){
-                words = input.split(" ", 2);
-                input = words[0].trim();
+            if(command.indexOf(" ") > 0){
+                words = command.split(" ", 2);
+                command = words[0].trim();
             }
-            switch (input) {
+            switch (command) {
             case "done":
                 try {
-                    int idx;
-                    idx = Integer.parseInt(words[1].trim()) - 1;
-                    if (idx < 0 || idx > 99) {
-                        echoOffList(idx);
+                    int itemIndex = Integer.parseInt(words[1].trim()) - 1;
+                    if (itemIndex < 0 || itemIndex > 99) {
+                        echoOffList(itemIndex);
                     } else {
-                        updateDoneStatus(idx);
+                        updateDoneStatus(itemIndex);
                     }
                 } catch (NumberFormatException ex) {
                     throw new DukeException(echoNotNum("done"), ex);
@@ -126,7 +129,7 @@ public class Duke {
             case "":
                 break;
             default:
-                echoUnknown();
+                echoInvalidInput();
                 break;
             }
         }
@@ -227,7 +230,7 @@ public class Duke {
         System.out.println("Item position outside of list (1 - 100): " + (idx+1) + " Omm??");
     }
 
-    private static void echoUnknown(){
+    private static void echoInvalidInput(){
         System.out.print("LisGenie : ");
         System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(| Master?");
     }
