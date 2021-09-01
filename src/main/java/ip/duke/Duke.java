@@ -1,5 +1,7 @@
 package ip.duke;
 
+import ip.duke.exceptions.DukeException;
+
 import java.lang.String;
 import java.util.Scanner;
 import java.util.stream.Stream;
