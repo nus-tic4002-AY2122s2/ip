@@ -7,6 +7,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
     protected void setId() {
         this.id = "T";
     }

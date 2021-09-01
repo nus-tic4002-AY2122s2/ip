@@ -9,9 +9,8 @@ public abstract class Task {
         this.description = description;
     }
 
-    public String getDescription(){
-        return description;
-    }
+    public abstract String getDescription();
+
 
     public String getId(){
         return id;
