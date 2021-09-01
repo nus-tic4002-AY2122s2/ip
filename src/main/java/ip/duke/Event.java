@@ -3,7 +3,12 @@ package ip.duke;
     public class Event extends Deadline {
     protected Event(String description, String at) {
         super(description, at);
-        setId("E");
+        setId();
+    }
+
+    @Override
+    protected void setId() {
+        this.id = "E";
     }
 
     @Override

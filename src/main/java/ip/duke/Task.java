@@ -1,11 +1,11 @@
 package ip.duke;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
     protected String id;
 
-    public Task(String description) {
+    protected Task(String description) {
         this.description = description;
     }
 
@@ -25,9 +25,7 @@ public class Task {
         this.isDone = true;
     }
 
-    protected void setId(String id){
-        this.id = id;
-    }
+    protected abstract void setId();
 
     @Override
     public String toString() {
