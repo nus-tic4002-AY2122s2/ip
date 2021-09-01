@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public class Deadline extends Task {
     private LocalDateTime deadline;
-
+    private String raw_deadline;
     /**
      *
      * @return DateTime representation of this Deadline object

@@ -71,7 +71,7 @@ public class Ui {
     }
 
     public void printHelloMsg() {
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?\n");
+        System.out.println("Hello! I'm Duke Nuke Em.\nWhat can I do for you?\n");
     }
 
     /**

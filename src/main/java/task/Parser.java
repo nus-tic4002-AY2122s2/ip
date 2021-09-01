@@ -32,6 +32,16 @@ public class Parser {
             //2/12/2019 1800
             //dd/mm/yyyy tttt
             String[] temp = dt_str.split(" ");
+            //First, if contains alphabets, it will have stuff like "Sunday", etc. If so, don't parse to datetime.
+            for (String s : temp) {
+                var charArr = s.toCharArray();
+                for (char c : charArr) {
+                    if (Character.isAlphabetic(c)) {
+                        return null;
+                    }
+                }
+            }
+
             if (temp[0].indexOf('/') != -1) {
                 date = strToDate(temp[0], '/');
             }
@@ -131,10 +141,9 @@ public class Parser {
                 parsedCommand = (!firstStr.equals("edit")) ? new UpdateCommand(op, pos) : new UpdateCommand(UpdateCommand.Operation.Edit, pos);
                 break;
             case "check":
-                if(strings.length > 1){
+                if (strings.length > 1) {
                     parsedCommand = new CheckCommand(strings[1]);
-                }
-                else {
+                } else {
                     throw new DukeMissingParamException("check");
                 }
                 break;
