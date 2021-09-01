@@ -5,12 +5,17 @@ public class Deadline extends Todo {
 
     protected Deadline(String description, String by) {
         super(description);
-        setId("D");
+        setId();
         this.by = by;
     }
 
     public String getBy() {
         return by;
+    }
+
+    @Override
+    protected void setId(){
+        this.id = "D";
     }
 
     @Override
