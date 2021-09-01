@@ -1,5 +1,4 @@
 import tasklist.Task;
-
 import java.util.ArrayList;
 
 public class UI {
@@ -58,6 +57,51 @@ public class UI {
     }
 
     public static void printParseException() {
-        System.out.println("☹ OOPS!!! Please enter DD MMM YYYY date format.");
+        UI.printLine();
+        UI.addSpaces("%s☹ OOPS!!! Please enter DD MMM YYYY date format.",5);
+        UI.printLine();
     }
+
+    public static void printEmptyException() {
+        UI.printLine();
+        UI.addSpaces("%s☹ OOPS!!! The description cannot be empty.",5);
+        UI.printLine();
+    }
+
+    public static void printStringFormatException() {
+        UI.printLine();
+        UI.addSpaces("%s☹ OOPS!!! I'm sorry, but I don't know what that means :-(",5);
+        UI.printLine();
+    }
+
+    public static void printEmptyToDoDescriptionException() {
+        UI.printLine();
+        UI.addSpaces("%s☹ OOPS!!! The description of a todo cannot be empty.",5);
+        UI.printLine();
+    }
+
+    public static void printEmptyEventDescriptionException() {
+        UI.printLine();
+        UI.addSpaces("%s☹ OOPS!!! The description of a event cannot be empty.",5);
+        UI.printLine();
+    }
+
+    public static void printEmptyDeadlineDescriptionException() {
+        UI.printLine();
+        UI.addSpaces("%s☹ OOPS!!! The description of a deadline cannot be empty.",5);
+        UI.printLine();
+    }
+
+    public static void printNumberFormatException() {
+        UI.printLine();
+        UI.addSpaces("%s☹ OOPS!!! I'm sorry, but I don't know what that means :-(",5);
+        UI.printLine();
+    }
+
+    public static void printIndexOutOfRangeException() {
+        UI.printLine();
+        UI.addSpaces("%s☹ OOPS!!! Out of Range!",5);
+        UI.printLine();
+    }
+
 }
