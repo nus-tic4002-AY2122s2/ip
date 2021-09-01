@@ -54,11 +54,11 @@ public class Duke {
             do {
                 System.out.printf("%nMasterOm : ");
                 input = sc.nextLine().trim();
+                drawLine();
                 if (input.isEmpty()) {
                     sc.nextLine();
                     echoEmptyInput();
                 }
-                drawLine();
                 try {
                     isBye = echoBye(input);
                 } catch (DukeException e) {
@@ -94,9 +94,9 @@ public class Duke {
                         updateDoneStatus(idx);
                     }
                 } catch (NumberFormatException ex) {
-                    echoNotNum();
+                    throw new DukeException(echoNotNum("done"), ex);
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    echoNoTaskNum();
+                    throw new DukeException(echoNoTaskNum("done"), err);
                 }
                 break;
             case "list":
@@ -106,28 +106,27 @@ public class Duke {
                 try {
                     addTodo(words[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    throw new DukeException(echoNoDescription("todo"));
+                    throw new DukeException(echoNoDescription("todo"), err);
                 }
                 break;
             case "deadline":
                 try {
                     addDeadline(words[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    echoNoBy();
+                    throw new DukeException(echoNoBy("deadline"), err);
                 }
                 break;
             case "event":
                 try {
                     addEvent(words[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    echoNoAt();
+                    throw new DukeException(echoNoAt("event"), err);
                 }
                 break;
             case "":
                 break;
             default:
-                System.out.print("LisGenie : ");
-                System.out.println("An incorrect command, Master?");
+                echoUnknown();
                 break;
             }
         }
@@ -197,14 +196,12 @@ public class Duke {
         }
     }
 
-    private static void echoNoAt() {
-        System.out.print("LisGenie : ");
-        System.out.println("The event...and happening at what time? O Master?");
+    private static String echoNoAt(String task) {
+        return String.format("LisGenie : OOPS!!! O %s use: \"event <specify event> /at <datetime>\"", task);
     }
 
-    private static void echoNoBy() {
-        System.out.print("LisGenie : ");
-        System.out.println("The task...and by what dateline? O Master?");
+    private static String echoNoBy(String task) {
+        return String.format("LisGenie : OOPS!!! O %s use: \"deadline <specify task> /by <datetime>\"", task);
     }
 
     private static String echoNoDescription(String task) {
@@ -216,18 +213,22 @@ public class Duke {
         System.out.println("O! Task not in list, Master? Add a task? Retry?");
     }
 
-    private static void echoNoTaskNum() {
-        System.out.print("LisGenie : ");
-        System.out.println("Om? O Master...forgot the Task's digit number after 'done'?");
+    private static String echoNoTaskNum(String task) {
+        return String.format("LisGenie : O? Master, forgot to enter the Task number after '%s'?", task);
+
     }
 
-    private static void echoNotNum() {
-        System.out.print("LisGenie : ");
-        System.out.println("O Master...Task number must use digit(s) only! Omm!");
+    private static String echoNotNum(String task) {
+        return String.format("LisGenie : O Master, use digit(s) only for Task number after '%s'! Om!", task);
     }
 
     private static void echoOffList(int idx) {
         System.out.print("LisGenie : ");
         System.out.println("Item position outside of list (1 - 100): " + (idx+1) + " Omm??");
+    }
+
+    private static void echoUnknown(){
+        System.out.print("LisGenie : ");
+        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(| Master?");
     }
 }
