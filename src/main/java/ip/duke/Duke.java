@@ -31,7 +31,7 @@ public class Duke {
     }
 
     // This method draws a horizontal line
-    static void drawLine() {
+    static void drawALine() {
         System.out.print("          ");
         Stream.generate(() -> "_").limit(65).forEach(System.out::print);
         System.out.println();
@@ -45,53 +45,59 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
+        // Greet user
         greet();
         // Get user input
-            Scanner sc = new Scanner(System.in);
+            Scanner in = new Scanner(System.in);
             String input;
             boolean isBye = false;
             // conversions loop
             do {
                 System.out.printf("%nMasterOm : ");
-                input = sc.nextLine().trim();
-                drawLine();
+                input = in.nextLine().trim();
+                drawALine();
+
                 if (input.isEmpty()) {
-                    sc.nextLine();
+                    // flush buffer
+                    in.nextLine();
                     echoEmptyInput();
                 }
+
                 try {
                     isBye = echoBye(input);
                 } catch (DukeException e) {
                     System.out.println(e.getMessage());
                 }finally {
-                    drawLine();
+                    drawALine();
                 }
             } while (!isBye);
-            sc.close();
+
+            in.close();
     }
     // This method processes tasks and generates dialogues
-    private static boolean echoBye(String input) throws DukeException {
-        // Exit program
-        if (input.equals("bye")) {
+    private static boolean echoBye(String command) throws DukeException {
+        // Exit the program
+        if (command.equals("bye")) {
             bye();
             return true;
         } else {
-            // Parse user inputs, output corresponding tasks
+            // Parse user inputs and output the corresponding desired tasks
             String[] words = null;
             // Check multiple words presence in input before splitting into a string array
-            if(input.indexOf(" ") > 0){
-                words = input.split(" ", 2);
-                input = words[0].trim();
+            if(command.indexOf(" ") > 0){
+                words = command.split(" ", 2);
+                command = words[0].trim();
             }
-            switch (input) {
+
+            switch (command) {
             case "done":
                 try {
-                    int idx;
-                    idx = Integer.parseInt(words[1].trim()) - 1;
-                    if (idx < 0 || idx > 99) {
-                        echoOffList(idx);
+                    int itemIndex = Integer.parseInt(words[1].trim()) - 1;
+
+                    if (itemIndex < 0 || itemIndex > 99) {
+                        echoOffList(itemIndex);
                     } else {
-                        updateDoneStatus(idx);
+                        updateDoneStatus(itemIndex);
                     }
                 } catch (NumberFormatException ex) {
                     throw new DukeException(echoNotNum("done"), ex);
@@ -106,7 +112,7 @@ public class Duke {
                 try {
                     addTodo(words[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    throw new DukeException(echoNoDescription("todo"), err);
+                    throw new DukeException(echoNoDesc("todo"), err);
                 }
                 break;
             case "deadline":
@@ -126,7 +132,7 @@ public class Duke {
             case "":
                 break;
             default:
-                echoUnknown();
+                echoNonInput();
                 break;
             }
         }
@@ -154,6 +160,7 @@ public class Duke {
 
     private static void updateDoneStatus(int idx){
         Task item = TASKS[idx];
+
         if(item != null) {
             item.setDone();
             echoDone(item);
@@ -163,11 +170,12 @@ public class Duke {
     }
 
     private static void echoAdded(Task input) {
-        int count = index + 1;
         System.out.print("LisGenie : ");
         System.out.println("Got it. I've added this task:");
         System.out.printf("%13s", " ");
         System.out.printf("[%s][%s] %s%n", input.getId(), input.getStatusIcon(), input);
+
+        int count = index + 1;
         System.out.printf("%11s", " ");
         System.out.printf("Now you have %d %s in the list.%n", count, count == 1 ? "task" : "tasks");
     }
@@ -177,7 +185,6 @@ public class Duke {
         System.out.println("Nice! I've marked this task as done:");
         System.out.printf("%13s", " ");
         System.out.printf("[%s] %s%n", item.getStatusIcon(), item);
-
     }
 
     private static void echoEmptyInput() {
@@ -203,8 +210,8 @@ public class Duke {
     private static String echoNoBy(String task) {
         return String.format("LisGenie : OOPS!!! O %s use: \"deadline <specify task> /by <datetime>\"", task);
     }
-
-    private static String echoNoDescription(String task) {
+    // This method informs user that no task description is entered
+    private static String echoNoDesc(String task) {
         return String.format("LisGenie : OOPS!!! The description of a %s cannot be empty, Master?", task);
     }
 
@@ -215,7 +222,6 @@ public class Duke {
 
     private static String echoNoTaskNum(String task) {
         return String.format("LisGenie : O? Master, forgot to enter the Task number after '%s'?", task);
-
     }
 
     private static String echoNotNum(String task) {
@@ -226,8 +232,8 @@ public class Duke {
         System.out.print("LisGenie : ");
         System.out.println("Item position outside of list (1 - 100): " + (idx+1) + " Omm??");
     }
-
-    private static void echoUnknown(){
+    // This method informs the user an unknown input is entered
+    private static void echoNonInput(){
         System.out.print("LisGenie : ");
         System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(| Master?");
     }
