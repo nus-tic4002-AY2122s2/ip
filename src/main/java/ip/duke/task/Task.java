@@ -1,4 +1,4 @@
-package ip.duke;
+package ip.duke.task;
 
 public abstract class Task {
     protected String description;
@@ -20,7 +20,7 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    protected void setDone() {
+    public void setDone() {
         this.isDone = true;
     }
 
