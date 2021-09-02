@@ -11,6 +11,11 @@ public class Duke {
         System.out.println(HORIZ_LINE);
     }
 
+    private static void finaliseApp() {
+        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(HORIZ_LINE);
+    }
+
     public static void main(String[] args) {
         Task[] tasks = new Task[100];
 
@@ -60,8 +65,6 @@ public class Duke {
             inputTxt = userInput.nextLine();
         }
 
-        // Finalise
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(HORIZ_LINE);
+        finaliseApp();
     }
 }
