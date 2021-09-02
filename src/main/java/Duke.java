@@ -20,9 +20,9 @@ public class Duke {
         System.out.println(HORIZ_LINE);
     }
 
-    private static void printList(int i) {
+    private static void printList(int lastIndex) {
         System.out.println("Here are the tasks in your list:");
-        for (int j = 0; j < i; j++) {
+        for (int j = 0; j < lastIndex; j++) {
             System.out.println((j + 1) + ". " + tasks[j].getTask());
         }
     }
@@ -31,17 +31,17 @@ public class Duke {
         return (inputTxt.startsWith(CMD_TODO) || inputTxt.startsWith(CMD_DEADLINE) || inputTxt.startsWith(CMD_EVENT));
     }
 
-    private static void addTask(String inputTxt, int i) {
+    private static void addTask(String inputTxt, int lastIndex) {
         if (inputTxt.startsWith(CMD_TODO)) {
-            tasks[i] = new Todo(inputTxt.substring(5));
+            tasks[lastIndex] = new Todo(inputTxt.substring(5));
         } else if (inputTxt.startsWith(CMD_DEADLINE)) {
             String[] deadlineSplit = inputTxt.substring(9).split("/by");
-            tasks[i] = new Deadline(deadlineSplit[0].trim(), deadlineSplit[1].trim());
+            tasks[lastIndex] = new Deadline(deadlineSplit[0].trim(), deadlineSplit[1].trim());
         } else if (inputTxt.startsWith(CMD_EVENT)) {
             String[] eventSplit = inputTxt.substring(6).split("/at");
-            tasks[i] = new Event(eventSplit[0].trim(), eventSplit[1].trim());
+            tasks[lastIndex] = new Event(eventSplit[0].trim(), eventSplit[1].trim());
         }
-        System.out.println("added: " + tasks[i].getTask());
+        System.out.println("added: " + tasks[lastIndex].getTask());
     }
 
     private static void runApp() {
