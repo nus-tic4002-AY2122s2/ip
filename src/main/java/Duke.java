@@ -16,12 +16,22 @@ public class Duke {
         System.out.println(HORIZ_LINE);
     }
 
+    private static void printList(Task[] tasks, int i) {
+        System.out.println("Here are the tasks in your list:");
+        for (int j = 0; j < i; j++) {
+            System.out.println((j + 1) + ". " + tasks[j].getTask());
+        }
+    }
+
     private static void runApp(Task[] tasks) {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         for (int i = 0; i < tasks.length; i++) {
             if (inputTxt.equals("bye")) {
                 break;
+            } else if (inputTxt.equals("list")) {
+                printList(tasks, i);
+                i--;
             } else if (inputTxt.startsWith("done")) {
                 int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
                 if (idx < i) {
@@ -30,12 +40,6 @@ public class Duke {
                     System.out.println(tasks[idx].getTask());
                 } else {
                     System.out.println("Task out of limit");
-                }
-                i--;
-            } else if (inputTxt.equals("list")) {
-                System.out.println("Here are the tasks in your list:");
-                for (int j = 0; j < i; j++) {
-                    System.out.println((j + 1) + ". " + tasks[j].getTask());
                 }
                 i--;
             } else if (inputTxt.startsWith("todo")) {
