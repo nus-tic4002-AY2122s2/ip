@@ -16,13 +16,7 @@ public class Duke {
         System.out.println(HORIZ_LINE);
     }
 
-    public static void main(String[] args) {
-        Task[] tasks = new Task[100];
-
-        // Init
-        initApp();
-
-        // Read user input
+    private static void runApp(Task[] tasks) {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         for (int i = 0; i < tasks.length; i++) {
@@ -64,7 +58,12 @@ public class Duke {
             System.out.println(HORIZ_LINE);
             inputTxt = userInput.nextLine();
         }
+    }
 
+    public static void main(String[] args) {
+        Task[] tasks = new Task[100];
+        initApp();
+        runApp(tasks);
         finaliseApp();
     }
 }
