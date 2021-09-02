@@ -44,18 +44,22 @@ public class Duke {
         System.out.println("added: " + tasks[lastIndex].getTask());
     }
 
+    private static void setDone(String inputTxt, int lastIndex) {
+        int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
+        if (idx > lastIndex) {
+            System.out.println("Task out of limit");
+            return;
+        }
+        tasks[idx].setDone();
+        System.out.println("Nice! I've marked this as done:");
+        System.out.println(tasks[idx].getTask());
+    }
+
     private static void processInput(String inputTxt, int lastIndex) {
         if (inputTxt.equals("list")) {
             printList(lastIndex);
         } else if (inputTxt.startsWith("done")) {
-            int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
-            if (idx > lastIndex) {
-                System.out.println("Task out of limit");
-                return;
-            }
-            tasks[idx].setDone();
-            System.out.println("Nice! I've marked this as done:");
-            System.out.println(tasks[idx].getTask());
+            setDone(inputTxt, lastIndex);
         } else {
             System.out.println("Invalid input");
         }
