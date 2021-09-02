@@ -31,23 +31,25 @@ public class Duke {
         return (inputTxt.startsWith(CMD_TODO) || inputTxt.startsWith(CMD_DEADLINE) || inputTxt.startsWith(CMD_EVENT));
     }
 
+    private static void addTask(String inputTxt, int i) {
+        if (inputTxt.startsWith(CMD_TODO)) {
+            tasks[i] = new Todo(inputTxt.substring(5));
+        } else if (inputTxt.startsWith(CMD_DEADLINE)) {
+            String[] deadlineSplit = inputTxt.substring(9).split("/by");
+            tasks[i] = new Deadline(deadlineSplit[0].trim(), deadlineSplit[1].trim());
+        } else if (inputTxt.startsWith(CMD_EVENT)) {
+            String[] eventSplit = inputTxt.substring(6).split("/at");
+            tasks[i] = new Event(eventSplit[0].trim(), eventSplit[1].trim());
+        }
+        System.out.println("added: " + tasks[i].getTask());
+    }
+
     private static void runApp() {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         for (int i = 0; i < tasks.length; i++) {
             if (isAddTask(inputTxt)) {
-                if (inputTxt.startsWith(CMD_TODO)) {
-                    tasks[i] = new Todo(inputTxt.substring(5));
-                    System.out.println("added: " + tasks[i].getTask());
-                } else if (inputTxt.startsWith(CMD_DEADLINE)) {
-                    String[] deadlineSplit = inputTxt.substring(9).split("/by");
-                    tasks[i] = new Deadline(deadlineSplit[0].trim(), deadlineSplit[1].trim());
-                    System.out.println("added: " + tasks[i].getTask());
-                } else if (inputTxt.startsWith(CMD_EVENT)) {
-                    String[] eventSplit = inputTxt.substring(6).split("/at");
-                    tasks[i] = new Event(eventSplit[0].trim(), eventSplit[1].trim());
-                    System.out.println("added: " + tasks[i].getTask());
-                }
+                addTask(inputTxt, i);
             } else {
                 if (inputTxt.equals("bye")) {
                     break;
