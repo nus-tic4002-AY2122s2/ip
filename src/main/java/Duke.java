@@ -6,6 +6,7 @@ public class Duke {
     static final String CMD_TODO = "todo";
     static final String CMD_DEADLINE = "deadline";
     static final String CMD_EVENT = "event";
+    static Task[] tasks = new Task[100];
 
     // Methods
     private static void initApp() {
@@ -19,7 +20,7 @@ public class Duke {
         System.out.println(HORIZ_LINE);
     }
 
-    private static void printList(Task[] tasks, int i) {
+    private static void printList(int i) {
         System.out.println("Here are the tasks in your list:");
         for (int j = 0; j < i; j++) {
             System.out.println((j + 1) + ". " + tasks[j].getTask());
@@ -30,7 +31,7 @@ public class Duke {
         return (inputTxt.startsWith(CMD_TODO) || inputTxt.startsWith(CMD_DEADLINE) || inputTxt.startsWith(CMD_EVENT));
     }
 
-    private static void runApp(Task[] tasks) {
+    private static void runApp() {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         for (int i = 0; i < tasks.length; i++) {
@@ -51,7 +52,7 @@ public class Duke {
                 if (inputTxt.equals("bye")) {
                     break;
                 } else if (inputTxt.equals("list")) {
-                    printList(tasks, i);
+                    printList(i);
                     i--;
                 } else if (inputTxt.startsWith("done")) {
                     int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
@@ -76,9 +77,8 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        Task[] tasks = new Task[100];
         initApp();
-        runApp(tasks);
+        runApp();
         finaliseApp();
     }
 }
