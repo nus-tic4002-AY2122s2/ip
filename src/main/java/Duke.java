@@ -1,11 +1,28 @@
+import java.util.Scanner;
+import Ui.Ui;
+
 public class Duke {
     public static void main(String[] args) {
-        String greeting = "____________________________________________________________\n" +
-                " Hello! I'm Duke\n" +
-                " What can I do for you?\n" +
-                "____________________________________________________________\n" +
-                " Bye. Hope to see you again soon!\n" +
-                "____________________________________________________________\n";
-        System.out.println(greeting);
+        Ui.welcome();
+
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                Scanner in = new Scanner(System.in);
+                String userCommand = in.nextLine().trim();
+
+                if(userCommand.equals("bye")) {
+                    Ui.bye();
+                    isExit = true;
+                    continue;
+                }
+
+                Ui.print(userCommand);
+
+            } catch (Exception e) {
+                Ui.print("Parsing error: "+e.getMessage());
+            }
+        }
+
     }
 }
