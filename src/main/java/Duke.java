@@ -51,6 +51,7 @@ public class Duke {
             int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
             if (idx > lastIndex) {
                 System.out.println("Task out of limit");
+                return;
             }
             tasks[idx].setDone();
             System.out.println("Nice! I've marked this as done:");
@@ -77,6 +78,7 @@ public class Duke {
 
             System.out.println("Total tasks: " + (i + 1));
             System.out.println(HORIZ_LINE);
+
             inputTxt = userInput.nextLine();
         }
     }
