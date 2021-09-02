@@ -20,7 +20,7 @@ public class Duke {
                 }
 
                 if(userCommand.equals("list")) {
-                    Ui.printList(list.getList());
+                    Ui.printList(list.getSerializedList());
                     continue;
                 }
 
