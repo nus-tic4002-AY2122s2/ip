@@ -4,13 +4,18 @@ public class Duke {
     // Variables
     static final String HORIZ_LINE = "____________________________________________________________";
 
+    // Methods
+    private static void initApp() {
+        System.out.println("Hello! I'm Jarvis");
+        System.out.println("What can I do for you?");
+        System.out.println(HORIZ_LINE);
+    }
+
     public static void main(String[] args) {
         Task[] tasks = new Task[100];
 
         // Init
-        System.out.println("Hello! I'm Jarvis");
-        System.out.println("What can I do for you?");
-        System.out.println(HORIZ_LINE);
+        initApp();
 
         // Read user input
         Scanner userInput = new Scanner(System.in);
