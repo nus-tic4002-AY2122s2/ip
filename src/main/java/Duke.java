@@ -48,12 +48,14 @@ public class Duke {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         for (int i = 0; i < tasks.length; i++) {
+            if (inputTxt.equals("bye")) {
+                break;
+            }
+
             if (isAddTask(inputTxt)) {
                 addTask(inputTxt, i);
             } else {
-                if (inputTxt.equals("bye")) {
-                    break;
-                } else if (inputTxt.equals("list")) {
+                if (inputTxt.equals("list")) {
                     printList(i);
                     i--;
                 } else if (inputTxt.startsWith("done")) {
