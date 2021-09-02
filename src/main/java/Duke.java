@@ -80,7 +80,7 @@ public class Duke {
                 processInput(inputTxt, i);
             }
 
-            System.out.println("Total tasks: " + (i + 1));
+            System.out.println("Total tasks: " + i);
             System.out.println(HORIZ_LINE);
 
             inputTxt = userInput.nextLine();
