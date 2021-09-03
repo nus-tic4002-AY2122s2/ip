@@ -38,7 +38,7 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String userInput = in.nextLine();
 
-        switch(userInput.trim()) {
+        switch(userInput.strip()) {
             case "bye":
                 return;
             case "list":

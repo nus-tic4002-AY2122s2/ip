@@ -1,7 +1,10 @@
 package duke.command;
 
+import duke.exception.NumArgsException;
+import duke.parse.StringParser;
 import duke.storage.TempTaskList;
 import duke.task.*;
+import duke.ui.Message;
 
 public class TodoCreationCmd implements UndoableCommand{
     // Task is a Receiver Class in this Command
@@ -14,7 +17,16 @@ public class TodoCreationCmd implements UndoableCommand{
 
     @Override
     public void run(String[] args) {
-        list.add(new Todo(args[0]));
+        String arg = StringParser.join(args);
+        if(args.length == 0) {
+            try {
+                throw new NumArgsException();
+            } catch (NumArgsException e) {
+                Message.echo(e.getMessage());
+            }
+        } else {
+            list.add(new Todo(arg));
+        }
     }
 
     @Override

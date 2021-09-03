@@ -13,7 +13,7 @@ public class StringParser {
     }
 
     public void passToCaller(String line) {
-        keyArgs = line.trim().split(" ");
+        keyArgs = line.strip().split(" ");
 
         support.firePropertyChange("keyArgs", null, keyArgs);
     }
@@ -25,6 +25,14 @@ public class StringParser {
             xs[i - 1] = xxs[i];
         }
         return xs;
+    }
+
+    public static String join(String[] args) {
+        String arg = "";
+        for (String word : args) {
+            arg += word + " ";
+        }
+        return arg.strip();
     }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
