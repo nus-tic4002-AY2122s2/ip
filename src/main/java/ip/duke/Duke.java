@@ -67,7 +67,7 @@ public class Duke {
                 }
 
                 try {
-                    isBye = echoBye(input);
+                    isBye = hasTask(input);
                 } catch (DukeException e) {
                     System.out.println(e.getMessage());
                 }finally {
@@ -78,7 +78,7 @@ public class Duke {
             in.close();
     }
     // This method processes tasks and generates dialogues
-    private static boolean echoBye(String command) throws DukeException {
+    private static boolean hasTask(String command) throws DukeException {
         // Exit the program
         if (command.equals("bye")) {
             bye();
@@ -89,7 +89,7 @@ public class Duke {
             // Check multiple words presence in input before splitting into a string array
             if(command.indexOf(" ") > 0){
                 words = command.split(" ", 2);
-                command = words[0].trim();
+                command = words[0];
             }
 
             switch (command) {
@@ -122,14 +122,14 @@ public class Duke {
                 try {
                     addDeadline(words[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    throw new DukeException(echoNoBy("deadline"), err);
+                    throw new DukeException(echoNoBy(), err);
                 }
                 break;
             case "event":
                 try {
                     addEvent(words[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    throw new DukeException(echoNoAt("event"), err);
+                    throw new DukeException(echoNoAt(), err);
                 }
                 break;
             case "":
@@ -206,12 +206,12 @@ public class Duke {
         }
     }
 
-    private static String echoNoAt(String task) {
-        return String.format("LisGenie : OOPS!!! O %s use: \"event <specify event> /at <datetime>\"", task);
+    private static String echoNoAt() {
+        return String.format("LisGenie : OOPS!!! O %s use: \"event <specify event> /at <datetime>\"", "event");
     }
 
-    private static String echoNoBy(String task) {
-        return String.format("LisGenie : OOPS!!! O %s use: \"deadline <specify task> /by <datetime>\"", task);
+    private static String echoNoBy() {
+        return String.format("LisGenie : OOPS!!! O %s use: \"deadline <specify task> /by <datetime>\"", "deadline");
     }
     // This method informs user that no task description is entered
     private static String echoNoDesc(String task) {
