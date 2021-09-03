@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.storage.TempTaskList;
 import duke.task.Task;
+import duke.ui.Message;
 
 /**
  * A Concrete Command in Command Pattern
@@ -18,8 +19,14 @@ public class TaskMarkDoneCmd implements UndoableCommand {
     @Override
     public void run(String[] args) {
        // list.stream().filter(e -> e)
-        task = (Task) list.get(Integer.parseInt(args[0]) - 1);
-        task.markDone();
+        for (String arg : args) {
+            try {
+                task = (Task) list.get(Integer.parseInt(arg) - 1);
+                task.markDone();
+            } catch (Exception e) {
+                Message.echo(Message.exceptionInvalidArgs());
+            }
+        }
     }
 
     @Override

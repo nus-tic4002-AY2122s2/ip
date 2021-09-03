@@ -30,7 +30,7 @@ To compile the java files, run below command (change once new packages created):
 
 To run the program in terminal. `cd` to project root dir, then run below: 
 ```
-% java -cp out/production/ip/ duke.Duke
+% java -cp out/production/ip/duke.Duke
 ```
 
 

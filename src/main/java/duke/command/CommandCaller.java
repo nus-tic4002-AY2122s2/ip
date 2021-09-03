@@ -1,6 +1,8 @@
 package duke.command;
 
+import duke.exception.UnknownCommandException;
 import duke.parse.StringParser;
+import duke.ui.Message;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -30,6 +32,14 @@ public class CommandCaller implements PropertyChangeListener {
         String[] keyArgs = (String[]) evt.getNewValue();
         String key = keyArgs[0];
         String[] args = StringParser.removeFirst(keyArgs);
-        this.runCommand(commandFactory.get(key), args);
+        if (!commandFactory.containsKey(key)) {
+            try {
+                throw new UnknownCommandException();
+            } catch (UnknownCommandException e) {
+                Message.echo(e.getMessage());
+            }
+        } else {
+            this.runCommand(commandFactory.get(key), args);
+        }
     }
 }

@@ -26,6 +26,22 @@ public final class Message implements PropertyChangeListener {
         System.out.println("\n👋 Bye, see ya ~ \n");
     }
 
+    public static String exceptionUnknownCommand() {
+        return "X_X : Unknown command, please try again";
+    }
+
+    public static String exceptionNumArgs() {
+        return "X_X : Wrong number of argument, please try again";
+    }
+
+    public static String exceptionInvalidArgs() {
+        return "X_X : Contains invalid argument, please try again";
+    }
+
+    public static String exceptionNoDate() {
+        return "X_X : Please give a proper date for this type of task, please try again";
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         var list = (ArrayList<Task>) evt.getNewValue();

@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.UnknownCommandException;
 import duke.storage.TempTaskList;
 
 import java.io.File;
@@ -23,12 +24,11 @@ public class CommandFactory {
         add("todo", new TodoCreationCmd(list));
         add("event", new EventCreationCmd(list));
         add("deadline", new DLCreationCmd(list));
-
         add("done", new TaskMarkDoneCmd(list));
     }
 
 
-    public Command get(String key) {
+    public Command get(String key)  {
         return commands.get(key);
     }
 
@@ -36,5 +36,8 @@ public class CommandFactory {
         commands.put(key, value);
     }
 
+    public boolean containsKey(String key) {
+        return commands.containsKey(key);
+    }
 
 }
