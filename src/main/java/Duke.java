@@ -167,7 +167,9 @@ public class Duke {
     }
 
     static void checkInvalidWord(String description) throws StringFormatException {
-        if ( !( description.equals("bye") || description.equals("list") || description.equals("todo") || description.equals("event") || description.equals("deadline"))) {
+        if ( !( description.equals("bye") || description.equals("list")
+                || description.equals("todo") || description.equals("event")
+                || description.equals("deadline"))) {
             throw new StringFormatException ();
         }
     }
