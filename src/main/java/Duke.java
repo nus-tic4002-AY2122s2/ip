@@ -31,7 +31,11 @@ public class Duke {
         return (inputTxt.startsWith(CMD_TODO) || inputTxt.startsWith(CMD_DEADLINE) || inputTxt.startsWith(CMD_EVENT));
     }
 
-    private static void addTask(String inputTxt, int lastIndex) {
+    private static void addTask(String inputTxt, int lastIndex) throws DukeException, ArrayIndexOutOfBoundsException {
+        if (inputTxt.split(" ").length == 1) {
+            throw new DukeException();
+        }
+
         if (inputTxt.startsWith(CMD_TODO)) {
             tasks[lastIndex] = new Todo(inputTxt.substring(5));
         } else if (inputTxt.startsWith(CMD_DEADLINE)) {
@@ -44,24 +48,29 @@ public class Duke {
         System.out.println("added: " + tasks[lastIndex].getTask());
     }
 
-    private static void setDone(String inputTxt, int lastIndex) {
+    private static void setDone(String inputTxt) throws ArrayIndexOutOfBoundsException, DukeException {
         int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
-        if (idx > lastIndex) {
-            System.out.println("Task out of limit");
-            return;
+        if (tasks[idx] == null) {
+            throw new DukeException();
         }
         tasks[idx].setDone();
         System.out.println("Nice! I've marked this as done:");
         System.out.println(tasks[idx].getTask());
     }
 
-    private static void processInput(String inputTxt, int lastIndex) {
+    private static void processInput(String inputTxt, int lastIndex) throws DukeException {
         if (inputTxt.equals("list")) {
             printList(lastIndex);
         } else if (inputTxt.startsWith("done")) {
-            setDone(inputTxt, lastIndex);
+            try {
+                setDone(inputTxt);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Invalid/missing index");
+            } catch (DukeException e) {
+                System.out.println("Invalid/missing index");
+            }
         } else {
-            System.out.println("Invalid input");
+            throw new DukeException();
         }
     }
 
@@ -74,13 +83,23 @@ public class Duke {
             }
 
             if (isAddTask(inputTxt)) {
-                addTask(inputTxt, i);
-                i++;
+                try {
+                    addTask(inputTxt, i);
+                    i++;
+                } catch (DukeException e) {
+                    System.out.println("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Invalid input");
+                }
             } else {
-                processInput(inputTxt, i);
+                try {
+                    processInput(inputTxt, i);
+                } catch (DukeException e) {
+                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
             }
 
-            System.out.println("Total tasks: " + (i + 1));
+            System.out.println("Total tasks: " + i);
             System.out.println(HORIZ_LINE);
 
             inputTxt = userInput.nextLine();
