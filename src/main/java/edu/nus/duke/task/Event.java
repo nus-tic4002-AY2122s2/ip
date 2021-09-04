@@ -1,3 +1,5 @@
+package edu.nus.duke.task;
+
 public class Event extends Task {
     // Variables
     protected String at;

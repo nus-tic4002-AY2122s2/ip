@@ -1,3 +1,5 @@
+package edu.nus.duke.task;
+
 public class Deadline extends Task {
     // Variables
     protected String by;
