@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     // Variables
     protected char prefix = ' ';
     protected String taskName;
