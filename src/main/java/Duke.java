@@ -31,7 +31,11 @@ public class Duke {
         return (inputTxt.startsWith(CMD_TODO) || inputTxt.startsWith(CMD_DEADLINE) || inputTxt.startsWith(CMD_EVENT));
     }
 
-    private static void addTask(String inputTxt, int lastIndex) {
+    private static void addTask(String inputTxt, int lastIndex) throws DukeException {
+        if (inputTxt.split(" ").length == 1) {
+            throw new DukeException();
+        }
+
         if (inputTxt.startsWith(CMD_TODO)) {
             tasks[lastIndex] = new Todo(inputTxt.substring(5));
         } else if (inputTxt.startsWith(CMD_DEADLINE)) {
@@ -74,7 +78,11 @@ public class Duke {
             }
 
             if (isAddTask(inputTxt)) {
-                addTask(inputTxt, i);
+                try {
+                    addTask(inputTxt, i);
+                } catch (DukeException e) {
+                    System.out.println("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
+                }
                 i++;
             } else {
                 processInput(inputTxt, i);
