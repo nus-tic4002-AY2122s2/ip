@@ -1,4 +1,11 @@
+package edu.nus.duke.command;
+
 import java.util.Scanner;
+import edu.nus.duke.task.Task;
+import edu.nus.duke.task.Todo;
+import edu.nus.duke.task.Deadline;
+import edu.nus.duke.task.Event;
+import edu.nus.duke.exception.DukeException;
 
 public class Duke {
     // Variables

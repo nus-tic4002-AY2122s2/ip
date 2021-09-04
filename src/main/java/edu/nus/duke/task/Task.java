@@ -1,3 +1,5 @@
+package edu.nus.duke.task;
+
 public abstract class Task {
     // Variables
     protected char prefix = ' ';
