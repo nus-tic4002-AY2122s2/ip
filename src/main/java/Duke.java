@@ -59,13 +59,13 @@ public class Duke {
         System.out.println(tasks[idx].getTask());
     }
 
-    private static void processInput(String inputTxt, int lastIndex) {
+    private static void processInput(String inputTxt, int lastIndex) throws DukeException {
         if (inputTxt.equals("list")) {
             printList(lastIndex);
         } else if (inputTxt.startsWith("done")) {
             setDone(inputTxt, lastIndex);
         } else {
-            System.out.println("Invalid input");
+            throw new DukeException();
         }
     }
 
@@ -85,7 +85,11 @@ public class Duke {
                 }
                 i++;
             } else {
-                processInput(inputTxt, i);
+                try {
+                    processInput(inputTxt, i);
+                } catch (DukeException e) {
+                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
             }
 
             System.out.println("Total tasks: " + i);
