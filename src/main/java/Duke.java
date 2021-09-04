@@ -80,10 +80,10 @@ public class Duke {
             if (isAddTask(inputTxt)) {
                 try {
                     addTask(inputTxt, i);
+                    i++;
                 } catch (DukeException e) {
                     System.out.println("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
                 }
-                i++;
             } else {
                 try {
                     processInput(inputTxt, i);
