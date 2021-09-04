@@ -48,7 +48,7 @@ public class Duke {
         System.out.println("added: " + tasks[lastIndex].getTask());
     }
 
-    private static void setDone(String inputTxt, int lastIndex) {
+    private static void setDone(String inputTxt, int lastIndex) throws ArrayIndexOutOfBoundsException {
         int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
         if (idx > lastIndex) {
             System.out.println("Task out of limit");
@@ -63,7 +63,11 @@ public class Duke {
         if (inputTxt.equals("list")) {
             printList(lastIndex);
         } else if (inputTxt.startsWith("done")) {
-            setDone(inputTxt, lastIndex);
+            try {
+                setDone(inputTxt, lastIndex);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Invalid input");
+            }
         } else {
             throw new DukeException();
         }
