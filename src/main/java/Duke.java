@@ -31,7 +31,7 @@ public class Duke {
         return (inputTxt.startsWith(CMD_TODO) || inputTxt.startsWith(CMD_DEADLINE) || inputTxt.startsWith(CMD_EVENT));
     }
 
-    private static void addTask(String inputTxt, int lastIndex) throws DukeException {
+    private static void addTask(String inputTxt, int lastIndex) throws DukeException, ArrayIndexOutOfBoundsException {
         if (inputTxt.split(" ").length == 1) {
             throw new DukeException();
         }
@@ -83,6 +83,8 @@ public class Duke {
                     i++;
                 } catch (DukeException e) {
                     System.out.println("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Invalid input");
                 }
             } else {
                 try {
