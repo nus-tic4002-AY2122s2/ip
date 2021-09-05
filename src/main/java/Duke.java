@@ -36,30 +36,24 @@ public class Duke {
                     command = userInput[0].trim();
                     input = userInput[1].trim();
                     if(command.equals("todo")){
-                        System.out.println("Got it. I've added this task:");
                         todoFunction(taskList, input , counter);
-                        System.out.println("    " + taskList[counter].toString());
-                        System.out.println("Now you have " + counter + " tasks in the list.\n");
+                        addTaskPrint(taskList,counter);
                         counter++;
                     }else if(command.equals("done")){
                         int listLocation = Integer.valueOf(input);
-                        System.out.println("Nice! I've marked this task as done:");
                         doneFunction(taskList, listLocation);
+                        donePrint();
                     }else if(command.equals("deadline")){
                         String description = input.substring(0, input.indexOf("/by")-1);
                         String date = input.substring(input.indexOf("/by")+3, input.length());
-                        System.out.println("Got it. I've added this task:");
                         deadlineFunction(taskList, description, date, counter);
-                        System.out.println("    " + taskList[counter].toString());
-                        System.out.println("Now you have " + counter + " tasks in the list.");
+                        addTaskPrint(taskList,counter);
                         counter++;
                     }else if(command.contains("event")) {
                         String description = input.substring(0, input.indexOf("/at") - 1);
                         String date = input.substring(input.indexOf("/at") + 3, input.length());
-                        System.out.println("Got it. I've added this task:");
                         eventFunction(taskList, description, date, counter);
-                        System.out.println("    " + taskList[counter].toString());
-                        System.out.println("Now you have " + counter + " tasks in the list.");
+                        addTaskPrint(taskList,counter);
                         counter++;
                     }else{
                         wrongCommand();
@@ -120,5 +114,15 @@ public class Duke {
 
     private static void wrongInput(){
         System.out.println("You have enter an invalid input!!!");
+    }
+
+    private static void donePrint(){
+        System.out.println("Nice! I've marked this task as done:");
+    }
+
+    private static void addTaskPrint(Task[] taskList, int counter){
+        System.out.println("Got it. I've added this task:");
+        System.out.println("    " + taskList[counter].toString());
+        System.out.println("Now you have " + counter + " tasks in the list.\n");
     }
 }
