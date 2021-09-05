@@ -6,6 +6,8 @@ import exception.ErrorHandler;
 import parser.Parser;
 
 public class Command {
+    private boolean isExit = false;
+
     public  Command(UserList list, String userInput) throws ErrorHandler {
         this.process(list, userInput);
     }
@@ -16,6 +18,7 @@ public class Command {
         switch (parser.getCommandWord()) {
             case "bye":
                 Ui.bye();
+                this.isExit = true;
                 break;
             case "list":
                 Ui.printList(list.getSerializedList());
@@ -35,4 +38,6 @@ public class Command {
                 break;
         }
     }
+
+    public boolean getIsExit() {return this.isExit;}
 }
