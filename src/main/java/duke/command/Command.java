@@ -1,7 +1,7 @@
-package Duke.Command;
+package duke.command;
 
-import Duke.DukeException.DukeException;
-import Duke.Task.Task;
+import duke.dukeException.DukeException;
+import duke.task.Task;
 
 public abstract class Command {
     protected String taskItem;
