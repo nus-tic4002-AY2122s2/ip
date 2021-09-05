@@ -1,7 +1,9 @@
+import duke.dukeTask.*;
 import java.util.Scanner;
+
+
 public class Duke {
     public static void main(String[] args) {
-
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -17,6 +19,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         Task[] taskList = new Task[100];
         int counter = 1;
+
         // user input loops
         while (true) {
             line = sc.nextLine().trim();
@@ -30,6 +33,8 @@ public class Duke {
                 String[] userInput = null;
                 String command;
                 String input;
+                String description = "";
+                String date = "";
                 // check for user command and input
                 if(line.indexOf(" ") > 0){
                     userInput = line.split(" ",2);
@@ -44,14 +49,14 @@ public class Duke {
                         doneFunction(taskList, listLocation);
                         donePrint();
                     }else if(command.equals("deadline")){
-                        String description = input.substring(0, input.indexOf("/by")-1);
-                        String date = input.substring(input.indexOf("/by")+3, input.length());
+                        description = input.substring(0, input.indexOf("/by")-1);
+                        date = input.substring(input.indexOf("/by")+3, input.length());
                         deadlineFunction(taskList, description, date, counter);
                         addTaskPrint(taskList,counter);
                         counter++;
                     }else if(command.contains("event")) {
-                        String description = input.substring(0, input.indexOf("/at") - 1);
-                        String date = input.substring(input.indexOf("/at") + 3, input.length());
+                        description = input.substring(0, input.indexOf("/at") - 1);
+                        date = input.substring(input.indexOf("/at") + 3, input.length());
                         eventFunction(taskList, description, date, counter);
                         addTaskPrint(taskList,counter);
                         counter++;
@@ -85,21 +90,21 @@ public class Duke {
 
     private static Task[] todoFunction(Task[] taskList, String description, int counter){
         Task newTask = new Todo(description);
-        newTask.description = description;
+        //newTask.description = description;
         taskList[counter] = newTask;
         return taskList;
     }
 
     private static Task[] eventFunction(Task[] taskList, String description, String date, int counter){
         Task newTask = new Event(description, date);
-        newTask.description = description;
+        //newTask.description = description;
         taskList[counter] = newTask;
         return taskList;
     }
 
     private static Task[] deadlineFunction(Task[] taskList, String description, String date, int counter){
         Task newTask = new Deadline(description, date);
-        newTask.description = description;
+        //newTask.description = description;
         taskList[counter] = newTask;
         return taskList;
     }

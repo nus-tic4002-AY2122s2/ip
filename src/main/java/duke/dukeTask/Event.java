@@ -1,3 +1,5 @@
+package duke.dukeTask;
+
 public class Event extends Task {
 
     protected String at;
