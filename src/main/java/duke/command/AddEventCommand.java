@@ -11,13 +11,13 @@ public class AddEventCommand extends Command {
         super(fullCommand);
     }
 
-    private static void CheckDescription(String fullCommand) throws LackOfDescriptionException {
+    private static void checkDescription(String fullCommand) throws LackOfDescriptionException {
         if (fullCommand.trim().equals("event") ) {
             throw new LackOfDescriptionException();
         }
     }
 
-    private static void CheckDate(String fullCommand, String description) throws LackOfDateException {
+    private static void checkDate(String fullCommand, String description) throws LackOfDateException {
         if ( fullCommand.equals("deadline " + description)
                 || fullCommand.trim().equals("deadline " + description + " /at") ) {
             throw new LackOfDateException();
@@ -26,9 +26,9 @@ public class AddEventCommand extends Command {
 
     public void run(TaskList taskList) {
         try {
-            CheckDescription(fullCommand);
+            checkDescription(fullCommand);
             String description = Parser.description(fullCommand);
-            CheckDate(fullCommand, description);
+            checkDate(fullCommand, description);
             String date = Parser.date(fullCommand);
             taskList.addEvent(description, date);
             int size = taskList.size;
