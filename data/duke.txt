@@ -1,0 +1,5 @@
+T | ✓ | borrow book
+D | ✘ | return book| 20-11-2019
+E | ✘ | party| 21-11-2019
+D | ✘ | sleep| 10:00pm
+T | ✘ | gym

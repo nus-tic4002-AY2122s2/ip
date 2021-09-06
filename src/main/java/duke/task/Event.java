@@ -12,4 +12,9 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + date + ")";
     }
+
+    @Override
+    public String save_toString() {
+        return "E | " + super.save_toString() + "| " + date;
+    }
 }
