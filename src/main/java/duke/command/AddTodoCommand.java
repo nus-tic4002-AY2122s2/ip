@@ -10,7 +10,7 @@ public class AddTodoCommand extends Command {
         super(fullCommand);
     }
 
-    private static void CheckDescription(String fullCommand) throws LackOfDescriptionException {
+    private static void checkDescription(String fullCommand) throws LackOfDescriptionException {
         if (fullCommand.trim().equals("todo") ) {
             throw new LackOfDescriptionException();
         }
@@ -18,7 +18,7 @@ public class AddTodoCommand extends Command {
 
     public void run(TaskList taskList) {
         try {
-            CheckDescription(fullCommand);
+            checkDescription(fullCommand);
             String description = Parser.description(fullCommand);
             taskList.addTodo(description);
             int size = taskList.size;

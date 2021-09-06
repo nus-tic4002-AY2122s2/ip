@@ -37,4 +37,9 @@ public class TaskList {
         tasks.add(task);
         size++;
     }
+
+    public void delete(int index) {
+        tasks.remove(index);
+        size--;
+    }
 }

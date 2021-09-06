@@ -5,29 +5,27 @@ import duke.task.Task;
 import java.util.ArrayList;
 
 public class Duke {
-    private UI ui;
     private TaskList taskList;
 
-    private Duke(){
-        this.ui = new UI();
+    private Duke() {
         ArrayList<Task> tasks = new ArrayList<>();
         this.taskList = new TaskList(tasks);
     }
 
     private void run() {
-        ui.welcome();
+        UI.welcome();
         boolean isExit = false;
         while(!isExit) {
             try {
-                String fullCommand = ui.readCommand();
+                String fullCommand = UI.readCommand();
                 Execution execution = new Execution(fullCommand);
-                ui.splitLine();
+                UI.splitLine();
                 execution.execute(taskList);
                 isExit = execution.isExit;
             } catch (Exception e) {
                 System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
             } finally {
-                ui.splitLine();
+                UI.splitLine();
             }
         }
     }

@@ -37,17 +37,22 @@ public class UI {
         System.out.println("  " + tasks.get(index).toString());
     }
 
+    public static void deleteMessage(Task task, int size) {
+        System.out.println("Noted. I've removed this task: ");
+        System.out.println("  "  + task);
+        System.out.println("Now you have " + size + " tasks in the list.");
+    }
+
     public static void byeMessage() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public static void splitLine(){
+    public static void splitLine() {
         System.out.println("--------------------------------------------------------");
     }
 
     public static String readCommand() {
         Scanner in = new Scanner(System.in);
-        String fullCommand = in.nextLine();
-        return fullCommand;
+        return in.nextLine();
     }
 }

@@ -4,14 +4,15 @@ import duke.Parser;
 import duke.TaskList;
 import duke.UI;
 import duke.exception.LackOfIndexException;
+import duke.task.Task;
 
-public class DoneCommand extends Command {
-    public DoneCommand(String fullCommand) {
+public class DeleteCommand extends Command {
+    public DeleteCommand(String fullCommand) {
         super(fullCommand);
     }
 
     private static void checkElement(String fullCommand) throws LackOfIndexException {
-        if (fullCommand.trim().equals("done") ) {
+        if (fullCommand.trim().equals("delete") ) {
             throw new LackOfIndexException();
         }
     }
@@ -20,8 +21,9 @@ public class DoneCommand extends Command {
         try {
             checkElement(fullCommand);
             int index = Parser.taskNumber(fullCommand);
-            taskList.done(index);
-            UI.doneMessage(taskList.tasks, index);
+            Task deletedTask = taskList.tasks.get(index);
+            taskList.delete(index);
+            UI.deleteMessage(deletedTask, taskList.size);
         } catch (LackOfIndexException e) {
             System.out.println("OOPS!!! Pls key in the number of the task");
         } catch (IndexOutOfBoundsException e) {
