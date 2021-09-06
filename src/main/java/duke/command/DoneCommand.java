@@ -25,7 +25,7 @@ public class DoneCommand extends Command {
         } catch (LackOfIndexException e) {
             System.out.println("OOPS!!! Pls key in the number of the task");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("OOPS!!! The number of task is invalid! Please key in again!");
+            System.out.println("OOPS!!! The number of task is invalid");
         }
     }
 }
