@@ -49,16 +49,17 @@ public class Input_Scanner {
                     break;
                 case "todo":
                     Add.addTodoTask(List, input.substring(5, input.length()));
+                    break;
                 case "delete":
                     Delete.deleteTask(List, inputWords);
             }
         } catch (DukeTaskInputException e) {
-            String firstWord = DukeTaskInputException.getFirstWord();
             String errorType = DukeTaskInputException.getErrorType();
 
             switch(errorType){
                 case "descriptionMissing":
-                    Output_On_Screen.toPrintSeparateLine();
+                    String firstWord = DukeTaskInputException.getFirstWord();
+
                     switch(firstWord){
                         case "todo":
                         case "event":

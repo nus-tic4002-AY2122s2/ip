@@ -48,11 +48,27 @@ public class Output_On_Screen {
      * @param list The entire Task List
      * @param n is the Task Sequence number in the Task List
      */
-    public static void printMarkAsDoneOutput(Vector<Task> list, int n){
+    public static void printMarkAsDoneOutput(Vector<Task> list, int n, String taskType){
+
         System.out.println("     Nice! I've marked this task as done:");
-        System.out.println("       [" +
+        System.out.print("       [" +
                 list.get(n).getType() + "][" +
                 list.get(n).getStatusIcon() + "] " + list.get(n).getDescription());
+
+        switch (taskType){
+            case "E":
+                String eventDateTime = list.get(n).getAt();
+                System.out.println(" (at: " + eventDateTime + ")");
+
+                break;
+            case "D":
+                String deadlineDateTime = list.get(n).getBy();
+                System.out.println(" (by: " + deadlineDateTime + ")");
+
+                break;
+            default:
+                System.out.println("");
+        }
 
         toPrintSeparateLine();
         System.out.println("");
@@ -67,9 +83,28 @@ public class Output_On_Screen {
         System.out.println("     Here are the task(s) in your list:");
         for (int i = 0; i < list.size(); i++) {
             int j = i + 1;
-            System.out.println("     " + j + "." +
+            System.out.print("     " + j + "." +
                     "[" + list.get(i).getType() + "]" +
                     "[" + list.get(i).getStatusIcon() + "] " + list.get(i).getDescription());
+
+            String taskType = list.get(i).getType();
+
+            switch(taskType){
+                case "E":
+                    Task currentTask = list.get(i);
+                    String eventDateTime = currentTask.getAt();
+                    System.out.println(" (at: " + eventDateTime + ")");
+
+                    break;
+                case "D":
+                    Task currentDeadlineTask = list.get(i);
+                    String deadlineDateTime = currentDeadlineTask.getBy();
+                    System.out.println(" (by: " + deadlineDateTime + ")");
+
+                    break;
+                default:
+                    System.out.println("");
+            }
         }
 
         Output_On_Screen.toPrintSeparateLine();
@@ -136,11 +171,12 @@ public class Output_On_Screen {
         String taskDescription = deletedTask.getDescription();
         String taskType = deletedTask.getType();
         String taskStatus = deletedTask.getStatusIcon();
+        String dateTime = deletedTask.getBy();
 
         int taskQuantity = List.size();
 
         System.out.println("     Noted. I've removed this task:");
-        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(by: ");
+        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(by: " + dateTime + ")");
         System.out.println("     Now you have " + taskQuantity + " task(s) in the list.");
 
         toPrintSeparateLine();
@@ -152,11 +188,12 @@ public class Output_On_Screen {
         String taskDescription = deletedTask.getDescription();
         String taskType = deletedTask.getType();
         String taskStatus = deletedTask.getStatusIcon();
+        String dateTime = deletedTask.getAt();
 
         int taskQuantity = List.size();
 
         System.out.println("     Noted. I've removed this task:");
-        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(at: ");
+        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(at: " + dateTime + ")");
         System.out.println("     Now you have " + taskQuantity + " task(s) in the list.");
 
         toPrintSeparateLine();

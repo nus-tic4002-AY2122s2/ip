@@ -168,7 +168,6 @@ public class Input_Parser {
             return taskIndex;
         }
         else {
-            // throw error here for wrong done or delete format
             throw new DukeTaskInputException("formatWrong");
         }
     }

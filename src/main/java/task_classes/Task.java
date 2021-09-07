@@ -4,6 +4,8 @@ public abstract class Task {
     String description;
     boolean isDone;
     String type;
+    String by;
+    String at;
 
     Task(String description){
         this.description = description;
@@ -35,4 +37,18 @@ public abstract class Task {
      * @return the type of the task
      */
     public abstract String getType(); //{ return this.type; }
+
+    /**
+     * To get the date/Time of the deadline task
+     *
+     * @return the type of the task
+     */
+    public abstract String getBy();
+
+    /**
+     * To get the date/time of the event task
+     *
+     * @return the type of the task
+     */
+    public abstract String getAt();
 }

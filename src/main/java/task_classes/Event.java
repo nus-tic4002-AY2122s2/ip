@@ -2,12 +2,12 @@ package task_classes;
 
 public class Event extends Task {
 
-    private String at;
+    //private String at;
 
     public Event (String description, String at){
         super(description);
         super.type = "E";
-        this.at = at;
+        super.at = at;
     }
 
     /**
@@ -16,7 +16,11 @@ public class Event extends Task {
      * @return time/date of the Event task
      */
     public String getAt(){
-        return this.at;
+        return super.at;
+    }
+
+    public String getBy(){
+        return "";
     }
 
     /**

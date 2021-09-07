@@ -40,4 +40,12 @@ public class Todo extends Task {
     public String getType(){
         return this.type;
     }
+
+    public String getBy(){
+        return "";
+    }
+
+    public String getAt(){
+        return"";
+    }
 }
