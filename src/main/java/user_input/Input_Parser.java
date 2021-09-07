@@ -145,8 +145,23 @@ public class Input_Parser {
                 !First_Word.equals("find") &&
                 !First_Word.equals("todoafter") &&
                 !First_Word.equals("processing") &&
+                !First_Word.equals("delete") &&
                 Input_Words.length == 1){
             throw new DukeTaskInputException(First_Word, "descriptionMissing");
+        }
+    }
+
+    public static int toExtractNumberForDoneAndDelete(String[] inputWords) throws DukeTaskInputException {
+        if(inputWords.length == 2 && inputWords[1].matches("\\d+")){ // to check whether the char is integer
+            int taskIndex;
+
+            taskIndex = Integer.parseInt(inputWords[1]);
+
+            return taskIndex;
+        }
+        else {
+            // throw error here for wrong done or delete format
+            throw new DukeTaskInputException("formatWrong");
         }
     }
 }

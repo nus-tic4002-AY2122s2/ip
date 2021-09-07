@@ -130,4 +130,8 @@ public class Output_On_Screen {
         toPrintSeparateLine();
         System.out.println("");
     }
+
+    public static void printDeletedOutput(Vector<Task> List, Task deletedTask){
+
+    }
 }

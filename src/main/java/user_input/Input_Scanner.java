@@ -4,6 +4,7 @@ import exceptions.DukeTaskInputException;
 import screen_output.Output_On_Screen;
 import task_classes.Task;
 import task_manipulation.Add;
+import task_manipulation.Delete;
 import task_manipulation.MarkAsDone;
 
 import java.util.Scanner;
@@ -48,6 +49,8 @@ public class Input_Scanner {
                     break;
                 case "todo":
                     Add.addTodoTask(List, input.substring(5, input.length()));
+                case "delete":
+                    Delete.deleteTask(List, inputWords);
             }
         } catch (DukeTaskInputException e) {
             String firstWord = DukeTaskInputException.getFirstWord();
@@ -87,6 +90,9 @@ public class Input_Scanner {
                     break;
                 case "listIsEmtpy":
                     DukeTaskInputException.listIsEmtpy();
+                    break;
+                case "formatWrong":
+                    DukeTaskInputException.formatWrong();
                     break;
             }
 
