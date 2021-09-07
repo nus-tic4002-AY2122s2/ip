@@ -77,40 +77,43 @@ public class Input_Parser {
             throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
         }
 
-        if(inputWords[0].equals("todo")){
-            bufferA.addAll(Arrays.asList(inputWords).subList(1, inputWords.length));
+        switch (inputWords[0]) {
+            case "todo":
+                bufferA.addAll(Arrays.asList(inputWords).subList(1, inputWords.length));
 
-            return convertStringArrayToString(bufferA);
-        }else if (inputWords[0].equals("deadline")){
-            for(int n = inputWords.length - 1; n > 0; n--) {
-                if (inputWords[n].equals("/by")) {
-                    if(n == 1){
-                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                return convertStringArrayToString(bufferA);
+            case "deadline":
+                for (int n = inputWords.length - 1; n > 0; n--) {
+                    if (inputWords[n].equals("/by")) {
+                        if (n == 1) {
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                        }
+                        if (n == inputWords.length - 1) {
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                        }
+
+                        bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
+
+                        return convertStringArrayToString(bufferA);
                     }
-                    if (n == inputWords.length - 1) {
-                        throw new DukeTaskInputException(inputWords[0], "dateTime");
-                    }
-
-                    bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
-
-                    return convertStringArrayToString(bufferA);
                 }
-            }
-        } else if (inputWords[0].equals("event")){
-            for(int n = inputWords.length - 1; n > 0; n--) {
-                if (inputWords[n].equals("/at")) {
-                    if(n == 1){
-                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
-                    }
-                    if (n == inputWords.length - 1) {
-                        throw new DukeTaskInputException(inputWords[0], "dateTime");
-                    }
+                break;
+            case "event":
+                for (int n = inputWords.length - 1; n > 0; n--) {
+                    if (inputWords[n].equals("/at")) {
+                        if (n == 1) {
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                        }
+                        if (n == inputWords.length - 1) {
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                        }
 
-                    bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
+                        bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
 
-                    return convertStringArrayToString(bufferA);
+                        return convertStringArrayToString(bufferA);
+                    }
                 }
-            }
+                break;
         }
 
         throw new DukeTaskInputException(inputWords[0], "dateTime");
