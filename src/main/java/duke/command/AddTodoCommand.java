@@ -6,6 +6,10 @@ import duke.UI;
 import duke.exception.LackOfDescriptionException;
 
 public class AddTodoCommand extends Command {
+    /**
+     * Create new add-todo command.
+     * @param fullCommand user full command.
+     * */
     public AddTodoCommand(String fullCommand) {
         super(fullCommand);
     }
@@ -15,7 +19,10 @@ public class AddTodoCommand extends Command {
             throw new LackOfDescriptionException();
         }
     }
-
+    /**
+     * Method to execute add-todo command.
+     * @param taskList task list to be updated
+     * */
     public void run(TaskList taskList) {
         try {
             checkDescription(fullCommand);

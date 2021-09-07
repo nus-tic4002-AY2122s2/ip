@@ -7,7 +7,9 @@ import java.util.ArrayList;
 public class Duke {
     private TaskList taskList;
     private String filePath;
-
+    /**
+     * Create new Duke with new task list and filepath for loading and saving data.
+     * */
     private Duke() {
         ArrayList<Task> tasks = new ArrayList<>();
         this.taskList = new TaskList(tasks);

@@ -7,6 +7,10 @@ import duke.exception.LackOfDateException;
 import duke.exception.LackOfDescriptionException;
 
 public class AddEventCommand extends Command {
+    /**
+     * Create new add-event command.
+     * @param fullCommand user full command.
+     * */
     public AddEventCommand(String fullCommand) {
         super(fullCommand);
     }
@@ -23,7 +27,10 @@ public class AddEventCommand extends Command {
             throw new LackOfDateException();
         }
     }
-
+    /**
+     * Method to execute add-event command.
+     * @param taskList task list to be updated
+     * */
     public void run(TaskList taskList) {
         try {
             checkDescription(fullCommand);

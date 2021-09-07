@@ -10,14 +10,22 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * Stores method to deal with loading and saving from file.
+ * */
 public class Storage {
     protected String filePath;
-
+    /**
+     * Create new Storage.
+     * @param filePath file address.
+     * */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
-
+    /**
+     * Load file to new Duke task list.
+     * @param taskList task list to be loaded.
+     * */
     public void loadFile(TaskList taskList) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -52,7 +60,10 @@ public class Storage {
             UI.splitLine();
         }
     }
-
+    /**
+     * Save updates to file.
+     * @param taskList task list to be saved.
+     * */
     public void saveFile(TaskList taskList) {
         try {
             FileOutputStream out = new FileOutputStream(filePath);

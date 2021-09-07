@@ -21,7 +21,10 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + date + ")";
     }
-
+    /**
+     * Update the saving format by adding icon and date for event.
+     * @return printing format.
+     * */
     @Override
     public String save_toString() {
         return "E | " + super.save_toString() + "| " + date;

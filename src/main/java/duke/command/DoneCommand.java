@@ -6,6 +6,10 @@ import duke.UI;
 import duke.exception.LackOfIndexException;
 
 public class DoneCommand extends Command {
+    /**
+     * Create new done command.
+     * @param fullCommand user full command.
+     * */
     public DoneCommand(String fullCommand) {
         super(fullCommand);
     }
@@ -15,7 +19,10 @@ public class DoneCommand extends Command {
             throw new LackOfIndexException();
         }
     }
-
+    /**
+     * Method to execute done command.
+     * @param taskList task list to be updated
+     * */
     public void run(TaskList taskList) {
         try {
             checkElement(fullCommand);

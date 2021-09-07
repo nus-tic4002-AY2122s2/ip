@@ -21,7 +21,10 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + date + ")";
     }
-
+    /**
+     * Update the saving format by adding icon and date for deadline.
+     * @return printing format.
+     * */
     @Override
     public String save_toString() {
         return "D | " + super.save_toString() + "| " + date;

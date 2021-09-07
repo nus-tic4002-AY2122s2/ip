@@ -2,12 +2,17 @@ package duke;
 
 import duke.command.*;
 import duke.exception.CommandException;
-
+/**
+ * Execute user command.
+ * */
 public class Execution {
     protected String fullCommand;
     protected String command;
     protected boolean isExit;
-
+    /**
+     * Create new command.
+     * @param fullCommand user full command.
+     * */
     public Execution(String fullCommand) {
         this.fullCommand = fullCommand;
         this.command = Parser.command(fullCommand);
@@ -21,7 +26,10 @@ public class Execution {
             throw new CommandException();
         }
     }
-
+    /**
+     * Execute new command.
+     * @param taskList task list to be updated
+     * */
     public void execute(TaskList taskList) {
         try {
             checkCommand(command);

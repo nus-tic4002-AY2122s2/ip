@@ -18,7 +18,10 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
-
+    /**
+     * Update the saving format by adding icon for todo.
+     * @return printing format.
+     * */
     @Override
     public String save_toString() {
         return "T | " + super.save_toString();

@@ -33,7 +33,10 @@ public class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
-
+    /**
+     * Covert task to string in saving format.
+     * @return saving format.
+     * */
     public String save_toString() {
         return getStatusIcon() + " | " + description;
     }

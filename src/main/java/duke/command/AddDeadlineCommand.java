@@ -7,6 +7,10 @@ import duke.exception.LackOfDateException;
 import duke.exception.LackOfDescriptionException;
 
 public class AddDeadlineCommand extends Command {
+    /**
+     * Create new add-deadline command.
+     * @param fullCommand user full command.
+     * */
     public AddDeadlineCommand(String fullCommand) {
         super(fullCommand);
     }
@@ -23,7 +27,10 @@ public class AddDeadlineCommand extends Command {
             throw new LackOfDateException();
         }
     }
-
+    /**
+     * Method to execute add-deadline command.
+     * @param taskList task list to be updated
+     * */
     public void run(TaskList taskList) {
         try {
             checkDescription(fullCommand);
