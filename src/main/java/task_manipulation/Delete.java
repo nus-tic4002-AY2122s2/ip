@@ -12,7 +12,7 @@ public class Delete {
     public static void deleteTask(Vector<Task> taskList, String[] inputWords) throws DukeTaskInputException {
         int taskIndex;
 
-        taskIndex = Input_Parser.toExtractNumberForDoneAndDelete(inputWords) - 1;
+        taskIndex = Input_Parser.toExtractNumberForDoneAndDelete(inputWords, taskList) - 1;
         Task deletedTask = taskList.get(taskIndex);
         taskList.remove(taskIndex);
         String taskType = deletedTask.getType();

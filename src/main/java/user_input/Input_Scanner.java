@@ -85,8 +85,8 @@ public class Input_Scanner {
                 case "markAsDoneFormatWrong":
                     DukeTaskInputException.markAsDoneFormatWrong();
                     break;
-                case "markAsDoneTaskNumberOutOfRange":
-                    DukeTaskInputException.markAsDoneTaskNumberOutOfRange();
+                case "taskIndexOutOfRange":
+                    DukeTaskInputException.taskIndexOutOfRange();
                     break;
                 case "listIsEmtpy":
                     DukeTaskInputException.listIsEmtpy();

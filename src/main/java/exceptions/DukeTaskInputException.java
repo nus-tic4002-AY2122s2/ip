@@ -55,8 +55,7 @@ public class DukeTaskInputException extends Exception {
         Output_On_Screen.toPrintSeparateLine();
     }
 
-    public static void markAsDoneTaskNumberOutOfRange(){
-        //Output_On_Screen.toPrintSeparateLine();
+    public static void taskIndexOutOfRange(){
         System.out.println("     ☹ OOPS!!! The task number out of range.");
         Output_On_Screen.toPrintSeparateLine();
     }

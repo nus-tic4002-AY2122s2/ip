@@ -2,9 +2,11 @@ package user_input;
 
 
 import exceptions.DukeTaskInputException;
+import task_classes.Task;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Vector;
 
 public class Input_Parser {
 
@@ -151,11 +153,17 @@ public class Input_Parser {
         }
     }
 
-    public static int toExtractNumberForDoneAndDelete(String[] inputWords) throws DukeTaskInputException {
+    public static int toExtractNumberForDoneAndDelete(String[] inputWords, Vector<Task> taskList) throws DukeTaskInputException {
         if(inputWords.length == 2 && inputWords[1].matches("\\d+")){ // to check whether the char is integer
             int taskIndex;
 
             taskIndex = Integer.parseInt(inputWords[1]);
+
+            int listSize = taskList.size();
+
+            if(taskIndex > listSize || taskIndex <= 0){
+                throw new DukeTaskInputException("taskIndexOutOfRange");
+            }
 
             return taskIndex;
         }
