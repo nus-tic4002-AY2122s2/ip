@@ -15,7 +15,17 @@ public class Delete {
         taskIndex = Input_Parser.toExtractNumberForDoneAndDelete(inputWords) - 1;
         Task deletedTask = taskList.get(taskIndex);
         taskList.remove(taskIndex);
+        String taskType = deletedTask.getType();
 
-        //Output_On_Screen.printDeletedOutput(taskList, deletedTask);
+        switch(taskType){
+            case "E":
+                Output_On_Screen.printDeletedEvent(taskList, deletedTask);
+                break;
+            case "D":
+                Output_On_Screen.printDeletedDeadline(taskList, deletedTask);
+                break;
+            default:
+                Output_On_Screen.printDeletedTodo(taskList, deletedTask);
+        }
     }
 }

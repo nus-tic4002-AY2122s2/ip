@@ -131,7 +131,51 @@ public class Output_On_Screen {
         System.out.println("");
     }
 
-    public static void printDeletedOutput(Vector<Task> List, Task deletedTask){
+    public static void printDeletedDeadline(Vector<Task> List, Task deletedTask){
 
+        String taskDescription = deletedTask.getDescription();
+        String taskType = deletedTask.getType();
+        String taskStatus = deletedTask.getStatusIcon();
+
+        int taskQuantity = List.size();
+
+        System.out.println("     Noted. I've removed this task:");
+        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(by: ");
+        System.out.println("     Now you have " + taskQuantity + " task(s) in the list.");
+
+        toPrintSeparateLine();
+        System.out.println("");
+    }
+
+    public static void printDeletedEvent(Vector<Task> List, Task deletedTask){
+
+        String taskDescription = deletedTask.getDescription();
+        String taskType = deletedTask.getType();
+        String taskStatus = deletedTask.getStatusIcon();
+
+        int taskQuantity = List.size();
+
+        System.out.println("     Noted. I've removed this task:");
+        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(at: ");
+        System.out.println("     Now you have " + taskQuantity + " task(s) in the list.");
+
+        toPrintSeparateLine();
+        System.out.println("");
+    }
+
+    public static void printDeletedTodo(Vector<Task> List, Task deletedTask){
+
+        String taskDescription = deletedTask.getDescription();
+        String taskType = deletedTask.getType();
+        String taskStatus = deletedTask.getStatusIcon();
+
+        int taskQuantity = List.size();
+
+        System.out.println("     Noted. I've removed this task:");
+        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription);
+        System.out.println("     Now you have " + taskQuantity + " task(s) in the list.");
+
+        toPrintSeparateLine();
+        System.out.println("");
     }
 }
