@@ -3,7 +3,10 @@ package task_manipulation;
 
 import exceptions.DukeTaskInputException;
 import screen_output.Output_On_Screen;
-import task_classes.*;
+import task_classes.Deadline;
+import task_classes.Todo;
+import task_classes.Task;
+import task_classes.Event;
 import user_input.Input_Parser;
 
 import java.util.Vector;
