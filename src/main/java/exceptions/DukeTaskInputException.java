@@ -22,37 +22,31 @@ public class DukeTaskInputException extends Exception {
     }
 
     public static void descriptionMissing(String firstWord){
-        //Output_On_Screen.toPrintSeparateLine();
         System.out.println("     ☹ OOPS!!! The description of the " + getFirstWord() + " cannot be empty.");
         Output_On_Screen.toPrintSeparateLine();
     }
 
     public static void dateTimeMissing(){
-        //Output_On_Screen.toPrintSeparateLine();
         System.out.println("     ☹ OOPS!!! The date/time information" + " cannot be empty.");
         Output_On_Screen.toPrintSeparateLine();
     }
 
     public static void markAsDoneTaskNumberMissing(){
-        //Output_On_Screen.toPrintSeparateLine();
         System.out.println("     ☹ OOPS!!! The task number missing.");
         Output_On_Screen.toPrintSeparateLine();
     }
 
     public static void markAsDoneTaskNumberNotInteger(){
-        //Output_On_Screen.toPrintSeparateLine();
         System.out.println("     ☹ OOPS!!! The task number invalid.");
         Output_On_Screen.toPrintSeparateLine();
     }
 
     public static void markAsDoneTaskNumberNotInTaskList(){
-        //Output_On_Screen.toPrintSeparateLine();
         System.out.println("     ☹ OOPS!!! The task number not in the Task List.");
         Output_On_Screen.toPrintSeparateLine();
     }
 
     public static void markAsDoneTaskNumberOutOfRange(){
-        //Output_On_Screen.toPrintSeparateLine();
         System.out.println("     ☹ OOPS!!! The task number out of range.");
         Output_On_Screen.toPrintSeparateLine();
     }
