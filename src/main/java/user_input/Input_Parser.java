@@ -2,9 +2,11 @@ package user_input;
 
 
 import exceptions.DukeTaskInputException;
+import task_classes.Task;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Vector;
 
 public class Input_Parser {
 
@@ -75,40 +77,43 @@ public class Input_Parser {
             throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
         }
 
-        if(inputWords[0].equals("todo")){
-            bufferA.addAll(Arrays.asList(inputWords).subList(1, inputWords.length));
+        switch (inputWords[0]) {
+            case "todo":
+                bufferA.addAll(Arrays.asList(inputWords).subList(1, inputWords.length));
 
-            return convertStringArrayToString(bufferA);
-        }else if (inputWords[0].equals("deadline")){
-            for(int n = inputWords.length - 1; n > 0; n--) {
-                if (inputWords[n].equals("/by")) {
-                    if(n == 1){
-                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                return convertStringArrayToString(bufferA);
+            case "deadline":
+                for (int n = inputWords.length - 1; n > 0; n--) {
+                    if (inputWords[n].equals("/by")) {
+                        if (n == 1) {
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                        }
+                        if (n == inputWords.length - 1) {
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                        }
+
+                        bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
+
+                        return convertStringArrayToString(bufferA);
                     }
-                    if (n == inputWords.length - 1) {
-                        throw new DukeTaskInputException(inputWords[0], "dateTime");
-                    }
-
-                    bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
-
-                    return convertStringArrayToString(bufferA);
                 }
-            }
-        } else if (inputWords[0].equals("event")){
-            for(int n = inputWords.length - 1; n > 0; n--) {
-                if (inputWords[n].equals("/at")) {
-                    if(n == 1){
-                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
-                    }
-                    if (n == inputWords.length - 1) {
-                        throw new DukeTaskInputException(inputWords[0], "dateTime");
-                    }
+                break;
+            case "event":
+                for (int n = inputWords.length - 1; n > 0; n--) {
+                    if (inputWords[n].equals("/at")) {
+                        if (n == 1) {
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                        }
+                        if (n == inputWords.length - 1) {
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                        }
 
-                    bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
+                        bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
 
-                    return convertStringArrayToString(bufferA);
+                        return convertStringArrayToString(bufferA);
+                    }
                 }
-            }
+                break;
         }
 
         throw new DukeTaskInputException(inputWords[0], "dateTime");
@@ -145,8 +150,28 @@ public class Input_Parser {
                 !First_Word.equals("find") &&
                 !First_Word.equals("todoafter") &&
                 !First_Word.equals("processing") &&
+                !First_Word.equals("delete") &&
                 Input_Words.length == 1){
             throw new DukeTaskInputException(First_Word, "descriptionMissing");
+        }
+    }
+
+    public static int toExtractNumberForDoneAndDelete(String[] inputWords, Vector<Task> taskList) throws DukeTaskInputException {
+        if(inputWords.length == 2 && inputWords[1].matches("\\d+")){ // to check whether the char is integer
+            int taskIndex;
+
+            taskIndex = Integer.parseInt(inputWords[1]);
+
+            int listSize = taskList.size();
+
+            if(taskIndex > listSize || taskIndex <= 0){
+                throw new DukeTaskInputException("taskIndexOutOfRange");
+            }
+
+            return taskIndex;
+        }
+        else {
+            throw new DukeTaskInputException("formatWrong");
         }
     }
 }

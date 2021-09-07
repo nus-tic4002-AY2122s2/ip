@@ -4,6 +4,7 @@ import exceptions.DukeTaskInputException;
 import screen_output.Output_On_Screen;
 import task_classes.Task;
 import task_manipulation.Add;
+import task_manipulation.Delete;
 import task_manipulation.MarkAsDone;
 
 import java.util.Scanner;
@@ -48,14 +49,17 @@ public class Input_Scanner {
                     break;
                 case "todo":
                     Add.addTodoTask(List, input.substring(5, input.length()));
+                    break;
+                case "delete":
+                    Delete.deleteTask(List, inputWords);
             }
         } catch (DukeTaskInputException e) {
-            String firstWord = DukeTaskInputException.getFirstWord();
             String errorType = DukeTaskInputException.getErrorType();
 
             switch(errorType){
                 case "descriptionMissing":
-                    Output_On_Screen.toPrintSeparateLine();
+                    String firstWord = DukeTaskInputException.getFirstWord();
+
                     switch(firstWord){
                         case "todo":
                         case "event":
@@ -82,11 +86,14 @@ public class Input_Scanner {
                 case "markAsDoneFormatWrong":
                     DukeTaskInputException.markAsDoneFormatWrong();
                     break;
-                case "markAsDoneTaskNumberOutOfRange":
-                    DukeTaskInputException.markAsDoneTaskNumberOutOfRange();
+                case "taskIndexOutOfRange":
+                    DukeTaskInputException.taskIndexOutOfRange();
                     break;
                 case "listIsEmtpy":
                     DukeTaskInputException.listIsEmtpy();
+                    break;
+                case "formatWrong":
+                    DukeTaskInputException.formatWrong();
                     break;
             }
 

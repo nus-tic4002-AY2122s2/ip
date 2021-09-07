@@ -2,12 +2,12 @@ package task_classes;
 
 public class Deadline extends Task {
 
-    protected String by;
+    //protected String by;
 
     public Deadline (String description, String by){
         super(description);
         super.type = "D";
-        this.by = by;
+        super.by = by;
     }
 
     /**
@@ -17,7 +17,7 @@ public class Deadline extends Task {
      */
     public String getBy(){
 
-        return this.by;
+        return super.by;
     }
 
     /**
@@ -52,5 +52,9 @@ public class Deadline extends Task {
      */
     public String getType(){
         return this.type;
+    }
+
+    public String getAt(){
+        return "";
     }
 }
