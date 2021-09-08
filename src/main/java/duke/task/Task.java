@@ -7,7 +7,7 @@ import duke.ui.Message;
  * Also, a Receiver Class in Command Pattern
  */
 
-public class Task {
+public abstract class Task {
     protected String title;
     protected boolean isDone;
     protected int taskNo = 0;
