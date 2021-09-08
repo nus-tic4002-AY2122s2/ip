@@ -16,7 +16,7 @@ public class Delete {
         taskIndex = Input_Parser.toExtractNumberForDoneAndDelete(inputWords, taskList) - 1;
         Task deletedTask = taskList.get(taskIndex);
         taskList.remove(taskIndex);
-        
+
         String taskType = deletedTask.getType();
 
         switch(taskType){
