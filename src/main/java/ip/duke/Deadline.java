@@ -5,7 +5,6 @@ public class Deadline extends Todo {
 
     protected Deadline(String description, String by) {
         super(description);
-        setId();
         this.by = by;
     }
 
@@ -14,12 +13,17 @@ public class Deadline extends Todo {
     }
 
     @Override
-    protected void setId(){
-        this.id = "D";
+    public void setId() {
+        this.id = 'D';
     }
 
     @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(), by);
+        return String.format("%s (by: %s)", getDescription(), by);
+    }
+
+    @Override
+    public String toFileString() {
+        return super.toFileString().replaceFirst("T", "D") + " : " + by;
     }
 }

@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class Duke {
     // Collection used to preserve input sequence, get constant time (non-iterative) operations
     private static final LinkedHashSet<Task> TASKS = new LinkedHashSet<>(100);
-
+    private final static String FILE = "data/tasks.txt";
     static void greet() {
         System.out.print("Hello! I'm LisGenie");
         System.out.println("What can I do for you?");
@@ -164,7 +164,7 @@ public class Duke {
         echoAdded(item);
     }
 
-    private static void delete(int idx){
+    private static void remove(int idx){
         Task item = getItem(idx);
 
         if(item != null) {
@@ -181,7 +181,7 @@ public class Duke {
         if (itemIndex < 0 || itemIndex > 99) {
             echoOffList(itemIndex);
         } else {
-            delete(itemIndex);
+            remove(itemIndex);
         }
     }
 
@@ -215,8 +215,13 @@ public class Duke {
         Task item = getItem(idx);
 
         if(item != null) {
-            item.setDone();
-            echoDone(item);
+            if (!item.getStatusIcon().equals(" ")) {
+                System.out.print("LisGenie : ");
+                System.out.println("Mmm...item already marked done, O Master? Next @|@ task?");
+            } else {
+                item.setDone();
+                echoDone(item);
+            }
         }else{
             echoNoEntries();
         }

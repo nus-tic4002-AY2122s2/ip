@@ -14,7 +14,12 @@ public class Todo extends Task {
     }
 
     @Override
-    protected void setId() {
-        this.id = "T";
+    public void setId() {
+        this.id = 'T';
+    }
+
+    @Override
+    public String toFileString() {
+        return "T" + " : " + (isDone ? "1" : "0") + " : " + super.toString();
     }
 }
