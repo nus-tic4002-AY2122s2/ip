@@ -15,7 +15,7 @@ public class StorageInLocal {
 
 
     private Path path;
-    private Vector<Task> List;
+    private Vector<Task> List = new Vector<>();
 
     /**
      * An default file path which is "data/duke.txt"
@@ -29,18 +29,6 @@ public class StorageInLocal {
         this.path = Paths.get(DEFAULT_STORAGE_FILEPATH);
     }
 
-    /**
-     * To check whether the file path input is valid
-     * @param filePath file Path in String
-     * @return return boolean whether valid
-     */
-    private static boolean isValidPath(Path filePath) {
-        return filePath.toString().endsWith(".txt");
-    }
-
-    public StorageInLocal(Vector<Task> List){
-        this.List = List;
-    }
 
     /**
      * To check whether the default file path is exist
@@ -51,8 +39,6 @@ public class StorageInLocal {
     }
 
     public void saveTaskListToLocal(){
-        File taskListTxtFile = new File(localDir);
-
         Vector<String> taskInString = new Vector<>();
 
         for (Task task : List) {
@@ -60,12 +46,34 @@ public class StorageInLocal {
 
             taskInString.add(taskString);
         }
-
-        File newTxt = new File (localDir, "duke_task_list.txt");
     }
 
     private String convertFromTaskToString(Task currentTask){
+        String taskType = currentTask.getType();
+        String description = currentTask.getDescription();
+        String taskStatus = currentTask.getStatusIcon();
+        String taskInString = taskType;
+        String dateTime;
 
+        taskInString = taskInString.concat(" | ");
+        taskInString = taskInString.concat(taskStatus);
+        taskInString = taskInString.concat(" | ");
+        taskInString = taskInString.concat(description);
+
+        switch(taskType){
+            case "E":
+                dateTime = currentTask.getAt();
+                taskInString = taskInString.concat(" | ");
+                taskInString = taskInString.concat(dateTime);
+                break;
+            case "D":
+                dateTime = currentTask.getBy();
+                taskInString = taskInString.concat(" | ");
+                taskInString = taskInString.concat(dateTime);
+                break;
+        }
+
+        return taskInString;
     }
 }
 
