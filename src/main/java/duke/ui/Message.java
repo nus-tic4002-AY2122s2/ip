@@ -22,6 +22,10 @@ public final class Message implements PropertyChangeListener {
         echo(input);
     }
 
+    public static void emptyList() {
+        System.out.println("\t Zero task, add something new!");
+    }
+
     public static void exit() {
         System.out.println("\n👋 Bye, see ya ~ \n");
     }
