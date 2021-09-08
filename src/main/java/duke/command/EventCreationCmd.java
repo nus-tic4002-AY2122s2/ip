@@ -8,8 +8,6 @@ import duke.task.Task;
 import duke.task.Event;
 import duke.ui.Message;
 
-import java.awt.*;
-
 public class EventCreationCmd implements UndoableCommand{
     // Task is a Receiver Class in this Command
     private TempTaskList list;
