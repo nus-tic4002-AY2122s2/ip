@@ -27,6 +27,7 @@ public class CommandFactory implements Iterable {
         add("deadline", new DLCreationCmd(list));
         add("done", new TaskMarkDoneCmd(list));
         add("cmd", new AllCommandCmd(this));
+        add("delete", new TaskDeleteCmd(list));
     }
 
     public Command get(String key)  {

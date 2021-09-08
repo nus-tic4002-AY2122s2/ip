@@ -28,6 +28,7 @@ public class TempList<T> implements Iterable<T>{
 
     public T get(int index) {return list.get(index);}
     public Integer size() {return list.size();}
+    public void removeAt(int index) {list.remove(index);}
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);

@@ -16,7 +16,7 @@ import java.util.Scanner;
  * @since       2021 Aug
  */
 public class Duke {
-    private TempTaskList<Task> list = new TempTaskList<>();
+    private TempTaskList list = new TempTaskList();
     private File file;
     private CommandFactory commandFactory = new CommandFactory(list, file);
     private StringParser strParser = new StringParser();
