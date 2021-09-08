@@ -17,13 +17,23 @@ public final class Message implements PropertyChangeListener {
         System.out.println(input);
     }
 
-    public static void addTask(String input) {
+    public static void taskAdd (String input) {
         System.out.print("\tadded:");
         echo(input);
     }
 
     public static void emptyList() {
-        System.out.println("\t Zero task, add something new!");
+        System.out.println("\tZero task, add something new!");
+    }
+
+    public static void taskDelete(ArrayList tasks) {
+        System.out.println("\tRoger. Below get removed: ");
+        tasks.stream().forEach(System.out::println);
+    }
+
+    public static void tellTaskNum(int numTask, int numDoneTask) {
+        System.out.println("\tTask completion status: "
+                            + numDoneTask + " / " + numTask);
     }
 
     public static void exit() {
@@ -50,7 +60,7 @@ public final class Message implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         var list = (ArrayList<Task>) evt.getNewValue();
         String title = list.get(list.size() - 1).getTitle();
-        this.addTask(title);
+        this.taskAdd(title);
         echo("Now " + list.size() + " tasks in Total");
     }
 

@@ -10,14 +10,12 @@ import duke.ui.Message;
 public abstract class Task {
     protected String title;
     protected boolean isDone;
-    protected int taskNo = 0;
     protected static int taskCount = 0;
 
     public Task(String title) {
         this.title = title;
         this.isDone = false;
         taskCount++;
-        taskNo = taskCount;
     }
 
     public String getStatusIcon() {
@@ -36,7 +34,6 @@ public abstract class Task {
         Message.echo("Marked below as UNDONE:");
         Message.echo(toString());
     }
-    public int getTaskNo() {return taskNo;}
 
 
     @Override
