@@ -1,2 +1,4 @@
-package main.java.duke;public class UndefinedTaskException {
+package main.java.duke;
+
+public class UndefinedTaskException extends Exception{
 }
