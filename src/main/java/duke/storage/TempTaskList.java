@@ -15,6 +15,9 @@ public class TempTaskList<Task> extends TempList<Task> {
     }
 
     public void print() {
+        if (this.size() == 0) {
+            Message.emptyList();
+        }
         for (Task task : list) {
             Message.echo(task.toString());
         }
