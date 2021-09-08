@@ -4,6 +4,7 @@ import ip.duke.exceptions.DukeException;
 import ip.duke.task.Task;
 
 import java.lang.String;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -12,16 +13,14 @@ import java.util.stream.Stream;
  *
  * </P>Deals with user tasks registry, chat service and administration.
  *
- * <P>Note that tasks are stored as Task objects in a Task[] array (max size: 100).
+ * <P>Note that tasks are stored as Task objects in a Task[] array (expected max size : 100).
  *
  * @author Gwee Yeu Chai
  * @version 1.0
  */
 public class Duke {
-    // TASKS array to store Task objects
-    private static final Task[] TASKS = new Task[100];
-    // index variable to track each Task stored in array
-    private static int index;
+    // Collection used to preserve input sequence, get constant time (non-iterative) operations
+    private static final LinkedHashSet<Task> TASKS = new LinkedHashSet<>(100);
 
     static void greet() {
         System.out.print("Hello! I'm LisGenie");
@@ -144,25 +143,35 @@ public class Duke {
 
     private static void addDeadline(String input) {
         String[] parts = input.split(" /by ", 2);
-        TASKS[index] = new Deadline(parts[0].trim(), parts[1].trim());
-        echoAdded(TASKS[index]);
-        ++index;
+        Deadline item = new Deadline(parts[0].trim(), parts[1].trim());
+        TASKS.add(item);
+        echoAdded(item);
     }
     private static void addEvent(String input) {
         String[] parts = input.split(" /at ", 2);
-        TASKS[index] = new Event(parts[0].trim(), parts[1].trim());
-        echoAdded(TASKS[index]);
-        ++index;
+        Event item = new Event(parts[0].trim(), parts[1].trim());
+        TASKS.add(item);
+        echoAdded(item);
     }
 
     private static void addTodo(String input) {
-        TASKS[index] = new Todo(input);
-        echoAdded(TASKS[index]);
-        ++index;
+        Todo item = new Todo(input);
+        TASKS.add(item);
+        echoAdded(item);
     }
 
     private static void updateDoneStatus(int idx){
-        Task item = TASKS[idx];
+        int currentIndex = 0;
+        Task item = null;
+
+        for(Task element : TASKS){
+            if(currentIndex == idx){
+                item = element;
+                break;
+            }else {
+                currentIndex++;
+            }
+        }
 
         if(item != null) {
             item.setDone();
@@ -178,7 +187,7 @@ public class Duke {
         System.out.printf("%13s", " ");
         System.out.printf("[%s][%s] %s%n", input.getId(), input.getStatusIcon(), input);
 
-        int count = index + 1;
+        int count = TASKS.size();
         System.out.printf("%11s", " ");
         System.out.printf("Now you have %d %s in the list.%n", count, count == 1 ? "task" : "tasks");
     }
