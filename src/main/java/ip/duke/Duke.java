@@ -3,6 +3,10 @@ package ip.duke;
 import ip.duke.exceptions.DukeException;
 import ip.duke.task.Task;
 
+import java.io.BufferedWriter;
+import java.io.Closeable;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.String;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
@@ -149,6 +153,7 @@ public class Duke {
         Deadline item = new Deadline(parts[0].trim(), parts[1].trim());
         TASKS.add(item);
         echoAdded(item);
+        appendToFile(TASKS.size() - 1);
     }
 
     private static void addEvent(String input) {
@@ -156,22 +161,29 @@ public class Duke {
         Event item = new Event(parts[0].trim(), parts[1].trim());
         TASKS.add(item);
         echoAdded(item);
+        appendToFile(TASKS.size() - 1);
     }
 
     private static void addTodo(String input) {
         Todo item = new Todo(input);
         TASKS.add(item);
         echoAdded(item);
+        appendToFile(TASKS.size() - 1);
     }
 
-    private static void remove(int idx){
-        Task item = getItem(idx);
+    private static void appendToFile(int index) {
+        BufferedWriter disk = null;
 
-        if(item != null) {
-            TASKS.remove(item);
-            echoDelete(item);
-        }else{
-            echoNoEntries();
+        try {
+            disk = new BufferedWriter(new FileWriter(Duke.FILE, true));
+            disk.write(getItem(index).toFileString() + System.lineSeparator());
+
+        } catch (IOException e) {
+            System.out.print("LisGenie : ");
+            System.out.println("File access problem... " + e.getMessage());
+
+        } finally {
+            toClose(disk);
         }
     }
 
@@ -182,6 +194,7 @@ public class Duke {
             echoOffList(itemIndex);
         } else {
             remove(itemIndex);
+            writeToFile();
         }
     }
 
@@ -192,6 +205,7 @@ public class Duke {
             echoOffList(itemIndex);
         } else {
             updateDoneStatus(itemIndex);
+            writeToFile();
         }
     }
 
@@ -211,6 +225,31 @@ public class Duke {
         return task;
     }
 
+    private static void remove(int idx){
+        Task item = getItem(idx);
+
+        if(item != null) {
+            TASKS.remove(item);
+            echoDelete(item);
+        }else{
+            echoNoEntries();
+        }
+    }
+    //for possible closure technical glitch
+    public static void toClose(Closeable obj) {
+
+        if (obj != null) {
+
+            try {
+                obj.close();
+
+            } catch (IOException ex) {
+                System.out.print("LisGenie : ");
+                System.out.println("Possible disc error / file system full!" + ex.getMessage());
+            }
+        }
+    }
+
     private static void updateDoneStatus(int idx){
         Task item = getItem(idx);
 
@@ -224,6 +263,25 @@ public class Duke {
             }
         }else{
             echoNoEntries();
+        }
+    }
+
+    private static void writeToFile() {
+        BufferedWriter disk = null;
+
+        try {
+            disk = new BufferedWriter(new FileWriter(Duke.FILE));
+
+            for (Task item : TASKS) {
+                disk.write(item.toFileString() + System.lineSeparator());
+            }
+
+        } catch (IOException e) {
+            System.out.print("LisGenie : ");
+            System.out.println("File access problem... " + e.getMessage());
+
+        } finally {
+            toClose(disk);
         }
     }
 
