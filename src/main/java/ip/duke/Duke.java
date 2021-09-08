@@ -85,28 +85,13 @@ public class Duke {
         } else {
             // Parse user inputs and output the corresponding desired tasks
             String[] words = null;
-            // Check multiple words presence in input before splitting into a string array
+            // Check if multiple words exist in input before splitting into a string array
             if(command.indexOf(" ") > 0){
                 words = command.split(" ", 2);
                 command = words[0];
             }
 
             switch (command) {
-            case "done":
-                try {
-                    int itemIndex = Integer.parseInt(words[1].trim()) - 1;
-
-                    if (itemIndex < 0 || itemIndex > 99) {
-                        echoOffList(itemIndex);
-                    } else {
-                        updateDoneStatus(itemIndex);
-                    }
-                } catch (NumberFormatException ex) {
-                    throw new DukeException(echoNotNum("done"), ex);
-                } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
-                    throw new DukeException(echoNoTaskNum("done"), err);
-                }
-                break;
             case "list":
                 echoList();
                 break;
@@ -131,6 +116,24 @@ public class Duke {
                     throw new DukeException(echoNoAt(), err);
                 }
                 break;
+            case "delete":
+                try {
+                    doDelete(words[1]);
+                } catch (NumberFormatException ex) {
+                    throw new DukeException(echoNotNum("delete"), ex);
+                } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
+                    throw new DukeException(echoNoTaskNum("delete"), err);
+                }
+                break;
+            case "done":
+                try {
+                    doDone(words[1]);
+                } catch (NumberFormatException ex) {
+                    throw new DukeException(echoNotNum("done"), ex);
+                } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
+                    throw new DukeException(echoNoTaskNum("done"), err);
+                }
+                break;
             case "":
                 break;
             default:
@@ -147,6 +150,7 @@ public class Duke {
         TASKS.add(item);
         echoAdded(item);
     }
+
     private static void addEvent(String input) {
         String[] parts = input.split(" /at ", 2);
         Event item = new Event(parts[0].trim(), parts[1].trim());
@@ -160,18 +164,55 @@ public class Duke {
         echoAdded(item);
     }
 
-    private static void updateDoneStatus(int idx){
-        int currentIndex = 0;
-        Task item = null;
+    private static void delete(int idx){
+        Task item = getItem(idx);
 
-        for(Task element : TASKS){
-            if(currentIndex == idx){
-                item = element;
+        if(item != null) {
+            TASKS.remove(item);
+            echoDelete(item);
+        }else{
+            echoNoEntries();
+        }
+    }
+
+    private static void doDelete(String word) {
+        int itemIndex = Integer.parseInt(word.trim()) - 1;
+
+        if (itemIndex < 0 || itemIndex > 99) {
+            echoOffList(itemIndex);
+        } else {
+            delete(itemIndex);
+        }
+    }
+
+    private static void doDone(String word) {
+        int itemIndex = Integer.parseInt(word.trim()) - 1;
+
+        if (itemIndex < 0 || itemIndex > 99) {
+            echoOffList(itemIndex);
+        } else {
+            updateDoneStatus(itemIndex);
+        }
+    }
+
+    private static Task getItem(int idx) {
+        int currentIndex =0;
+        Task task = null;
+
+        for (Task element : TASKS) {
+            if (currentIndex == idx) {
+                task = element;
                 break;
-            }else {
+            } else {
                 currentIndex++;
             }
         }
+
+        return task;
+    }
+
+    private static void updateDoneStatus(int idx){
+        Task item = getItem(idx);
 
         if(item != null) {
             item.setDone();
@@ -184,12 +225,13 @@ public class Duke {
     private static void echoAdded(Task input) {
         System.out.print("LisGenie : ");
         System.out.println("Got it. I've added this task:");
-        System.out.printf("%13s", " ");
-        System.out.printf("[%s][%s] %s%n", input.getId(), input.getStatusIcon(), input);
+        postUpdate(input);
+    }
 
-        int count = TASKS.size();
-        System.out.printf("%11s", " ");
-        System.out.printf("Now you have %d %s in the list.%n", count, count == 1 ? "task" : "tasks");
+    private static void echoDelete(Task item) {
+        System.out.print("LisGenie : ");
+        System.out.println("Noted. I've removed this task:");
+        postUpdate(item);
     }
 
     private static void echoDone(Task item) {
@@ -231,6 +273,11 @@ public class Duke {
         System.out.print("LisGenie : ");
         System.out.println("O! Task not in list, Master? Add a task? Retry?");
     }
+    // This method informs the user an unknown or invalid input is entered
+    private static void echoNonInput(){
+        System.out.print("LisGenie : ");
+        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(| Master?");
+    }
 
     private static String echoNoTaskNum(String task) {
         return String.format("LisGenie : O? Master, forgot to enter the Task number after '%s'?", task);
@@ -244,9 +291,13 @@ public class Duke {
         System.out.print("LisGenie : ");
         System.out.println("Item position outside of list (1 - 100): " + (idx+1) + " Omm??");
     }
-    // This method informs the user an unknown input is entered
-    private static void echoNonInput(){
-        System.out.print("LisGenie : ");
-        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(| Master?");
+
+    private static void postUpdate(Task input) {
+        System.out.printf("%13s", " ");
+        System.out.printf("[%s][%s] %s%n", input.getId(), input.getStatusIcon(), input);
+
+        int count = TASKS.size();
+        System.out.printf("%11s", " ");
+        System.out.printf("Now you have %d %s in the list.%n", count, count == 1 ? "task" : "tasks");
     }
 }
