@@ -166,6 +166,12 @@ public class Output_On_Screen {
         System.out.println("");
     }
 
+    /**
+     * To print message when user deleted a deadline task successfully
+     *
+     * @param List the overall task list
+     * @param deletedTask the task be deleted by user
+     */
     public static void printDeletedDeadline(Vector<Task> List, Task deletedTask){
 
         String taskDescription = deletedTask.getDescription();
