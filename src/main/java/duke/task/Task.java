@@ -3,7 +3,7 @@ package duke.task;
 import duke.ui.Message;
 
 /**
- * SuperClass
+ * SuperClass , Abstract Class
  * Also, a Receiver Class in Command Pattern
  */
 

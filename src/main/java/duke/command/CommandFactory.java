@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.exception.UnknownCommandException;
 import duke.storage.TempTaskList;
 import duke.ui.Message;
 
