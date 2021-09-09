@@ -9,6 +9,13 @@ import java.util.Vector;
 
 public class Delete {
 
+    /**
+     * To delete specific task in the task list
+     *
+     * @param taskList the entire task list key-in by user
+     * @param inputWords the user input in String[] format
+     * @throws DukeTaskInputException to handle all the errors based on the user input
+     */
     public static void deleteTask(Vector<Task> taskList, String[] inputWords) throws DukeTaskInputException {
 
         int taskIndex;
