@@ -1,6 +1,6 @@
-D : 1 : return book : June 6th
-E : 1 : project meeting : Aug 6th 2-4pm
-E : 1 : see a movie : Sept 5th 2.30pm
-D : 1 : take test : Fri
 E : 1 : exhibit : 2.30pm
-T : 1 : read for exams
+D : 1 : return book : June 6th
+D : 0 : attend exam : Fri noon
+E : 1 : attend a movie : 2.30pm HUB
+T : 0 : read a book
+T : 0 : return another book
