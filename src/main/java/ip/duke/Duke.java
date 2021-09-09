@@ -7,7 +7,6 @@ import java.lang.String;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.stream.Stream;
-
 /**
  * LisGenie Chat Bot CLI App - a task management online assistant.
  *
