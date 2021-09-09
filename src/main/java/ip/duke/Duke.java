@@ -3,9 +3,13 @@ package ip.duke;
 import ip.duke.exceptions.DukeException;
 import ip.duke.task.Task;
 
-import java.io.*;
-import java.lang.String;
-import java.util.LinkedHashSet;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.Closeable;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -21,8 +25,10 @@ import java.util.stream.Stream;
  */
 public class Duke {
     // Collection used to preserve input sequence, get constant time (non-iterative) operations
-    private static final LinkedHashSet<Task> TASKS = new LinkedHashSet<>(100);
+    private static final LinkedHashMap<Integer, Task> TASKS = new LinkedHashMap<>(125, (float) 0.8);
     private final static String FILE = "data/tasks.txt";
+    private static int INDEX;
+
     static void greet() {
         System.out.print("Hello! I'm LisGenie");
         System.out.println("What can I do for you?");
@@ -51,6 +57,16 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         // Greet user
         greet();
+
+        if(TASKS.size() == 7){
+            System.out.println();
+            System.out.print("           ");
+            System.out.println(" *** VroOOm...oomMM! ALERT BEEP! BEEP! O Master!  ***");
+            System.out.print("LisGenie : ");
+            System.out.println("[@|@[ \"Optimum size of database records: ]@|@] -> 100 reached!");
+            System.out.print("           ");
+            System.out.println("        Delete some unused old records before proceeding O Master!\"");
+        }
         // Get user input
             Scanner in = new Scanner(System.in);
             String input;
@@ -149,24 +165,27 @@ public class Duke {
     private static void addDeadline(String input) {
         String[] parts = input.split(" /by ", 2);
         Deadline item = new Deadline(parts[0].trim(), parts[1].trim());
-        TASKS.add(item);
+        TASKS.put(INDEX, item);
         echoAdded(item);
-        appendToFile(TASKS.size() - 1);
+        appendToFile(INDEX);
+        ++INDEX;
     }
 
     private static void addEvent(String input) {
         String[] parts = input.split(" /at ", 2);
         Event item = new Event(parts[0].trim(), parts[1].trim());
-        TASKS.add(item);
+        TASKS.put(INDEX, item);
         echoAdded(item);
-        appendToFile(TASKS.size() - 1);
+        appendToFile(INDEX);
+        ++INDEX;
     }
 
     private static void addTodo(String input) {
         Todo item = new Todo(input);
-        TASKS.add(item);
+        TASKS.put(INDEX, item);
         echoAdded(item);
-        appendToFile(TASKS.size() - 1);
+        appendToFile(INDEX);
+        ++INDEX;
     }
 
     private static void appendToFile(int index) {
@@ -174,7 +193,7 @@ public class Duke {
 
         try {
             disk = new BufferedWriter(new FileWriter(Duke.FILE, true));
-            disk.write(getItem(index).toFileString() + System.lineSeparator());
+            disk.write(TASKS.get(index).toFileString() + System.lineSeparator());
 
         } catch (IOException e) {
             System.out.print("LisGenie : ");
@@ -207,22 +226,6 @@ public class Duke {
         }
     }
 
-    private static Task getItem(int idx) {
-        int currentIndex =0;
-        Task task = null;
-
-        for (Task element : TASKS) {
-            if (currentIndex == idx) {
-                task = element;
-                break;
-            } else {
-                currentIndex++;
-            }
-        }
-
-        return task;
-    }
-
     private static void getTasksFromFile() {  //load from file
         BufferedReader reader = null;
 
@@ -233,7 +236,11 @@ public class Duke {
             while (line != null) {
 
                 if (!line.trim().equals("")) {
-                    TASKS.add(createTask(line.replace("\\s+", " ")));
+                    Task entry = createTask(line.replace("\\s+", " "));
+
+                    if(entry != null) {
+                        TASKS.put(INDEX++, entry);
+                    }
                 }
 
                 line = reader.readLine();
@@ -256,30 +263,37 @@ public class Duke {
         }
 
         Task t = null;
-        switch (text[0]) {
-        case "T":
-            t = new Todo(text[2]);
-            break;
-        case "D":
-            t = new Deadline(text[2], text[3]);
-            break;
-        case "E":
-            t = new Event(text[2], text[3]);
-            break;
-        }
 
-        if (text[1].equals("1") && t != null) {
-            t.setDone();
-        }
+        try {
+            switch (text[0]) {
+            case "T":
+                t = new Todo(text[2]);
+                break;
+            case "D":
+                t = new Deadline(text[2], text[3]);
+                break;
+            case "E":
+                t = new Event(text[2], text[3]);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + text[0]);
+            }
 
+            if (text[1].equals("1")) {
+                t.setDone();
+            }
+
+        } catch (ArrayIndexOutOfBoundsException | IllegalStateException err) {
+            System.out.println("Database file format errors detected: Contact Admin.");
+        }
         return t;
     }
 
     private static void drop(int idx){
-        Task item = getItem(idx);
+        Task item = TASKS.get(idx);
 
         if(item != null) {
-            TASKS.remove(item);
+            TASKS.remove(idx);
             echoDelete(item);
         }else{
             echoNoEntries();
@@ -301,7 +315,7 @@ public class Duke {
     }
 
     private static void updateDoneStatus(int idx){
-        Task item = getItem(idx);
+        Task item = TASKS.get(idx);
 
         if(item != null) {
             if (!item.getStatusIcon().equals(" ")) {
@@ -322,8 +336,8 @@ public class Duke {
         try {
             disk = new BufferedWriter(new FileWriter(Duke.FILE));
 
-            for (Task item : TASKS) {
-                disk.write(item.toFileString() + System.lineSeparator());
+            for (Integer key : TASKS.keySet()) {
+                disk.write(TASKS.get(key).toFileString() + System.lineSeparator());
             }
 
         } catch (IOException e) {
@@ -363,10 +377,10 @@ public class Duke {
         System.out.print("LisGenie : ");
         System.out.printf("Here are the tasks in your list:%n");
 
-        int i = 1;
-        for (Task s : TASKS) {
-            if (s != null)
-                System.out.printf("%12d.[%s][%s] %s%n", i++,s.getId(), s.getStatusIcon(), s);
+        for (Integer key : TASKS.keySet()) {
+            Task item = TASKS.get(key);
+            if ( item != null)
+                System.out.printf("%12d.[%s][%s] %s%n", key + 1,item.getId(), item.getStatusIcon(), item);
         }
     }
 
