@@ -121,7 +121,36 @@ public class Duke {
                     System.out.println("☹ OOPS!!! Please try again. Bye!");
                     return false;
                 }
+            case "delete":
+                try {
+                    int index = Integer.valueOf(splitStr[1]) - 1;
+                    if (!userInput.equals("")) {
+                        Boolean markToBeRemoved = taskList.get(index).getMark();
+                        char toDoToRemoved = taskList.get(index).getToDo();
+                        String descToBeRemoved = taskList.get(index).getDescription();
+                        String additionalDetailsToBeRemoved = taskList.get(index).getAdditionalDetails();
+                        taskList.remove(index);
+                        String markToString;
+                        if(markToBeRemoved) {
+                            markToString = "X";
+                        }
+                        else {
+                            markToString = "";
+                        }
+                        System.out.println("Noted. I've removed this task: \n" +
+                                "      [" + toDoToRemoved + "][" + markToString + "] " + descToBeRemoved + additionalDetailsToBeRemoved + "\n" +
+                                "Now you have " + taskList.size() + " tasks in the list.");
+                        return true;
+                    } else {
+                        System.out.println("☹ OOPS!!! There isn't a task <empty>.");
+                        return false;
+                    }
 
+                }
+                catch(Exception e){
+                    System.out.println("☹ OOPS!!! Please try again. Bye!");
+                    return false;
+                }
             default:
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 return false;
@@ -143,4 +172,4 @@ public class Duke {
             System.out.println(i+1 + ". [" + taskList.get(i).getToDo() + "][" + markToString + "] " + taskList.get(i).getDescription() + taskList.get(i).getAdditionalDetails());
         }
     }
-}//test
+}
