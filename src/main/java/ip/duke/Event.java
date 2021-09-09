@@ -9,12 +9,11 @@ package ip.duke;
 public class Event extends Deadline {
     protected Event(String description, String at) {
         super(description, at);
-        setId();
     }
 
     @Override
-    protected void setId() {
-        this.id = "E";
+    public void setId() {
+        this.id = 'E';
     }
     /**
      * Method gives the string representation
@@ -24,5 +23,10 @@ public class Event extends Deadline {
     @Override
     public String toString() {
         return String.format("%s (at: %s)", getDescription(), getBy());
+    }
+
+    @Override
+    public String toFileString() {
+        return super.toFileString().replaceFirst("D", "E");
     }
 }

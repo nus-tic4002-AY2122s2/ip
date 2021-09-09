@@ -3,7 +3,12 @@ package ip.duke;
 import ip.duke.exceptions.DukeException;
 import ip.duke.task.Task;
 
-import java.lang.String;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.Closeable;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -19,8 +24,11 @@ import java.util.stream.Stream;
  * @since 2021-08-01
  */
 public class Duke {
-    // Collection used to preserve input sequence, yield constant time ops
-    private static final LinkedHashSet<Task> TASKS = new LinkedHashSet<>(100);
+    // Collection preserves input sequence, yields constant time for update/delete ops
+    private static final LinkedHashSet<Task> TASKS = new LinkedHashSet<>(125, (float) 0.8);
+    // Text file for saving all online records stored in TASKS database
+    private final static String FILE = "data/tasks.txt";
+
     // greet and prompt user for input
     static void greet() {
         System.out.print("Hello! I'm LisGenie");
@@ -40,6 +48,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        getTasksFromFile();
         // Greeting screen display
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -49,6 +58,16 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         // Greet user
         greet();
+
+        if(TASKS.size() == 100){
+            System.out.println();
+            System.out.print("           ");
+            System.out.println(" *** VroOOm...oomMM! ALERT BEEP! BEEP! O Master!  ***");
+            System.out.print("LisGenie : ");
+            System.out.println("[@|@[ \"Optimum size of database records: ]@|@] -> 100 reached!");
+            System.out.print("           ");
+            System.out.println("        Delete some unused old records before proceeding O Master!\"");
+        }
         // Get user input
             Scanner in = new Scanner(System.in);
             String input;
@@ -155,6 +174,7 @@ public class Duke {
         Deadline item = new Deadline(parts[0].trim(), parts[1].trim());
         TASKS.add(item);
         echoAdded(item);
+        appendToFile(TASKS.size() - 1);
     }
 
     private static void addEvent(String input) {
@@ -162,26 +182,29 @@ public class Duke {
         Event item = new Event(parts[0].trim(), parts[1].trim());
         TASKS.add(item);
         echoAdded(item);
+        appendToFile(TASKS.size() - 1);
     }
 
     private static void addTodo(String input) {
         Todo item = new Todo(input);
         TASKS.add(item);
         echoAdded(item);
+        appendToFile(TASKS.size() - 1);
     }
-    /**
-     * Directly deletes a task from TASKS storage
-     * by index / ranked order position.
-     * @param idx Index to the stored task.
-     */
-    private static void delete(int idx){
-        Task item = getItem(idx);
 
-        if(item != null) {
-            TASKS.remove(item);
-            echoDelete(item);
-        }else{
-            echoNoEntries();
+    private static void appendToFile(int index) {
+        BufferedWriter disk = null;
+
+        try {
+            disk = new BufferedWriter(new FileWriter(Duke.FILE, true));
+            disk.write(getItem(index).toFileString() + System.lineSeparator());
+
+        } catch (IOException e) {
+            System.out.print("LisGenie : ");
+            System.out.println("File access problem... " + e.getMessage());
+
+        } finally {
+            toClose(disk);
         }
     }
 
@@ -191,7 +214,8 @@ public class Duke {
         if (itemIndex < 0 || itemIndex > 99) {
             echoOffList(itemIndex);
         } else {
-            delete(itemIndex);
+            drop(itemIndex);
+            writeToFile();
         }
     }
 
@@ -202,38 +226,149 @@ public class Duke {
             echoOffList(itemIndex);
         } else {
             updateDoneStatus(itemIndex);
+            writeToFile();
         }
     }
     /**
-     * Locate target item in TASKS storage
-     * by iterative search.
-     * @param idx Index of the item to get
-     * @return A Task Object.
+     * Extract a Task item by "index" or its sequenced order.
+     * @param idx indexed location of target Task item
+     * @return A Task object.
      */
-    private static Task getItem(int idx) {
-        int currentIndex =0;
-        Task task = null;
+    private static Task getItem(int idx){
+        int currentIndex = 0;
+        Task item = null;
 
-        for (Task element : TASKS) {
-            if (currentIndex == idx) {
-                task = element;
+        for(Task element : TASKS){
+            if(currentIndex == idx){
+                item = element;
                 break;
-            } else {
-                currentIndex++;
+            }else{
+                ++currentIndex;
             }
         }
+        return item;
+    }
 
-        return task;
+    private static void getTasksFromFile() {  //load from file
+        BufferedReader reader = null;
+
+        try {
+            reader = new BufferedReader(new FileReader(FILE));
+            String line = reader.readLine();
+
+            while (line != null) {
+
+                if (!line.trim().equals("")) {
+                    Task entry = createTask(line.replace("\\s+", " "));
+
+                    if(entry != null) {
+                        TASKS.add(entry);
+                    }
+                }
+
+                line = reader.readLine();
+            }
+
+        } catch (IOException e) {
+            System.out.print("LisGenie : ");
+            System.out.println(("Error accessing file...exiting, contact Admin!"));
+
+        } finally {
+            toClose(reader);
+        }
+    }
+
+    private static Task createTask(String str) {
+        String[] text = str.trim().split(":");
+
+        for (int i = 0; i < text.length; i++) {
+            text[i] = text[i].trim();
+        }
+
+        Task t = null;
+
+        try {
+            switch (text[0]) {
+            case "T":
+                t = new Todo(text[2]);
+                break;
+            case "D":
+                t = new Deadline(text[2], text[3]);
+                break;
+            case "E":
+                t = new Event(text[2], text[3]);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + text[0]);
+            }
+
+            if (text[1].equals("1")) {
+                t.setDone();
+            }
+
+        } catch (ArrayIndexOutOfBoundsException | IllegalStateException err) {
+            System.out.println("Database file format errors detected: Contact Admin.");
+        }
+        return t;
+    }
+
+    private static void drop(int idx){
+        Task item = getItem(idx);
+
+        if(item != null) {
+            TASKS.remove(item);
+            echoDelete(item);
+        }else{
+            echoNoEntries();
+        }
+    }
+    //for possible closure technical glitch
+    public static void toClose(Closeable obj) {
+
+        if (obj != null) {
+
+            try {
+                obj.close();
+
+            } catch (IOException ex) {
+                System.out.print("LisGenie : ");
+                System.out.println("Possible disc error / file system full!" + ex.getMessage());
+            }
+        }
     }
 
     private static void updateDoneStatus(int idx){
         Task item = getItem(idx);
 
         if(item != null) {
-            item.setDone();
-            echoDone(item);
+            if (!item.getStatusIcon().equals(" ")) {
+                System.out.print("LisGenie : ");
+                System.out.println("Mmm...item already marked done, O Master? Next @|@ task?");
+            } else {
+                item.setDone();
+                echoDone(item);
+            }
         }else{
             echoNoEntries();
+        }
+    }
+
+    private static void writeToFile() {
+        BufferedWriter disk = null;
+
+        try {
+            disk = new BufferedWriter(new FileWriter(Duke.FILE));
+
+            for (Task item : TASKS) {
+                disk.write(item.toFileString() + System.lineSeparator());
+            }
+
+        } catch (IOException e) {
+            System.out.print("LisGenie : ");
+            System.out.println("File access problem... " + e.getMessage());
+
+        } finally {
+            toClose(disk);
         }
     }
 
@@ -265,10 +400,10 @@ public class Duke {
         System.out.print("LisGenie : ");
         System.out.printf("Here are the tasks in your list:%n");
 
-        int i = 1;
-        for (Task s : TASKS) {
-            if (s != null)
-                System.out.printf("%12d.[%s][%s] %s%n", i++,s.getId(), s.getStatusIcon(), s);
+        int counter = 1;
+        for (Task item : TASKS) {
+            if ( item != null)
+                System.out.printf("%12d.[%c][%s] %s%n", counter++, item.getId(), item.getStatusIcon(), item);
         }
     }
 
@@ -314,7 +449,7 @@ public class Duke {
      */
     private static void postUpdate(Task input) {
         System.out.printf("%13s", " ");
-        System.out.printf("[%s][%s] %s%n", input.getId(), input.getStatusIcon(), input);
+        System.out.printf("[%c][%s] %s%n", input.getId(), input.getStatusIcon(), input);
 
         int count = TASKS.size();
         System.out.printf("%11s", " ");

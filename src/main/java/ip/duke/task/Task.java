@@ -8,7 +8,7 @@ package ip.duke.task;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
-    protected String id;
+    protected char id;
 
     protected Task(String description) {
         this.description = description;
@@ -18,11 +18,14 @@ public abstract class Task {
      * to get a task description.
      */
     public abstract String getDescription();
+
+    // abstract setter method for tagging task with a letter id
+    protected abstract void setId();
     /**
      * getter method for the protected field id.
      * @return A String value.
      */
-    public String getId(){
+    public char getId(){
         return id;
     }
     /**
@@ -30,7 +33,7 @@ public abstract class Task {
      * @return A String value.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
     /**
      * setter method for the protected field isDone.
@@ -38,8 +41,6 @@ public abstract class Task {
     public void setDone() {
         this.isDone = true;
     }
-
-    protected abstract void setId();
     /**
      * Method gives the string representation
      * of a Task description.
@@ -48,5 +49,8 @@ public abstract class Task {
     @Override
     public String toString() {
         return description;
-    }   // description to print to console output
+    }
+
+    // String format the task object for write to file
+    public abstract String toFileString();
 }
