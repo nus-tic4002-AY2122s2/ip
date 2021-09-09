@@ -3,10 +3,7 @@ package ip.duke;
 import ip.duke.exceptions.DukeException;
 import ip.duke.task.Task;
 
-import java.io.BufferedWriter;
-import java.io.Closeable;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.String;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
@@ -44,6 +41,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        getTasksFromFile();
         // Greeting screen display
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -193,7 +191,7 @@ public class Duke {
         if (itemIndex < 0 || itemIndex > 99) {
             echoOffList(itemIndex);
         } else {
-            remove(itemIndex);
+            drop(itemIndex);
             writeToFile();
         }
     }
@@ -225,7 +223,59 @@ public class Duke {
         return task;
     }
 
-    private static void remove(int idx){
+    private static void getTasksFromFile() {  //load from file
+        BufferedReader reader = null;
+
+        try {
+            reader = new BufferedReader(new FileReader(FILE));
+            String line = reader.readLine();
+
+            while (line != null) {
+
+                if (!line.trim().equals("")) {
+                    TASKS.add(createTask(line.replace("\\s+", " ")));
+                }
+
+                line = reader.readLine();
+            }
+
+        } catch (IOException e) {
+            System.out.print("LisGenie : ");
+            System.out.println(("Error accessing file...exiting, contact Admin!"));
+
+        } finally {
+            toClose(reader);
+        }
+    }
+
+    private static Task createTask(String str) {
+        String[] text = str.trim().split(":");
+
+        for (int i = 0; i < text.length; i++) {
+            text[i] = text[i].trim();
+        }
+
+        Task t = null;
+        switch (text[0]) {
+        case "T":
+            t = new Todo(text[2]);
+            break;
+        case "D":
+            t = new Deadline(text[2], text[3]);
+            break;
+        case "E":
+            t = new Event(text[2], text[3]);
+            break;
+        }
+
+        if (text[1].equals("1") && t != null) {
+            t.setDone();
+        }
+
+        return t;
+    }
+
+    private static void drop(int idx){
         Task item = getItem(idx);
 
         if(item != null) {
