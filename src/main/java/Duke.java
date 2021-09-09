@@ -26,19 +26,22 @@ public class Duke {
             } else if (line.equals("list")) {
                 list();
 
-            } else if (line.contains("done") && line.charAt(0) == 'd') {
-                done(line);
+            } else if (line.startsWith("done")) {
+                markedAsDone(line);
 
-            } else if (line.contains("event") && line.charAt(0) == 'e') {
+            } else if (line.startsWith("delete")) {
+                deleteTask(line);
+            }
+            else if (line.startsWith("event")) {
                 event(line);
 
-            } else if (line.contains("deadline") && line.charAt(0) == 'd') {
+            } else if (line.startsWith("deadline")) {
                 deadline(line);
 
-            } else if (line.contains("todo") && line.charAt(0) == 't') {
+            } else if (line.startsWith("todo")) {
                 todo(line);
             } else {
-                invalidTask(line);
+                processInvalidTask(line);
             }
         }
     }
@@ -114,30 +117,36 @@ public class Duke {
 
     static void list() {
         try {
-            listEmpty(taskList);
+            checkListEmpty(taskList);
             UI.printOutput((taskList));
         } catch (ListEmptyException e) {
             UI.printListEmpty();
         }
     }
 
-    static void done(String line) {
+    static void markedAsDone(String line) {
         try {
-            listEmpty(taskList);
-            String theStr = line.substring(5);
-            String[] strArr = theStr.split(",");
-            int[] intArr = new int[strArr.length];
-            for (int i = 0; i < strArr.length; i++) {
-                String num = strArr[i];
+            checkListEmpty(taskList);
+            String theStrIndex = line.substring(5);
+            String[] theStrIndexArr = theStrIndex.split(",");
+            int[] intArr = new int[theStrIndexArr.length];
+            for (int i = 0; i < theStrIndexArr.length; i++) {
+                String num = theStrIndexArr[i];
                 intArr[i] = Integer.parseInt(num);
-                indexOutOfRange(taskList.size(), intArr[i]);
+                checkIndexOutOfRange(taskList.size(), intArr[i]);
             }
+
+            UI.printLine();
+            UI.printMarkedAsDone();
 
             for (int i = 0; i < intArr.length; i++) {
                 Task t = taskList.get(intArr[i] - 1);
                 t.markAsDone();
-                UI.printMarkedAsDone(t);
+                UI.addSpaces("%s" + t.toString(),6);
             }
+
+            UI.printLine();
+
         } catch (NumberFormatException e) {
             UI.printNumberFormatException();
         }
@@ -149,7 +158,41 @@ public class Duke {
         }
     }
 
-    static void invalidTask(String line) {
+    static void deleteTask(String line) {
+        try {
+            checkListEmpty(taskList);
+            String theStrIndex = line.substring(7);
+            String[] theStrIndexArr = theStrIndex.split(",");
+            int[] intArr = new int[theStrIndexArr.length];
+
+            for (int i = 0; i < theStrIndexArr.length; i++) {
+                String num = theStrIndexArr[i];
+                intArr[i] = Integer.parseInt(num);
+                checkIndexOutOfRange(taskList.size(), intArr[i]);
+            }
+
+            UI.printLine();
+            UI.printRemoveTask();
+
+            for (int i = 0; i < intArr.length; i++) {
+                Task t = taskList.get(intArr[i]-(i+1));
+                UI.addSpaces("%s" + t.toString(),6);
+                taskList.remove(intArr[i]-(i+1));
+            }
+
+            UI.printNumberOfTasks(taskList);
+            UI.printLine();
+
+        } catch (NumberFormatException e) {
+            UI.printNumberFormatException();
+        } catch (IndexOutOfRangeException e) {
+            UI.printIndexOutOfRangeException();
+        } catch  (ListEmptyException e) {
+            UI.printListEmpty();
+        }
+    }
+
+    static void processInvalidTask(String line) {
         try {
             checkEmpty(line);
             checkInvalidWord(line);
@@ -192,13 +235,13 @@ public class Duke {
         }
     }
 
-    static void indexOutOfRange(int size,  int number) throws IndexOutOfRangeException {
+    static void checkIndexOutOfRange(int size,  int number) throws IndexOutOfRangeException {
         if (number > size || number < 0) {
             throw new IndexOutOfRangeException();
         }
     }
 
-    static void listEmpty( ArrayList<Task> taskList) throws ListEmptyException {
+    static void checkListEmpty( ArrayList<Task> taskList) throws ListEmptyException {
         if (taskList.isEmpty()) {
             throw new ListEmptyException ();
         }
