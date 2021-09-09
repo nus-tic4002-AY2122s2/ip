@@ -5,7 +5,6 @@ import duke.task.Task;
 import duke.ui.Message;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 
 public class TaskDeleteCmd implements UndoableCommand {

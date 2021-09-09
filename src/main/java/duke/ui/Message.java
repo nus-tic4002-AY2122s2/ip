@@ -72,6 +72,6 @@ public final class Message implements PropertyChangeListener {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("👋 from\n" + logo);
 
-        System.out.println("You may spell your wish 🧞‍ \n");
+        System.out.println("You may spell your wish 🧞\n");
     }
 }

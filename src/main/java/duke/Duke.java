@@ -21,6 +21,12 @@ public class Duke {
     private CommandFactory commandFactory = new CommandFactory(list, file);
     private StringParser strParser = new StringParser();
     private CommandCaller commandCaller = new CommandCaller(commandFactory);
+    /*
+    bug fixed: DO NOT put scanner creation inside the loop,
+    maintain only one scanner object
+     */
+    private Scanner in = new Scanner(System.in);
+
 
     public Duke() {
         Message messager = new Message();
@@ -35,7 +41,6 @@ public class Duke {
     }
 
     private void start() {
-        Scanner in = new Scanner(System.in);
         String userInput = in.nextLine();
 
         switch(userInput.strip()) {
@@ -50,7 +55,6 @@ public class Duke {
 
         start();
     }
-
 
 }
 
