@@ -9,24 +9,25 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 /**
- * LisGenie Chat Bot App - tasks management assistant.
+ * LisGenie Chat Bot CLI App - a task management online assistant.
  *
- * </P>Deals with user tasks registry, chat service and administration.
+ * </P>Deals with user tasks register, chat service and administration.
  *
- * <P>Note that tasks are stored as Task objects in a Task[] array (expected max size : 100).
+ * <P>Note that tasks are stored as Task objects in a Task[] array (Optimum max size : 100).
  *
  * @author Gwee Yeu Chai
  * @version 1.0
+ * @since 2021-08-01
  */
 public class Duke {
-    // Collection used to preserve input sequence, get constant time (non-iterative) operations
+    // Collection used to preserve input sequence, yield constant time ops
     private static final LinkedHashSet<Task> TASKS = new LinkedHashSet<>(100);
-
+    // greet and prompt user for input
     static void greet() {
         System.out.print("Hello! I'm LisGenie");
         System.out.println("What can I do for you?");
     }
-    // Exit message
+    // Bye / exit message
     static void bye() {
         System.out.print("LisGenie : ");
         System.out.printf("Bye. Hope to see you again soon!%n");
@@ -76,14 +77,20 @@ public class Duke {
 
             in.close();
     }
-    // This method processes tasks and generates dialogues
+    /**
+     * This is the method which processes tasks and generates related dialogues.
+     * @param command Text input by user.
+     * @return A boolean value.
+     * @exception DukeException On input error.
+     * @see DukeException
+     */
     private static boolean hasTask(String command) throws DukeException {
         // Exit the program
         if (command.equals("bye")) {
             bye();
             return true;
         } else {
-            // Parse user inputs and output the corresponding desired tasks
+            // Parse user inputs to run the selected tasks errands
             String[] words = null;
             // Check if multiple words exist in input before splitting into a string array
             if(command.indexOf(" ") > 0){
@@ -163,7 +170,11 @@ public class Duke {
         TASKS.add(item);
         echoAdded(item);
     }
-
+    /**
+     * Directly deletes a task from TASKS storage
+     * by index / ranked order position.
+     * @param idx Index to the stored task.
+     */
     private static void delete(int idx){
         Task item = getItem(idx);
 
@@ -194,7 +205,12 @@ public class Duke {
             updateDoneStatus(itemIndex);
         }
     }
-
+    /**
+     * Locate target item in TASKS storage
+     * by iterative search.
+     * @param idx Index of the item to get
+     * @return A Task Object.
+     */
     private static Task getItem(int idx) {
         int currentIndex =0;
         Task task = null;
@@ -291,7 +307,12 @@ public class Duke {
         System.out.print("LisGenie : ");
         System.out.println("Item position outside of list (1 - 100): " + (idx+1) + " Omm??");
     }
-
+    /**
+     * Prints out the task details
+     * post-execution, with current size of TASKS.
+     * @param input A Task object
+     * concerned.
+     */
     private static void postUpdate(Task input) {
         System.out.printf("%13s", " ");
         System.out.printf("[%s][%s] %s%n", input.getId(), input.getStatusIcon(), input);
