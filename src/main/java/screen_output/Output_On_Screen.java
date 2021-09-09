@@ -167,7 +167,7 @@ public class Output_On_Screen {
     }
 
     /**
-     * To print message when user deleted a deadline task successfully
+     * To print message after user deleted a deadline task successfully
      *
      * @param List the overall task list
      * @param deletedTask the task be deleted by user
@@ -189,6 +189,12 @@ public class Output_On_Screen {
         System.out.println("");
     }
 
+    /**
+     * To print message after user deleted a event task successfully
+     *
+     * @param List the list which store all the task
+     * @param deletedTask the deleted task by user
+     */
     public static void printDeletedEvent(Vector<Task> List, Task deletedTask){
 
         String taskDescription = deletedTask.getDescription();
@@ -206,6 +212,11 @@ public class Output_On_Screen {
         System.out.println("");
     }
 
+    /**
+     * To print message after user deleted a todo task successfully
+     * @param List the list which store all the task
+     * @param deletedTask the deleted task by user
+     */
     public static void printDeletedTodo(Vector<Task> List, Task deletedTask){
 
         String taskDescription = deletedTask.getDescription();
