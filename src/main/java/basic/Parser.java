@@ -15,7 +15,7 @@ public class Parser {
      * @return the command based on the user input
      */
     static Command parse(String userInput) {
-        if (userInput.toLowerCase().equals("bye")) {
+        if (userInput.toLowerCase().equals("bye")||userInput.toLowerCase().equals("exit") ) {
             return new ExitCommand();
         } else if (userInput.toLowerCase().equals("list")) {
             return new ListCommand();
