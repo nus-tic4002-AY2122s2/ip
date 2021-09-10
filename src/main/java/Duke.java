@@ -81,6 +81,26 @@ public class Duke {
         dukeReply(taskList);
     }
 
+    private static void dukeDelete(String userInput) throws DukeExceptionInvalidTaskNumberDone, DukeException {
+        if (userInput.length() < 7 || userInput.charAt(6) != ' ' || userInput.charAt(7) == ' ') { // Handling errors: When user types delete1 delete2 or delete   2
+            throw new DukeExceptionInvalidTaskNumberDone();
+        }
+        String taskNumber = userInput.substring(7);
+        Task deletedTask = null;
+        try {
+            deletedTask = list.get(Integer.parseInt(taskNumber)-1);
+            list.remove(Integer.parseInt(taskNumber)-1);
+        }
+        catch (NumberFormatException e) {
+            dukeReply("Please enter a valid number"); // if people type delete one
+        }
+        catch (IndexOutOfBoundsException e){
+            throw new DukeException();
+        }
+        dukeReply("Noted. I've removed this task: \n\t\t" + deletedTask.getFullStatus() + "Now you have " + list.size() + " tasks in your list.\n");
+
+    }
+
     private static void markDone(String userInput) throws DukeExceptionInvalidTaskNumberDone, DukeException {
         if (userInput.length() < 5 || userInput.charAt(4) != ' ' || userInput.charAt(5) == ' ') { // Handling errors: When user types done1 done2 or done   2
             throw new DukeExceptionInvalidTaskNumberDone();
@@ -88,6 +108,9 @@ public class Duke {
         String taskNumber = userInput.substring(userInput.indexOf("done")+5);
         try {
             list.get(Integer.parseInt(taskNumber) - 1).isDone = true;
+        }
+        catch (NumberFormatException e) {
+            dukeReply("Please enter a valid number"); // if people type delete one
         }
         catch (IndexOutOfBoundsException e){
             throw new DukeException();
@@ -102,6 +125,8 @@ public class Duke {
     private static String commandIdentifier(String userInput){
         if (userInput.contains("done"))  //priority 1
             return "done";
+        else if (userInput.contains("delete")) // priority 2
+            return "delete";
         else if (userInput.contains("list")) // priority 2
             return "list";
         else if (userInput.contains("bye"))
@@ -136,6 +161,14 @@ public class Duke {
             case "done":
                 try {
                     markDone(userInput);
+                }
+                catch (DukeExceptionInvalidTaskNumberDone | DukeException e){
+                    dukeReply("You've entered an invalid task number, please enter a valid task number again.\n");
+                }
+                return true;
+            case "delete":
+                try {
+                    dukeDelete(userInput);
                 }
                 catch (DukeExceptionInvalidTaskNumberDone | DukeException e){
                     dukeReply("You've entered an invalid task number, please enter a valid task number again.\n");
