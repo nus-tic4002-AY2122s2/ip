@@ -156,6 +156,14 @@ public class Input_Parser {
         }
     }
 
+    /**
+     * The method to extract task index from the user input for done and delete input
+     *
+     * @param inputWords user input int String[] type
+     * @param taskList entire task list
+     * @return task index
+     * @throws DukeTaskInputException all error handler
+     */
     public static int toExtractNumberForDoneAndDelete(String[] inputWords, Vector<Task> taskList) throws DukeTaskInputException {
         if(inputWords.length == 2 && inputWords[1].matches("\\d+")){ // to check whether the char is integer
             int taskIndex;
