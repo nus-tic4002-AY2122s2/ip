@@ -27,19 +27,6 @@ public class TaskList {
      */
     public TaskList(ArrayList<String> list) {
         for (String s : list) {
-            int positionOfDes = s.indexOf("]");
-            int startPosition;
-            if (s.contains("("))
-                startPosition = s.indexOf("(");
-            else {
-                startPosition = s.length() + 1;
-                positionOfDes++;
-            }
-            String description = s.substring(positionOfDes + 4, startPosition - 1);
-
-            Task oneTask = new Task(description);
-            addTask(oneTask);
-
             if (isDone(s)) {
                 returnTask(sizeOfTask() - 1).isDone = true;
             }
