@@ -1,9 +1,15 @@
+/* For user to manage their tasks and deadline */
+
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;  // Import the File class
+import java.io.IOException;  // Import the IOException class to handle errors
 
 public class Duke {
 
     public static ArrayList<Task> taskList = new ArrayList<>();
+    public static final String fileSeparator = " | ";
 
     public static void main(String[] args) {
 
@@ -29,7 +35,7 @@ public class Duke {
 
         switch (splitStr[0]) {
             case "bye":
-                System.out.println("Bye. Hope to see you again soon!");
+                System.out.println("Bye. Your tasks has been saved to myTask.txt.\n Hope to see you again soon!");
                 return false;
 
             case "list":
@@ -44,6 +50,7 @@ public class Duke {
                                 "       [X] " + taskList.get(index).getDescription());
                         //mark.set(index, true);
                         taskList.get(index).setMark(true);
+                        writeToFile();
                         return true;
                     } else {
                         System.out.println("☹ OOPS!!! There isn't a task <empty>.");
@@ -65,6 +72,7 @@ public class Duke {
                         System.out.println("Got it. I've added this task: \n" +
                                 "      [T][ ] " + userInput + "\n" +
                                 "Now you have " + taskList.size() + " tasks in the list.");
+                        writeToFile();
                         return true;
                     }
                     else {
@@ -88,6 +96,7 @@ public class Duke {
                         System.out.println("Got it. I've added this task: \n" +
                                 "      [D][ ] " + deadline[0] + "(" + deadline[1] + ")\n" +
                                 "Now you have " + taskList.size() + " tasks in the list.");
+                        writeToFile();
                         return true;
                     }
                     else {
@@ -110,6 +119,7 @@ public class Duke {
                         System.out.println("Got it. I've added this task: \n" +
                                 "      [E][ ] " + event[0] + "(" + event[1] + ")\n" +
                                 "Now you have " + taskList.size() + " tasks in the list.");
+                        writeToFile();
                         return true;
                     }
                     else {
@@ -140,6 +150,7 @@ public class Duke {
                         System.out.println("Noted. I've removed this task: \n" +
                                 "      [" + toDoToRemoved + "][" + markToString + "] " + descToBeRemoved + additionalDetailsToBeRemoved + "\n" +
                                 "Now you have " + taskList.size() + " tasks in the list.");
+                        writeToFile();
                         return true;
                     } else {
                         System.out.println("☹ OOPS!!! There isn't a task <empty>.");
@@ -172,4 +183,33 @@ public class Duke {
             System.out.println(i+1 + ". [" + taskList.get(i).getToDo() + "][" + markToString + "] " + taskList.get(i).getDescription() + taskList.get(i).getAdditionalDetails());
         }
     }
+
+    public static String getFileContent(){
+        String result = "";
+        for(int i = 0; i < taskList.size(); i++){
+            result = result + taskList.get(i).getToDo() + fileSeparator + taskList.get(i).getMark() + fileSeparator;
+            result = result + taskList.get(i).getDescription() + fileSeparator + taskList.get(i).getAdditionalDetails() + "\n";
+        }
+        return result;
+    }
+
+    public static void writeToFile() {
+        try {
+            //create file is it doesnt exist
+            File myObj = new File("myTask.txt");
+            if (myObj.createNewFile()) {
+                //System.out.println("File created");
+            }
+            //exist
+            FileWriter myWriter = new FileWriter("myTask.txt");
+            myWriter.write(getFileContent());
+            myWriter.close();
+            //System.out.println("Successfully wrote to the file.");
+        }
+        catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
 }
