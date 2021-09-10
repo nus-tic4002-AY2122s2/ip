@@ -61,6 +61,12 @@ public class UI {
         UI.addSpaces( "%sNoted. I've removed this task:",5);
     }
 
+    public static void printTaskSaved() {
+        UI.printLine();
+        UI.addSpaces("%sTasks saved!",5);
+        UI.printLine();
+    }
+
     public static void addSpaces(String text, Integer value) {
         System.out.printf((text) + "%n", " ".repeat(value));
     }
