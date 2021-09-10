@@ -41,7 +41,10 @@ public class AddEventCommand extends Command {
             position = -1;
         }
 
-        if (position != -1 && (!input.substring(0, position - 1).equals("") || !input.substring(0, position - 2).equals(" "))) {
+        boolean isInputEmpty = input.substring(0, position - 1).equals("");
+        boolean isInputEmptySpace = input.substring(0, position - 2).equals(" ");
+        // Add task if command contains "/by" and descriptions
+        if (position != -1 && (!isInputEmpty || !isInputEmptySpace )) {
             String date = input.substring(position + 4);
             input = input.substring(0, position - 1);
             Event event = new Event(input, date);
