@@ -11,6 +11,12 @@ import java.util.Scanner;
 
 public class Storage {
 
+    /****
+     * Writes tasks to file
+     *
+     * @param fileContent the tasks stored in the file
+     * @throws FileNotFoundException if file can't be found
+     */
     static void writeToFile(String fileContent) throws FileNotFoundException {
         File f = new File("/TIC4001 IP/data/duke.txt");
 
@@ -19,6 +25,11 @@ public class Storage {
         pw.close();
     }
 
+    /****
+     * Loads tasks from file
+     *
+     * @throws IOException if file can't be found
+     */
     static void loadFile() throws IOException {
         File directory = new File("/TIC4001 IP/data");
         File f = new File(directory + "/duke.txt");
@@ -33,6 +44,11 @@ public class Storage {
         }
     }
 
+    /****
+     * Adds tasks to taskList from file
+     *
+     * @param fileContent the tasks stored in the file
+     */
     static void loadFormat(String fileContent) {
         System.out.println(fileContent);
         String[] storeArray = fileContent.split(" \\| ");
@@ -65,6 +81,12 @@ public class Storage {
         }
     }
 
+    /****
+     * Returns
+     *
+     * @param value the status of task stored in the file
+     * @return boolean status of task
+     */
     static Boolean isDone (Integer value) {
         return value == 1;
     }

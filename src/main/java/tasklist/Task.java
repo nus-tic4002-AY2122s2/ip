@@ -5,11 +5,20 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /****
+     *
+     * @param description the task description that the user input
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /****
+     *
+     * @param description the task description that the user input
+     * @param status check if the task has already marked as done
+     */
     public Task(String description, boolean status) {
         this.description = description;
         this.isDone = status;

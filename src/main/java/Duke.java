@@ -15,6 +15,10 @@ import java.util.Scanner;
 public class Duke {
     public static ArrayList<Task> taskList = new ArrayList<>(100);
 
+    /****
+     *
+     * @throws IOException if file does not exist
+     */
     public static void main(String[] args) throws IOException {
         Storage.loadFile();
         UI.printDuke();
@@ -52,6 +56,11 @@ public class Duke {
         }
     }
 
+    /****
+     * Adds new tasks
+     *
+     * @param line the command that user input
+     */
     static void todo(String line) {
         try {
             checkEmptyToDoDescription(line.trim());
@@ -64,6 +73,11 @@ public class Duke {
         }
     }
 
+    /****
+     * Adds new event tasks
+     *
+     * @param line the command that user input
+     */
     static void event(String line) {
         try {
             checkEmptyEventDescription(line.trim());
@@ -93,6 +107,11 @@ public class Duke {
         }
     }
 
+    /****
+     * Adds new deadline tasks
+     *
+     * @param line the command that user input
+     */
     static void deadline(String line) {
         try {
             checkEmptyDeadlineDescription(line.trim());
@@ -121,6 +140,11 @@ public class Duke {
         }
     }
 
+    /****
+     * Formats and save tasks to file
+     *
+     * @throws FileNotFoundException if file can't be found
+     */
     static void save() throws FileNotFoundException {
         String list = "";
         try {
@@ -135,6 +159,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Outputs all the tasks
+     */
     static void list() {
         try {
             checkListEmpty(taskList);
@@ -144,6 +171,11 @@ public class Duke {
         }
     }
 
+    /****
+     * Marks multiple tasks as done
+     *
+     * @param line the command that user input
+     */
     static void markedAsDone(String line) {
         try {
             checkListEmpty(taskList);
@@ -178,6 +210,11 @@ public class Duke {
         }
     }
 
+    /****
+     * Deletes tasks
+     *
+     * @param line the command that user input
+     */
     static void deleteTask(String line) {
         try {
             checkListEmpty(taskList);
@@ -212,6 +249,11 @@ public class Duke {
         }
     }
 
+    /****
+     * Users input invalid command
+     *
+     * @param line the command that user input
+     */
     static void processInvalidTask(String line) {
         try {
             checkEmpty(line);
@@ -223,12 +265,24 @@ public class Duke {
         }
     }
 
+    /****
+     * Checks user input is empty
+     *
+     * @param description the command that user input
+     * @throws EmptyException if user did not input anything
+     */
     static void checkEmpty(String description) throws EmptyException {
         if (description.isEmpty()){
             throw new EmptyException ();
         }
     }
 
+    /****
+     * Checks user input invalid word
+     *
+     * @param description the command that user input
+     * @throws StringFormatException if description does not hit the if conditions
+     */
     static void checkInvalidWord(String description) throws StringFormatException {
         if ( !( description.equals("bye") || description.equals("list")
                 || description.equals("todo") || description.equals("event")
@@ -237,30 +291,61 @@ public class Duke {
         }
     }
 
+    /****
+     * Checks user input empty task description
+     *
+     * @param description the command that user input
+     * @throws EmptyToDoDescriptionException if description does not hit the if condition
+     */
     static void checkEmptyToDoDescription (String description) throws EmptyToDoDescriptionException {
         if (description.equals("todo")) {
             throw new EmptyToDoDescriptionException();
         }
     }
 
+    /****
+     * Checks user input empty event task description
+     *
+     * @param description the command that user input
+     * @throws EmptyEventDescriptionException if description does not hit the if condition
+     */
     static void checkEmptyEventDescription (String description) throws EmptyEventDescriptionException {
         if (description.equals("event")) {
             throw new EmptyEventDescriptionException();
         }
     }
 
+    /****
+     * Checks user input empty deadline description
+     *
+     * @param description the command that user input
+     * @throws EmptyDeadlineDescriptionException if description does not hit the if condition
+     */
     static void checkEmptyDeadlineDescription (String description) throws EmptyDeadlineDescriptionException {
         if (description.equals("deadline")) {
             throw new EmptyDeadlineDescriptionException();
         }
     }
 
+    /****
+     * Checks user input out of range
+     *
+     * @param size the size of the taskList
+     * @param number the task number that the user input
+     * @throws IndexOutOfRangeException if the number is greater than the size of the taskList
+     */
     static void checkIndexOutOfRange(int size,  int number) throws IndexOutOfRangeException {
         if (number > size || number < 0) {
             throw new IndexOutOfRangeException();
         }
     }
 
+    /****
+     * Checks list is empty
+     *
+     * @param taskList taskList arr that stores all tasks
+     * @throws ListEmptyException if list is empty
+     */
     static void checkListEmpty( ArrayList<Task> taskList) throws ListEmptyException {
         if (taskList.isEmpty()) {
             throw new ListEmptyException ();

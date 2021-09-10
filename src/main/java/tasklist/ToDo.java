@@ -2,10 +2,19 @@ package tasklist;
 
 public class ToDo extends Task {
 
+    /****
+     *
+     * @param description the task description that the user input
+     */
     public ToDo(String description) {
         super(description);
     }
 
+    /****
+     *
+     * @param description the task description that the user input
+     * @param status check if the task has already marked as done
+     */
     public ToDo(String description, Boolean status) {
         super(description, status);
     }
