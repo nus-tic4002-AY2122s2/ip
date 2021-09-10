@@ -4,6 +4,8 @@ import tasklist.Event;
 import tasklist.Task;
 import tasklist.ToDo;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,7 +15,8 @@ import java.util.Scanner;
 public class Duke {
     public static ArrayList<Task> taskList = new ArrayList<>(100);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        Storage.loadFile();
         UI.printDuke();
         String line;
         Scanner in = new Scanner(System.in);
@@ -25,6 +28,9 @@ public class Duke {
                 break;
             } else if (line.equals("list")) {
                 list();
+
+            } else if (line.equals("save")) {
+                save();
 
             } else if (line.startsWith("done")) {
                 markedAsDone(line);
@@ -112,6 +118,20 @@ public class Duke {
             UI.printEmptyDeadlineDescriptionException();
         } catch (ParseException e) {
             e.printStackTrace();
+        }
+    }
+
+    static void save() throws FileNotFoundException {
+        String list = "";
+        try {
+            checkListEmpty(taskList);
+            for (int i = 0; i < taskList.size(); i++) {
+                list += taskList.get(i).saveFormat() + "\n";
+            }
+            Storage.writeToFile(list);
+            UI.printTaskSaved();
+        }catch  (ListEmptyException e) {
+            UI.printListEmpty();
         }
     }
 
