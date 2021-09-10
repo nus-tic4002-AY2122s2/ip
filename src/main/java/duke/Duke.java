@@ -1,8 +1,11 @@
 import duke.dukeTask.*;
 import duke.dukeException.*;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
+    private static ArrayList<Task> taskList = new ArrayList<Task>(100);
+    private static int counter = 0;
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -17,8 +20,7 @@ public class Duke {
     private static void getMsg(){
         String line;
         Scanner sc = new Scanner(System.in);
-        Task[] taskList = new Task[100];
-        int counter = 1;
+
         // any other user input
         String[] userInput = null;
         String command;
@@ -43,8 +45,7 @@ public class Duke {
                             if(userInput[1].trim() == ""){
                                 throw new DukeException();
                             }
-                            todoFunction(taskList, userInput[1].trim(), counter);
-                            addTaskPrint(taskList,counter);
+                            saveFunction(new Todo(userInput[1].trim()));
                         }catch(IndexOutOfBoundsException | DukeException e){
                              System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
                         }
@@ -54,7 +55,7 @@ public class Duke {
                             if(userInput[1].trim() == ""){
                                 throw new DukeException();
                             }
-                            doneFunction(taskList, Integer.valueOf(userInput[1].trim()));
+                            doneFunction(Integer.valueOf(userInput[1].trim())-1);
                             donePrint();
                         }catch (IndexOutOfBoundsException | DukeException e){
                             System.out.println("☹ OOPS!!! Please enter an index.");
@@ -70,8 +71,7 @@ public class Duke {
                             }
                             description = userInput[1].trim().substring(0, userInput[1].trim().indexOf("/by")-1);
                             date = userInput[1].trim().substring(userInput[1].trim().indexOf("/by")+3, userInput[1].trim().length());
-                            deadlineFunction(taskList, description, date, counter);
-                            addTaskPrint(taskList,counter);
+                            saveFunction(new Deadline(description, date));
                         }catch(IndexOutOfBoundsException | DukeException e){
                             System.out.println("☹ OOPS!!! Please check deadline command that you have key in is in correct format.");
                         }
@@ -83,15 +83,24 @@ public class Duke {
                             }
                             description = userInput[1].trim().substring(0, userInput[1].trim().indexOf("/at") - 1);
                             date = userInput[1].trim().substring(userInput[1].trim().indexOf("/at") + 3, userInput[1].trim().length());
-                            eventFunction(taskList, description, date, counter);
-                            addTaskPrint(taskList,counter);
+                            saveFunction(new Event(description, date));
                         }catch(IndexOutOfBoundsException | DukeException e){
                             System.out.println("☹ OOPS!!! Please check event command that you have key in is in correct format.");
                         }
                         break;
                     case "list":
-                        printListFunction(taskList, counter);
+                        printListFunction();
                         break;
+                    case "delete":
+                        try{
+                            if(userInput[1].trim() == ""){
+                                throw new DukeException();
+                            }
+                            deleteFunction(Integer.valueOf(userInput[1].trim())-1);
+                        }
+                        catch(IndexOutOfBoundsException | DukeException e){
+                            System.out.println("☹ OOPS!!! The description of a delete cannot be empty.");
+                        }
                     default:
                         wrongCommand();
                 }
@@ -99,41 +108,25 @@ public class Duke {
         }
     }
 
-    private static void printListFunction(Task[] taskList, int counter){
+    private static void printListFunction(){
         System.out.println("Here are the tasks in your list:");
         for(int i = 1; i < counter; i++){
-            System.out.println(i + "." +  taskList[i].toString());
+            System.out.println((i+1) + "." +  taskList.get(i).toString());
         }
     }
 
-    private static void doneFunction(Task[] taskList, int listLocation){
-        Task t = taskList[listLocation];
+    private static void doneFunction(int listLocation){
+        Task t = taskList.get(listLocation);
         t.markAsDone();
-        System.out.println("    " + taskList[listLocation].toString()) ;
+        System.out.println("    " + t.toString()) ;
     }
 
-    private static Task[] todoFunction(Task[] taskList, String description, int counter){
-        Task newTask = new Todo(description);
-        //newTask.description = description;
-        taskList[counter] = newTask;
+    private static void saveFunction(Task description){
+        taskList.add(description);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("   " + taskList.get(counter).toString());
         counter++;
-        return taskList;
-    }
-
-    private static Task[] eventFunction(Task[] taskList, String description, String date, int counter){
-        Task newTask = new Event(description, date);
-        //newTask.description = description;
-        taskList[counter] = newTask;
-        counter++;
-        return taskList;
-    }
-
-    private static Task[] deadlineFunction(Task[] taskList, String description, String date, int counter){
-        Task newTask = new Deadline(description, date);
-        //newTask.description = description;
-        taskList[counter] = newTask;
-        counter++;
-        return taskList;
+        System.out.println("Now you have " + counter + " tasks in the list.");
     }
 
     private static void wrongCommand(){
@@ -144,9 +137,11 @@ public class Duke {
         System.out.println("Nice! I've marked this task as done:");
     }
 
-    private static void addTaskPrint(Task[] taskList, int counter){
-        System.out.println("Got it. I've added this task:");
-        System.out.println("    " + taskList[counter].toString());
-        System.out.println("Now you have " + counter + " tasks in the list.\n");
+    private static void deleteFunction(int listLocation){
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("   " + taskList.get(listLocation).toString());
+        counter--;
+        System.out.println("Now you have " + counter + " tasks in the list.");
+        taskList.remove(listLocation);
     }
 }
