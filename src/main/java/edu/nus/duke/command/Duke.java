@@ -84,11 +84,7 @@ public class Duke {
     private static void runApp() {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
-        while (true) {
-            if (inputTxt.equals("bye")) {
-                break;
-            }
-
+        while (!inputTxt.equals("bye")) {
             if (isAddTask(inputTxt)) {
                 try {
                     processTask(inputTxt);
