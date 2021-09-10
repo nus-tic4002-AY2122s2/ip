@@ -22,11 +22,15 @@ public class UI {
         UI.addSpaces("%s____________________________________________________________",4);
     }
 
+    public static void printAddedTask(ArrayList<Task> taskList) {
+        UI.addSpaces("%s" + taskList.get(taskList.size() - 1).toString(),6);
+    }
+
     public static void printTask(ArrayList<Task> taskList) {
         UI.printLine();
         UI.addSpaces("%sGot it. I've added this task:",5);
-        UI.addSpaces("%s" + taskList.get(taskList.size() - 1).toString(),6);
-        UI.addSpaces("%sNow you have " + (taskList.size()) + " tasks in the list.",5);
+        printAddedTask(taskList);
+        printNumberOfTasks(taskList);
         UI.printLine();
     }
 
@@ -45,11 +49,16 @@ public class UI {
         UI.printLine();
     }
 
-    public static void printMarkedAsDone(Task t) {
-        UI.printLine();
+    public static void printNumberOfTasks( ArrayList<Task> taskList) {
+        UI.addSpaces("%sNow you have " + (taskList.size()) + " tasks in the list.",5);
+    }
+
+    public static void printMarkedAsDone() {
         UI.addSpaces( "%sNice! I've marked this task(s) as done:",5);
-        UI.addSpaces("%s" + t.toString(),7);
-        UI.printLine();
+    }
+
+    public static void printRemoveTask() {
+        UI.addSpaces( "%sNoted. I've removed this task:",5);
     }
 
     public static void addSpaces(String text, Integer value) {
