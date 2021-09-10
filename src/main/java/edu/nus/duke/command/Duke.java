@@ -67,12 +67,26 @@ public class Duke {
         System.out.println(tasks.get(idx).getTask());
     }
 
+    private static void deleteTask(String inputTxt) throws IndexOutOfBoundsException {
+        int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
+        String task = tasks.get(idx).getTask();
+        tasks.remove(idx);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(task);
+    }
+
     private static void processInput(String inputTxt) throws DukeException {
         if (inputTxt.equals("list")) {
             printList();
         } else if (inputTxt.startsWith("done")) {
             try {
                 setDone(inputTxt);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Invalid/missing index");
+            }
+        } else if (inputTxt.startsWith("delete")) {
+            try {
+                deleteTask(inputTxt);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Invalid/missing index");
             }
