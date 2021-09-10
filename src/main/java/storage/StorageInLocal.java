@@ -15,6 +15,8 @@ public class StorageInLocal {
 
 
     private static Path path;
+    private static final Path rootPath = Paths.get("").toAbsolutePath();
+    private static final String rootDir = rootPath.normalize().toString();
 
     /**
      * An default file path which is "data/duke.txt"
@@ -25,7 +27,7 @@ public class StorageInLocal {
      * Constructs StorageFile with default file path
      */
     public StorageInLocal() {
-        path = Paths.get(DEFAULT_STORAGE_FILEPATH);
+        path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
     }
 
     /**
@@ -35,6 +37,11 @@ public class StorageInLocal {
      * @throws IOException to handle all errors for FileWriter
      */
     private void toSaveTaskListToLocal(Vector<Task> List) throws IOException {
+
+        if(List.size() == 0){
+            return;
+        }
+
         Vector<String> taskListInString = toConvertTaskListIntoStringTypeList(List);
 
         System.out.println(taskListInString.get(1));
@@ -60,9 +67,11 @@ public class StorageInLocal {
      * To check whether the default file path is exist
      * @return return boolean whether the default file path is exist
      */
-    private boolean FileExist(){
+    private boolean fileDoExist(){
         return (Files.exists(path));
     }
+
+    private boolean dirDoExist() { return Files.exists(Paths.get(rootDir + "/data"));}
 
     /**
      * To convert all the task in the task list to String type and store it into Vector<String> type task List
@@ -123,8 +132,16 @@ public class StorageInLocal {
      //* @throws EncoderUnknowError If Encoder has any error, an error will be thrown to user
      */
     public void TransferToFile(Vector<Task> List) throws IOException {
+
+        if(!fileDoExist()){
+            if(!dirDoExist()){
+                Files.createDirectories(Paths.get(rootDir + "/data"));
+            }
+
+            Files.createFile(path);
+        }
+
         toSaveTaskListToLocal(List);
-        //TransferToDoAfterListToFile(ToDoAfterList);
     }
 }
 
