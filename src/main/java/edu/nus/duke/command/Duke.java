@@ -2,6 +2,9 @@ package edu.nus.duke.command;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.lang.StringBuilder;
+import java.io.FileWriter;
+import java.io.IOException;
 import edu.nus.duke.task.Task;
 import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
@@ -33,6 +36,21 @@ public class Duke {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + ". " + tasks.get(i).getTask());
         }
+    }
+
+    private static String generateFileOutput() {
+        StringBuilder output = new StringBuilder();
+        for (Task task : tasks) {
+            output.append(task.printToSave());
+            output.append(System.lineSeparator());
+        }
+        return output.toString();
+    }
+
+    private static void writeToFile(String filePath, String txt) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(txt);
+        fw.close();
     }
 
     private static boolean isAddTask(String inputTxt) {
@@ -95,7 +113,7 @@ public class Duke {
         }
     }
 
-    private static void runApp() {
+    private static void runApp() throws IOException {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         while (!inputTxt.equals("bye")) {
@@ -115,6 +133,8 @@ public class Duke {
                 }
             }
 
+            writeToFile("duke.txt", generateFileOutput());
+
             System.out.println("Total tasks: " + tasks.size());
             System.out.println(HORIZ_LINE);
 
@@ -124,7 +144,12 @@ public class Duke {
 
     public static void main(String[] args) {
         initApp();
-        runApp();
+        try {
+            runApp();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
         finaliseApp();
     }
 }
