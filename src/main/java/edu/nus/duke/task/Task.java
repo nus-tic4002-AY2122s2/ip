@@ -2,7 +2,7 @@ package edu.nus.duke.task;
 
 public abstract class Task {
     // Variables
-    protected final String SAVE_SEP = "|";
+    protected final String SAVE_SEP = ";";
     protected char prefix = ' ';
     protected String taskName;
     protected boolean isDone = false;
