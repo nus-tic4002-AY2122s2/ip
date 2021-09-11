@@ -18,13 +18,13 @@ import edu.nus.duke.exception.DukeException;
 
 public class Duke {
     // Variables
-    static final String FILE_PATH = "data/duke.txt";
-    static final String SAVE_SEP = ";";
-    static final String HORIZ_LINE = "____________________________________________________________";
-    static final String CMD_TODO = "todo";
-    static final String CMD_DEADLINE = "deadline";
-    static final String CMD_EVENT = "event";
-    static ArrayList<Task> tasks = new ArrayList<>();
+    private static final String FILE_PATH = "data/duke.txt";
+    private static final String SAVE_SEP = ";";
+    private static final String HORIZ_LINE = "____________________________________________________________";
+    private static final String CMD_TODO = "todo";
+    private static final String CMD_DEADLINE = "deadline";
+    private static final String CMD_EVENT = "event";
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     // Methods
     private static void loadTask(String line) throws DukeException {
