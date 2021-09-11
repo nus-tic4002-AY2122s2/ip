@@ -1,5 +1,8 @@
 package edu.nus.duke.task;
 
+/**
+ * Represent a deadline with due that extends from Task.
+ */
 public class Deadline extends Task {
     // Variables
     protected String by;

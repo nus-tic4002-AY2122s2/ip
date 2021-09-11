@@ -1,5 +1,8 @@
 package edu.nus.duke.task;
 
+/**
+ * Represent an event with start that extends from Task.
+ */
 public class Event extends Task {
     // Variables
     protected String at;
