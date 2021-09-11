@@ -80,7 +80,6 @@ public class Duke {
 
                 default:
                     throw new DukeException("Please key in a valid command");
-                    
 
             }
         }catch (DukeException e){
