@@ -5,6 +5,7 @@ package edu.nus.duke.task;
  */
 public abstract class Task {
     // Variables
+    protected final String SAVE_SEP = ";";
     protected char prefix = ' ';
     protected String taskName;
     protected boolean isDone = false;
@@ -28,6 +29,11 @@ public abstract class Task {
     /**
      * Set a task to done.
      */
+    public String printToSave() {
+        String doneIdx = isDone ? "1" : "0";
+        return (prefix + SAVE_SEP + doneIdx + SAVE_SEP + taskName);
+    }
+
     // Setter
     public void setDone() {
         this.isDone = true;

@@ -9,4 +9,9 @@ public class Todo extends Task {
         super(taskName);
         this.prefix = 'T';
     }
+
+    public Todo(String taskName, boolean isDone) {
+        this(taskName);
+        this.isDone = isDone;
+    }
 }
