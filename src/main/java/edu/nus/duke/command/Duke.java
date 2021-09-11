@@ -2,6 +2,14 @@ package edu.nus.duke.command;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.lang.StringBuilder;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.File;
+import java.nio.file.Files;
+import java.io.FileNotFoundException;
 import edu.nus.duke.task.Task;
 import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
@@ -10,14 +18,50 @@ import edu.nus.duke.exception.DukeException;
 
 public class Duke {
     // Variables
-    static final String HORIZ_LINE = "____________________________________________________________";
-    static final String CMD_TODO = "todo";
-    static final String CMD_DEADLINE = "deadline";
-    static final String CMD_EVENT = "event";
-    static ArrayList<Task> tasks = new ArrayList<>();
+    private static final String FILE_PATH = "data/duke.txt";
+    private static final String SAVE_SEP = ";";
+    private static final String HORIZ_LINE = "____________________________________________________________";
+    private static final String CMD_TODO = "todo";
+    private static final String CMD_DEADLINE = "deadline";
+    private static final String CMD_EVENT = "event";
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     // Methods
-    private static void initApp() {
+    private static void loadTask(String line) throws DukeException {
+        String[] elements = line.split(SAVE_SEP);
+        String taskType = elements[0];
+        boolean isDone = elements[1].equals("1");
+        String taskName = elements[2];
+        switch (taskType) {
+        case "T":
+            tasks.add(new Todo(taskName, isDone));
+            break;
+        case "D":
+            String by = elements[3];
+            tasks.add(new Deadline(taskName, by, isDone));
+            break;
+        case "E":
+            String at = elements[3];
+            tasks.add(new Event(taskName, at, isDone));
+            break;
+        default:
+            throw new DukeException();
+        }
+    }
+
+    private static void loadData(File f) throws FileNotFoundException, DukeException {
+        Scanner s = new Scanner(f);
+        while (s.hasNext()) {
+            String line = s.nextLine();
+            loadTask(line);
+        }
+    }
+
+    private static void initApp() throws FileNotFoundException, DukeException {
+        File f = new File(FILE_PATH);
+        if (f.isFile()) {
+            loadData(f);
+        }
         System.out.println("Hello! I'm Jarvis");
         System.out.println("What can I do for you?");
         System.out.println(HORIZ_LINE);
@@ -33,6 +77,30 @@ public class Duke {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + ". " + tasks.get(i).getTask());
         }
+    }
+
+    private static String generateFileOutput() {
+        StringBuilder output = new StringBuilder();
+        for (Task task : tasks) {
+            output.append(task.printToSave());
+            output.append(System.lineSeparator());
+        }
+        return output.toString();
+    }
+
+    private static void createParentDir(String filePath) throws IOException {
+        Path path = Paths.get(filePath).getParent();
+        if (path == null || Files.isDirectory(path)) {
+            return;
+        }
+        Files.createDirectory(path);
+    }
+
+    private static void writeToFile(String filePath, String txt) throws IOException {
+        createParentDir(filePath);
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(txt);
+        fw.close();
     }
 
     private static boolean isAddTask(String inputTxt) {
@@ -95,10 +163,24 @@ public class Duke {
         }
     }
 
-    private static void runApp() {
+    private static boolean isBadInput(String input) {
+        if (input.contains(SAVE_SEP)) {
+            System.out.println("'" + SAVE_SEP + "' is not allowed!");
+            System.out.println(HORIZ_LINE);
+            return true;
+        }
+        return false;
+    }
+
+    private static void runApp() throws IOException {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         while (!inputTxt.equals("bye")) {
+            if (isBadInput(inputTxt)) {
+                inputTxt = userInput.nextLine();
+                continue;
+            }
+
             if (isAddTask(inputTxt)) {
                 try {
                     processTask(inputTxt);
@@ -115,16 +197,30 @@ public class Duke {
                 }
             }
 
+            writeToFile(FILE_PATH, generateFileOutput());
+
             System.out.println("Total tasks: " + tasks.size());
             System.out.println(HORIZ_LINE);
-
             inputTxt = userInput.nextLine();
         }
     }
 
     public static void main(String[] args) {
-        initApp();
-        runApp();
+        try {
+            initApp();
+        } catch (FileNotFoundException e) {
+            System.out.println(FILE_PATH + " not found!");
+            return;
+        } catch (DukeException e) {
+            System.out.println("Bad data in " + FILE_PATH);
+            return;
+        }
+        try {
+            runApp();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
         finaliseApp();
     }
 }
