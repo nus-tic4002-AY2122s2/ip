@@ -5,6 +5,9 @@ import java.util.Scanner;
 import java.lang.StringBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 import edu.nus.duke.task.Task;
 import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
@@ -47,7 +50,16 @@ public class Duke {
         return output.toString();
     }
 
+    private static void createDir(String filePath) throws IOException {
+        Path path = Paths.get(filePath).getParent();
+        if (path == null || Files.isDirectory(path)) {
+            return;
+        }
+        Files.createDirectory(path);
+    }
+
     private static void writeToFile(String filePath, String txt) throws IOException {
+        createDir(filePath);
         FileWriter fw = new FileWriter(filePath);
         fw.write(txt);
         fw.close();
@@ -133,7 +145,7 @@ public class Duke {
                 }
             }
 
-            writeToFile("duke.txt", generateFileOutput());
+            writeToFile("data/duke.txt", generateFileOutput());
 
             System.out.println("Total tasks: " + tasks.size());
             System.out.println(HORIZ_LINE);
