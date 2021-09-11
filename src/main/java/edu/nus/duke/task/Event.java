@@ -11,6 +11,11 @@ public class Event extends Task {
         this.at = at;
     }
 
+    public Event(String taskName, String at, boolean isDone) {
+        this(taskName, at);
+        this.isDone = isDone;
+    }
+
     // Getter
     @Override
     public String getTask() {
