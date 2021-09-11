@@ -125,10 +125,24 @@ public class Duke {
         }
     }
 
+    private static boolean isBadInput(String input) {
+        if (input.contains("|")) {
+            System.out.println("'|' is not allowed!");
+            System.out.println(HORIZ_LINE);
+            return true;
+        }
+        return false;
+    }
+
     private static void runApp() throws IOException {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         while (!inputTxt.equals("bye")) {
+            if (isBadInput(inputTxt)) {
+                inputTxt = userInput.nextLine();
+                continue;
+            }
+
             if (isAddTask(inputTxt)) {
                 try {
                     processTask(inputTxt);
@@ -149,7 +163,6 @@ public class Duke {
 
             System.out.println("Total tasks: " + tasks.size());
             System.out.println(HORIZ_LINE);
-
             inputTxt = userInput.nextLine();
         }
     }
