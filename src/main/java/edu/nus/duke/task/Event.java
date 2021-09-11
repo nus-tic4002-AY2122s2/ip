@@ -16,4 +16,9 @@ public class Event extends Task {
     public String getTask() {
         return (super.getTask() + " (at: " + at + ")");
     }
+
+    @Override
+    public String printToSave() {
+        return (super.printToSave() + SAVE_SEP + at);
+    }
 }

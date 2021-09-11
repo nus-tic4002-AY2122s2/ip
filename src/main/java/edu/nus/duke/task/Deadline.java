@@ -16,4 +16,9 @@ public class Deadline extends Task {
     public String getTask() {
         return (super.getTask() + " (by: " + by + ")");
     }
+
+    @Override
+    public String printToSave() {
+        return (super.printToSave() + SAVE_SEP + by);
+    }
 }
