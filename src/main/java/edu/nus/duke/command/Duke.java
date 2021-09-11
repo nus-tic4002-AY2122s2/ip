@@ -88,7 +88,7 @@ public class Duke {
         return output.toString();
     }
 
-    private static void createDir(String filePath) throws IOException {
+    private static void createParentDir(String filePath) throws IOException {
         Path path = Paths.get(filePath).getParent();
         if (path == null || Files.isDirectory(path)) {
             return;
@@ -97,7 +97,7 @@ public class Duke {
     }
 
     private static void writeToFile(String filePath, String txt) throws IOException {
-        createDir(filePath);
+        createParentDir(filePath);
         FileWriter fw = new FileWriter(filePath);
         fw.write(txt);
         fw.close();
