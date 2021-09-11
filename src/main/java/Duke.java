@@ -33,6 +33,7 @@ public class Duke {
                     }
                     System.out.println("____________________________________________________________");
                     break;
+
                 case ("done"):
                     int i = Integer.parseInt(line.split(" ")[1]);
                     tasks.get(i - 1).markAsDone();
@@ -79,8 +80,7 @@ public class Duke {
 
                 default:
                     throw new DukeException("Please key in a valid command");
-
-
+                    
 
             }
         }catch (DukeException e){
