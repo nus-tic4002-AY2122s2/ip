@@ -27,7 +27,7 @@ public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     // Methods
-    private static void loadTask(String line) throws DukeException {
+    private static void loadTask(String line) throws DukeException, ArrayIndexOutOfBoundsException {
         String[] elements = line.split(SAVE_SEP);
         String taskType = elements[0];
         boolean isDone = elements[1].equals("1");
@@ -53,7 +53,11 @@ public class Duke {
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String line = s.nextLine();
-            loadTask(line);
+            try {
+                loadTask(line);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException();
+            }
         }
     }
 
