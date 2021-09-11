@@ -49,8 +49,7 @@ public class Duke {
         }
     }
 
-    private static void loadData() throws FileNotFoundException, DukeException {
-        File f = new File(FILE_PATH);
+    private static void loadData(File f) throws FileNotFoundException, DukeException {
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String line = s.nextLine();
@@ -59,7 +58,10 @@ public class Duke {
     }
 
     private static void initApp() throws FileNotFoundException, DukeException {
-        loadData();
+        File f = new File(FILE_PATH);
+        if (f.isFile()) {
+            loadData(f);
+        }
         System.out.println("Hello! I'm Jarvis");
         System.out.println("What can I do for you?");
         System.out.println(HORIZ_LINE);
