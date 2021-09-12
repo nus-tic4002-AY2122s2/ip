@@ -32,7 +32,7 @@ public class Parser {
 
             this.commandWord =  CommandKeyWords.getEnum(result[0].toUpperCase());
 
-            if (this.commandWord != CommandKeyWords.LIST && this.commandWord != CommandKeyWords.BYE && result.length < 2) throw new ErrorHandler("In Parser, task number is not given.");
+            if (this.commandWord != CommandKeyWords.LIST && this.commandWord != CommandKeyWords.BYE && result.length < 2) throw new ErrorHandler("In Parser, task content is not provided.");
 
             switch (commandWord) {
                 case DEADLINE:

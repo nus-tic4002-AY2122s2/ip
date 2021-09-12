@@ -41,7 +41,7 @@ public class Ui {
 
     public static void printMarkedDone(String message){
         printLine();
-        System.out.println("      " + "Nice! I've marked this task as done: ");
+         System.out.println("      " + "Nice! I've marked this task as done:");
         System.out.println(indentation + message);
         printLine();
     }

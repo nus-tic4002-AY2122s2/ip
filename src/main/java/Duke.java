@@ -8,12 +8,12 @@ public class Duke {
     public static void main(String[] args) {
         Ui.welcome();
         UserList list = new UserList();
+        Scanner in = new Scanner(System.in);
 
         boolean isExit = false;
 
         while (!isExit) {
             try {
-                Scanner in = new Scanner(System.in);
                 String userCommand = in.nextLine().trim();
                 Command command = new Command(list, userCommand);
                 isExit = command.getIsExit();
