@@ -1,5 +1,5 @@
-import Ui.Ui;
-import UserList.UserList;
+import ui.Ui;
+import userList.UserList;
 import command.Command;
 
 import java.util.Scanner;

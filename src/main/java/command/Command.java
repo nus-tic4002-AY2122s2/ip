@@ -1,7 +1,7 @@
 package command;
 
-import Ui.Ui;
-import UserList.UserList;
+import ui.Ui;
+import userList.UserList;
 import exception.ErrorHandler;
 import parser.Parser;
 import task.Deadline;
@@ -19,6 +19,7 @@ public class Command {
     private void process (UserList list, String userInput) throws ErrorHandler {
         try {
             Parser parser = new Parser(userInput);
+            System.out.println(parser.getCommandWord());
             switch (parser.getCommandWord()) {
                 case BYE:
                     Ui.bye();

@@ -1,6 +1,5 @@
-package Ui;
+package ui;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Ui {
