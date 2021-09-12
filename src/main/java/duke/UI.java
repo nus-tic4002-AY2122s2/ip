@@ -63,6 +63,21 @@ public class UI {
         System.out.println("Now you have " + size + " tasks in the list.");
     }
     /**
+     * Prints find message of duke.
+     * @param tasks task list.
+     * @param findResult list stores all the indexes of matched tasks.
+     * */
+    public static void findMessage(ArrayList<Task> tasks, ArrayList<Integer> findResult) {
+        if (findResult.size() == 0) {
+            System.out.println("Oops!!! None of task can be found");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int index : findResult) {
+                System.out.println(index + 1 + "." + tasks.get(index).toString());
+            }
+        }
+    }
+    /**
      * Prints bye message of duke.
      * */
     public static void byeMessage() {

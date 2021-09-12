@@ -66,4 +66,16 @@ public class TaskList {
         tasks.remove(index);
         size--;
     }
+    /**
+     * Method to deal with find.
+     * @param keyword keyword user want to find.
+     * @param findResult list stores all the indexes of matched tasks.
+     * */
+    public void find(String keyword, ArrayList<Integer> findResult) {
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).toString().contains(keyword)) {
+                findResult.add(i);
+            }
+        }
+    }
 }
