@@ -4,6 +4,10 @@ import Ui.Ui;
 import UserList.UserList;
 import exception.ErrorHandler;
 import parser.Parser;
+import task.Deadline;
+import task.Event;
+import task.Todo;
+
 
 public class Command {
     private boolean isExit = false;
@@ -13,30 +17,47 @@ public class Command {
     }
 
     private void process (UserList list, String userInput) throws ErrorHandler {
-        Parser parser = new Parser(userInput);
-
-        switch (parser.getCommandWord()) {
-            case "bye":
-                Ui.bye();
-                this.isExit = true;
-                break;
-            case "list":
-                Ui.printList(list.getSerializedList());
-                break;
-            case "done":
-                int index =Integer.parseInt(parser.getContent());
-                if(index > 0 && index <= list.getList().size()) {
-                    list.getList().get(index - 1).setStatus(true);
-                    Ui.printMarkedDone(list.getSerializedList().get(index - 1));
-                } else {
-                    throw new ErrorHandler("Task number keyed in is wrong.");
-                }
-                break;
-            default:
-                list.addItem(userInput);
-                Ui.print(userInput);
-                break;
+        try {
+            Parser parser = new Parser(userInput);
+            switch (parser.getCommandWord()) {
+                case BYE:
+                    Ui.bye();
+                    this.isExit = true;
+                    break;
+                case LIST:
+                    Ui.printList(list.getSerializedList());
+                    break;
+                case DONE:
+                    int index =Integer.parseInt(parser.getContent());
+                    if(index > 0 && index <= list.getList().size()) {
+                        list.getList().get(index - 1).setStatus(true);
+                        Ui.printMarkedDone(list.getSerializedList().get(index - 1));
+                    } else {
+                        throw new ErrorHandler("In Command, task number is out of range.");
+                    }
+                    break;
+                case TODO:
+                    Todo addedTodo = new Todo(parser.getContent());
+                    list.addItem(addedTodo);
+                    Ui.printTask(addedTodo.toString(), list.getList().size());
+                    break;
+                case EVENT:
+                    Event addedEvent = new Event(parser.getContent(), parser.getAt());
+                    list.addItem(addedEvent);
+                    Ui.printTask(addedEvent.toString(), list.getList().size());
+                    break;
+                case DEADLINE:
+                    Deadline addDeadline = new Deadline(parser.getContent(), parser.getBy());
+                    list.addItem(addDeadline);
+                    Ui.printTask(addDeadline.toString(), list.getList().size());
+                    break;
+                default:
+                    break;
+            }
+        } catch (ErrorHandler e) {
+            throw new ErrorHandler(e.getMessage());
         }
+
     }
 
     public boolean getIsExit() {return this.isExit;}

@@ -18,7 +18,7 @@ public class Duke {
                 Command command = new Command(list, userCommand);
                 isExit = command.getIsExit();
             } catch (Exception e) {
-                Ui.print("Parsing error: "+e.getMessage());
+                Ui.print("Error: " + e.getMessage());
             }
         }
     }

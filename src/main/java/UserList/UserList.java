@@ -6,8 +6,7 @@ import task.Task;
 public class UserList {
     private ArrayList<Task> list = new ArrayList<>();
 
-    public void addItem (String item){
-        Task task = new Task(item);
+    public void addItem (Task task){
         this.list.add(task);
     }
 
@@ -17,12 +16,9 @@ public class UserList {
         ArrayList<String> taskList = new ArrayList<>();
 
         for (Task task : this.list) {
-            String status = "[" + task.getStatusIcon() + "]";
-            taskList.add(status + " " + task.getDescription());
+            taskList.add(task.toString());
         }
 
         return taskList;
     }
-
-
 }
