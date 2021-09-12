@@ -22,7 +22,7 @@ public class Execution {
     private static void checkCommand(String command) throws CommandException {
         if ( !(command.equals("todo") || command.equals("deadline") || command.equals("event")
                 || command.equals("bye") || command.equals("list") || command.equals("done")
-                || command.equals("delete")) ) {
+                || command.equals("delete") || command.equals("find")) ) {
             throw new CommandException();
         }
     }
@@ -52,6 +52,9 @@ public class Execution {
                 break;
             case "delete":
                 new DeleteCommand(fullCommand).run(taskList);
+                break;
+            case "find":
+                new FindCommand(fullCommand).run(taskList);
                 break;
             case "bye":
                 new ByeCommand(fullCommand).run(taskList);

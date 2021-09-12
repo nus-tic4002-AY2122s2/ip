@@ -29,7 +29,7 @@ public class AddDeadlineCommand extends Command {
     }
     /**
      * Method to execute add-deadline command.
-     * @param taskList task list to be updated
+     * @param taskList task list to be updated.
      * */
     public void run(TaskList taskList) {
         try {

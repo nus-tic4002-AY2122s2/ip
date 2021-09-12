@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class LackOfIndexException  extends DukeException {
+public class LackOfIndexException extends DukeException {
 }
