@@ -13,7 +13,7 @@ public class Duke {
     private Duke() {
         ArrayList<Task> tasks = new ArrayList<>();
         this.taskList = new TaskList(tasks);
-        this.filePath = "/Users/jarvis/Documents/TIC4001/ip/data/duke.txt";
+        this.filePath = "data/duke.txt";
     }
 
     private void run() {
