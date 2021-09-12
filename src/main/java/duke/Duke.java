@@ -30,10 +30,7 @@ public class Duke {
         while (!(line = in.nextLine()).equals("bye")) {
             if (line.equals("list")) {
                 System.out.println(separateLine + "\n" + "Here are the tasks in your list:");
-                //System.out.println(list.toString());
-                //Stream.of(list.toString()).forEach(System.out::println);
                 for (int i = 1; i <= list.size(); i++) {
-                    //System.out.println(i+". "+"["+list.get(i-1).getStatusIcon()+"] "+list.get(i-1).getDescription());
                     System.out.println(i + ". " + list.get(i - 1).toString());
                 }
                 System.out.println(separateLine);
