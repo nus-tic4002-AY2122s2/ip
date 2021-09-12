@@ -1,17 +1,24 @@
 package duke.task;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * The child class of Task.
  * */
 public class Deadline extends Task {
     protected String date;
+    protected Date by;
     /**
      * Creation of new Deadline with description.
      * @param description description of Deadline.
      * @param date date information for saving date.
+     * @param by for printing date.
      * */
-    public Deadline(String description, String date) {
+    public Deadline(String description, String date, Date by) {
         super(description);
         this.date = date;
+        this.by = by;
     }
     /**
      * Update the printing format by adding icon and date for deadline.
@@ -19,7 +26,9 @@ public class Deadline extends Task {
      * */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + date + ")";
+        SimpleDateFormat format = new SimpleDateFormat ("MMM dd yyyy");
+        String dateString = format.format(by);
+        return "[D]" + super.toString() + " (by: " + dateString + ")";
     }
     /**
      * Update the saving format by adding icon and date for deadline.

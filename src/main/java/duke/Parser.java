@@ -1,4 +1,9 @@
 package duke;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Stores method to understand user command.
  * */
@@ -17,8 +22,7 @@ public class Parser {
      * @return index.
      * */
     public static int taskNumber(String fullCommand) {
-        int index = Integer.parseInt(fullCommand.split(" ")[1]) - 1;
-        return index;
+        return Integer.parseInt(fullCommand.split(" ")[1]) - 1;
     }
     /**
      * Finding out the description keyed by user.
@@ -38,6 +42,21 @@ public class Parser {
     public static String date(String fullCommand) {
         String[] s1 = fullCommand.split(" /");
         String[] s2 = s1[1].split(" ");
-        return s1[1].replace(s2[0] + " ", "");
+        return s2[1];
+    }
+    /**
+     * Converts date from string to Date.
+     * @param date date in string.
+     * @return date in Date.
+     * */
+    public static Date convertDate(String date) {
+        SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
+        Date covertDate;
+        try {
+            covertDate = format.parse(date);
+            return covertDate;
+        } catch (ParseException e) {
+            return null;
+        }
     }
 }

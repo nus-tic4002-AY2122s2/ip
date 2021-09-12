@@ -3,8 +3,11 @@ package duke.command;
 import duke.Parser;
 import duke.TaskList;
 import duke.UI;
+import duke.exception.DateFormatException;
 import duke.exception.LackOfDateException;
 import duke.exception.LackOfDescriptionException;
+
+import java.util.Date;
 
 public class AddDeadlineCommand extends Command {
     /**
@@ -27,6 +30,12 @@ public class AddDeadlineCommand extends Command {
             throw new LackOfDateException();
         }
     }
+
+    private static void checkDateFormat(Date by) throws DateFormatException {
+        if (by == null) {
+            throw new DateFormatException();
+        }
+    }
     /**
      * Method to execute add-deadline command.
      * @param taskList task list to be updated
@@ -37,13 +46,17 @@ public class AddDeadlineCommand extends Command {
             String description = Parser.description(fullCommand);
             checkDate(fullCommand, description);
             String date = Parser.date(fullCommand);
-            taskList.addDeadline(description, date);
+            Date by = Parser.convertDate(date);
+            checkDateFormat(by);
+            taskList.addDeadline(description, date, by);
             int size = taskList.size;
             UI.addMessage(taskList.tasks.get(size - 1), size);
         } catch (LackOfDescriptionException e) {
             System.out.println("OOPS!!! Pls key in the description for the task");
         } catch (LackOfDateException e) {
             System.out.println("OOPS!!! Pls key in the date for the task");
+        } catch (DateFormatException e) {
+            System.out.println("Please use format dd-MM-yyyy for date");
         }
     }
 }
