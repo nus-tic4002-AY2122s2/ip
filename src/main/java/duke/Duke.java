@@ -1,5 +1,7 @@
 package main.java.duke;
 
+import main.java.duke.exception.EmptyDescriptionException;
+import main.java.duke.exception.UndefinedTaskException;
 import main.java.duke.task.Deadline;
 import main.java.duke.task.Event;
 import main.java.duke.task.Task;
