@@ -6,6 +6,8 @@ import duke.task.Task;
 import duke.task.Todo;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * Stores all tasks.
  * */
@@ -41,8 +43,8 @@ public class TaskList {
      * @param description task description.
      * @param date task date.
      * */
-    public void addDeadline(String description, String date) {
-        Task task = new Deadline(description, date);
+    public void addDeadline(String description, String date, Date by) {
+        Task task = new Deadline(description, date, by);
         tasks.add(task);
         size++;
     }
@@ -51,8 +53,8 @@ public class TaskList {
      * @param description task description.
      * @param date task date.
      * */
-    public void addEvent(String description, String date) {
-        Task task = new Event(description, date);
+    public void addEvent(String description, String date, Date at) {
+        Task task = new Event(description, date, at);
         tasks.add(task);
         size++;
     }

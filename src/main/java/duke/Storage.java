@@ -2,14 +2,13 @@ package duke;
 
 import duke.task.Deadline;
 import duke.task.Event;
-import duke.task.Task;
 import duke.task.Todo;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+
 /**
  * Stores method to deal with loading and saving from file.
  * */
@@ -41,13 +40,15 @@ public class Storage {
                         taskList.tasks.get(taskList.size - 1).markAsDone();
                     break;
                 case "E":
-                    taskList.tasks.add(new Event(command[2].trim(), command[3].trim()));
+                    taskList.tasks.add(new Event(command[2].trim(), command[3].trim(),
+                            Parser.convertDate(command[3].trim())));
                     if (command[1].trim().equals("\u2713"))
                         taskList.tasks.get(taskList.size - 1).markAsDone();
                     taskList.size++;
                     break;
                 case "D":
-                    taskList.tasks.add(new Deadline(command[2].trim(), command[3].trim()));
+                    taskList.tasks.add(new Deadline(command[2].trim(), command[3].trim(),
+                            Parser.convertDate(command[3].trim())));
                     if (command[1].trim().equals("\u2713"))
                         taskList.tasks.get(taskList.size - 1).markAsDone();
                     taskList.size++;
