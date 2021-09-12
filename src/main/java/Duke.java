@@ -28,6 +28,9 @@ public class Duke {
             String instruction;
             switch(line.split(" ")[0].toLowerCase()){
                 case ("list"):
+                    if(tasks.isEmpty()){
+                        throw new DukeException("Empty task list");
+                    }
                     for (int i = 0; i < tasks.size(); i++) {
                         System.out.println((i + 1) + ". " + tasks.get(i).toString());
                     }
@@ -77,6 +80,22 @@ public class Duke {
                     System.out.println("See you!");
                     System.out.println("____________________________________________________________");
                     return true;
+
+                case ("delete"):
+                    if(tasks.isEmpty()){
+                        throw new DukeException("Empty task list");
+                    }
+                    try{
+                        i = Integer.parseInt(line.split(" ")[1]);
+                        String deletedTask = tasks.get(i - 1).getTask();
+                        tasks.remove(i-1);
+
+                        System.out.println("I've deleted this task: \n" + deletedTask);
+                    }catch (NumberFormatException e){
+                        throw new DukeException("Empty task list");
+                    }
+
+                    break;
 
                 default:
                     throw new DukeException("Please key in a valid command");
