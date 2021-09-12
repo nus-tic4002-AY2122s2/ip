@@ -20,4 +20,8 @@ public class Task {
     public void setStatus(boolean flag) {
         this.isDone = flag;
     }
+
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.description;
+    }
 }
