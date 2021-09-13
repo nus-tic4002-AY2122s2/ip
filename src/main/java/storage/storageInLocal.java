@@ -11,7 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class StorageInLocal {
+
+public class storageInLocal {
 
 
     private static Path path;
@@ -26,7 +27,7 @@ public class StorageInLocal {
     /**
      * Constructs StorageFile with default file path
      */
-    public StorageInLocal() {
+    public storageInLocal() {
         path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
     }
 
@@ -42,9 +43,7 @@ public class StorageInLocal {
             return;
         }
 
-        Vector<String> taskListInString = toConvertTaskListIntoStringTypeList(List);
-
-        System.out.println(taskListInString.get(1));
+        Vector<String> taskListInString = TaskListEncoder.encodeTaskList(List);
 
         String fileDirectory = String.valueOf(DEFAULT_STORAGE_FILEPATH);
 
@@ -71,58 +70,12 @@ public class StorageInLocal {
         return (Files.exists(path));
     }
 
-    private boolean dirDoExist() { return Files.exists(Paths.get(rootDir + "/data"));}
-
     /**
-     * To convert all the task in the task list to String type and store it into Vector<String> type task List
-     * Each Task type task converted to String type in the format:
-     * Task type + " | " + task status + " | " + task description + " | " + dateTime
-     * DateTime is for Event and Deadline type task only
+     * To check whether the directory folder path is exist
      *
-     * @param List The task list in Vector<<ask> type
-     * @return the task list in Vector<String> type
+     * @return return boolean whether the directory folder path is exist
      */
-    private static Vector<String> toConvertTaskListIntoStringTypeList(Vector<Task> List){
-        Vector<String> taskInString = new Vector<>();
-
-        for (Task task : List) {
-            String taskString = convertFromTaskToString(task);
-
-            taskInString.add(taskString);
-        }
-
-        return taskInString;
-    }
-
-    private static String convertFromTaskToString(Task currentTask){
-        String taskType = currentTask.getType();
-        String description = currentTask.getDescription();
-        String taskStatus = currentTask.getStatusIcon();
-
-        if(taskStatus.equals("x")){
-            taskStatus = "1";
-        } else {
-           taskStatus = "0";
-        }
-
-        String taskInString = taskType + " | " + taskStatus + " | " + description;
-        String dateTime;
-
-        switch(taskType){
-            case "E":
-                dateTime = currentTask.getAt();
-                taskInString = taskInString + " | " + dateTime;
-
-                break;
-            case "D":
-                dateTime = currentTask.getBy();
-                taskInString = taskInString + " | " + dateTime;
-
-                break;
-        }
-
-        return taskInString;
-    }
+    private boolean dirDoExist() { return Files.exists(Paths.get(rootDir + "/data"));}
 
     /**
      * The function to transfer all the Task information by using Encoder function from Vector<Task> List to String and store into txt file
@@ -131,7 +84,7 @@ public class StorageInLocal {
      * @throws IOException If the FileWrite those kind of function got any error, an error will be thrown to user
      //* @throws EncoderUnknowError If Encoder has any error, an error will be thrown to user
      */
-    public void TransferToFile(Vector<Task> List) throws IOException {
+    public void transferToFile(Vector<Task> List) throws IOException {
 
         if(!fileDoExist()){
             if(!dirDoExist()){
@@ -142,6 +95,15 @@ public class StorageInLocal {
         }
 
         toSaveTaskListToLocal(List);
+    }
+
+    public Vector<Task> extractTaskFromTxt(){
+        Vector<Task> list = new Vector<>();
+
+        File file = new File(DEFAULT_STORAGE_FILEPATH);
+
+
+        return list;
     }
 }
 

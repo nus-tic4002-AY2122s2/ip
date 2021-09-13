@@ -7,6 +7,12 @@ public class Todo extends Task {
         super.type = "T";
     }
 
+    public Todo (String description, Boolean taskStatus) {
+        super(description);
+        super.isDone = taskStatus;
+        super.type = "T";
+    }
+
     /**
      * To get the status icon of the task
      *

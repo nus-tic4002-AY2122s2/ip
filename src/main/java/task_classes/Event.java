@@ -10,6 +10,14 @@ public class Event extends Task {
         super.at = at;
     }
 
+    public Event (String description, Boolean taskStatus, String dateTime) {
+        super(description);
+        super.isDone = taskStatus;
+        super.type = "T";
+        super.at = dateTime;
+    }
+
+
     /**
      * The method to get /at time of the Event task
      *

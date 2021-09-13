@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import screen_output.Output_On_Screen;
-import storage.StorageInLocal;
+import storage.storageInLocal;
 import task_classes.Task;
 import user_input.Input_Scanner;
 
@@ -24,9 +24,9 @@ public class Duke {
 
         Input_Scanner.InputStart(list);
 
-        StorageInLocal taskStorageFile = new StorageInLocal();
+        storageInLocal taskStorageFile = new storageInLocal();
 
-        taskStorageFile.TransferToFile(list);
+        taskStorageFile.transferToFile(list);
 
     }
 }
