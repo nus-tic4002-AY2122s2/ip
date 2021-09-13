@@ -13,7 +13,7 @@ public class Event extends Task {
     public Event (String description, Boolean taskStatus, String dateTime) {
         super(description);
         super.isDone = taskStatus;
-        super.type = "T";
+        super.type = "E";
         super.at = dateTime;
     }
 

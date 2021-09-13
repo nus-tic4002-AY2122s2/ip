@@ -25,7 +25,7 @@ class TaskListEncoder {
         String taskDescription = task.getDescription();
         String taskStatus = task.getStatusIcon();
 
-        if(taskStatus.equals("x")){
+        if(taskStatus.equals("X")){
             taskStatus = "1";
         } else {
             taskStatus = "0";

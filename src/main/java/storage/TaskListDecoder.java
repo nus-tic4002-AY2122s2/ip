@@ -8,13 +8,13 @@ import task_classes.Todo;
 
 import java.util.Vector;
 
-public class TaskListDecoder {
+class TaskListDecoder {
 
-    public Vector<Task> decodeTaskList (Vector<String> storageInformation) throws DukeStorageError {
+    static Vector<Task> decodeTaskList(Vector<String> storageInformation) throws DukeStorageError {
         Vector<Task> decodedTaskList = new Vector<>();
 
-        for(String singleTaskInfor : storageInformation){
-            Task task = decodeTask(singleTaskInfor);
+        for(String singleTaskInfo : storageInformation){
+            Task task = decodeTask(singleTaskInfo);
 
             decodedTaskList.add(task);
         }
@@ -24,7 +24,7 @@ public class TaskListDecoder {
     }
 
 
-    private Task decodeTask (String taskString) throws DukeStorageError {
+    private static Task decodeTask(String taskString) throws DukeStorageError {
 
         String[] parts = taskString.split(" \\| ");
         String taskType = parts[0];
@@ -33,16 +33,19 @@ public class TaskListDecoder {
 
         if(parts.length == 3){ //todo type with correct length
 
+            System.out.println("Todo " + parts[2]);
             return new Todo(taskDescription, taskStatus);
 
         } else if (parts.length == 4){ // deadline or event with correct length
             if(taskType.equals("E")){
 
+                System.out.println("Event " + parts[2]);
                 String dateTime = parts[3];
                 return new Event(taskDescription, taskStatus, dateTime);
 
             } else if (taskType.equals("D")){
 
+                System.out.println("Deadline " + parts[2]);
                 String dateTime = parts[3];
                 return new Deadline(taskDescription, taskStatus, dateTime);
 

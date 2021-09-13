@@ -13,7 +13,7 @@ public class Deadline extends Task {
     public Deadline (String description, Boolean taskStatus, String dateTime) {
         super(description);
         super.isDone = taskStatus;
-        super.type = "T";
+        super.type = "D";
         super.at = dateTime;
     }
 

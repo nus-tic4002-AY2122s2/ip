@@ -1,14 +1,13 @@
 package storage;
 
+import exceptions.DukeStorageError;
 import task_classes.Task;
 
-import java.io.File;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 import java.util.Vector;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 
 
@@ -97,13 +96,44 @@ public class storageInLocal {
         toSaveTaskListToLocal(List);
     }
 
-    public Vector<Task> extractTaskFromTxt(){
+
+    public static Vector<Task> extractTaskFromTxt() throws DukeStorageError, IOException {
+        Vector<String> extractedTaskInfo = extractTaskInfoFromTxt();
         Vector<Task> list = new Vector<>();
 
-        File file = new File(DEFAULT_STORAGE_FILEPATH);
+        if(extractedTaskInfo.size() == 0){
+            return list;
+        }
 
+        list = TaskListDecoder.decodeTaskList(extractedTaskInfo);
 
         return list;
+    }
+
+    private static Vector<String> extractTaskInfoFromTxt() throws IOException {
+
+        Vector<String> extractedInfo = new Vector<>();
+        Scanner sc = null;
+
+        try {
+            File file = new File(DEFAULT_STORAGE_FILEPATH); // java.io.File
+            sc = new Scanner(file);
+            String line;
+
+            while (sc.hasNextLine()) {
+                line = sc.nextLine();
+                extractedInfo.add(line);
+            }
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            if (sc != null) sc.close();
+        }
+
+        return extractedInfo;
     }
 }
 
