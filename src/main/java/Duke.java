@@ -28,10 +28,8 @@ public class Duke {
 
         Input_Scanner.InputStart(list);
 
-        storageInLocal taskStorageFile = new storageInLocal();
-
         // To store all the current task to local storage, txt file
-        taskStorageFile.transferToFile(list);
+        storageInLocal.transferToFile(list);
 
     }
 }

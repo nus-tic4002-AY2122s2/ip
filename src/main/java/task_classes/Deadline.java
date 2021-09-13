@@ -14,7 +14,7 @@ public class Deadline extends Task {
         super(description);
         super.isDone = taskStatus;
         super.type = "D";
-        super.at = dateTime;
+        super.by = dateTime;
     }
 
     /**

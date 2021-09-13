@@ -33,19 +33,19 @@ class TaskListDecoder {
 
         if(parts.length == 3){ //todo type with correct length
 
-            System.out.println("Todo " + parts[2]);
+            //System.out.println("Todo " + parts[2]);
             return new Todo(taskDescription, taskStatus);
 
         } else if (parts.length == 4){ // deadline or event with correct length
             if(taskType.equals("E")){
 
-                System.out.println("Event " + parts[2]);
+                //System.out.println("Event " + parts[2] + " | " + parts[3]);
                 String dateTime = parts[3];
                 return new Event(taskDescription, taskStatus, dateTime);
 
             } else if (taskType.equals("D")){
 
-                System.out.println("Deadline " + parts[2]);
+                //System.out.println("Deadline " + parts[2] + " | " + parts[3]);
                 String dateTime = parts[3];
                 return new Deadline(taskDescription, taskStatus, dateTime);
 
