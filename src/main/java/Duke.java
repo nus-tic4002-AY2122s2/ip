@@ -162,6 +162,43 @@ public class Duke {
                     System.out.println("☹ OOPS!!! Please try again. Bye!");
                     return false;
                 }
+            case "find":
+                try {
+                    userInput = userInput.replace("find ","");
+                    if(!userInput.equals("") && !userInput.equals("find")){
+                        String markToString;
+                        int i = 0;
+                        for (Task task : taskList) {
+                            if (task.getDescription().contains(userInput)) {
+                                if(i == 0){
+                                    System.out.println("Here are the matching tasks in your list:");
+                                }
+                                i = i + 1;
+                                if(task.getMark()){
+                                    markToString = "X";
+                                }
+                                else {
+                                    markToString = "";
+                                }
+
+                                System.out.println(      i + ". [" + task.getToDo() + "][" + markToString + "] " +
+                                        task.getDescription() + task.getAdditionalDetails());
+                            }
+                        }
+                        if(i == 0) {
+                            System.out.println("There is no matching task in your list.");
+                        }
+                        return true;
+                    }
+                    else {
+                        System.out.println("☹ OOPS!!! There is nothing to find.");
+                        return false;
+                    }
+                }
+                catch(Exception e){
+                    System.out.println("☹ OOPS!!! Please try again. Bye!");
+                    return false;
+                }
             default:
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 return false;
@@ -180,7 +217,8 @@ public class Duke {
             else {
                 markToString = "";
             }
-            System.out.println(i+1 + ". [" + taskList.get(i).getToDo() + "][" + markToString + "] " + taskList.get(i).getDescription() + taskList.get(i).getAdditionalDetails());
+            System.out.println(i+1 + ". [" + taskList.get(i).getToDo() + "][" + markToString + "] " +
+                    taskList.get(i).getDescription() + taskList.get(i).getAdditionalDetails());
         }
     }
 
