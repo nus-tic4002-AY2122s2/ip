@@ -1,13 +1,13 @@
-package task_manipulation;
+package commands;
 
 import exceptions.DukeTaskInputException;
 import screen_output.Output_On_Screen;
 import task_classes.Task;
-import user_input.Input_Parser;
+import user_input.Parser;
 
 import java.util.Vector;
 
-public class Delete {
+public class DeleteCommand {
 
     /**
      * To delete specific task in the task list
@@ -20,7 +20,7 @@ public class Delete {
 
         int taskIndex;
 
-        taskIndex = Input_Parser.toExtractNumberForDoneAndDelete(inputWords, taskList) - 1;
+        taskIndex = Parser.toExtractNumberForDoneAndDelete(inputWords, taskList) - 1;
         Task deletedTask = taskList.get(taskIndex);
         taskList.remove(taskIndex);
 

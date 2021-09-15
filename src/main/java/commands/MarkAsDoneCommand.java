@@ -1,4 +1,4 @@
-package task_manipulation;
+package commands;
 
 import exceptions.DukeTaskInputException;
 import screen_output.Output_On_Screen;
@@ -6,7 +6,7 @@ import task_classes.Task;
 
 import java.util.Vector;
 
-public class MarkAsDone {
+public class MarkAsDoneCommand {
 
     /**
      * The method to mark the task status as done

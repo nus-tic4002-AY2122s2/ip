@@ -14,12 +14,18 @@ public class Output_On_Screen {
      * The greeting with some instruction
      */
     public static void greetingOutput() {
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+
+        Output_On_Screen.toPrintSeparateLine();
         System.out.println("     Hello! I'm Duke");
         System.out.println("     What can I do for you?");
-        //System.out.println("     **Date and time input format: /by(at): **");
-        //System.out.println("     **1. Deadline: YYYY-MM-DD Hour(0-23):Minute(0-59)**");
-        //System.out.println("     **2. YYYY-MM-DD Hour(0-23):Minute(0-59) -> Hour(0-23):Minutes(0-59)**");
-        //System.out.println("     **3. YYYY-MM-DD Hour(0-23):Minute(0-59) -> YYYY-MM-DD Hour(0-23):Minute(0-59)**");
+        Output_On_Screen.toPrintSeparateLine();
+        System.out.println("");
     }
 
     /**

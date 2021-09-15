@@ -3,14 +3,14 @@ package user_input;
 import exceptions.DukeTaskInputException;
 import screen_output.Output_On_Screen;
 import task_classes.Task;
-import task_manipulation.Add;
-import task_manipulation.Delete;
-import task_manipulation.MarkAsDone;
+import commands.AddCommand;
+import commands.DeleteCommand;
+import commands.MarkAsDoneCommand;
 
 import java.util.Scanner;
 import java.util.Vector;
 
-public class Input_Scanner {
+public class Ui {
 
     /**
      * To parse the user input information type
@@ -27,7 +27,7 @@ public class Input_Scanner {
             String[] inputWords = input.split(" ");
             String firstWord = inputWords[0].toLowerCase();
 
-            Input_Parser.Input_Length_Checking(firstWord, inputWords);
+            Parser.Input_Length_Checking(firstWord, inputWords);
 
             Output_On_Screen.toPrintSeparateLine();
 
@@ -39,19 +39,19 @@ public class Input_Scanner {
                     Output_On_Screen.printOutList(List);
                     break;
                 case "done":
-                    MarkAsDone.markAsDone(List, inputWords);
+                    MarkAsDoneCommand.markAsDone(List, inputWords);
                     break;
                 case "deadline":
-                    Add.addDeadlineTask(List, inputWords);
+                    AddCommand.addDeadlineTask(List, inputWords);
                     break;
                 case "event":
-                    Add.addEventTask(List, inputWords);
+                    AddCommand.addEventTask(List, inputWords);
                     break;
                 case "todo":
-                    Add.addTodoTask(List, input.substring(5, input.length()));
+                    AddCommand.addTodoTask(List, input.substring(5, input.length()));
                     break;
                 case "delete":
-                    Delete.deleteTask(List, inputWords);
+                    DeleteCommand.deleteTask(List, inputWords);
             }
         } catch (DukeTaskInputException e) {
             String errorType = DukeTaskInputException.getErrorType();

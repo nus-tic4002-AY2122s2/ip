@@ -3,33 +3,27 @@ import java.util.Vector;
 
 import exceptions.DukeStorageError;
 import screen_output.Output_On_Screen;
-import storage.storageInLocal;
+import storage.Storage;
 import task_classes.Task;
-import user_input.Input_Scanner;
+import user_input.Ui;
 
 public class Duke {
+
+    private Vector<Task> list = new Vector<Task>();
+    private Ui ui;
+    private Storage storage;
+
     public static void main(String[] args) throws IOException, DukeStorageError {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
 
-        Output_On_Screen.toPrintSeparateLine();
         Output_On_Screen.greetingOutput();
-        Output_On_Screen.toPrintSeparateLine();
-        System.out.println("");
-
-        Vector<Task> list = new Vector<Task>();
 
         // To extract existing task list from local storage, txt file
-        list = storageInLocal.extractTaskFromTxt();
+        list = Storage.extractTaskFromTxt();
 
-        Input_Scanner.InputStart(list);
+        Ui.InputStart(list);
 
         // To store all the current task to local storage, txt file
-        storageInLocal.transferToFile(list);
+        Storage.transferToFile(list);
 
     }
 }

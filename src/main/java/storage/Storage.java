@@ -11,7 +11,7 @@ import java.util.Vector;
 import java.nio.file.Files;
 
 
-public class storageInLocal {
+public class Storage {
 
     /**
      * An default file path which is "data/duke.txt"
@@ -26,7 +26,7 @@ public class storageInLocal {
     /**
      * Constructs StorageFile with default file path
      */
-    public storageInLocal() {
+    public Storage() {
         path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
     }
 

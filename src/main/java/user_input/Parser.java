@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 
-public class Input_Parser {
+public class Parser {
 
     /**
      * To extract task description information from user input

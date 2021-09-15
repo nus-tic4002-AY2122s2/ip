@@ -1,4 +1,4 @@
-package task_manipulation;
+package commands;
 
 
 import exceptions.DukeTaskInputException;
@@ -7,11 +7,11 @@ import task_classes.Deadline;
 import task_classes.Todo;
 import task_classes.Task;
 import task_classes.Event;
-import user_input.Input_Parser;
+import user_input.Parser;
 
 import java.util.Vector;
 
-public class Add {
+public class AddCommand {
 
     /**
      * To add Todo type task to the task list
@@ -36,9 +36,9 @@ public class Add {
      */
     public static void addDeadlineTask (Vector<Task> list, String[] inputWords) throws DukeTaskInputException {
 
-        String description = Input_Parser.toExtractDescription(inputWords);
+        String description = Parser.toExtractDescription(inputWords);
 
-        String date = Input_Parser.toExtractDate(inputWords);
+        String date = Parser.toExtractDate(inputWords);
 
         Deadline newTask = new Deadline(description, date);
 
@@ -56,8 +56,8 @@ public class Add {
      */
     public static void addEventTask (Vector<Task> list, String[] inputWords) throws DukeTaskInputException {
 
-        String description = Input_Parser.toExtractDescription(inputWords);
-        String date = Input_Parser.toExtractDate(inputWords);
+        String description = Parser.toExtractDescription(inputWords);
+        String date = Parser.toExtractDate(inputWords);
 
         Event newTask = new Event(description, date);
 
