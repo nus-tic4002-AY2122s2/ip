@@ -34,7 +34,7 @@ public class Storage {
         File directory = new File("/TIC4001 IP/data");
         File f = new File(directory + "/duke.txt");
         if (! directory.exists()){
-            directory.mkdir();
+            directory.mkdirs();
             f.createNewFile();
         }
 
