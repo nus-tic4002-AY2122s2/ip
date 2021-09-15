@@ -29,6 +29,8 @@ public class Parser {
         } else if (userInput.toLowerCase().substring(0,1).equals("e") ||
                 userInput.toLowerCase().contains("event") && !userInput.toLowerCase().contains("deadline") && !userInput.toLowerCase().contains("todo")) {
             return new AddEventCommand(userInput);
+        } else if (userInput.toLowerCase().contains("delete")) {
+            return new DeleteCommand(userInput);
         } else {
             return new Command();
         }

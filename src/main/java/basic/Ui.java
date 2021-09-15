@@ -82,6 +82,10 @@ public class Ui {
         System.out.println(task + "\n   Now you have " + tasks.sizeOfTask() + " tasks in the list.\n");
     }
 
+    public void printDeleteCommand(Task task, int num) {
+        System.out.println("   Noted. I've removed this task:\n   " + task + "\n   Now you have " + num + " tasks in the list.");
+    }
+
     void printException(Exception e) {
         System.out.println(e.toString());
         printEmptyLine();
