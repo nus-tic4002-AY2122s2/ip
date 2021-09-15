@@ -7,7 +7,7 @@ package ip.duke;
  * @see Deadline
  */
 public class Event extends Deadline {
-    protected Event(String description, String at) {
+    public Event(String description, String at) {
         super(description, at);
     }
 

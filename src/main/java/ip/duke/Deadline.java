@@ -9,7 +9,7 @@ package ip.duke;
 public class Deadline extends Todo {
     private final String by;
 
-    protected Deadline(String description, String by) {
+    public Deadline(String description, String by) {
         super(description);
         this.by = by;
     }
