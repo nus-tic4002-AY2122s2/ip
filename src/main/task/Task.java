@@ -12,8 +12,9 @@ public abstract class Task {
 
     public abstract String getFullStatus(); // Abstract method
 
+
     public String getStatusIcon(){
-        return (isDone ? "X" : " ");
+        return (isDone ? "\u2713" : "\u2718");
     }
 
     public String getDescription(){

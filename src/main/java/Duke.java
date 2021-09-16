@@ -3,15 +3,26 @@ import task.Events;
 import task.Task;
 import task.ToDo;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Duke {
-    private static String line = "_______________________________________\n"; // To shift to UI class
-    private static ArrayList<Task> list = new ArrayList<Task>();
-    public static void main(String[] args){
+    public static String line = "_______________________________________\n"; // To shift to UI class
+    public static ArrayList<Task> list = new ArrayList<Task>();
+    public static void main(String[] args) throws IOException {
+        Storage textFile = new Storage();
+        Ui ui = new Ui();
         greet();
+        try {
+            textFile.readFile(list);
+        } catch (FileNotFoundException a) {
+            textFile.saveFile(list);
+        } catch (DukeExceptionFileInput | IOException e) {
+            ui.showFileInputError();
+        }
         while (process(read()));
         exit();
     }
@@ -121,6 +132,8 @@ public class Duke {
     private static void dukeReply(String reply){
         System.out.println(line + reply + line);
     }
+
+
 
     private static String commandIdentifier(String userInput){
         if (userInput.contains("done"))  //priority 1
