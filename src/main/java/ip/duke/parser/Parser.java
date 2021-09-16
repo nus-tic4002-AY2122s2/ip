@@ -30,6 +30,13 @@ public class Parser {
             case "list":
                 Ui.echoList();
                 break;
+            case "find":
+                try {
+                    Ui.echoFind(words[1].trim());
+                } catch (NullPointerException | ArrayIndexOutOfBoundsException err){
+                    throw new DukeException(Ui.echoNoDesc("find"), err);
+                }
+                break;
             case "todo":
                 try {
                     TaskList.addTodo(words[1].trim());

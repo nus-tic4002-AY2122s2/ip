@@ -3,10 +3,7 @@ package ip.duke.ui;
 import ip.duke.exceptions.DukeException;
 import ip.duke.task.Task;
 import ip.duke.tasklist.TaskList;
-
 import java.util.stream.Stream;
-
-
 
 public class Ui {
     public static void greet() {
@@ -69,6 +66,18 @@ public class Ui {
         for (Task item : TaskList.getList()) {
             if ( item != null)
                 System.out.printf("%12d.[%c][%s] %s%n", counter++, item.getId(), item.getStatusIcon(), item);
+        }
+    }
+
+    public static void echoFind(String word) {
+        System.out.print("LisGenie : ");
+        System.out.printf("Here are the matching tasks in your list:%n");
+
+        int counter = 1;
+        for (Task item : TaskList.getList()) {
+            if (item != null && item.getDescription().toLowerCase().contains(word.toLowerCase())) {
+                System.out.printf("%12d.[%c][%s] %s%n", counter++, item.getId(), item.getStatusIcon(), item);
+            }
         }
     }
 
