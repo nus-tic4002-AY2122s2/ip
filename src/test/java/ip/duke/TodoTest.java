@@ -1,11 +1,9 @@
 package ip.duke;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TodoTest {
-
     @Test
     public void Desc_Test(){
         Todo task = new Todo("return a book");
