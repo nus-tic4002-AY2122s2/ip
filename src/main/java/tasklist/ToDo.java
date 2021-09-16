@@ -1,5 +1,7 @@
 package tasklist;
 
+import java.util.Date;
+
 public class ToDo extends Task {
 
     /****
@@ -27,5 +29,45 @@ public class ToDo extends Task {
     @Override
     public String saveFormat(){
         return("T " + super.saveFormat());
+    }
+
+    /****
+     *
+     * @param dateSearch the date that user input
+     * @param taskType the task type of the object
+     */
+    @Override
+    public boolean findDate(Date dateSearch, String taskType) {
+        return false;
+    }
+
+    /****
+     *
+     * @param dateSearch the date that user input
+     * @param taskType the task type of the object
+     */
+    @Override
+    public boolean findFromDateRange(Date dateSearch, String taskType) {
+        return false;
+    }
+
+    /****
+     *
+     * @param fromDate the start date that user input
+     * @param endDate the end date that user input
+     * @param taskType the task type of the object
+     */
+    @Override
+    public boolean findBetweenDateRange(Date fromDate, Date endDate, String taskType) {
+        return false;
+    }
+
+    /****
+     *
+     * @param taskType the task type of the object
+     */
+    @Override
+    public boolean taskType(String taskType){
+        return taskType.equals("todos");
     }
 }

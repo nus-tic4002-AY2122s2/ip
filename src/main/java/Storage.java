@@ -82,7 +82,7 @@ public class Storage {
     }
 
     /****
-     * Returns
+     * Returns the boolean status of task
      *
      * @param value the status of task stored in the file
      * @return boolean status of task

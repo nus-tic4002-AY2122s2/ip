@@ -1,5 +1,8 @@
 package tasklist;
 
+import java.text.ParseException;
+import java.util.Date;
+
 public abstract class Task {
 
     protected String description;
@@ -44,5 +47,44 @@ public abstract class Task {
         else {
             return ("| 0 | " + this.description);
         }
+    }
+
+    /****
+     *
+     * @param dateSearch the date that user input
+     * @param taskType the task type of the object
+     * @throws ParseException if date format is not dd MMM yyyy
+     */
+    public boolean findDate(Date dateSearch, String taskType) throws ParseException {
+        return false;
+    }
+
+    /****
+     *
+     * @param dateSearch the date that user input
+     * @param taskType the task type of the object
+     * @throws ParseException if date format is not dd MMM yyyy
+     */
+    public boolean findFromDateRange(Date dateSearch, String taskType) throws ParseException {
+        return false;
+    }
+
+    /****
+     *
+     * @param fromDate the start date that user input
+     * @param endDate the end date that user input
+     * @param taskType the task type of the object
+     * @throws ParseException if date format is not dd MMM yyyy
+     */
+    public boolean findBetweenDateRange(Date fromDate, Date endDate, String taskType) throws ParseException {
+        return false;
+    }
+
+    /****
+     *
+     * @param taskType the task type of the object
+     */
+    public boolean taskType(String taskType){
+        return taskType.equals("tasks");
     }
 }

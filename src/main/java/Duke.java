@@ -19,7 +19,7 @@ public class Duke {
      *
      * @throws IOException if file does not exist
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         Storage.loadFile();
         UI.printDuke();
         String line;
@@ -41,6 +41,10 @@ public class Duke {
 
             } else if (line.startsWith("delete")) {
                 deleteTask(line);
+
+            } else if (line.startsWith("find")) {
+                searchDate(line);
+
             }
             else if (line.startsWith("event")) {
                 event(line);
@@ -250,6 +254,92 @@ public class Duke {
     }
 
     /****
+     * Searches date by task type using "on", "from", "between to"
+     *
+     * @param line the command that user input
+     * @throws ParseException if date format is not dd MMM yyyy
+     */
+    static void searchDate(String line) throws ParseException {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        String[] str;
+        try {
+            checkListEmpty(taskList);
+            checkInvalidWordSearch(line);
+            //e.g find EVENT on 12 oct 2019
+            if (line.contains("on")) {
+                str = line.split(" on ", 2);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+                //Format string "12 oct 2019" to date
+                Date date = dateFormat.parse(str[1]);
+                //Get task type e.g event
+                String taskType = str[0].substring(5).toLowerCase();
+
+                //Loop taskList to check conditions for findDate
+                for (int i = 0; i < taskList.size(); i++) {
+                    if (taskList.get(i).findDate(date, taskType)) {
+                        foundTasks.add(taskList.get(i));
+                    }
+                }
+            }
+
+            //e.g find EVENT from 12 oct 2019
+            if (line.contains("from")) {
+                str = line.split(" from ", 2);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+                //Format string "12 oct 2019" to date
+                Date date = dateFormat.parse(str[1]);
+                String taskType = str[0].substring(5).toLowerCase();
+
+                //Loop taskList to check conditions for findFromDateRange
+                for (int i = 0; i < taskList.size(); i++) {
+                    if (taskList.get(i).findFromDateRange(date, taskType)) {
+                        foundTasks.add(taskList.get(i));
+                    }
+                }
+            }
+
+            //e.g find EVENT between 12 oct 2019 to 16 oct 2019
+            if (line.contains("between") && line.contains("to")) {
+                str = line.split(" between ", 2);
+                //From: dateRange[0], To: dateRange[1]
+                String[] dateRange = str[1].split(" to ", 2);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+                //Format string "12 oct 2019" to date
+                Date date1 = dateFormat.parse(dateRange[0]);
+                Date date2 = dateFormat.parse(dateRange[1]);
+                String taskType = str[0].substring(5).toLowerCase();
+
+                //Loop taskList to check conditions for findBetweenDateRange
+                for (int i = 0; i < taskList.size(); i++) {
+                    if (taskList.get(i).findBetweenDateRange(date1, date2, taskType)) {
+                        foundTasks.add(taskList.get(i));
+                    }
+                }
+            }
+
+            //e.g find all EVENTS
+            if (line.contains("all")) {
+                str = line.split(" ", 3);
+                //e.g "events"
+                String type = str[2].toLowerCase();
+
+                //Loop taskList to check conditions for taskType
+                for (int i = 0; i < taskList.size(); i++) {
+                    if (taskList.get(i).taskType(type)) {
+                        foundTasks.add(taskList.get(i));
+                    }
+                }
+            }
+            UI.printOutput((foundTasks));
+        } catch (StringFormatException e) {
+            UI.printStringFormatException();
+        } catch (ListEmptyException e) {
+            UI.printListEmpty();
+        }
+
+    }
+
+    /****
      * Users input invalid command
      *
      * @param line the command that user input
@@ -287,6 +377,17 @@ public class Duke {
         if ( !( description.equals("bye") || description.equals("list")
                 || description.equals("todo") || description.equals("event")
                 || description.equals("deadline"))) {
+            throw new StringFormatException ();
+        }
+    }
+
+    /****
+     *
+     * @param description the command that user input
+     * @throws StringFormatException if description does not hit the if conditions
+     */
+    static void checkInvalidWordSearch(String description) throws StringFormatException {
+        if ( ! (description.contains("on") || description.contains("from") || description.contains("all") || (description.contains("between") && description.contains("to")) )) {
             throw new StringFormatException ();
         }
     }

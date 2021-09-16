@@ -1,5 +1,9 @@
 package tasklist;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Event extends Task {
 
     protected String time;
@@ -42,5 +46,76 @@ public class Event extends Task {
     @Override
     public String saveFormat() {
         return ("E " + super.saveFormat() + " | " + this.time);
+    }
+
+    /****
+     *
+     * @param dateSearch the date that user input
+     * @param taskType the task type of the object
+     * @throws ParseException if date format is not dd MMM yyyy
+     */
+    @Override
+    public boolean findDate(Date dateSearch, String taskType) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+        if (this.time.equals("Date not specified")){
+            return false;
+        }else {
+            Date date = dateFormat.parse(this.time);
+            return dateSearch.compareTo(date) == 0 && taskType.equals("event");
+        }
+    }
+
+    /****
+     *
+     * @param dateSearch the date that user input
+     * @param taskType the task type of the object
+     * @throws ParseException if date format is not dd MMM yyyy
+     */
+    @Override
+    public boolean findFromDateRange(Date dateSearch, String taskType) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+        if (this.time.equals("Date not specified")){
+            return false;
+        }else {
+            Date date = dateFormat.parse(this.time);
+            return (dateSearch.compareTo(date) == 0 && taskType.equals("event")) 
+                    || (dateSearch.compareTo(date) < 0 && taskType.equals("event"));
+        }
+    }
+
+    /****
+     *
+     * @param fromDate the start date that user input
+     * @param endDate the end date that user input
+     * @param taskType the task type of the object
+     * @throws ParseException if date format is not dd MMM yyyy
+     */
+    @Override
+    public boolean findBetweenDateRange(Date fromDate, Date endDate, String taskType) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+        if (this.time.equals("Date not specified")){
+            return false;
+        }else {
+            Date date = dateFormat.parse(this.time);
+            if (fromDate.compareTo(date) == 0 && taskType.equals("event") 
+                    || endDate.compareTo(date) == 0 && taskType.equals("event")) {
+                return true;
+            }else if (fromDate.compareTo(date) < 0 && endDate.compareTo(date) > 0 
+                    && taskType.equals("event")){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+
+    /****
+     *
+     * @param taskType the task type of the object
+     */
+    @Override
+    public boolean taskType(String taskType){
+        return taskType.equals("events");
     }
 }
