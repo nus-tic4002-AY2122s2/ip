@@ -18,7 +18,7 @@ public class Ui {
     /**
      * Shows the line for the chatbot's box.
      *
-     * @return A straight line for the chatbox
+     * @return A straight line for the chat box window
      */
 
     public String showLine() {
