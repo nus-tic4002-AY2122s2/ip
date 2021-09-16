@@ -1,6 +1,7 @@
 package ip.duke;
 
 import ip.duke.task.Task;
+
 /**
  * Todo.java - a simple class for todo objects.
  * A subclass of Task
