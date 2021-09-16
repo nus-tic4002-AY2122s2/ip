@@ -5,7 +5,7 @@ import ip.duke.task.Task;
 import ip.duke.tasklist.TaskList;
 import java.util.stream.Stream;
 /**
- * Class provides the console displays and messages output
+ * Utility Class that provides console displays and messages output
  *
  * </P>Deals with user prompts, feedback and chat services.
  *

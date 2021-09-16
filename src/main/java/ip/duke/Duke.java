@@ -1,13 +1,13 @@
 package ip.duke;
 
 import ip.duke.exceptions.DukeException;
+import ip.duke.parser.Parser;
 import ip.duke.storage.Storage;
 import ip.duke.task.Task;
 import ip.duke.tasklist.TaskList;
 import ip.duke.ui.Ui;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
-import static ip.duke.parser.Parser.hasTask;
 /**
  * LisGenie Chat Bot CLI App - a task management online assistant.
  *
@@ -57,7 +57,7 @@ public class Duke {
             }
 
             try {
-                isBye = hasTask(input);
+                isBye = Parser.hasTask(input);
             } catch (DukeException e) {
                 Ui.echoDukeErrorMsg(e);
             } finally {

@@ -1,6 +1,0 @@
-D : 1 : return book : June 6th
-D : 0 : attend exam : Fri noon
-E : 1 : attend a movie : 2.30pm HUB
-T : 0 : read a book
-T : 0 : return another book
-E : 1 : Zoom meeting : 3pm Fri

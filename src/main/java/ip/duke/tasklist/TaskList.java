@@ -7,10 +7,19 @@ import ip.duke.exceptions.DukeException;
 import ip.duke.storage.Storage;
 import ip.duke.task.Task;
 import ip.duke.ui.Ui;
-
 import java.io.*;
 import java.util.LinkedHashSet;
-
+/**
+ * Utility Class that provides an online database for tasks storage
+ *
+ * </P>Deals with admin and tasking operations on online database list.
+ *
+ * <P>Will also load from saved database file when LisGenie app starts.
+ *
+ * @author Gwee Yeu Chai
+ * @version 1.0
+ * @since 2021-09-10
+ */
 public class TaskList {
     // Collection preserves input sequence, yields constant time for update/delete ops
     private final static LinkedHashSet<Task> TASKS = new LinkedHashSet<>(125, (float) 0.8);

@@ -3,7 +3,7 @@ package ip.duke.parser;
 import ip.duke.exceptions.DukeException;
 import ip.duke.tasklist.TaskList;
 import ip.duke.ui.Ui;
-
+// Utility Class for parsing user inputs to the various wanted tasks.
 public class Parser {
     /**
      * This is the method which processes tasks and generates related dialogues.
