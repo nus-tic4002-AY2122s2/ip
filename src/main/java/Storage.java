@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-    public static final String DEFAULT_PATH = "src/main/java/data/duke.txt";
+    public static final String DEFAULT_PATH = "src/main/java/duke.txt";
     private String filePath;
 
     public Storage() {
@@ -23,7 +23,8 @@ public class Storage {
         FileWriter fw = new FileWriter(this.filePath);
         String s = "";
         for (int j = 0; j < list.size(); j++) {
-            s = s + list.get(j).getFullStatus() + System.lineSeparator();
+            s = s + list.get(j).getType() + " " + list.get(j).getTaskStatus() + " " + list.get(j).getTask() + " "
+                    + list.get(j).getDetails() + System.lineSeparator();
             s = s.replace("(by:", "|").replace("(at:", "|").
                     replace(")", "").replaceAll("\\[", "").
                     replaceAll("]", "|").replace("\u2713", "1 ").
@@ -39,7 +40,7 @@ public class Storage {
      * @throws IOException If the filepath has some problems.
      * @throws DukeException If the file context is not in the duke's list format.
      */
-    public void readFile(ArrayList<Task> tasks) throws IOException, DukeExceptionFileInput {
+    public void readFile(TaskLists tasks) throws IOException, DukeExceptionFileInput {
         BufferedReader s = null;
         s = new BufferedReader(new FileReader(DEFAULT_PATH));
         String input = null;
@@ -51,7 +52,7 @@ public class Storage {
                 switch (Character.toString(input.charAt(0))) {
                     case "T":
                         input = input.substring(6);
-                        tasks.addToList("task " + input);
+                        tasks.addToDo("task " + input);
                         if (status == '1') {
                             int index = tasks.getSize() - 1;
                             tasks.getList().get(index).setTaskDone();
@@ -70,15 +71,6 @@ public class Storage {
                         input = input.substring(6);
                         input = input.replace("|", "/by");
                         tasks.addDeadline("_deadline" + input);
-                        if (status == '1') {
-                            int index = tasks.getSize() - 1;
-                            tasks.getList().get(index).setTaskDone();
-                        }
-                        break;
-                    case "A":
-                        input = input.substring(6);
-                        input = input.replace("|", "after");
-                        tasks.addDoAfter("_do" + input);
                         if (status == '1') {
                             int index = tasks.getSize() - 1;
                             tasks.getList().get(index).setTaskDone();

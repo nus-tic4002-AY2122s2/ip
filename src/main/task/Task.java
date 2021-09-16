@@ -1,23 +1,63 @@
-package task; // Shifted all various types of task class to a package
+package task;
 
 public abstract class Task {
     protected String description;
-    public boolean isDone;
+    protected boolean isDone;
     protected char type;
 
-    public Task (String description) {
-        this.description = description;
+    public Task(String description) {
+        this.description = description.trim();
         this.isDone = false;
     }
 
-    public abstract String getFullStatus(); // Abstract method
-
-
-    public String getStatusIcon(){
-        return (isDone ? "\u2713" : "\u2718");
+    /**
+     * Returns the description of the task
+     *
+     * @return The description of the task in string.
+     */
+    public String getTask() {
+        return description;
     }
 
-    public String getDescription(){
-        return (description);
+    /**
+     * Sets a task done.
+     */
+    public void setTaskDone() {
+        this.isDone = true;
     }
+
+    /**
+     * Get the task status, whether is the current task done or not.
+     *
+     * @return a Tick Symbol if it is done, Cross symbol other wise.
+     */
+    public String getTaskStatus() {
+        return "[" + (isDone ? "\u2713" : "\u2718") + "]";
+    }
+
+    /**
+     * Get the type of current Task, if it is a todo, event, deadline task.
+     * todo = 'T'
+     * event = 'E'
+     * deadline = 'D'
+     *
+     * @return [T/E/D]
+     */
+    public String getType() {
+        return "[" + this.type + "]";
+    }
+
+    public String getDetails() {
+        return "";
+    }
+
+    /**
+     * Returns the description of the current task
+     *
+     * @return A string of the current task's description.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
 }
