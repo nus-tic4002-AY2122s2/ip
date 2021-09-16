@@ -56,6 +56,11 @@ public class Ui {
         System.out.println(showLine() + goodbye + showLine());
     }
 
+    public void showFindResult(String list){
+        String listResult = "Here are the matching tasks in your list:\n\t" + list + "\n";
+        System.out.println(showLine() + listResult + showLine());
+    }
+
     public void showInputError() { //can be for files input
         String errorMessage = "There is something wrong with the previous file, please check the content\n\tof the file. I'm unable to load the past task list.\n";
         System.out.println(showLine() + errorMessage + showLine());

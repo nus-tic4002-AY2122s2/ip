@@ -27,7 +27,6 @@ public class Parser {
         if (userInput.contains("deadline")) {
             command = "deadline";
         }
-
         if (userInput.contains("event")) {
             command = "event";
         }
