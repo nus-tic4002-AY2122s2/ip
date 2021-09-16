@@ -3,23 +3,23 @@
           can I do for you?
      ____________________________________________________________
      ____________________________________________________________
-          Error: In Parser, task content is not provided.
+          Error: In Parser, OOPS!!! The description of a todo cannot be empty.
      ____________________________________________________________
      ____________________________________________________________
-          Error: In Parser, task content is not provided.
+          Error: In Parser, OOPS!!! The description of a deadline cannot be empty.
      ____________________________________________________________
      ____________________________________________________________
-          Error: In Parser, invalid deadline command, missing '/by'.
+          Error: In Parser, OOPS!!! The deadline description is invalid, missing '/by'.
      ____________________________________________________________
      ____________________________________________________________
-          Error: In Parser, invalid event command, missing '/at'.
+          Error: In Parser, OOPS!!! The event description is invalid, missing '/at'.
      ____________________________________________________________
 DONE
      ____________________________________________________________
-          Error: In Command, task number is out of range.
+          Error: In Command, OOPS!!! The task number is invalid.
      ____________________________________________________________
      ____________________________________________________________
-          Error: Invalid command key word, Please make sure, your command start with DONE, TODO, DEADLINE, EVENT, LIST, BYE (case insensitive)
+          Error: OOPS!!! I'm sorry, but I don't know what that means. Please starts your command with DONE, TODO, DEADLINE, EVENT, LIST, BYE (case insensitive)
      ____________________________________________________________
 TODO
      ____________________________________________________________
