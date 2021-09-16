@@ -16,7 +16,7 @@ import static ip.duke.parser.Parser.hasTask;
  * <P>Note that tasks are stored as Task objects in a Task[] array (Optimum max size : 100).
  *
  * @author Gwee Yeu Chai
- * @version 1.0
+ * @version 1.6
  * @since 2021-08-01
  */
 public class Duke {

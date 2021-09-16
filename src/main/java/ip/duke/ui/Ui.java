@@ -3,11 +3,18 @@ package ip.duke.ui;
 import ip.duke.exceptions.DukeException;
 import ip.duke.task.Task;
 import ip.duke.tasklist.TaskList;
-
 import java.util.stream.Stream;
-
-
-
+/**
+ * Class provides the console displays and messages output
+ *
+ * </P>Deals with user prompts, feedback and chat services.
+ *
+ * <P>The echoFind method shows a list of found items as a read-only display.
+ *
+ * @author Gwee Yeu Chai
+ * @version 1.0
+ * @since 2021-09-10
+ */
 public class Ui {
     public static void greet() {
         // Greeting screen display
@@ -69,6 +76,18 @@ public class Ui {
         for (Task item : TaskList.getList()) {
             if ( item != null)
                 System.out.printf("%12d.[%c][%s] %s%n", counter++, item.getId(), item.getStatusIcon(), item);
+        }
+    }
+
+    public static void echoFind(String word) {
+        System.out.print("LisGenie : ");
+        System.out.printf("Here are the matching tasks in your list:%n");
+
+        int counter = 1;
+        for (Task item : TaskList.getList()) {
+            if (item != null && item.getDescription().toLowerCase().contains(word.toLowerCase())) {
+                System.out.printf("%12d.[%c][%s] %s%n", counter++, item.getId(), item.getStatusIcon(), item);
+            }
         }
     }
 
