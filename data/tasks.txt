@@ -5,3 +5,6 @@ E : 1 : attend a movie : 2.30pm HUB
 E : 1 : Zoom meeting : 3pm Fri
 T : 0 : borrow another book
 T : 1 : borrow a book
+D : 0 : submit the TIC4001 UG : Oct 1 2021
+E : 0 : attend a meeting : Fri 2 - 3.30pm
+E : 1 : attend another meeting : Dec 2 2021

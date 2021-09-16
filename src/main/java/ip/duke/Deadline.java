@@ -1,4 +1,8 @@
 package ip.duke;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 /**
  * Deadline.java - a simple class for deadline objects.
  * A subclass of Todo
@@ -7,11 +11,17 @@ package ip.duke;
  * @see Todo
  */
 public class Deadline extends Todo {
-    private final String by;
+    private String by;
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+       try {
+           LocalDate date = LocalDate.parse(by);
+           this.by = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+
+       }catch (DateTimeParseException err){
+           this.by = by;
+        }
     }
     /**
      * getter method for the private final field by.
