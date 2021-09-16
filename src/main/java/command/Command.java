@@ -1,5 +1,6 @@
 package command;
 
+import constant.ErrorMessage;
 import ui.Ui;
 import userList.UserList;
 import exception.ErrorHandler;
@@ -34,7 +35,7 @@ public class Command {
                         list.getList().get(index - 1).setStatus(true);
                         Ui.printMarkedDone(list.getSerializedList().get(index - 1));
                     } else {
-                        throw new ErrorHandler("In Command, task number is out of range.");
+                        throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
                     }
                     break;
                 case TODO:
