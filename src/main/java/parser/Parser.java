@@ -26,7 +26,7 @@ public class Parser {
         ArrayList<String> bufferA = new ArrayList<String>();
 
         /* If the input is to add todo task, then the length of the array must greater then 1 or there is no description */
-        if(inputWords.length == 2){
+        if(inputWords.length < 2){
             throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
         }
 
@@ -160,8 +160,11 @@ public class Parser {
                 !First_Word.equals("todoafter") &&
                 !First_Word.equals("processing") &&
                 !First_Word.equals("delete") &&
+                !First_Word.equals("todo") &&
+                !First_Word.equals("event") &&
+                !First_Word.equals("deadline") &&
                 Input_Words.length == 1){
-            throw new DukeTaskInputException(First_Word, "descriptionMissing");
+            throw new DukeTaskInputException("cannotUnderstand");
         }
     }
 

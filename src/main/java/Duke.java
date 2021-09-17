@@ -4,7 +4,6 @@ import commands.Command;
 import exceptions.DukeStorageError;
 import exceptions.DukeTaskInputException;
 import parser.Parser;
-import ui.Output_On_Screen;
 import storage.Storage;
 import task_classes.TaskList;
 import ui.Ui;
@@ -27,7 +26,7 @@ public class Duke {
         }
     }
 
-    private void run() {
+    private void run() throws IOException {
         ui.showGreetingMessage();
         boolean isExit = false;
         while (!isExit) {
@@ -39,7 +38,6 @@ public class Duke {
                 isExit = c.isExit();
             } catch (DukeTaskInputException e) {
                 String errorType = DukeTaskInputException.getErrorType();
-                System.out.println("Input information wrongly.");
 
                 switch (errorType) {
                     case "taskListEmpty":
@@ -48,12 +46,19 @@ public class Duke {
                     case "commandCreateError":
                         DukeTaskInputException.toPrintCommandCreateError();
                         break;
+                    case "cannotUnderstand":
+                        DukeTaskInputException.invalidFirstWordInput();
+                        break;
+                    default:
+                        DukeTaskInputException.formatWrong();
                 }
             } finally {
                 Ui.toPrintSeparateLine();
                 System.out.println("");
             }
         }
+
+        storage.transferToFile(taskList.getVectorList());
     }
 
 

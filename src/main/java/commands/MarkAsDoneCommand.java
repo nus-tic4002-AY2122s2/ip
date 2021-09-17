@@ -12,7 +12,7 @@ public class MarkAsDoneCommand extends Command{
     private int index;
 
     public MarkAsDoneCommand(int index) {
-        this.index = index;
+        this.index = index - 1;
     }
 
     @Override
@@ -24,8 +24,8 @@ public class MarkAsDoneCommand extends Command{
             throw new DukeTaskInputException("listIsEmpty");
         }
 
-        Task markAsDoneTask = taskList.getTask(index);
-        markAsDoneTask.markAsDone();
+        taskList.getTask(index).markAsDone();
+        ui.printMarkAsDoneOutput(taskList.getTask(index));
     }
 
     @Override

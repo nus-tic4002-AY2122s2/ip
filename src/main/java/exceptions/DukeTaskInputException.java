@@ -35,15 +35,7 @@ public class DukeTaskInputException extends Exception {
         return errorType;
     }
 
-    /**
-     * To print out the description missing error message
-     *
-     * @param firstWord the first word
-     */
-    public static void descriptionMissing(String firstWord){
-        System.out.println("     ☹ OOPS!!! The description of the " + getFirstWord() + " cannot be empty.");
-        Output_On_Screen.toPrintSeparateLine();
-    }
+
 
     /**
      * To print the date or time missing message
@@ -94,22 +86,14 @@ public class DukeTaskInputException extends Exception {
     }
 
     /**
-     * To print the error message if the first word of user input is not in the detection list:
+     * To print out the description missing error message
      */
-    public static void invalidFirstWordInput(){
-        Output_On_Screen.toPrintSeparateLine();
-        System.out.println("     \u2639" + " OOPS!!! I'm sorry, but I don't know what that means :-(");
+    public static void descriptionMissing(){
+        System.out.println("     ☹ OOPS!!! The description is missing.");
         Output_On_Screen.toPrintSeparateLine();
     }
 
-    /**
-     * To print the error message for the wrong input format
-     */
-    public static void formatWrong(){
-        Output_On_Screen.toPrintSeparateLine();
-        System.out.println("     \u2639 OOPS!!! The input format wrong, please try again. :-(");
-        Output_On_Screen.toPrintSeparateLine();
-    }
+
 
 
 
@@ -124,5 +108,22 @@ public class DukeTaskInputException extends Exception {
 
     public static void toPrintCommandCreateError() {
         System.out.println("     ☹ OOPS!!! The Command you just input was in wrong format.");
+    }
+
+    /**
+     * To print the error message for the wrong input format
+     */
+    public static void formatWrong(){
+        Output_On_Screen.toPrintSeparateLine();
+        System.out.println("     \u2639 OOPS!!! The input format wrong, please try again. :-(");
+    }
+
+    /**
+     * To print the error message if the first word of user input is not in the detection list:
+     */
+    public static void invalidFirstWordInput(){
+        Output_On_Screen.toPrintSeparateLine();
+        System.out.println("     \u2639" + " OOPS!!! I'm sorry, but I don't know what that means :-(");
+        Output_On_Screen.toPrintSeparateLine();
     }
 }

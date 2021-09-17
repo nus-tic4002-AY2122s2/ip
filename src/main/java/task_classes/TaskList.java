@@ -50,8 +50,11 @@ public class TaskList {
 
     public static void toPrintEntireTaskList(){
         if(list.isEmpty()){
+            System.out.println("     Here is no task in your list.");
             return;
         }
+
+        System.out.println("     Here are the task(s) in your list:");
 
         for(int i=0; i < list.size(); i++){
             int j = i + 1;

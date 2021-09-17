@@ -29,6 +29,7 @@ class TaskDeletedMessage {
                 printDeletedDeadline();
                 break;
             case "T":
+                printDeletedTodo();
                 break;
         }
     }

@@ -10,25 +10,23 @@ import java.util.Vector;
 
 public class Output_On_Screen extends Ui{
 
-    /**
-     * Print out Separated_Line onto screen
-     */
-    public static void toPrintSeparateLine(){
-        System.out.print("    ");
-        for(int i=0; i<100; i++){
-            System.out.print("_");
-        }
-        System.out.println("");
-    }
+//    /**
+//     * Print out Separated_Line onto screen
+//     */
+//    public static void toPrintSeparateLine(){
+//        System.out.print("    ");
+//        for(int i=0; i<100; i++){
+//            System.out.print("_");
+//        }
+//        System.out.println("");
+//    }
 
-    /**
-     * Goodbye Output
-     */
-    public static void printGoodbyeOutput(){
-        System.out.println("     Bye. Hope to see you again soon!");
-        toPrintSeparateLine();
-        System.out.println("");
-    }
+//    /**
+//     * Goodbye Output
+//     */
+//    public static void printGoodbyeOutput(){
+//        System.out.println("     Bye. Hope to see you again soon!");
+//    }
 
     /**
      * Output after mark particular task status as done
@@ -62,88 +60,6 @@ public class Output_On_Screen extends Ui{
         System.out.println("");
     }
 
-    /**
-     * Print the list onto screen
-     *
-     * @param list The entire Task List
-     */
-    public static void printOutList(Vector<Task> list){
-        System.out.println("     Here are the task(s) in your list:");
-        for (int i = 0; i < list.size(); i++) {
-            int j = i + 1;
-            System.out.print("     " + j + "." +
-                    "[" + list.get(i).getType() + "]" +
-                    "[" + list.get(i).getStatusIcon() + "] " + list.get(i).getDescription());
-
-            String taskType = list.get(i).getType();
-
-            switch(taskType){
-                case "E":
-                    Task currentTask = list.get(i);
-                    String eventDateTime = currentTask.getAt();
-                    System.out.println(" (at: " + eventDateTime + ")");
-
-                    break;
-                case "D":
-                    Task currentDeadlineTask = list.get(i);
-                    String deadlineDateTime = currentDeadlineTask.getBy();
-                    System.out.println(" (by: " + deadlineDateTime + ")");
-
-                    break;
-                default:
-                    System.out.println("");
-            }
-        }
-
-        Output_On_Screen.toPrintSeparateLine();
-        System.out.println("");
-    }
-
-    /**
-     * Output after add Todo task into the list
-     *
-     * @param newTask the new task detected from user input and needs to be added to List, type is Todo
-     * @param listQty the total quantity of task in the List after added current new task
-     */
-    public static void printTodoAddedOutput(Todo newTask, int listQty){
-        System.out.println("     Got it. I've added this task:");
-        System.out.println("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
-        System.out.println("     Now you have " + listQty + " tasks in the list.");
-        toPrintSeparateLine();
-        System.out.println("");
-    }
-
-    /**
-     * Output after add Deadline task into the list
-     *
-     * @param newTask the new task detected from user input and needs to be added to List, type is Deadline
-     * @param listQty the total quantity of task in the List after added current new task
-     */
-    public static void printDeadlineAddedOutput(Deadline newTask, int listQty){
-        System.out.println("     Got it. I've added this task:");
-        System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
-
-        System.out.println(" (by: " + newTask.getBy() + ")");
-        System.out.println("     Now you have " + listQty + " tasks in the list.");
-        toPrintSeparateLine();
-        System.out.println("");
-    }
-
-    /**
-     * Output after add Event task into the list
-     *
-     * @param newTask the new task detected from user input and needs to be added to List, type is Event
-     * @param listQty the total quantity of task in the List after added current new task
-     */
-    public static void printEventAddedOutput(Event newTask, int listQty){
-        System.out.println("     Got it. I've added this task:");
-        System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
-
-        System.out.println(" (by: " + newTask.getAt() + ")");
-        System.out.println("     Now you have " + listQty + " tasks in the list.");
-        toPrintSeparateLine();
-        System.out.println("");
-    }
 
     /**
      * To print message when user input an invalid input

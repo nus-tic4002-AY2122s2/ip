@@ -50,7 +50,7 @@ public class AddCommand extends Command{
 
         list.add(newTask);
 
-        Output_On_Screen.printDeadlineAddedOutput(newTask, list.size());
+        Ui.printDeadlineAddedOutput(newTask, list.size());
     }
 
     /**
@@ -67,7 +67,7 @@ public class AddCommand extends Command{
 
         list.add(newTask);
 
-        Output_On_Screen.printEventAddedOutput(newTask, list.size());
+        Ui.printEventAddedOutput(newTask, list.size());
     }
 
     @Override
