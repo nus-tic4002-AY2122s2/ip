@@ -6,6 +6,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
+/**
+ * Message Class offers the one and only place to look for
+ * and amend the messages that will print on screen
+ */
 public final class Message implements PropertyChangeListener {
     public Message() { }
 

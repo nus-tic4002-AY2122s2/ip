@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
+/**
+ * TempList is List of collection of type T items.
+ * It provides PropertyChangeSupport so that Listeners could be added
+ * and get notified when new item added
+ */
 public class TempList<T> implements Iterable<T>{
     protected ArrayList<T> list;
     private PropertyChangeSupport support;
@@ -15,9 +20,9 @@ public class TempList<T> implements Iterable<T>{
         support = new PropertyChangeSupport(this);
     }
 
-    public void add(T task) {
+    public void add(T element) {
         var oldlist = list.clone();
-        list.add(task);
+        list.add(element);
         support.firePropertyChange("list", oldlist, list);
     }
 
@@ -30,6 +35,12 @@ public class TempList<T> implements Iterable<T>{
     public Integer size() {return list.size();}
     public void removeAt(int index) {list.remove(index);}
 
+    /**
+     * call this method on a TempList object instance to add
+     * Listener who would subscribe to the change of TempList
+     * Listeners must implements PropertyChangeListener
+     * @param pcl
+     */
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);
     }

@@ -4,9 +4,9 @@ import duke.task.Task;
 
 /**
  * Inherent from generic TempList class,
- * TempTaskList constrains that it only stores Task type items in the list
+ * TempTaskList constrains that it only stores Task type elements in the list
  * Adding method to print tasks in the list
- *
+ * Methods that specifically involve calling method of Task
  */
 public class TempTaskList extends TempList<Task> {
     public TempTaskList() {
@@ -28,6 +28,10 @@ public class TempTaskList extends TempList<Task> {
         return list.size();
     }
 
+    /**
+     * Calling this method to print
+     * [Undone num / total task num]
+     */
     public void tellStats() {
         int numTask = this.count();
         int numDoneTask = 0;
