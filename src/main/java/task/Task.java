@@ -1,5 +1,7 @@
 package task;
-
+/**
+ * Represents a Task
+ */
 public abstract class Task {
     public String description;
     public boolean isDone;

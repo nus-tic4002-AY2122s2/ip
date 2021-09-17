@@ -7,6 +7,10 @@ import task.Todo;
 
 import java.util.ArrayList;
 
+/**
+ * Contains Todo, Deadline and Event tasks
+ * Parses each lines in duke.txt into tasks
+ */
 public class TaskList {
     /**
      * Constructs a new task list and initialises it with an empty ArrayList.

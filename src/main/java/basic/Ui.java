@@ -39,19 +39,31 @@ public class Ui {
         return myString;
     }
 
+    /**
+     * Displays the response when the program is exited
+    */
     public void showBye() {
         System.out.println("   Bye. Hope to see you again soon!");
         showLine();
     }
 
+    /**
+     * Displays the response when a task is marked as done
+    */
     public void showDone() {
         System.out.print("   " + "Nice! I've marked this task as done: \n" + "   ");
     }
 
+    /**
+     * Displays an empty line
+    */
     public void printEmptyLine() {
         System.out.println("\n");
     }
 
+    /**
+     * Displays the response when a task is added
+    */
     public void showAdded() {
         System.out.print("   " + "Got it. I've added this task:\n" + "   ");
     }
@@ -74,18 +86,30 @@ public class Ui {
         System.out.println(tasks.toString());
     }
 
+    /**
+     * Displays a task
+    */
     public void printTask(Task task) {
         System.out.println(task);
     }
 
+    /**
+     * Displays a number of tasks in the Tasklist
+    */
     public void printTaskNum(TaskList tasks, Task task) {
         System.out.println(task + "\n   Now you have " + tasks.sizeOfTask() + " tasks in the list.\n");
     }
 
+    /**
+     * Displays the response when a task is deleted
+    */
     public void printDeleteCommand(Task task, int num) {
         System.out.println("   Noted. I've removed this task:\n   " + task + "\n   Now you have " + num + " tasks in the list.");
     }
 
+    /**
+     * Displays the exception message
+    */
     void printException(Exception e) {
         System.out.println(e.toString());
         printEmptyLine();
