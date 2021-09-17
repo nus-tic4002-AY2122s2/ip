@@ -1,6 +1,8 @@
 package task;
 
-
+/**
+ * Represents a Deadline task
+ */
 public class Deadline extends Task {
     private String by;
 
