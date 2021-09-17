@@ -1,0 +1,5 @@
+A|1|return book|2019-12-05 1800
+A|1|project meeting|2019-11-17 1721
+A|1|go exercising|2019-11-17 2229
+A|0|borrow book|
+A|0|tic2601 project group discussion|

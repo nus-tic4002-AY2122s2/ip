@@ -1,106 +1,56 @@
 package main.java.duke;
 
-import main.java.duke.exception.EmptyDescriptionException;
-import main.java.duke.exception.UndefinedTaskException;
-import main.java.duke.task.Deadline;
-import main.java.duke.task.Event;
-import main.java.duke.task.Task;
-import main.java.duke.task.Todo;
+import main.java.duke.commands.Command;
+import main.java.duke.commands.ExitCommand;
+import main.java.duke.parser.Parser;
+import main.java.duke.storage.Storage;
+import main.java.duke.task.TaskList;
+import main.java.duke.ui.Ui;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import main.java.duke.storage.Storage.StorageOperationException;
+import main.java.duke.storage.Storage.InvalidStorageFilePathException;
+
+import java.io.IOException;
 
 public class Duke {
 
-    static String separateLine="_____________________________________________";
-    private static List<Task> list = new ArrayList<Task>();
 
+    private Ui ui;
+    private Storage storage;
+    private TaskList tasks;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        try {
+            storage = new Storage(filePath);
+            tasks = new TaskList(storage.load());
+        } catch (StorageOperationException | InvalidStorageFilePathException | IOException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println(separateLine);
-        System.out.println("Hello! I am Duke\nWhat can I do for you?");
-        System.out.println(separateLine);
+        new Duke(System.getProperty("user.dir")+"/data/duke.txt").run();
+    }
 
-        String line = "";
-        Scanner in = new Scanner(System.in);
-        while (!(line = in.nextLine()).equals("bye")) {
-            if (line.equals("list")) {
-                System.out.println(separateLine + "\n" + "Here are the tasks in your list:");
-                for (int i = 1; i <= list.size(); i++) {
-                    System.out.println(i + ". " + list.get(i - 1).toString());
-                }
-                System.out.println(separateLine);
-            } else if (line.startsWith("done")) {
-                int idx = Integer.parseInt(line.substring(5));
-                list.get(idx - 1).markAsDone();
-                System.out.println(separateLine + "\n" + "Nice! I've marked this task as done");
-                System.out.println("[" + list.get(idx - 1).getStatusIcon() + "] " + list.get(idx - 1).getDescription());
-            } else if (line.startsWith("delete")) {
-                int idx = Integer.parseInt(line.substring(7));
-                System.out.println(separateLine + "\n" + "Noted. I've removed this task: ");
-                System.out.println(list.get(idx-1).toString());
-                list.remove(idx-1);
-                System.out.println("Now you have "+list.size()+" tasks in the list");
-            } else{
-                    try {
-                        addTask(line);
-                    }
-                    catch (EmptyDescriptionException e) {
-                        System.out.println(e.getMessage());
-                    } catch (UndefinedTaskException e) {
-                        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
-                    }
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine(); // show the divider line ("_______")
+                Command c = new Parser().parse(fullCommand);
+                c.setData(tasks);
+                c.execute();
+                storage.save(tasks);
+                isExit = ExitCommand.isExit(c);
+            } catch (Exception e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
             }
         }
-        System.out.println(separateLine + "\nBye. Hope to see you again soon!");
-        System.exit(0);
-    }
-    private static void addTask(String inputString) throws EmptyDescriptionException, UndefinedTaskException {
-
-        try {
-            if(inputString.startsWith("todo") || inputString.startsWith("deadline") || inputString.startsWith("event"))
-            {
-                System.out.println(separateLine + "\n" + "Got it. I've added this task: ");
-                String[] a = inputString.split(" ", 2);
-                if (a[1].equals("")) {
-                    throw new EmptyDescriptionException("You did't enter any description in the task");
-                }
-                String taskType = a[0];
-                if (taskType.equals("todo")) {
-                    list.add(new Todo(a[1]));
-                } else if (taskType.equals("deadline")) {
-                    if (!a[1].contains("/by") || a[1].startsWith("/by")) {
-                        throw new EmptyDescriptionException("You didn't enter any description or the deadline time.\n" +
-                                " And please enter task followed by time.");
-                    }
-                    String[] task = a[1].split(" /by ");
-                    list.add(new Deadline(task[0], task[1]));
-                } else if (taskType.equals("event")) {
-                    if (!a[1].contains("/at") || a[1].startsWith("/at")) {
-                        throw new EmptyDescriptionException("You didn't enter any description or the event time.\n" +
-                                " And please enter task followed by time.");
-                    }
-                    String[] task = a[1].split(" /at ");
-                    list.add(new Event(task[0], task[1]));
-                }
-                System.out.println(list.get(list.size() - 1).toString());
-                System.out.println("Now you have " + list.size() + " tasks in the list.");
-            }
-
-            else {
-                    throw new UndefinedTaskException();
-                }
-            }catch (ArrayIndexOutOfBoundsException e)
-            {
-                System.out.println(e.getMessage()+": You entered the task with no description or time");
-            }
-
     }
 
 }
