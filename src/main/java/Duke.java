@@ -1,7 +1,10 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.time.format.DateTimeParseException;
 
 public class Duke {
+
     public static void main(String[] args) throws IOException, DukeException {
         run();
     }
@@ -16,12 +19,14 @@ public class Duke {
         ui.showWelcomeMessage();
         try {
             textFile.readFile(taskList);
-        } catch (DukeExceptionFileInput a) {
-            ui.showInputError();
+        } catch (FileNotFoundException a) {
+            textFile.saveFile(taskList.getList());
+        } catch (DukeExceptionFileInput e) {
+            ui.showFileInputError();
         }
         while (online) {
             try {
-                message = ui.readCommand();
+                message = ui.readCommand().trim();
                 command = new Parser().parseInput(message);
                 switch (command) {
                     case "todo":
@@ -40,6 +45,9 @@ public class Duke {
                             textFile.saveFile(taskList.getList());
                         } catch (StringIndexOutOfBoundsException e) {
                             ui.showDeadlineEmptyError();
+                            break;
+                        } catch (DateTimeParseException e) {
+                            ui.showDateTimeError();
                             break;
                         }
                         ui.showTaskAdded(taskList.displayLatestTask(), taskList.getSize());
@@ -89,8 +97,11 @@ public class Duke {
                         try {
                             ui.showFindResult((taskList.findTask(message)));
                             break;
-                        } catch (DukeExceptionEmptyList | DukeExceptionFindNoResult e){
+                        } catch (DukeExceptionEmptyList e) {
                             ui.showListEmptyError();
+                            break;
+                        } catch (DukeExceptionFindNoResult e) {
+                            ui.showFindNoResult();
                             break;
                         }
                     case "bye":
@@ -102,6 +113,8 @@ public class Duke {
                 }
             } catch (IOException e) {
                 ui.showFileError();
+            } catch (DukeException e) {
+                ui.showUnknownInputError();
             }
         }
         textFile.saveFile(taskList.getList());
