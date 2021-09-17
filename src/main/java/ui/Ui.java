@@ -132,4 +132,8 @@ public class Ui {
                 System.out.println("");
         }
     }
+
+    public static void printFindMessage() {
+        System.out.println("     Here are the matching tasks in your list:");
+    }
 }

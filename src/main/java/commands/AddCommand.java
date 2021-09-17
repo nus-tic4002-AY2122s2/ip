@@ -4,7 +4,6 @@ package commands;
 import exceptions.DukeTaskInputException;
 import storage.Storage;
 import task_classes.*;
-import ui.Output_On_Screen;
 import parser.Parser;
 import ui.Ui;
 
@@ -33,7 +32,7 @@ public class AddCommand extends Command{
         Todo inputTask = new Todo (description);
         list.add(inputTask);
 
-        Output_On_Screen.printTodoAddedOutput(inputTask, list.size());
+        Ui.printTodoAddedOutput(inputTask, list.size());
     }
 
     /**

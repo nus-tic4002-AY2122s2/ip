@@ -3,16 +3,9 @@ package parser;
 
 import commands.*;
 import exceptions.DukeTaskInputException;
-import storage.Storage;
-import task_classes.Task;
-import task_classes.TaskList;
-import task_classes.Todo;
-import ui.Output_On_Screen;
-import ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Vector;
 
 public class Parser {
 
@@ -208,6 +201,8 @@ public class Parser {
             case "deadline":
             case "event":
                 return createAddCommand(firstWord, inputWords);
+            case "find":
+                return new FindCommand(inputWords[1]);
         }
 
         throw new DukeTaskInputException("commandCreateError");

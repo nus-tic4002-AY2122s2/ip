@@ -83,6 +83,41 @@ public class TaskList {
         }
     }
 
+    public static void toPrintEntireTaskList(Vector<Task> taskList){
+        if(taskList.isEmpty()){
+            System.out.println("     Here is no task in your list.");
+            return;
+        }
+
+        System.out.println("     Here are the task(s) in your list:");
+
+        for(int i=0; i < taskList.size(); i++){
+            int j = i + 1;
+            Task task = taskList.get(i);
+
+            System.out.print("     " + j + "." +
+                    "[" + task.getType() + "]" +
+                    "[" + task.getStatusIcon() + "] " + task.getDescription());
+
+            String taskType = task.getType();
+
+            switch(taskType){
+                case "E":
+                    String eventDateTime = task.getAt();
+                    System.out.println(" (at: " + eventDateTime + ")");
+
+                    break;
+                case "D":
+                    String deadlineDateTime = task.getBy();
+                    System.out.println(" (by: " + deadlineDateTime + ")");
+
+                    break;
+                default:
+                    System.out.println("");
+            }
+        }
+    }
+
     public int size() {
         if(list.isEmpty()){
             return 0;
