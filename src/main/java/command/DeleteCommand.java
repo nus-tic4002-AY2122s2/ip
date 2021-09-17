@@ -4,6 +4,7 @@ import exception.DukeException;
 import basic.TaskList;
 import basic.Ui;
 import task.Task;
+import basic.Storage;
 
 /**
  * Deletes a task identified using it's index from the task list.
@@ -19,9 +20,10 @@ public class DeleteCommand extends Command {
     /**
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
+     * @param storage The storage to allow reading and storing of tasks from and to a txt file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         input = input.toLowerCase();
         int num = 0;
         if (input.matches(".*\\d.*"))

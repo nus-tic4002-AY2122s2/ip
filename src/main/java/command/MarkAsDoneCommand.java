@@ -3,6 +3,7 @@ package command;
 import exception.DukeException;
 import basic.TaskList;
 import basic.Ui;
+import basic.Storage;
 
 /**
  * Marks a task identified using it's index as done.
@@ -18,9 +19,10 @@ public class MarkAsDoneCommand extends Command {
     /**
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
+     * @param storage The storage to allow reading and storing of tasks from and to a txt file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String editedInput = input.toLowerCase().replace("done ", "");
         assert editedInput.replaceAll("[\\D]", "").equals(editedInput) : "wrong format key in numeric number instead";
         int num = 0;

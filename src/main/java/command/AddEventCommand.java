@@ -4,6 +4,7 @@ import exception.EmptyException;
 import basic.TaskList;
 import basic.Ui;
 import task.Event;
+import basic.Storage;
 
 /**
  * Adds an event task to the task list.
@@ -21,10 +22,11 @@ public class AddEventCommand extends Command {
     /**
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
+     * @param storage The storage to allow reading and storing of tasks from and to a txt file.
      * @throws EmptyException If an empty description is inputted.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws EmptyException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws EmptyException {
         int position;
         input = input.toLowerCase();
 
