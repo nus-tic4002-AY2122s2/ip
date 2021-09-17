@@ -27,7 +27,7 @@ public class Parser {
 
         /* If the input is to add todo task, then the length of the array must greater then 1 or there is no description */
         if(inputWords.length < 2){
-            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+            throw new DukeTaskInputException("descriptionMissing");
         }
 
         switch (inputWords[0]) {
@@ -39,10 +39,10 @@ public class Parser {
                 for (int n = inputWords.length - 1; n > 0; n--) {
                     if (inputWords[n].equals("/by")) {
                         if (n == 1) {
-                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                            throw new DukeTaskInputException("descriptionMissing");
                         }
                         if (n == inputWords.length - 1) {
-                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                            throw new DukeTaskInputException("dateTime");
                         }
 
                         bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
@@ -55,10 +55,10 @@ public class Parser {
                 for (int n = inputWords.length - 1; n > 0; n--) {
                     if (inputWords[n].equals("/at")) {
                         if (n == 1) {
-                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                            throw new DukeTaskInputException("descriptionMissing");
                         }
                         if (n == inputWords.length - 1) {
-                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                            throw new DukeTaskInputException("dateTime");
                         }
 
                         bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
@@ -69,7 +69,7 @@ public class Parser {
                 break;
         }
 
-        throw new DukeTaskInputException(inputWords[0], "dateTime");
+        throw new DukeTaskInputException("dateTime");
     }
 
     /**
@@ -83,7 +83,7 @@ public class Parser {
 
         /* If the input is to add todo task, then the length of the array must greater then 1 or there is no description */
         if(inputWords.length == 2){
-            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+            throw new DukeTaskInputException("criptionMissing");
         }
 
         switch (inputWords[0]) {
@@ -95,10 +95,10 @@ public class Parser {
                 for (int n = inputWords.length - 1; n > 0; n--) {
                     if (inputWords[n].equals("/by")) {
                         if (n == 1) {
-                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                            throw new DukeTaskInputException("descriptionMissing");
                         }
                         if (n == inputWords.length - 1) {
-                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                            throw new DukeTaskInputException("dateTime");
                         }
 
                         bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
@@ -111,10 +111,10 @@ public class Parser {
                 for (int n = inputWords.length - 1; n > 0; n--) {
                     if (inputWords[n].equals("/at")) {
                         if (n == 1) {
-                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                            throw new DukeTaskInputException("descriptionMissing");
                         }
                         if (n == inputWords.length - 1) {
-                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                            throw new DukeTaskInputException("dateTime");
                         }
 
                         bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
@@ -125,7 +125,7 @@ public class Parser {
                 break;
         }
 
-        throw new DukeTaskInputException(inputWords[0], "dateTime");
+        throw new DukeTaskInputException("dateTime");
     }
 
     /**
@@ -227,4 +227,8 @@ public class Parser {
     private static AddCommand createAddCommand(String firstWord, String[] inputWords) throws DukeTaskInputException {
         return new AddCommand(firstWord, inputWords);
     }
+
+//    public static String parseDateFormat(){
+//
+//    }
 }

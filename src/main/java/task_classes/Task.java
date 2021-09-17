@@ -1,11 +1,20 @@
 package task_classes;
 
+import dateTime.DateTime;
+
 public abstract class Task {
     String description;
     boolean isDone;
     String type;
+
+    //For deadline task;
     String by;
+    DateTime deadlineTime;
+
+    //For event task;s
     String at;
+    DateTime startingTime;
+    DateTime endingTime;
 
     Task(String description){
         this.description = description;

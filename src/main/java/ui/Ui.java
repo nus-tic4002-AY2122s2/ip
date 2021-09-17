@@ -1,12 +1,12 @@
 package ui;
 
+import parser.Parser;
 import task_classes.Deadline;
 import task_classes.Event;
 import task_classes.Task;
 import task_classes.Todo;
 
 import java.util.Scanner;
-import java.util.Vector;
 
 public class Ui {
 
@@ -106,8 +106,7 @@ public class Ui {
     /**
      * Output after mark particular task status as done
      *
-     * @param list The entire Task List
-     * @param n is the Task Sequence number in the Task List
+     * @param task The Task which marked as done
      */
     public static void printMarkAsDoneOutput(Task task){
 
@@ -132,4 +131,25 @@ public class Ui {
                 System.out.println("");
         }
     }
+
+//    public static void printDateTimeFormatSuggestion() {
+//        String dateType;
+//
+//        System.out.println("     Please choose the Date format:");
+//        System.out.println("       1. MMM D YYY\n" +
+//                "       2. Day of Month Year");
+//
+//        Scanner date_choice = new Scanner(System.in);
+//        dateType = date_choice.nextLine();
+//
+//        if(!dateType.equals("1") && !dateType.equals("2")){
+//            Ui.toPrintSeparateLine();
+//            System.out.println("     The Date choice you choose is invalid. Please try again.");
+//            Ui.toPrintSeparateLine();
+//            return Ui.printDateTimeFormatSuggestion();
+//        }
+//        else {
+//            return dateType;
+//        }
+//    }
 }
