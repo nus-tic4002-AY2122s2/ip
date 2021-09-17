@@ -85,6 +85,14 @@ public class Duke {
                             ui.showInvalidTaskNumberError();
                             break;
                         }
+                    case "find":
+                        try {
+                            ui.showFindResult((taskList.findTask(message)));
+                            break;
+                        } catch (DukeExceptionEmptyList | DukeExceptionFindNoResult e){
+                            ui.showListEmptyError();
+                            break;
+                        }
                     case "bye":
                         online = false;
                         ui.showOffline();
