@@ -23,6 +23,10 @@ public class Todo extends Task{
         super(description,isDone,finishTime);
     }
 
+    @Override
+    public String getTaskType(){
+        return TASK_TYPE;
+    }
 
     @Override
     public boolean equals(Object obj) {

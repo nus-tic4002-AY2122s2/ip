@@ -39,6 +39,11 @@ public class Deadline extends Task{
     }
 
     @Override
+    public String getTaskType(){
+        return TASK_TYPE;
+    }
+
+    @Override
     public boolean equals(Object obj) {
 
         if (! super.equals(obj)) return false;
