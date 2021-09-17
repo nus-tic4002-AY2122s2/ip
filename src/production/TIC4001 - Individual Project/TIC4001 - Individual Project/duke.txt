@@ -1,1 +1,3 @@
 T| 0 | 2 
+T| 0 | homework 
+E| 0 | to meet | home
