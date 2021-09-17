@@ -30,6 +30,10 @@ public class Storage {
         path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
     }
 
+    public Storage (String filePath) {
+        path = Paths.get(filePath);
+    }
+
     /**
      * To add all the Task which in String type in the list into txt file as local storage
      *
@@ -98,7 +102,7 @@ public class Storage {
         toSaveTaskListToLocal(List);
     }
 
-    public static Vector<Task> extractTaskFromTxt() throws DukeStorageError, IOException {
+    public static Vector<Task> load() throws DukeStorageError, IOException {
         Vector<String> extractedTaskInfo = extractTaskInfoFromTxt();
         Vector<Task> list = new Vector<>();
 
@@ -111,7 +115,7 @@ public class Storage {
         return list;
     }
 
-    private static Vector<String> extractTaskInfoFromTxt() throws IOException {
+    private static Vector<String> extractTaskInfoFromTxt() throws IOException, DukeStorageError {
 
         if(!fileDoExist()){
             if(!dirDoExist()){
@@ -119,6 +123,8 @@ public class Storage {
             }
 
             Files.createFile(path);
+
+            throw new DukeStorageError();
         }
 
         Vector<String> extractedInfo = new Vector<>();

@@ -2,26 +2,35 @@ package commands;
 
 
 import exceptions.DukeTaskInputException;
-import screen_output.Output_On_Screen;
-import task_classes.Deadline;
-import task_classes.Todo;
-import task_classes.Task;
-import task_classes.Event;
-import user_input.Parser;
+import storage.Storage;
+import task_classes.*;
+import ui.Output_On_Screen;
+import parser.Parser;
+import ui.Ui;
 
 import java.util.Vector;
 
-public class AddCommand {
+public class AddCommand extends Command{
+
+    private String type;
+    private String[] inputWords;
+    private String description;
+
+    public AddCommand(String type, String[] inputWords) throws DukeTaskInputException {
+        this.type = type;
+        this.inputWords = inputWords;
+        this.description = Parser.toExtractDescription(inputWords);
+    }
 
     /**
      * To add Todo type task to the task list
      * The output (message print onto screen) will be included in this method
      *
      * @param list the entire task list
-     * @param input the description of the todo task
      */
-    public static void addTodoTask(Vector<Task> list, String input){
-        Todo inputTask = new Todo (input);
+    private void addTodoTask(Vector<Task> list){
+
+        Todo inputTask = new Todo (description);
         list.add(inputTask);
 
         Output_On_Screen.printTodoAddedOutput(inputTask, list.size());
@@ -32,11 +41,8 @@ public class AddCommand {
      * The output (message print onto screen) will be included in this method after task added
      *
      * @param list the entire task list
-     * @param inputWords the string array of the user input
      */
-    public static void addDeadlineTask (Vector<Task> list, String[] inputWords) throws DukeTaskInputException {
-
-        String description = Parser.toExtractDescription(inputWords);
+    private void addDeadlineTask (Vector<Task> list) throws DukeTaskInputException {
 
         String date = Parser.toExtractDate(inputWords);
 
@@ -52,11 +58,9 @@ public class AddCommand {
      * The output (message print onto screen) will be included in this method after task added
      *
      * @param list the entire task list
-     * @param inputWords the string array of the user input
      */
-    public static void addEventTask (Vector<Task> list, String[] inputWords) throws DukeTaskInputException {
+    private void addEventTask (Vector<Task> list) throws DukeTaskInputException {
 
-        String description = Parser.toExtractDescription(inputWords);
         String date = Parser.toExtractDate(inputWords);
 
         Event newTask = new Event(description, date);
@@ -64,5 +68,27 @@ public class AddCommand {
         list.add(newTask);
 
         Output_On_Screen.printEventAddedOutput(newTask, list.size());
+    }
+
+    @Override
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
+        Vector<Task> list = taskList.getVectorList();
+
+        switch (type) {
+            case "todo":
+                addTodoTask(list);
+                break;
+            case "deadline":
+                addDeadlineTask(list);
+                break;
+            case "event":
+                addEventTask(list);
+                break;
+        }
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }

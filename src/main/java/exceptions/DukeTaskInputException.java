@@ -1,6 +1,6 @@
 package exceptions;
 
-import screen_output.Output_On_Screen;
+import ui.Output_On_Screen;
 
 public class DukeTaskInputException extends Exception {
 
@@ -94,14 +94,6 @@ public class DukeTaskInputException extends Exception {
     }
 
     /**
-     * To print the error message if user try to reach any task in empty task list
-     */
-    public static void listIsEmtpy(){
-        System.out.println("     ☹ OOPS!!! The Task List is empty.");
-        Output_On_Screen.toPrintSeparateLine();
-    }
-
-    /**
      * To print the error message if the first word of user input is not in the detection list:
      */
     public static void invalidFirstWordInput(){
@@ -117,5 +109,20 @@ public class DukeTaskInputException extends Exception {
         Output_On_Screen.toPrintSeparateLine();
         System.out.println("     \u2639 OOPS!!! The input format wrong, please try again. :-(");
         Output_On_Screen.toPrintSeparateLine();
+    }
+
+
+
+
+
+    /**
+     * To print the error message if user try to reach any task in empty task list
+     */
+    public static void toPrintListIsEmtpyError(){
+        System.out.println("     ☹ OOPS!!! The Task List is empty.");
+    }
+
+    public static void toPrintCommandCreateError() {
+        System.out.println("     ☹ OOPS!!! The Command you just input was in wrong format.");
     }
 }

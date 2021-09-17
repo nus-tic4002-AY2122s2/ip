@@ -1,8 +1,14 @@
-package user_input;
+package parser;
 
 
+import commands.*;
 import exceptions.DukeTaskInputException;
+import storage.Storage;
 import task_classes.Task;
+import task_classes.TaskList;
+import task_classes.Todo;
+import ui.Output_On_Screen;
+import ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,40 +30,43 @@ public class Parser {
             throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
         }
 
-        if(inputWords[0].equals("todo")){
-            bufferA.addAll(Arrays.asList(inputWords).subList(1, inputWords.length));
+        switch (inputWords[0]) {
+            case "todo":
+                bufferA.addAll(Arrays.asList(inputWords).subList(1, inputWords.length));
 
-            return convertStringArrayToString(bufferA);
-        }else if (inputWords[0].equals("deadline")){
-            for(int n = inputWords.length - 1; n > 0; n--) {
-                if (inputWords[n].equals("/by")) {
-                    if(n == 1){
-                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                return convertStringArrayToString(bufferA);
+            case "deadline":
+                for (int n = inputWords.length - 1; n > 0; n--) {
+                    if (inputWords[n].equals("/by")) {
+                        if (n == 1) {
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                        }
+                        if (n == inputWords.length - 1) {
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                        }
+
+                        bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
+
+                        return convertStringArrayToString(bufferA);
                     }
-                    if (n == inputWords.length - 1) {
-                        throw new DukeTaskInputException(inputWords[0], "dateTime");
-                    }
-
-                    bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
-
-                    return convertStringArrayToString(bufferA);
                 }
-            }
-        } else if (inputWords[0].equals("event")){
-            for(int n = inputWords.length - 1; n > 0; n--) {
-                if (inputWords[n].equals("/at")) {
-                    if(n == 1){
-                        throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
-                    }
-                    if (n == inputWords.length - 1) {
-                        throw new DukeTaskInputException(inputWords[0], "dateTime");
-                    }
+                break;
+            case "event":
+                for (int n = inputWords.length - 1; n > 0; n--) {
+                    if (inputWords[n].equals("/at")) {
+                        if (n == 1) {
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
+                        }
+                        if (n == inputWords.length - 1) {
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
+                        }
 
-                    bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
+                        bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
 
-                    return convertStringArrayToString(bufferA);
+                        return convertStringArrayToString(bufferA);
+                    }
                 }
-            }
+                break;
         }
 
         throw new DukeTaskInputException(inputWords[0], "dateTime");
@@ -139,7 +148,7 @@ public class Parser {
      * @param Input_Words The customer input which used to check length;
      * @throws DukeTaskInputException The error which the input is not correct.
      */
-    static void Input_Length_Checking(String First_Word, String[] Input_Words) throws DukeTaskInputException {
+    private static void Input_Length_Checking(String First_Word, String[] Input_Words) throws DukeTaskInputException {
         if(!First_Word.equals("list") &&
                 !First_Word.equals("bye") &&
                 !First_Word.equals("help") &&
@@ -160,26 +169,59 @@ public class Parser {
      * The method to extract task index from the user input for done and delete input
      *
      * @param inputWords user input int String[] type
-     * @param taskList entire task list
      * @return task index
      * @throws DukeTaskInputException all error handler
      */
-    public static int toExtractNumberForDoneAndDelete(String[] inputWords, Vector<Task> taskList) throws DukeTaskInputException {
+    private static int toExtractNumberForDoneAndDelete(String[] inputWords) throws DukeTaskInputException {
         if(inputWords.length == 2 && inputWords[1].matches("\\d+")){ // to check whether the char is integer
             int taskIndex;
 
             taskIndex = Integer.parseInt(inputWords[1]);
-
-            int listSize = taskList.size();
-
-            if(taskIndex > listSize || taskIndex <= 0){
-                throw new DukeTaskInputException("taskIndexOutOfRange");
-            }
 
             return taskIndex;
         }
         else {
             throw new DukeTaskInputException("formatWrong");
         }
+    }
+
+    public static Command parse(String fullCommand) throws DukeTaskInputException {
+
+        String[] inputWords = fullCommand.split(" ");
+        String firstWord = inputWords[0].toLowerCase();
+
+        Parser.Input_Length_Checking(firstWord, inputWords);
+
+        switch (firstWord) {
+            case "bye":
+                return new ExitCommand();
+            case "delete":
+                return createDeleteCommand(inputWords);
+            case "done":
+                return createMarkAsDoneCommand(inputWords);
+            case "list":
+                return new ListCommand();
+            case "todo":
+            case "deadline":
+            case "event":
+                return createAddCommand(firstWord, inputWords);
+        }
+
+        throw new DukeTaskInputException("commandCreateError");
+    }
+
+    private static DeleteCommand createDeleteCommand(String[] inputWords) throws DukeTaskInputException {
+        int taskIndex = toExtractNumberForDoneAndDelete(inputWords);
+        return new DeleteCommand(taskIndex);
+    }
+
+    private static MarkAsDoneCommand createMarkAsDoneCommand(String[] inputWords) throws DukeTaskInputException {
+        int taskIndex = toExtractNumberForDoneAndDelete(inputWords);
+
+        return new MarkAsDoneCommand(taskIndex);
+    }
+
+    private static AddCommand createAddCommand(String firstWord, String[] inputWords) throws DukeTaskInputException {
+        return new AddCommand(firstWord, inputWords);
     }
 }

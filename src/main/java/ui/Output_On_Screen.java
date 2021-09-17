@@ -1,4 +1,4 @@
-package screen_output;
+package ui;
 
 
 import task_classes.Deadline;
@@ -8,25 +8,7 @@ import task_classes.Todo;
 
 import java.util.Vector;
 
-public class Output_On_Screen {
-
-    /**
-     * The greeting with some instruction
-     */
-    public static void greetingOutput() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
-        Output_On_Screen.toPrintSeparateLine();
-        System.out.println("     Hello! I'm Duke");
-        System.out.println("     What can I do for you?");
-        Output_On_Screen.toPrintSeparateLine();
-        System.out.println("");
-    }
+public class Output_On_Screen extends Ui{
 
     /**
      * Print out Separated_Line onto screen
@@ -172,70 +154,5 @@ public class Output_On_Screen {
         System.out.println("");
     }
 
-    /**
-     * To print message after user deleted a deadline task successfully
-     *
-     * @param List the overall task list
-     * @param deletedTask the task be deleted by user
-     */
-    public static void printDeletedDeadline(Vector<Task> List, Task deletedTask){
 
-        String taskDescription = deletedTask.getDescription();
-        String taskType = deletedTask.getType();
-        String taskStatus = deletedTask.getStatusIcon();
-        String dateTime = deletedTask.getBy();
-
-        int taskQuantity = List.size();
-
-        System.out.println("     Noted. I've removed this task:");
-        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(by: " + dateTime + ")");
-        System.out.println("     Now you have " + taskQuantity + " task(s) in the list.");
-
-        toPrintSeparateLine();
-        System.out.println("");
-    }
-
-    /**
-     * To print message after user deleted a event task successfully
-     *
-     * @param List the list which store all the task
-     * @param deletedTask the deleted task by user
-     */
-    public static void printDeletedEvent(Vector<Task> List, Task deletedTask){
-
-        String taskDescription = deletedTask.getDescription();
-        String taskType = deletedTask.getType();
-        String taskStatus = deletedTask.getStatusIcon();
-        String dateTime = deletedTask.getAt();
-
-        int taskQuantity = List.size();
-
-        System.out.println("     Noted. I've removed this task:");
-        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(at: " + dateTime + ")");
-        System.out.println("     Now you have " + taskQuantity + " task(s) in the list.");
-
-        toPrintSeparateLine();
-        System.out.println("");
-    }
-
-    /**
-     * To print message after user deleted a todo task successfully
-     * @param List the list which store all the task
-     * @param deletedTask the deleted task by user
-     */
-    public static void printDeletedTodo(Vector<Task> List, Task deletedTask){
-
-        String taskDescription = deletedTask.getDescription();
-        String taskType = deletedTask.getType();
-        String taskStatus = deletedTask.getStatusIcon();
-
-        int taskQuantity = List.size();
-
-        System.out.println("     Noted. I've removed this task:");
-        System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription);
-        System.out.println("     Now you have " + taskQuantity + " task(s) in the list.");
-
-        toPrintSeparateLine();
-        System.out.println("");
-    }
 }
