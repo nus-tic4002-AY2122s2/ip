@@ -19,7 +19,6 @@ public class CommandFactory implements Iterable {
         config();
     }
 
-    // add new keyword - command pair to the Map
     private void config() {
         add("todo", new TodoCreationCmd(list));
         add("event", new EventCreationCmd(list));

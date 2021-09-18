@@ -15,9 +15,9 @@ public class TempList<T> implements Iterable<T>{
         support = new PropertyChangeSupport(this);
     }
 
-    public void add(T task) {
+    public void add(T element) {
         var oldlist = list.clone();
-        list.add(task);
+        list.add(element);
         support.firePropertyChange("list", oldlist, list);
     }
 
