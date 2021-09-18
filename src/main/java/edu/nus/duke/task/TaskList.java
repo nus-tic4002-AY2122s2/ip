@@ -68,13 +68,22 @@ public class TaskList {
     }
 
     public void doneTask(int idx) {
-        tasks.get(idx).setDone();
-        Ui.printMessage("done: " + tasks.get(idx).getTask());
+        try {
+            tasks.get(idx).setDone();
+            Ui.printMessage("done: " + tasks.get(idx).getTask());
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printMessage("Invalid/missing index");
+        }
     }
 
     public void deleteTask(int idx) {
-        String task = tasks.get(idx).getTask();
-        tasks.remove(idx);
-        Ui.printMessage("deleted: " + task);
+        try {
+            String task = tasks.get(idx).getTask();
+            tasks.remove(idx);
+            Ui.printMessage("deleted: " + task);
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printMessage("Invalid/missing index");
+        }
+
     }
 }
