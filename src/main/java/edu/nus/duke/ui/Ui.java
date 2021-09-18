@@ -7,11 +7,11 @@ public class Ui {
     }
 
     // Methods
-    public void printMessage(String message) {
+    public static void printMessage(String message) {
         printMessage(message, true);
     }
 
-    public void printMessage(String message, Boolean isSepLine) {
+    public static void printMessage(String message, Boolean isSepLine) {
         System.out.println(message);
         if (isSepLine) {
             System.out.println("____________________________________________________________");
