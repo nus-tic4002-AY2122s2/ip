@@ -4,10 +4,26 @@ import ui.Ui;
 
 public class DukeTaskInputException extends Exception {
 
+    private static String firstWord;
     private static String errorType;
+
+    public DukeTaskInputException(String firstWordInput, String errorTypeInput){
+
+        firstWord = firstWordInput;
+        errorType = errorTypeInput;
+    }
 
     public DukeTaskInputException(String errorTypeInput){
         errorType = errorTypeInput;
+    }
+
+    /**
+     * To get the first word
+     *
+     * @return the first word
+     */
+    public static String getFirstWord() {
+        return firstWord;
     }
 
     /**

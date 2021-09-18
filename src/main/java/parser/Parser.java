@@ -2,10 +2,8 @@ package parser;
 
 
 import commands.*;
-import exceptions.DukeDateTimeError;
 import exceptions.DukeTaskInputException;
 
-import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,7 +20,7 @@ public class Parser {
 
         /* If the input is to add todo task, then the length of the array must greater then 1 or there is no description */
         if(inputWords.length < 2){
-            throw new DukeTaskInputException("descriptionMissing");
+            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
         }
 
         switch (inputWords[0]) {
@@ -34,10 +32,10 @@ public class Parser {
                 for (int n = inputWords.length - 1; n > 0; n--) {
                     if (inputWords[n].equals("/by")) {
                         if (n == 1) {
-                            throw new DukeTaskInputException("descriptionMissing");
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
                         }
                         if (n == inputWords.length - 1) {
-                            throw new DukeTaskInputException("dateTime");
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
                         }
 
                         bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
@@ -50,10 +48,10 @@ public class Parser {
                 for (int n = inputWords.length - 1; n > 0; n--) {
                     if (inputWords[n].equals("/at")) {
                         if (n == 1) {
-                            throw new DukeTaskInputException("descriptionMissing");
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
                         }
                         if (n == inputWords.length - 1) {
-                            throw new DukeTaskInputException("dateTime");
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
                         }
 
                         bufferA.addAll(Arrays.asList(inputWords).subList(1, n));
@@ -64,7 +62,7 @@ public class Parser {
                 break;
         }
 
-        throw new DukeTaskInputException("dateTime");
+        throw new DukeTaskInputException(inputWords[0], "dateTime");
     }
 
     /**
@@ -78,7 +76,7 @@ public class Parser {
 
         /* If the input is to add todo task, then the length of the array must greater then 1 or there is no description */
         if(inputWords.length == 2){
-            throw new DukeTaskInputException("descriptionMissing");
+            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
         }
 
         switch (inputWords[0]) {
@@ -90,10 +88,10 @@ public class Parser {
                 for (int n = inputWords.length - 1; n > 0; n--) {
                     if (inputWords[n].equals("/by")) {
                         if (n == 1) {
-                            throw new DukeTaskInputException("descriptionMissing");
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
                         }
                         if (n == inputWords.length - 1) {
-                            throw new DukeTaskInputException("dateTime");
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
                         }
 
                         bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
@@ -106,10 +104,10 @@ public class Parser {
                 for (int n = inputWords.length - 1; n > 0; n--) {
                     if (inputWords[n].equals("/at")) {
                         if (n == 1) {
-                            throw new DukeTaskInputException("descriptionMissing");
+                            throw new DukeTaskInputException(inputWords[0], "descriptionMissing");
                         }
                         if (n == inputWords.length - 1) {
-                            throw new DukeTaskInputException("dateTime");
+                            throw new DukeTaskInputException(inputWords[0], "dateTime");
                         }
 
                         bufferA.addAll(Arrays.asList(inputWords).subList(n + 1, inputWords.length));
@@ -120,7 +118,7 @@ public class Parser {
                 break;
         }
 
-        throw new DukeTaskInputException("dateTime");
+        throw new DukeTaskInputException(inputWords[0], "dateTime");
     }
 
     /**
@@ -223,48 +221,5 @@ public class Parser {
 
     private static AddCommand createAddCommand(String firstWord, String[] inputWords) throws DukeTaskInputException {
         return new AddCommand(firstWord, inputWords);
-    }
-
-    public static String extractStartingDateTime(String input) throws DukeDateTimeError {
-        String[] words = input.split(" ");
-        ArrayList<String> buffer = new ArrayList<String>();
-
-        for(int n = words.length - 1; n > 0; n--) {
-
-            if(words[n].equals("->")){
-
-                if (n == 1 ) {
-                    throw new DukeDateTimeError("dateFormatWrong");
-                }
-
-                buffer.addAll(Arrays.asList(words).subList(0, n));
-                return convertStringArrayToString(buffer);
-            }
-        }
-
-        throw new DateTimeException("dateFormatWrong");
-    }
-
-    public static String extractEndingDateTime(String input) throws DukeDateTimeError {
-        String[] words = input.split(" ");
-
-        ArrayList<String> buffer = new ArrayList<String>();
-
-        for (int n = words.length - 1; n > 0; n--) {
-            if (words[n].equals("->")) {
-                if (n == 1) {
-                    throw new DukeDateTimeError("dateFormatWrong");
-                }
-                if (n == words.length - 1) {
-                    throw new DateTimeException("dateFormatWrong");
-                }
-
-                buffer.addAll(Arrays.asList(words).subList(n + 1, words.length));
-
-                return convertStringArrayToString(buffer);
-            }
-        }
-
-            throw new DateTimeException("dateFormatWrong");
     }
 }

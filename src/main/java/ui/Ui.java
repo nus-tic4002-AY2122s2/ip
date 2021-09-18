@@ -6,6 +6,7 @@ import task_classes.Task;
 import task_classes.Todo;
 
 import java.util.Scanner;
+import java.util.Vector;
 
 public class Ui {
 
@@ -77,7 +78,7 @@ public class Ui {
         System.out.println("     Got it. I've added this task:");
         System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
 
-        System.out.println(" (by: " + newTask.getDeadlineDateTimeString() + ")");
+        System.out.println(" (by: " + newTask.getBy() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
     }
 
@@ -91,7 +92,7 @@ public class Ui {
         System.out.println("     Got it. I've added this task:");
         System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
 
-        System.out.println(" (by: " + newTask.getStartingDateTime() + ")");
+        System.out.println(" (by: " + newTask.getAt() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
     }
 
@@ -117,12 +118,12 @@ public class Ui {
 
         switch (taskType){
             case "E":
-                String eventDateTime = task.getStartingDateTime();
+                String eventDateTime = task.getAt();
                 System.out.println(" (at: " + eventDateTime + ")");
 
                 break;
             case "D":
-                String deadlineDateTime = task.getDeadlineDateTimeString();
+                String deadlineDateTime = task.getBy();
                 System.out.println(" (by: " + deadlineDateTime + ")");
 
                 break;
@@ -130,6 +131,7 @@ public class Ui {
                 System.out.println("");
         }
     }
+
     public static void printFindMessage() {
         System.out.println("     Here are the matching tasks in your list:");
     }

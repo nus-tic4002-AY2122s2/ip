@@ -1,7 +1,6 @@
 import java.io.IOException;
 
 import commands.Command;
-import exceptions.DukeDateTimeError;
 import exceptions.DukeStorageError;
 import exceptions.DukeTaskInputException;
 import parser.Parser;
@@ -15,7 +14,7 @@ public class Duke {
     private Ui ui;
     private Storage storage;
 
-    public Duke (String filePath) throws IOException {
+    public Duke (String filePath) throws IOException, DukeStorageError {
         ui = new Ui();
         storage = new Storage (filePath);
 
@@ -37,7 +36,7 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 c.execute(taskList, ui, storage);
                 isExit = c.isExit();
-            } catch (DukeTaskInputException | DukeDateTimeError e) {
+            } catch (DukeTaskInputException e) {
                 String errorType = DukeTaskInputException.getErrorType();
 
                 switch (errorType) {
@@ -63,8 +62,7 @@ public class Duke {
     }
 
 
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, DukeStorageError {
         new Duke("data/dukeTasks.txt").run();
     }
 }
