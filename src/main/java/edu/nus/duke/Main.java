@@ -22,14 +22,13 @@ public class Main {
     private final String CMD_TODO = "todo";
     private final String CMD_DEADLINE = "deadline";
     private final String CMD_EVENT = "event";
-    private Ui ui;
     private TaskList taskList;
 
     // Constructor
     public Main() {
-        ui = new Ui();
         taskList = new TaskList();
 
+        Ui.printMessage("Hello! I'm Jarvis\nWhat can I do for you?");
         try {
             initApp();
         } catch (FileNotFoundException e) {
