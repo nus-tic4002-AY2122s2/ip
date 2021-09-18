@@ -12,4 +12,9 @@ public class Ui {
             System.out.println("____________________________________________________________");
         }
     }
+
+    public static void printMessage_Exit(String message) {
+        printMessage(message);
+        System.exit(1);
+    }
 }
