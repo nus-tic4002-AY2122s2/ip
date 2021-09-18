@@ -13,9 +13,8 @@ public class CommandFactory implements Iterable {
     private TempTaskList list;
     private File file;
 
-    public CommandFactory(TempTaskList list, File file) {
+    public CommandFactory(TempTaskList list) {
         this.list = list;
-        this.file = file;
 
         config();
     }

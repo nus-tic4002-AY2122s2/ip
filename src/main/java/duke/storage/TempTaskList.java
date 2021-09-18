@@ -2,6 +2,8 @@ package duke.storage;
 import duke.ui.Message;
 import duke.task.Task;
 
+import java.beans.PropertyChangeSupport;
+
 /**
  * Inherent from generic TempList class,
  * TempTaskList constrains that it only stores Task type items in the list
@@ -37,5 +39,10 @@ public class TempTaskList extends TempList<Task> {
         Message.tellTaskNum(numTask, numDoneTask);
     }
 
+    public void markDoneAt(int index) {
+        var oldlist = list.clone();
+        list.get(index).markDone();
+        support.firePropertyChange("list", oldlist, list);
+    }
 
 }

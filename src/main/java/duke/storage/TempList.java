@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class TempList<T> implements Iterable<T>{
     protected ArrayList<T> list;
-    private PropertyChangeSupport support;
+    protected PropertyChangeSupport support;
 
     public TempList() {
         list = new ArrayList<T>();
@@ -21,14 +21,17 @@ public class TempList<T> implements Iterable<T>{
         support.firePropertyChange("list", oldlist, list);
     }
 
+    public void removeAt(int index) {
+        var oldlist = list.clone();
+        list.remove(index);
+        support.firePropertyChange("list", oldlist, list);
+    }
 
     public Stream<T> stream() {
         return list.stream();
     }
-
     public T get(int index) {return list.get(index);}
     public Integer size() {return list.size();}
-    public void removeAt(int index) {list.remove(index);}
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);

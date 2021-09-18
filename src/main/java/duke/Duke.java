@@ -2,13 +2,11 @@ package duke;
 
 import duke.command.CommandCaller;
 import duke.command.CommandFactory;
-import duke.command.TaskMarkDoneCmd;
 import duke.parse.StringParser;
+import duke.storage.Storage;
 import duke.storage.TempTaskList;
-import duke.task.Task;
 import duke.ui.Message;
 
-import java.io.File;
 import java.util.Scanner;
 
 /**
@@ -16,9 +14,9 @@ import java.util.Scanner;
  * @since       2021 Aug
  */
 public class Duke {
-    private TempTaskList list = new TempTaskList();
-    private File file;
-    private CommandFactory commandFactory = new CommandFactory(list, file);
+    private TempTaskList tasks = new TempTaskList();
+    private Storage storage = new Storage();
+    private CommandFactory commandFactory = new CommandFactory(tasks);
     private StringParser strParser = new StringParser();
     private CommandCaller commandCaller = new CommandCaller(commandFactory);
     /*
@@ -30,8 +28,10 @@ public class Duke {
 
     public Duke() {
         Message messager = new Message();
-        list.addPropertyChangeListener(messager);
+        tasks.addPropertyChangeListener(messager);
+        tasks.addPropertyChangeListener(storage);
         strParser.addPropertyChangeListener(commandCaller);
+        storage.listInit(tasks);
     }
 
     public static void main(String[] args)  {
@@ -47,7 +47,7 @@ public class Duke {
             case "bye":
                 return;
             case "list":
-                list.print();
+                tasks.print();
                 break;
             default:
                 strParser.passToCaller(userInput);

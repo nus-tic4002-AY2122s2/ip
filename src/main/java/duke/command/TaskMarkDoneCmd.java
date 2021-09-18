@@ -21,8 +21,8 @@ public class TaskMarkDoneCmd implements UndoableCommand {
        // list.stream().filter(e -> e)
         for (String arg : args) {
             try {
-                task = (Task) list.get(Integer.parseInt(arg) - 1);
-                task.markDone();
+                int index = Integer.parseInt(arg) - 1;
+                list.markDoneAt(index);
             } catch (Exception e) {
                 Message.echo(Message.exceptionInvalidArgs());
             }
