@@ -6,6 +6,7 @@ public class Ui {
         printMessage("Hello! I'm Jarvis\nWhat can I do for you?");
     }
 
+    // Methods
     public void printMessage(String message) {
         printMessage(message, true);
     }
