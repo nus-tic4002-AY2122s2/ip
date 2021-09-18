@@ -16,11 +16,11 @@ public class Storage {
     /**
      * An default file path which is "data/duke.txt"
      */
-    private static final String DEFAULT_STORAGE_FILEPATH = "data/duke.txt";
+    private final String DEFAULT_STORAGE_FILEPATH = "data/dukeTasks.txt";
 
-    private static final Path rootPath = Paths.get("").toAbsolutePath();
-    private static final String rootDir = rootPath.normalize().toString();
-    private static Path path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
+    private final Path rootPath = Paths.get("").toAbsolutePath();
+    private final String rootDir = rootPath.normalize().toString();
+    private Path path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
 
 
     /**
@@ -40,7 +40,7 @@ public class Storage {
      * @param List all the task
      * @throws IOException to handle all errors for FileWriter
      */
-    private static void toSaveTaskListToLocal(Vector<Task> List) throws IOException {
+    private void toSaveTaskListToLocal(Vector<Task> List) throws IOException {
 
         if(List.size() == 0){
             return;
@@ -69,7 +69,7 @@ public class Storage {
      * To check whether the default file path is exist
      * @return return boolean whether the default file path is exist
      */
-    private static boolean fileDoExist(){
+    private boolean fileDoExist(){
         return (Files.exists(path));
     }
 
@@ -78,7 +78,7 @@ public class Storage {
      *
      * @return return boolean whether the directory folder path is exist
      */
-    private static boolean dirDoExist() {
+    private boolean dirDoExist() {
         return Files.exists(Paths.get(rootDir + "/data"));
     }
 
@@ -89,7 +89,7 @@ public class Storage {
      * @throws IOException If the FileWrite those kind of function got any error, an error will be thrown to user
      //* @throws EncoderUnknownError If Encoder has any error, an error will be thrown to user
      */
-    public static void transferToFile(Vector<Task> List) throws IOException {
+    public void transferToFile(Vector<Task> List) throws IOException {
 
         if(!fileDoExist()){
             if(!dirDoExist()){
@@ -102,7 +102,7 @@ public class Storage {
         toSaveTaskListToLocal(List);
     }
 
-    public static Vector<Task> load() throws DukeStorageError, IOException {
+    public Vector<Task> load() throws DukeStorageError, IOException {
         Vector<String> extractedTaskInfo = extractTaskInfoFromTxt();
         Vector<Task> list = new Vector<>();
 
@@ -115,7 +115,7 @@ public class Storage {
         return list;
     }
 
-    private static Vector<String> extractTaskInfoFromTxt() throws IOException, DukeStorageError {
+    private Vector<String> extractTaskInfoFromTxt() throws IOException, DukeStorageError {
 
         if(!fileDoExist()){
             if(!dirDoExist()){

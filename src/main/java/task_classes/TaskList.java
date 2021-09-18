@@ -7,17 +7,23 @@ import java.util.Vector;
 
 public class TaskList {
 
-    private static Vector<Task> list;
+    private Vector<Task> list;
+    private Vector<String> testing;
 
     public TaskList (Vector<Task> taskList){
         list = taskList;
+    }
+
+    public TaskList (Vector<String> aaa, String aa) {
+        testing = aaa;
+        list=new Vector<>();
     }
 
     public TaskList () {
         list = new Vector<>();
     }
 
-    public static void deleteTask(int taskIndex) throws DukeTaskInputException {
+    public void deleteTask(int taskIndex) throws DukeTaskInputException {
         if(list.isEmpty()){
             throw new DukeTaskInputException("taskListEmpty");
         }
@@ -25,11 +31,11 @@ public class TaskList {
         list.remove(taskIndex);
     }
 
-    public static void addTask(Task task) {
+    public void addTask(Task task) {
         list.add(task);
     }
 
-    public static String getDateTime (int taskIndex) throws DukeStorageError {
+    public String getDateTime (int taskIndex) throws DukeStorageError {
         Task task = list.get(taskIndex);
 
         String taskType = task.getType();
@@ -48,7 +54,7 @@ public class TaskList {
         return list.get(index);
     }
 
-    public static void toPrintEntireTaskList(){
+    public void toPrintEntireTaskList(){
         if(list.isEmpty()){
             System.out.println("     Here is no task in your list.");
             return;
@@ -91,11 +97,19 @@ public class TaskList {
         return list.size();
     }
 
+    public int sizeS() {
+        return testing.size();
+    }
+
     public boolean isEmpty() {
         return list.isEmpty();
     }
 
-    public static Vector<Task> getVectorList() {
+    public Vector<Task> getVectorList() {
         return list;
+    }
+
+    public Vector<String> getVectorListS() {
+        return testing;
     }
 }

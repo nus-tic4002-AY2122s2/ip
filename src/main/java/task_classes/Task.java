@@ -10,13 +10,17 @@ public abstract class Task {
     //For deadline task;
     DateTimeDuke deadlineTime;
 
-    //For event task;s
+    //For event task;
     DateTimeDuke startingTime;
     DateTimeDuke endingTime;
 
     Task(String description){
         this.description = description;
         this.isDone = false;
+        this.type = null;
+        this.deadlineTime = null;
+        this.startingTime = null;
+        this.endingTime = null;
     }
 
     /**

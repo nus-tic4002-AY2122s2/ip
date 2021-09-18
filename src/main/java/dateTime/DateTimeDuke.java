@@ -15,19 +15,19 @@ import java.time.format.DateTimeFormatter;
 
 public class DateTimeDuke {
 
-    private static LocalDateTime localDateTime;
+    private LocalDateTime localDateTime;
 
     public DateTimeDuke(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         localDateTime = LocalDateTime.parse(date, formatter);
     }
 
-    public static String convertToStringTypeI() {
+    public String convertToStringTypeI() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
         return localDateTime.format(formatter);
     }
 
-    public static String convertToStringTypeII() {
+    public String convertToStringTypeII() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return localDateTime.format(formatter);
     }

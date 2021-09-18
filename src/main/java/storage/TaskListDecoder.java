@@ -19,7 +19,6 @@ class TaskListDecoder {
             decodedTaskList.add(task);
         }
 
-
         return decodedTaskList;
     }
 

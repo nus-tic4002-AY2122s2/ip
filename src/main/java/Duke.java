@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Vector;
 
 import commands.Command;
 import exceptions.DukeDateTimeError;
@@ -64,6 +65,38 @@ public class Duke {
 
 
     public static void main(String[] args) throws IOException, DukeStorageError {
-        new Duke("data/tasks.txt").run();
+        new Duke("data/dukeTasks.txt").run();
+
+        /*Vector<String> v1 = new Vector<>();
+        Vector<String> v2 = new Vector<>();
+        for(int i=0; i<10; i++){
+            v1.add("micheal");
+        }
+
+        for(int i=0; i<5; i++){
+            v2.add("barny");
+        }
+        TaskList t1 = new TaskList(v1, "");
+        TaskList t2 = new TaskList(v2, "");
+
+        int s1 = t1.sizeS();
+        int s2 = t2.sizeS();
+
+        Vector<String> t1List =t1.getVectorListS();
+        Vector<String> t2List = t2.getVectorListS();
+
+        Ui.toPrintSeparateLine();
+
+        for(String str : t1List){
+            System.out.println(str);
+        }
+
+        Ui.toPrintSeparateLine();
+
+        for(String str : t2List){
+            System.out.println(str);
+        }
+
+        Ui.toPrintSeparateLine();*/
     }
 }
