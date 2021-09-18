@@ -27,6 +27,14 @@ public class CommandCaller implements PropertyChangeListener {
         cmd.run(args);
     }
 
+    /**
+     * when the StringParse parse the user input,
+     * evt's new value is a String array where
+     * the first element is the key
+     * the rest is String[] args
+     * run the command if key exists accordingly
+     * @param evt
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         String[] keyArgs = (String[]) evt.getNewValue();

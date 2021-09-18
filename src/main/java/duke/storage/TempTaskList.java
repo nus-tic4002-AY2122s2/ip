@@ -30,6 +30,10 @@ public class TempTaskList extends TempList<Task> {
         return list.size();
     }
 
+    /**
+     * Calling this method to print
+     * [Undone num / total task num]
+     */
     public void tellStats() {
         int numTask = this.count();
         int numDoneTask = 0;

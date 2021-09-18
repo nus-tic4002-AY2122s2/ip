@@ -7,6 +7,12 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 
+/**
+ * This is a data structure holds all commands with their
+ * trigger String word
+ * When new CommandFactory get initiated, config()
+ * will initiate all command object as well
+ */
 public class CommandFactory implements Iterable {
     private HashMap<String, Command> commands = new HashMap<>();
 
@@ -19,6 +25,9 @@ public class CommandFactory implements Iterable {
         config();
     }
 
+    /** add new keyword - command pair to the Map
+     *  use to initiate all command object
+     */
     private void config() {
         add("todo", new TodoCreationCmd(list));
         add("event", new EventCreationCmd(list));

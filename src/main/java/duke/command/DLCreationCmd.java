@@ -8,6 +8,10 @@ import duke.task.Task;
 import duke.task.Deadline;
 import duke.ui.Message;
 
+/**
+ * As a command, run() with arguments to
+ * create a new deadline task
+ */
 public class DLCreationCmd implements UndoableCommand{
     // Task is a Receiver Class in this Command
     private TempTaskList list;

@@ -3,6 +3,9 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline is a Task with duedate by property
+ */
 public class Deadline extends Task {
     private String by;
 

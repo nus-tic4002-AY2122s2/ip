@@ -3,6 +3,9 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event is a Task with datetime at property
+ */
 public class Event extends Task{
     private String at;
     private LocalDateTime till;

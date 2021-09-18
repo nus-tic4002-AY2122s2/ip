@@ -8,6 +8,10 @@ import duke.task.Task;
 import duke.task.Event;
 import duke.ui.Message;
 
+/**
+ * As a command, run() with arguments to
+ * create a new event task
+ */
 public class EventCreationCmd implements UndoableCommand{
     // Task is a Receiver Class in this Command
     private TempTaskList list;
