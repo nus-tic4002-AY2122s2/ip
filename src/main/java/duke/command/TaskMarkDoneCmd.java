@@ -23,6 +23,7 @@ public class TaskMarkDoneCmd implements UndoableCommand {
             try {
                 int index = Integer.parseInt(arg) - 1;
                 list.markDoneAt(index);
+                Message.taskDone(list, index);
             } catch (Exception e) {
                 Message.echo(Message.exceptionInvalidArgs());
             }

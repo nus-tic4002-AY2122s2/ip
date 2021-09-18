@@ -61,15 +61,15 @@ public class StringParser {
 
         switch (parts[0]) {
             case "[T":
-                res = new Todo(parts[2]);
+                res = new Todo(parts[2].strip());
                 break;
             case "[E":
                 args = parts[2].split("/at");
-                res = new Event(args[0], args[1]);
+                res = new Event(args[0].strip(), args[1].strip());
                 break;
             case "[D":
                 args = parts[2].split("/by");
-                res = new Deadline(args[0], args[1]);
+                res = new Deadline(args[0].strip(), args[1].strip());
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + parts[0]);

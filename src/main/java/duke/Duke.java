@@ -27,8 +27,6 @@ public class Duke {
 
 
     public Duke() {
-        Message messager = new Message();
-        tasks.addPropertyChangeListener(messager);
         tasks.addPropertyChangeListener(storage);
         strParser.addPropertyChangeListener(commandCaller);
         storage.listInit(tasks);

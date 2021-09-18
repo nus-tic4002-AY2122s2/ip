@@ -27,6 +27,7 @@ public class TodoCreationCmd implements UndoableCommand{
             }
         } else {
             list.add(new Todo(arg));
+            Message.taskAdd(list);
         }
     }
 

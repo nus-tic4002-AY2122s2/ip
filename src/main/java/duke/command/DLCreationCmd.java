@@ -41,6 +41,7 @@ public class DLCreationCmd implements UndoableCommand{
             }
         } else {
             list.add(new Deadline(parts[0], parts[1]));
+            Message.taskAdd(list);
         }
     }
 

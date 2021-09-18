@@ -22,18 +22,10 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public String getTitle() {return title;}
-    public boolean isDone() {return isDone;}
-    public void markDone() {
-        this.isDone = true;
-        Message.echo("Marked below as DONE:");
-        Message.echo(toString());
-    }
-    public void markUnDone() {
-        this.isDone = false;
-        Message.echo("Marked below as UNDONE:");
-        Message.echo(toString());
-    }
+    public String getTitle() { return title; }
+    public boolean isDone() { return isDone; }
+    public void markDone() { this.isDone = true; }
+    public void markUnDone() { this.isDone = false; }
 
 
     @Override

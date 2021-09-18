@@ -41,6 +41,7 @@ public class EventCreationCmd implements UndoableCommand{
             }
         } else {
             list.add(new Event(parts[0], parts[1]));
+            Message.taskAdd(list);
         }
     }
 

@@ -1,5 +1,6 @@
 package duke.ui;
 
+import duke.storage.TempTaskList;
 import duke.task.Task;
 
 import java.beans.PropertyChangeEvent;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * Message Class offers the one and only place to look for
  * and amend the messages that will print on screen
  */
-public final class Message implements PropertyChangeListener {
+public final class Message {
     public Message() { }
 
     /*
@@ -33,6 +34,23 @@ public final class Message implements PropertyChangeListener {
     public static void taskDelete(ArrayList tasks) {
         System.out.println("\tRoger. Below get removed: ");
         tasks.stream().forEach(System.out::println);
+    }
+
+    public static void taskAdd(TempTaskList tasks) {
+        System.out.println("\tadded: " + tasks.get(tasks.size()-1).toString());
+        tasks.tellStats();
+    }
+
+    public static void taskDone(TempTaskList tasks, int index) {
+        System.out.println("\tMarked below as DONE:");
+        System.out.println("\t" + tasks.get(index).toString());
+        tasks.tellStats();
+    }
+
+    public static void taskUndone(TempTaskList tasks, int index) {
+        System.out.println("\tMarked below as UNDONE:");
+        System.out.println("\t" + tasks.get(index).toString());
+        tasks.tellStats();
     }
 
     public static void tellTaskNum(int numTask, int numDoneTask) {
@@ -58,14 +76,6 @@ public final class Message implements PropertyChangeListener {
 
     public static String exceptionNoDate() {
         return "X_X : Please give a proper date for this type of task, please try again";
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        var list = (ArrayList<Task>) evt.getNewValue();
-        String title = list.get(list.size() - 1).getTitle();
-        this.taskAdd(title);
-        echo("Now " + list.size() + " tasks in Total");
     }
 
     public static void greeting() {
