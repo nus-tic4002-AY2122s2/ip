@@ -104,8 +104,8 @@ public class Main {
 
     private void processInput(String inputTxt) throws DukeException, IndexOutOfBoundsException {
         if (inputTxt.equals("list")) {
-            String message = "Here are the tasks in your list:\n" + taskList.printTasks();
-            Ui.printMessage(message, false);
+            Ui.printMessage("Here are the tasks in your list:", false);
+            Ui.printMessage(taskList.printTasks(), false);
             Ui.printMessage("Total tasks: " + taskList.getListSize());
         } else if (inputTxt.startsWith("done")) {
             int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
