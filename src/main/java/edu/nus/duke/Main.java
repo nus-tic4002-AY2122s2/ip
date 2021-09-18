@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.io.File;
 import java.nio.file.Files;
 import java.io.FileNotFoundException;
+import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.Task;
 import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
@@ -20,30 +21,32 @@ public class Main {
     // Variables
     private final String FILE_PATH = "data/duke.txt";
     private final String SAVE_SEP = ";";
-    private final String HORIZ_LINE = "____________________________________________________________";
     private final String CMD_TODO = "todo";
     private final String CMD_DEADLINE = "deadline";
     private final String CMD_EVENT = "event";
     private ArrayList<Task> tasks = new ArrayList<>();
+    private Ui ui;
 
     // Constructor
     public Main() {
+        ui = new Ui();
+
         try {
             initApp();
         } catch (FileNotFoundException e) {
-            System.out.println(FILE_PATH + " not found!");
+            ui.printMessage(FILE_PATH + " not found!");
             return;
         } catch (DukeException e) {
-            System.out.println("Bad data in " + FILE_PATH);
+            ui.printMessage("Bad data in " + FILE_PATH);
             return;
         }
         try {
             runApp();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            ui.printMessage(e.getMessage());
             return;
         }
-        finaliseApp();
+        ui.printMessage("Bye. Hope to see you again soon!");
     }
 
     // Methods
@@ -86,14 +89,6 @@ public class Main {
         if (f.isFile()) {
             loadData(f);
         }
-        System.out.println("Hello! I'm Jarvis");
-        System.out.println("What can I do for you?");
-        System.out.println(HORIZ_LINE);
-    }
-
-    private void finaliseApp() {
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(HORIZ_LINE);
     }
 
     private void printList() {
@@ -133,7 +128,7 @@ public class Main {
 
     private void addTask(Task task) {
         tasks.add(task);
-        System.out.println("added: " + task.getTask());
+        ui.printMessage("added: " + task.getTask(), false);
     }
 
     private void processTask(String inputTxt) throws DukeException, ArrayIndexOutOfBoundsException {
@@ -155,16 +150,16 @@ public class Main {
     private void setDone(String inputTxt) throws IndexOutOfBoundsException {
         int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
         tasks.get(idx).setDone();
-        System.out.println("Nice! I've marked this as done:");
-        System.out.println(tasks.get(idx).getTask());
+        String message = "Nice! I've marked this as done:\n" + tasks.get(idx).getTask();
+        ui.printMessage(message);
     }
 
     private void deleteTask(String inputTxt) throws IndexOutOfBoundsException {
         int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
         String task = tasks.get(idx).getTask();
         tasks.remove(idx);
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task);
+        String message = "Noted. I've removed this task:\n" + task;
+        ui.printMessage(message, false);
     }
 
     private void processInput(String inputTxt) throws DukeException {
@@ -174,13 +169,13 @@ public class Main {
             try {
                 setDone(inputTxt);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid/missing index");
+                ui.printMessage("Invalid/missing index");
             }
         } else if (inputTxt.startsWith("delete")) {
             try {
                 deleteTask(inputTxt);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid/missing index");
+                ui.printMessage("Invalid/missing index");
             }
         } else {
             throw new DukeException();
@@ -189,8 +184,7 @@ public class Main {
 
     private boolean isBadInput(String input) {
         if (input.contains(SAVE_SEP)) {
-            System.out.println("'" + SAVE_SEP + "' is not allowed!");
-            System.out.println(HORIZ_LINE);
+            ui.printMessage("'" + SAVE_SEP + "' is not allowed!");
             return true;
         }
         return false;
@@ -209,22 +203,21 @@ public class Main {
                 try {
                     processTask(inputTxt);
                 } catch (DukeException e) {
-                    System.out.println("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
+                    ui.printMessage("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("Invalid input");
+                    ui.printMessage("Invalid input");
                 }
             } else {
                 try {
                     processInput(inputTxt);
                 } catch (DukeException e) {
-                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    ui.printMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             }
 
             writeToFile(FILE_PATH, generateFileOutput());
 
-            System.out.println("Total tasks: " + tasks.size());
-            System.out.println(HORIZ_LINE);
+            ui.printMessage("Total tasks: " + tasks.size());
             inputTxt = userInput.nextLine();
         }
     }
