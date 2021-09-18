@@ -1,8 +1,6 @@
 package edu.nus.duke;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.StringBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -11,7 +9,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.io.FileNotFoundException;
 import edu.nus.duke.ui.Ui;
-import edu.nus.duke.task.Task;
+import edu.nus.duke.task.TaskList;
 import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
 import edu.nus.duke.task.Event;
@@ -24,60 +22,39 @@ public class Main {
     private final String CMD_TODO = "todo";
     private final String CMD_DEADLINE = "deadline";
     private final String CMD_EVENT = "event";
-    private ArrayList<Task> tasks = new ArrayList<>();
     private Ui ui;
+    private TaskList taskList;
 
     // Constructor
     public Main() {
         ui = new Ui();
+        taskList = new TaskList();
 
         try {
             initApp();
         } catch (FileNotFoundException e) {
-            ui.printMessage(FILE_PATH + " not found!");
+            Ui.printMessage(FILE_PATH + " not found!");
             return;
         } catch (DukeException e) {
-            ui.printMessage("Bad data in " + FILE_PATH);
+            Ui.printMessage("Bad data in " + FILE_PATH);
             return;
         }
         try {
             runApp();
         } catch (IOException e) {
-            ui.printMessage(e.getMessage());
+            Ui.printMessage(e.getMessage());
             return;
         }
-        ui.printMessage("Bye. Hope to see you again soon!");
+        Ui.printMessage("Bye. Hope to see you again soon!");
     }
 
     // Methods
-    private void loadTask(String line) throws DukeException, ArrayIndexOutOfBoundsException {
-        String[] elements = line.split(SAVE_SEP);
-        String taskType = elements[0];
-        boolean isDone = elements[1].equals("1");
-        String taskName = elements[2];
-        switch (taskType) {
-        case "T":
-            tasks.add(new Todo(taskName, isDone));
-            break;
-        case "D":
-            String by = elements[3];
-            tasks.add(new Deadline(taskName, by, isDone));
-            break;
-        case "E":
-            String at = elements[3];
-            tasks.add(new Event(taskName, at, isDone));
-            break;
-        default:
-            throw new DukeException();
-        }
-    }
-
     private void loadData(File f) throws FileNotFoundException, DukeException {
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String line = s.nextLine();
             try {
-                loadTask(line);
+                taskList.addTask(line.split(SAVE_SEP));
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeException();
             }
@@ -89,22 +66,6 @@ public class Main {
         if (f.isFile()) {
             loadData(f);
         }
-    }
-
-    private void printList() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + ". " + tasks.get(i).getTask());
-        }
-    }
-
-    private String generateFileOutput() {
-        StringBuilder output = new StringBuilder();
-        for (Task task : tasks) {
-            output.append(task.printToSave());
-            output.append(System.lineSeparator());
-        }
-        return output.toString();
     }
 
     private void createParentDir(String filePath) throws IOException {
@@ -126,56 +87,39 @@ public class Main {
         return (inputTxt.startsWith(CMD_TODO) || inputTxt.startsWith(CMD_DEADLINE) || inputTxt.startsWith(CMD_EVENT));
     }
 
-    private void addTask(Task task) {
-        tasks.add(task);
-        ui.printMessage("added: " + task.getTask(), false);
-    }
-
     private void processTask(String inputTxt) throws DukeException, ArrayIndexOutOfBoundsException {
         if (inputTxt.split(" ").length == 1) {
             throw new DukeException();
         }
 
         if (inputTxt.startsWith(CMD_TODO)) {
-            addTask( new Todo(inputTxt.substring(5)) );
+            taskList.addTask( new Todo(inputTxt.substring(5)) );
         } else if (inputTxt.startsWith(CMD_DEADLINE)) {
             String[] deadlineSplit = inputTxt.substring(9).split("/by");
-            addTask( new Deadline(deadlineSplit[0].trim(), deadlineSplit[1].trim()) );
+            taskList.addTask( new Deadline(deadlineSplit[0].trim(), deadlineSplit[1].trim()) );
         } else if (inputTxt.startsWith(CMD_EVENT)) {
             String[] eventSplit = inputTxt.substring(6).split("/at");
-            addTask( new Event(eventSplit[0].trim(), eventSplit[1].trim()) );
+            taskList.addTask( new Event(eventSplit[0].trim(), eventSplit[1].trim()) );
         }
     }
 
-    private void setDone(String inputTxt) throws IndexOutOfBoundsException {
-        int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
-        tasks.get(idx).setDone();
-        String message = "Nice! I've marked this as done:\n" + tasks.get(idx).getTask();
-        ui.printMessage(message);
-    }
-
-    private void deleteTask(String inputTxt) throws IndexOutOfBoundsException {
-        int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
-        String task = tasks.get(idx).getTask();
-        tasks.remove(idx);
-        String message = "Noted. I've removed this task:\n" + task;
-        ui.printMessage(message, false);
-    }
-
-    private void processInput(String inputTxt) throws DukeException {
+    private void processInput(String inputTxt) throws DukeException, IndexOutOfBoundsException {
         if (inputTxt.equals("list")) {
-            printList();
+            String message = "Here are the tasks in your list:\n" + taskList.printTasks();
+            Ui.printMessage(message, false);
         } else if (inputTxt.startsWith("done")) {
+            int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
             try {
-                setDone(inputTxt);
+                taskList.doneTask(idx);
             } catch (IndexOutOfBoundsException e) {
-                ui.printMessage("Invalid/missing index");
+                Ui.printMessage("Invalid/missing index");
             }
         } else if (inputTxt.startsWith("delete")) {
+            int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
             try {
-                deleteTask(inputTxt);
+                taskList.deleteTask(idx);
             } catch (IndexOutOfBoundsException e) {
-                ui.printMessage("Invalid/missing index");
+                Ui.printMessage("Invalid/missing index");
             }
         } else {
             throw new DukeException();
@@ -184,7 +128,7 @@ public class Main {
 
     private boolean isBadInput(String input) {
         if (input.contains(SAVE_SEP)) {
-            ui.printMessage("'" + SAVE_SEP + "' is not allowed!");
+            Ui.printMessage("'" + SAVE_SEP + "' is not allowed!");
             return true;
         }
         return false;
@@ -203,21 +147,21 @@ public class Main {
                 try {
                     processTask(inputTxt);
                 } catch (DukeException e) {
-                    ui.printMessage("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
+                    Ui.printMessage("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    ui.printMessage("Invalid input");
+                    Ui.printMessage("Invalid input");
                 }
             } else {
                 try {
                     processInput(inputTxt);
                 } catch (DukeException e) {
-                    ui.printMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    Ui.printMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             }
 
-            writeToFile(FILE_PATH, generateFileOutput());
+            writeToFile(FILE_PATH, taskList.printForFile());
 
-            ui.printMessage("Total tasks: " + tasks.size());
+            Ui.printMessage("Total tasks: " + taskList.getListSize());
             inputTxt = userInput.nextLine();
         }
     }

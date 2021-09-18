@@ -26,7 +26,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String printToSave() {
-        return (super.printToSave() + SAVE_SEP + at);
+    public String printForSave() {
+        return (super.printForSave() + SAVE_SEP + at);
     }
 }

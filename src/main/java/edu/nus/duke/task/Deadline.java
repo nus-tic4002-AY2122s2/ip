@@ -26,7 +26,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String printToSave() {
-        return (super.printToSave() + SAVE_SEP + by);
+    public String printForSave() {
+        return (super.printForSave() + SAVE_SEP + by);
     }
 }

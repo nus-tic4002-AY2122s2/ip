@@ -29,7 +29,7 @@ public abstract class Task {
     /**
      * Set a task to done.
      */
-    public String printToSave() {
+    public String printForSave() {
         String doneIdx = isDone ? "1" : "0";
         return (prefix + SAVE_SEP + doneIdx + SAVE_SEP + taskName);
     }
