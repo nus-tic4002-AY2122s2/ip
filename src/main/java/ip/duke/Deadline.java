@@ -17,7 +17,7 @@ public class Deadline extends Todo {
         super(description);
        try {
            LocalDate date = LocalDate.parse(by);
-           this.by = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+           this.by = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
 
        }catch (DateTimeParseException err){
            this.by = by;

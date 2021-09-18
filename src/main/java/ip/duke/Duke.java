@@ -6,6 +6,9 @@ import ip.duke.storage.Storage;
 import ip.duke.task.Task;
 import ip.duke.tasklist.TaskList;
 import ip.duke.ui.Ui;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 /**
@@ -69,6 +72,20 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        File f = new File("data/tasks.txt");
+        File f_backup = new File("data/backup.txt");
+
+        if(!f.exists() && !f_backup.exists()){
+            f.getParentFile().mkdirs();
+            f_backup.getParentFile().mkdirs();
+            try {
+                f.createNewFile();
+                f_backup.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         new Duke("data/tasks.txt").run();
     }
 }
