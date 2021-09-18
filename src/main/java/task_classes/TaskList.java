@@ -74,8 +74,9 @@ public class TaskList {
 
             switch(taskType){
                 case "E":
-                    String eventDateTime = task.getStartingDateTime();
-                    System.out.println(" (at: " + eventDateTime + ")");
+                    String eventStartingDateTime = task.getStartingDateTime();
+                    String eventEndingDateTime = task.getEndingDateTime();
+                    System.out.println(" (at: " + eventStartingDateTime + " ---> " + eventEndingDateTime + ")");
 
                     break;
                 case "D":
