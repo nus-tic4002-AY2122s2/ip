@@ -106,7 +106,8 @@ public class Ui {
     /**
      * Output after mark particular task status as done
      *
-     * @param task the task which be marked as done
+     * @param list The entire Task List
+     * @param n is the Task Sequence number in the Task List
      */
     public static void printMarkAsDoneOutput(Task task){
 
