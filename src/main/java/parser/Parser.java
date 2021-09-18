@@ -134,7 +134,7 @@ public class Parser {
      * @param strArr String[] information
      * @return String[] information in String type
      */
-    private static String convertStringArrayToString(ArrayList<String> strArr) {
+    public static String convertStringArrayToString(ArrayList<String> strArr) {
         StringBuilder sb = new StringBuilder();
         for (String str : strArr)
             sb.append(str).append(" ");
