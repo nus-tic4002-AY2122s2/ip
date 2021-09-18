@@ -1,4 +1,4 @@
-package edu.nus.duke.command;
+package edu.nus.duke;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,7 +16,7 @@ import edu.nus.duke.task.Deadline;
 import edu.nus.duke.task.Event;
 import edu.nus.duke.exception.DukeException;
 
-public class Duke {
+public class Main {
     // Variables
     private static final String FILE_PATH = "data/duke.txt";
     private static final String SAVE_SEP = ";";
