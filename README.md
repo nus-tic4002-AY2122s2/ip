@@ -49,5 +49,7 @@ Run the command java -jar `{filename}.jar`, e.g. java -jar `ip.jar` (i.e., run t
 * find `<text>` - list tasks that contain a certain word: e.g. find book
 * todo `<text>` - add a Todo task to the database: e.g. todo read a magazine
 * deadline `<text></by><text>` - add a Deadline task to the database: e.g. deadline submit the Maths assignment /by Fri 3pm
-* event - similar to deadline except substitute </at> for </by>
+* event - similar to deadline except </at> is substituted for </by>: e.g. event attend ExhibitA01@WTC, Fri 2-4:30pm /at 2021-11-15 _(or use format: 2021/11/15)_ 
+
+#**NB:** - dates, if used, must be the sole entry entered after </at> or </by>, as `yyyy-MM-dd` or `yyyy/MM/dd`, to be parsed correctly. 
 
