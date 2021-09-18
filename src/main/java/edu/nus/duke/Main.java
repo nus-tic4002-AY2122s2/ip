@@ -107,6 +107,7 @@ public class Main {
         if (inputTxt.equals("list")) {
             String message = "Here are the tasks in your list:\n" + taskList.printTasks();
             Ui.printMessage(message, false);
+            Ui.printMessage("Total tasks: " + taskList.getListSize());
         } else if (inputTxt.startsWith("done")) {
             int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
             try {
@@ -161,7 +162,6 @@ public class Main {
 
             writeToFile(FILE_PATH, taskList.printForFile());
 
-            Ui.printMessage("Total tasks: " + taskList.getListSize());
             inputTxt = userInput.nextLine();
         }
     }

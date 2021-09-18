@@ -41,7 +41,7 @@ public class TaskList {
     // Setter
     public void addTask(Task task) {
         tasks.add(task);
-        Ui.printMessage("added: " + task.getTask(), false);
+        Ui.printMessage("added: " + task.getTask());
     }
 
     public void addTask(String[] elements) throws DukeException, ArrayIndexOutOfBoundsException {
@@ -76,6 +76,6 @@ public class TaskList {
         String task = tasks.get(idx).getTask();
         tasks.remove(idx);
         String message = "Noted. I've removed this task:\n" + task;
-        Ui.printMessage(message, false);
+        Ui.printMessage(message);
     }
 }
