@@ -15,7 +15,7 @@ import edu.nus.duke.exception.DukeException;
 
 public class Storage {
     // Variables
-    private final String SAVE_SEP = ";";
+    private static final String SAVE_SEP = ";";
     private String filePath;
 
     public Storage(String filePath, TaskList taskList) {
@@ -27,7 +27,7 @@ public class Storage {
     }
 
     // Getter
-    public String getSaveSep() {
+    public static String getSaveSep() {
         return SAVE_SEP;
     }
 
