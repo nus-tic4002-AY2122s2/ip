@@ -1,6 +1,5 @@
 package ui;
 
-import parser.Parser;
 import task_classes.Deadline;
 import task_classes.Event;
 import task_classes.Task;
@@ -78,7 +77,7 @@ public class Ui {
         System.out.println("     Got it. I've added this task:");
         System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
 
-        System.out.println(" (by: " + newTask.getBy() + ")");
+        System.out.println(" (by: " + newTask.getDeadlineDateTimeString() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
     }
 
@@ -92,7 +91,7 @@ public class Ui {
         System.out.println("     Got it. I've added this task:");
         System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
 
-        System.out.println(" (by: " + newTask.getAt() + ")");
+        System.out.println(" (by: " + newTask.getStartingDateTime() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
     }
 
@@ -118,12 +117,12 @@ public class Ui {
 
         switch (taskType){
             case "E":
-                String eventDateTime = task.getAt();
+                String eventDateTime = task.getStartingDateTime();
                 System.out.println(" (at: " + eventDateTime + ")");
 
                 break;
             case "D":
-                String deadlineDateTime = task.getBy();
+                String deadlineDateTime = task.getDeadlineDateTimeString();
                 System.out.println(" (by: " + deadlineDateTime + ")");
 
                 break;

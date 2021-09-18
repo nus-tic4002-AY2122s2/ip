@@ -2,17 +2,12 @@ package parser;
 
 
 import commands.*;
+import exceptions.DukeDateTimeError;
 import exceptions.DukeTaskInputException;
-import storage.Storage;
-import task_classes.Task;
-import task_classes.TaskList;
-import task_classes.Todo;
-import ui.Output_On_Screen;
-import ui.Ui;
 
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Vector;
 
 public class Parser {
 
@@ -83,7 +78,7 @@ public class Parser {
 
         /* If the input is to add todo task, then the length of the array must greater then 1 or there is no description */
         if(inputWords.length == 2){
-            throw new DukeTaskInputException("criptionMissing");
+            throw new DukeTaskInputException("descriptionMissing");
         }
 
         switch (inputWords[0]) {
@@ -228,7 +223,46 @@ public class Parser {
         return new AddCommand(firstWord, inputWords);
     }
 
-//    public static String parseDateFormat(){
-//
-//    }
+    public static String extractStartingDateTime(String input) throws DukeDateTimeError {
+        String[] words = input.split(" ");
+        ArrayList<String> buffer = new ArrayList<String>();
+
+        for(int n = words.length - 1; n > 0; n--) {
+
+            if(words[n].equals("->")){
+
+                if (n == 1 ) {
+                    throw new DukeDateTimeError("dateFormatWrong");
+                }
+
+                buffer.addAll(Arrays.asList(words).subList(0, n + 1));
+                return convertStringArrayToString(buffer);
+            }
+        }
+
+        throw new DateTimeException("dateFormatWrong");
+    }
+
+    public static String extractEndingDateTime(String input) throws DukeDateTimeError {
+        String[] words = input.split(" ");
+
+        ArrayList<String> buffer = new ArrayList<String>();
+
+        for (int n = words.length - 1; n > 0; n--) {
+            if (words[n].equals("->")) {
+                if (n == 1) {
+                    throw new DukeDateTimeError("dateFormatWrong");
+                }
+                if (n == words.length - 1) {
+                    throw new DateTimeException("dateFormatWrong");
+                }
+
+                buffer.addAll(Arrays.asList(words).subList(n + 1, words.length));
+
+                return convertStringArrayToString(buffer);
+            }
+        }
+
+            throw new DateTimeException("dateFormatWrong");
+    }
 }

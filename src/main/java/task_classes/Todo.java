@@ -1,5 +1,7 @@
 package task_classes;
 
+import dateTime.DateTimeDuke;
+
 public class Todo extends Task {
 
     public Todo (String description){
@@ -47,11 +49,31 @@ public class Todo extends Task {
         return this.type;
     }
 
-    public String getBy(){
-        return "";
+    public String getDeadlineDateTimeString(){
+        return null;
     }
 
-    public String getAt(){
-        return"";
+    public String getStartingDateTime(){
+        return null;
+    }
+
+    @Override
+    public String getEndingDateTime() {
+        return null;
+    }
+
+    @Override
+    public DateTimeDuke getDeadlineTime() {
+        return null;
+    }
+
+    @Override
+    public DateTimeDuke getStartingTime() {
+        return null;
+    }
+
+    @Override
+    public DateTimeDuke getEndingTime() {
+        return null;
     }
 }

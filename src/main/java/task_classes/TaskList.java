@@ -36,9 +36,9 @@ public class TaskList {
 
         switch (taskType) {
             case "E":
-                return task.getAt();
+                return task.getStartingDateTime();
             case "D":
-                return task.getBy();
+                return task.getDeadlineDateTimeString();
         }
 
         throw new DukeStorageError();
@@ -68,12 +68,12 @@ public class TaskList {
 
             switch(taskType){
                 case "E":
-                    String eventDateTime = task.getAt();
+                    String eventDateTime = task.getStartingDateTime();
                     System.out.println(" (at: " + eventDateTime + ")");
 
                     break;
                 case "D":
-                    String deadlineDateTime = task.getBy();
+                    String deadlineDateTime = task.getDeadlineDateTimeString();
                     System.out.println(" (by: " + deadlineDateTime + ")");
 
                     break;

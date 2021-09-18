@@ -3,8 +3,6 @@ package commands;
 import exceptions.DukeTaskInputException;
 import storage.Storage;
 import task_classes.TaskList;
-import ui.Output_On_Screen;
-import task_classes.Task;
 import ui.Ui;
 
 public class MarkAsDoneCommand extends Command{

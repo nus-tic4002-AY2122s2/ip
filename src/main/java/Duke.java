@@ -1,6 +1,7 @@
 import java.io.IOException;
 
 import commands.Command;
+import exceptions.DukeDateTimeError;
 import exceptions.DukeStorageError;
 import exceptions.DukeTaskInputException;
 import parser.Parser;
@@ -36,7 +37,7 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 c.execute(taskList, ui, storage);
                 isExit = c.isExit();
-            } catch (DukeTaskInputException e) {
+            } catch (DukeTaskInputException | DukeDateTimeError e) {
                 String errorType = DukeTaskInputException.getErrorType();
 
                 switch (errorType) {

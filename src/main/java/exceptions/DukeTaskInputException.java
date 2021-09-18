@@ -1,6 +1,6 @@
 package exceptions;
 
-import ui.Output_On_Screen;
+import ui.Ui;
 
 public class DukeTaskInputException extends Exception {
 
@@ -34,7 +34,7 @@ public class DukeTaskInputException extends Exception {
      * To print the error message for the wrong input format
      */
     public static void formatWrong(){
-        Output_On_Screen.toPrintSeparateLine();
+        Ui.toPrintSeparateLine();
         System.out.println("     \u2639 OOPS!!! The input format wrong, please try again. :-(");
     }
 
@@ -42,8 +42,8 @@ public class DukeTaskInputException extends Exception {
      * To print the error message if the first word of user input is not in the detection list:
      */
     public static void invalidFirstWordInput(){
-        Output_On_Screen.toPrintSeparateLine();
+        Ui.toPrintSeparateLine();
         System.out.println("     \u2639" + " OOPS!!! I'm sorry, but I don't know what that means :-(");
-        Output_On_Screen.toPrintSeparateLine();
+        Ui.toPrintSeparateLine();
     }
 }
