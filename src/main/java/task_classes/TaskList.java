@@ -8,15 +8,9 @@ import java.util.Vector;
 public class TaskList {
 
     private Vector<Task> list;
-    private Vector<String> testing;
 
     public TaskList (Vector<Task> taskList){
         list = taskList;
-    }
-
-    public TaskList (Vector<String> aaa, String aa) {
-        testing = aaa;
-        list=new Vector<>();
     }
 
     public TaskList () {
@@ -98,19 +92,11 @@ public class TaskList {
         return list.size();
     }
 
-    public int sizeS() {
-        return testing.size();
-    }
-
     public boolean isEmpty() {
         return list.isEmpty();
     }
 
     public Vector<Task> getVectorList() {
         return list;
-    }
-
-    public Vector<String> getVectorListS() {
-        return testing;
     }
 }
