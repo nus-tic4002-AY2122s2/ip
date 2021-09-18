@@ -1,14 +1,30 @@
 package task_classes;
 
-import dateTime.DateTimeDuke;
-
 public class Deadline extends Task {
+
+    //protected String by;
+
+    public Deadline (String description, String by){
+        super(description);
+        super.type = "D";
+        super.by = by;
+    }
 
     public Deadline (String description, Boolean taskStatus, String dateTime) {
         super(description);
         super.isDone = taskStatus;
         super.type = "D";
-        super.deadlineTime = new DateTimeDuke(dateTime);
+        super.by = dateTime;
+    }
+
+    /**
+     * To get the /by time of the Deadline task
+     *
+     * @return the time/date of the Deadline task
+     */
+    public String getBy(){
+
+        return super.by;
     }
 
     /**
@@ -41,45 +57,11 @@ public class Deadline extends Task {
      *
      * @return the type of the task
      */
-    @Override
     public String getType(){
         return this.type;
     }
 
-    @Override
-    public DateTimeDuke getDeadlineTime() {
-        return super.deadlineTime;
-    }
-
-    @Override
-    public DateTimeDuke getStartingTime() {
-        return null;
-    }
-
-    @Override
-    public DateTimeDuke getEndingTime() {
-        return null;
-    }
-
-    /**
-     * To get the /by time of the Deadline task
-     *
-     * @return the time/date of the Deadline task
-     */
-    @Override
-    public String getDeadlineDateTimeString(){
-        DateTimeDuke deadlineDateTime = super.deadlineTime;
-
-        return deadlineDateTime.convertToStringTypeI();
-    }
-
-    @Override
-    public String getStartingDateTime() {
-        return null;
-    }
-
-    @Override
-    public String getEndingDateTime() {
-        return null;
+    public String getAt(){
+        return "";
     }
 }

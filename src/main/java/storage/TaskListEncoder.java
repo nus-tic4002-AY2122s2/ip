@@ -1,6 +1,5 @@
 package storage;
 
-import dateTime.DateTimeDuke;
 import task_classes.Task;
 
 import java.util.Vector;
@@ -21,7 +20,7 @@ class TaskListEncoder {
         return encodedTaskList;
     }
 
-    private static String encodeSingleTask(Task task){
+    private static String encodeSingleTask (Task task){
         String taskType = task.getType();
         String taskDescription = task.getDescription();
         String taskStatus = task.getStatusIcon();
@@ -33,21 +32,17 @@ class TaskListEncoder {
         }
 
         String encodedTask = taskType + " | " + taskStatus + " | " + taskDescription;
+        String dateTime;
 
         switch(taskType){
             case "E":
-                DateTimeDuke starting = task.getStartingTime();
-                DateTimeDuke ending = task.getEndingTime();
-                String startingLocalDateTime = starting.convertToStringTypeII();
-                String endingLocalDateTime = ending.convertToStringTypeII();
-
-                encodedTask = encodedTask + " | " + startingLocalDateTime + " | " + endingLocalDateTime;
+                dateTime = task.getAt();
+                encodedTask = encodedTask + " | " + dateTime;
 
                 break;
             case "D":
-                DateTimeDuke deadlineDateTime = task.getDeadlineTime();
-                String deadlineLocalDateTime = deadlineDateTime.convertToStringTypeII();
-                encodedTask = encodedTask + " | " + deadlineLocalDateTime;
+                dateTime = task.getBy();
+                encodedTask = encodedTask + " | " + dateTime;
 
                 break;
         }

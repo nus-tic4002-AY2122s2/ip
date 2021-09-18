@@ -39,7 +39,7 @@ class TaskDeletedMessage {
      */
     private void printDeletedDeadline(){
 
-        String dateTime = deletedTask.getDeadlineDateTimeString();
+        String dateTime = deletedTask.getBy();
 
         System.out.println("     Noted. I've removed this task:");
         System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(by: " + dateTime + ")");
@@ -51,7 +51,7 @@ class TaskDeletedMessage {
      */
     private void printDeletedEvent(){
 
-        String dateTime = deletedTask.getStartingDateTime();
+        String dateTime = deletedTask.getAt();
 
         System.out.println("     Noted. I've removed this task:");
         System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription + "(at: " + dateTime + ")");
