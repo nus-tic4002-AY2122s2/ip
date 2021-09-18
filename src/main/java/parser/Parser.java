@@ -235,7 +235,7 @@ public class Parser {
                     throw new DukeDateTimeError("dateFormatWrong");
                 }
 
-                buffer.addAll(Arrays.asList(words).subList(0, n + 1));
+                buffer.addAll(Arrays.asList(words).subList(0, n));
                 return convertStringArrayToString(buffer);
             }
         }
