@@ -12,6 +12,10 @@ public class UserList {
 
     public ArrayList<Task> getList() { return this.list; }
 
+    public void removeItem (int index) {
+        this.list.remove(index);
+    }
+
     public ArrayList<String> getSerializedList () {
         ArrayList<String> taskList = new ArrayList<>();
 

@@ -51,13 +51,14 @@ public class Parser {
 
                     if (eventContent.length < 2)
                         throw new ErrorHandler("In Parser, " + ErrorMessage.INVALID_EVENT);
-                    this.by = eventContent[1];
+                    this.at = eventContent[1];
                     break;
                 case TODO:
                     if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TODO);
                     this.content = result[1];
                     break;
                 case DONE:
+                case DELETE:
                     if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TASK_NUMBER);
                     this.content = result[1];
                     break;
