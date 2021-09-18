@@ -36,9 +36,9 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 - Copy the jar file into an empty folder
 - Open a command window in that folder
 
-```Java
+
 Run the command `java -jar {filename}.jar`, e.g. `java -jar ip.jar` (i.e., run the command in the same folder as the jar file)
-```
+
 ***
 #### Supported CLI Commands (all lowercase)
 
