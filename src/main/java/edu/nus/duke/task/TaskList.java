@@ -68,14 +68,12 @@ public class TaskList {
 
     public void doneTask(int idx) {
         tasks.get(idx).setDone();
-        String message = "Nice! I've marked this as done:\n" + tasks.get(idx).getTask();
-        Ui.printMessage(message);
+        Ui.printMessage("done: " + tasks.get(idx).getTask());
     }
 
     public void deleteTask(int idx) {
         String task = tasks.get(idx).getTask();
         tasks.remove(idx);
-        String message = "Noted. I've removed this task:\n" + task;
-        Ui.printMessage(message);
+        Ui.printMessage("deleted: " + task);
     }
 }
