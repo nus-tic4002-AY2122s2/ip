@@ -99,14 +99,14 @@ public class TaskList {
         }
     }
 
-    private static Task createTask(String str) {
-        String[] text = str.trim().split(":");
+    private static Task createTask(String str) throws DukeException {
+        String[] text = str.trim().split("#");
 
         for (int i = 0; i < text.length; i++) {
             text[i] = text[i].trim();
         }
 
-        Task t = null;
+        Task t;
 
         try {
             switch (text[0]) {
@@ -120,7 +120,7 @@ public class TaskList {
                 t = new Event(text[2], text[3]);
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + text[0]);
+                throw new IllegalStateException("Alert!! Load-from-file Format Error detected! : " + "\"" + text[0] + "\"");
             }
 
             if (text[1].equals("1")) {
@@ -128,7 +128,9 @@ public class TaskList {
             }
 
         } catch (ArrayIndexOutOfBoundsException | IllegalStateException err) {
-            System.out.println("Database file format errors detected: Contact Admin.");
+            System.out.println();
+            System.out.println("                                 +++ Database file format errors detected! :+++");
+            throw new DukeException(err.getMessage(), err);
         }
         return t;
     }

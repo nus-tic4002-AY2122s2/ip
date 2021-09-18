@@ -30,7 +30,7 @@ public class Duke {
         try {
             tasks = TaskList.load(Storage.getFilePath());
         } catch (DukeException e) {
-            Ui.showLoadingError();
+            Ui.showLoadingError(e);
             tasks = TaskList.getList();
             storage.setFilePath("data/backup.txt");
         }

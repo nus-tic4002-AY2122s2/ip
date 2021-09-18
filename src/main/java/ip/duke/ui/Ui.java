@@ -143,12 +143,14 @@ public class Ui {
         System.out.printf("%11s", " ");
         System.out.printf("Now you have %d %s in the list.%n", count, count == 1 ? "task" : "tasks");
     }
-    public static void showLoadingError(){
+    public static void showLoadingError(DukeException err){
         System.out.println();
-        System.out.println("         ***&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&***");
+        System.out.println("         ***----------------------------------------------------------------------------------------***");
         System.out.print("LisGenie : ");
-        System.out.println("Alert! File access error...starting with a blank database & a backup.txt file. Contact Admin soon!");
-        System.out.println("         ***&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&***");
+        System.out.println(err.getMessage());
+        System.out.printf("%11s", " ");
+        System.out.println("File access error...starting with a blank database & a backup.txt file. Contact Admin soon!");
+        System.out.println("         ***----------------------------------------------------------------------------------------***");
         System.out.println();
     }
 

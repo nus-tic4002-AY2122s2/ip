@@ -16,7 +16,7 @@ public class Deadline extends Todo {
     public Deadline(String description, String by) {
         super(description);
        try {
-           LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("[yyyy-M-d][yyyy/M/d ]") );
+           LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("[yyyy-M-d][yyyy/M/d]") );
            this.by = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
 
        }catch (DateTimeParseException err){
@@ -47,6 +47,6 @@ public class Deadline extends Todo {
 
     @Override
     public String toFileString() {
-        return super.toFileString().replaceFirst("T", "D") + " : " + by;
+        return super.toFileString().replaceFirst("T", "D") + " # " + by;
     }
 }
