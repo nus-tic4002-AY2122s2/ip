@@ -18,16 +18,36 @@ import edu.nus.duke.exception.DukeException;
 
 public class Main {
     // Variables
-    private static final String FILE_PATH = "data/duke.txt";
-    private static final String SAVE_SEP = ";";
-    private static final String HORIZ_LINE = "____________________________________________________________";
-    private static final String CMD_TODO = "todo";
-    private static final String CMD_DEADLINE = "deadline";
-    private static final String CMD_EVENT = "event";
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    private final String FILE_PATH = "data/duke.txt";
+    private final String SAVE_SEP = ";";
+    private final String HORIZ_LINE = "____________________________________________________________";
+    private final String CMD_TODO = "todo";
+    private final String CMD_DEADLINE = "deadline";
+    private final String CMD_EVENT = "event";
+    private ArrayList<Task> tasks = new ArrayList<>();
+
+    // Constructor
+    public Main() {
+        try {
+            initApp();
+        } catch (FileNotFoundException e) {
+            System.out.println(FILE_PATH + " not found!");
+            return;
+        } catch (DukeException e) {
+            System.out.println("Bad data in " + FILE_PATH);
+            return;
+        }
+        try {
+            runApp();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        finaliseApp();
+    }
 
     // Methods
-    private static void loadTask(String line) throws DukeException, ArrayIndexOutOfBoundsException {
+    private void loadTask(String line) throws DukeException, ArrayIndexOutOfBoundsException {
         String[] elements = line.split(SAVE_SEP);
         String taskType = elements[0];
         boolean isDone = elements[1].equals("1");
@@ -49,7 +69,7 @@ public class Main {
         }
     }
 
-    private static void loadData(File f) throws FileNotFoundException, DukeException {
+    private void loadData(File f) throws FileNotFoundException, DukeException {
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String line = s.nextLine();
@@ -61,7 +81,7 @@ public class Main {
         }
     }
 
-    private static void initApp() throws FileNotFoundException, DukeException {
+    private void initApp() throws FileNotFoundException, DukeException {
         File f = new File(FILE_PATH);
         if (f.isFile()) {
             loadData(f);
@@ -71,19 +91,19 @@ public class Main {
         System.out.println(HORIZ_LINE);
     }
 
-    private static void finaliseApp() {
+    private void finaliseApp() {
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(HORIZ_LINE);
     }
 
-    private static void printList() {
+    private void printList() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + ". " + tasks.get(i).getTask());
         }
     }
 
-    private static String generateFileOutput() {
+    private String generateFileOutput() {
         StringBuilder output = new StringBuilder();
         for (Task task : tasks) {
             output.append(task.printToSave());
@@ -92,7 +112,7 @@ public class Main {
         return output.toString();
     }
 
-    private static void createParentDir(String filePath) throws IOException {
+    private void createParentDir(String filePath) throws IOException {
         Path path = Paths.get(filePath).getParent();
         if (path == null || Files.isDirectory(path)) {
             return;
@@ -100,23 +120,23 @@ public class Main {
         Files.createDirectory(path);
     }
 
-    private static void writeToFile(String filePath, String txt) throws IOException {
+    private void writeToFile(String filePath, String txt) throws IOException {
         createParentDir(filePath);
         FileWriter fw = new FileWriter(filePath);
         fw.write(txt);
         fw.close();
     }
 
-    private static boolean isAddTask(String inputTxt) {
+    private boolean isAddTask(String inputTxt) {
         return (inputTxt.startsWith(CMD_TODO) || inputTxt.startsWith(CMD_DEADLINE) || inputTxt.startsWith(CMD_EVENT));
     }
 
-    private static void addTask(Task task) {
+    private void addTask(Task task) {
         tasks.add(task);
         System.out.println("added: " + task.getTask());
     }
 
-    private static void processTask(String inputTxt) throws DukeException, ArrayIndexOutOfBoundsException {
+    private void processTask(String inputTxt) throws DukeException, ArrayIndexOutOfBoundsException {
         if (inputTxt.split(" ").length == 1) {
             throw new DukeException();
         }
@@ -132,14 +152,14 @@ public class Main {
         }
     }
 
-    private static void setDone(String inputTxt) throws IndexOutOfBoundsException {
+    private void setDone(String inputTxt) throws IndexOutOfBoundsException {
         int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
         tasks.get(idx).setDone();
         System.out.println("Nice! I've marked this as done:");
         System.out.println(tasks.get(idx).getTask());
     }
 
-    private static void deleteTask(String inputTxt) throws IndexOutOfBoundsException {
+    private void deleteTask(String inputTxt) throws IndexOutOfBoundsException {
         int idx = Integer.parseInt(inputTxt.split(" ")[1]) - 1;
         String task = tasks.get(idx).getTask();
         tasks.remove(idx);
@@ -147,7 +167,7 @@ public class Main {
         System.out.println(task);
     }
 
-    private static void processInput(String inputTxt) throws DukeException {
+    private void processInput(String inputTxt) throws DukeException {
         if (inputTxt.equals("list")) {
             printList();
         } else if (inputTxt.startsWith("done")) {
@@ -167,7 +187,7 @@ public class Main {
         }
     }
 
-    private static boolean isBadInput(String input) {
+    private boolean isBadInput(String input) {
         if (input.contains(SAVE_SEP)) {
             System.out.println("'" + SAVE_SEP + "' is not allowed!");
             System.out.println(HORIZ_LINE);
@@ -176,7 +196,7 @@ public class Main {
         return false;
     }
 
-    private static void runApp() throws IOException {
+    private void runApp() throws IOException {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         while (!inputTxt.equals("bye")) {
@@ -210,21 +230,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        try {
-            initApp();
-        } catch (FileNotFoundException e) {
-            System.out.println(FILE_PATH + " not found!");
-            return;
-        } catch (DukeException e) {
-            System.out.println("Bad data in " + FILE_PATH);
-            return;
-        }
-        try {
-            runApp();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-        finaliseApp();
+        new Main();
     }
 }
