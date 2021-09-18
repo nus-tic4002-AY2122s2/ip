@@ -1,15 +1,10 @@
 package edu.nus.duke;
 
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.io.File;
-import java.nio.file.Files;
-import java.io.FileNotFoundException;
+
 import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.TaskList;
+import edu.nus.duke.storage.Storage;
 import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
 import edu.nus.duke.task.Event;
@@ -17,71 +12,23 @@ import edu.nus.duke.exception.DukeException;
 
 public class Main {
     // Variables
-    private final String FILE_PATH = "data/duke.txt";
-    private final String SAVE_SEP = ";";
     private final String CMD_TODO = "todo";
     private final String CMD_DEADLINE = "deadline";
     private final String CMD_EVENT = "event";
     private TaskList taskList;
+    private Storage storage;
 
     // Constructor
-    public Main() {
+    public Main(String filePath) {
         taskList = new TaskList();
+        storage = new Storage(filePath, taskList);
 
         Ui.printMessage("Hello! I'm Jarvis\nWhat can I do for you?");
-        try {
-            initApp();
-        } catch (FileNotFoundException e) {
-            Ui.printMessage(FILE_PATH + " not found!");
-            return;
-        } catch (DukeException e) {
-            Ui.printMessage("Bad data in " + FILE_PATH);
-            return;
-        }
-        try {
-            runApp();
-        } catch (IOException e) {
-            Ui.printMessage(e.getMessage());
-            return;
-        }
+        runApp();
         Ui.printMessage("Bye. Hope to see you again soon!");
     }
 
     // Methods
-    private void loadData(File f) throws FileNotFoundException, DukeException {
-        Scanner s = new Scanner(f);
-        while (s.hasNext()) {
-            String line = s.nextLine();
-            try {
-                taskList.addTask(line.split(SAVE_SEP));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException();
-            }
-        }
-    }
-
-    private void initApp() throws FileNotFoundException, DukeException {
-        File f = new File(FILE_PATH);
-        if (f.isFile()) {
-            loadData(f);
-        }
-    }
-
-    private void createParentDir(String filePath) throws IOException {
-        Path path = Paths.get(filePath).getParent();
-        if (path == null || Files.isDirectory(path)) {
-            return;
-        }
-        Files.createDirectory(path);
-    }
-
-    private void writeToFile(String filePath, String txt) throws IOException {
-        createParentDir(filePath);
-        FileWriter fw = new FileWriter(filePath);
-        fw.write(txt);
-        fw.close();
-    }
-
     private boolean isAddTask(String inputTxt) {
         return (inputTxt.startsWith(CMD_TODO) || inputTxt.startsWith(CMD_DEADLINE) || inputTxt.startsWith(CMD_EVENT));
     }
@@ -127,14 +74,14 @@ public class Main {
     }
 
     private boolean isBadInput(String input) {
-        if (input.contains(SAVE_SEP)) {
-            Ui.printMessage("'" + SAVE_SEP + "' is not allowed!");
+        if (input.contains(storage.getSaveSep())) {
+            Ui.printMessage("'" + storage.getSaveSep() + "' is not allowed!");
             return true;
         }
         return false;
     }
 
-    private void runApp() throws IOException {
+    private void runApp() {
         Scanner userInput = new Scanner(System.in);
         String inputTxt = userInput.nextLine();
         while (!inputTxt.equals("bye")) {
@@ -159,13 +106,13 @@ public class Main {
                 }
             }
 
-            writeToFile(FILE_PATH, taskList.printForFile());
+            storage.writeToFile(taskList.printForFile());
 
             inputTxt = userInput.nextLine();
         }
     }
 
     public static void main(String[] args) {
-        new Main();
+        new Main("data/duke.txt");
     }
 }
