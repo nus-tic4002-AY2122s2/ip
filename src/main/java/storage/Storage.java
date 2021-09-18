@@ -16,7 +16,7 @@ public class Storage {
     /**
      * An default file path which is "data/duke.txt"
      */
-    private static final String DEFAULT_STORAGE_FILEPATH = "data/duke.txt";
+    private static final String DEFAULT_STORAGE_FILEPATH = "data/dukeTasks.txt";
 
     private static final Path rootPath = Paths.get("").toAbsolutePath();
     private static final String rootDir = rootPath.normalize().toString();

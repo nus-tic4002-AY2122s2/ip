@@ -63,6 +63,6 @@ public class Duke {
 
 
     public static void main(String[] args) throws IOException, DukeStorageError {
-        new Duke("data/tasks.txt").run();
+        new Duke("data/dukeTasks.txt").run();
     }
 }
