@@ -1,34 +1,30 @@
 package task_classes;
 
+import dateTime.DateTimeDuke;
+
 public class Event extends Task {
 
-    //private String at;
-
-    public Event (String description, String at){
-        super(description);
-        super.type = "E";
-        super.at = at;
-    }
-
-    public Event (String description, Boolean taskStatus, String dateTime) {
+    public Event (String description, Boolean taskStatus, String startingDateTime, String endingDateTime) {
         super(description);
         super.isDone = taskStatus;
         super.type = "E";
-        super.at = dateTime;
+        super.startingTime = new DateTimeDuke(startingDateTime);
+        super.endingTime = new DateTimeDuke(endingDateTime);
     }
 
-
-    /**
-     * The method to get /at time of the Event task
-     *
-     * @return time/date of the Event task
-     */
-    public String getAt(){
-        return super.at;
+    @Override
+    public DateTimeDuke getDeadlineTime() {
+        return null;
     }
 
-    public String getBy(){
-        return "";
+    @Override
+    public DateTimeDuke getStartingTime() {
+        return super.startingTime;
+    }
+
+    @Override
+    public DateTimeDuke getEndingTime() {
+        return super.endingTime;
     }
 
     /**
@@ -63,5 +59,24 @@ public class Event extends Task {
      */
     public String getType(){
         return this.type;
+    }
+
+    @Override
+    public String getStartingDateTime(){
+        DateTimeDuke dateTimeDuke = super.startingTime;
+
+        return dateTimeDuke.convertToStringTypeI();
+    }
+
+    @Override
+    public String getEndingDateTime() {
+        DateTimeDuke dateTimeDuke = super.endingTime;
+
+        return dateTimeDuke.convertToStringTypeI();
+    }
+
+    @Override
+    public String getDeadlineDateTimeString(){
+        return null;
     }
 }

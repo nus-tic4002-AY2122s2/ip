@@ -1,15 +1,26 @@
 package task_classes;
 
+import dateTime.DateTimeDuke;
+
 public abstract class Task {
     String description;
     boolean isDone;
     String type;
-    String by;
-    String at;
+
+    //For deadline task;
+    DateTimeDuke deadlineTime;
+
+    //For event task;
+    DateTimeDuke startingTime;
+    DateTimeDuke endingTime;
 
     Task(String description){
         this.description = description;
         this.isDone = false;
+        this.type = null;
+        this.deadlineTime = null;
+        this.startingTime = null;
+        this.endingTime = null;
     }
 
     /**
@@ -43,12 +54,25 @@ public abstract class Task {
      *
      * @return the type of the task
      */
-    public abstract String getBy();
+    public abstract DateTimeDuke getDeadlineTime();
 
     /**
      * To get the date/time of the event task
      *
      * @return the type of the task
      */
-    public abstract String getAt();
+    public abstract DateTimeDuke getStartingTime();
+
+    /**
+     * To get the date/time of the event task
+     *
+     * @return the type of the task
+     */
+    public abstract DateTimeDuke getEndingTime();
+
+    public abstract String getDeadlineDateTimeString();
+
+    public abstract String getStartingDateTime();
+
+    public abstract String getEndingDateTime();
 }
