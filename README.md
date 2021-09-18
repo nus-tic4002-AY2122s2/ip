@@ -41,13 +41,13 @@ Run the command `java -jar {filename}.jar`, e.g. `java -jar ip.jar` (i.e., run t
 ```
 ***
 #### Supported CLI Commands (all lowercase)
-```Java
+
 * bye - exit the LisGenie App
 * list - display the list of all tasks
-* delete <integer> - delete a numbered task from the displayed database list: e.g. delete 3 
-* done <integer> - update the done status of a task according to its number in the displayed database list: done 9
-* find <text> - list tasks that contain a certain word: e.g. find book
-* todo <text> - add a Todo task to the database: e.g. todo read a magazine
-* deadline <text></by><text> - add a Deadline task to the database: e.g. deadline submit the Maths assignment /by Fri 3pm
+* delete `<integer>` - delete a numbered task from the displayed database list: e.g. delete 3 
+* done `<integer>` - update the done status of a task according to its number in the displayed database list: done 9
+* find `<text>` - list tasks that contain a certain word: e.g. find book
+* todo `<text>` - add a Todo task to the database: e.g. todo read a magazine
+* deadline `<text></by><text>` - add a Deadline task to the database: e.g. deadline submit the Maths assignment /by Fri 3pm
 * event - similar to deadline except substitute </at> for </by>
-```
+
