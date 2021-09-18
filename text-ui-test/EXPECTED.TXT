@@ -2,34 +2,27 @@ Hello! I'm Jarvis
 What can I do for you?
 ____________________________________________________________
 added: [T][ ] borrow book
-Total tasks: 1
 ____________________________________________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
+
 Total tasks: 1
 ____________________________________________________________
 added: [D][ ] return book (by: Sunday)
-Total tasks: 2
 ____________________________________________________________
-Nice! I've marked this as done:
-[D][X] return book (by: Sunday)
-____________________________________________________________
-Total tasks: 2
+done: [D][X] return book (by: Sunday)
 ____________________________________________________________
 added: [E][ ] project meeting (at: Mon 2-4pm)
-Total tasks: 3
 ____________________________________________________________
-Noted. I've removed this task:
-[E][ ] project meeting (at: Mon 2-4pm)
-Total tasks: 2
+deleted: [E][ ] project meeting (at: Mon 2-4pm)
 ____________________________________________________________
 added: [D][ ] do homework (by: no idea :-p)
-Total tasks: 3
 ____________________________________________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][X] return book (by: Sunday)
 3. [D][ ] do homework (by: no idea :-p)
+
 Total tasks: 3
 ____________________________________________________________
 Bye. Hope to see you again soon!
