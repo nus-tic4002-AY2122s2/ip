@@ -1,11 +1,13 @@
 package edu.nus.duke.task;
 
+import edu.nus.duke.storage.Storage;
+
 /**
  * Represent a task, for use as abstract class.
  */
 public abstract class Task {
     // Variables
-    protected final String SAVE_SEP = ";";
+    protected final String SAVE_SEP = Storage.getSaveSep();
     protected char prefix = ' ';
     protected String taskName;
     protected boolean isDone = false;
