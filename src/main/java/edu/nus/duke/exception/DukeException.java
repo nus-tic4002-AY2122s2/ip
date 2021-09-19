@@ -1,7 +1,7 @@
 package edu.nus.duke.exception;
 
 /**
- * Represent a custom exception for Duke use.
+ * Represent a custom abstract exception for Duke use.
  */
-public class DukeException extends Exception {
+public abstract class DukeException extends Exception {
 }
