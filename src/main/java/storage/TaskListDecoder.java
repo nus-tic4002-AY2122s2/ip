@@ -10,6 +10,13 @@ import java.util.Vector;
 
 class TaskListDecoder {
 
+    /**
+     * The method to convert all the data extracted from local storage, txt file, to task format and store in Vector<Task> format
+     *
+     * @param storageInformation All the data extracted from txt file in Vector<String> format
+     * @return all the extracted task in Vector<Task> format
+     * @throws DukeStorageError handles all the errors about storage
+     */
     static Vector<Task> decodeTaskList(Vector<String> storageInformation) throws DukeStorageError {
         Vector<Task> decodedTaskList = new Vector<>();
 
@@ -22,7 +29,12 @@ class TaskListDecoder {
         return decodedTaskList;
     }
 
-
+    /**
+     * The method to convert a single task String extracted to a single Task
+     * @param taskString The single task String extracted from txt file
+     * @return The task created based on the single task String
+     * @throws DukeStorageError handles all the errors about storage
+     */
     private static Task decodeTask(String taskString) throws DukeStorageError {
 
         String[] parts = taskString.split(" \\| ");

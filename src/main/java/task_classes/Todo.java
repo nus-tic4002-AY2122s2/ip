@@ -49,29 +49,56 @@ public class Todo extends Task {
         return this.type;
     }
 
+    /**
+     * To get the /by time of the Deadline task
+     *
+     * @return null
+     */
+    @Override
     public String getDeadlineDateTimeString(){
         return null;
     }
 
+    /**
+     * To get staring date time in String format
+     * @return null
+     */
+    @Override
     public String getStartingDateTime(){
         return null;
     }
 
+    /**
+     * To get ending date time in String format
+     * @return null
+     */
     @Override
     public String getEndingDateTime() {
         return null;
     }
 
+    /**
+     * To get the deadline time in DateTimeDuke format
+     * @return null
+     */
     @Override
     public DateTimeDuke getDeadlineTime() {
         return null;
     }
 
+    /**
+     * To get the starting time of event in DateTimeDuke format
+     * @return null
+     */
     @Override
     public DateTimeDuke getStartingTime() {
         return null;
     }
 
+    /**
+     * To get the ending time of event in DateTimeDuke format
+     * @return null
+     */
     @Override
     public DateTimeDuke getEndingTime() {
         return null;

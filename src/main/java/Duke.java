@@ -15,6 +15,13 @@ public class Duke {
     private Ui ui;
     private Storage storage;
 
+    /**
+     * initialize Duke
+     *
+     * @param filePath the target file location in local drive to store or extract task data from
+     * @throws IOException handles all input error
+     * @throws DukeStorageError handles all error during local file extraction and save
+     */
     public Duke (String filePath) throws IOException, DukeStorageError {
         ui = new Ui();
         storage = new Storage (filePath);
@@ -27,6 +34,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Start Duke
+     *
+     * @throws IOException Handle all input errors
+     */
     private void run() throws IOException {
         ui.showGreetingMessage();
         boolean isExit = false;
@@ -61,7 +73,6 @@ public class Duke {
 
         storage.transferToFile(taskList.getVectorList());
     }
-
 
     public static void main(String[] args) throws IOException, DukeStorageError {
         new Duke("data/dukeTasks.txt").run();

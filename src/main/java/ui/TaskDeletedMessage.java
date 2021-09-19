@@ -9,6 +9,11 @@ class TaskDeletedMessage {
     private String taskStatus;
     private Task deletedTask;
 
+    /**
+     * The method to initialize TaskDeletedMessage
+     * @param deletedTask deletedTask
+     * @param remainingTaskListSize remaining task list size
+     */
     TaskDeletedMessage(Task deletedTask, int remainingTaskListSize) {
         this.taskType = deletedTask.getType();
         this.remainingTaskListSize = remainingTaskListSize;

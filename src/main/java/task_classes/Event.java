@@ -4,6 +4,13 @@ import dateTime.DateTimeDuke;
 
 public class Event extends Task {
 
+    /**
+     * The method to initial Event task
+     * @param description task description
+     * @param taskStatus task initial status
+     * @param startingDateTime task starting date time
+     * @param endingDateTime task ending date time
+     */
     public Event (String description, Boolean taskStatus, String startingDateTime, String endingDateTime) {
         super(description);
         super.isDone = taskStatus;
@@ -12,16 +19,28 @@ public class Event extends Task {
         super.endingTime = new DateTimeDuke(endingDateTime);
     }
 
+    /**
+     * To get the deadline time in DateTimeDuke format
+     * @return deadline datetime
+     */
     @Override
     public DateTimeDuke getDeadlineTime() {
         return null;
     }
 
+    /**
+     * To get the starting time of event in DateTimeDuke format
+     * @return starting time
+     */
     @Override
     public DateTimeDuke getStartingTime() {
         return super.startingTime;
     }
 
+    /**
+     * To get the ending time of event in DateTimeDuke format
+     * @return ending time
+     */
     @Override
     public DateTimeDuke getEndingTime() {
         return super.endingTime;
@@ -61,6 +80,10 @@ public class Event extends Task {
         return this.type;
     }
 
+    /**
+     * To get staring date time in String format
+     * @return staring date time
+     */
     @Override
     public String getStartingDateTime(){
         DateTimeDuke dateTimeDuke = super.startingTime;
@@ -68,6 +91,10 @@ public class Event extends Task {
         return dateTimeDuke.convertToStringTypeI();
     }
 
+    /**
+     * To get ending date time in String format
+     * @return ending date time
+     */
     @Override
     public String getEndingDateTime() {
         DateTimeDuke dateTimeDuke = super.endingTime;
@@ -75,6 +102,11 @@ public class Event extends Task {
         return dateTimeDuke.convertToStringTypeI();
     }
 
+    /**
+     * To get the /by time of the Deadline task
+     *
+     * @return null
+     */
     @Override
     public String getDeadlineDateTimeString(){
         return null;

@@ -29,6 +29,9 @@ public class Ui {
         System.out.println("");
     }
 
+    /**
+     * The method to print loading error message
+     */
     public void showLoadingError(){
         ErrorMessage.showLoadingError();
     }
@@ -44,12 +47,21 @@ public class Ui {
         System.out.println("");
     }
 
+    /**
+     * The method to read user input
+     * @return user input information in String type
+     */
     public String readCommand(){
         String input;
         Scanner in = new Scanner(System.in);
         return input = in.nextLine();
     }
 
+    /**
+     * The method to print the message just after task be deleted successfully
+     * @param deletedTask task be deleted
+     * @param taskListRemainingSize the task list size after deletion
+     */
     public static void toPrintTaskDeletedMessage(Task deletedTask, int taskListRemainingSize) {
         TaskDeletedMessage taskDeletedMessage = new TaskDeletedMessage(deletedTask, taskListRemainingSize);
         taskDeletedMessage.printTaskDeletedMessage();
@@ -129,8 +141,5 @@ public class Ui {
             default:
                 System.out.println("");
         }
-    }
-    public static void printFindMessage() {
-        System.out.println("     Here are the matching tasks in your list:");
     }
 }

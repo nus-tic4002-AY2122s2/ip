@@ -6,6 +6,10 @@ public class DukeTaskInputException extends Exception {
 
     private static String errorType;
 
+    /**
+     * To initialize DukeTaskInputException
+     * @param errorTypeInput the error type
+     */
     public DukeTaskInputException(String errorTypeInput){
         errorType = errorTypeInput;
     }
@@ -26,6 +30,9 @@ public class DukeTaskInputException extends Exception {
         System.out.println("     ☹ OOPS!!! The Task List is empty.");
     }
 
+    /**
+     * The method to print command creation error
+     */
     public static void toPrintCommandCreateError() {
         System.out.println("     ☹ OOPS!!! The Command you just input was in wrong format.");
     }

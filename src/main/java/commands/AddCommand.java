@@ -16,6 +16,13 @@ public class AddCommand extends Command{
     private String[] inputWords;
     private String description;
 
+    /**
+     * The method to initialize AddCommand
+     *
+     * @param type the task type
+     * @param inputWords the entire input in String[] type
+     * @throws DukeTaskInputException handle all the errors during user input
+     */
     public AddCommand(String type, String[] inputWords) throws DukeTaskInputException {
         this.type = type;
         this.inputWords = inputWords;
@@ -73,6 +80,15 @@ public class AddCommand extends Command{
         Ui.printEventAddedOutput(newTask, list.size());
     }
 
+    /**
+     * The method to execute command
+     *
+     * @param taskList contain all the task
+     * @param ui Ui class
+     * @param storage Storage class
+     * @throws DukeTaskInputException throw all errors about input command
+     * @throws DukeDateTimeError throw all errors about date and time
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException, DukeDateTimeError {
         Vector<Task> list = taskList.getVectorList();
@@ -90,6 +106,10 @@ public class AddCommand extends Command{
         }
     }
 
+    /**
+     * The method to let system know whether the command is to exit the Duke
+     * @return return false, the program continue
+     */
     @Override
     public boolean isExit() {
         return false;

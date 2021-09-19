@@ -183,6 +183,12 @@ public class Parser {
         }
     }
 
+    /**
+     * The method to parse every input command
+     * @param fullCommand the full input command by user
+     * @return return the Command created accordingly
+     * @throws DukeTaskInputException handles all the errors about the user input
+     */
     public static Command parse(String fullCommand) throws DukeTaskInputException {
 
         String[] inputWords = fullCommand.split(" ");
@@ -210,21 +216,45 @@ public class Parser {
         throw new DukeTaskInputException("commandCreateError");
     }
 
+    /**
+     * The method to create deleteCommand
+     * @param inputWords the user input in String[] format
+     * @return return DeletedCommanded created according to the user input
+     * @throws DukeTaskInputException handles all errors about the user input
+     */
     private static DeleteCommand createDeleteCommand(String[] inputWords) throws DukeTaskInputException {
         int taskIndex = toExtractNumberForDoneAndDelete(inputWords);
         return new DeleteCommand(taskIndex);
     }
 
+    /**
+     * The method to create MarkAsDoneCommand
+     * @param inputWords the user input in String[] format
+     * @return return MarkAsDoneCommand created according to the user input
+     * @throws DukeTaskInputException handles all errors about the user input
+     */
     private static MarkAsDoneCommand createMarkAsDoneCommand(String[] inputWords) throws DukeTaskInputException {
         int taskIndex = toExtractNumberForDoneAndDelete(inputWords);
 
         return new MarkAsDoneCommand(taskIndex);
     }
 
+    /**
+     * The method to create AddCommand
+     * @param inputWords the user input in String[] format
+     * @return return AddCommand created according to the user input
+     * @throws DukeTaskInputException handles all errors about the user input
+     */
     private static AddCommand createAddCommand(String firstWord, String[] inputWords) throws DukeTaskInputException {
         return new AddCommand(firstWord, inputWords);
     }
 
+    /**
+     * The method to extract starting date time from user input
+     * @param input user input command in String format
+     * @return starting date time in String format
+     * @throws DukeDateTimeError handles all errors about DukeDateTime creation
+     */
     public static String extractStartingDateTime(String input) throws DukeDateTimeError {
         String[] words = input.split(" ");
         ArrayList<String> buffer = new ArrayList<String>();
@@ -245,6 +275,12 @@ public class Parser {
         throw new DateTimeException("dateFormatWrong");
     }
 
+    /**
+     * The method to extract ending date time from user input
+     * @param input user input command in String format
+     * @return ending date time in String format
+     * @throws DukeDateTimeError handles all errors about DukeDateTime creation
+     */
     public static String extractEndingDateTime(String input) throws DukeDateTimeError {
         String[] words = input.split(" ");
 

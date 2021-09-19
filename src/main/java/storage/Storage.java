@@ -14,12 +14,10 @@ import java.nio.file.Files;
 public class Storage {
 
     /**
-     * An default file path which is "data/duke.txt"
+     * An default file path which is "data/dukeTasks.txt"
      */
 
     private final String DEFAULT_STORAGE_FILEPATH = "data/dukeTasks.txt";
-
-
     private final Path rootPath = Paths.get("").toAbsolutePath();
     private final String rootDir = rootPath.normalize().toString();
     private Path path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
@@ -32,6 +30,10 @@ public class Storage {
         path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
     }
 
+    /**
+     * The method to initialize Storage
+     * @param filePath
+     */
     public Storage (String filePath) {
         path = Paths.get(filePath);
     }
@@ -102,6 +104,12 @@ public class Storage {
         toSaveTaskListToLocal(List);
     }
 
+    /**
+     * The method to extract date from local storage, txt file.
+     * @return the task list extracted in Vector<Task> format
+     * @throws DukeStorageError handles all storage errors during data extraction and storing
+     * @throws IOException handles all input errors
+     */
     public Vector<Task> load() throws DukeStorageError, IOException {
         Vector<String> extractedTaskInfo = extractTaskInfoFromTxt();
         Vector<Task> list = new Vector<>();
@@ -115,6 +123,12 @@ public class Storage {
         return list;
     }
 
+    /**
+     * The method to extract date from local storage, txt file.
+     * @return the task list extracted in Vector<String> format
+     * @throws DukeStorageError handles all storage errors during data extraction and storing
+     * @throws IOException handles all input errors
+     */
     private Vector<String> extractTaskInfoFromTxt() throws IOException, DukeStorageError {
 
         if(!fileDoExist()){

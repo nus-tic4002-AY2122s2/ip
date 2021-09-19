@@ -70,9 +70,22 @@ public abstract class Task {
      */
     public abstract DateTimeDuke getEndingTime();
 
+    /**
+     * To get the /by time of the Deadline task
+     *
+     * @return the time/date of the Deadline task
+     */
     public abstract String getDeadlineDateTimeString();
 
+    /**
+     * To get staring date time in String format
+     * @return starting date time
+     */
     public abstract String getStartingDateTime();
 
+    /**
+     * To get ending date time in String format
+     * @return ending date time
+     */
     public abstract String getEndingDateTime();
 }
