@@ -5,6 +5,9 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * The event class which the user want to store with date and time
+ */
 public class Event extends Task {
     protected LocalDate taskDate;
     protected LocalTime taskTime;
@@ -23,6 +26,11 @@ public class Event extends Task {
         taskType = TaskType.EVENT;
     }
 
+    /**
+     * Constructs the Duke.Task.Event class without a time
+     * @param description the description the user input
+     * @param taskDateString the date that the user input
+     */
     public Event(String description, String taskDateString) {
         super(description);
         this.taskDateString = taskDateString;
@@ -33,7 +41,10 @@ public class Event extends Task {
         return taskDateString;
     }
 
-
+    /**
+     * Return the task type with the task that the user input and whether it is done or not
+     * @return the task in String
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + taskDateString + ")";

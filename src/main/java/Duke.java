@@ -13,6 +13,11 @@ import java.util.Scanner;
 
 
 public class Duke {
+
+    /**
+     * Main function to start
+     * @param args
+     */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -22,9 +27,8 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         new Duke().run();
-
-
     }
+
 
     public boolean readCommand(String line, ArrayList<Task> tasks){
         try{
@@ -45,7 +49,7 @@ public class Duke {
                     int i = Integer.parseInt(line.split(" ")[1]);
                     tasks.get(i - 1).editDone(Boolean.TRUE);
                     System.out.println("Nice! I've marked this task as done: \n" +
-                            "[" + tasks.get(i - 1).getStatusIcon() + "] " + tasks.get(i - 1).getTask());
+                            "[" + tasks.get(i - 1).getStatusIcon() + "] " + tasks.get(i - 1).getTaskDescription());
                     break;
 
                 case ("deadline"):
@@ -91,7 +95,7 @@ public class Duke {
                     }
                     try{
                         i = Integer.parseInt(line.split(" ")[1]);
-                        String deletedTask = tasks.get(i - 1).getTask();
+                        String deletedTask = tasks.get(i - 1).getTaskDescription();
                         tasks.remove(i-1);
 
                         System.out.println("I've deleted this task: \n" + deletedTask);
@@ -114,6 +118,7 @@ public class Duke {
         return false;
     }
 
+<<<<<<< HEAD
     public static void save(ArrayList<Task> lists){
         try {
             java.nio.file.Path folderDir = java.nio.file.Paths.get("data");
@@ -237,6 +242,12 @@ public class Duke {
         throw new DukeException("Unknown task Type");
     }
 
+=======
+
+    /**
+     * this function will run the Duke program
+     */
+>>>>>>> branch-A-JavaDoc
     public void run() {
         System.out.println("Hello! I'm Duke \n  " +
                 "What can I do for you?");
