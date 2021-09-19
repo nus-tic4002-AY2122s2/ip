@@ -8,7 +8,7 @@ import edu.nus.duke.storage.Storage;
 public abstract class Task {
     // Variables
     protected final String SAVE_SEP = Storage.getSaveSep();
-    protected char prefix = ' ';
+    protected char prefix;
     protected String taskName;
     protected boolean isDone = false;
 
