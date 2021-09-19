@@ -78,4 +78,8 @@ public class Parser {
             Ui.printMessage("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
         }
     }
+
+    public static boolean isExit(String inputTxt) {
+        return inputTxt.equals("bye");
+    }
 }

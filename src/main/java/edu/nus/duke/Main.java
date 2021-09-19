@@ -1,7 +1,5 @@
 package edu.nus.duke;
 
-import java.util.Scanner;
-
 import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.TaskList;
 import edu.nus.duke.storage.Storage;
@@ -11,11 +9,13 @@ public class Main {
     // Variables
     private TaskList taskList;
     private Storage storage;
+    private Ui ui;
 
     // Constructor
     public Main(String filePath) {
         taskList = new TaskList();
         storage = new Storage(filePath, taskList);
+        ui = new Ui();
 
         Ui.printMessage("Hello! I'm Jarvis\nWhat can I do for you?");
         runApp();
@@ -24,12 +24,13 @@ public class Main {
 
     // Methods
     private void runApp() {
-        Scanner userInput = new Scanner(System.in);
-        String inputTxt = userInput.nextLine();
-        while (!inputTxt.equals("bye")) {
+        while (true) {
+            String inputTxt = ui.getUserInput();
+            if (Parser.isExit(inputTxt)) {
+                break;
+            }
             Parser.parseInput(inputTxt, taskList);
             storage.writeToFile(taskList.printForFile());
-            inputTxt = userInput.nextLine();
         }
     }
 
