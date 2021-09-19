@@ -1,6 +1,7 @@
 package edu.nus.duke.command;
 
 import edu.nus.duke.ui.Ui;
+import edu.nus.duke.task.TaskList;
 
 public class ExitCommand extends Command {
     // Constructor
@@ -10,7 +11,7 @@ public class ExitCommand extends Command {
 
     // Methods
     @Override
-    public void runCmd() {
+    public void runCmd(TaskList taskList) {
         Ui.printMessage("Bye. Hope to see you again soon!");
     }
 }
