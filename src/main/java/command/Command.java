@@ -1,6 +1,7 @@
 package command;
 
 import exception.DukeException;
+import exception.EmptyException;
 import basic.TaskList;
 import basic.Ui;
 
@@ -15,7 +16,7 @@ public class Command {
         return false;
     }
 
-    public void execute(TaskList tasks, Ui ui) throws DukeException {
+    public void execute(TaskList tasks, Ui ui) throws DukeException, EmptyException  {
         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means.");
     }
 

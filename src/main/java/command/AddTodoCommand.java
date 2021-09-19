@@ -1,5 +1,6 @@
 package command;
 
+import exception.EmptyException;
 import basic.TaskList;
 import basic.Ui;
 import task.Todo;
@@ -21,9 +22,10 @@ public class AddTodoCommand extends Command {
     /**
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
+     * @throws EmptyException If an empty description is inputted.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui)  {
+    public void execute(TaskList tasks, Ui ui) throws EmptyException  {
         input = input.toLowerCase();
         if (input.contains("todo")){
             input = input.replace("todo", "");
@@ -33,6 +35,9 @@ public class AddTodoCommand extends Command {
             tasks.addTask(todo);
             ui.showAdded();
             ui.printTaskNum(tasks, todo);
+        }
+        else {
+            throw new EmptyException("a todo");
         }
     }
 

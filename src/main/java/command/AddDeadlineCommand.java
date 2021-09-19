@@ -1,5 +1,6 @@
 package command;
 
+import exception.EmptyException;
 import basic.TaskList;
 import basic.Ui;
 import task.Deadline;
@@ -21,9 +22,11 @@ public class AddDeadlineCommand extends Command {
     /**
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
+     * @throws EmptyException If an empty description is inputted.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public void execute(TaskList tasks, Ui ui ) throws EmptyException {
+        int position;
         input = input.toLowerCase();
         if (input.contains("deadline")) {
             input = input.replace("deadline", "");
@@ -31,14 +34,25 @@ public class AddDeadlineCommand extends Command {
         else{
             input = input.replaceFirst("d", "");
         }
-        int position = input.indexOf("/by");
-        if (!input.substring(0, position - 1).equals("") && !input.substring(0, position - 1).equals(" ")) {
+        if (input.contains("/by")) {
+            position = input.indexOf("/by");
+        }
+        else {
+            position = -1;
+        }
+        boolean isInputEmpty = input.substring(0, position - 1).equals("");
+        boolean isInputEmptySpace = input.substring(0, position - 2).equals(" ");
+        // Add task if command contains "/by" and descriptions
+        if (position != -1 && (!isInputEmpty || !isInputEmptySpace )) {
             String date = input.substring(position + 4);
             input = input.substring(0, position - 1);
             Deadline deadline = new Deadline(input, date);
             tasks.addTask(deadline);
             ui.showAdded();
             ui.printTaskNum(tasks, deadline);
+        }
+        else {
+            throw new EmptyException("a deadline");
         }
     }
 
