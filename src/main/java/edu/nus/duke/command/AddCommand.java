@@ -8,9 +8,9 @@ import edu.nus.duke.task.TaskList;
  */
 public class AddCommand extends Command {
     // Variables
-    public static final String cmdTodo = "todo";
-    public static final String cmdDeadline = "deadline";
-    public static final String cmdEvent = "event";
+    public static final String CMD_TODO = "todo";
+    public static final String CMD_DEADLINE = "deadline";
+    public static final String CMD_EVENT = "event";
     private Task task;
 
     // Constructor

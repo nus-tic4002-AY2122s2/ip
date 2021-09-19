@@ -7,7 +7,7 @@ import edu.nus.duke.task.TaskList;
  */
 public class DeleteCommand extends Command {
     // Variables
-    public static final String cmd = "delete";
+    public static final String CMD = "delete";
     private int idx;
 
     // Constructor

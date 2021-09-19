@@ -8,7 +8,7 @@ import edu.nus.duke.task.TaskList;
  */
 public class ListCommand extends Command {
     // Variables
-    public static final String cmd = "list";
+    public static final String CMD = "list";
 
     // Methods
     @Override

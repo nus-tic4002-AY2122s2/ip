@@ -8,13 +8,13 @@ import edu.nus.duke.storage.Storage;
 public abstract class Task {
     // Variables
     protected final String SAVE_SEP = Storage.getSaveSep();
-    protected final char prefix;
+    protected final char PREFIX;
     protected String taskName;
     protected boolean isDone = false;
 
     // Constructor
     public Task(char prefix, String taskName) {
-        this.prefix = prefix;
+        this.PREFIX = prefix;
         this.taskName = taskName;
     }
 
@@ -26,7 +26,7 @@ public abstract class Task {
      */
     public String getTask() {
         String taskStatus = isDone ? "X" : " ";
-        return ("[" + prefix + "]" + "[" + taskStatus + "] " + taskName);
+        return ("[" + PREFIX + "]" + "[" + taskStatus + "] " + taskName);
     }
 
     /**
@@ -36,7 +36,7 @@ public abstract class Task {
      */
     public String printForSave() {
         String doneIdx = isDone ? "1" : "0";
-        return (prefix + SAVE_SEP + doneIdx + SAVE_SEP + taskName);
+        return (PREFIX + SAVE_SEP + doneIdx + SAVE_SEP + taskName);
     }
 
     // Setter
