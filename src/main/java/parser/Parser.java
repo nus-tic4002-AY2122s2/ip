@@ -59,7 +59,7 @@ public class Parser {
 
             case "find":
                 keyword = input.replaceFirst("find", "").trim();
-                return new FindCommand(keyword)
+                return new FindCommand(keyword);
 
             case "done":
                 try {
@@ -104,7 +104,7 @@ public class Parser {
 
             case "todo":
                 description = input.replaceFirst("todo", "").trim();
-                return new AddCommand("todo",description,secPart)
+                return new AddCommand("todo",description,secPart);
 
             case "event":
             case "deadline":

@@ -1,84 +1,85 @@
-import java.util.*;
-import tasks.*;
+import commands.Command;
+import exceptions.DukeException;
+import parser.Parser;
+import storage.Storage;
+import tasks.TaskList;
+import ui.Ui;
+
+
+import java.io.IOException;
+
+//TODO: CLEAN UP!
+//TODO: Exceptions - Probably could double check more,
+// Work on Individual Features more
+// Double check on assertions
+
+// Individual Features:
+//Better Search - e.g., find items even if the keyword matches the item only partially.
+// Snooze - Provide a way to easily snooze/postpone/reschedule tasks.
+// 'Do within a period' task - Provide support for managing tasks that need to be done within a certain period e.g., collect certificate between Jan 15 and 25th.
+
 
 public class Duke {
-    public static void main(String[] args) {
-        String greeting = " Hello! I'm Duke\n" + " What can I do for you?";
-        String bye = "Bye. Hope to see you again soon!";
-        System.out.println(greeting);
 
-        boolean running = true;
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+    private Parser parser;
+
+
+    /**
+     * Used to create a new Duke Instance. Initialise the ui,storage and tasks.
+     * tasks will load from the storage. If there is an error, it will initialise on its own.
+     *
+     * @param filePath The String filePath to storage
+     * @throws IOException
+     */
+
+    public Duke(String filePath) throws IOException {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        parser = new Parser();
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
+
+    /**
+     * Used to keep the Duke Chat bot running. Scan for input then Parse the input into a command
+     * Afterwards, execute the command. The process will keep running until the user types "bye"
+     *
+     * @throws IOException
+     */
+    public void run() throws IOException {
+        Command c;
         String input;
-        Scanner sc = new Scanner(System.in);
-        List<Task> list = new ArrayList<>();
-        while(running){
-            input = sc.nextLine();
-            if(input.matches("bye")){
-                break;
-            }else{
-                controller(input,list);
-            }
+        ui.printIntro();
 
+        boolean isRunning = true;
+        while (isRunning) {
+            try {
+                input = ui.scanForInput();
+                ui.showLine();
+                c = parser.parse(input);
+                c.execute(tasks, ui, storage);
+                isRunning = c.isRunning();
+            } catch (DukeException e) {
+                ui.showError(e.getErrorMessage());
+            } finally {
+                ui.showLine();
+            }
         }
 
-        System.out.println(bye);
+        ui.printBye();
 
     }
 
-    //Will be refactored and in better components
-    public static void controller(String input, List<Task> list ){
-        int index = 0;
-        String secPart;
-        String description;
-        if(input.matches("list")){
-            for(int i = 0; i < list.size(); i++){
-                System.out.println(i + 1 + ". " + list.get(i).toString());
-            }
-        }else if(input.contains("done")){
-            int option = Integer.parseInt(input.replaceAll("done","").trim());
-            if(option > 0 && option <= list.size()){
-                list.get(option - 1).changeDoneTo(true);
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(" " + list.get(option-1).toString());
-            }
 
-
-        }else if(input.contains("todo")){
-            description = input.replaceFirst("todo","").trim();
-            list.add(new ToDo(description));
-            System.out.println("Got it. I've added this task:");
-            System.out.println(list.get(list.size()-1).toString() );
-            System.out.println("Now you have " + list.get(0).getCumulatedTasksAdded() + " tasks in the list.");
-
-        }else if(input.contains("deadline")){
-            index = input.indexOf("/by");
-            secPart = input.substring(index).replaceFirst("/by","").trim();
-            description = input.substring(0, index).replaceFirst("deadline","").trim();
-
-            list.add(new Deadline(description,secPart));
-            System.out.println("Got it. I've added this task:");
-            System.out.println(list.get(list.size()-1).toString() );
-            System.out.println("Now you have " + list.get(0).getCumulatedTasksAdded() + " tasks in the list.");
-
-        }else if(input.contains("event")){
-            index = input.indexOf("/at");
-            secPart = input.substring(index).replaceFirst("/at","").trim();
-            description = input.substring(0, index).replaceFirst("event","").trim();
-
-            list.add(new Event(description,secPart));
-
-            System.out.println("Got it. I've added this task:");
-            System.out.println(list.get(list.size()-1).toString() );
-            System.out.println("Now you have " + list.get(0).getCumulatedTasksAdded() + " tasks in the list.");
-
-        }else{
-            list.add(new Task(input));
-            System.out.println("Got it. I've added this task:");
-            System.out.println(list.get(list.size()-1).toString() );
-            System.out.println("Now you have " + list.get(0).getCumulatedTasksAdded() + " tasks in the list.");
-        }
+    public static void main(String[] args) throws IOException{
+        new Duke("data/tasks_list.txt").run();
     }
-
-
 }
-
