@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import edu.nus.duke.ui.Ui;
 import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 
+/**
+ * Class that contains the task list
+ */
 public class TaskList {
     // Variables
     private ArrayList<Task> tasks;
@@ -15,10 +18,20 @@ public class TaskList {
     }
 
     // Getter
+    /**
+     * Return the tasks size as an integer.
+     *
+     * @return tasks size.
+     */
     public int getListSize() {
         return tasks.size();
     }
 
+    /**
+     * Return a string with all tasks.
+     *
+     * @return string with all tasks.
+     */
     public String printTasks() {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
@@ -30,6 +43,11 @@ public class TaskList {
         return output.toString();
     }
 
+    /**
+     * Return a string with all tasks for file save.
+     *
+     * @return string with all tasks.
+     */
     public String printForFile() {
         StringBuilder output = new StringBuilder();
         for (Task task : tasks) {
@@ -40,11 +58,21 @@ public class TaskList {
     }
 
     // Setter
+    /**
+     * Add a task.
+     *
+     * @param task A {@code Task} to be added.
+     */
     public void addTask(Task task) {
         tasks.add(task);
         Ui.printMessage("added: " + task.getTask());
     }
 
+    /**
+     * Add a task from Array of elements.
+     *
+     * @param elements Array of elements.
+     */
     public void addTask(String[] elements) throws DukeInvalidTaskIndexException, ArrayIndexOutOfBoundsException {
         String taskType = elements[0];
         boolean isDone = elements[1].equals("1");
@@ -67,6 +95,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Set a task to done.
+     *
+     * @param idx Task index.
+     */
     public void doneTask(int idx) {
         try {
             tasks.get(idx).setDone();
@@ -76,6 +109,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Delete a task.
+     *
+     * @param idx Task index.
+     */
     public void deleteTask(int idx) {
         try {
             String task = tasks.get(idx).getTask();

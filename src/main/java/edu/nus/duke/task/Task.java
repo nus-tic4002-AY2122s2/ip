@@ -30,7 +30,9 @@ public abstract class Task {
     }
 
     /**
-     * Set a task to done.
+     * Return a string with required info to be saved for a task.
+     *
+     * @return string with required info to be saved.
      */
     public String printForSave() {
         String doneIdx = isDone ? "1" : "0";
@@ -38,6 +40,9 @@ public abstract class Task {
     }
 
     // Setter
+    /**
+     * Set a task to done.
+     */
     public void setDone() {
         this.isDone = true;
     }

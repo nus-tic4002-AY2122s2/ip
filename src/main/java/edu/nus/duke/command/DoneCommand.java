@@ -2,6 +2,9 @@ package edu.nus.duke.command;
 
 import edu.nus.duke.task.TaskList;
 
+/**
+ * Represent done command that extends from Command.
+ */
 public class DoneCommand extends Command {
     // Variables
     public static final String cmd = "done";

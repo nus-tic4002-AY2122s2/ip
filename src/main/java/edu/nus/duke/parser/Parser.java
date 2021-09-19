@@ -1,6 +1,5 @@
 package edu.nus.duke.parser;
 
-import edu.nus.duke.ui.Ui;
 import edu.nus.duke.storage.Storage;
 import edu.nus.duke.command.Command;
 import edu.nus.duke.command.AddCommand;
@@ -15,6 +14,9 @@ import edu.nus.duke.exception.DukeInvalidInputException;
 import edu.nus.duke.exception.DukeEmptyArgsException;
 import edu.nus.duke.exception.DukeDisallowInputException;
 
+/**
+ * Class that deals with making sense of the user command
+ */
 public class Parser {
     // Methods
     private static void rejectBadInput(String input) throws DukeDisallowInputException {
@@ -54,6 +56,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Parse the string input from user and returns a {@code Command}.
+     *
+     * @param inputTxt Input string from user.
+     * @return A polymorphic command to be executed.
+     * @throws DukeInvalidInputException If user input is not of standard commands.
+     * @throws DukeEmptyArgsException If required arguments are missing.
+     * @throws DukeDisallowInputException If disallowed keywords are present.
+     * @throws ArrayIndexOutOfBoundsException If there is invalid argument.
+     */
     public static Command parseInput(String inputTxt) throws DukeInvalidInputException,
             DukeEmptyArgsException, DukeDisallowInputException, ArrayIndexOutOfBoundsException {
         rejectBadInput(inputTxt);

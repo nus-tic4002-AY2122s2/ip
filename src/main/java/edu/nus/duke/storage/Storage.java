@@ -13,6 +13,9 @@ import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.TaskList;
 import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 
+/**
+ * Class that deals with loading tasks from the file and saving tasks in the file
+ */
 public class Storage {
     // Variables
     private static final String SAVE_SEP = ";";
@@ -27,6 +30,11 @@ public class Storage {
     }
 
     // Getter
+    /**
+     * Return string of save separator.
+     *
+     * @return string of save separator.
+     */
     public static String getSaveSep() {
         return SAVE_SEP;
     }
@@ -63,6 +71,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Write String to file.
+     *
+     * @param txt String to be written.
+     */
     public void writeToFile(String txt) {
         createParentDir(filePath);
         try {
