@@ -1,6 +1,7 @@
 package commands;
 
 
+import exceptions.DukeDateTimeError;
 import exceptions.DukeTaskInputException;
 import storage.Storage;
 import task_classes.*;
@@ -45,7 +46,7 @@ public class AddCommand extends Command{
 
         String date = Parser.toExtractDate(inputWords);
 
-        Deadline newTask = new Deadline(description, date);
+        Deadline newTask = new Deadline(description, false, date);
 
         list.add(newTask);
 
@@ -58,11 +59,14 @@ public class AddCommand extends Command{
      *
      * @param list the entire task list
      */
-    private void addEventTask (Vector<Task> list) throws DukeTaskInputException {
+    private void addEventTask (Vector<Task> list) throws DukeTaskInputException, DukeDateTimeError {
 
         String date = Parser.toExtractDate(inputWords);
+        String startingDateTime = Parser.extractStartingDateTime(date);
+        String endingDateTime = Parser.extractEndingDateTime(date);
 
-        Event newTask = new Event(description, date);
+
+        Event newTask = new Event(description, false, startingDateTime, endingDateTime);
 
         list.add(newTask);
 
@@ -70,7 +74,7 @@ public class AddCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException, DukeDateTimeError {
         Vector<Task> list = taskList.getVectorList();
 
         switch (type) {

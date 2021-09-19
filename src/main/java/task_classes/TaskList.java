@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class TaskList {
 
-    private static Vector<Task> list;
+    private Vector<Task> list;
 
     public TaskList (Vector<Task> taskList){
         list = taskList;
@@ -17,7 +17,7 @@ public class TaskList {
         list = new Vector<>();
     }
 
-    public static void deleteTask(int taskIndex) throws DukeTaskInputException {
+    public void deleteTask(int taskIndex) throws DukeTaskInputException {
         if(list.isEmpty()){
             throw new DukeTaskInputException("taskListEmpty");
         }
@@ -25,20 +25,20 @@ public class TaskList {
         list.remove(taskIndex);
     }
 
-    public static void addTask(Task task) {
+    public void addTask(Task task) {
         list.add(task);
     }
 
-    public static String getDateTime (int taskIndex) throws DukeStorageError {
+    public String getDateTime (int taskIndex) throws DukeStorageError {
         Task task = list.get(taskIndex);
 
         String taskType = task.getType();
 
         switch (taskType) {
             case "E":
-                return task.getAt();
+                return task.getStartingDateTime();
             case "D":
-                return task.getBy();
+                return task.getDeadlineDateTimeString();
         }
 
         throw new DukeStorageError();
@@ -48,7 +48,7 @@ public class TaskList {
         return list.get(index);
     }
 
-    public static void toPrintEntireTaskList(){
+    public void toPrintEntireTaskList(){
         if(list.isEmpty()){
             System.out.println("     Here is no task in your list.");
             return;
@@ -68,12 +68,13 @@ public class TaskList {
 
             switch(taskType){
                 case "E":
-                    String eventDateTime = task.getAt();
-                    System.out.println(" (at: " + eventDateTime + ")");
+                    String eventStartingDateTime = task.getStartingDateTime();
+                    String eventEndingDateTime = task.getEndingDateTime();
+                    System.out.println(" (at: " + eventStartingDateTime + " ---> " + eventEndingDateTime + ")");
 
                     break;
                 case "D":
-                    String deadlineDateTime = task.getBy();
+                    String deadlineDateTime = task.getDeadlineDateTimeString();
                     System.out.println(" (by: " + deadlineDateTime + ")");
 
                     break;
@@ -131,7 +132,7 @@ public class TaskList {
         return list.isEmpty();
     }
 
-    public static Vector<Task> getVectorList() {
+    public Vector<Task> getVectorList() {
         return list;
     }
 }

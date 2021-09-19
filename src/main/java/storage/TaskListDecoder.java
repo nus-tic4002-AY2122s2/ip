@@ -19,7 +19,6 @@ class TaskListDecoder {
             decodedTaskList.add(task);
         }
 
-
         return decodedTaskList;
     }
 
@@ -33,25 +32,17 @@ class TaskListDecoder {
 
         if(parts.length == 3){ //todo type with correct length
 
-            //System.out.println("Todo " + parts[2]);
             return new Todo(taskDescription, taskStatus);
 
-        } else if (parts.length == 4){ // deadline or event with correct length
-            if(taskType.equals("E")){
+        } else if (parts.length == 5 && taskType.equals("E")) { // event with correct length
 
-                //System.out.println("Event " + parts[2] + " | " + parts[3]);
-                String dateTime = parts[3];
-                return new Event(taskDescription, taskStatus, dateTime);
+            //  type [0] | status [1] | description [2] | starting [3] | ending [4]
+            return new Event(taskDescription, taskStatus, parts[3], parts[4]);
 
-            } else if (taskType.equals("D")){
+        } else if (parts.length == 4 && taskType.equals("D")){ // deadline with correct length
+             // type [0] | status [1] | description [2] | deadline date [3]
+            return new Deadline(taskDescription, taskStatus, parts[3]);
 
-                //System.out.println("Deadline " + parts[2] + " | " + parts[3]);
-                String dateTime = parts[3];
-                return new Deadline(taskDescription, taskStatus, dateTime);
-
-            } else {
-                throw new DukeStorageError();
-            }
         } else {
             throw new DukeStorageError();
         }
