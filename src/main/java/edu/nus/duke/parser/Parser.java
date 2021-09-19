@@ -23,7 +23,7 @@ import edu.nus.duke.exception.DukeDisallowInputException;
  */
 public class Parser {
     // Variables
-    private static final String dtFormat = "yyyy-MM-dd'T'HH:mm";
+    private static final String DT_FORMAT = "yyyy-MM-dd'T'HH:mm";
 
     // Methods
     private static void rejectBadInput(String input) throws DukeDisallowInputException {
@@ -33,7 +33,7 @@ public class Parser {
     }
 
     private static LocalDateTime parseDt(String s) throws DateTimeParseException {
-        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(dtFormat));
+        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DT_FORMAT));
     }
 
     private static Command parseInput_MultiArgs(String cmd, String args)
