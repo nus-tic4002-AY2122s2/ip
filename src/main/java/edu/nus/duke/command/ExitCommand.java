@@ -5,7 +5,7 @@ import edu.nus.duke.ui.Ui;
 public class ExitCommand extends Command {
     // Constructor
     public ExitCommand() {
-        this.cmd = "bye";
+        super("bye");
     }
 
     // Methods
