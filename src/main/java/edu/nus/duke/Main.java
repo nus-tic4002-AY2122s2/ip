@@ -5,6 +5,7 @@ import edu.nus.duke.task.TaskList;
 import edu.nus.duke.storage.Storage;
 import edu.nus.duke.parser.Parser;
 import edu.nus.duke.command.Command;
+import edu.nus.duke.command.ExitCommand;
 import edu.nus.duke.exception.DukeInvalidInputException;
 import edu.nus.duke.exception.DukeEmptyArgsException;
 import edu.nus.duke.exception.DukeDisallowInputException;
@@ -23,16 +24,13 @@ public class Main {
 
         Ui.printMessage("Hello! I'm Jarvis\nWhat can I do for you?");
         runApp();
-        Ui.printMessage("Bye. Hope to see you again soon!");
     }
 
     // Methods
     private void runApp() {
-        while (true) {
-            String inputTxt = ui.getUserInput();
-            if (Parser.isExit(inputTxt)) {
-                break;
-            }
+        String inputTxt;
+        do {
+            inputTxt = ui.getUserInput();
             try {
                 Command cmd = Parser.parseInput(inputTxt);
                 cmd.run(taskList);
@@ -46,7 +44,7 @@ public class Main {
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printMessage("Invalid input");
             }
-        }
+        } while (!inputTxt.equals(ExitCommand.cmd));
     }
 
     public static void main(String[] args) {

@@ -7,6 +7,7 @@ import edu.nus.duke.command.AddCommand;
 import edu.nus.duke.command.ListCommand;
 import edu.nus.duke.command.DoneCommand;
 import edu.nus.duke.command.DeleteCommand;
+import edu.nus.duke.command.ExitCommand;
 import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
 import edu.nus.duke.task.Event;
@@ -62,6 +63,8 @@ public class Parser {
 
         if (cmd.equals(ListCommand.cmd)) {
             return (new ListCommand());
+        } else if (cmd.equals(ExitCommand.cmd)) {
+            return (new ExitCommand());
         } else {
             if (inputArray.length == 1) {
                 throw new DukeEmptyArgsException();
@@ -69,9 +72,5 @@ public class Parser {
             String args = inputArray[1];
             return parseInput_MultiArgs(cmd, args);
         }
-    }
-
-    public static boolean isExit(String inputTxt) {
-        return inputTxt.equals("bye");
     }
 }
