@@ -118,7 +118,6 @@ public class Duke {
         return false;
     }
 
-<<<<<<< HEAD
     public static void save(ArrayList<Task> lists){
         try {
             java.nio.file.Path folderDir = java.nio.file.Paths.get("data");
