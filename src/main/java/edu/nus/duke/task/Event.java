@@ -25,7 +25,7 @@ public class Event extends Task {
     // Getter
     @Override
     public String getTask() {
-        return (super.getTask() + " (at: " + Parser.dtToString(at) + ")");
+        return (super.getTask() + " (at: " + Parser.printDt(at) + ")");
     }
 
     @Override

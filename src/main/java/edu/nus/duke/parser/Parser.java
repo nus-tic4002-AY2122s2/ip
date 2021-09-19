@@ -25,6 +25,8 @@ public class Parser {
     // Variables
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String DT_FORMAT = "yyyy-MM-dd'T'HH:mm";
+    private static final String DATE_FORMAT_PRINT = "d MMM yy";
+    private static final String DT_FORMAT_PRINT = "d MMM yy h:mm a";
 
     // Methods
     private static void rejectBadInput(String input) throws DukeDisallowInputException {
@@ -43,6 +45,13 @@ public class Parser {
 
     public static String dtToString(LocalDateTime dt) {
         return dt.format(DateTimeFormatter.ofPattern(DT_FORMAT));
+    }
+
+    public static String printDt(LocalDateTime dt) {
+        if ((dt.getHour() == 0) && (dt.getMinute() == 0)) {
+            return dt.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PRINT));
+        }
+        return dt.format(DateTimeFormatter.ofPattern(DT_FORMAT_PRINT));
     }
 
     private static Command parseInput_MultiArgs(String cmd, String args) throws ArrayIndexOutOfBoundsException,

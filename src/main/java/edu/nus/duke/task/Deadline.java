@@ -25,7 +25,7 @@ public class Deadline extends Task {
     // Getter
     @Override
     public String getTask() {
-        return (super.getTask() + " (by: " + Parser.dtToString(by) + ")");
+        return (super.getTask() + " (by: " + Parser.printDt(by) + ")");
     }
 
     @Override
