@@ -36,6 +36,10 @@ public class Parser {
         return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DT_FORMAT));
     }
 
+    private static String dtToString(LocalDateTime dt) {
+        return dt.format(DateTimeFormatter.ofPattern(DT_FORMAT));
+    }
+
     private static Command parseInput_MultiArgs(String cmd, String args)
             throws ArrayIndexOutOfBoundsException, DukeInvalidInputException {
         String[] argsArray;
