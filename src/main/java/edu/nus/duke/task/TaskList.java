@@ -3,7 +3,7 @@ package edu.nus.duke.task;
 import java.util.ArrayList;
 
 import edu.nus.duke.ui.Ui;
-import edu.nus.duke.exception.DukeException;
+import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 
 public class TaskList {
     // Variables
@@ -45,7 +45,7 @@ public class TaskList {
         Ui.printMessage("added: " + task.getTask());
     }
 
-    public void addTask(String[] elements) throws DukeException, ArrayIndexOutOfBoundsException {
+    public void addTask(String[] elements) throws DukeInvalidTaskIndexException, ArrayIndexOutOfBoundsException {
         String taskType = elements[0];
         boolean isDone = elements[1].equals("1");
         String taskName = elements[2];
@@ -63,7 +63,7 @@ public class TaskList {
                 tasks.add(new Event(taskName, at, isDone));
                 break;
             default:
-                throw new DukeException();
+                throw new DukeInvalidTaskIndexException();
         }
     }
 

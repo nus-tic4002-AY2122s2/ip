@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.TaskList;
-import edu.nus.duke.exception.DukeException;
+import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 
 public class Storage {
     // Variables
@@ -41,7 +41,7 @@ public class Storage {
                     taskList.addTask(line.split(SAVE_SEP));
                 } catch (ArrayIndexOutOfBoundsException e) {
                     Ui.printMessage_Exit("Bad data in " + filePath);
-                } catch (DukeException e) {
+                } catch (DukeInvalidTaskIndexException e) {
                     Ui.printMessage_Exit("Invalid task index in " + filePath);
                 }
             }
