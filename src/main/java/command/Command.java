@@ -1,10 +1,10 @@
 package command;
 
 import constant.ErrorMessage;
+import parser.CommandParser;
 import ui.Ui;
 import userList.UserList;
 import exception.ErrorHandler;
-import parser.Parser;
 import task.Deadline;
 import task.Event;
 import task.Todo;
@@ -19,7 +19,7 @@ public class Command {
 
     private void process (UserList list, String userInput) throws ErrorHandler {
         try {
-            Parser parser = new Parser(userInput);
+            CommandParser parser = new CommandParser(userInput);
             System.out.println(parser.getCommandWord());
             switch (parser.getCommandWord()) {
                 case BYE:
