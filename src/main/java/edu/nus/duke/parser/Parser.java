@@ -19,7 +19,7 @@ import edu.nus.duke.exception.DukeDisallowInputException;
  */
 public class Parser {
     // Variables
-    private final String dtFormat = "yyyy-MM-ddTHH:mm";
+    private final String dtFormat = "yyyy-MM-dd'T'HH:mm";
 
     // Methods
     private static void rejectBadInput(String input) throws DukeDisallowInputException {
