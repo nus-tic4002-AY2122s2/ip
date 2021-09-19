@@ -1,5 +1,9 @@
 package edu.nus.duke.parser;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import edu.nus.duke.storage.Storage;
 import edu.nus.duke.command.Command;
 import edu.nus.duke.command.AddCommand;
@@ -19,13 +23,17 @@ import edu.nus.duke.exception.DukeDisallowInputException;
  */
 public class Parser {
     // Variables
-    private final String dtFormat = "yyyy-MM-dd'T'HH:mm";
+    private static final String dtFormat = "yyyy-MM-dd'T'HH:mm";
 
     // Methods
     private static void rejectBadInput(String input) throws DukeDisallowInputException {
         if (input.contains(Storage.getSaveSep())) {
             throw new DukeDisallowInputException();
         }
+    }
+
+    private static LocalDateTime parseDt(String s) throws DateTimeParseException {
+        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(dtFormat));
     }
 
     private static Command parseInput_MultiArgs(String cmd, String args)
