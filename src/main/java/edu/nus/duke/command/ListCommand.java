@@ -4,10 +4,8 @@ import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.TaskList;
 
 public class ListCommand extends Command {
-    // Constructor
-    public ListCommand() {
-        super("list");
-    }
+    // Variables
+    public static final String cmd = "list";
 
     // Methods
     @Override

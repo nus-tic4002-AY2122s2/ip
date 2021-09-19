@@ -4,11 +4,11 @@ import edu.nus.duke.task.TaskList;
 
 public class DeleteCommand extends Command {
     // Variables
+    public static final String cmd = "delete";
     private int idx;
 
     // Constructor
     public DeleteCommand(int idx) {
-        super("delete");
         this.idx = idx;
     }
 

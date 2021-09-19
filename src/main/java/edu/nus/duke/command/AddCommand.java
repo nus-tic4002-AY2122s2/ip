@@ -5,11 +5,11 @@ import edu.nus.duke.task.TaskList;
 
 public class AddCommand extends Command {
     // Variables
+    public static final String cmd = "todo;deadline;event";
     private Task task;
 
     // Constructor
     public AddCommand(Task task) {
-        super("todo;deadline;event");
         this.task = task;
     }
 

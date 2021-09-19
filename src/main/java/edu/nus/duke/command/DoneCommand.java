@@ -4,11 +4,11 @@ import edu.nus.duke.task.TaskList;
 
 public class DoneCommand extends Command {
     // Variables
+    public static final String cmd = "done";
     private int idx;
 
     // Constructor
     public DoneCommand(int idx) {
-        super("done");
         this.idx = idx;
     }
 

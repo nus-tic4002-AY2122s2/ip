@@ -4,10 +4,8 @@ import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.TaskList;
 
 public class ExitCommand extends Command {
-    // Constructor
-    public ExitCommand() {
-        super("bye");
-    }
+    // Variables
+    public static final String cmd = "bye";
 
     // Methods
     @Override
