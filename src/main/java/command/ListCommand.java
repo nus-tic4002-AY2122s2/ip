@@ -3,6 +3,7 @@ package command;
 import exception.DukeException;
 import basic.TaskList;
 import basic.Ui;
+import basic.Storage;
 
 /**
  * Lists all tasks in the task list to the user.
@@ -13,9 +14,10 @@ public class ListCommand extends Command {
     /**
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
+     * @param storage The storage to allow reading and storing of tasks from and to a txt file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (tasks.sizeOfTask() == 0) {
             throw new DukeException("☹ The list is empty.");
         }
