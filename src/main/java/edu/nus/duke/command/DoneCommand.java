@@ -14,7 +14,7 @@ public class DoneCommand extends Command {
 
     // Methods
     @Override
-    public void runCmd(TaskList taskList) {
+    public void run(TaskList taskList) {
         taskList.doneTask(idx);
     }
 }

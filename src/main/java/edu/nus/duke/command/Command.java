@@ -12,5 +12,5 @@ public abstract class Command {
     }
 
     // Methods
-    public abstract void runCmd(TaskList taskList);
+    public abstract void run(TaskList taskList);
 }

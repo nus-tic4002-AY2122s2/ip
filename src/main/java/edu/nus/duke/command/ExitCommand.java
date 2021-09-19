@@ -11,7 +11,7 @@ public class ExitCommand extends Command {
 
     // Methods
     @Override
-    public void runCmd(TaskList taskList) {
+    public void run(TaskList taskList) {
         Ui.printMessage("Bye. Hope to see you again soon!");
     }
 }

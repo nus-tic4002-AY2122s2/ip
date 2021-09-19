@@ -11,7 +11,7 @@ public class ListCommand extends Command {
 
     // Methods
     @Override
-    public void runCmd(TaskList taskList) {
+    public void run(TaskList taskList) {
         Ui.printMessage("Here are the tasks in your list:", false);
         Ui.printMessage(taskList.printTasks(), false);
         Ui.printMessage("Total tasks: " + taskList.getListSize());
