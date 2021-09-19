@@ -242,12 +242,6 @@ public class Duke {
         throw new DukeException("Unknown task Type");
     }
 
-=======
-
-    /**
-     * this function will run the Duke program
-     */
->>>>>>> branch-A-JavaDoc
     public void run() {
         System.out.println("Hello! I'm Duke \n  " +
                 "What can I do for you?");
