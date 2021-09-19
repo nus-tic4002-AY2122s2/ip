@@ -145,7 +145,7 @@ public class Duke {
                 Event event = (Event) task;
                 storingTask = (index + 1) + " | E"
                         + " | " + (event.getIsDone() ? "1" : "0")
-                        + " | " + event.getTask()
+                        + " | " + event.getTaskDescription()
                         + " | " + event.getDateTimeString()
                         + System.lineSeparator();
                 break;
@@ -153,14 +153,14 @@ public class Duke {
                 Deadline deadlines = (Deadline) task;
                 storingTask = (index + 1) + " | D"
                         + " | " + (deadlines.getIsDone() ? "1" : "0")
-                        + " | " + deadlines.getTask()
+                        + " | " + deadlines.getTaskDescription()
                         + " | " + deadlines.getDateTimeString()
                         + System.lineSeparator();
                 break;
             case TODO:
                 storingTask = (index + 1) + " | T"
                         + " | " + (task.getIsDone() ? "1" : "0")
-                        + " | " + task.getTask()
+                        + " | " + task.getTaskDescription()
                         + System.lineSeparator();
                 break;
             default:
