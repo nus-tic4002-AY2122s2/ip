@@ -36,6 +36,9 @@ public class UserList {
 
     public ArrayList<Task> getList() { return this.list; }
 
+    /**
+     * @param index remove data from the list t given index
+     */
     public void removeItem (int index) {
         this.list.remove(index);
     }

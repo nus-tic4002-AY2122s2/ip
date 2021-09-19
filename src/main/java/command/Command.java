@@ -41,7 +41,6 @@ public class Command {
                         list.getList().get(index - 1).setStatus(true);
                         list.saveData();
                         Ui.printMarkedDone(list.getSerializedList().get(index - 1));
-
                     } else {
                         throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
                     }
@@ -51,6 +50,7 @@ public class Command {
                     if(deleteIndex > 0 && deleteIndex <= list.getList().size()) {
                         String deletedItem = list.getSerializedList().get(deleteIndex - 1);
                         list.removeItem(deleteIndex - 1);
+                        list.saveData();
                         Ui.printDeletedItem(deletedItem, list.getList().size());
                     } else {
                         throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
