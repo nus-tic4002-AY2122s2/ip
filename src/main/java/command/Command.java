@@ -13,10 +13,15 @@ import task.Todo;
 public class Command {
     private boolean isExit = false;
 
-    public  Command(UserList list, String userInput) throws ErrorHandler {
+    public Command(UserList list, String userInput) throws ErrorHandler {
         this.process(list, userInput);
     }
 
+    /**
+     * @param list Store which contains all user data
+     * @param userInput a string that user key in from the terminal
+     * @throws ErrorHandler customized error
+     */
     private void process (UserList list, String userInput) throws ErrorHandler {
         try {
             CommandParser parser = new CommandParser(userInput);
@@ -65,5 +70,8 @@ public class Command {
 
     }
 
+    /**
+     * @return boolean to decide whether the program should be terminated
+     */
     public boolean getIsExit() {return this.isExit;}
 }

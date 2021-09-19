@@ -1,5 +1,8 @@
 package constant;
 
+/**
+ * Constants for error messages
+ */
 public class ErrorMessage {
     public static final String EMPTY_TODO = "OOPS!!! The description of a todo cannot be empty.";
     public static final String EMPTY_DEADLINE = "OOPS!!! The description of a deadline cannot be empty.";

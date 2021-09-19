@@ -12,13 +12,23 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+/**
+ * Serve as a store for saving user command
+ */
 public class UserList {
+    /**
+     * A list of different task type
+     */
     private ArrayList<Task> list = new ArrayList<>();
 
     public UserList () throws ErrorHandler {
         this.loadData();
     }
 
+    /**
+     * @param task is a type of task, could be Event, Deadline
+     * @throws ErrorHandler customized error
+     */
     public void addItem (Task task) throws ErrorHandler {
         this.list.add(task);
         this.saveData();
@@ -26,6 +36,10 @@ public class UserList {
 
     public ArrayList<Task> getList() { return this.list; }
 
+    /**
+     * @return list of string which is representing all tasks information in a readable string format.
+     * For printing purpose
+     */
     public ArrayList<String> getSerializedList () {
         ArrayList<String> taskList = new ArrayList<>();
 
@@ -36,6 +50,10 @@ public class UserList {
         return taskList;
     }
 
+    /**
+     * This method is used to load data from a local file and parse the format then save as a List of task
+     * @throws ErrorHandler customized error
+     */
     private void loadData () throws ErrorHandler  {
         try {
             Path root = FileSystems.getDefault().getPath("").toAbsolutePath();
@@ -70,6 +88,11 @@ public class UserList {
         }
     }
 
+
+    /**
+     * Save list of task into local file
+     * @throws ErrorHandler customized error
+     */
     public void saveData() throws ErrorHandler {
         try {
             Path root = FileSystems.getDefault().getPath("").toAbsolutePath();

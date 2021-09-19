@@ -7,12 +7,23 @@ import exception.ErrorHandler;
 public class CommandParser extends Parser {
     private CommandKeyWords commandWord;
 
+    /**
+     * @param userInput is a string that user key in from the terminal
+     * @throws ErrorHandler customized error
+     */
     public CommandParser(String userInput) throws ErrorHandler {
         this.parseInput(userInput);
     }
 
+    /**
+     * @return CommandKeyWords enum
+     */
     public CommandKeyWords getCommandWord() { return this.commandWord;}
 
+    /**
+     * @param input is a string that user key in from the terminal
+     * @throws ErrorHandler customized error
+     */
     @Override
     protected void parseInput (String input) throws ErrorHandler {
         String[] result = input.split(" ", 2);

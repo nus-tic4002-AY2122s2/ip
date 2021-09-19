@@ -12,6 +12,10 @@ public class DataParser extends Parser{
         this.parseInput(input);
     }
 
+    /**
+     * @param input string which is read from a text file, in the format of 'D|1|return book|June 6th'
+     * @throws ErrorHandler customized error
+     */
     @Override
     protected void parseInput (String input) throws ErrorHandler {
         String [] data = input.split("\\|");
@@ -35,6 +39,15 @@ public class DataParser extends Parser{
         }
     }
 
+    /**
+     * @return string, which is a key work indicating different task
+     * e.g. D - Deadline
+     *      E - Event
+     */
     public String getTaskType() {return  this.taskType;}
+
+    /**
+     * @return boolean value indicating if the task is finished.
+     */
     public boolean getStatus() { return this.status; }
 }

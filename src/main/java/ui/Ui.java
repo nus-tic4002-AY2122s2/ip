@@ -2,6 +2,9 @@ package ui;
 
 import java.util.ArrayList;
 
+/**
+ * Ui class is only for printing message.
+ */
 public class Ui {
     private static String indentation = "          ";
 
@@ -12,7 +15,6 @@ public class Ui {
     public static void bye () {
         print("Bye. Hope to see you again soon!");
     }
-
 
     public static  void printTask(String message, int noTask) {
         printLine();
