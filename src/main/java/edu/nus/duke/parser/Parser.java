@@ -2,80 +2,72 @@ package edu.nus.duke.parser;
 
 import edu.nus.duke.ui.Ui;
 import edu.nus.duke.storage.Storage;
-import edu.nus.duke.task.TaskList;
+import edu.nus.duke.command.Command;
+import edu.nus.duke.command.AddCommand;
+import edu.nus.duke.command.ListCommand;
+import edu.nus.duke.command.DoneCommand;
+import edu.nus.duke.command.DeleteCommand;
 import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
 import edu.nus.duke.task.Event;
 import edu.nus.duke.exception.DukeInvalidInputException;
 import edu.nus.duke.exception.DukeEmptyArgsException;
+import edu.nus.duke.exception.DukeDisallowInputException;
 
 public class Parser {
     // Methods
-    private static void rejectBadInput(String input) throws DukeInvalidInputException {
+    private static void rejectBadInput(String input) throws DukeDisallowInputException {
         if (input.contains(Storage.getSaveSep())) {
+            throw new DukeDisallowInputException();
+        }
+    }
+
+    private static Command parseInput_MultiArgs(String cmd, String args)
+            throws ArrayIndexOutOfBoundsException, DukeInvalidInputException {
+        String[] argsArray;
+        String taskName;
+        int idx;
+
+        switch (cmd) {
+        case AddCommand.cmdTodo:
+            taskName = args;
+            return ( new AddCommand(new Todo(taskName)) );
+        case AddCommand.cmdDeadline:
+            argsArray = args.split("/by");
+            taskName = argsArray[0].trim();
+            String by = argsArray[1].trim();
+            return ( new AddCommand(new Deadline(taskName, by)) );
+        case AddCommand.cmdEvent:
+            argsArray = args.split("/at");
+            taskName = argsArray[0].trim();
+            String at = argsArray[1].trim();
+            return ( new AddCommand(new Event(taskName, at)) );
+        case DoneCommand.cmd:
+            idx = Integer.parseInt(args) - 1;
+            return (new DoneCommand(idx));
+        case DeleteCommand.cmd:
+            idx = Integer.parseInt(args) - 1;
+            return (new DeleteCommand(idx));
+        default:
             throw new DukeInvalidInputException();
         }
     }
 
-    private static void parseInput_MultiArgs(String cmd, String args, TaskList taskList) throws ArrayIndexOutOfBoundsException {
-        String[] argsArray;
-        String taskName;
-        int idx;
-        switch (cmd) {
-        case "todo":
-            taskName = args;
-            taskList.addTask(new Todo(taskName));
-            break;
-        case "deadline":
-            argsArray = args.split("/by");
-            taskName = argsArray[0].trim();
-            String by = argsArray[1].trim();
-            taskList.addTask(new Deadline(taskName, by));
-            break;
-        case "event":
-            argsArray = args.split("/at");
-            taskName = argsArray[0].trim();
-            String at = argsArray[1].trim();
-            taskList.addTask(new Event(taskName, at));
-            break;
-        case "done":
-            idx = Integer.parseInt(args) - 1;
-            taskList.doneTask(idx);
-            break;
-        case "delete":
-            idx = Integer.parseInt(args) - 1;
-            taskList.deleteTask(idx);
-            break;
-        default:
-            Ui.printMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
-            break;
-        }
-    }
+    public static Command parseInput(String inputTxt) throws DukeInvalidInputException,
+            DukeEmptyArgsException, DukeDisallowInputException, ArrayIndexOutOfBoundsException {
+        rejectBadInput(inputTxt);
 
-    public static void parseInput(String inputTxt, TaskList taskList) {
-        try {
-            rejectBadInput(inputTxt);
+        String[] inputArray = inputTxt.split(" ", 2);
+        String cmd = inputArray[0];
 
-            String[] inputArray = inputTxt.split(" ", 2);
-            String cmd = inputArray[0];
-
-            if (cmd.equals("list")) {
-                Ui.printMessage("Here are the tasks in your list:", false);
-                Ui.printMessage(taskList.printTasks(), false);
-                Ui.printMessage("Total tasks: " + taskList.getListSize());
-            } else {
-                if (inputArray.length == 1) {
-                    throw new DukeEmptyArgsException();
-                }
-                String args = inputArray[1];
-                parseInput_MultiArgs(cmd, args, taskList);
+        if (cmd.equals(ListCommand.cmd)) {
+            return (new ListCommand());
+        } else {
+            if (inputArray.length == 1) {
+                throw new DukeEmptyArgsException();
             }
-        } catch (DukeInvalidInputException e) {
-            Ui.printMessage("'" + Storage.getSaveSep() + "' is not allowed!");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            Ui.printMessage("Invalid input");
-        } catch (DukeEmptyArgsException e) {
-            Ui.printMessage("OOPS!!! The description of a " + inputTxt + " cannot be empty.");
+            String args = inputArray[1];
+            return parseInput_MultiArgs(cmd, args);
         }
     }
 
