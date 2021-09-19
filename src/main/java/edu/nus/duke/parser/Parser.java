@@ -23,6 +23,7 @@ import edu.nus.duke.exception.DukeDisallowInputException;
  */
 public class Parser {
     // Variables
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String DT_FORMAT = "yyyy-MM-dd'T'HH:mm";
 
     // Methods
@@ -33,7 +34,11 @@ public class Parser {
     }
 
     public static LocalDateTime parseDt(String s) throws DateTimeParseException {
-        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DT_FORMAT));
+        String dt = s;
+        if (s.length() == DATE_FORMAT.length()) {
+            dt = s + "T00:00";
+        }
+        return LocalDateTime.parse(dt, DateTimeFormatter.ofPattern(DT_FORMAT));
     }
 
     public static String dtToString(LocalDateTime dt) {
