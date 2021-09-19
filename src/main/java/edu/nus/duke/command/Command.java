@@ -11,6 +11,11 @@ public abstract class Command {
         this.cmd = cmd;
     }
 
+    // Getter
+    public String getCmd() {
+        return cmd;
+    }
+
     // Methods
     public abstract void run(TaskList taskList);
 }
