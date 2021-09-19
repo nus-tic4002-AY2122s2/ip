@@ -3,6 +3,8 @@ package duke.task;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected TaskType taskType;
+    protected int taskIndex;
 
     public Task(String description) {
         this.description = description;
@@ -13,8 +15,12 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void markAsDone(){
-        isDone = true;
+    public void editDone(Boolean isDone){
+        this.isDone = isDone;
+    }
+
+    public boolean getIsDone(){
+        return isDone;
     }
 
     public String getDescription(){
@@ -27,6 +33,10 @@ public abstract class Task {
 
     public String toString() {
         return " [" + this.getStatusIcon() + "] " + this.getTask();
+    }
+
+    public TaskType getTaskType(){
+        return taskType;
     }
 
 }

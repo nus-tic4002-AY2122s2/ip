@@ -11,6 +11,7 @@ public class Event extends Task {
     protected boolean hasTime = false;
     protected String taskDateString;
 
+
     /**
      * Constructs the Duke.Task.Event class without a time
      * @param description the description the user input
@@ -19,13 +20,18 @@ public class Event extends Task {
     public Event(String description, LocalDate taskDate) {
         super(description);
         this.taskDate = taskDate;
+        taskType = TaskType.EVENT;
     }
 
     public Event(String description, String taskDateString) {
         super(description);
         this.taskDateString = taskDateString;
+        taskType = TaskType.EVENT;
     }
 
+    public String getDateTimeString(){
+        return taskDateString;
+    }
 
 
     @Override
