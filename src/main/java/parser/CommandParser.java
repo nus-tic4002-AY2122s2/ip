@@ -1,0 +1,67 @@
+package parser;
+
+import constant.CommandKeyWords;
+import constant.ErrorMessage;
+import exception.ErrorHandler;
+
+public class CommandParser extends Parser {
+    private CommandKeyWords commandWord;
+
+    /**
+     * @param userInput is a string that user key in from the terminal
+     * @throws ErrorHandler customized error
+     */
+    public CommandParser(String userInput) throws ErrorHandler {
+        this.parseInput(userInput);
+    }
+
+    /**
+     * @return CommandKeyWords enum
+     */
+    public CommandKeyWords getCommandWord() { return this.commandWord;}
+
+    /**
+     * @param input is a string that user key in from the terminal
+     * @throws ErrorHandler customized error
+     */
+    @Override
+    protected void parseInput (String input) throws ErrorHandler {
+        String[] result = input.split(" ", 2);
+
+        this.commandWord =  CommandKeyWords.getEnum(result[0].toUpperCase());
+
+        switch (commandWord) {
+            case DEADLINE:
+                if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_DEADLINE);
+                String[] deadlineContent = result[1].split("/by", 2);
+                this.content = deadlineContent[0].trim();
+
+                if (deadlineContent.length < 2)
+                    throw new ErrorHandler("In Parser, " + ErrorMessage.INVALID_DEADLINE);
+                this.by = deadlineContent[1].trim();
+                break;
+            case EVENT:
+                if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_EVENT);
+
+                String[] eventContent = result[1].split("/at", 2);
+                this.content = eventContent[0].trim();
+
+                if (eventContent.length < 2)
+                    throw new ErrorHandler("In Parser, " + ErrorMessage.INVALID_EVENT);
+                this.by = eventContent[1].trim();
+                break;
+            case TODO:
+                if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TODO);
+                this.content = result[1].trim();
+                break;
+            case DONE:
+                if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TASK_NUMBER);
+                this.content = result[1].trim();
+                break;
+            case LIST:
+            case BYE:
+            default:
+                break;
+        }
+    }
+}

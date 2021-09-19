@@ -6,20 +6,20 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        Ui.welcome();
-        UserList list = new UserList();
-        Scanner in = new Scanner(System.in);
+        try {
+            Ui.welcome();
+            UserList list = new UserList();
+            Scanner in = new Scanner(System.in);
 
-        boolean isExit = false;
+            boolean isExit = false;
 
-        while (!isExit) {
-            try {
+            while (!isExit) {
                 String userCommand = in.nextLine().trim();
                 Command command = new Command(list, userCommand);
                 isExit = command.getIsExit();
-            } catch (Exception e) {
-                Ui.print("Error: " + e.getMessage());
             }
+        } catch (Exception e) {
+            Ui.print("Error: " + e.getMessage());
         }
     }
 }

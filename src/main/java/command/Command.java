@@ -1,10 +1,10 @@
 package command;
 
 import constant.ErrorMessage;
+import parser.CommandParser;
 import ui.Ui;
 import userList.UserList;
 import exception.ErrorHandler;
-import parser.Parser;
 import task.Deadline;
 import task.Event;
 import task.Todo;
@@ -13,17 +13,23 @@ import task.Todo;
 public class Command {
     private boolean isExit = false;
 
-    public  Command(UserList list, String userInput) throws ErrorHandler {
+    public Command(UserList list, String userInput) throws ErrorHandler {
         this.process(list, userInput);
     }
 
+    /**
+     * @param list Store which contains all user data
+     * @param userInput a string that user key in from the terminal
+     * @throws ErrorHandler customized error
+     */
     private void process (UserList list, String userInput) throws ErrorHandler {
         try {
-            Parser parser = new Parser(userInput);
+            CommandParser parser = new CommandParser(userInput);
             System.out.println(parser.getCommandWord());
             switch (parser.getCommandWord()) {
                 case BYE:
                     Ui.bye();
+                    list.saveData();
                     this.isExit = true;
                     break;
                 case LIST:
@@ -33,6 +39,7 @@ public class Command {
                     int index =Integer.parseInt(parser.getContent());
                     if(index > 0 && index <= list.getList().size()) {
                         list.getList().get(index - 1).setStatus(true);
+                        list.saveData();
                         Ui.printMarkedDone(list.getSerializedList().get(index - 1));
                     } else {
                         throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
@@ -43,23 +50,24 @@ public class Command {
                     if(deleteIndex > 0 && deleteIndex <= list.getList().size()) {
                         String deletedItem = list.getSerializedList().get(deleteIndex - 1);
                         list.removeItem(deleteIndex - 1);
+                        list.saveData();
                         Ui.printDeletedItem(deletedItem, list.getList().size());
                     } else {
                         throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
                     }
                     break;
                 case TODO:
-                    Todo addedTodo = new Todo(parser.getContent());
+                    Todo addedTodo = new Todo(parser.getContent(), false);
                     list.addItem(addedTodo);
                     Ui.printTask(addedTodo.toString(), list.getList().size());
                     break;
                 case EVENT:
-                    Event addedEvent = new Event(parser.getContent(), parser.getAt());
+                    Event addedEvent = new Event(parser.getContent(), parser.getAt(), false);
                     list.addItem(addedEvent);
                     Ui.printTask(addedEvent.toString(), list.getList().size());
                     break;
                 case DEADLINE:
-                    Deadline addDeadline = new Deadline(parser.getContent(), parser.getBy());
+                    Deadline addDeadline = new Deadline(parser.getContent(), parser.getBy(), false);
                     list.addItem(addDeadline);
                     Ui.printTask(addDeadline.toString(), list.getList().size());
                     break;
@@ -72,5 +80,8 @@ public class Command {
 
     }
 
+    /**
+     * @return boolean to decide whether the program should be terminated
+     */
     public boolean getIsExit() {return this.isExit;}
 }
