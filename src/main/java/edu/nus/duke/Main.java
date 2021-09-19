@@ -44,7 +44,7 @@ public class Main {
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printMessage("Invalid input");
             }
-        } while (!inputTxt.equals(ExitCommand.cmd));
+        } while (!inputTxt.equals(ExitCommand.CMD));
     }
 
     public static void main(String[] args) {

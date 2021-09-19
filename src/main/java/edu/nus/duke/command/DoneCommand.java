@@ -7,7 +7,7 @@ import edu.nus.duke.task.TaskList;
  */
 public class DoneCommand extends Command {
     // Variables
-    public static final String cmd = "done";
+    public static final String CMD = "done";
     private int idx;
 
     // Constructor

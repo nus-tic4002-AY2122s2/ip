@@ -43,23 +43,23 @@ public class Parser {
         int idx;
 
         switch (cmd) {
-        case AddCommand.cmdTodo:
+        case AddCommand.CMD_TODO:
             taskName = args;
             return ( new AddCommand(new Todo(taskName)) );
-        case AddCommand.cmdDeadline:
+        case AddCommand.CMD_DEADLINE:
             argsArray = args.split("/by");
             taskName = argsArray[0].trim();
             String by = argsArray[1].trim();
             return ( new AddCommand(new Deadline(taskName, by)) );
-        case AddCommand.cmdEvent:
+        case AddCommand.CMD_EVENT:
             argsArray = args.split("/at");
             taskName = argsArray[0].trim();
             String at = argsArray[1].trim();
             return ( new AddCommand(new Event(taskName, at)) );
-        case DoneCommand.cmd:
+        case DoneCommand.CMD:
             idx = Integer.parseInt(args) - 1;
             return (new DoneCommand(idx));
-        case DeleteCommand.cmd:
+        case DeleteCommand.CMD:
             idx = Integer.parseInt(args) - 1;
             return (new DeleteCommand(idx));
         default:
@@ -84,9 +84,9 @@ public class Parser {
         String[] inputArray = inputTxt.split(" ", 2);
         String cmd = inputArray[0];
 
-        if (cmd.equals(ListCommand.cmd)) {
+        if (cmd.equals(ListCommand.CMD)) {
             return (new ListCommand());
-        } else if (cmd.equals(ExitCommand.cmd)) {
+        } else if (cmd.equals(ExitCommand.CMD)) {
             return (new ExitCommand());
         } else {
             if (inputArray.length == 1) {

@@ -8,7 +8,7 @@ import edu.nus.duke.task.TaskList;
  */
 public class ExitCommand extends Command {
     // Variables
-    public static final String cmd = "bye";
+    public static final String CMD = "bye";
 
     // Methods
     @Override
