@@ -103,12 +103,13 @@ public class TaskList {
 
             switch(taskType){
                 case "E":
-                    String eventDateTime = task.getAt();
-                    System.out.println(" (at: " + eventDateTime + ")");
+                    String eventStartingDateTime = task.getStartingDateTime();
+                    String eventEndingDateTime = task.getStartingDateTime();
+                    System.out.println(" (at: " + eventStartingDateTime + " ---> " + eventEndingDateTime + ")");
 
                     break;
                 case "D":
-                    String deadlineDateTime = task.getBy();
+                    String deadlineDateTime = task.getDeadlineDateTimeString();
                     System.out.println(" (by: " + deadlineDateTime + ")");
 
                     break;
