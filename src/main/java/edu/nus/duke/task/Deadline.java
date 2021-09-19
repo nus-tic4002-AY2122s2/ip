@@ -9,8 +9,7 @@ public class Deadline extends Task {
 
     // Constructor
     public Deadline(String taskName, String by) {
-        super(taskName);
-        this.prefix = 'D';
+        super('D', taskName);
         this.by = by;
     }
 

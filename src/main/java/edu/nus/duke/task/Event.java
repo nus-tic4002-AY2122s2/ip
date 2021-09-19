@@ -9,8 +9,7 @@ public class Event extends Task {
 
     // Constructor
     public Event(String taskName, String at) {
-        super(taskName);
-        this.prefix = 'E';
+        super('E', taskName);
         this.at = at;
     }
 

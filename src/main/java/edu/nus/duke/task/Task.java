@@ -8,12 +8,13 @@ import edu.nus.duke.storage.Storage;
 public abstract class Task {
     // Variables
     protected final String SAVE_SEP = Storage.getSaveSep();
-    protected char prefix;
+    protected final char prefix;
     protected String taskName;
     protected boolean isDone = false;
 
     // Constructor
-    public Task(String taskName) {
+    public Task(char prefix, String taskName) {
+        this.prefix = prefix;
         this.taskName = taskName;
     }
 
