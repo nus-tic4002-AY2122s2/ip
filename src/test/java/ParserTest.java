@@ -1,12 +1,8 @@
-import exceptions.DukeStorageError;
-import exceptions.DukeTaskInputException;
 import org.junit.Test;
 import parser.Parser;
-import task_classes.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Vector;
 
 import static org.junit.Assert.assertEquals;
 import static parser.Parser.*;

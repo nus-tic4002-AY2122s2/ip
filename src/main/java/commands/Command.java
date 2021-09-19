@@ -12,7 +12,7 @@ public abstract class Command {
 
     }
 
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException, DukeDateTimeError;
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException, DukeDateTimeError, DukeTaskInputException;
 
     public abstract boolean isExit();
 }
