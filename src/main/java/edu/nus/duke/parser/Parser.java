@@ -32,16 +32,16 @@ public class Parser {
         }
     }
 
-    private static LocalDateTime parseDt(String s) throws DateTimeParseException {
+    public static LocalDateTime parseDt(String s) throws DateTimeParseException {
         return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DT_FORMAT));
     }
 
-    private static String dtToString(LocalDateTime dt) {
+    public static String dtToString(LocalDateTime dt) {
         return dt.format(DateTimeFormatter.ofPattern(DT_FORMAT));
     }
 
-    private static Command parseInput_MultiArgs(String cmd, String args)
-            throws ArrayIndexOutOfBoundsException, DukeInvalidInputException {
+    private static Command parseInput_MultiArgs(String cmd, String args) throws ArrayIndexOutOfBoundsException,
+            DukeInvalidInputException, DateTimeParseException {
         String[] argsArray;
         String taskName;
         int idx;
@@ -53,12 +53,12 @@ public class Parser {
         case AddCommand.CMD_DEADLINE:
             argsArray = args.split("/by");
             taskName = argsArray[0].trim();
-            String by = argsArray[1].trim();
+            LocalDateTime by = parseDt( argsArray[1].trim() );
             return ( new AddCommand(new Deadline(taskName, by)) );
         case AddCommand.CMD_EVENT:
             argsArray = args.split("/at");
             taskName = argsArray[0].trim();
-            String at = argsArray[1].trim();
+            LocalDateTime at = parseDt( argsArray[1].trim() );
             return ( new AddCommand(new Event(taskName, at)) );
         case DoneCommand.CMD:
             idx = Integer.parseInt(args) - 1;
@@ -81,8 +81,8 @@ public class Parser {
      * @throws DukeDisallowInputException If disallowed keywords are present.
      * @throws ArrayIndexOutOfBoundsException If there is invalid argument.
      */
-    public static Command parseInput(String inputTxt) throws DukeInvalidInputException,
-            DukeEmptyArgsException, DukeDisallowInputException, ArrayIndexOutOfBoundsException {
+    public static Command parseInput(String inputTxt) throws DukeInvalidInputException, DukeEmptyArgsException,
+            DukeDisallowInputException, ArrayIndexOutOfBoundsException, DateTimeParseException {
         rejectBadInput(inputTxt);
 
         String[] inputArray = inputTxt.split(" ", 2);

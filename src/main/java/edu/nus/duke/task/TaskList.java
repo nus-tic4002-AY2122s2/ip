@@ -1,7 +1,10 @@
 package edu.nus.duke.task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import edu.nus.duke.parser.Parser;
 import edu.nus.duke.ui.Ui;
 import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 
@@ -73,7 +76,8 @@ public class TaskList {
      *
      * @param elements Array of elements.
      */
-    public void addTask(String[] elements) throws DukeInvalidTaskIndexException, ArrayIndexOutOfBoundsException {
+    public void addTask(String[] elements) throws DukeInvalidTaskIndexException, ArrayIndexOutOfBoundsException,
+            DateTimeParseException {
         String taskType = elements[0];
         boolean isDone = elements[1].equals("1");
         String taskName = elements[2];
@@ -83,11 +87,11 @@ public class TaskList {
                 tasks.add(new Todo(taskName, isDone));
                 break;
             case "D":
-                String by = elements[3];
+                LocalDateTime by = Parser.parseDt(elements[3]);
                 tasks.add(new Deadline(taskName, by, isDone));
                 break;
             case "E":
-                String at = elements[3];
+                LocalDateTime at = Parser.parseDt(elements[3]);
                 tasks.add(new Event(taskName, at, isDone));
                 break;
             default:

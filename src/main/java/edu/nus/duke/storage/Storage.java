@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.time.format.DateTimeParseException;
 
 import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.TaskList;
@@ -51,6 +52,8 @@ public class Storage {
                     Ui.printMessage_Exit("Bad data in " + filePath);
                 } catch (DukeInvalidTaskIndexException e) {
                     Ui.printMessage_Exit("Invalid task index in " + filePath);
+                } catch (DateTimeParseException e) {
+                    Ui.printMessage_Exit("Invalid datetime in " + filePath);
                 }
             }
         } catch (FileNotFoundException e) {
