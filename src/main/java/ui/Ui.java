@@ -43,12 +43,20 @@ public class Ui {
 
     public static void printMarkedDone(String message){
         printLine();
-         System.out.println("      " + "Nice! I've marked this task as done:");
+        System.out.println("      " + "Nice! I've marked this task as done:");
         System.out.println(indentation + message);
         printLine();
     }
 
     private static void printLine() {
         System.out.println("     ____________________________________________________________");
+    }
+
+    public static void printDeletedItem(String message, int numberOfTask) {
+        printLine();
+        System.out.println("      " + "Noted. I've removed this task:");
+        System.out.println(indentation + message);
+        System.out.println("      " + "Now you have " + numberOfTask + " tasks in the list.");
+        printLine();
     }
 }

@@ -36,6 +36,10 @@ public class UserList {
 
     public ArrayList<Task> getList() { return this.list; }
 
+    public void removeItem (int index) {
+        this.list.remove(index);
+    }
+  
     /**
      * @return list of string which is representing all tasks information in a readable string format.
      * For printing purpose

@@ -46,6 +46,16 @@ public class Command {
                         throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
                     }
                     break;
+                case DELETE:
+                    int deleteIndex =Integer.parseInt(parser.getContent());
+                    if(deleteIndex > 0 && deleteIndex <= list.getList().size()) {
+                        String deletedItem = list.getSerializedList().get(deleteIndex - 1);
+                        list.removeItem(deleteIndex - 1);
+                        Ui.printDeletedItem(deletedItem, list.getList().size());
+                    } else {
+                        throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
+                    }
+                    break;
                 case TODO:
                     Todo addedTodo = new Todo(parser.getContent(), false);
                     list.addItem(addedTodo);

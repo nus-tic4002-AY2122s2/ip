@@ -3,7 +3,7 @@ package constant;
 import exception.ErrorHandler;
 
 public enum CommandKeyWords {
-    DONE("DONE"), TODO("TODO"), DEADLINE("DEADLINE"), LIST("LIST"), EVENT("EVENT"), BYE("BYE");
+    DONE("DONE"), TODO("TODO"), DEADLINE("DEADLINE"), LIST("LIST"), EVENT("EVENT"), BYE("BYE"), DELETE("DELETE");
 
     /**
      * @return string which shows all available command key words
