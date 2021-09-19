@@ -18,6 +18,9 @@ import edu.nus.duke.exception.DukeDisallowInputException;
  * Class that deals with making sense of the user command
  */
 public class Parser {
+    // Variables
+    private final String dtFormat = "yyyy-MM-ddTHH:mm";
+
     // Methods
     private static void rejectBadInput(String input) throws DukeDisallowInputException {
         if (input.contains(Storage.getSaveSep())) {
