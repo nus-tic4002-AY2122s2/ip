@@ -1,7 +1,16 @@
+package ui;
+
 import tasklist.Task;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UI {
+    private Scanner input;
+
+    public UI() {
+        input = new Scanner(System.in);
+
+    }
     public static void printDuke() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -12,10 +21,15 @@ public class UI {
         System.out.print("Hello! I'm Duke\n" + "What can I do for you?\n");
     }
 
+    /**
+     * Reads user input
+     */
+    public String readCommand() {
+        return input.nextLine();
+    }
+
     public static void bye() {
-        UI.printLine();
         UI.addSpaces("%sBye. Hope to see you again soon!",5);
-        UI.printLine();
     }
 
     public static void printLine() {
@@ -27,26 +41,20 @@ public class UI {
     }
 
     public static void printTask(ArrayList<Task> taskList) {
-        UI.printLine();
         UI.addSpaces("%sGot it. I've added this task:",5);
         printAddedTask(taskList);
         printNumberOfTasks(taskList);
-        UI.printLine();
     }
 
     public static void printOutput(ArrayList<Task> taskList) {
-        UI.printLine();
         UI.addSpaces("%sHere are the tasks in your list:",5);
         for (int i = 0; i < taskList.size(); i++) {
             UI.addSpaces("%s" + (i + 1) + ". " + taskList.get(i).toString(),5);
         }
-        UI.printLine();
     }
 
     public static void printListEmpty() {
-        UI.printLine();
         UI.addSpaces("%sList is empty!",5);
-        UI.printLine();
     }
 
     public static void printNumberOfTasks( ArrayList<Task> taskList) {
@@ -62,9 +70,7 @@ public class UI {
     }
 
     public static void printTaskSaved() {
-        UI.printLine();
         UI.addSpaces("%sTasks saved!",5);
-        UI.printLine();
     }
 
     public static void addSpaces(String text, Integer value) {
@@ -72,51 +78,35 @@ public class UI {
     }
 
     public static void printParseException() {
-        UI.printLine();
         UI.addSpaces("%s☹ OOPS!!! Please enter DD MMM YYYY date format.",5);
-        UI.printLine();
     }
 
     public static void printEmptyException() {
-        UI.printLine();
         UI.addSpaces("%s☹ OOPS!!! The description cannot be empty.",5);
-        UI.printLine();
     }
 
     public static void printStringFormatException() {
-        UI.printLine();
         UI.addSpaces("%s☹ OOPS!!! I'm sorry, but I don't know what that means :-(",5);
-        UI.printLine();
     }
 
     public static void printEmptyToDoDescriptionException() {
-        UI.printLine();
         UI.addSpaces("%s☹ OOPS!!! The description of a todo cannot be empty.",5);
-        UI.printLine();
     }
 
     public static void printEmptyEventDescriptionException() {
-        UI.printLine();
         UI.addSpaces("%s☹ OOPS!!! The description of a event cannot be empty.",5);
-        UI.printLine();
     }
 
     public static void printEmptyDeadlineDescriptionException() {
-        UI.printLine();
         UI.addSpaces("%s☹ OOPS!!! The description of a deadline cannot be empty.",5);
-        UI.printLine();
     }
 
     public static void printNumberFormatException() {
-        UI.printLine();
         UI.addSpaces("%s☹ OOPS!!! I'm sorry, but I don't know what that means :-(",5);
-        UI.printLine();
     }
 
     public static void printIndexOutOfRangeException() {
-        UI.printLine();
         UI.addSpaces("%s☹ OOPS!!! Out of Range!",5);
-        UI.printLine();
     }
 
 }
