@@ -13,4 +13,10 @@ public class Deadline extends Task{
     public String toString() {
         return "[D]" + "[" + this.getStatusIcon() + "] " + this.description + " (by: " + by + ")";
     }
+
+    @Override
+    public String toDataFormat() {
+        String status = this.isDone ? "1" : "0";
+        return "D"+ "|" + status + "|" + this.description + "|" +this.by;
+    }
 }

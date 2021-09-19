@@ -12,4 +12,10 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + "[" + this.getStatusIcon() + "] " + this.description + " (by: " + at + ")";
     }
+
+    @Override
+    public String toDataFormat() {
+        String status = this.isDone ? "1" : "0";
+        return "E"+ "|" + status + "|" + this.description + "|" +this.at;
+    }
 }
