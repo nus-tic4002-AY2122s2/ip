@@ -36,21 +36,30 @@ public class Parser {
 
         assert !(commandWord.equals(null)) : "commandWord should not be null";
 
-        if (input.equals("blah")) {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        }
 
         if (input.strip().equals("")) {
             throw new DukeException("☹ OOPS!!! You did not enter any command");
         }
 
-        if (input.equals("bye")) {
-            return new ExitCommand();
-        }
 
         switch (commandWord) {
+            case "bye":
+                return new ExitCommand();
+            case "blah":
+                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+
             case "list":
                 return new ListCommand();
+
+            case "/clear":
+                return new ClearListCommand();
+
+            case "/help":
+                return new HelpCommand();
+
+            case "find":
+                keyword = input.replaceFirst("find", "").trim();
+                return new FindCommand(keyword)
 
             case "done":
                 try {
@@ -70,43 +79,6 @@ public class Parser {
 
                 return new ChangeDoneCommand(option, false);
 
-            case "/clear":
-                return new ClearListCommand();
-
-            case "/help":
-                return new HelpCommand();
-
-            case "todo":
-                description = input.replaceFirst("todo", "").trim();
-                return new AddCommand("todo", description, secPart);
-
-            case "event":
-                try {
-                    index = input.indexOf("/at");
-                    secPart = input.substring(index);
-                    secPart = secPart.replaceFirst("/at", "").trim();
-
-                    description = input.substring(0, index);
-                    description = description.replaceFirst("event", "").trim();
-                } catch (StringIndexOutOfBoundsException e) {
-                    throw new DukeException("Error: Incomplete Command for Add Event");
-                }
-                return new AddCommand("event", description, secPart);
-
-
-            case "deadline":
-                try {
-                    index = input.indexOf("/by");
-                    secPart = input.substring(index);
-                    secPart = secPart.replaceFirst("/by", "").trim();
-                    description = input.substring(0, index);
-                    description = description.replaceFirst("deadline", "").trim();
-                } catch (StringIndexOutOfBoundsException e) {
-                    throw new DukeException("Error: Incomplete Command for Add Deadline.");
-                }
-
-                return new AddCommand("deadline", description, secPart);
-
 
             case "delete":
                 try {
@@ -115,10 +87,6 @@ public class Parser {
                     throw new DukeException("Error: Invalid option number, your input is not a number");
                 }
                 return new DeleteCommand(option);
-
-            case "find":
-                keyword = input.replaceFirst("find", "").trim();
-                return new FindCommand(keyword);
 
             case "reschedule":
                 index = input.indexOf("/new");
@@ -134,6 +102,14 @@ public class Parser {
 
                 return new RescheduleCommand(option, secPart);
 
+            case "todo":
+                description = input.replaceFirst("todo", "").trim();
+                return new AddCommand("todo",description,secPart)
+
+            case "event":
+            case "deadline":
+                return parseAddCommandSpecialTask(commandWord,input);
+
             default:
                 description = input;
                 return new AddCommand("task", description, secPart);
@@ -141,4 +117,48 @@ public class Parser {
         }
     }
 
+
+    public static Command parseAddCommandSpecialTask(String taskType, String input) throws DukeException {
+        int index = 0;
+        String description = "";
+        String secPart = "";
+        String separator = "";
+        switch(taskType){
+            case "event":
+                separator = "/at";
+                break;
+
+            case "deadline":
+                separator = "/by";
+                break;
+
+            default:
+                throw new DukeException("Error: Incomplete Command for Add Task.");
+        }
+
+        try{
+            index = input.indexOf(separator);
+            secPart = input.substring(index);
+            secPart = secPart.replaceFirst(separator, "").trim();
+            description = input.substring(0, index);
+            description = description.replaceFirst(taskType, "").trim();
+        }catch (StringIndexOutOfBoundsException e) {
+            switch(taskType){
+                case "event":
+                    throw new DukeException("Error: Incomplete Command for Add Event");
+                case "deadline":
+                    throw new DukeException("Error: Incomplete Command for Add Deadline.");
+                default:
+                    throw new DukeException("Error: Incomplete Command for Adding a special task.");
+            }
+        }
+
+
+        return new AddCommand(taskType,description,secPart);
+
+
+    }
+
 }
+
+
