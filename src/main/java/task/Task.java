@@ -19,5 +19,5 @@ public abstract class Task {
 
     public abstract String toString();
 
-    protected abstract String toDataFormat();
+    public abstract String toDataFormat();
 }

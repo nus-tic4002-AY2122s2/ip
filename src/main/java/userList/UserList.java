@@ -4,7 +4,6 @@ import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import exception.ErrorHandler;
 import parser.DataParser;
@@ -20,8 +19,9 @@ public class UserList {
         this.loadData();
     }
 
-    public void addItem (Task task){
+    public void addItem (Task task) throws ErrorHandler {
         this.list.add(task);
+        this.saveData();
     }
 
     public ArrayList<Task> getList() { return this.list; }
@@ -37,8 +37,7 @@ public class UserList {
     }
 
     private void loadData () throws ErrorHandler  {
-        try
-        {
+        try {
             Path root = FileSystems.getDefault().getPath("").toAbsolutePath();
             File file=new File(root + "/data/duke.txt");    //creates a new file instance
             FileReader fr=new FileReader(file);   //reads the file
@@ -62,12 +61,30 @@ public class UserList {
                     this.list.add(new Event(parser.getContent(), parser.getAt(), status));
                 }
             }
+
             fr.close();    //closes the stream and release the resources
-        }
-        catch(FileNotFoundException e) {
+        } catch(FileNotFoundException e) {
             throw new ErrorHandler("Loading data");
         } catch (IOException e) {
             throw new ErrorHandler("reading data");
         }
     }
+
+    public void saveData() throws ErrorHandler {
+        try {
+            Path root = FileSystems.getDefault().getPath("").toAbsolutePath();
+            FileWriter fileWriter = new FileWriter(root + "/data/duke.txt");
+
+            for(Task task: this.list) {
+                String line = task.toDataFormat();
+                fileWriter.write(line);
+                fileWriter.write("\n");
+            }
+
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new ErrorHandler("writing data");
+        }
+    }
 }
+

@@ -24,6 +24,7 @@ public class Command {
             switch (parser.getCommandWord()) {
                 case BYE:
                     Ui.bye();
+                    list.saveData();
                     this.isExit = true;
                     break;
                 case LIST:
@@ -33,7 +34,9 @@ public class Command {
                     int index =Integer.parseInt(parser.getContent());
                     if(index > 0 && index <= list.getList().size()) {
                         list.getList().get(index - 1).setStatus(true);
+                        list.saveData();
                         Ui.printMarkedDone(list.getSerializedList().get(index - 1));
+
                     } else {
                         throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
                     }
