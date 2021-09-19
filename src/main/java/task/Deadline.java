@@ -3,11 +3,11 @@ package task;
 public class Deadline extends Task{
     protected String by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by, boolean status) {
         super(description);
         this.by = by;
+        this.setStatus(status);
     }
-
 
     @Override
     public String toString() {

@@ -1,8 +1,9 @@
 package task;
 
 public class Todo extends Task{
-    public Todo(String description) {
+    public Todo(String description, boolean status) {
         super(description);
+        this.setStatus(status);
     }
 
     @Override

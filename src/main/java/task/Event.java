@@ -3,9 +3,10 @@ package task;
 public class Event extends Task {
     protected String at;
 
-    public Event(String description,  String at) {
+    public Event(String description,  String at,  boolean status) {
         super(description);
         this.at = at;
+        this.setStatus(status);
     }
 
     @Override

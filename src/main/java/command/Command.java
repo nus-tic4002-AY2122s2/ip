@@ -39,17 +39,17 @@ public class Command {
                     }
                     break;
                 case TODO:
-                    Todo addedTodo = new Todo(parser.getContent());
+                    Todo addedTodo = new Todo(parser.getContent(), false);
                     list.addItem(addedTodo);
                     Ui.printTask(addedTodo.toString(), list.getList().size());
                     break;
                 case EVENT:
-                    Event addedEvent = new Event(parser.getContent(), parser.getAt());
+                    Event addedEvent = new Event(parser.getContent(), parser.getAt(), false);
                     list.addItem(addedEvent);
                     Ui.printTask(addedEvent.toString(), list.getList().size());
                     break;
                 case DEADLINE:
-                    Deadline addDeadline = new Deadline(parser.getContent(), parser.getBy());
+                    Deadline addDeadline = new Deadline(parser.getContent(), parser.getBy(), false);
                     list.addItem(addDeadline);
                     Ui.printTask(addDeadline.toString(), list.getList().size());
                     break;
