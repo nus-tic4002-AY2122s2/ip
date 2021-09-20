@@ -24,11 +24,12 @@ public class Duke {
      */
     public Duke (String filePath) throws IOException, DukeStorageError {
         ui = new Ui();
+        ui.showGreetingMessage();
         storage = new Storage (filePath);
 
         try {
             taskList = new TaskList(storage.load());
-        } catch (DukeStorageError e) {
+        } catch (DukeStorageError |  DukeDateTimeError e) {
             ui.showLoadingError();
             taskList = new TaskList();
         }
@@ -40,7 +41,6 @@ public class Duke {
      * @throws IOException Handle all input errors
      */
     private void run() throws IOException {
-        ui.showGreetingMessage();
         boolean isExit = false;
         while (!isExit) {
             try {
@@ -49,7 +49,7 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 c.execute(taskList, ui, storage);
                 isExit = c.isExit();
-            } catch (DukeTaskInputException | DukeDateTimeError e) {
+            } catch (DukeTaskInputException e) {
                 String errorType = DukeTaskInputException.getErrorType();
 
                 switch (errorType) {
@@ -65,6 +65,10 @@ public class Duke {
                     default:
                         DukeTaskInputException.formatWrong();
                 }
+            } catch(Exception  e) {
+                DukeTaskInputException.formatWrong();
+            } catch (DukeDateTimeError e) {
+                System.out.println("     OOps! The input dateTime format wrong. Please try again.");
             } finally {
                 Ui.toPrintSeparateLine();
                 System.out.println("");

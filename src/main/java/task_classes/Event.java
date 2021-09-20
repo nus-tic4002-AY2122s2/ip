@@ -1,6 +1,7 @@
 package task_classes;
 
 import dateTime.DateTimeDuke;
+import exceptions.DukeDateTimeError;
 
 public class Event extends Task {
 
@@ -11,7 +12,7 @@ public class Event extends Task {
      * @param startingDateTime task starting date time
      * @param endingDateTime task ending date time
      */
-    public Event (String description, Boolean taskStatus, String startingDateTime, String endingDateTime) {
+    public Event (String description, Boolean taskStatus, String startingDateTime, String endingDateTime) throws DukeDateTimeError {
         super(description);
         super.isDone = taskStatus;
         super.type = "E";

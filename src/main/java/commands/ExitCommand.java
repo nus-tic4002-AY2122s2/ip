@@ -1,6 +1,5 @@
 package commands;
 
-import exceptions.DukeTaskInputException;
 import storage.Storage;
 import task_classes.TaskList;
 import ui.Ui;
@@ -17,10 +16,9 @@ public class ExitCommand extends Command {
      * @param taskList contain all the task
      * @param ui Ui class
      * @param storage Storage class
-     * @throws DukeTaskInputException throw all errors about input command
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         Ui.printGoodbyeOutput();
     }
 

@@ -1,5 +1,6 @@
 package storage;
 
+import exceptions.DukeDateTimeError;
 import exceptions.DukeStorageError;
 import task_classes.Deadline;
 import task_classes.Event;
@@ -17,7 +18,7 @@ class TaskListDecoder {
      * @return all the extracted task in Vector<Task> format
      * @throws DukeStorageError handles all the errors about storage
      */
-    static Vector<Task> decodeTaskList(Vector<String> storageInformation) throws DukeStorageError {
+    static Vector<Task> decodeTaskList(Vector<String> storageInformation) throws DukeStorageError, DukeDateTimeError {
         Vector<Task> decodedTaskList = new Vector<>();
 
         for(String singleTaskInfo : storageInformation){
@@ -35,7 +36,7 @@ class TaskListDecoder {
      * @return The task created based on the single task String
      * @throws DukeStorageError handles all the errors about storage
      */
-    private static Task decodeTask(String taskString) throws DukeStorageError {
+    private static Task decodeTask(String taskString) throws DukeStorageError, DukeDateTimeError {
 
         String[] parts = taskString.split(" \\| ");
         String taskType = parts[0];

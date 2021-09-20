@@ -49,7 +49,7 @@ public class AddCommand extends Command{
      *
      * @param list the entire task list
      */
-    private void addDeadlineTask (Vector<Task> list) throws DukeTaskInputException {
+    private void addDeadlineTask (Vector<Task> list) throws DukeTaskInputException, DukeDateTimeError {
 
         String date = Parser.toExtractDate(inputWords);
 

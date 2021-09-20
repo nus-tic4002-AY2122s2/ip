@@ -1,7 +1,10 @@
 package dateTime;
 
+import exceptions.DukeDateTimeError;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Deadline:
@@ -20,9 +23,13 @@ public class DateTimeDuke {
      *
      * @param date the string contain year, month, day, hour, and minute. Format: yyyy-MM-dd HH:mm
      */
-    public DateTimeDuke(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        localDateTime = LocalDateTime.parse(date, formatter);
+    public DateTimeDuke(String date) throws DukeDateTimeError {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            localDateTime = LocalDateTime.parse(date, formatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeDateTimeError("inputFormatWrong");
+        }
     }
 
     /**

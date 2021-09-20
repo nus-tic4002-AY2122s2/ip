@@ -1,6 +1,7 @@
 package task_classes;
 
 import dateTime.DateTimeDuke;
+import exceptions.DukeDateTimeError;
 
 public class Deadline extends Task {
 
@@ -11,7 +12,7 @@ public class Deadline extends Task {
      * @param taskStatus task initial status in Boolean type
      * @param dateTime date time information in String type
      */
-    public Deadline (String description, Boolean taskStatus, String dateTime) {
+    public Deadline (String description, Boolean taskStatus, String dateTime) throws DukeDateTimeError {
         super(description);
         super.isDone = taskStatus;
         super.type = "D";

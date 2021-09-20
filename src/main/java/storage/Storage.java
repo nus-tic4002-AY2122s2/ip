@@ -1,5 +1,6 @@
 package storage;
 
+import exceptions.DukeDateTimeError;
 import exceptions.DukeStorageError;
 import task_classes.Task;
 
@@ -110,7 +111,7 @@ public class Storage {
      * @throws DukeStorageError handles all storage errors during data extraction and storing
      * @throws IOException handles all input errors
      */
-    public Vector<Task> load() throws DukeStorageError, IOException {
+    public Vector<Task> load() throws DukeStorageError, IOException, DukeDateTimeError {
         Vector<String> extractedTaskInfo = extractTaskInfoFromTxt();
         Vector<Task> list = new Vector<>();
 
