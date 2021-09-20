@@ -1,8 +1,21 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 public class Task {
     protected String description;
     protected Boolean mark = false;
     protected char toDo;
-    protected  String additionalDetails;
+    protected String additionalDetails;
+    protected LocalDateTime deadline;
+
+    public Task(String description, boolean mark, char toDo, String additionalDetails, LocalDateTime deadline) {
+        this.description = description;
+        this.mark = mark;
+        this.toDo = toDo;
+        this.additionalDetails = additionalDetails;
+        this.deadline = deadline;
+    }
 
     public Task(String description, boolean mark, char toDo, String additionalDetails) {
         this.description = description;
@@ -27,6 +40,15 @@ public class Task {
         return mark;
     }
 
+    public String getMarkSymbol(){
+        if(mark) {
+            return ("X");
+        }
+        else {
+            return ("");
+        }
+    }
+
     public void setMark(Boolean mark) {
         this.mark = mark;
     }
@@ -46,4 +68,8 @@ public class Task {
     public void setAdditionalDetails(String additionalDetails) {
         this.additionalDetails = additionalDetails;
     }
+
+    public LocalDateTime getDeadline() { return deadline;}
+
+    public void setDeadline(LocalDateTime deadline){ this.deadline = deadline;}
 }
