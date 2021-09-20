@@ -48,9 +48,14 @@ public class TaskList {
 
         for (int i = 0; i < size; i++) {
             switch (parsedFile.get(i)[0]) {
-                case "O" -> this.tasks.add(new Task(parsedFile.get(i)[2]));
-                case "T" -> this.tasks.add(new ToDo(parsedFile.get(i)[2]));
-                case "D" -> {
+                case "O" :
+                    this.tasks.add(new Task(parsedFile.get(i)[2]));
+                    break;
+                case "T" :
+                    this.tasks.add(new ToDo(parsedFile.get(i)[2]));
+                    break;
+                case "D":
+
                     try {
                         this.tasks.add(new Deadline(parsedFile.get(i)[2],
                                 (LocalDateTime.parse(parsedFile.get(i)[3], DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
@@ -60,9 +65,10 @@ public class TaskList {
                         this.tasks.add(new Deadline(parsedFile.get(i)[2],
                                 LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
                     }
-                }
+                    break;
 
-                case "E" -> {
+
+                case "E":
                     try {
                         int index;
                         String at;
@@ -80,9 +86,11 @@ public class TaskList {
                                 LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + " - " +
                                         LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))));
                     }
+                    break;
 
-                }
-                default -> throw new DukeException("Error: File did not show task format.");
+
+                default:
+                    throw new DukeException("Error: File did not show task format.");
             }
 
             if (parsedFile.get(i)[1].equals("1")) {
@@ -138,11 +146,20 @@ public class TaskList {
     public void addTask(String taskType, String description, String secondPart) throws DukeException {
 
         switch (taskType) {
-            case "task" -> this.tasks.add(new Task(description));
-            case "todo" -> this.tasks.add(new ToDo(description));
-            case "event" -> this.tasks.add(new Event(description, secondPart));
-            case "deadline" -> this.tasks.add(new Deadline(description, secondPart));
-            default -> throw new DukeException("Error: Incorrect Task Type in addTask Method");
+            case "task":
+                this.tasks.add(new Task(description));
+                break;
+            case "todo":
+                this.tasks.add(new ToDo(description));
+                break;
+            case "event":
+                this.tasks.add(new Event(description, secondPart));
+                break;
+            case "deadline":
+                this.tasks.add(new Deadline(description, secondPart));
+                break;
+            default:
+                throw new DukeException("Error: Incorrect Task Type in addTask Method");
         }
 
     }
@@ -156,12 +173,22 @@ public class TaskList {
     public void findList(String keyword) {
         int size = this.tasks.size();
         int total = 0;
-        String classType = switch (keyword) {
-            case "Task" -> Task.class.toString();
-            case "ToDo" -> ToDo.class.toString();
-            case "Deadline" -> Deadline.class.toString();
-            case "Event" -> Event.class.toString();
-            default -> "";
+        String classType = "";
+        switch (keyword) {
+            case "Task":
+                classType = Task.class.toString();
+                break;
+            case "ToDo":
+                classType = ToDo.class.toString();
+                break;
+            case "Deadline":
+                classType = Deadline.class.toString();
+                break;
+            case "Event":
+                classType = Event.class.toString();
+                break;
+            default:
+                classType = "";
         };
 
         System.out.println(System.lineSeparator() + "Tasks that contain the keyword \"" + keyword + "\":");
