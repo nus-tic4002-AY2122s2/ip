@@ -1,5 +1,5 @@
 # Duke Pro's User Guide
-Air Rec is a desktop app for managing flight records, optimized for use via a Command Line Interface (CLI). User will not have to remember flight details and it can be found easily with commands.
+Duke Pro is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI). User will not have to remember tasks details and it can be found easily with commands.
 * Quick Start
 * Features
   * Viewing help : help
