@@ -43,7 +43,7 @@ Add a deadline to the DukePro task list.
 
 Format: ```deadline DESCRIPTION /by DATE```
 * The ```DESCRIPTION``` is the detail of the event.
-* The ```DATE``` must be in ```DD-MMM-YYYY``` format.
+* The ```DATE``` must be in ```DD-MM-YYYY``` format.
 * Use ```/by``` between ```DESCRIPTION``` and ```DATE```
 * The ```DESCRIPTION``` and ```DATE``` cannot be empty.
 
@@ -55,7 +55,7 @@ Add an event to the DukePro task list.
 
 Format: ```event DESCRIPTION /at DATE```
 * The ```DESCRIPTION``` is the detail of the event.
-* The ```DATE``` must be in ```DD-MMM-YYYY``` format.
+* The ```DATE``` must be in ```DD-MM-YYYY``` format.
 * Use ```/at``` between ```DESCRIPTION``` and ```DATE```
 * The ```DESCRIPTION``` and ```DATE``` cannot be empty.
 
