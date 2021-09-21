@@ -3,7 +3,7 @@ package ip.duke.parser;
 import ip.duke.exceptions.DukeException;
 import ip.duke.tasklist.TaskList;
 import ip.duke.ui.Ui;
-// Utility Class for parsing user inputs to the various wanted tasks.
+// THis utility class provides for parsing user inputs to the various wanted tasks.
 public class Parser {
     /**
      * This is the method which processes tasks and generates related dialogues.
@@ -18,7 +18,7 @@ public class Parser {
             Ui.bye();
             return true;
         } else {
-            // Parse user inputs to run the selected tasks errands
+            // Parses user inputs to run the selected tasks errands
             String[] words = null;
             // Check if multiple words exist in input before splitting into a string array
             if(command.indexOf(" ") > 0){

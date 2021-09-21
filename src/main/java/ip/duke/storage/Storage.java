@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Storage {
-    // Text file for saving all online records stored in TASKS database
+    // This class-level text file is to save all online records stored in TASKS database
     private static String FILE_PATH;
 
     public Storage(String filePath) {

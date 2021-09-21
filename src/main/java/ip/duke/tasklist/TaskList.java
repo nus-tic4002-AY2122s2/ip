@@ -10,7 +10,7 @@ import ip.duke.ui.Ui;
 import java.io.*;
 import java.util.LinkedHashSet;
 /**
- * Utility Class that provides an online database for tasks storage
+ * This utility class provides an online database for tasks storage
  *
  * </P>Deals with admin and tasking operations on online database list.
  *
@@ -21,7 +21,7 @@ import java.util.LinkedHashSet;
  * @since 2021-09-10
  */
 public class TaskList {
-    // Collection preserves input sequence, yields constant time for update/delete ops
+    // Collection preserves input sequence, gives constant time for update/delete ops
     private final static LinkedHashSet<Task> TASKS = new LinkedHashSet<>(125, (float) 0.8);
 
     public static int listSize(){
@@ -32,7 +32,7 @@ public class TaskList {
         return TASKS;
     }
 
-    //for possible closure technical glitch
+    //This method is for possible closure technical glitch
     public static void toClose(Closeable obj) {
 
         if (obj != null) {
@@ -47,7 +47,7 @@ public class TaskList {
         }
     }
     /**
-     * Extract a Task item by "index" or its sequenced order.
+     * Extracts a Task item by "index" or its sequenced order.
      * @param idx indexed location of target Task item
      * @return A Task object.
      */

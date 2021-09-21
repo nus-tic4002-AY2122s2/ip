@@ -1,6 +1,6 @@
 package ip.duke.task;
 /**
- * Task.java - a simple abstract class
+ * Task.java - a simple abstract class acting
  * as a template for various subclass task objects.
  * @author  Alvin Gwee
  * @version 1.0
@@ -14,29 +14,29 @@ public abstract class Task {
         this.description = description;
     }
     /**
-     * abstract getter method
+     * Abstract getter method is
      * to get a task description.
      */
     public abstract String getDescription();
 
-    // abstract setter method for tagging task with a letter id
+    // Abstract setter method is for tagging task with a letter id
     protected abstract void setId();
     /**
-     * getter method for the protected field id.
+     * Getter method is for the protected field id.
      * @return A String value.
      */
     public char getId(){
         return id;
     }
     /**
-     * getter method for the protected field isDone.
+     * Getter method is for the protected field isDone.
      * @return A String value.
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
     /**
-     * setter method for the protected field isDone.
+     * Setter method is for the protected field isDone.
      */
     public void setDone() {
         this.isDone = true;

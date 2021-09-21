@@ -37,13 +37,13 @@ public class Duke {
     }
 
     public void run() {
-        // Greet display and prompt user for input
+        // Greets user and prompts user for input
         Ui.greet();
-        // Warn user to delete some old records if database full
+        // Warns user to delete some old records if database full
         if (tasks.size() == 100) {
             Ui.showSizeFull();
         }
-        // Get user input
+        // Gets user input
         Scanner in = new Scanner(System.in);
         String input;
         boolean isBye = false;
@@ -54,7 +54,7 @@ public class Duke {
             Ui.drawALine();
 
             if (input.isEmpty()) {
-                // flush buffer
+                // Flushes the buffer
                 in.nextLine();
                 Ui.echoEmptyInput();
             }

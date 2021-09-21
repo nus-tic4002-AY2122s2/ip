@@ -24,7 +24,7 @@ public class Deadline extends Todo {
         }
     }
     /**
-     * getter method for the private final field by.
+     * Getter method for the private final field by.
      * @return A String value.
      */
     public String getBy() {
