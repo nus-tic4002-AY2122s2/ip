@@ -20,7 +20,9 @@ public class Ui {
     public void printEventsOnDateMsg(LocalDateTime dt) {
         System.out.println(String.format("Events and Deadlines on %s", dt.toLocalDate().toString()));
     }
-
+    public void printEventsOnDateMsg(String dt) {
+        System.out.println(String.format("Events and Deadlines on %s", dt));
+    }
     public void printNoEventOnDateMsg() {
         System.out.println("No events on this date.");
     }

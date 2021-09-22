@@ -22,28 +22,45 @@ public class CheckCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        if(check_time != null) {
-            //if
-        }
-        else{
-
-        }
-        ui.printEventsOnDateMsg(check_time);
+        ui.printEventsOnDateMsg(getCheck_time());
         int count = 0;
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
             if (curr.getClass() == Event.class) {
                 Event e = (Event) curr;
-                if(e.getStart_endTime().toLocalDate().isEqual(check_time.toLocalDate())){
-                    ui.printTask(e);
-                    count++;
+                LocalDateTime dateTime = e.getStart_endTime();
+                if(dateTime != null){
+                    if(dateTime.toLocalDate().isEqual(check_time.toLocalDate())){
+                        ui.printTask(e);
+                        count++;
+                    }
                 }
+                else{
+                    String dateTimeStr = e.getRaw_start_endTime();
+                    if(dateTimeStr.equals(raw_time)){
+                        ui.printTask(e);
+                        count++;
+                    }
+                }
+
             }
             if (curr.getClass() == Deadline.class) {
                 Deadline d = (Deadline) curr;
-                if(d.getDeadline().toLocalDate().isEqual(check_time.toLocalDate())){
-                    ui.printTask(d);
-                    count++;
+                //here we need to see if both can be converted to LocalDate.
+                //Otherwise, just compare the strings.
+                LocalDateTime deadline = d.getDeadline();
+                if(deadline != null){
+                    if(deadline.toLocalDate().isEqual(check_time.toLocalDate())){
+                        ui.printTask(d);
+                        count++;
+                    }
+                }
+                else{
+                    String deadlineStr = d.getRaw_deadline();
+                    if(deadlineStr.equals(raw_time)){
+                        ui.printTask(d);
+                        count++;
+                    }
                 }
             }
         }

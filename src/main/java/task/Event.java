@@ -7,12 +7,19 @@ import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
     private LocalDateTime start_endTime;
+    private String raw_start_endTime;
+
+    public String getRaw_start_endTime() {
+        return raw_start_endTime;
+    }
 
     public LocalDateTime getStart_endTime() {
         return start_endTime;
     }
 
-    public void setStart_endTime(String start_endTime){
+
+    public void setStart_endTime(String start_endTime) {
+        this.raw_start_endTime = start_endTime;
         this.start_endTime = Parser.parseDateTimeStr(start_endTime);
     }
 
@@ -23,6 +30,9 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), getStart_endTime());
+        String dateStr = (getStart_endTime() != null) ? getStart_endTime().toString() : getRaw_start_endTime();
+        return String.format("[E]%s (at: %s)", super.toString(), dateStr);
     }
+
+
 }
