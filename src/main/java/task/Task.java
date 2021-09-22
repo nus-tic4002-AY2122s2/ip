@@ -2,6 +2,9 @@ package task;
 
 import exception.DukeMissingDescException;
 
+/**
+ * Abstract Task class cannot be directly instantiated, only subclasses can.
+ */
 public abstract class Task {
     protected boolean isDone;
     protected String description;
