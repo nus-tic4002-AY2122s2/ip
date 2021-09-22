@@ -14,13 +14,14 @@ public class Duke{
     private DukeTaskList taskList;
     private DukeUI ui;
 
-    public Duke() {
+    public Duke(String filePath) {
+        ui = new DukeUI();
+        storage = new DukeStorage(filePath);
+        taskList = new DukeTaskList();
     }
 
     public void run(){
-        ui = new DukeUI();
-        storage = new DukeStorage();
-        taskList = new DukeTaskList();
+
         ui.welcomeMessage();
         try{
             storage.readFile();
@@ -42,7 +43,7 @@ public class Duke{
 
     }
 
-    public static void main(String[] args) throws IOException {
-        new Duke().run();
+    public static void main(String[] args) {
+        new Duke("/Users/joseph/Desktop/ip/src/main/java/taskList.txt").run();
     }
 }

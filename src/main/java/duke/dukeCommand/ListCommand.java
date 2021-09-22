@@ -48,5 +48,6 @@ public class ListCommand extends Command{
         if(DukeTaskList.getSize() == 0){
             throw new DukeException("The tasks list cannot be empty.");
         }
+        ui.showOutputToUser(showTaskListView(taskList));
     }
 }

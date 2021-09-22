@@ -15,11 +15,12 @@ import duke.dukeTaskList.*;
 
 public class DukeStorage {
 
-    private static String file_path = "/Users/joseph/Desktop/ip/src/main/java/taskList.txt";
+    private static String file_path;
     private BufferedReader fileRead;
     private File file;
 
-    public DukeStorage(){
+    public DukeStorage(String path){
+        file_path = path;
         try{
             fileRead = new BufferedReader(new FileReader(file_path));
             fileRead.close();

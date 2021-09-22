@@ -46,6 +46,10 @@ public class DukeUI{
         return input;
     }
 
+    public void showOutputToUser(String output) {
+        System.out.println(output);
+    }
+
     public void showError(String errorMessage){
         System.out.println("☹ OOPS!!! " + errorMessage);
     }
