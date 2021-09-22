@@ -38,17 +38,17 @@ public class TaskList {
         }
         switch (str_arr[1].charAt(1)) {
             case 'D':
-                //1: [D][❌] tic2002 (by: today)
+                //1: [D][X] tic2002 (by: today)
                 lastDescIndex = s.lastIndexOf(" (by: ");
                 t = new Deadline(s.substring(startDescIndex + 4, lastDescIndex), s.substring(lastDescIndex + 6, s.length() - 1));
                 break;
             case 'E':
-                //2: [E][❌] tp visit (at: today)
+                //2: [E][X] tp visit (at: today)
                 lastDescIndex = s.lastIndexOf(" (at: ");
                 t = new Event(s.substring(startDescIndex + 4, lastDescIndex), s.substring(lastDescIndex + 6, s.length() - 1));
                 break;
             case 'T':
-                //234: [T][❌] awd
+                //234: [T][X] awd
                 t = new ToDo(s.substring(startDescIndex + 4, lastDescIndex));
                 break;
             default:

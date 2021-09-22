@@ -33,6 +33,4 @@ public class Event extends Task {
         String dateStr = (getStart_endTime() != null) ? getStart_endTime().toString() : getRaw_start_endTime();
         return String.format("[E]%s (at: %s)", super.toString(), dateStr);
     }
-
-
 }
