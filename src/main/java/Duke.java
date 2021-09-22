@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
+        String logo = " ____        _\n"
+                + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-
+        System.out.println(logo);
         System.out.println("-------------------------------");
         System.out.println("Hello! I'm Duke\n" +
                 "What can I do for you?");
@@ -44,7 +44,7 @@ public class Duke {
                 String doneIndex = echo.substring(5);
                 tc.addDone(Integer.parseInt(doneIndex));
                 System.out.println("-------------------------------");
-                System.out.println("    "+ "Nice! I've marked this task as done: ");
+                System.out.println("    "+ "Nice! I've marked this task as done:");
                 System.out.println("    "+ tc.markAsDone(Integer.parseInt(doneIndex)));
                 System.out.println("-------------------------------");
             }
@@ -60,7 +60,7 @@ public class Duke {
                 addedList.add(task);
 
                 System.out.println("-------------------------------");
-                System.out.println("    " + "Got it. I've added this task: ");
+                System.out.println("    " + "Got it. I've added this task:");
                 System.out.println("    " + echo.substring(5) );
                 System.out.println("-------------------------------");
                 System.out.println("    " + "Now you have " + tc.getNumOfList() + " tasks in the list.");
@@ -93,7 +93,7 @@ public class Duke {
                 addedList.add(task);
 
                 System.out.println("-------------------------------");
-                System.out.println("    " + "Got it. I've added this task: ");
+                System.out.println("    " + "Got it. I've added this task:");
                 System.out.println("    " + echo.substring(6) );
                 System.out.println("-------------------------------");
                 System.out.println("    " + "Now you have " + tc.getNumOfList() + " tasks in the list.");
@@ -126,7 +126,7 @@ public class Duke {
                 addedList.add(task);
 
                 System.out.println("-------------------------------");
-                System.out.println("    " + "Got it. I've added this task: ");
+                System.out.println("    " + "Got it. I've added this task:");
                 System.out.println("    " + echo.substring(9) );
                 System.out.println("-------------------------------");
                 System.out.println("    " + "Now you have " + tc.getNumOfList() + " tasks in the list.");
