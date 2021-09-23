@@ -24,15 +24,12 @@ _Table of contents_
 
 <a href="#6">6. Feedback and Contact Us</a>
 
-
-###<a id="1">1. General Information</a>
-
-####<a id="1.1">1.1 System Overview</a>
-
+---
+## <a id="1">1. General Information</a>
+### <a id="1.1">1.1 System Overview</a>
 Welcome to Duke! Duke is a simple use and useful system to help you to keep track of all your key dates for all your important task(s). These tasks can be classified into 'Todo', 'Event', 'Deadline' tasks. There are also some other features that Duke can do for you to manipulate the task you saved and for your convenience. Get start with Duke now!
 
-####<a id="1.2">1.2 READ.me Content</a>
-
+### <a id="1.2">1.2 READ.me Content</a>
 The user's handbook contain 6 sections: 
 1. General Information
 2. Installation
@@ -50,10 +47,14 @@ Usage | Describe all the keywords (actions) and its outcome
 Error Correction Instructions | Show some possible errors user can make while using Duke
 Feedback and Contact Us | Provide information to user to contact the creator of Duke
 
-###<a id="2">2. Installation of Duke </a>
+---
+
+## <a id="2">2. Installation of Duke </a>
 You can go to my GitHub [Duke](https://github.com/YangShuogeng/ip) repository page and click the button `clone` or `download` and download the zip file. Once the zip file downloaded, extract the file and locate the Duke `JAR` file. You can assess the `JAR` file to startup Duke.
 
-###<a id="3">3. Features </a>
+---
+
+##<a id="3">3. Features </a>
 Here are the list of features of the Duke system:
 1. Show all the task(s)
 2. Add new task (three type task: Todo, Event, and Deadline)
@@ -65,8 +66,10 @@ Here are the list of features of the Duke system:
 5. Mark task as done
 6. bye
 
-###<a id="4">4. Usage </a>
-####<a id="4.1">4.1 Commands </a>
+---
+
+##<a id="4">4. Usage </a>
+###<a id="4.1">4.1 Commands </a>
 
 Here are the commands you can use to interact with Duke:
 
@@ -83,7 +86,7 @@ bye | Save the current task list to local and close Duke
 
 Input time format: YYYY-MM-DD Hour(0-23):Minute(0-59)
 
-####<a id="4.2">4.2 Examples </a>
+###<a id="4.2">4.2 Examples </a>
 Input: 
 > todo read book
 
@@ -141,13 +144,17 @@ Expected outcome:
 
 ![Image of byeOutcome](https://github.com/YangShuogeng/ip/tree/master/images/outcome_bye.png)
 
-### <a id="5">5. Error Correction Instructions</a>
+---
+
+## <a id="5">5. Error Correction Instructions</a>
 
 Here are some errors that user may encounter when using Duke:
 - DukeTaskInputException: The input task format wrong, such as missing description
 - DukeDateTimeError: The input task's date/time format wrong
 
-### <a id="6">6. Feedback and Contact Us</a>
+---
+
+## <a id="6">6. Feedback and Contact Us</a>
 Thanks for using Duke. Please feel free to drop the developer a feedback in order to improve Duke!
 You can reach me by the following information:
 1. +65 84300587
