@@ -108,6 +108,13 @@ public class Ui {
     }
 
     /**
+     * Displays the header of response when a find command is entered
+    */
+    public void printMatching() {
+        System.out.println("   Here are the matching tasks in your list:");
+    }
+
+    /**
      * Displays the exception message
     */
     void printException(Exception e) {
