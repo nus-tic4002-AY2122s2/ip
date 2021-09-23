@@ -54,7 +54,7 @@ You can go to my GitHub [Duke](https://github.com/YangShuogeng/ip) repository pa
 
 ---
 
-##<a id="3">3. Features </a>
+## <a id="3">3. Features </a>
 Here are the list of features of the Duke system:
 1. Show all the task(s)
 2. Add new task (three type task: Todo, Event, and Deadline)
@@ -68,8 +68,8 @@ Here are the list of features of the Duke system:
 
 ---
 
-##<a id="4">4. Usage </a>
-###<a id="4.1">4.1 Commands </a>
+## <a id="4">4. Usage </a>
+### <a id="4.1">4.1 Commands </a>
 
 Here are the commands you can use to interact with Duke:
 
@@ -86,7 +86,7 @@ bye | Save the current task list to local and close Duke
 
 Input time format: YYYY-MM-DD Hour(0-23):Minute(0-59)
 
-###<a id="4.2">4.2 Examples </a>
+### <a id="4.2">4.2 Examples </a>
 Input: 
 > todo read book
 
