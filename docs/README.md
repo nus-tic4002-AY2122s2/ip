@@ -92,49 +92,49 @@ Input:
 
 Expected outcome:
 
-![Image of todoOutcome](https://github.com/YangShuogeng/ip/tree/master/images/outcome_todo.png)
+![Image of todoOutcome](./outcome_todo.png)
 
  Input:
  > event project meeting /at 2021-09-25 11:00 -> 2021-09-25 12:30
 
 Expected outcome:
 
-![Image of eventOutcome](https://github.com/YangShuogeng/ip/tree/master/images/outcome_event.png)
+![Image of eventOutcome](./outcome_event.png)
 
 Input:
 > deadline return book /by 2021-12-12 18:00
 
 Expected outcome:
 
-![Image of deadlineOutcome](https://github.com/YangShuogeng/ip/tree/master/images/outcome_deadline.png)
+![Image of deadlineOutcome](./outcome_deadline.png)
 
 Input:
 > list
 
 Expected outcome:
 
-![Image of listOutcome](https://github.com/YangShuogeng/ip/tree/master/images/outcome_list.png)
+![Image of listOutcome](./outcome_list.png)
 
 Input:
 > done 2
 
 Expected outcome:
 
-![Image of doneOutcome](https://github.com/YangShuogeng/ip/tree/master/images/outcome_done.png)
+![Image of doneOutcome](./outcome_done.png)
 
 Input:
 > delete 1
 
 Expected outcome:
 
-![Image of deleteOutcome](https://github.com/YangShuogeng/ip/tree/master/images/outcome_delete.png)
+![Image of deleteOutcome](./outcome_delete.png)
 
 Input:
 > list
 
 Expected outcome:
 
-![Image of lastListOutcome](https://github.com/YangShuogeng/ip/tree/master/images/outcome_lastList.png)
+![Image of lastListOutcome](./outcome_lastList.png)
 
 
 Input:
@@ -142,7 +142,7 @@ Input:
 
 Expected outcome:
 
-![Image of byeOutcome](https://github.com/YangShuogeng/ip/tree/master/images/outcome_bye.png)
+![Image of byeOutcome](./outcome_bye.png)
 
 ---
 
