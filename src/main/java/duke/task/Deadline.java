@@ -8,14 +8,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task{
 
-    //protected String by;
     protected LocalDateTime by;
     private static final String TASK_TYPE="D";
-
-//    public Deadline(String description,String by) {
-//        super(description);
-//        this.by=by;
-//    }
 
     /**
      * Constructs a deadline task with description and time
@@ -52,11 +46,6 @@ public class Deadline extends Task{
         Deadline d = (Deadline) obj;
         return this.by.equals(d.by);
     }
-
-//    @Override
-//    public String toString() {
-//        return "[D]" + super.toString() + " (by: " + by + ")";
-//    }
 
     @Override
     public String toString() {

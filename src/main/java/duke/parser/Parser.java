@@ -24,23 +24,15 @@ public class Parser {
      */
     public static final Pattern BASIC_COMMAND_FORMAT= Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-//    public static final Pattern TASK_TYPE_TODO_ARGS_FORMAT =
-//            Pattern.compile("(?<todoDescription>[^/]+)");
-//    public static final Pattern TASK_TYPE_DEADLINE_ARGS_FORMAT =
-//            Pattern.compile("(?<deadlineDesc>[^/]+)"
-//                    + " by/(?<byTime>[^/]+)");
-//public static final Pattern TASK_TYPE_EVENT_ARGS_FORMAT =
-//        Pattern.compile("(?<eventDesc>[^/]+)"
-//                + " at/(?<atTime>[^/]+)");
-       public static final Pattern KEYWORDS_ARGS_FORMAT =
+    public static final Pattern KEYWORDS_ARGS_FORMAT =
         Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
-        public static final Pattern TASK_TYPE_DEADLINE_ARGS_FORMAT =
+    public static final Pattern TASK_TYPE_DEADLINE_ARGS_FORMAT =
                 Pattern.compile("(?<deadlineDesc>[^/]+)"
                         + " by/(?<byYear>\\d{4})"+"-"+"(?<byMonth>\\d{2})"+"-"+"(?<byDay>\\d{2})"
                         +" "+"(?<byHour>\\d{2})(?<byMin>\\d{2})");
 
-        public static final Pattern TASK_TYPE_EVENT_ARGS_FORMAT =
+    public static final Pattern TASK_TYPE_EVENT_ARGS_FORMAT =
                 Pattern.compile("(?<eventDesc>[^/]+)"
                         + " at/(?<atYear>\\d{4})"+"-"+"(?<atMonth>\\d{2})"+"-"+"(?<atDay>\\d{2})"
                         +" "+"(?<atHour>\\d{2})(?<atMin>\\d{2})");
