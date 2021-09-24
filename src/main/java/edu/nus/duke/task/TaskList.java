@@ -32,9 +32,10 @@ public class TaskList {
     }
 
     /**
-     * Print tasks with total count, filtered by date.
+     * Print tasks with total count, filtered by date or text.
      *
      * @param dateFilter Date filter.
+     * @param textFilter Text filter.
      */
     public void printTasks(LocalDate dateFilter, String textFilter) {
         int printCount = 0;

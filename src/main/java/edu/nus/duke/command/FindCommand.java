@@ -4,6 +4,9 @@ import edu.nus.duke.task.TaskList;
 
 import edu.nus.duke.ui.Ui;
 
+/**
+ * Represent find command that extends from Command.
+ */
 public class FindCommand extends Command {
     // Variables
     public static final String CMD = "find";
