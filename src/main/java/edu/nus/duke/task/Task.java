@@ -19,6 +19,9 @@ public abstract class Task {
     }
 
     // Getter
+    public String getTaskName() {
+        return taskName;
+    }
 
     /**
      * Return a string with required info to represent a task.
