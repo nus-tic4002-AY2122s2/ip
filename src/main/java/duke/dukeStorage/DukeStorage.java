@@ -1,6 +1,7 @@
 package duke.dukeStorage;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -9,9 +10,11 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import duke.dukeCommand.*;
 import duke.dukeTask.*;
 import duke.dukeTaskList.*;
+import duke.dukeException.*;
 
 public class DukeStorage {
 
@@ -129,7 +132,7 @@ public class DukeStorage {
          FileWriter fileWriter = new FileWriter(file_path, true);
          PrintWriter printWriter = new PrintWriter(fileWriter);
          String taskData = taskClass + " | " + "0" + " | " + description;
-         if (date == ""){
+         if (taskClass == "T"){
              printWriter.println(taskData);  //New line
          }else{
              taskData = taskData + " | " + date;
@@ -142,7 +145,7 @@ public class DukeStorage {
     /**
      * Read file
      */
-    public void readFile() throws FileNotFoundException, IOException {
+    public void readFile() throws FileNotFoundException, IOException, ParseException, DukeException {
         DukeTaskList taskList = new DukeTaskList();
         BufferedReader fileRead = new BufferedReader(new FileReader(file_path));
         String line = fileRead.readLine();
@@ -150,18 +153,26 @@ public class DukeStorage {
             String[] splitLine = line.split(" \\| ");
             switch(splitLine[0]){
                 case "E":
-                    Event newEvent = new Event(splitLine[2], splitLine[3]);
+                    Event newEvent = new Event(splitLine[2], DeadlineCommand.convertDateTime(splitLine[3]));
                     if(splitLine[1].equals("1")){
                         newEvent.markAsDone();
                     }
                     taskList.addList(newEvent);
                     break;
                 case "D":
-                    Deadline newDeadline = new Deadline(splitLine[2], splitLine[3]);
-                    if(splitLine[1].equals("1")){
-                        newDeadline.markAsDone();
+                    try{
+                        Deadline newDeadline = new Deadline(splitLine[2], DeadlineCommand.convertDateTime(splitLine[3]));
+                        if(splitLine[1].equals("1")){
+                            newDeadline.markAsDone();
+                        }
+                        taskList.addList(newDeadline);
+                    }catch(ParseException e){
+                        System.out.println("please key in the correct date time");
+                    }catch(DukeException e){
+                        throw new DukeException("☹ OOPS!!! Please check deadline command that you have key in is in correct format.");
                     }
-                    taskList.addList(newDeadline);
+
+
                     break;
                 case "T":
                     Todo newTodo = new Todo(splitLine[2]);

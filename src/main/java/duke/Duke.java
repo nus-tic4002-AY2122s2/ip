@@ -8,6 +8,7 @@ import duke.dukeCommand.*;
 import duke.dukeParser.*;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 
 public class Duke{
     private DukeStorage storage;
@@ -20,7 +21,7 @@ public class Duke{
         taskList = new DukeTaskList();
     }
 
-    public void run(){
+    public void run() {
 
         ui.welcomeMessage();
         try{
@@ -28,6 +29,10 @@ public class Duke{
         }catch(FileNotFoundException e){
             System.out.println(e);
         }catch(IOException e){
+            System.out.println(e);
+        }catch(ParseException e){
+            System.out.println(e);
+        }catch(DukeException e){
             System.out.println(e);
         }
 
