@@ -5,25 +5,28 @@ added: [T][ ] borrow book
 ____________________________________________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
-
 Total tasks: 1
 ____________________________________________________________
-added: [D][ ] return book (by: Sunday)
+added: [D][ ] return book (by: 25 Sep 21)
 ____________________________________________________________
-done: [D][X] return book (by: Sunday)
+done: [D][X] return book (by: 25 Sep 21)
 ____________________________________________________________
-added: [E][ ] project meeting (at: Mon 2-4pm)
+added: [E][ ] project meeting (at: 25 Sep 21 7:00 PM)
 ____________________________________________________________
-deleted: [E][ ] project meeting (at: Mon 2-4pm)
+added: [D][ ] do homework (by: 26 Sep 21)
 ____________________________________________________________
-added: [D][ ] do homework (by: no idea :-p)
+deleted: [D][ ] do homework (by: 26 Sep 21)
 ____________________________________________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
-2. [D][X] return book (by: Sunday)
-3. [D][ ] do homework (by: no idea :-p)
-
+2. [D][X] return book (by: 25 Sep 21)
+3. [E][ ] project meeting (at: 25 Sep 21 7:00 PM)
 Total tasks: 3
+____________________________________________________________
+Here are the tasks in your list:
+2. [D][X] return book (by: 25 Sep 21)
+3. [E][ ] project meeting (at: 25 Sep 21 7:00 PM)
+Total tasks: 2
 ____________________________________________________________
 Bye. Hope to see you again soon!
 ____________________________________________________________

@@ -1,5 +1,7 @@
 package edu.nus.duke;
 
+import java.time.format.DateTimeParseException;
+
 import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.TaskList;
 import edu.nus.duke.storage.Storage;
@@ -43,6 +45,8 @@ public class Main {
                 Ui.printMessage("'" + Storage.getSaveSep() + "' is not allowed!");
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printMessage("Invalid input");
+            } catch (DateTimeParseException e) {
+                Ui.printMessage("Invalid datetime input");
             }
         } while (!inputTxt.equals(ExitCommand.CMD));
     }

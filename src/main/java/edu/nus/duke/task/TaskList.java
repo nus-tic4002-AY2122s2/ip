@@ -1,7 +1,11 @@
 package edu.nus.duke.task;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import edu.nus.duke.parser.Parser;
 import edu.nus.duke.ui.Ui;
 import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 
@@ -28,19 +32,22 @@ public class TaskList {
     }
 
     /**
-     * Return a string with all tasks.
+     * Print tasks with total count, filtered by date.
      *
-     * @return string with all tasks.
+     * @param dateFilter Date filter.
      */
-    public String printTasks() {
-        StringBuilder output = new StringBuilder();
+    public void printTasks(LocalDate dateFilter) {
+        int printCount = 0;
         for (int i = 0; i < tasks.size(); i++) {
-            output.append(i + 1);
-            output.append(". ");
-            output.append(tasks.get(i).getTask());
-            output.append(System.lineSeparator());
+            Task task = tasks.get(i);
+            if (isExclude(task, dateFilter)) {
+                continue;
+            }
+
+            Ui.printMessage((i + 1) + ". " + task.getTask(), false);
+            printCount++;
         }
-        return output.toString();
+        Ui.printMessage("Total tasks: " + printCount);
     }
 
     /**
@@ -72,8 +79,12 @@ public class TaskList {
      * Add a task from Array of elements.
      *
      * @param elements Array of elements.
+     * @throws DukeInvalidTaskIndexException If task index is invalid.
+     * @throws ArrayIndexOutOfBoundsException If bad input is read from file.
+     * @throws DateTimeParseException If datetime input is invalid.
      */
-    public void addTask(String[] elements) throws DukeInvalidTaskIndexException, ArrayIndexOutOfBoundsException {
+    public void addTask(String[] elements) throws DukeInvalidTaskIndexException, ArrayIndexOutOfBoundsException,
+            DateTimeParseException {
         String taskType = elements[0];
         boolean isDone = elements[1].equals("1");
         String taskName = elements[2];
@@ -83,11 +94,11 @@ public class TaskList {
                 tasks.add(new Todo(taskName, isDone));
                 break;
             case "D":
-                String by = elements[3];
+                LocalDateTime by = Parser.parseDt(elements[3]);
                 tasks.add(new Deadline(taskName, by, isDone));
                 break;
             case "E":
-                String at = elements[3];
+                LocalDateTime at = Parser.parseDt(elements[3]);
                 tasks.add(new Event(taskName, at, isDone));
                 break;
             default:
@@ -123,5 +134,18 @@ public class TaskList {
             Ui.printMessage("Invalid/missing index");
         }
 
+    }
+
+    // Methods
+    private boolean isExclude(Task task, LocalDate date) {
+        if (date != null) {
+            if (task instanceof Deadline) {
+                return !((Deadline)task).getBy().toLocalDate().equals(date);
+            } else if (task instanceof Event) {
+                return !((Event)task).getAt().toLocalDate().equals(date);
+            }
+            return true;
+        }
+        return false;
     }
 }
