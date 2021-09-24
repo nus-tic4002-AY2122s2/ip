@@ -8,6 +8,8 @@ import duke.task.Task;
 import duke.task.Event;
 import duke.ui.Message;
 
+import java.time.format.DateTimeParseException;
+
 /**
  * As a command, run() with arguments to
  * create a new event task
@@ -25,7 +27,7 @@ public class EventCreationCmd implements UndoableCommand{
     public void run(String[] args) {
         String arg = StringParser.join(args);
 
-        String[] parts = arg.split("/at");
+        String[] parts = arg.strip().split("/at");
 
         if(args.length == 0 || args.length == 1) {
             try {
@@ -40,8 +42,15 @@ public class EventCreationCmd implements UndoableCommand{
                 Message.echo(e.getMessage());
             }
         } else {
-            list.add(new Event(parts[0], parts[1]));
-            Message.taskAdd(list);
+            try {
+                var title = parts[0].strip();
+                var duration = StringParser.parseEvent(parts);
+                Event event = new Event(title, duration);
+                list.add(event);
+                Message.taskAdd(list);
+            } catch (DateTimeParseException e) {
+                System.out.println("Event DateTime Format: /at YYYY-MM-DD HHMM-HHMM");
+            }
         }
     }
 

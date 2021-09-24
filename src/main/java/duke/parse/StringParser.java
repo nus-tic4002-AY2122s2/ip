@@ -4,6 +4,9 @@ import duke.task.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * StringParser acts like a utility that offers methods
@@ -43,7 +46,6 @@ public class StringParser {
         return xs;
     }
 
-
     public static String join(String[] args) {
         String arg = "";
         for (String word : args) {
@@ -52,24 +54,39 @@ public class StringParser {
         return arg.strip();
     }
 
+    /**
+     * this method used when starting the app
+     * loading lines from file to initialize the TaskList
+     * The dateTime format is based on the text (toString)
+     * NOT the user input format
+     * @param line
+     * @return
+     */
     public static Task stringToTask(String line) {
         String[] parts = line.split("]", 3);
         Boolean isDone = !parts[1].equals("[ ")? true : false;
 
         Task res;
         String[] args;
+        String title;
 
         switch (parts[0]) {
             case "[T":
                 res = new Todo(parts[2].strip());
                 break;
             case "[E":
-                args = parts[2].split("/at");
-                res = new Event(args[0].strip(), args[1].strip());
+                args = parts[2].strip().split("\\(at:");
+                args[1] = args[1].replace(")", "");
+                title = args[0].strip();
+                var duration = StringParser.parseEvent(args);
+                res = new Event(title, duration);
                 break;
             case "[D":
-                args = parts[2].split("/by");
-                res = new Deadline(args[0].strip(), args[1].strip());
+                args = parts[2].split("\\(by:");
+                args[1] = args[1].replace(")", "");
+                title = args[0].strip();
+                var by = StringParser.parseDL(args);
+                res = new Deadline(title, by);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + parts[0]);
@@ -79,6 +96,89 @@ public class StringParser {
             res.markDone();
         }
         return res;
+    }
+
+    public static LocalDateTime[] parseEvent(String[] args) {
+        // args[0]: title  args[1]: datetime
+        String[] dateTime = args[1].strip().split(" ", 2);
+        String date = dateTime[0].strip();
+        String time = dateTime[1].strip();
+
+        String from = time.split("-")[0];
+        from = date + " " + from.strip();
+        String till = time.split("-")[1];
+        till = date + " " + till.strip();
+
+        LocalDateTime fromT = null;
+        LocalDateTime tillT = null;
+
+        try {
+            fromT = StringParser.getTime(from);
+            tillT = StringParser.getTime(till);
+        } catch (DateTimeParseException e) {
+            throw e;
+        }
+
+        LocalDateTime[] duration = {fromT, tillT};
+        return duration;
+    }
+
+    public static LocalDateTime parseDL(String[] args) {
+        // args[0]: title  args[1]: datetime
+        String dateTime = args[1].strip();
+        LocalDateTime by = null;
+
+        try {
+            by = StringParser.getTime(dateTime);
+        } catch (DateTimeParseException e) {
+            throw e;
+        }
+        return by;
+    }
+
+    public static LocalDateTime getTime(String part) {
+        DateTimeFormatter formatter;
+        LocalDateTime time = null;
+
+        try {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            time = LocalDateTime.parse(part, formatter);
+            if(time != null) {return time;}
+        } catch (DateTimeParseException e) {
+        }
+        try {
+            formatter = DateTimeFormatter.ofPattern("dd.MMM.yy HH:mm");
+            time = LocalDateTime.parse(part, formatter);
+            if(time != null) {return time;}
+        } catch (DateTimeParseException e) {
+        }
+        try {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            time = LocalDateTime.parse(part, formatter);
+            if(time != null) {return time;}
+        } catch (DateTimeParseException e) {
+        }
+        try {
+            formatter = DateTimeFormatter.ofPattern("yyyy-M-d Hmm");
+            time = LocalDateTime.parse(part, formatter);
+            if(time != null) {return time;}
+        } catch (DateTimeParseException e) {
+        }
+        try {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd Hmm");
+            time = LocalDateTime.parse(part, formatter);
+            if(time != null) {return time;}
+        } catch (DateTimeParseException e) {
+        }
+        try {
+            formatter = DateTimeFormatter.ofPattern("yyyy-M-d H");
+            time = LocalDateTime.parse(part, formatter);
+            if(time != null) {return time;}
+        } catch (DateTimeParseException e) {
+            throw e;
+        }
+
+        return time;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {

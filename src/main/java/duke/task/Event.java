@@ -7,27 +7,31 @@ import java.time.format.DateTimeFormatter;
  * Event is a Task with datetime at property
  */
 public class Event extends Task{
-    private String at;
+    private LocalDateTime from;
     private LocalDateTime till;
 
-    public Event(String title, String at) {
+    public Event(String title, LocalDateTime[] duration) {
         super(title);
-        this.at = at;
+        this.from = duration[0];
+        this.till = duration[1];
     }
 
-    public String getStartTime() {
-        return at;
+    public LocalDateTime getStartTime() {
+        return from;
     }
     public LocalDateTime getEndTime() {
         return till;
     }
 
 
-
-
     @Override
     public String toString() {
-        return "[E]" + super.toString()
-                + " (at: " + at + ")";
+        return "[E]"
+                + super.toString()
+                + " (at: "
+                + from.format(DateTimeFormatter.ofPattern("dd.MMM.yy HH:mm"))
+                + " - "
+                + till.format(DateTimeFormatter.ofPattern("HH:mm"))
+                + ")";
     }
 }
