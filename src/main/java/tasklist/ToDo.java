@@ -68,6 +68,6 @@ public class ToDo extends Task {
      */
     @Override
     public boolean taskType(String taskType){
-        return taskType.equals("todos");
+        return taskType.equals("todo");
     }
 }

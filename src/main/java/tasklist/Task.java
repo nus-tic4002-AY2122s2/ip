@@ -85,6 +85,6 @@ public abstract class Task {
      * @param taskType the task type of the object
      */
     public boolean taskType(String taskType){
-        return taskType.equals("tasks");
+        return taskType.equals("task");
     }
 }

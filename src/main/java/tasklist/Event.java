@@ -61,7 +61,7 @@ public class Event extends Task {
             return false;
         }else {
             Date date = dateFormat.parse(this.time);
-            return dateSearch.compareTo(date) == 0 && taskType.equals("event");
+            return dateSearch.compareTo(date) == 0 && taskType(taskType);
         }
     }
 
@@ -78,8 +78,8 @@ public class Event extends Task {
             return false;
         }else {
             Date date = dateFormat.parse(this.time);
-            return (dateSearch.compareTo(date) == 0 && taskType.equals("event")) 
-                    || (dateSearch.compareTo(date) < 0 && taskType.equals("event"));
+            return (dateSearch.compareTo(date) == 0 && taskType(taskType))
+                    || (dateSearch.compareTo(date) < 0 && taskType(taskType));
         }
     }
 
@@ -97,11 +97,11 @@ public class Event extends Task {
             return false;
         }else {
             Date date = dateFormat.parse(this.time);
-            if (fromDate.compareTo(date) == 0 && taskType.equals("event") 
-                    || endDate.compareTo(date) == 0 && taskType.equals("event")) {
+            if (fromDate.compareTo(date) == 0 && taskType(taskType)
+                    || endDate.compareTo(date) == 0 && taskType(taskType)) {
                 return true;
             }else if (fromDate.compareTo(date) < 0 && endDate.compareTo(date) > 0 
-                    && taskType.equals("event")){
+                    && taskType(taskType)){
                 return true;
             }
             else {
@@ -116,6 +116,6 @@ public class Event extends Task {
      */
     @Override
     public boolean taskType(String taskType){
-        return taskType.equals("events");
+        return taskType.equals("event");
     }
 }
