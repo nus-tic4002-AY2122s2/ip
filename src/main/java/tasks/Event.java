@@ -24,11 +24,13 @@ public class Event extends Task {
      */
     public Event(String description, String at) {
         super(description);
-        int index = 0;
+        int indexOfDash = 20;
+        at = at.replaceFirst("/at", "").trim();
         try {
-            index = at.indexOf(" - ");
-            this.end = LocalTime.parse(at.substring(index).replace(" - ", "").trim(), DateTimeFormatter.ofPattern("HH:mm:ss"));
-            this.start = LocalDateTime.parse(at.substring(0, index).replaceFirst("/at", "").trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            //System.out.println(at.substring(0, indexOfDash));
+            //System.out.println(at.substring(indexOfDash + 1).replace("-", "").trim());
+            this.start = LocalDateTime.parse(at.substring(0, indexOfDash).trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            this.end = LocalTime.parse(at.substring(indexOfDash + 1).replace("-", "").trim(), DateTimeFormatter.ofPattern("HH:mm:ss"));
         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
             this.start = LocalDateTime.now();
             this.end = LocalTime.now();

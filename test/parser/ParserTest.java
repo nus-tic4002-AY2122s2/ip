@@ -105,10 +105,10 @@ class ParserTest {
 
     @Test
     void testParseAddEvent() throws DukeException {
-        AddCommand dummyAdd = (AddCommand) parser.parse("event dinner /at restaurant");
+        AddCommand dummyAdd = (AddCommand) parser.parse("event dinner /at 20/02/2000 10:10:10 - 23:12:30");
         assertEquals("event",dummyAdd.getTaskType());
         assertEquals("dinner",dummyAdd.getTaskDescription());
-        assertEquals("restaurant",dummyAdd.getTaskSecondPart());
+        assertEquals("20/02/2000 10:10:10 - 23:12:30",dummyAdd.getTaskSecondPart());
     }
 
 }

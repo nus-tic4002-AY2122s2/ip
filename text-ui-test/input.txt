@@ -14,7 +14,7 @@ undone 2
 list
 running
 reschedule 2 /new 18/12/2020 23:59:59
-reschedule 3 /new 11/12/2020 18:30:00 - 23:12:11
+reschedule 3 /new 11/12/2020 18:30:00 - 22:13:14
 todo Write Deadlines for myself
 find home
 find ho

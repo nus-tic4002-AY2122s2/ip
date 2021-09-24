@@ -11,6 +11,6 @@ class EventTest {
     }
     @Test
     void testToString_success() {
-        assertEquals("[E][-] running (at: 20 Feb 2000 10:10:10)", new Event("running", "20/02/2000 10:10:10").toString());
+        assertEquals("[E][-] birthday dinner (at: 20 Feb 2000 11:11:11 - 20:20:20)", new Event("birthday dinner" , "20/02/2000 11:11:11 – 20:20:20").toString());
     }
 }
