@@ -1,5 +1,6 @@
 package edu.nus.duke.parser;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -33,6 +34,10 @@ public class Parser {
         if (input.contains(Storage.getSaveSep())) {
             throw new DukeDisallowInputException();
         }
+    }
+
+    private static LocalDate parseDate(String s) throws DateTimeParseException {
+        return LocalDate.parse(s, DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 
     public static LocalDateTime parseDt(String s) throws DateTimeParseException {
@@ -103,6 +108,10 @@ public class Parser {
         String cmd = inputArray[0];
 
         if (cmd.equals(ListCommand.CMD)) {
+            if (inputArray.length == 2) {
+                LocalDate date = parseDate(inputArray[1]);
+                return (new ListCommand(date));
+            }
             return (new ListCommand());
         } else if (cmd.equals(ExitCommand.CMD)) {
             return (new ExitCommand());

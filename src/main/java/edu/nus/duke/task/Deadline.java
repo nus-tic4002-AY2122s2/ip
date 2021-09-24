@@ -28,6 +28,10 @@ public class Deadline extends Task {
         return (super.getTask() + " (by: " + Parser.printDt(by) + ")");
     }
 
+    public LocalDateTime getBy() {
+        return by;
+    }
+
     @Override
     public String printForSave() {
         return (super.printForSave() + SAVE_SEP + Parser.dtToString(by));

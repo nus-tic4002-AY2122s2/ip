@@ -1,5 +1,6 @@
 package edu.nus.duke.task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -31,19 +32,20 @@ public class TaskList {
     }
 
     /**
-     * Return a string with all tasks.
-     *
-     * @return string with all tasks.
+     * Filter tasks by date and print them.
      */
-    public String printTasks() {
-        StringBuilder output = new StringBuilder();
+    public void printTasks(LocalDate dateFilter) {
+        int printCount = 0;
         for (int i = 0; i < tasks.size(); i++) {
-            output.append(i + 1);
-            output.append(". ");
-            output.append(tasks.get(i).getTask());
-            output.append(System.lineSeparator());
+            Task task = tasks.get(i);
+            if (isExclude(task, dateFilter)) {
+                continue;
+            }
+
+            Ui.printMessage((i + 1) + ". " + task.getTask(), false);
+            printCount++;
         }
-        return output.toString();
+        Ui.printMessage("Total tasks: " + printCount);
     }
 
     /**
@@ -127,5 +129,18 @@ public class TaskList {
             Ui.printMessage("Invalid/missing index");
         }
 
+    }
+
+    // Methods
+    private boolean isExclude(Task task, LocalDate date) {
+        if (date != null) {
+            if (task instanceof Deadline) {
+                return !((Deadline)task).getBy().toLocalDate().equals(date);
+            } else if (task instanceof Event) {
+                return !((Event)task).getAt().toLocalDate().equals(date);
+            }
+            return true;
+        }
+        return false;
     }
 }

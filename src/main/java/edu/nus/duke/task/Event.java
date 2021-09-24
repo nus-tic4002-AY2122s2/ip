@@ -28,6 +28,10 @@ public class Event extends Task {
         return (super.getTask() + " (at: " + Parser.printDt(at) + ")");
     }
 
+    public LocalDateTime getAt() {
+        return at;
+    }
+
     @Override
     public String printForSave() {
         return (super.printForSave() + SAVE_SEP + Parser.dtToString(at));
