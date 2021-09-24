@@ -8,6 +8,8 @@ import duke.task.Task;
 import duke.task.Deadline;
 import duke.ui.Message;
 
+import java.time.format.DateTimeParseException;
+
 /**
  * As a command, run() with arguments to
  * create a new deadline task
@@ -40,8 +42,15 @@ public class DLCreationCmd implements UndoableCommand{
                 Message.echo(e.getMessage());
             }
         } else {
-            list.add(new Deadline(parts[0], parts[1]));
-            Message.taskAdd(list);
+            try {
+                var title = parts[0].strip();
+                var by = StringParser.parseDL(parts);
+                Deadline dl = new Deadline(title, by);
+                list.add(dl);
+                Message.taskAdd(list);
+            } catch (DateTimeParseException e) {
+                System.out.println("Event DateTime Format: /by YYYY-MM-DD HMM");
+            }
         }
     }
 
