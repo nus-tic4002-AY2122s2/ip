@@ -12,6 +12,7 @@ import edu.nus.duke.command.ListCommand;
 import edu.nus.duke.command.DoneCommand;
 import edu.nus.duke.command.DeleteCommand;
 import edu.nus.duke.command.ExitCommand;
+import edu.nus.duke.command.FindCommand;
 import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
 import edu.nus.duke.task.Event;
@@ -104,6 +105,8 @@ public class Parser {
         case DeleteCommand.CMD:
             idx = Integer.parseInt(args) - 1;
             return (new DeleteCommand(idx));
+        case FindCommand.CMD:
+            return (new FindCommand(args));
         default:
             throw new DukeInvalidInputException();
         }

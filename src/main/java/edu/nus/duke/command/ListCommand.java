@@ -25,6 +25,6 @@ public class ListCommand extends Command {
     @Override
     public void run(TaskList taskList) {
         Ui.printMessage("Here are the tasks in your list:", false);
-        taskList.printTasks(dateFilter);
+        taskList.printTasks(dateFilter, null);
     }
 }

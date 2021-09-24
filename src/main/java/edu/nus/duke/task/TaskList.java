@@ -32,15 +32,16 @@ public class TaskList {
     }
 
     /**
-     * Print tasks with total count, filtered by date.
+     * Print tasks with total count, filtered by date or text.
      *
      * @param dateFilter Date filter.
+     * @param textFilter Text filter.
      */
-    public void printTasks(LocalDate dateFilter) {
+    public void printTasks(LocalDate dateFilter, String textFilter) {
         int printCount = 0;
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
-            if (isExclude(task, dateFilter)) {
+            if (isExclude(task, dateFilter, textFilter)) {
                 continue;
             }
 
@@ -137,7 +138,7 @@ public class TaskList {
     }
 
     // Methods
-    private boolean isExclude(Task task, LocalDate date) {
+    private boolean isExclude(Task task, LocalDate date, String text) {
         if (date != null) {
             if (task instanceof Deadline) {
                 return !((Deadline)task).getBy().toLocalDate().equals(date);
@@ -146,6 +147,11 @@ public class TaskList {
             }
             return true;
         }
+
+        if (text != null) {
+            return !(task.getTaskName().contains(text));
+        }
+
         return false;
     }
 }
