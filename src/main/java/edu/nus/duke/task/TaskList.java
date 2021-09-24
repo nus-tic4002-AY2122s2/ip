@@ -32,7 +32,9 @@ public class TaskList {
     }
 
     /**
-     * Filter tasks by date and print them.
+     * Print tasks with total count, filtered by date.
+     *
+     * @param dateFilter Date filter.
      */
     public void printTasks(LocalDate dateFilter) {
         int printCount = 0;
@@ -77,6 +79,9 @@ public class TaskList {
      * Add a task from Array of elements.
      *
      * @param elements Array of elements.
+     * @throws DukeInvalidTaskIndexException If task index is invalid.
+     * @throws ArrayIndexOutOfBoundsException If bad input is read from file.
+     * @throws DateTimeParseException If datetime input is invalid.
      */
     public void addTask(String[] elements) throws DukeInvalidTaskIndexException, ArrayIndexOutOfBoundsException,
             DateTimeParseException {

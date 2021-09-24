@@ -40,6 +40,13 @@ public class Parser {
         return LocalDate.parse(s, DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 
+    /**
+     * Returns a {@code LocalDateTime} by parsing from a date/datetime string.
+     *
+     * @param s Date/datetime string
+     * @return a {@code LocalDateTime}
+     * @throws DateTimeParseException If format is invalid.
+     */
     public static LocalDateTime parseDt(String s) throws DateTimeParseException {
         String dt = s;
         if (s.length() == DATE_FORMAT.length()) {
@@ -48,10 +55,22 @@ public class Parser {
         return LocalDateTime.parse(dt, DateTimeFormatter.ofPattern(DT_FORMAT));
     }
 
+    /**
+     * Returns a string representation of {@code LocalDateTime}.
+     *
+     * @param dt {@code LocalDateTime}
+     * @return String representation of datetime.
+     */
     public static String dtToString(LocalDateTime dt) {
         return dt.format(DateTimeFormatter.ofPattern(DT_FORMAT));
     }
 
+    /**
+     * Returns a display-friendly string representation of {@code LocalDateTime}.
+     *
+     * @param dt {@code LocalDateTime}
+     * @return String representation of datetime.
+     */
     public static String printDt(LocalDateTime dt) {
         if ((dt.getHour() == 0) && (dt.getMinute() == 0)) {
             return dt.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PRINT));
@@ -99,6 +118,7 @@ public class Parser {
      * @throws DukeEmptyArgsException If required arguments are missing.
      * @throws DukeDisallowInputException If disallowed keywords are present.
      * @throws ArrayIndexOutOfBoundsException If there is invalid argument.
+     * @throws DateTimeParseException If date/datetime input format is invalid.
      */
     public static Command parseInput(String inputTxt) throws DukeInvalidInputException, DukeEmptyArgsException,
             DukeDisallowInputException, ArrayIndexOutOfBoundsException, DateTimeParseException {
