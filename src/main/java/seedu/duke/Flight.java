@@ -29,7 +29,7 @@ public class Flight {
             formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
             formattedDate = LocalDateTime.parse(dateAndTimeDetails, formatter);
         } else {
-            formattedDate = formattedDate.now();
+            formattedDate = LocalDateTime.now();
             julianDate = formattedDate.getDayOfYear();
             day = julianDate % 7;
             daysToAdd = day - daysToAdd;
