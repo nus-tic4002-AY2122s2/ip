@@ -15,12 +15,8 @@ public class DeleteCommand extends Command{
     @Override
     public void execute(DukeTaskList taskList, DukeUI ui, DukeStorage storage) throws DukeException, IOException{
         try{
-            String[] userInput = null;
-            userInput = input.split(" ",2);
-            if(userInput[1].trim() != ""){
-                DukeStorage.deleteFunction(Integer.valueOf(userInput[1].trim())-1);
-                DukeStorage.deleteFromFile(Integer.valueOf(userInput[1].trim())-1);
-            }
+            DukeStorage.deleteFunction(Integer.valueOf(input.trim())-1);
+            DukeStorage.deleteFromFile(Integer.valueOf(input.trim())-1);
         }
         catch (NumberFormatException e){
             throw new DukeException("The task selected must be a numerical value.");

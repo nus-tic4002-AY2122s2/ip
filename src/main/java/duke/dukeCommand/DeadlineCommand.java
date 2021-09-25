@@ -35,10 +35,6 @@ public class DeadlineCommand extends Command{
     @Override
     public void execute(DukeTaskList taskList, DukeUI ui, DukeStorage storage){
         try{
-
-            System.out.println(input);
-
-            //throw new DukeException("Index out of Bounds during deadline command");
             String description = input.trim().substring(0, input.trim().indexOf("/by")-1);
             String date = input.trim().substring(input.trim().indexOf("/by")+4, input.trim().length());
             Date saveDate = convertDateTime(date);
