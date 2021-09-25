@@ -9,59 +9,61 @@ import java.time.format.DateTimeFormatter;
 public abstract class Task {
     private String description;
     private boolean isDone;
-    private LocalDateTime taskTime=LocalDateTime.of(2000,1,1,0,0);
+    private LocalDateTime taskTime = LocalDateTime.of(2000, 1, 1, 0, 0);
     private LocalDateTime finishTime;
-    private static final String TASK_TYPE="A";
+    private static final String TASK_TYPE = "A";
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
-    public Task(String description,boolean isDone,LocalDateTime finishTime) {
+    public Task(String description, boolean isDone, LocalDateTime finishTime) {
         this.description = description;
         this.isDone = isDone;
-        if(this.isDone){
-            this.finishTime=finishTime;
+        if (this.isDone) {
+            this.finishTime = finishTime;
         }
     }
 
-    public LocalDateTime getFinishTime(){
-        return finishTime;
+    public LocalDateTime getFinishTime() {
+        return finishTime == null ? LocalDateTime.of(9999, 1, 1, 0, 0) : this.finishTime;
     }
 
     /**
      * Gets the displayed icon from isDone status
+     *
      * @return a string icon to display the status
      */
     public String getStatusIcon() {
         //return (isDone ? "\u2714" : "\u2718"); //return tick or X symbols
-        return (isDone ? "Done"+" : "+finishTime.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm"))
+        return (isDone ? "Done" + " : " + finishTime.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm"))
                 : "X"); //return tick or X symbols
     }
 
     /**
      * Marks a task as done status
+     *
      * @param finishTime
      */
-    public void markAsDone(LocalDateTime finishTime){
-        isDone=true;
-        this.finishTime=finishTime;
+    public void markAsDone(LocalDateTime finishTime) {
+        isDone = true;
+        this.finishTime = finishTime;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public boolean isDone(){
+    public boolean isDone() {
         return isDone;
     }
 
-    public String getTaskType(){
+    public String getTaskType() {
         return TASK_TYPE;
     }
 
-    public LocalDateTime getTaskTime(){
+    public LocalDateTime getTaskTime() {
         return taskTime;
     }
 
@@ -77,7 +79,7 @@ public abstract class Task {
     }
 
     @Override
-    public String toString(){
-        return "["+getStatusIcon()+"] "+getDescription();
+    public String toString() {
+        return "[" + getStatusIcon() + "] " + getDescription();
     }
 }
