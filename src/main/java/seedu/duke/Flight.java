@@ -9,7 +9,11 @@ public class Flight {
     protected LocalDateTime dateAndTime; //Date & Time in LocalDateTime type
     protected String stringDateAndTime; //Date & Time in String type
     protected Integer price; // Price of the flight
+    protected String flightDetails; // flight details in string type for version 1.0
 
+    public Flight (String details){
+        this.flightDetails = details;
+    }
     public Flight(String from, String to, String dateAndTimeDetails, Integer price){
         this.from = from;
         this.to = to;
