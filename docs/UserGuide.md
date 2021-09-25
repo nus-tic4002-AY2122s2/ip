@@ -63,7 +63,7 @@ Format: [add] [/from] [depart details] [/to] [destination] [/date] [date & time 
 
 Example: 
 
-add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500
+add /from Australia /to Singapore /date 10 Jan 2021 12:00 /price 500
 
 
 ### Showing all flights: show all
