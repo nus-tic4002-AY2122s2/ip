@@ -14,7 +14,11 @@ public class Deadline extends Task {
     protected boolean hasTime = false;
     protected String taskDateString;
 
-
+    /**
+     * Constructs the Deadlines class without a time
+     * @param description the description the user input
+     * @param taskDate the date the user input
+     */
     public Deadline(String description, LocalDate taskDate) {
         super(description);
         this.taskDate = taskDate;
@@ -29,6 +33,19 @@ public class Deadline extends Task {
     public Deadline(String description, String stringDate) {
         super(description);
         this.taskDateString = stringDate;
+        taskType = TaskType.DEADLINE;
+    }
+
+    /**
+     * Constructs the Event class with a time
+     * @param description the description the user input
+     * @param taskDate the date the user input
+     * @param taskTime the time the user input
+     */
+    public Deadline(String description, LocalDate taskDate, LocalTime taskTime) {
+        this(description, taskDate);
+        this.taskTime = taskTime;
+        this.hasTime = true;
         taskType = TaskType.DEADLINE;
     }
 

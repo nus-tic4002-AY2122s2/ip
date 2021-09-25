@@ -27,6 +27,19 @@ public class Event extends Task {
     }
 
     /**
+     * Constructs the Event with a time
+     * @param description the description the user input
+     * @param taskDate the date the user input
+     * @param taskTime the time the user input
+     */
+    public Event(String description, LocalDate taskDate, LocalTime taskTime) {
+        this(description, taskDate);
+        this.taskTime = taskTime;
+        this.hasTime = true;
+        taskType = TaskType.EVENT;
+    }
+
+    /**
      * Constructs the Duke.Task.Event class without a time
      * @param description the description the user input
      * @param taskDateString the date that the user input

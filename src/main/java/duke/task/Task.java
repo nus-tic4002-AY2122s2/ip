@@ -26,12 +26,32 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Edit the status of the task
+     * @param isDone the new status of the task
+     */
     public void editDone(Boolean isDone){
         this.isDone = isDone;
     }
 
+    /**
+     * Return the task done status
+     * @return the task done status
+     */
     public boolean getIsDone(){
         return isDone;
+    }
+
+    public void setTaskIndex(int i){
+        taskIndex = i;
+    }
+
+    /**
+     * Return the task index of the task
+     * @return the task index
+     */
+    public int getTaskIndex(){
+        return taskIndex;
     }
 
 
