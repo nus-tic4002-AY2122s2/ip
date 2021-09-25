@@ -1,10 +1,13 @@
 # User Guide
+Duke is a desktop app for managing your daily tasksi via _command line interface_ (CLI). 
+
 
 ## Features 
 
-### Feature-ABC
+### Task Type
+There are 3 types of task that Duke recognize: Todo, Event and Deadline. 
+Todo is 
 
-Description of the feature.
 
 ### Feature-XYZ
 
