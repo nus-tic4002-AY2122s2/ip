@@ -153,7 +153,7 @@ public class StringParser {
         } catch (DateTimeParseException e) {
         }
         try {
-            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd Hmm");
             time = LocalDateTime.parse(part, formatter);
             if(time != null) {return time;}
         } catch (DateTimeParseException e) {
@@ -165,7 +165,7 @@ public class StringParser {
         } catch (DateTimeParseException e) {
         }
         try {
-            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd Hmm");
+            formatter = DateTimeFormatter.ofPattern("yyyy-M-dd Hmm");
             time = LocalDateTime.parse(part, formatter);
             if(time != null) {return time;}
         } catch (DateTimeParseException e) {
