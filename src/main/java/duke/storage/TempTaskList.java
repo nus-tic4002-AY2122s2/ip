@@ -44,9 +44,8 @@ public class TempTaskList extends TempList<Task> {
     }
 
     public void markDoneAt(int index) {
-        var oldlist = list.clone();
         list.get(index).markDone();
-        support.firePropertyChange("list", oldlist, list);
+        support.firePropertyChange("list", null, list);
     }
 
 }

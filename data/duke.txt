@@ -1,8 +1,6 @@
 [T][✓] 12345
 [T][✓] love and peace
-[T][ ] 3
-[T][ ] love
-[E][ ] event (at: 02.Jan.22 07:00 - 09:00)
-[E][ ] new (at: 01.Jan.22 17:00 - 19:00)
-[E][ ] new (at: 10.Oct.33 03:00 - 04:00)
-[D][ ] dl (by: 15.Aug.30 14:00)
+[T][✓] 3
+[T][✓] love
+[E][ ] new event (at: 01.Jan.22 09:00 - 15:00)
+[D][✓] dl (by: 01.Feb.22 10:00)

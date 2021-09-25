@@ -43,7 +43,7 @@ public class Storage implements PropertyChangeListener {
             Stream<String> lines = Files.lines(FILE);
 
             lines.map(StringParser::stringToTask)
-                    .forEach(tasks::add);
+                    .forEach(tasks::addWithoutWrite);
 
             lines.close();
 
@@ -55,8 +55,9 @@ public class Storage implements PropertyChangeListener {
 
     public void writeFromTaskList(ArrayList<Task> list) {
         String lines = new String();
+        String line;
         for (Task task : list) {
-            String line = task.toString();
+            line = task.toString();
             lines += line + System.lineSeparator();
         }
         try {

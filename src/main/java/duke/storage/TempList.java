@@ -26,6 +26,10 @@ public class TempList<T> implements Iterable<T>{
         support.firePropertyChange("list", oldlist, list);
     }
 
+    public void addWithoutWrite(T element) {
+        list.add(element);
+    }
+
     public void removeAt(int index) {
         var oldlist = list.clone();
         list.remove(index);
