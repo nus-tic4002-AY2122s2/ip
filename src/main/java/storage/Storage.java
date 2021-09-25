@@ -13,9 +13,12 @@ import java.util.Scanner;
 
 public class Storage {
     private String filePath;
+    private File file;
+
 
     public Storage(String filePath) {
-        this.filePath = "/" + filePath;
+        this.file = new File(filePath);
+        this.filePath = filePath;
     }
 
     /****
@@ -39,15 +42,12 @@ public class Storage {
      * @param tasks the TaskList object
      */
     public void loadFile(TaskList tasks) throws IOException {
-        String[] storeFilePathArray = filePath.split("/");
-        File directory = new File("/" + storeFilePathArray[0]);
-        File f = new File(filePath);
-        if (! directory.exists()){
-            directory.mkdir();
-            f.createNewFile();
+        if (!this.file.exists()) {
+            this.file.getParentFile().mkdir();
+            this.file.createNewFile();
         }
 
-        Scanner sc = new Scanner(f);
+        Scanner sc = new Scanner(this.file);
         while (sc.hasNext()) {
             loadFormat(tasks, sc.nextLine());
         }
