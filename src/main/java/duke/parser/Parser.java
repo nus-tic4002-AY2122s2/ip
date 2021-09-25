@@ -25,7 +25,8 @@ public class Parser {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+        Pattern.compile("(?:(?<isCombined>[01])\\s+)?(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+
 
     public static final Pattern TASK_TYPE_DEADLINE_ARGS_FORMAT =
             Pattern.compile("(?<deadlineDesc>[^/]+)"
@@ -206,11 +207,15 @@ public class Parser {
             return new IncorrectCommand("This is a incorrect format, " +
                     " you may type 'help' to see all the commands.");
         }
-
         // keywords delimited by whitespace
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-        return new FindCommand(keywordSet);
+        String isCombined = matcher.group("isCombined");
+        if( isCombined == null || isCombined.isEmpty()){
+            return new FindCommand(keywordSet);
+        }else{
+            return new FindCommand(keywordSet, isCombined.equals("1")? true : false);
+        }
     }
 
     /**
