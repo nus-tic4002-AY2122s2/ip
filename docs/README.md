@@ -11,8 +11,8 @@ There are 3 types of task that Duke recognizes – Todo, Event and Deadline:
 
 ### Operations
 Besides creation of the above mentioned tasks, Duke provides basic functionalities to manipulate the tasks, such as: 
-+ [list all the tasks](#cmd---List-all-commend-keywords)
-+ [list all the command keywords](#list---List-all-tasks)
++ [list all the tasks](#list---List-all-tasks)
++ [list all the command keywords](#cmd---List-all-commend-keywords)
 + [mark one or multiple tasks done at once](#done---Mark-selected-tasks-done)
 + [delete one or multiple tasks done at once](#delete---Delete-seleted-tasks)
 + [find tasks that contains certain keywords](#find---Find-tasks-containing-keywords)
