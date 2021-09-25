@@ -1,64 +1,125 @@
-# Duke project template
+## User Guide
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Air Rec is a desktop app for managing flight records, optimized for use via a Command Line Interface (CLI). User will not have to remember flight details and it can be found easily with commands.
 
-## Setting up in Intellij
+1. Quick start
+1. Features
+	1. Adding a flight: add
+	1. Showing all flights: show all
+	1. Showing upcoming flight: show upcoming
+	1. Deleting a flight: delete
+	1. Exiting the program : exit
 
-Prerequisites: JDK 11 (use the exact version), update Intellij to the most recent version.
+1. FAQ
+1. Command summary
 
-1. **Ensure Intellij JDK 11 is defined as an SDK**, as described [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk) -- this step is not needed if you have used JDK 11 in a previous Intellij project.
-1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
+
+
+
+
+## Quick Start
+
+Prerequisites: JDK 11, update Intellij to the most recent version.
+
+1. Ensure you have Java 11 or above installed in your computer.
+2. Download the latest airrec.jar from here.
+3. Copy the file to the folder you want to use as the home folder for your Air Record.
+4. Double-click the file to start the app. The GUI will greet you with:
+
+```
+    
+Hi I’m AIR REC, I can help you save all the flight details!
+How can I assist you today?”
+	
    ```
-   > Task :compileJava
-   > Task :processResources NO-SOURCE
-   > Task :classes
-   
-   > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   
-   What is your name?
-   ```
-   Type some word and press enter to let the execution proceed to the end.
+ 5. Type the command in the command box and press Enter to execute it. e.g. typing list and pressing Enter will display all task that you have saved so far in the window.
+Some example commands you can try:
 
-## Build automation using Gradle
+	1. add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500: Add a trip departing from Australia to Singapore on 10 Jan 2021 12pm with a price of $500
 
-* This project uses Gradle for build automation and dependency management. It includes a basic build script as well (i.e. the `build.gradle` file).
-* If you are new to Gradle, refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
+	1. show all: List out all flight details
 
-## Testing
+	1. show upcoming: List out the flight that is the first index of the list
 
-### I/O redirection tests
+	1. delete3 : Deletes the 3rd flight shown in the current list.
 
-* To run _I/O redirection_ tests (aka _Text UI tests_), navigate to the `text-ui-test` and run the `runtest(.bat/.sh)` script.
+	1. exit : Exits the application.
 
-### JUnit tests
+6. Duke has auto-save and auto-load function. The list is being save as a text file named "Duke.txt" which is auto created and overwritten in the root folder.
 
-* A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template. 
-* If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
+7. Refer to the Features below for details of each command.
 
-## Checkstyle
+## Features
 
-* A sample CheckStyle rule configuration is provided in this project.
-* If you are new to Checkstyle, refer to the [Checkstyle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/checkstyle.html).
+<b>Notes about the command format:</b>
 
-## CI using GitHub Actions
+	1. Date and time format are as shown: yyyy-mm-dd HHMM
 
-The project uses [GitHub actions](https://github.com/features/actions) for CI. When you push a commit to this repo or PR against it, GitHub actions will run automatically to build and verify the code as updated by the commit/PR.
+### Adding a flight: add
 
-## Documentation
+Adds a new flight trip to the list.
 
-`/docs` folder contains a skeleton version of the project documentation.
+Format: [add] [/departing] [depart details] [/destination] [destination] [/date] [date & time of departure] [/price] [price of trip]
 
-Steps for publishing documentation to the public: 
-1. If you are using this project template for an individual project, go your fork on GitHub.<br>
-   If you are using this project template for a team project, go to the team fork on GitHub.
-1. Click on the `settings` tab.
-1. Scroll down to the `GitHub Pages` section.
-1. Set the `source` as `master branch /docs folder`.
-1. Optionally, use the `choose a theme` button to choose a theme for your documentation.
+Example: 
+
+add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500
+
+
+### Showing all flights: show all
+
+List out all flight trip
+
+Format: [show] [all]
+
+Example:
+
+show all
+
+
+### Showing upcoming flight: show upcoming
+
+List out the first index of the flight in the list
+
+Format: [show] [upcoming]
+
+Example: 
+
+show upcoming
+
+
+### Deleting a flight: delete
+
+Deletes a trip from the list
+
+Format: [delete] [index]
+
+Example:
+
+delete 3
+
+### Exiting the program : exit
+
+Exits the application.
+
+Format: [exit]
+
+Example:
+
+exit
+
+
+## FAQ
+
+<b>Q</b>: How do I save multiple trip?
+<b>A</b>: You only can save one trip at a time.
+
+## Command summary
+
+Action | Format, Examples
+------------ | -------------
+<b>add</b> | Format: [add] [/departing] [depart details] [/destination] [destination] [/date] [date & time of departure] [/price] [price of trip] Example: add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500
+<b>show all</b> | Format: [show] [all] Example: show all
+<b>show upcoming</b> | Format: [show] [upcoming] Example: show upcoming
+<b>delete</b> | Format: [delete] [index] Example: delete 3
+<b>exit</b> | Format: [exit] Example: exit
