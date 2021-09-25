@@ -22,31 +22,30 @@ public class Parser {
     /**
      * Used for initial separation of command word and args.
      */
-    public static final Pattern BASIC_COMMAND_FORMAT= Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
-        Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
     public static final Pattern TASK_TYPE_DEADLINE_ARGS_FORMAT =
-                Pattern.compile("(?<deadlineDesc>[^/]+)"
-                        + " by/(?<byYear>\\d{4})"+"-"+"(?<byMonth>\\d{2})"+"-"+"(?<byDay>\\d{2})"
-                        +" "+"(?<byHour>\\d{2})(?<byMin>\\d{2})");
+            Pattern.compile("(?<deadlineDesc>[^/]+)"
+                    + " by/(?<byYear>\\d{4})" + "-" + "(?<byMonth>\\d{2})" + "-" + "(?<byDay>\\d{2})"
+                    + " " + "(?<byHour>\\d{2})(?<byMin>\\d{2})");
 
     public static final Pattern TASK_TYPE_EVENT_ARGS_FORMAT =
-                Pattern.compile("(?<eventDesc>[^/]+)"
-                        + " at/(?<atYear>\\d{4})"+"-"+"(?<atMonth>\\d{2})"+"-"+"(?<atDay>\\d{2})"
-                        +" "+"(?<atHour>\\d{2})(?<atMin>\\d{2})");
-
+            Pattern.compile("(?<eventDesc>[^/]+)"
+                    + " at/(?<atYear>\\d{4})" + "-" + "(?<atMonth>\\d{2})" + "-" + "(?<atDay>\\d{2})"
+                    + " " + "(?<atHour>\\d{2})(?<atMin>\\d{2})");
 
 
     public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\d+)");
     public static final Pattern TASK_DONE_TIME_FORMAT =
-                Pattern.compile("(?<targetIndex>\\d+)"+" on/"
-                        +"(?<year>\\d{4})"+"-"+"(?<month>\\d{2})"+"-"+"(?<day>\\d{2})"
-                        +" "+"(?<hour>\\d{2})(?<minute>\\d{2})");
+            Pattern.compile("(?<targetIndex>\\d+)" + " on/"
+                    + "(?<year>\\d{4})" + "-" + "(?<month>\\d{2})" + "-" + "(?<day>\\d{2})"
+                    + " " + "(?<hour>\\d{2})(?<minute>\\d{2})");
 
     public static final Pattern VIEW_DONE_TASK_BY_TIME_FORMAT =
-            Pattern.compile("from/(?<fromTime>[^/]+)"+" to/(?<toTime>[^/]+)");
+            Pattern.compile("from/(?<fromTime>[^/]+)" + " to/(?<toTime>[^/]+)");
 
     /**
      * Parses user input into command for execution.
@@ -64,7 +63,7 @@ public class Parser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        switch(commandWord){
+        switch (commandWord) {
 
             case AddCommand.COMMAND_WORD_ONE:
                 return prepareAddTodo(arguments);
@@ -84,6 +83,8 @@ public class Parser {
 
             case ListCommand.COMMAND_WORD:
                 return new ListCommand();
+            case SortCommand.COMMAND_WORD:
+                return new SortCommand();
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
             case ClearCommand.COMMAND_WORD:
@@ -93,7 +94,7 @@ public class Parser {
                 return new HelpCommand();
         }
 
-        }
+    }
 
 
     /**
@@ -113,17 +114,17 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareAddDeadline(String args) {
-        final Matcher matcher= TASK_TYPE_DEADLINE_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = TASK_TYPE_DEADLINE_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand("This is a incorrect format, " +
                     " you may type 'help' to see all the commands.");
         }
         return new AddCommand(new Deadline(matcher.group("deadlineDesc"),
                 LocalDateTime.of(Integer.parseInt(matcher.group("byYear")),
-                                 Integer.parseInt(matcher.group("byMonth")),
-                                 Integer.parseInt(matcher.group("byDay")),
-                                 Integer.parseInt(matcher.group("byHour")),
-                                 Integer.parseInt(matcher.group("byMin"))) ));
+                        Integer.parseInt(matcher.group("byMonth")),
+                        Integer.parseInt(matcher.group("byDay")),
+                        Integer.parseInt(matcher.group("byHour")),
+                        Integer.parseInt(matcher.group("byMin")))));
     }
 
     /**
@@ -133,7 +134,7 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareAddEvent(String args) {
-        final Matcher matcher= TASK_TYPE_EVENT_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = TASK_TYPE_EVENT_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand("This is a incorrect format, " +
                     " you may type 'help' to see all the commands.");
@@ -142,10 +143,10 @@ public class Parser {
 
         return new AddCommand(new Event(matcher.group("eventDesc"),
                 LocalDateTime.of(Integer.parseInt(matcher.group("atYear")),
-                                Integer.parseInt(matcher.group("atMonth")),
-                                Integer.parseInt(matcher.group("atDay")),
-                                Integer.parseInt(matcher.group("atHour")),
-                                Integer.parseInt(matcher.group("atMin"))) ));
+                        Integer.parseInt(matcher.group("atMonth")),
+                        Integer.parseInt(matcher.group("atDay")),
+                        Integer.parseInt(matcher.group("atHour")),
+                        Integer.parseInt(matcher.group("atMin")))));
     }
 
     /**
@@ -156,21 +157,20 @@ public class Parser {
      */
     private Command prepareDone(String args) {
         try {
-         Matcher matcher =TASK_DONE_TIME_FORMAT.matcher(args.trim());
-        if (matcher.matches()) {
-            int targetIndex=Integer.parseInt((matcher.group("targetIndex")));
-            return new DoneCommand(targetIndex,
-                    LocalDateTime.of(Integer.parseInt(matcher.group("year")),
-                                    Integer.parseInt(matcher.group("month")),
-                                    Integer.parseInt(matcher.group("day")),
-                                    Integer.parseInt(matcher.group("hour")),
-                                    Integer.parseInt(matcher.group("minute")))  );
-        }
-        else{
-            int targetIndex = parseArgsAsDisplayedIndex(args);
-            return new DoneCommand(targetIndex,LocalDateTime.now());
-        }
-        }catch (ParseException pe){
+            Matcher matcher = TASK_DONE_TIME_FORMAT.matcher(args.trim());
+            if (matcher.matches()) {
+                int targetIndex = Integer.parseInt((matcher.group("targetIndex")));
+                return new DoneCommand(targetIndex,
+                        LocalDateTime.of(Integer.parseInt(matcher.group("year")),
+                                Integer.parseInt(matcher.group("month")),
+                                Integer.parseInt(matcher.group("day")),
+                                Integer.parseInt(matcher.group("hour")),
+                                Integer.parseInt(matcher.group("minute"))));
+            } else {
+                int targetIndex = parseArgsAsDisplayedIndex(args);
+                return new DoneCommand(targetIndex, LocalDateTime.now());
+            }
+        } catch (ParseException pe) {
             return new IncorrectCommand("This is a incorrect format, " +
                     " you may type 'help' to see all the commands.");
         }
@@ -186,9 +186,9 @@ public class Parser {
     private Command prepareDelete(String args) {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
-            assert targetIndex>0 : "Invalid number, the index should be larger than 0.";
+            assert targetIndex > 0 : "Invalid number, the index should be larger than 0.";
             return new DeleteCommand(targetIndex);
-        }catch (ParseException pe){
+        } catch (ParseException pe) {
             return new IncorrectCommand("This is a incorrect format, " +
                     " you may type the list to see all the commands.");
         }
@@ -201,8 +201,8 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareFind(String args) {
-        final  Matcher matcher=KEYWORDS_ARGS_FORMAT.matcher((args.trim()));
-        if(!matcher.matches()){
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher((args.trim()));
+        if (!matcher.matches()) {
             return new IncorrectCommand("This is a incorrect format, " +
                     " you may type 'help' to see all the commands.");
         }
@@ -215,6 +215,7 @@ public class Parser {
 
     /**
      * Parses arguments in the context of the viewdone task Command.
+     *
      * @param args full command args string
      * @return the prepared command
      */
@@ -227,13 +228,12 @@ public class Parser {
             }
             return new ViewDoneCommand(Utils.getDatetimeFromString(matcher.group("fromTime")),
                     Utils.getDatetimeFromString(matcher.group("toTime")));
-        }catch (IllegalValueException ive){
+        } catch (IllegalValueException ive) {
             return new IncorrectCommand("This is a incorrect format, " +
                     " you may type 'help' to see all the commands.");
         }
 
     }
-
 
 
     /**
@@ -242,14 +242,13 @@ public class Parser {
      * @param args arguments string to parse as index number
      * @return the parsed index number
      */
-    private int parseArgsAsDisplayedIndex(String args) throws ParseException{
+    private int parseArgsAsDisplayedIndex(String args) throws ParseException {
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
-        if(!matcher.matches()){
-            throw   new  ParseException("Could not match to the correct index.");
+        if (!matcher.matches()) {
+            throw new ParseException("Could not match to the correct index.");
         }
         return Integer.parseInt(matcher.group("targetIndex"));
     }
-
 
 
     /**
