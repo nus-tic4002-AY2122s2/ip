@@ -8,24 +8,24 @@ Hello from
 
 What can I do for you? For help, type "/help". 
 ___________________________________________________
-Inputs in commands:
+Inputs in commands (Input is described within the square brackets):
 [description] is a string that describes the task.
 [Date and Time] refers to the input date. It goes by the format "dd/MM/yyyy HH:mm:ss". Eg. 02/12/20 10:10:10
-[Date and Time] For Event Tasks, "ss" seconds are not needed. Eg. 23:59, just before midnight
 [Time] refers to the Time format of "HH:mm" where they represent the hours and minutes
 [option] refers to the option number. The option number for each task can be viewed when the tasks are printed
  as a list.(this can be seen by the command "list")
 [keyword] refers to the phrase or word that you want to search for
+
 The commands for the respective features are after the semi-colon":"
 
 Adding a generic task: [description]
 Adding a ToDo task: todo [description]
 Adding a Deadline task: deadline [description] /by [Date and Time]
-Adding a Event task: event [description] /at [Date and Time] - [Time]
+Adding a Event task: event [description] /at [Date and Time] to [Time]
 Reschedule a Deadline: reschedule [option number] /new [Date and time]
-Reschedule a Deadline: reschedule [option number] /new [Date and time] - [Time]
-Changing a task to be done: done [option number]
-Changing a task to be undone: undone [option number]
+Reschedule a Event: reschedule [option number] /new [Date and time] to [Time]
+Changing a task to done: done [option number]
+Changing a task to undone: undone [option number]
 Deleting a task from the list: delete [option number]
 Clearing the task list: /clear
 To close this application: bye
@@ -35,6 +35,7 @@ ___________________________________________________
 
 What can I do for you? For help, type "/help". 
 ___________________________________________________
+Clearing all tasks in the tasklist.
 
 Task List is empty.
 ___________________________________________________
@@ -65,10 +66,10 @@ ___________________________________________________
 
 What can I do for you? For help, type "/help". 
 ___________________________________________________
-Invalid Date Time set for /at. It will be set to the current time. Format should be "dd/MM/yyyy HH:mm - HH:mm" 
+Notification: For the added event, start time is after end time. The event task will still be added.
 
 Got it. I've added this task:
-[E][-] birthday dinner (at: 19 Sep 2021 22:22 - 22:22)
+[E][-] birthday dinner (at: 10 Dec 2020 23:11:11 to 20:20:20)
 Now you have 4 tasks in the list.
 ___________________________________________________
 
@@ -91,7 +92,7 @@ Task List:
 
 3.[D][-] school homework (by: 20 Dec 2020 10:10:10)
 
-4.[E][-] birthday dinner (at: 19 Sep 2021 22:22 - 22:22)
+4.[E][-] birthday dinner (at: 10 Dec 2020 23:11:11 to 20:20:20)
 
 5.[D][-] essay (by: 24 Nov 2020 23:59:59)
 ___________________________________________________
@@ -126,7 +127,7 @@ Task List:
 
 2.[D][+] school homework (by: 20 Dec 2020 10:10:10)
 
-3.[E][-] birthday dinner (at: 19 Sep 2021 22:22 - 22:22)
+3.[E][-] birthday dinner (at: 10 Dec 2020 23:11:11 to 20:20:20)
 
 4.[D][+] essay (by: 24 Nov 2020 23:59:59)
 ___________________________________________________
@@ -147,7 +148,7 @@ Task List:
 
 2.[D][-] school homework (by: 20 Dec 2020 10:10:10)
 
-3.[E][-] birthday dinner (at: 19 Sep 2021 22:22 - 22:22)
+3.[E][-] birthday dinner (at: 10 Dec 2020 23:11:11 to 20:20:20)
 
 4.[D][+] essay (by: 24 Nov 2020 23:59:59)
 ___________________________________________________
@@ -167,7 +168,7 @@ ___________________________________________________
 
 What can I do for you? For help, type "/help". 
 ___________________________________________________
-Rescheduled Date time: [E][-] birthday dinner (at: 11 Dec 2020 19:30 - 23:00)
+Rescheduled Date time: [E][-] birthday dinner (at: 11 Dec 2020 18:30:00 to 22:13:14)
 ___________________________________________________
 
 What can I do for you? For help, type "/help". 
@@ -213,7 +214,7 @@ ___________________________________________________
 
 Tasks that contain the keyword "Event":
 
-1.[E][-] birthday dinner (at: 11 Dec 2020 19:30 - 23:00)
+1.[E][-] birthday dinner (at: 11 Dec 2020 18:30:00 to 22:13:14)
 ___________________________________________________
 
 What can I do for you? For help, type "/help". 
@@ -251,7 +252,7 @@ Task List:
 
 2.[D][-] school homework (by: 18 Dec 2020 23:59:59)
 
-3.[E][-] birthday dinner (at: 11 Dec 2020 19:30 - 23:00)
+3.[E][-] birthday dinner (at: 11 Dec 2020 18:30:00 to 22:13:14)
 
 4.[D][+] essay (by: 24 Nov 2020 23:59:59)
 
@@ -262,7 +263,15 @@ ___________________________________________________
 
 What can I do for you? For help, type "/help". 
 ___________________________________________________
+Clearing all tasks in the tasklist.
+
+Task List is empty.
+___________________________________________________
+
+What can I do for you? For help, type "/help". 
+___________________________________________________
 Executing Exit Command: Saving Task List to storage
+Task List is empty. Nothing to save.
 Finished saving Task List to storage
 ___________________________________________________
 

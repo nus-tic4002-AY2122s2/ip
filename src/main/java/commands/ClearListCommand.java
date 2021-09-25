@@ -13,6 +13,7 @@ public class ClearListCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
+        ui.printMessage("Clearing all tasks in the tasklist.");
         tasks.clearAllTasks();
         tasks.printList();
     }

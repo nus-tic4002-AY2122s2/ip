@@ -55,7 +55,7 @@ public class ChangeDoneCommand extends Command {
     }
 
     public static void printHelp() {
-        System.out.println("Changing a task to be done: done [option number]");
-        System.out.println("Changing a task to be undone: undone [option number]");
+        System.out.println("Changing a task to done: done [option number]");
+        System.out.println("Changing a task to undone: undone [option number]");
     }
 }

@@ -48,10 +48,10 @@ public class TaskList {
 
         for (int i = 0; i < size; i++) {
             switch (parsedFile.get(i)[0]) {
-                case "O" :
+                case "O":
                     this.tasks.add(new Task(parsedFile.get(i)[2]));
                     break;
-                case "T" :
+                case "T":
                     this.tasks.add(new ToDo(parsedFile.get(i)[2]));
                     break;
                 case "D":
@@ -74,7 +74,7 @@ public class TaskList {
                         String start;
                         String end;
                         end = parsedFile.get(i)[3].substring(indexOfDash);
-                        start = parsedFile.get(i)[3].substring(0,indexOfDash);
+                        start = parsedFile.get(i)[3].substring(0, indexOfDash);
                         start = (LocalDateTime.parse(start, DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
 
                         this.tasks.add(new Event(parsedFile.get(i)[2], "/at " + start + end));
@@ -188,7 +188,8 @@ public class TaskList {
                 break;
             default:
                 classType = "";
-        };
+        }
+        ;
 
         System.out.println(System.lineSeparator() + "Tasks that contain the keyword \"" + keyword + "\":");
         for (int i = 0; i < size; i++) {

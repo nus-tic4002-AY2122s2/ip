@@ -20,22 +20,25 @@ public class Event extends Task {
      * This is a constructor for the Event Class.
      *
      * @param description This describes the activity of the event.
-     * @param at          This is indicates the time period for the event.
+     * @param at          This indicates the time period for the event.
      */
     public Event(String description, String at) {
         super(description);
-        int indexOfDash = 20;
-        at = at.replaceFirst("/at", "").trim();
+        int indexOfTo = at.indexOf("to");
         try {
-            //System.out.println(at.substring(0, indexOfDash));
-            //System.out.println(at.substring(indexOfDash + 1).replace("-", "").trim());
-            this.start = LocalDateTime.parse(at.substring(0, indexOfDash).trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-            this.end = LocalTime.parse(at.substring(indexOfDash + 1).replace("-", "").trim(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+            this.start = LocalDateTime.parse(at.substring(0, indexOfTo).trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            this.end = LocalTime.parse(at.substring(indexOfTo).replace("to", "").trim(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+
         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
             this.start = LocalDateTime.now();
             this.end = LocalTime.now();
-            System.out.println("Invalid Date Time set for /at. It will be set to the current " +
-                    "time. Format should be \"dd/MM/yyyy HH:mm:ss - HH:mm:ss\" ");
+            System.out.println("Invalid Date Time was set. It will be set to the current " +
+                    "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
+        }finally {
+            if (start.toLocalTime().compareTo(end) > 0) {
+                System.out.println("Notification: For the added event, start time is after end time. The event task will still be added.");
+            }
         }
     }
 
@@ -45,7 +48,7 @@ public class Event extends Task {
      * @return the location of the event.
      */
     public String getAt() {
-        return this.start.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + " - "
+        return this.start.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + " to "
                 + this.end.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     }
 
@@ -59,18 +62,19 @@ public class Event extends Task {
     }
 
     public void rescheduleAt(String at) {
-        int index;
+        int indexOfTo = at.indexOf("to");
         try {
-            index = at.indexOf(" - ");
-            this.end = LocalTime.parse(at.substring(index).replace(" - ", "").trim(),
-                    DateTimeFormatter.ofPattern("HH:mm:ss"));
-            this.start = LocalDateTime.parse(at.substring(0, index).replaceFirst("/at", "").trim(),
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            this.start = LocalDateTime.parse(at.substring(0, indexOfTo).trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            this.end = LocalTime.parse(at.substring(indexOfTo).replace("to", "").trim(), DateTimeFormatter.ofPattern("HH:mm:ss"));
         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
             this.start = LocalDateTime.now();
             this.end = LocalTime.now();
-            System.out.println("Invalid Date Time set for /at. It will be set to the current " +
-                    "time. Format should be \"dd/MM/yyyy HH:mm:ss - HH:mm:ss\" ");
+            System.out.println("Invalid Date Time was set. It will be set to the current " +
+                    "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
+        }finally {
+            if (start.toLocalTime().compareTo(end) > 0) {
+                System.out.println("Notification: For the added event, start time is after end time. The event task will still be added.");
+            }
         }
     }
 }

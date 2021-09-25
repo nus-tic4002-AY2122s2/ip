@@ -104,11 +104,11 @@ public class Parser {
 
             case "todo":
                 description = input.replaceFirst("todo", "").trim();
-                return new AddCommand("todo",description,secPart);
+                return new AddCommand("todo", description, secPart);
 
             case "event":
             case "deadline":
-                return parseAddCommandSpecialTask(commandWord,input);
+                return parseAddCommandSpecialTask(commandWord, input);
 
             default:
                 description = input;
@@ -123,7 +123,7 @@ public class Parser {
         String description = "";
         String secPart = "";
         String separator = "";
-        switch(taskType){
+        switch (taskType) {
             case "event":
                 separator = "/at";
                 break;
@@ -136,14 +136,14 @@ public class Parser {
                 throw new DukeException("Error: Incomplete Command for Add Task.");
         }
 
-        try{
+        try {
             index = input.indexOf(separator);
             secPart = input.substring(index);
             secPart = secPart.replaceFirst(separator, "").trim();
             description = input.substring(0, index);
             description = description.replaceFirst(taskType, "").trim();
-        }catch (StringIndexOutOfBoundsException e) {
-            switch(taskType){
+        } catch (StringIndexOutOfBoundsException e) {
+            switch (taskType) {
                 case "event":
                     throw new DukeException("Error: Incomplete Command for Add Event");
                 case "deadline":
@@ -154,7 +154,7 @@ public class Parser {
         }
 
 
-        return new AddCommand(taskType,description,secPart);
+        return new AddCommand(taskType, description, secPart);
 
 
     }
