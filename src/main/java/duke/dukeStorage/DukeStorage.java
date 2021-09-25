@@ -81,6 +81,7 @@ public class DukeStorage {
         System.out.println("Noted. I've removed this task:");
         System.out.println("   " + DukeTaskList.getTask(listLocation).toString());
         DukeTaskList.deleteList(listLocation);
+        System.out.println("Now you have " + DukeTaskList.getSize() + " tasks in the list.");
     }
 
     public static void doneFunction(int listLocation){
