@@ -11,11 +11,11 @@ There are 3 types of task that Duke recognizes – Todo, Event and Deadline:
 
 ### Operations
 Besides creation of the above mentioned tasks, Duke provides basic functionalities to manipulate the tasks, such as: 
-+ [list all the tasks](#`cmd`---List-all-commend-keywords)
-+ [list all the command keywords](#`list`---List-all-tasks)
-+ [mark one or multiple tasks done at once](#`done`---Mark-selected-tasks-done)
-+ [delete one or multiple tasks done at once](#`delete`---Delete-seleted-tasks)
-+ [find tasks that contains certain keywords](#`find`---Find-tasks-containing-keywords)
++ [list all the tasks](#cmd---List-all-commend-keywords)
++ [list all the command keywords](#list---List-all-tasks)
++ [mark one or multiple tasks done at once](#done---Mark-selected-tasks-done)
++ [delete one or multiple tasks done at once](#delete---Delete-seleted-tasks)
++ [find tasks that contains certain keywords](#find---Find-tasks-containing-keywords)
 
 ### Storage
 The program will create a `./data` folder (under same directory where user stores the `jar` file), under which a text file called `duke.txt` will store the tasks in plain text. So when the program starts next time, all the record can be read and retrived. 
