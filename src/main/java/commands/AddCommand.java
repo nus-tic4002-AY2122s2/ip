@@ -51,7 +51,7 @@ public class AddCommand extends Command {
         System.out.println("Adding a generic task: [description]");
         System.out.println("Adding a ToDo task: todo [description]");
         System.out.println("Adding a Deadline task: deadline [description] /by [Date and Time]");
-        System.out.println("Adding a Event task: event [description] /at [Date and Time] to [Time]");
+        System.out.println("Adding an Event task: event [description] /at [Date and Time] to [Time]");
     }
 
     public String getTaskType() {

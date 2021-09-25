@@ -11,7 +11,7 @@ ___________________________________________________
 Inputs in commands (Input is described within the square brackets):
 [description] is a string that describes the task.
 [Date and Time] refers to the input date. It goes by the format "dd/MM/yyyy HH:mm:ss". Eg. 02/12/20 10:10:10
-[Time] refers to the Time format of "HH:mm" where they represent the hours and minutes
+[Time] refers to the Time format of "HH:mm:ss" where they represent the hours, minutes and seconds
 [option] refers to the option number. The option number for each task can be viewed when the tasks are printed
  as a list.(this can be seen by the command "list")
 [keyword] refers to the phrase or word that you want to search for
@@ -21,9 +21,9 @@ The commands for the respective features are after the semi-colon":"
 Adding a generic task: [description]
 Adding a ToDo task: todo [description]
 Adding a Deadline task: deadline [description] /by [Date and Time]
-Adding a Event task: event [description] /at [Date and Time] to [Time]
+Adding an Event task: event [description] /at [Date and Time] to [Time]
 Reschedule a Deadline: reschedule [option number] /new [Date and time]
-Reschedule a Event: reschedule [option number] /new [Date and time] to [Time]
+Reschedule an Event: reschedule [option number] /new [Date and time] to [Time]
 Changing a task to done: done [option number]
 Changing a task to undone: undone [option number]
 Deleting a task from the list: delete [option number]

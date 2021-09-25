@@ -35,7 +35,7 @@ public class Event extends Task {
             this.end = LocalTime.now();
             System.out.println("Invalid Date Time was set. It will be set to the current " +
                     "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
-        }finally {
+        } finally {
             if (start.toLocalTime().compareTo(end) > 0) {
                 System.out.println("Notification: For the added event, start time is after end time. The event task will still be added.");
             }
@@ -71,7 +71,7 @@ public class Event extends Task {
             this.end = LocalTime.now();
             System.out.println("Invalid Date Time was set. It will be set to the current " +
                     "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
-        }finally {
+        } finally {
             if (start.toLocalTime().compareTo(end) > 0) {
                 System.out.println("Notification: For the added event, start time is after end time. The event task will still be added.");
             }

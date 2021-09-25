@@ -42,6 +42,6 @@ public class RescheduleCommand extends Command {
 
     public static void printHelp() {
         System.out.println("Reschedule a Deadline: reschedule [option number] /new [Date and time]");
-        System.out.println("Reschedule a Event: reschedule [option number] /new [Date and time] to [Time]");
+        System.out.println("Reschedule an Event: reschedule [option number] /new [Date and time] to [Time]");
     }
 }
