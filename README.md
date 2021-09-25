@@ -1,125 +1,51 @@
-## User Guide
+#This is TEAM 5 project- AIR REC
 
-Air Rec is a desktop app for managing flight records, optimized for use via a Command Line Interface (CLI). User will not have to remember flight details and it can be found easily with commands.
+Duke project template
+This is a project template for a greenfield Java project. It's named after the Java mascot Duke. Given below are instructions on how to use it.
 
-1. Quick start
-1. Features
-	1. Adding a flight: add
-	1. Showing all flights: show all
-	1. Showing upcoming flight: show upcoming
-	1. Deleting a flight: delete
-	1. Exiting the program : exit
+Setting up in Intellij
+Prerequisites: JDK 11 (use the exact version), update Intellij to the most recent version.
 
-1. FAQ
-1. Command summary
+Ensure Intellij JDK 11 is defined as an SDK, as described here -- this step is not needed if you have used JDK 11 in a previous Intellij project.
+Import the project as a Gradle project, as described here.
+Verify the set up: After the importing is complete, locate the src/main/java/seedu/duke/Duke.java file, right-click it, and choose Run Duke.main(). If the setup is correct, you should see something like the below:
+> Task :compileJava
+> Task :processResources NO-SOURCE
+> Task :classes
 
+> Task :Duke.main()
+Hello from
+ ____        _        
+|  _ \ _   _| | _____ 
+| | | | | | | |/ / _ \
+| |_| | |_| |   <  __/
+|____/ \__,_|_|\_\___|
 
+What is your name?
+Type some word and press enter to let the execution proceed to the end.
+Build automation using Gradle
+This project uses Gradle for build automation and dependency management. It includes a basic build script as well (i.e. the build.gradle file).
+If you are new to Gradle, refer to the Gradle Tutorial at se-education.org/guides.
+Testing
+I/O redirection tests
+To run I/O redirection tests (aka Text UI tests), navigate to the text-ui-test and run the runtest(.bat/.sh) script.
+JUnit tests
+A skeleton JUnit test (src/test/java/seedu/duke/DukeTest.java) is provided with this project template.
+If you are new to JUnit, refer to the JUnit Tutorial at se-education.org/guides.
+Checkstyle
+A sample CheckStyle rule configuration is provided in this project.
+If you are new to Checkstyle, refer to the Checkstyle Tutorial at se-education.org/guides.
+CI using GitHub Actions
+The project uses GitHub actions for CI. When you push a commit to this repo or PR against it, GitHub actions will run automatically to build and verify the code as updated by the commit/PR.
 
+Documentation
+/docs folder contains a skeleton version of the project documentation.
 
+Steps for publishing documentation to the public:
 
-## Quick Start
-
-Prerequisites: JDK 11, update Intellij to the most recent version.
-
-1. Ensure you have Java 11 or above installed in your computer.
-2. Download the latest airrec.jar from here.
-3. Copy the file to the folder you want to use as the home folder for your Air Record.
-4. Double-click the file to start the app. The GUI will greet you with:
-
-```
-    
-Hi I’m AIR REC, I can help you save all the flight details!
-How can I assist you today?”
-	
-   ```
- 5. Type the command in the command box and press Enter to execute it. e.g. typing list and pressing Enter will display all task that you have saved so far in the window.
-Some example commands you can try:
-
-	1. add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500: Add a trip departing from Australia to Singapore on 10 Jan 2021 12pm with a price of $500
-
-	1. show all: List out all flight details
-
-	1. show upcoming: List out the flight that is the first index of the list
-
-	1. delete3 : Deletes the 3rd flight shown in the current list.
-
-	1. exit : Exits the application.
-
-6. Duke has auto-save and auto-load function. The list is being save as a text file named "Duke.txt" which is auto created and overwritten in the root folder.
-
-7. Refer to the Features below for details of each command.
-
-## Features
-
-<b>Notes about the command format:</b>
-
-	1. Date and time format are as shown: yyyy-mm-dd HHMM
-
-### Adding a flight: add
-
-Adds a new flight trip to the list.
-
-Format: [add] [/departing] [depart details] [/destination] [destination] [/date] [date & time of departure] [/price] [price of trip]
-
-Example: 
-
-add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500
-
-
-### Showing all flights: show all
-
-List out all flight trip
-
-Format: [show] [all]
-
-Example:
-
-show all
-
-
-### Showing upcoming flight: show upcoming
-
-List out the first index of the flight in the list
-
-Format: [show] [upcoming]
-
-Example: 
-
-show upcoming
-
-
-### Deleting a flight: delete
-
-Deletes a trip from the list
-
-Format: [delete] [index]
-
-Example:
-
-delete 3
-
-### Exiting the program : exit
-
-Exits the application.
-
-Format: [exit]
-
-Example:
-
-exit
-
-
-## FAQ
-
-<b>Q</b>: How do I save multiple trip?
-<b>A</b>: You only can save one trip at a time.
-
-## Command summary
-
-Action | Format, Examples
------------- | -------------
-<b>add</b> | Format: [add] [/departing] [depart details] [/destination] [destination] [/date] [date & time of departure] [/price] [price of trip] Example: add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500
-<b>show all</b> | Format: [show] [all] Example: show all
-<b>show upcoming</b> | Format: [show] [upcoming] Example: show upcoming
-<b>delete</b> | Format: [delete] [index] Example: delete 3
-<b>exit</b> | Format: [exit] Example: exit
+If you are using this project template for an individual project, go your fork on GitHub.
+If you are using this project template for a team project, go to the team fork on GitHub.
+Click on the settings tab.
+Scroll down to the GitHub Pages section.
+Set the source as master branch /docs folder.
+Optionally, use the choose a theme button to choose a theme for your documentation.
