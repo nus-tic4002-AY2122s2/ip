@@ -144,8 +144,9 @@ public class TaskList {
                 return !((Deadline)task).getBy().toLocalDate().equals(date);
             } else if (task instanceof Event) {
                 return !((Event)task).getAt().toLocalDate().equals(date);
+            } else {
+                return true;
             }
-            return true;
         }
 
         if (text != null) {
