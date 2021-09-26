@@ -1,9 +1,10 @@
 package duke.task;
 
-
+import duke.dukeException.DukeException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * The event class which the user want to store with date and time
@@ -12,7 +13,7 @@ public class Event extends Task {
     protected LocalDate taskDate;
     protected LocalTime taskTime;
     protected boolean hasTime = false;
-    protected String taskDateString;
+
 
 
     /**
@@ -39,19 +40,26 @@ public class Event extends Task {
         taskType = TaskType.EVENT;
     }
 
+
+
     /**
-     * Constructs the Duke.Task.Event class without a time
-     * @param description the description the user input
-     * @param taskDateString the date that the user input
+     * return the date and time of the task in String
+     * @return the date and time in String
      */
-    public Event(String description, String taskDateString) {
-        super(description);
-        this.taskDateString = taskDateString;
-        taskType = TaskType.EVENT;
+    public String getDateTimeString(){
+        return hasTime
+                ? taskDate + " " + taskTime
+                : taskDate.toString();
     }
 
-    public String getDateTimeString(){
-        return taskDateString;
+    /**
+     * return the date and time formatted in String
+     * @return the formatted date and time in String
+     */
+    public String getDateTimeStringFormat(){
+        return hasTime
+                ? taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + taskTime.format(DateTimeFormatter.ofPattern("hh:mm a"))
+                : taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     /**
@@ -60,6 +68,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + taskDateString + ")";
+        return "[E]" + super.toString() + " (at: " + getDateTimeStringFormat() + ")";
     }
 }
