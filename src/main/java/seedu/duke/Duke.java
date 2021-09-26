@@ -21,7 +21,8 @@ public class Duke {
         //Scanner in = new Scanner(System.in);
         //System.out.println("Hello " + in.nextLine());
 
-        while (echo());
+        while (echo()) {
+        }
     }
 
 
@@ -32,12 +33,12 @@ public class Duke {
         userInput = scan.nextLine();
 
         switch (userInput) {
-            case "bye":
-                System.out.println("Bye. Your tasks has been saved.\n Hope to see you again soon!");
-                return false;
-            default:
-                System.out.println(errorUnknown);
-                return false;
+        case "bye":
+            System.out.println("Bye. Your tasks has been saved.\n Hope to see you again soon!");
+            return false;
+        default:
+            System.out.println(errorUnknown);
+            return false;
         }
     }
 }
