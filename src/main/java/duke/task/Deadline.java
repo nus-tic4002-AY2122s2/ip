@@ -1,9 +1,10 @@
 package duke.task;
 
-
+import duke.dukeException.DukeException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * The Deadline class which the user want to store with date and time
@@ -12,7 +13,6 @@ public class Deadline extends Task {
     protected LocalDate taskDate;
     protected LocalTime taskTime;
     protected boolean hasTime = false;
-    protected String taskDateString;
 
     /**
      * Constructs the Deadlines class without a time
@@ -25,16 +25,6 @@ public class Deadline extends Task {
         taskType = TaskType.DEADLINE;
     }
 
-    /**
-     * Constructs the Deadlines class without a time
-     * @param description the description the user input
-     * @param stringDate the date the user input
-     */
-    public Deadline(String description, String stringDate) {
-        super(description);
-        this.taskDateString = stringDate;
-        taskType = TaskType.DEADLINE;
-    }
 
     /**
      * Constructs the Event class with a time
@@ -49,10 +39,28 @@ public class Deadline extends Task {
         taskType = TaskType.DEADLINE;
     }
 
+
+
+
+    /**
+     * return the date and time that was stored in string
+     * @return the date and time that was stored in string
+     */
     public String getDateTimeString(){
-        return taskDateString;
+        return hasTime
+                ? taskDate + " " + taskTime
+                : taskDate.toString();
     }
 
+    /**
+     * return the date and time formatted that was stored in string
+     * @return the date and time formatted that was stored in string
+     */
+    public String getDateTimeStringFormat(){
+        return hasTime
+                ? taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + taskTime.format(DateTimeFormatter.ofPattern("hh:mm a"))
+                : taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
 
     /**
      * Return the task type with the task that the user input and whether it is done or not
@@ -60,6 +68,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + taskDateString + ")";
+        return "[D]" + super.toString() + " (by: " + getDateTimeStringFormat() + ")";
     }
 }
