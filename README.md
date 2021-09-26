@@ -20,6 +20,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
           can I do for you?
      ____________________________________________________________
    ```
+
 ## Project description
 This is a Java program which helps users to keep track their tasks. There are three different tasks, the program capable of keeping tack.
 - Todo: A simple todo task
