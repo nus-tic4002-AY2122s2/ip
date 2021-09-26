@@ -23,7 +23,7 @@ public class Main {
         storage = new Storage(filePath, taskList);
         ui = new Ui();
 
-        Ui.printMessage("Hello! I'm Jarvis\nWhat can I do for you?");
+        Ui.printMessage("Hello! I'm Duke\nWhat can I do for you?");
         runApp();
     }
 
