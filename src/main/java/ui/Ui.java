@@ -41,6 +41,17 @@ public class Ui {
         printLine();
     }
 
+    public void printFoundList(ArrayList<String> list) {
+        int index = 1;
+        printLine();
+        System.out.println(indentation + "Here are the matching tasks in your list:");
+        for (String listItem : list) {
+            System.out.println(indentation + index + ". " + listItem);
+            index +=1;
+        }
+        printLine();
+    }
+
     public void printMarkedDone(String message){
         printLine();
         System.out.println("      " + "Nice! I've marked this task as done:");

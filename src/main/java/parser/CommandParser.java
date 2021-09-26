@@ -60,6 +60,11 @@ public class CommandParser extends Parser {
                 return new DeleteCommand(this.content);
             case LIST:
                 return new ListCommand();
+            case FIND:
+                if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TASK_NUMBER);
+                this.content = result[1].trim();
+
+                return new FindCommand(this.content);
             case BYE:
             default:
                 return new ByeCommand();
