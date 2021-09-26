@@ -7,4 +7,5 @@ deadline do homework /by 2021-09-26
 delete 4
 list
 list 2021-09-25
+find book
 bye

@@ -28,5 +28,10 @@ Here are the filtered tasks in your list:
 3. [E][ ] project meeting (at: 25 Sep 21 7:00 PM)
 Total tasks: 2
 ____________________________________________________________
+Here are the matching tasks in your list:
+1. [T][ ] borrow book
+2. [D][X] return book (by: 25 Sep 21)
+Total tasks: 2
+____________________________________________________________
 Bye. Hope to see you again soon!
 ____________________________________________________________
