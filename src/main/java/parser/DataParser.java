@@ -1,6 +1,7 @@
 package parser;
 
 import command.*;
+import constant.ErrorMessage;
 import exception.ErrorHandler;
 import task.Deadline;
 import task.Event;
@@ -16,7 +17,7 @@ public class DataParser extends Parser{
      */
     public Command parse (String input) throws ErrorHandler {
         String [] data = input.split("\\|");
-        if(data.length < 1) throw new ErrorHandler("In data parser, data is in wrong format");
+        if(data.length < 1) throw new ErrorHandler(ErrorMessage.INVALID_DATA_FORMAT);
 
         try {
             this.taskType = data[0];
@@ -35,7 +36,7 @@ public class DataParser extends Parser{
 
             return new DataCommand(new Todo(this.content, this.status));
         } catch (Exception e) {
-            throw new ErrorHandler("In data parser, data is in wrong format");
+            throw new ErrorHandler(ErrorMessage.INVALID_DATA_FORMAT);
         }
     }
 }

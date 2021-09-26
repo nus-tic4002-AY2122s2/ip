@@ -1,5 +1,6 @@
 package storage;
 
+import constant.ErrorMessage;
 import exception.ErrorHandler;
 
 import java.io.*;
@@ -36,9 +37,9 @@ public class Storage {
 
             fr.close();    //closes the stream and release the resources
         } catch(FileNotFoundException e) {
-            throw new ErrorHandler("Loading data");
+            throw new ErrorHandler(ErrorMessage.ERROR_FINDING_FILE);
         } catch (IOException e) {
-            throw new ErrorHandler("reading data");
+            throw new ErrorHandler(ErrorMessage.ERROR_LOADING_FILE);
         }
         return data.toArray(new String[0]);
     }
@@ -58,7 +59,7 @@ public class Storage {
 
             fileWriter.close();
         } catch (IOException e) {
-            throw new ErrorHandler("writing data to file");
+            throw new ErrorHandler(ErrorMessage.ERROR_WRITING_FILE);
         }
     }
 

@@ -48,6 +48,9 @@ public class TaskList {
         return taskList;
     }
 
+    /**
+     * @return list of task in a format which is ready for saving to local file
+     */
     public String [] getFileDataFormatList() {
         ArrayList<String> dataLine = new ArrayList<>();
 
