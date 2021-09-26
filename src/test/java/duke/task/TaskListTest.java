@@ -25,10 +25,11 @@ public class TaskListTest {
         LocalDate d1 = LocalDate.parse("2019-12-12");
         Event e = new Event("Learn Java", d1);
         TaskList tasks = new TaskList();
+        tasks.clearAll();
         tasks.addTask(e);
 
         assertEquals(1, tasks.getSize());
         assertEquals(e, tasks.getTask(0));
-        assertEquals(1,tasks.getTask(0).getTaskIndex());
+        assertEquals(0,tasks.getTask(0).getTaskIndex());
     }
 }
