@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 /**
  * Parses user input.
@@ -25,7 +26,7 @@ public class Parser {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     public static final Pattern KEYWORDS_ARGS_FORMAT =
-        Pattern.compile("(?:(?<isCombined>[01])\\s+)?(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+            Pattern.compile("(?:(?<isCombined>[01])\\s+)?(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
 
     public static final Pattern TASK_TYPE_DEADLINE_ARGS_FORMAT =
@@ -39,12 +40,12 @@ public class Parser {
                     + " " + "(?<atHour>\\d{2})(?<atMin>\\d{2})");
 
 
-    public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\d+)");
+    public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\d+(?:\\s+\\d+)*)");
+
     public static final Pattern TASK_DONE_TIME_FORMAT =
-            Pattern.compile("(?<targetIndex>\\d+)" + " on/"
+            Pattern.compile("(?<targetIndex>\\d+(?:\\s+\\d+)*)\\s+" + "on/"
                     + "(?<year>\\d{4})" + "-" + "(?<month>\\d{2})" + "-" + "(?<day>\\d{2})"
                     + " " + "(?<hour>\\d{2})(?<minute>\\d{2})");
-
     public static final Pattern VIEW_DONE_TASK_BY_TIME_FORMAT =
             Pattern.compile("from/(?<fromTime>[^/]+)" + " to/(?<toTime>[^/]+)");
 
@@ -160,7 +161,7 @@ public class Parser {
         try {
             Matcher matcher = TASK_DONE_TIME_FORMAT.matcher(args.trim());
             if (matcher.matches()) {
-                int targetIndex = Integer.parseInt((matcher.group("targetIndex")));
+                int[] targetIndex = Stream.of(matcher.group("targetIndex").split("\\s+")).mapToInt(Integer::parseInt).toArray();
                 return new DoneCommand(targetIndex,
                         LocalDateTime.of(Integer.parseInt(matcher.group("year")),
                                 Integer.parseInt(matcher.group("month")),
@@ -168,7 +169,7 @@ public class Parser {
                                 Integer.parseInt(matcher.group("hour")),
                                 Integer.parseInt(matcher.group("minute"))));
             } else {
-                int targetIndex = parseArgsAsDisplayedIndex(args);
+                int[] targetIndex = parseArgsAsDisplayedIndex(args);
                 return new DoneCommand(targetIndex, LocalDateTime.now());
             }
         } catch (ParseException pe) {
@@ -186,8 +187,10 @@ public class Parser {
      */
     private Command prepareDelete(String args) {
         try {
-            final int targetIndex = parseArgsAsDisplayedIndex(args);
-            assert targetIndex > 0 : "Invalid number, the index should be larger than 0.";
+            final int[] targetIndex = parseArgsAsDisplayedIndex(args);
+            for (int i : targetIndex) {
+                assert  i > 0 : "Invalid number, the index should be larger than 0.";
+            }
             return new DeleteCommand(targetIndex);
         } catch (ParseException pe) {
             return new IncorrectCommand("This is a incorrect format, " +
@@ -211,10 +214,10 @@ public class Parser {
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         String isCombined = matcher.group("isCombined");
-        if( isCombined == null || isCombined.isEmpty()){
+        if (isCombined == null || isCombined.isEmpty()) {
             return new FindCommand(keywordSet);
-        }else{
-            return new FindCommand(keywordSet, isCombined.equals("1")? true : false);
+        } else {
+            return new FindCommand(keywordSet, isCombined.equals("1"));
         }
     }
 
@@ -247,12 +250,13 @@ public class Parser {
      * @param args arguments string to parse as index number
      * @return the parsed index number
      */
-    private int parseArgsAsDisplayedIndex(String args) throws ParseException {
+    private int[] parseArgsAsDisplayedIndex(String args) throws ParseException {
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new ParseException("Could not match to the correct index.");
         }
-        return Integer.parseInt(matcher.group("targetIndex"));
+//        return Integer.parseInt(matcher.group("targetIndex"));
+        return Stream.of(matcher.group("targetIndex").split("\\s+")).mapToInt(Integer::parseInt).toArray();
     }
 
 

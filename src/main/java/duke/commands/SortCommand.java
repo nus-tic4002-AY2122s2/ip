@@ -10,7 +10,7 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = "||" + COMMAND_WORD + ": list the all the tasks in the task list.";
+    public static final String MESSAGE_USAGE = "||" + COMMAND_WORD + ": sort the all the tasks in the task list by finish date in descending order.";
 
 
     @Override

@@ -13,7 +13,11 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD="find";
 
     public static final String MESSAGE_USAGE= "||"+COMMAND_WORD+": finds the specific tasks based on the keywords you entered.\n" +
-            "Syntax: find KEYWORDS\n" +
+            "there is a optional flag after find:\n" +
+            "1 indicate 'isCombined' is true which means will only find the task(s) which match all the keywords combined\n" +
+            "0 indicate 'isCombined' is false which means will find the task(s) which match all the keywords separately\n" +
+            "if omit this flag will default 1\n" +
+            "Syntax: find (optional: 0|1) KEYWORDS\n" +
             "Example: "+COMMAND_WORD+"find book(will return the task that contains the keyword book.";
 
     private final Set<String> keywords;

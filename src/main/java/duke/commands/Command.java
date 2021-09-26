@@ -10,20 +10,20 @@ public class Command {
 
     protected TaskList taskList;
 
-    private int targetIndex = -1;
+    private int[] targetIndex;
 
     protected Command() {
     }
 
-    public Command(int targetIndex) {
+    public Command(int[] targetIndex) {
         this.setTargetIndex(targetIndex);
     }
 
 
-    private void setTargetIndex(int targetIndex) {
+    private void setTargetIndex(int[] targetIndex) {
         this.targetIndex = targetIndex;
     }
-    public int getTargetIndex() {
+    public int[] getTargetIndex() {
         return targetIndex;
     }
 

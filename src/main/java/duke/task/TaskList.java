@@ -89,6 +89,15 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
+     * Remove a tasks set from a list based on List<Task>
+     *
+     * @param toRemove the task set to remove
+     */
+    public void removeTasks(List<Task> toRemove) {
+        taskList.removeAll(toRemove);
+    }
+
+    /**
      * Remove a task from the list based on the index
      *
      * @param toRemoveIdx the index in the taskList
