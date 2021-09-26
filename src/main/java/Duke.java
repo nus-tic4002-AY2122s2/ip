@@ -1,5 +1,7 @@
 import command.Command;
+import exception.ErrorHandler;
 import parser.CommandParser;
+import parser.DataParser;
 import storage.Storage;
 import ui.Ui;
 import taskList.TaskList;
@@ -23,6 +25,7 @@ public class Duke {
 
     public void run() {
         try {
+            this.loadTasks();
             this.ui.welcome();
             Scanner in = new Scanner(System.in);
             boolean isExit = false;
@@ -34,7 +37,16 @@ public class Duke {
                 isExit = command.getIsExit();
             }
         } catch (Exception e) {
-            Ui.print("Error: " + e.getMessage());
+            this.ui.print("Error: " + e.getMessage());
+        }
+    }
+
+    private void loadTasks() throws ErrorHandler {
+        String[] data = this.storage.loadData();
+
+        for (String line : data) {
+            Command command = new DataParser().parse(line);
+            command.execute(this.storage, this.ui, this.tasks);
         }
     }
 }

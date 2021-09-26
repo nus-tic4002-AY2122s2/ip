@@ -38,16 +38,4 @@ public class DataParser extends Parser{
             throw new ErrorHandler("In data parser, data is in wrong format");
         }
     }
-
-    /**
-     * @return string, which is a key work indicating different task
-     * e.g. D - Deadline
-     *      E - Event
-     */
-    public String getTaskType() {return  this.taskType;}
-
-    /**
-     * @return boolean value indicating if the task is finished.
-     */
-    public boolean getStatus() { return this.status; }
 }
