@@ -17,9 +17,15 @@ public abstract class Command {
     /**
      * @return boolean to decide whether the program should be terminated
      */
-    public boolean getIsExit() {return this.isExit;}
+    protected boolean getIsExit() {return this.isExit;}
+
+    protected void saveData(Storage storage, TaskList taskList) throws ErrorHandler {
+        String [] data = taskList.getFileDataFormatList();
+        storage.saveData(data);
+    }
 
     public abstract void execute ( Storage storage, Ui ui, TaskList taskList) throws ErrorHandler;
+
 
 //    /**
 //     * @param list Store which contains all user data
