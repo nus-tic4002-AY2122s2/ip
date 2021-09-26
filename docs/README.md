@@ -15,7 +15,7 @@ ____________________________________________________________
 
 ## Features
 
-### Add todo: `todo `
-Add a todo to the tasks list.</br>
-Format: `todo TASK_NAME`</br>
+### Add todo: `todo`
+Add a todo to the tasks list.  
+Format: `todo TASK_NAME`  
 Example: `todo borrow book`
