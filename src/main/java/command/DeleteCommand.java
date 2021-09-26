@@ -6,10 +6,10 @@ import storage.Storage;
 import taskList.TaskList;
 import ui.Ui;
 
-public class DoneCommand extends Command{
+public class DeleteCommand extends Command{
     private int taskNumber;
 
-    public DoneCommand(String taskNumber) throws ErrorHandler{
+    public DeleteCommand(String taskNumber) throws ErrorHandler{
         try {
             int index = Integer.parseInt(taskNumber);
             this.taskNumber = index;
@@ -20,13 +20,14 @@ public class DoneCommand extends Command{
 
     @Override
     public void execute(Storage storage, Ui ui, TaskList taskList) throws ErrorHandler {
-        if (this.taskNumber > 0 && this.taskNumber <= taskList.getSize()) {
-            taskList.setStatus(this.taskNumber - 1, true);
+        if(this.taskNumber > 0 && this.taskNumber <= taskList.getSize()) {
+            int deleteIndex = this.taskNumber-1;
+            String deletedItem = taskList.getTask(deleteIndex).toString();
+            taskList.removeItem(deleteIndex);
             this.saveData(storage, taskList);
-            ui.printMarkedDone(taskList.getTask(this.taskNumber - 1).toString());
+            ui.printDeletedItem(deletedItem, taskList.getSize());
         } else {
             throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
         }
     }
-
 }
