@@ -16,5 +16,4 @@ public class ByeCommand extends Command{
             throw new ErrorHandler("while exiting program: " + e.getMessage());
         }
     }
-
 }

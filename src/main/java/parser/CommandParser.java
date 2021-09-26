@@ -1,5 +1,6 @@
 package parser;
 
+import command.*;
 import constant.CommandKeyWords;
 import constant.ErrorMessage;
 import exception.ErrorHandler;
@@ -7,25 +8,16 @@ import exception.ErrorHandler;
 public class CommandParser extends Parser {
     private CommandKeyWords commandWord;
 
-    /**
-     * @param userInput is a string that user key in from the terminal
-     * @throws ErrorHandler customized error
-     */
-    public CommandParser(String userInput) throws ErrorHandler {
-        this.parseInput(userInput);
+    public Command parse(String userCommand) throws ErrorHandler {
+        return this.parseCommand(userCommand);
     }
-
-    /**
-     * @return CommandKeyWords enum
-     */
-    public CommandKeyWords getCommandWord() { return this.commandWord;}
 
     /**
      * @param input is a string that user key in from the terminal
      * @throws ErrorHandler customized error
+     * @return Command class
      */
-    @Override
-    protected void parseInput (String input) throws ErrorHandler {
+    private Command parseCommand(String input) throws ErrorHandler {
         String[] result = input.split(" ", 2);
 
         this.commandWord =  CommandKeyWords.getEnum(result[0].toUpperCase());
@@ -39,7 +31,8 @@ public class CommandParser extends Parser {
                 if (deadlineContent.length < 2)
                     throw new ErrorHandler("In Parser, " + ErrorMessage.INVALID_DEADLINE);
                 this.by = deadlineContent[1].trim();
-                break;
+
+                return new DeadlineCommand(this.content,this.by);
             case EVENT:
                 if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_EVENT);
 
@@ -49,19 +42,26 @@ public class CommandParser extends Parser {
                 if (eventContent.length < 2)
                     throw new ErrorHandler("In Parser, " + ErrorMessage.INVALID_EVENT);
                 this.by = eventContent[1].trim();
-                break;
+                return new EventCommand(this.content, this.at);
             case TODO:
                 if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TODO);
                 this.content = result[1].trim();
-                break;
+                return new TodoCommand(this.content);
             case DONE:
                 if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TASK_NUMBER);
                 this.content = result[1].trim();
-                break;
+
+                return new DoneCommand(this.content);
+            case DELETE:
+                if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TASK_NUMBER);
+                this.content = result[1].trim();
+
+                return new DeleteCommand(this.content);
             case LIST:
+                return new ListCommand();
             case BYE:
             default:
-                break;
+                return new ByeCommand();
         }
     }
 }
