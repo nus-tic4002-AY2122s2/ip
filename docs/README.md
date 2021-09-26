@@ -2,7 +2,7 @@
 
 ## Features 
 
-### Feature-ABC
+### Easy to use
 
 Description of the feature.
 
