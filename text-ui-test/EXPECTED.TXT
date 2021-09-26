@@ -1,4 +1,4 @@
-Hello! I'm Jarvis
+Hello! I'm Duke
 What can I do for you?
 ____________________________________________________________
 added: [T][ ] borrow book
@@ -23,7 +23,7 @@ Here are the tasks in your list:
 3. [E][ ] project meeting (at: 25 Sep 21 7:00 PM)
 Total tasks: 3
 ____________________________________________________________
-Here are the tasks in your list:
+Here are the filtered tasks in your list:
 2. [D][X] return book (by: 25 Sep 21)
 3. [E][ ] project meeting (at: 25 Sep 21 7:00 PM)
 Total tasks: 2
