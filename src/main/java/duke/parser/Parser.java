@@ -39,6 +39,8 @@ public class Parser {
                 case ("bye"):
                     return new ExitCommand();
 
+                case ("find"):
+                    return new FindCommand(fullCommand);
                 case ("done"):
                     return new DoneCommand(fullCommand);
                 case ("deadline"):
