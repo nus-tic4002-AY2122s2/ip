@@ -47,9 +47,14 @@ public class Ui {
      * @param task the task list
      */
     public static void showTaskInfo(Task task){
-
         System.out.println("Task Number " + (task.getTaskIndex() +1) + ": " + task.toString());
+    }
 
+    /**
+     * Display the message of no matches
+     */
+    public static void showNoMatchFound(){
+        System.out.println("We couldn't find any matches.");
     }
 
 
