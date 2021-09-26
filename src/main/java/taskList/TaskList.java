@@ -16,27 +16,6 @@ public class TaskList {
     public TaskList() {
     }
 
-//    private TaskList(Builder builder) {
-//        if(builder.fileData.length > 0) {
-//
-//        }
-
-//    public static class Builder {
-//        private String [] fileData = new String[0] ;
-//
-//        public Builder initWitFileData(String [] fileData) {
-//            this.fileData = fileData;
-//            return this;
-//        }
-//
-//        public Builder init() {
-//            return this;
-//        }
-//
-//        public TaskList build() {
-//            return new TaskList(this);
-//        }
-//    }
 
     /**
      * @param task is a type of task, could be Event, Deadline
@@ -67,6 +46,10 @@ public class TaskList {
         }
 
         return taskList;
+    }
+
+    public String [] getFileDataFormatList() {
+        return this.getSerializedList().toArray(new String[0]);
     }
 }
 
