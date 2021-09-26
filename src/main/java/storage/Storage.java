@@ -21,7 +21,7 @@ public class Storage {
      * @throws ErrorHandler customized error
      * @return array of strings tha is loaded from file
      */
-    private String [] loadData () throws ErrorHandler  {
+    public String [] loadData () throws ErrorHandler  {
         ArrayList<String> data = new ArrayList<>();
 
         try {

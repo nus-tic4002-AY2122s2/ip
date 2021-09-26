@@ -8,14 +8,16 @@ import ui.Ui;
 
 public class TodoCommand extends Command{
     private String taskDescription;
+    private boolean status;
 
-    public TodoCommand(String taskDescription)  {
+    public TodoCommand(String taskDescription, boolean status)  {
         this.taskDescription = taskDescription;
+        this.status = status;
     }
 
     @Override
     public void execute(Storage storage, Ui ui, TaskList taskList) throws ErrorHandler {
-        Todo addedTodo = new Todo(this.taskDescription, false);
+        Todo addedTodo = new Todo(this.taskDescription, this.status);
         taskList.addItem(addedTodo);
 
         this.saveData(storage, taskList);

@@ -8,6 +8,7 @@ import exception.ErrorHandler;
 public class CommandParser extends Parser {
     private CommandKeyWords commandWord;
 
+    @Override
     public Command parse(String userCommand) throws ErrorHandler {
         return this.parseCommand(userCommand);
     }
@@ -32,7 +33,7 @@ public class CommandParser extends Parser {
                     throw new ErrorHandler("In Parser, " + ErrorMessage.INVALID_DEADLINE);
                 this.by = deadlineContent[1].trim();
 
-                return new DeadlineCommand(this.content,this.by);
+                return new DeadlineCommand(this.content,this.by, false);
             case EVENT:
                 if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_EVENT);
 
@@ -42,11 +43,11 @@ public class CommandParser extends Parser {
                 if (eventContent.length < 2)
                     throw new ErrorHandler("In Parser, " + ErrorMessage.INVALID_EVENT);
                 this.by = eventContent[1].trim();
-                return new EventCommand(this.content, this.at);
+                return new EventCommand(this.content, this.at,  false);
             case TODO:
                 if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TODO);
                 this.content = result[1].trim();
-                return new TodoCommand(this.content);
+                return new TodoCommand(this.content,  false);
             case DONE:
                 if(result.length < 2) throw new ErrorHandler("In Parser, " + ErrorMessage.EMPTY_TASK_NUMBER);
                 this.content = result[1].trim();

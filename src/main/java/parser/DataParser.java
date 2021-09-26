@@ -1,24 +1,22 @@
 package parser;
 
-import constant.ErrorMessage;
+import command.Command;
+import command.DeadlineCommand;
+import command.EventCommand;
+import command.TodoCommand;
 import exception.ErrorHandler;
-
 
 public class DataParser extends Parser{
     private String taskType;
     private boolean status;
 
-    public  DataParser(String input) throws ErrorHandler {
-        this.parseInput(input);
-    }
-
     /**
      * @param input string which is read from a text file, in the format of 'D|1|return book|June 6th'
      * @throws ErrorHandler customized error
      */
-    protected void parseInput (String input) throws ErrorHandler {
+    public Command parse (String input) throws ErrorHandler {
         String [] data = input.split("\\|");
-        if(data.length < 1) return;
+        if(data.length < 1) throw new ErrorHandler("In data parser, data is in wrong format");
 
         try {
             this.taskType = data[0];
@@ -27,12 +25,15 @@ public class DataParser extends Parser{
 
             if(this.taskType.equals("D")){
                 this.by = data[3];
-                return;
+                return new DeadlineCommand(this.content, this.by, this.status);
             }
 
             if(this.taskType.equals("E")) {
                 this.at = data[3];
+                return new EventCommand(this.content, this.at, this.status);
             }
+
+            return new TodoCommand(this.content, this.status);
         } catch (Exception e) {
             throw new ErrorHandler("In data parser, data is in wrong format");
         }
