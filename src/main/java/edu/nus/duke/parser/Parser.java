@@ -17,7 +17,6 @@ import edu.nus.duke.task.Todo;
 import edu.nus.duke.task.Deadline;
 import edu.nus.duke.task.Event;
 import edu.nus.duke.exception.DukeInvalidInputException;
-import edu.nus.duke.exception.DukeEmptyArgsException;
 import edu.nus.duke.exception.DukeDisallowInputException;
 
 /**
@@ -118,12 +117,11 @@ public class Parser {
      * @param inputTxt Input string from user.
      * @return A polymorphic command to be executed.
      * @throws DukeInvalidInputException If user input is not of standard commands.
-     * @throws DukeEmptyArgsException If required arguments are missing.
      * @throws DukeDisallowInputException If disallowed keywords are present.
      * @throws ArrayIndexOutOfBoundsException If there is invalid argument.
      * @throws DateTimeParseException If date/datetime input format is invalid.
      */
-    public static Command parseInput(String inputTxt) throws DukeInvalidInputException, DukeEmptyArgsException,
+    public static Command parseInput(String inputTxt) throws DukeInvalidInputException,
             DukeDisallowInputException, ArrayIndexOutOfBoundsException, DateTimeParseException {
         rejectBadInput(inputTxt);
 
@@ -139,9 +137,6 @@ public class Parser {
         } else if (cmd.equals(ExitCommand.CMD)) {
             return (new ExitCommand());
         } else {
-            if (inputArray.length == 1) {
-                throw new DukeEmptyArgsException();
-            }
             String args = inputArray[1];
             return parseInput_MultiArgs(cmd, args);
         }
