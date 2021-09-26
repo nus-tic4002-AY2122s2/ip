@@ -31,12 +31,16 @@ public class Duke {
             boolean isExit = false;
 
             while (!isExit) {
-                String userCommand = in.nextLine().trim();
-                Command command = new CommandParser().parse(userCommand);
-                command.execute(this.storage, this.ui, this.tasks);
-                isExit = command.getIsExit();
+                try {
+                    String userCommand = in.nextLine().trim();
+                    Command command = new CommandParser().parse(userCommand);
+                    command.execute(this.storage, this.ui, this.tasks);
+                    isExit = command.getIsExit();
+                } catch (Exception e) {
+                    this.ui.print("Error inner: " + e.getMessage());
+                }
             }
-        } catch (Exception e) {
+        } catch (ErrorHandler e) {
             this.ui.print("Error: " + e.getMessage());
         }
     }

@@ -2,24 +2,23 @@ package command;
 
 import exception.ErrorHandler;
 import storage.Storage;
+import task.Task;
 import taskList.TaskList;
 import ui.Ui;
 
 public class DataCommand extends Command{
+    private Task task;
 
-    public DataCommand() {
-
+    public DataCommand(Task task){
+        this.task = task;
     }
 
     @Override
     public void execute(Storage storage, Ui ui, TaskList taskList) throws ErrorHandler {
-
         try{
-            String [] data = storage.loadData();
-
-
+            taskList.addItem(this.task);
         } catch (ErrorHandler e) {
-            throw new ErrorHandler("while exiting program: " + e.getMessage());
+            throw new ErrorHandler( e.getMessage());
         }
     }
 }

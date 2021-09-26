@@ -1,10 +1,10 @@
 package parser;
 
-import command.Command;
-import command.DeadlineCommand;
-import command.EventCommand;
-import command.TodoCommand;
+import command.*;
 import exception.ErrorHandler;
+import task.Deadline;
+import task.Event;
+import task.Todo;
 
 public class DataParser extends Parser{
     private String taskType;
@@ -25,15 +25,15 @@ public class DataParser extends Parser{
 
             if(this.taskType.equals("D")){
                 this.by = data[3];
-                return new DeadlineCommand(this.content, this.by, this.status);
+                return new DataCommand(new Deadline(this.content, this.by, this.status));
             }
 
             if(this.taskType.equals("E")) {
                 this.at = data[3];
-                return new EventCommand(this.content, this.at, this.status);
+                return new DataCommand(new Event(this.content, this.at, this.status));
             }
 
-            return new TodoCommand(this.content, this.status);
+            return new DataCommand(new Todo(this.content, this.status));
         } catch (Exception e) {
             throw new ErrorHandler("In data parser, data is in wrong format");
         }

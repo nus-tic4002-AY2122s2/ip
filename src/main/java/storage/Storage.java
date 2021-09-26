@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public class Storage {
     private final Path root = FileSystems.getDefault().getPath("").toAbsolutePath();
-    private String filePath = "";
+    private String filePath;
 
 
     public Storage (String filePath) {
-        this.filePath = filePath;
+        this.filePath = "/" +filePath;
     }
 
     /**

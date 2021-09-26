@@ -49,7 +49,13 @@ public class TaskList {
     }
 
     public String [] getFileDataFormatList() {
-        return this.getSerializedList().toArray(new String[0]);
+        ArrayList<String> dataLine = new ArrayList<>();
+
+        for (Task task: this.list) {
+            dataLine.add(task.toDataFormat());
+        }
+
+        return dataLine.toArray(new String[0]);
     }
 
     public int getSize() {
