@@ -17,6 +17,7 @@ public class Ui {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo +
                 "What can I do for you?\n");
+        showLine();
     }
 
     /**

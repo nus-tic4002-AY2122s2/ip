@@ -57,6 +57,6 @@ public class Duke {
      * @param args
      */
     public static void main(String[] args) {
-        new Duke("tasks.txt").run();
+        new Duke("data/tasks.txt").run();
     }
 }

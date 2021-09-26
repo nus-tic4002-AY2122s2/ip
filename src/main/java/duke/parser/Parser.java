@@ -34,7 +34,8 @@ public class Parser {
                     return new ListCommand();
 
 
-                case("exit"):
+                case ("exit"):
+                case ("quit"):
                 case ("bye"):
                     return new ExitCommand();
 

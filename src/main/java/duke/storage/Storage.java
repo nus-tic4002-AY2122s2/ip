@@ -29,21 +29,21 @@ public class Storage {
 
     public static java.nio.file.Path pathFinder() throws IOException, DukeException{
         String fileName = filePath;
-        String dirString = filePath;
         if(filePath.contains("/")) {
             fileName = filePath.substring(filePath.lastIndexOf('/'));
-            dirString = filePath.substring(0, filePath.lastIndexOf('/'));
+            String dirString = filePath.substring(0, filePath.lastIndexOf('/'));
+            java.nio.file.Path folderDir = java.nio.file.Paths.get(dirString);
+            boolean directoryExists = java.nio.file.Files.exists(folderDir);
+            if(!directoryExists){
+                java.nio.file.Files.createDirectories(folderDir);
+            }
         }
         if(!fileName.contains(".txt")){
             throw new DukeException("storage files need to be in txt format");
         }
 
-        java.nio.file.Path folderDir = java.nio.file.Paths.get(dirString);
-        boolean directoryExists = java.nio.file.Files.exists(folderDir);
-        if(!directoryExists){
-            java.nio.file.Files.createDirectories(folderDir);
-        }
-        return java.nio.file.Paths.get("data", "duke.txt");
+
+        return java.nio.file.Paths.get(filePath);
 
     }
 
@@ -119,6 +119,7 @@ public class Storage {
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         while (s.hasNext()) {
             Task task = convertTaskFromFile(s.nextLine());
+            task.setTaskIndex(tasks.size());
             tasks.add(task);
         }
 
