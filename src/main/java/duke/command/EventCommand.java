@@ -3,9 +3,8 @@ package duke.command;
 import duke.storage.Storage;
 import duke.ui.Ui;
 import duke.task.TaskList;
-import duke.dukeException.DukeException;
+import duke.dukeexception.DukeException;
 import duke.task.Event;
-import duke.task.TaskType;
 import duke.parser.Parser;
 
 import java.time.LocalDate;
@@ -35,7 +34,7 @@ public class EventCommand extends Command{
         int dividerPosition2 = commandInstruction.indexOf(" /at ");
         String taskDes = commandInstruction.substring(6, dividerPosition2);
         String taskDateTime = commandInstruction.substring(dividerPosition2+5);
-        Event event = new Event(taskDes, taskDateTime);
+        Event event = eventTimeSetter(taskDes, taskDateTime);
         tasks.addTask(event);
         storage.save(tasks);
     }

@@ -47,9 +47,14 @@ public class Ui {
      * @param task the task list
      */
     public static void showTaskInfo(Task task){
-
         System.out.println("Task Number " + (task.getTaskIndex() +1) + ": " + task.toString());
+    }
 
+    /**
+     * Display the message of no matches
+     */
+    public static void showNoMatchFound(){
+        System.out.println("We couldn't find any matches.");
     }
 
 
@@ -95,6 +100,8 @@ public class Ui {
     public static void showLoadingError(){
         System.out.println("There are currently problem with loading the task, proceeding to create a new empty list");
     }
+
+
 
 
 }

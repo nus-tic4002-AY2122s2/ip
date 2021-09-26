@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
-import duke.dukeException.DukeException;
+import duke.dukeexception.DukeException;
 import duke.parser.Parser;
 import duke.ui.Ui;
 import duke.task.TaskList;
@@ -41,7 +41,7 @@ public class DeadlineCommand extends Command{
         int dividerPosition2 = commandInstruction.indexOf(" /by ");
         String taskDes = commandInstruction.substring(9, dividerPosition2);
         String taskDateTime = commandInstruction.substring(dividerPosition2 + 5);
-        Deadline deadline = new Deadline(taskDes, taskDateTime);
+        Deadline deadline = deadlineTimeSetter(taskDes, taskDateTime);
         tasks.addTask(deadline);
         storage.save(tasks);
     }

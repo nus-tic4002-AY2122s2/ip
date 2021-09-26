@@ -1,10 +1,12 @@
 package duke.storage;
 
-import duke.dukeException.DukeException;
+import duke.dukeexception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
+import duke.command.EventCommand;
+import duke.command.DeadlineCommand;
 
 
 import java.io.File;
@@ -159,10 +161,10 @@ public class Storage {
 
     private static Task creatingEventOrDeadline(String taskType, String taskDes, String taskDateTime) throws DukeException {
         if(taskType.contains("D")){
-            return new Deadline(taskDes,taskDateTime);
+            return DeadlineCommand.deadlineTimeSetter(taskDes, taskDateTime);
         }
         if(taskType.contains("E")){
-            return new Event(taskDes,taskDateTime);
+            return EventCommand.eventTimeSetter(taskDes, taskDateTime);
         }
 
         throw new DukeException("Unknown task Type");

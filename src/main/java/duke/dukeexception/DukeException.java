@@ -1,4 +1,4 @@
-package duke.dukeException;
+package duke.dukeexception;
 
 /**
  * Any expected error
