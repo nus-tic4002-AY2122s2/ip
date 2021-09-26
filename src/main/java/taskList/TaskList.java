@@ -69,5 +69,19 @@ public class TaskList {
     public Task getTask(int index) {
         return this.list.get(index);
     }
+
+    /**
+     * @param word is used to search for tasks
+     * @return serialized array of tasks
+     */
+    public ArrayList<String> findTasks (String word) {
+        ArrayList<String> filteredTasks = new ArrayList<>();
+
+        for (Task task : this.list) {
+            if (!task.getDescription().contains(word)) continue;
+            filteredTasks.add(task.toString());
+        }
+        return filteredTasks;
+    }
 }
 
