@@ -24,7 +24,12 @@ public class ListCommand extends Command {
     // Methods
     @Override
     public void run(TaskList taskList) {
-        Ui.printMessage("Here are the tasks in your list:", false);
+        String message = "Here are the tasks in your list:";
+        if (dateFilter != null) {
+            message = "Here are the filtered tasks in your list:";
+        }
+
+        Ui.printMessage(message, false);
         taskList.printTasks(dateFilter, null);
     }
 }
