@@ -58,7 +58,7 @@ public class Storage {
 
             fileWriter.close();
         } catch (IOException e) {
-            throw new ErrorHandler("writing data");
+            throw new ErrorHandler("writing data to file");
         }
     }
 

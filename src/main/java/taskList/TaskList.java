@@ -51,5 +51,17 @@ public class TaskList {
     public String [] getFileDataFormatList() {
         return this.getSerializedList().toArray(new String[0]);
     }
+
+    public int getSize() {
+        return this.list.size();
+    }
+
+    public void setStatus(int index, boolean status) {
+        this.list.get(index).setStatus(true);
+    }
+
+    public Task getTask(int index) {
+        return this.list.get(index);
+    }
 }
 
