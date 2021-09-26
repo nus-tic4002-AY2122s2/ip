@@ -49,6 +49,11 @@ public class Parser {
                 case ("delete"):
                     return new DeleteCommand(fullCommand);
 
+                case "hi":
+                case "help":
+                case "clearlist":
+                    return new OtherCommand(fullCommand);
+
                 default:
                     throw new DukeException("Unknown command! Please type 'help' for list of command!");
 
