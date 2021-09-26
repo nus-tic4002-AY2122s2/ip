@@ -35,7 +35,7 @@ public class EventCommand extends Command{
         int dividerPosition2 = commandInstruction.indexOf(" /at ");
         String taskDes = commandInstruction.substring(6, dividerPosition2);
         String taskDateTime = commandInstruction.substring(dividerPosition2+5);
-        Event event = new Event(taskDes, taskDateTime);
+        Event event = eventTimeSetter(taskDes, taskDateTime);
         tasks.addTask(event);
         storage.save(tasks);
     }
