@@ -1,4 +1,0 @@
-1 | T | 0 |  lol
-2 | T | 0 | lol
-3 | D | 0 | dead | null
-4 | T | 0 | dadas
