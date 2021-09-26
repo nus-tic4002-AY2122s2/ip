@@ -2,18 +2,13 @@ package duke.parser;
 
 
 import duke.command.*;
-import duke.dukeException.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import duke.dukeexception.DukeException;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 
 /**
  * Parser class to spilt up the text from the command

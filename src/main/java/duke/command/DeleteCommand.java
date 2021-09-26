@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.dukeException.DukeException;
+import duke.dukeexception.DukeException;
 import duke.task.TaskList;
 import duke.ui.Ui;
 import duke.storage.Storage;

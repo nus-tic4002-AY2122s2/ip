@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
-import duke.dukeException.DukeException;
+import duke.dukeexception.DukeException;
 import duke.parser.Parser;
 import duke.ui.Ui;
 import duke.task.TaskList;
