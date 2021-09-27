@@ -10,6 +10,7 @@ import duke.command.DeadlineCommand;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +18,10 @@ import java.util.Scanner;
 
 import duke.task.TaskList;
 
+
+/**
+ * Storage to read and write file in a txt file
+ */
 public class Storage {
 
     private static String filePath;
@@ -29,7 +34,13 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public static java.nio.file.Path pathFinder() throws IOException, DukeException{
+
+    /**
+     * Handle path for different OS
+     * @throws DukeException any expected error
+     * @throws IOException any IOException error
+     */
+    public static java.nio.file.Path pathOSHandler() throws IOException, DukeException{
         String fileName = filePath;
         if(filePath.contains("/")) {
             fileName = filePath.substring(filePath.lastIndexOf('/'));
@@ -56,7 +67,7 @@ public class Storage {
      */
     public static void save(TaskList lists) throws DukeException {
         try {
-            java.nio.file.Path filePath = pathFinder();
+            java.nio.file.Path filePath = pathOSHandler();
             FileWriter fileWrite = new FileWriter(filePath.toString());
             for (int i = 0; i < lists.getSize(); i++) {
                 String storingTask = convertTaskStoring(lists.getTask(i), i);
@@ -70,6 +81,13 @@ public class Storage {
 
     }
 
+    /**
+     * Convert the task into the saving format to save into the file
+     * @param task the task to be converted
+     * @return the string format to be save
+     * @throws DukeException any expected error
+     * @throws IllegalStateException any IllegalStateExpection
+     */
     private static String convertTaskStoring(Task task, int index) throws DukeException, IllegalStateException {
         String storingTask;
         switch (task.getTaskType()) {
@@ -101,6 +119,12 @@ public class Storage {
         return storingTask;
     }
 
+
+    /**
+     * Return the ArrayList of Task
+     * @return the ArrayList of task
+     * @throws DukeException any expected error
+     */
     public static ArrayList<Task> load() throws DukeException {
         try {
             ArrayList<Task> tasks = getListOfTask();
@@ -111,8 +135,14 @@ public class Storage {
 
     }
 
+    /**
+     * create the list of task from the file
+     * @return the ArrayList of task that is in the file
+     * @throws FileNotFoundException file that can't be found
+     * @throws DukeException any other expected error
+     */
     private static ArrayList<Task> getListOfTask() throws IOException, DukeException {
-        java.nio.file.Path filePath = pathFinder();
+        java.nio.file.Path filePath = pathOSHandler();
         File f = new File(filePath.toString()); // create a File for the given file path
         if(f.length() == 0){
             return new ArrayList<Task>();
@@ -128,6 +158,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Convert the text in the file into task class
+     * @param text text from the file
+     * @return return the task created
+     * @throws DukeException any expected error
+     */
     private static Task convertTaskFromFile(String text) throws DukeException {
         Task task;
         int firstDivider = text.indexOf("| ");
@@ -159,6 +195,15 @@ public class Storage {
         return task;
     }
 
+
+    /**
+     * Separate out the event and deadline and create the individual class
+     * @param taskType the type of the task
+     * @param taskDes the task description stored
+     * @param taskDateTime the date and time of the task
+     * @return the task created
+     * @throws DukeException any expected error
+     */
     private static Task creatingEventOrDeadline(String taskType, String taskDes, String taskDateTime) throws DukeException {
         if(taskType.contains("D")){
             return DeadlineCommand.deadlineTimeSetter(taskDes, taskDateTime);

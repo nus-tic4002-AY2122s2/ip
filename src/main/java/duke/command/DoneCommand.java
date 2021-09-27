@@ -6,6 +6,10 @@ import duke.task.TaskList;
 import duke.storage.Storage;
 import duke.task.Task;
 
+
+/**
+ * Command set a specific task as done
+ */
 public class DoneCommand extends Command{
 
 

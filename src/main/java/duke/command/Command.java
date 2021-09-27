@@ -5,6 +5,10 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 import duke.storage.Storage;
 
+
+/**
+ * abstract class command
+ */
 public abstract class Command {
     protected String commandInstruction;
 

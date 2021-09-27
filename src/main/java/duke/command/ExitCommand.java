@@ -4,6 +4,10 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 import duke.storage.Storage;
 
+
+/**
+ * Command to exit the program
+ */
 public class ExitCommand extends Command {
 
     /**

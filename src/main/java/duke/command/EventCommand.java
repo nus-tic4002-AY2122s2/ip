@@ -11,6 +11,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
+
+/**
+ * Command to Create a new Events task
+ */
 public class EventCommand extends Command{
 
     /**

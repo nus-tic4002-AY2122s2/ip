@@ -60,6 +60,10 @@ public class TaskList {
 
     }
 
+    /**
+     * Check if task list is empty
+     * @return if task is empty or not
+     */
     public static boolean isEmpty(){
         return tasks.isEmpty();
     }

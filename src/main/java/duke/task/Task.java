@@ -42,6 +42,10 @@ public abstract class Task {
         return isDone;
     }
 
+    /**
+     * Set the task Index
+     * @param i The task index of the task
+     */
     public void setTaskIndex(int i){
         taskIndex = i;
     }
@@ -71,6 +75,10 @@ public abstract class Task {
         return " [" + this.getStatusIcon() + "] " + this.getTaskDescription();
     }
 
+    /**
+     * return the task type
+     * @return the task type
+     */
     public TaskType getTaskType(){
         return taskType;
     }

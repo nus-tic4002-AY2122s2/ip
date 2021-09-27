@@ -7,7 +7,9 @@ import duke.parser.Parser;
 
 
 
-
+/**
+ * Create the Duke class to start of the program
+ */
 public class Duke {
 
 

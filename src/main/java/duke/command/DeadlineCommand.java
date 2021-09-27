@@ -11,6 +11,10 @@ import duke.task.TaskList;
 import duke.storage.Storage;
 import duke.task.Deadline;
 
+
+/**
+ * Command to Create a new Deadlines task
+ */
 public class DeadlineCommand extends Command{
 
     /**

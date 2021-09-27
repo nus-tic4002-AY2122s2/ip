@@ -4,6 +4,9 @@ import duke.task.Task;
 
 import java.util.Scanner;
 
+/**
+ * Represent the Ui which will take in Input from user and display Message for user to see
+ */
 public class Ui {
 
     /**
@@ -34,6 +37,10 @@ public class Ui {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
+    /**
+     * Show the user when they need to input a command and read the user input
+     * @return the command to the other class which will execute the command
+     */
     public static String readCommand(){
         String line;
         Scanner in = new Scanner(System.in);
@@ -80,7 +87,11 @@ public class Ui {
                 "Task Number "+ taskIndex + ": " + doneTask);
     }
 
-
+    /**
+     * Display Message after an adding of Tasks and display the number of total Tasks
+     * @param thatTask the task that has been added
+     * @param numberOfTask the total number of task in the list
+     */
     public static void displayAddMessage(String thatTask, int numberOfTask){
         System.out.println("Added: "+ thatTask + "\n" +
                 "Now you have "+ numberOfTask +" tasks in the list.");
