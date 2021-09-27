@@ -1,6 +1,8 @@
+
 ## AIR REC - TEAM 5
 
 Air Rec is a desktop app for managing flight records, optimized for use via a Command Line Interface (CLI). User will not have to remember flight details and it can be found easily with commands.
+
 
 1. Quick start
 1. Features
@@ -119,7 +121,7 @@ exit
 
 Action | Format, Examples
 ------------ | -------------
-<b>add</b> | Format: [add] [/departing] [depart details] [/destination] [destination] [/date] [date & time of departure] [/price] [price of trip] Example: add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500
+<b>add</b> | Format: [add] [/from] [depart details] [/to] [destination] [/date] [date & time of departure] [/price] [price of trip] Example: add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500
 <b>show all</b> | Format: [show] [all] Example: show all
 <b>show upcoming</b> | Format: [show] [upcoming] Example: show upcoming
 <b>delete</b> | Format: [delete] [index] Example: delete 3
