@@ -8,6 +8,10 @@ import duke.ui.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Give users a way to find a task by searching for a keyword.
+ * refer to Level-9.
+ */
 public class FindCommand extends Command {
     String search_str;
 
