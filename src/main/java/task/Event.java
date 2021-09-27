@@ -5,6 +5,9 @@ import exception.DukeMissingDescException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Task with specific date of occurrence.
+ */
 public class Event extends Task {
     private LocalDateTime start_endTime;
     private String raw_start_endTime;
@@ -13,11 +16,17 @@ public class Event extends Task {
         return raw_start_endTime;
     }
 
+    /**
+     * @return start_endTime if string was valid ISO DateTime, else null.
+     */
     public LocalDateTime getStart_endTime() {
         return start_endTime;
     }
 
-
+    /**
+     * tries to set start_endTime if parsable.
+     * @param start_endTime string passed in by user input
+     */
     public void setStart_endTime(String start_endTime) {
         this.raw_start_endTime = start_endTime;
         this.start_endTime = Parser.parseDateTimeStr(start_endTime);

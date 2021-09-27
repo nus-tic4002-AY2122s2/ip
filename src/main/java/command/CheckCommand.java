@@ -6,7 +6,9 @@ import ui.Ui;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * Check Command represents a user wanting to check the task list
+ */
 public class CheckCommand extends Command {
     private String raw_time;
     private LocalDateTime check_time;
@@ -18,7 +20,6 @@ public class CheckCommand extends Command {
     }
     /**
      * Checks TaskList for tasks that have a date, and print them if they are on the same date.
-     * TODO: Extend this such that it can return a plain string for un-parsable strings.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
