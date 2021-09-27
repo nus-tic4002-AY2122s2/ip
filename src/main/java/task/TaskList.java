@@ -24,7 +24,7 @@ public class TaskList {
         return listTasks(tasks);
     }
     public String printTasks() {
-        String list = listTasks(tasks);
+        String list = listTasks();
         System.out.print(list);
         return list;
     }
