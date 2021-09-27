@@ -75,6 +75,6 @@ Format: `delete INDEX`
 
 Example: `delete 4`
 
-### Exit program: `exit`
+### Exit program: `bye`
 Exit the program.  
-Format: `exit`
+Format: `bye`
