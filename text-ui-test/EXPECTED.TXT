@@ -66,10 +66,9 @@ ___________________________________________________
 
 What can I do for you? For help, type "/help". 
 ___________________________________________________
-Notification: For the added event, start time is after end time. The event task will still be added.
 
 Got it. I've added this task:
-[E][-] birthday dinner (at: 10 Dec 2020 23:11:11 to 20:20:20)
+[E][-] birthday dinner (at: 10 Dec 2020 11:11:11 to 20:20:20)
 Now you have 4 tasks in the list.
 ___________________________________________________
 
@@ -92,7 +91,7 @@ Task List:
 
 3.[D][-] school homework (by: 20 Dec 2020 10:10:10)
 
-4.[E][-] birthday dinner (at: 10 Dec 2020 23:11:11 to 20:20:20)
+4.[E][-] birthday dinner (at: 10 Dec 2020 11:11:11 to 20:20:20)
 
 5.[D][-] essay (by: 24 Nov 2020 23:59:59)
 ___________________________________________________
@@ -127,7 +126,7 @@ Task List:
 
 2.[D][+] school homework (by: 20 Dec 2020 10:10:10)
 
-3.[E][-] birthday dinner (at: 10 Dec 2020 23:11:11 to 20:20:20)
+3.[E][-] birthday dinner (at: 10 Dec 2020 11:11:11 to 20:20:20)
 
 4.[D][+] essay (by: 24 Nov 2020 23:59:59)
 ___________________________________________________
@@ -148,7 +147,7 @@ Task List:
 
 2.[D][-] school homework (by: 20 Dec 2020 10:10:10)
 
-3.[E][-] birthday dinner (at: 10 Dec 2020 23:11:11 to 20:20:20)
+3.[E][-] birthday dinner (at: 10 Dec 2020 11:11:11 to 20:20:20)
 
 4.[D][+] essay (by: 24 Nov 2020 23:59:59)
 ___________________________________________________
