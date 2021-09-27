@@ -1,7 +1,15 @@
 package duke.task;
 
-import duke.command.*;
-import duke.exception.*;
+import duke.command.CheckCommand;
+import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.UpdateCommand;
+import duke.exception.DukeException;
+import duke.exception.DukeMissingDescException;
+import duke.exception.DukeMissingParamException;
+import duke.exception.DukeUnknownException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
