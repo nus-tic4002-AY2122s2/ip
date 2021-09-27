@@ -7,7 +7,8 @@ import duke.storage.Storage;
 import java.util.ArrayList;
 
 /**
- * Class representative of List of Task with helper methods.
+ * Class representative of List of Task with helper methods. contains the task list e.g., it has operations to add/delete tasks in the list.
+ * Refer to More OOP.
  */
 public class TaskList {
     private ArrayList<Task> tasks;

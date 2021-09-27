@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Primarily for printing messages to console, also passes input to Parser.
+ * Primarily for printing messages to console, also passes input to Parser. Refer to A-MoreOOP
  */
 public class Ui {
     private Scanner input;

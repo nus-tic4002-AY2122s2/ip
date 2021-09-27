@@ -11,6 +11,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
+/**
+ * deals with loading tasks from the file and saving tasks in the file. Refer to More OOP.
+ */
 public class Storage {
     private String path_str;
 
