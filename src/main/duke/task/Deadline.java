@@ -4,6 +4,10 @@ import duke.exception.DukeMissingDescException;
 
 import java.time.LocalDateTime;
 
+/**
+ * Deadline can understand dates and times.
+ * Refer to Level-8
+ */
 public class Deadline extends Task {
     private LocalDateTime deadline;
     private String raw_deadline;
