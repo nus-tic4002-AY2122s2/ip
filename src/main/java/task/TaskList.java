@@ -6,6 +6,9 @@ import storage.Storage;
 
 import java.util.ArrayList;
 
+/**
+ * Class representative of List of Task with helper methods.
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 
@@ -26,6 +29,12 @@ public class TaskList {
         return list;
     }
 
+    /**
+     * Parses the string passed over from the UpdateCommand (Add) and adds into the list.
+     * @param s
+     * @return True if successfully added, else False.
+     * @throws DukeException
+     */
     public boolean add(String s) throws DukeException {
         Task t;
         boolean done = true;
