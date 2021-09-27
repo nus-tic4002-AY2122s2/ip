@@ -1,9 +1,9 @@
-package command;
+package duke.command;
 
-import exception.DukeException;
-import storage.Storage;
-import task.TaskList;
-import ui.Ui;
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Base abstract class for Commands to inherit.

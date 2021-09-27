@@ -1,6 +1,6 @@
-package task;
+package duke.task;
 
-import exception.DukeMissingDescException;
+import duke.exception.DukeMissingDescException;
 
 /**
  * Abstract Task class cannot be directly instantiated, only subclasses can.

@@ -1,8 +1,8 @@
-package command;
+package duke.command;
 
-import storage.Storage;
-import task.*;
-import ui.Ui;
+import duke.storage.Storage;
+import duke.task.*;
+import duke.ui.Ui;
 
 import java.time.LocalDateTime;
 

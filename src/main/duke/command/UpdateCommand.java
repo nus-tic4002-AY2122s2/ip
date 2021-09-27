@@ -1,10 +1,13 @@
-package command;
+package duke.command;
 
-import exception.DukeException;
-import exception.DukeUnknownException;
-import storage.Storage;
-import task.*;
-import ui.Ui;
+import duke.exception.DukeException;
+import duke.exception.DukeUnknownException;
+import duke.storage.Storage;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class UpdateCommand extends Command {
 

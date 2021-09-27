@@ -1,8 +1,8 @@
-package task;
+package duke.task;
 
-import exception.DukeException;
-import exception.DukeUnknownException;
-import storage.Storage;
+import duke.exception.DukeException;
+import duke.exception.DukeUnknownException;
+import duke.storage.Storage;
 
 import java.util.ArrayList;
 

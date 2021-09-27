@@ -1,6 +1,6 @@
-package task;
+package duke.task;
 
-import exception.DukeMissingDescException;
+import duke.exception.DukeMissingDescException;
 
 public class ToDo extends Task {
 

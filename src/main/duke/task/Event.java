@@ -1,6 +1,6 @@
-package task;
+package duke.task;
 
-import exception.DukeMissingDescException;
+import duke.exception.DukeMissingDescException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;

@@ -1,7 +1,7 @@
-package task;
+package duke.task;
 
-import command.*;
-import exception.*;
+import duke.command.*;
+import duke.exception.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -125,6 +125,7 @@ public class Parser {
         String firstStr = strings[0].strip().toLowerCase();
         switch (firstStr) {
             case "bye":
+            case "exit":
                 parsedCommand = new ExitCommand();
                 break;
             case "list":
