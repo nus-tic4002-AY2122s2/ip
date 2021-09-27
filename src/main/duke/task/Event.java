@@ -3,10 +3,10 @@ package duke.task;
 import duke.exception.DukeMissingDescException;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 /**
- * Task with specific date of occurrence.
+ * Task with specific date of occurrence, can understand dates and times.
+ * Refer to Level 8
  */
 public class Event extends Task {
     private LocalDateTime start_endTime;
