@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Storage {
@@ -34,7 +37,7 @@ public class Storage {
                 t.add(s.nextLine());
             }
         } catch (FileNotFoundException e) {
-
+            System.out.println(String.format("%s", e.getMessage()));
         }
     }
 
@@ -44,7 +47,13 @@ public class Storage {
      */
     public File writeToSaveFile(String s) {
         File f = new File(path_str);
+        Path p = f.toPath();
+
         try {
+            if(!Files.exists(p.getParent())){
+                //System.out.println(String.format("%s directory does not exist.", p.getParent().toAbsolutePath()));
+                p.getParent().toFile().mkdir();
+            }
             if (!f.exists()) {
                 f.createNewFile();
             }
@@ -52,7 +61,7 @@ public class Storage {
             fw.write(s);
             fw.close();
         } catch (IOException e) {
-
+            System.out.println(String.format("%s", e.getMessage()));
         }
         return f;
     }
