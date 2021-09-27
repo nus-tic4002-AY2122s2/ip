@@ -27,8 +27,6 @@
 
 ## Usage
 
-### `Keyword` - Describe action
-
 `list`
 
 Expected outcome:
