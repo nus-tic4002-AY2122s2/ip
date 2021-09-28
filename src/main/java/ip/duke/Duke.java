@@ -24,6 +24,8 @@ import java.util.Scanner;
  */
 public class Duke {
     private static LinkedHashSet<Task> tasks;
+    private final static String DATA_PATH = "data/tasks.txt";
+    private final static String BACKUP_PATH = "data/backup.txt";
 
     public Duke(String filePath) {
         Storage storage = new Storage(filePath);
@@ -32,7 +34,7 @@ public class Duke {
         } catch (DukeException e) {
             Ui.showLoadingError(e);
             tasks = TaskList.getList();
-            storage.setFilePath("data/backup.txt");
+            storage.setFilePath(BACKUP_PATH);
         }
     }
 
@@ -72,8 +74,8 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        File f = new File("data/tasks.txt");
-        File f_backup = new File("data/backup.txt");
+        File f = new File(DATA_PATH);
+        File f_backup = new File(BACKUP_PATH);
 
         if(!f.exists() && !f_backup.exists()){
             f.getParentFile().mkdirs();
@@ -86,6 +88,6 @@ public class Duke {
             }
         }
 
-        new Duke("data/tasks.txt").run();
+        new Duke(DATA_PATH).run();
     }
 }
