@@ -4,14 +4,15 @@
 An Online CLI-type App for users who can type fast on their keyboards!
 ### Feature-An easy to use Task Manager
 
-A callable online store and point-of-contact for a single user to register or enter in the tasks that he/she often does.
+A callable online store and point-of-contact for a single user to register in the tasks that he/she often does.
 - E.g. todo, deadlines and events tasks.
-### Feature-ChatBot Service
+### Feature A Lively ChatBot Service
 
-User will be able to chat with LisGenie the funny ChatBot who helps in the tasks parsing, creation, storage and admin.
-- Admin tasks include IO errors recovery via backup file, done, delete, find, list, bye commands.
+User will be able to chat with LisGenie, the funny ChatBot, who helps in the tasks parsing, creation, storage and admin.
+- Admin tasks include IO errors recovery via backup file, `done`, `delete`, `find`, `list`, `bye` commands, among others.
+- User will be advised if the database is full, to delete some old records before use for optimal performance.
 
-## Usage (all commands in lowercase) 
+## Usage <all commands in lowercase> 
 
 ### `bye` - Action Describe 
 
