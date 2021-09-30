@@ -1,6 +1,7 @@
-[T][✓] 12345
-[T][✓] love and peace
-[T][✓] 3
-[T][✓] love
-[E][ ] new event (at: 01.Jan.22 09:00 - 15:00)
-[D][✓] dl (by: 01.Feb.22 10:00)
+[T][✓] world peace
+[T][✓] seek love
+[T][✓] end pandemic
+[T][✓] try stream map filter
+[E][ ] meeting with board (at: 01.Jan.22 09:00 - 15:30)
+[D][✓] submit homework (by: 27.Sep.21 23:59)
+[D][ ] review resolution (by: 01.Feb.22 09:45)

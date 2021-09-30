@@ -7,20 +7,22 @@
 
 You may spell your wish 🧞
 
-	added:	task 1
-	Now 1 tasks in Total
-	added:	task b
-	Now 2 tasks in Total
-	added:	task c
-	Now 3 tasks in Total
-	added:	task 4
-	Now 4 tasks in Total
-	added:	task e
-	Now 5 tasks in Total
+	added: [T][ ] task 1
+	Task completion status: 0 / 1
+	added: [T][ ] task b
+	Task completion status: 0 / 2
+	added: [T][ ] task c
+	Task completion status: 0 / 3
+	added: [T][ ] task 4
+	Task completion status: 0 / 4
+	added: [T][ ] task e
+	Task completion status: 0 / 5
 	Marked below as DONE:
 	[T][✓] task b
+	Task completion status: 1 / 5
 	Marked below as DONE:
 	[T][✓] task 4
+	Task completion status: 2 / 5
 	1. [T][ ] task 1
 	2. [T][✓] task b
 	3. [T][ ] task c

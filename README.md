@@ -1,38 +1,18 @@
-# Set up
-Current folder set up as below, shows java files and class files location:
-```
-├── out
-│   └── production
-│       └── ip
-│           ├── duke.Duke.class
-│           └── duke
-│               ├── storage
-│               │   └── tempTaskList.class
-│               └── ui
-│                   └── Message.class
-├── src
-│   └── main
-│       └── java
-│           ├── duke.Duke.java
-│           └── duke
-│               ├── storage
-│               │   └── tempTaskList.java
-│               └── ui
-│                   └── Message.java
-```
+# Run the program 
 
-`tree` command can be used to reveal above folder structure. 
+## Get jar file
+To run the program in terminal, download the `ip.jar` under [release](https://github.com/l-shihao/ip/releases/tag/A-Release) page then run: 
+```
+% java -jar ip.jar 
+```
+to start the program. 
 
-To compile the java files, run below command (change once new packages created): 
-```
-% javac -d out/production/ip src/main/java/duke/Duke.java src/main/java/duke/ui/* src/main/java/duke/storage/* 
-```
 
-To run the program in terminal. `cd` to project root dir, then run below: 
+## Run text-ui-test
+To use the `text-ui-test`, `cd` to `text-ui-test` directory and run: 
 ```
-% java -cp out/production/ip/ duke.Duke
+% bash runtest.sh
 ```
-
 
 ----
 # duke.Duke project template

@@ -130,6 +130,6 @@ Example: `find map`
 
 Expected outcome:
 ```
-	1. [T][✓] try stream map filter
+ 1. [T][✓] try stream map filter
 ```
 
