@@ -100,11 +100,7 @@ public class TaskList {
     }
 
     private static Task createTask(String str) throws DukeException {
-        String[] text = str.trim().split("#");
-
-        for (int i = 0; i < text.length; i++) {
-            text[i] = text[i].trim();
-        }
+        String[] text = str.trim().split(" # ");
 
         Task t;
 
