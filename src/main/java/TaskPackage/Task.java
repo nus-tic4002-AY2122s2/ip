@@ -8,5 +8,4 @@ public class Task {
         this.status = status;
         this.desc = desc;
     }
-
 }

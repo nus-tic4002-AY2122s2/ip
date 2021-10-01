@@ -30,10 +30,10 @@ public class Event extends Tasks {
             int timeIndex = atDate.indexOf(" ");
 
             LocalDate d1 = LocalDate.parse(atDate);
-
             atDate = d1.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
 
             return "[E]" + description +  "(at:" + atDate + ")" ;
+
         } catch (DateTimeParseException e) {
 //            Ui.dateTimeInvalidFormat();
         }

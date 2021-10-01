@@ -23,120 +23,109 @@ public class Duke {
         ArrayList<Task> addedList = new ArrayList<>();
 
         Scanner input = new Scanner(System.in);
-        Tasks tc= new Tasks("");
+        Tasks tasks= new Tasks("");
 
         while (!echo.equals("bye")) {
             echo = input.nextLine();
+            String[] command = new String[100];
+            command = echo.split(" ");
 
-//            if(!echo.trim().equals("bye") && !echo.trim().equals("list") && !echo.contains("done")){
-//                TaskPackage.Tasks tasks = new TaskPackage.Tasks(false, echo);
-//                addedList.add(tasks);
-//                System.out.println("-------------------------------");
-//                System.out.println("    " + echo);
-//                System.out.println("-------------------------------");
-//            }
-            if(echo.equals("list")){
-                int index = 0;
-                tc.getList(addedList);
+            switch (command[0]){
+                case("list"):
+                    int index = 0;
+                    tasks.getList(addedList);
+                    break;
 
-            }
-            if(echo.contains("done")){
-                String doneIndex = echo.substring(5);
-                tc.addDone(Integer.parseInt(doneIndex));
-                System.out.println("-------------------------------");
-                System.out.println("    "+ "Nice! I've marked this task as done:");
-                System.out.println("    "+ tc.markAsDone(Integer.parseInt(doneIndex)));
-                System.out.println("-------------------------------");
-            }
+                case("done"):
+                    String doneIndex = echo.substring(5);
+                    tasks.addDone(Integer.parseInt(doneIndex));
+                    System.out.println("-------------------------------");
+                    System.out.println("    "+ "Nice! I've marked this task as done:");
+                    System.out.println("    "+ tasks.markAsDone(Integer.parseInt(doneIndex)));
+                    System.out.println("-------------------------------");
+                    break;
 
-            if(echo.contains("todo")){
-                String todoIndex = echo.substring(5);
-//                TaskPackage.Tasks tasks = new TaskPackage.Tasks(false, echo.substring(5));
-//                addedList.add(tasks);
+                case("todo"):
+                    String todoIndex = echo.substring(5);
 
-                Todo todo = new Todo(echo.substring(5));
-                Task task = new Task(false, todo.toString());
+                    Todo todo = new Todo(echo.substring(5));
+                    Task task = new Task(false, todo.toString());
 
-                addedList.add(task);
+                    addedList.add(task);
 
-                System.out.println("-------------------------------");
-                System.out.println("    " + "Got it. I've added this task:");
-                System.out.println("    " + echo.substring(5) );
-                System.out.println("-------------------------------");
-                System.out.println("    " + "Now you have " + tc.getNumOfList() + " tasks in the list.");
+                    System.out.println("-------------------------------");
+                    System.out.println("    " + "Got it. I've added this task:");
+                    System.out.println("    " + echo.substring(5) );
+                    System.out.println("-------------------------------");
+                    System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
+                    break;
 
-            }
+                case("event"):
+                    int task_stringIndex_After_taskWord = 0;
+                    String task_words ="", by_words = " ";
 
-            if(echo.contains("event")){
+                    task_stringIndex_After_taskWord = echo.indexOf(" ");
+                    int by_string = echo.indexOf("/");
+                    by_words = echo.substring(by_string + 3);
 
-                int task_stringIndex_After_taskWord = 0;
-                String task_words ="", by_words = " ";
+                    if (echo.contains("/")) {
+                        by_string = echo.indexOf("/");
+                        task_words = echo.substring(task_stringIndex_After_taskWord, by_string);
+                    }
+                    else if(echo.contains("bye")){
+                    }
+                    else{
+                        task_words = echo.substring(task_stringIndex_After_taskWord);
+                    }
 
-                task_stringIndex_After_taskWord = echo.indexOf(" ");
-                int by_string = echo.indexOf("/");
-                by_words = echo.substring(by_string + 3);
+                    Event event = new Event(task_words, by_words );
+                    task = new Task(false, event.toString());
 
-                if (echo.contains("/")) {
+                    addedList.add(task);
+
+                    System.out.println("-------------------------------");
+                    System.out.println("    " + "Got it. I've added this task:");
+                    System.out.println("    " + echo.substring(6) );
+                    System.out.println("-------------------------------");
+                    System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
+                    break;
+
+                case("deadline"):
+//                    int task_stringIndex_After_taskWord = 0;
+                    task_words =""; by_words = " ";
+
+                    task_stringIndex_After_taskWord = echo.indexOf(" ");
                     by_string = echo.indexOf("/");
-                    task_words = echo.substring(task_stringIndex_After_taskWord, by_string);
-                }
-                else if(echo.contains("bye")){
-                }
-                else{
-                    task_words = echo.substring(task_stringIndex_After_taskWord);
-                }
+                    by_words = echo.substring(by_string + 3);
 
+                    if (echo.contains("/")) {
+                        by_string = echo.indexOf("/");
+                        task_words = echo.substring(task_stringIndex_After_taskWord, by_string);
+                    }
+                    else if(echo.contains("bye")){
+                    }
+                    else{
+                        task_words = echo.substring(task_stringIndex_After_taskWord);
+                    }
 
-                Event event = new Event(task_words, by_words );
-                Task task = new Task(false, event.toString());
+                    Deadline deadline = new Deadline(task_words, by_words );
+                    task = new Task(false, deadline.toString());
 
-                addedList.add(task);
+                    addedList.add(task);
 
-                System.out.println("-------------------------------");
-                System.out.println("    " + "Got it. I've added this task:");
-                System.out.println("    " + echo.substring(6) );
-                System.out.println("-------------------------------");
-                System.out.println("    " + "Now you have " + tc.getNumOfList() + " tasks in the list.");
+                    System.out.println("-------------------------------");
+                    System.out.println("    " + "Got it. I've added this task:");
+                    System.out.println("    " + echo.substring(9) );
+                    System.out.println("-------------------------------");
+                    System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
+                    break;
 
+                default:
             }
-
-            if(echo.contains("deadline")){
-
-                int task_stringIndex_After_taskWord = 0;
-                String task_words ="", by_words = " ";
-
-                task_stringIndex_After_taskWord = echo.indexOf(" ");
-                int by_string = echo.indexOf("/");
-                by_words = echo.substring(by_string + 3);
-
-                if (echo.contains("/")) {
-                    by_string = echo.indexOf("/");
-                    task_words = echo.substring(task_stringIndex_After_taskWord, by_string);
-                }
-                else if(echo.contains("bye")){
-                }
-                else{
-                    task_words = echo.substring(task_stringIndex_After_taskWord);
-                }
-
-
-                Deadline deadline = new Deadline(task_words, by_words );
-                Task task = new Task(false, deadline.toString());
-
-                addedList.add(task);
-
-                System.out.println("-------------------------------");
-                System.out.println("    " + "Got it. I've added this task:");
-                System.out.println("    " + echo.substring(9) );
-                System.out.println("-------------------------------");
-                System.out.println("    " + "Now you have " + tc.getNumOfList() + " tasks in the list.");
-            }
-
         }
 
         System.out.println("-------------------------------");
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println("-------------------------------");
     }
-
 }

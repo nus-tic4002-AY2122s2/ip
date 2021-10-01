@@ -31,14 +31,11 @@ public class Deadline extends Tasks {
             String byDate = by.trim();
             LocalDate d1 = LocalDate.parse(byDate);
             byDate = d1.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-//            return "[D]" + super.toString() + "(by:" + byDate + ")";
               return "[D]" + description+  "(by:" + by  + ")" ;
 
         } catch (DateTimeParseException e) {
 //            Ui.dateTimeInvalidFormat();
         }
-//        return "[D]" + super.toString() +  "(by:" + by  + ")" ;
         return "[D]" + description +  "(by:" + by  + ")" ;
-
     }
 }

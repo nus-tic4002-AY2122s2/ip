@@ -13,7 +13,6 @@ public class Tasks {
         this.isDone = false;
     }
 
-
     /***
      *
      * @return done return tick else return X symbols
