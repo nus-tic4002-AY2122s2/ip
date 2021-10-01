@@ -25,6 +25,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 2. Download the latest airrec.jar from here.
 3. Copy the file to the folder you want to use as the home folder for your Air Record.
 4. Double-click the file to start the app. The GUI will greet you with:
+
 ```
     
 Hi I’m AIR REC, I can help you save all the flight details!
@@ -34,7 +35,7 @@ How can I assist you today?”
  5. Type the command in the command box and press Enter to execute it. e.g. typing list and pressing Enter will display all task that you have saved so far in the window.
 Some example commands you can try:
 
-	1. add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500: Add a trip departing from Australia to Singapore on 10 Jan 2021 12pm with a price of $500
+	1. add /from Australia /to Singapore /date 10 Jan 2021 12:00 /price 500: Add a trip departing from Australia to Singapore on 10 Jan 2021 12pm with a price of $500
 
 	1. show all: List out all flight details
 
@@ -63,7 +64,7 @@ Format: [add] [/from] [depart details] [/to] [destination] [/date] [date & time 
 
 Example: 
 
-add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500
+add /from Australia /to Singapore /date 10 Jan 2021 12:00 /price 500
 
 
 ### Showing all flights: show all
