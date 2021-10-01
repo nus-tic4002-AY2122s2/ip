@@ -21,8 +21,8 @@ import java.util.LinkedHashSet;
  * @since 2021-09-10
  */
 public class TaskList {
-    // Collection preserves input sequence, gives constant time for update/delete ops
-    private final static LinkedHashSet<Task> TASKS = new LinkedHashSet<>(125, (float) 0.8);
+    // Collection preserves input sequence, gives constant time for add, update & remove operations
+    private final static LinkedHashSet<Task> TASKS = new LinkedHashSet<>(105, (float) 1.0);
 
     public static int listSize(){
         return TASKS.size();

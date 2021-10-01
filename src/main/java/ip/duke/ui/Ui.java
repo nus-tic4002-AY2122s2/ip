@@ -85,7 +85,7 @@ public class Ui {
 
         int counter = 1;
         for (Task item : TaskList.getList()) {
-            if (item != null && item.getDescription().toLowerCase().contains(word.toLowerCase())) {
+            if (item != null && item.toString().toLowerCase().contains(word.toLowerCase())) {
                 System.out.printf("%12d.[%c][%s] %s%n", counter++, item.getId(), item.getStatusIcon(), item);
             }
         }
