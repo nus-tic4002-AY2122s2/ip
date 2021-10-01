@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Duke {
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the AirRec application.
      */
     public static final String errorUnknown = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
 
@@ -18,27 +18,32 @@ public class Duke {
         System.out.println("I can help you save all the flight details!");
         System.out.println("How can I assist you today?");
 
-        //Scanner in = new Scanner(System.in);
-        //System.out.println("Hello " + in.nextLine());
-
-        while (echo()) {
-        }
+        run();
     }
 
 
-    public static boolean echo() {
+    public static void run() {
 
+        FlightList flightList = new FlightList();
         String userInput;
-        Scanner scan = new Scanner(System.in);
-        userInput = scan.nextLine();
+        boolean online = true;
 
-        switch (userInput) {
-        case "bye":
-            System.out.println("Bye. Your tasks has been saved.\n Hope to see you again soon!");
-            return false;
-        default:
-            System.out.println(errorUnknown);
-            return false;
+        while (online) {
+            Scanner scan = new Scanner(System.in);
+            userInput = scan.nextLine().trim();
+            String command = new Parser().parseInput(userInput);
+            switch (command) {
+                case "bye":
+                    System.out.println("Bye. Your flgihts have been recorded.\n Hope to see you again soon!");
+                    online = false;
+                    break;
+                case "add":
+                    flightList.addFlight(userInput);
+                    System.out.println("Your flight has been added.\n" + "You have " + flightList.getSize() + " flights in your record");
+                    break;
+                default:
+                    System.out.println(errorUnknown);
+            }
         }
     }
 }
