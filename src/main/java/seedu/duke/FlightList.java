@@ -46,5 +46,14 @@ public class FlightList {
         list.add(new Flight(message.substring(3)));
     }
 
+    /**
+     * Air Rec deletes a Flight.
+     * version 1.0 will be deleting the flight by index.
+     */
+    public void deleteFlight(String message){
+        int Index = new Parser().parseIntValue(message);
+        list.remove(Index);
+    }
+
 
 }

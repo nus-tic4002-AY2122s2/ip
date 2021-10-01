@@ -23,7 +23,15 @@ public class Parser {
         if (userInput.contains("add")) {
             command = "add";
         }
+        if (userInput.contains("show all") || userInput.contains("show All")){
+            command = "show all";
+        }
         return command;
+    }
+
+    // To parse Integer value for deletion
+    public Integer parseIntValue(String userInput){
+        return Integer.parseInt(userInput.substring(7));
     }
 
 }
