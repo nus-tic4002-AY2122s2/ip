@@ -34,12 +34,22 @@ public class Duke {
             String command = new Parser().parseInput(userInput);
             switch (command) {
                 case "bye":
-                    System.out.println("Bye. Your flgihts have been recorded.\n Hope to see you again soon!");
+                    System.out.println("Bye. Your flights have been recorded.\n Hope to see you again soon!");
                     online = false;
                     break;
                 case "add":
                     flightList.addFlight(userInput);
                     System.out.println("Your flight has been added.\n" + "You have " + flightList.getSize() + " flights in your record");
+                    break;
+                case "show all":
+
+                    for (int i = 0; i < flightList.getSize(); i++){
+                        System.out.println(flightList.getList().get(i).flightDetails);
+                    }
+
+                    break;
+                case "delete":
+                    flightList.deleteFlight(userInput);
                     break;
                 default:
                     System.out.println(errorUnknown);
