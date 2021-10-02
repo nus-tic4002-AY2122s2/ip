@@ -12,7 +12,7 @@ class DukeTest {
     }
 
     @Test
-    public void flightCreationTask(){
+    public void flightCreationTask() {
         Flight testFlight = new Flight("Singapore", "Australia","2021-12-31 0800", 500);
     }
 }

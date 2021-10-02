@@ -11,10 +11,11 @@ public class Flight {
     protected Integer price; // Price of the flight
     protected String flightDetails; // flight details in string type for version 1.0
 
-    public Flight (String details){
+    public Flight(String details) {
         this.flightDetails = details;
     }
-    public Flight(String from, String to, String dateAndTimeDetails, Integer price){
+
+    public Flight(String from, String to, String dateAndTimeDetails, Integer price) {
         this.from = from;
         this.to = to;
         this.price = price;
@@ -22,9 +23,10 @@ public class Flight {
         this.stringDateAndTime = dateAndTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"));
     }
 
-    private LocalDateTime processDateAndTime(String dateAndTimeDetails){
+    private LocalDateTime processDateAndTime(String dateAndTimeDetails) {
         String changedDate;
-        int julianDate, day;
+        int julianDate;
+        int day;
         DateTimeFormatter formatter;
         LocalDateTime formattedDate = null;
         dateAndTimeDetails = dateAndTimeDetails.trim();
@@ -49,6 +51,7 @@ public class Flight {
         changedDate = formattedDate.toString();
         return LocalDateTime.parse(changedDate);
     }
+
     private int getDaysToAdd(String details) {
         details = details.toLowerCase();
         if (details.contains("mon")) {
