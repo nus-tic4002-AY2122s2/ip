@@ -41,9 +41,9 @@ Some example commands you can try:
 
 	1. show upcoming: List out the flight that is the first index of the list
 
-	1. delete3 : Deletes the 3rd flight shown in the current list.
+	1. delete 3 : Deletes the 3rd flight shown in the current list.
 
-	1. exit : Exits the application.
+	1. exit : Exit the application.
 
 6. Duke has auto-save and auto-load function. The list is being save as a text file named "Duke.txt" which is auto created and overwritten in the root folder.
 
