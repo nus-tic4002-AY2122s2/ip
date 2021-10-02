@@ -4,11 +4,11 @@ Air Rec is a desktop app for managing flight records, optimized for use via a Co
 
 1. Quick start
 1. Features
-	1. Adding a flight: add
-	1. Showing all flights: show all
-	1. Showing upcoming flight: show upcoming
-	1. Deleting a flight: delete
-	1. Exiting the program : exit
+	1. Adding a flight: `add`
+	1. Showing all flights: `show all`
+	1. Showing upcoming flight: `show upcoming`
+	1. Deleting a flight: `delete`
+	1. Exiting the program : `exit`
 
 1. FAQ
 1. Command summary
@@ -67,7 +67,7 @@ Example:
 add /from Australia /to Singapore /date 10 Jan 2021 12:00 /price 500
 
 
-### Showing all flights: show all
+### Showing all flights: `show all`
 
 List out all flight trip
 
@@ -78,7 +78,7 @@ Example:
 show all
 
 
-### Showing upcoming flight: show upcoming
+### Showing upcoming flight: `show upcoming`
 
 List out the first index of the flight in the list
 
@@ -89,7 +89,7 @@ Example:
 show upcoming
 
 
-### Deleting a flight: delete
+### Deleting a flight: `delete`
 
 Deletes a trip from the list
 
@@ -99,7 +99,7 @@ Example:
 
 delete 3
 
-### Exiting the program : exit
+### Exiting the program : `exit`
 
 Exits the application.
 
