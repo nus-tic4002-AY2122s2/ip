@@ -1,9 +1,8 @@
 # About us
 
-Display | Name | Github Profile | Portfolio 
---------|:----:|:--------------:|:---------:
-![](https://via.placeholder.com/100.png?text=Photo) | John Doe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Joe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Ron John | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | John Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
+Display | Name | Github Profile 
+--------|:----:|:--------------:
+![](https://via.placeholder.com/100.png?text=Photo) | Khor Kee Yong | [Github](https://github.com/KaydenKhor) 
+![](https://via.placeholder.com/100.png?text=Photo) | Low Yan Shuang | [Github](https://github.com/lowyanshuang) 
+![](https://via.placeholder.com/100.png?text=Photo) | Joseph Guo Yang | [Github](https://github.com/badfr0g) 
+
