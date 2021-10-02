@@ -70,14 +70,14 @@ public class TaskList {
 
                 case "E":
                     try {
-                        int indexOfDash = 20;
+                        int indexOfTo = parsedFile.get(i)[3].indexOf(" to ");
                         String start;
                         String end;
-                        end = parsedFile.get(i)[3].substring(indexOfDash);
-                        start = parsedFile.get(i)[3].substring(0, indexOfDash);
+                        end = parsedFile.get(i)[3].substring(indexOfTo);
+                        start = parsedFile.get(i)[3].substring(0, indexOfTo);
                         start = (LocalDateTime.parse(start, DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
 
-                        this.tasks.add(new Event(parsedFile.get(i)[2], "/at " + start + end));
+                        this.tasks.add(new Event(parsedFile.get(i)[2], start + end));
 
                     } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                         System.out.println("Timing for added event invalid," + " using the time now");
