@@ -25,7 +25,7 @@ import java.util.Scanner;
 public class Duke {
     private static LinkedHashSet<Task> tasks;
     private final static String DATA_PATH = "data/tasks.txt";
-    private final static String BACKUP_PATH = "data/backup.txt";
+    private final static String BACKUP_PATH = "backup_db/backup.txt";
 
     public Duke(String filePath) {
         Storage storage = new Storage(filePath);
