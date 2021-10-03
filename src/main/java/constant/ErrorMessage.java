@@ -15,5 +15,5 @@ public class ErrorMessage {
     public static final String INVALID_DATA_FORMAT = "OOPS!!! I'm sorry, data from local file is in wrong format";
     public static final String ERROR_WRITING_FILE = "OOPS!!! I'm sorry, error occurred while saving data to file";
     public static final String ERROR_LOADING_FILE = "OOPS!!! I'm sorry, error occurred while loading data from file.";
-    public static final String ERROR_FINDING_FILE = "OOPS!!! I'm sorry, cannot find existing data file.";
+    public static final String ERROR_FINDING_FILE = "Setting up new storage for you.";
 }

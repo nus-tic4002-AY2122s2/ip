@@ -24,33 +24,33 @@ public class Duke {
     }
 
     public void run() {
-        try {
-            this.loadTasks();
-            this.ui.welcome();
-            Scanner in = new Scanner(System.in);
-            boolean isExit = false;
+        this.loadTasks();
+        this.ui.welcome();
+        Scanner in = new Scanner(System.in);
+        boolean isExit = false;
 
-            while (!isExit) {
-                try {
-                    String userCommand = in.nextLine().trim();
-                    Command command = new CommandParser().parse(userCommand);
-                    command.execute(this.storage, this.ui, this.tasks);
-                    isExit = command.getIsExit();
-                } catch (Exception e) {
-                    this.ui.print("Error inner: " + e.getMessage());
-                }
+        while (!isExit) {
+            try {
+                String userCommand = in.nextLine().trim();
+                Command command = new CommandParser().parse(userCommand);
+                command.execute(this.storage, this.ui, this.tasks);
+                isExit = command.getIsExit();
+            } catch (Exception e) {
+                this.ui.print("Error: " + e.getMessage());
             }
-        } catch (ErrorHandler e) {
-            this.ui.print("Error: " + e.getMessage());
         }
     }
 
-    private void loadTasks() throws ErrorHandler {
-        String[] data = this.storage.loadData();
+    private void loadTasks()  {
+        try {
+            String[] data = this.storage.loadData();
 
-        for (String line : data) {
-            Command command = new DataParser().parse(line);
-            command.execute(this.storage, this.ui, this.tasks);
+            for (String line : data) {
+                Command command = new DataParser().parse(line);
+                command.execute(this.storage, this.ui, this.tasks);
+            }
+        } catch (ErrorHandler e) {
+            this.ui.print(e.getMessage());
         }
     }
 }
