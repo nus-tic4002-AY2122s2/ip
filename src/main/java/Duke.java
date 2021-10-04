@@ -41,23 +41,23 @@ public class Duke  {
                     break;
 
                 case("done"):
-//                    try{
-//                        if(command[1]!=""){
+                    try{
+                        if(command[1]!=""){
                             String doneIndex = echo.substring(5);
                             tasks.addDone(Integer.parseInt(doneIndex));
                             System.out.println("-------------------------------");
                             System.out.println("    "+ "Nice! I've marked this task as done:");
                             System.out.println("    "+ tasks.markAsDone(Integer.parseInt(doneIndex)));
                             System.out.println("-------------------------------");
-//                        }
-//                    } catch (IndexOutOfBoundsException e){
-//                        System.out.println("☹ OOPS!!! The number of a done cannot be empty.");
-//                    }
+                        }
+                    } catch (IndexOutOfBoundsException e){
+                        System.out.println("☹ OOPS!!! The number of a done cannot be empty.");
+                    }
                     break;
 
                 case("todo"):
-//                    try{
-//                        if(command[1]!=""){
+                    try{
+                        if(command[1]!=""){
                             String todoIndex = echo.substring(5);
 
                             Todo todo = new Todo(echo.substring(5));
@@ -71,15 +71,15 @@ public class Duke  {
                             System.out.println("-------------------------------");
                             System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
 
-//                        }
-//                    } catch (ArrayIndexOutOfBoundsException e){
-//                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
-//                    }
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e){
+                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
                     break;
 
                 case("event"):
-//                    try {
-//                        if (command[1] != "") {
+                    try {
+                        if (command[1] != "") {
                             int task_stringIndex_After_taskWord = 0;
                             String task_words ="", by_words = " ";
 
@@ -107,15 +107,15 @@ public class Duke  {
                             System.out.println("    " + echo.substring(6) );
                             System.out.println("-------------------------------");
                             System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
-//                        }
-//                    } catch (IndexOutOfBoundsException e) {
-//                        System.out.println("☹ OOPS!!! The event description cannot be empty.");
-//                    }
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("☹ OOPS!!! The event description cannot be empty.");
+                    }
                     break;
 
                 case("deadline"):
-//                    try {
-//                        if (command[1] != "") {
+                    try {
+                        if (command[1] != "") {
                             //                    int task_stringIndex_After_taskWord = 0;
                             String task_words ="";
                             String by_words = " ";
@@ -144,14 +144,13 @@ public class Duke  {
                             System.out.println("    " + echo.substring(9) );
                             System.out.println("-------------------------------");
                             System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
-//                        }
-//                    } catch (IndexOutOfBoundsException e) {
-//                        System.out.println("☹ OOPS!!! The deadline description cannot be empty.");
-//                    }
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("☹ OOPS!!! The deadline description cannot be empty.");
+                    }
                     break;
 
                 default:
-
             }
         }
 
