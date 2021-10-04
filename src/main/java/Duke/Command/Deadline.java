@@ -1,6 +1,6 @@
-package Task;
+package Duke.Command;
 
-import TaskPackage.Tasks;
+import Duke.Task.Tasks;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

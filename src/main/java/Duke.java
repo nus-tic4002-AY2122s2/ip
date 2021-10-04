@@ -1,13 +1,15 @@
-import TaskPackage.Task;
-import TaskPackage.Tasks;
-import Task.*;
+import Duke.Command.Deadline;
+import Duke.Command.Event;
+import Duke.Command.Todo;
+import Duke.Task.Task;
+import Duke.Task.Tasks;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Duke {
-    public static void main(String[] args) {
+public class Duke  {
+    public static void main(String[] args){
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -26,6 +28,7 @@ public class Duke {
         Tasks tasks= new Tasks("");
 
         while (!echo.equals("bye")) {
+
             echo = input.nextLine();
             String[] command = new String[100];
             command = echo.split(" ");
@@ -46,18 +49,25 @@ public class Duke {
                     break;
 
                 case("todo"):
-                    String todoIndex = echo.substring(5);
+                    try{
+                        if(command[1]!=""){
+                            String todoIndex = echo.substring(5);
 
-                    Todo todo = new Todo(echo.substring(5));
-                    Task task = new Task(false, todo.toString());
+                            Todo todo = new Todo(echo.substring(5));
+                            Task task = new Task(false, todo.toString());
 
-                    addedList.add(task);
+                            addedList.add(task);
 
-                    System.out.println("-------------------------------");
-                    System.out.println("    " + "Got it. I've added this task:");
-                    System.out.println("    " + echo.substring(5) );
-                    System.out.println("-------------------------------");
-                    System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
+                            System.out.println("-------------------------------");
+                            System.out.println("    " + "Got it. I've added this task:");
+                            System.out.println("    " + echo.substring(5) );
+                            System.out.println("-------------------------------");
+                            System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
+
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e){
+                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
                     break;
 
                 case("event"):
@@ -79,7 +89,7 @@ public class Duke {
                     }
 
                     Event event = new Event(task_words, by_words );
-                    task = new Task(false, event.toString());
+                    Task task = new Task(false, event.toString());
 
                     addedList.add(task);
 
@@ -122,6 +132,7 @@ public class Duke {
 
                 default:
             }
+
         }
 
         System.out.println("-------------------------------");

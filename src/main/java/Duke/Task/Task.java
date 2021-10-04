@@ -1,4 +1,4 @@
-package TaskPackage;
+package Duke.Task;
 
 public class Task {
     Boolean status;

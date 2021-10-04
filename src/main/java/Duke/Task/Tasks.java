@@ -1,4 +1,4 @@
-package TaskPackage;
+package Duke.Task;
 
 import java.util.ArrayList;
 import java.util.Iterator;
