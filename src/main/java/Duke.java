@@ -40,12 +40,18 @@ public class Duke  {
                     break;
 
                 case("done"):
-                    String doneIndex = echo.substring(5);
-                    tasks.addDone(Integer.parseInt(doneIndex));
-                    System.out.println("-------------------------------");
-                    System.out.println("    "+ "Nice! I've marked this task as done:");
-                    System.out.println("    "+ tasks.markAsDone(Integer.parseInt(doneIndex)));
-                    System.out.println("-------------------------------");
+                    try{
+                        if(command[1]!=""){
+                            String doneIndex = echo.substring(5);
+                            tasks.addDone(Integer.parseInt(doneIndex));
+                            System.out.println("-------------------------------");
+                            System.out.println("    "+ "Nice! I've marked this task as done:");
+                            System.out.println("    "+ tasks.markAsDone(Integer.parseInt(doneIndex)));
+                            System.out.println("-------------------------------");
+                        }
+                    } catch (IndexOutOfBoundsException e){
+                        System.out.println("☹ OOPS!!! The number of a done cannot be empty.");
+                    }
                     break;
 
                 case("todo"):
@@ -71,68 +77,80 @@ public class Duke  {
                     break;
 
                 case("event"):
-                    int task_stringIndex_After_taskWord = 0;
-                    String task_words ="", by_words = " ";
+                    try {
+                        if (command[1] != "") {
+                            int task_stringIndex_After_taskWord = 0;
+                            String task_words ="", by_words = " ";
 
-                    task_stringIndex_After_taskWord = echo.indexOf(" ");
-                    int by_string = echo.indexOf("/");
-                    by_words = echo.substring(by_string + 3);
+                            task_stringIndex_After_taskWord = echo.indexOf(" ");
+                            int by_string = echo.indexOf("/");
+                            by_words = echo.substring(by_string + 3);
 
-                    if (echo.contains("/")) {
-                        by_string = echo.indexOf("/");
-                        task_words = echo.substring(task_stringIndex_After_taskWord, by_string);
+                            if (echo.contains("/")) {
+                                by_string = echo.indexOf("/");
+                                task_words = echo.substring(task_stringIndex_After_taskWord, by_string);
+                            }
+                            else if(echo.contains("bye")){
+                            }
+                            else{
+                                task_words = echo.substring(task_stringIndex_After_taskWord);
+                            }
+
+                            Event event = new Event(task_words, by_words );
+                            Task task = new Task(false, event.toString());
+
+                            addedList.add(task);
+
+                            System.out.println("-------------------------------");
+                            System.out.println("    " + "Got it. I've added this task:");
+                            System.out.println("    " + echo.substring(6) );
+                            System.out.println("-------------------------------");
+                            System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("☹ OOPS!!! The event description cannot be empty.");
                     }
-                    else if(echo.contains("bye")){
-                    }
-                    else{
-                        task_words = echo.substring(task_stringIndex_After_taskWord);
-                    }
-
-                    Event event = new Event(task_words, by_words );
-                    Task task = new Task(false, event.toString());
-
-                    addedList.add(task);
-
-                    System.out.println("-------------------------------");
-                    System.out.println("    " + "Got it. I've added this task:");
-                    System.out.println("    " + echo.substring(6) );
-                    System.out.println("-------------------------------");
-                    System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
                     break;
 
                 case("deadline"):
-//                    int task_stringIndex_After_taskWord = 0;
-                    task_words =""; by_words = " ";
+                    try {
+                        if (command[1] != "") {
+                            //                    int task_stringIndex_After_taskWord = 0;
+                            String task_words ="";
+                            String by_words = " ";
 
-                    task_stringIndex_After_taskWord = echo.indexOf(" ");
-                    by_string = echo.indexOf("/");
-                    by_words = echo.substring(by_string + 3);
+                            int task_stringIndex_After_taskWord = echo.indexOf(" ");
+                            int by_string = echo.indexOf("/");
+                            by_words = echo.substring(by_string + 3);
 
-                    if (echo.contains("/")) {
-                        by_string = echo.indexOf("/");
-                        task_words = echo.substring(task_stringIndex_After_taskWord, by_string);
+                            if (echo.contains("/")) {
+                                by_string = echo.indexOf("/");
+                                task_words = echo.substring(task_stringIndex_After_taskWord, by_string);
+                            }
+                            else if(echo.contains("bye")){
+                            }
+                            else{
+                                task_words = echo.substring(task_stringIndex_After_taskWord);
+                            }
+
+                            Deadline deadline = new Deadline(task_words, by_words );
+                            Task task = new Task(false, deadline.toString());
+
+                            addedList.add(task);
+
+                            System.out.println("-------------------------------");
+                            System.out.println("    " + "Got it. I've added this task:");
+                            System.out.println("    " + echo.substring(9) );
+                            System.out.println("-------------------------------");
+                            System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("☹ OOPS!!! The deadline description cannot be empty.");
                     }
-                    else if(echo.contains("bye")){
-                    }
-                    else{
-                        task_words = echo.substring(task_stringIndex_After_taskWord);
-                    }
-
-                    Deadline deadline = new Deadline(task_words, by_words );
-                    task = new Task(false, deadline.toString());
-
-                    addedList.add(task);
-
-                    System.out.println("-------------------------------");
-                    System.out.println("    " + "Got it. I've added this task:");
-                    System.out.println("    " + echo.substring(9) );
-                    System.out.println("-------------------------------");
-                    System.out.println("    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.");
                     break;
 
                 default:
             }
-
         }
 
         System.out.println("-------------------------------");
