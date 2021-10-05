@@ -6,7 +6,9 @@ public class FlightList {
 
     public ArrayList<Flight> list;
 
-    public FlightList(){ this.list = new ArrayList<Flight>();}
+    public FlightList() {
+        this.list = new ArrayList<Flight>();
+    }
 
     /**
      * Get the current list size.
@@ -42,7 +44,7 @@ public class FlightList {
      * @param message Details of the Flight.
      */
     public void addFlight(String message) {
-        int Index = message.indexOf('/');
+        int index = message.indexOf("/");
         list.add(new Flight(message.substring(3)));
     }
 
@@ -50,9 +52,9 @@ public class FlightList {
      * Air Rec deletes a Flight.
      * version 1.0 will be deleting the flight by index.
      */
-    public void deleteFlight(String message){
-        int Index = new Parser().parseIntValue(message);
-        list.remove(Index);
+    public void deleteFlight(String message) {
+        int index = new Parser().parseIntValue(message);
+        list.remove(index);
     }
 
 
