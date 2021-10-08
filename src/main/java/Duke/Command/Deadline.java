@@ -36,6 +36,6 @@ public class Deadline extends Tasks {
         } catch (DateTimeParseException e) {
 //            Ui.dateTimeInvalidFormat();
         }
-        return "[D]" + description +  "(by:" + by  + ")" ;
+        return "";
     }
 }
