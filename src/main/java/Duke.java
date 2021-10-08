@@ -30,11 +30,12 @@ public class Duke  {
         while (!echo.equals("bye")) {
 
             echo = input.nextLine();
-            String[] command = new String[100];
-            command = echo.split(" ");
+            String[] cli = new String[100];
+            cli = echo.split(" ");
+            String firstCommand = cli[0];
+            String secondCommand = cli[1];
 
-
-            switch (command[0]){
+            switch (firstCommand){
                 case("list"):
                     int index = 0;
                     tasks.getList(addedList);
@@ -42,7 +43,7 @@ public class Duke  {
 
                 case("done"):
                     try{
-                        if(command[1]!=""){
+                        if(secondCommand!=""){
                             String doneIndex = echo.substring(5);
                             tasks.addDone(Integer.parseInt(doneIndex));
                             System.out.println("-------------------------------");
@@ -57,7 +58,7 @@ public class Duke  {
 
                 case("todo"):
                     try{
-                        if(command[1]!=""){
+                        if(secondCommand!=""){
                             String todoIndex = echo.substring(5);
 
                             Todo todo = new Todo(echo.substring(5));
@@ -79,7 +80,7 @@ public class Duke  {
 
                 case("event"):
                     try {
-                        if (command[1] != "") {
+                        if (secondCommand != "") {
                             int task_stringIndex_After_taskWord = 0;
                             String task_words ="", by_words = " ";
 
@@ -115,7 +116,7 @@ public class Duke  {
 
                 case("deadline"):
                     try {
-                        if (command[1] != "") {
+                        if (secondCommand != "") {
                             //                    int task_stringIndex_After_taskWord = 0;
                             String task_words ="";
                             String by_words = " ";
