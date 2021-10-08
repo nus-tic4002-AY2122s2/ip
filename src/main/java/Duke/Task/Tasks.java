@@ -3,6 +3,10 @@ package Duke.Task;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+
 public class Tasks {
     protected String description;
     protected boolean isDone;
@@ -55,6 +59,8 @@ public class Tasks {
         }
         System.out.println("-------------------------------");
     }
+
+
 
     public int getNumOfList(){
         return this.addedList.toArray().length;
