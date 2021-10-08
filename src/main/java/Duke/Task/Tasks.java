@@ -51,13 +51,22 @@ public class Tasks {
         Iterator itr = addedList.iterator();
         while (itr.hasNext()){
             Task t = (Task)itr.next();
-                System.out.println("    " + ++index1 + ". " + "[" + (t.status ? "\u2713" : "\u2718") + "]" + t.desc);
+            System.out.println("    " + ++index1 + ". " + "[" + (t.status ? "\u2713" : "\u2718") + "]" + t.desc);
         }
         System.out.println("-------------------------------");
     }
 
     public int getNumOfList(){
         return this.addedList.toArray().length;
+    }
+
+    public void removeTaskList(int removeTaskNumber) {
+
+        System.out.println("-------------------------------");
+        System.out.println("Noted. I've removed this task: ");
+        System.out.println("    "+ "[" + (this.addedList.get(removeTaskNumber).status ? "\u2713" : "\u2718") + "]" + this.addedList.get(removeTaskNumber).desc);
+        System.out.println("-------------------------------");
+        this.addedList.remove(removeTaskNumber);
     }
 
 }
