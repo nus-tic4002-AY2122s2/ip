@@ -33,17 +33,15 @@ public class Duke  {
             String[] cli = new String[100];
             cli = echo.split(" ");
             String firstCommand = cli[0];
-            String secondCommand = cli[1];
 
             switch (firstCommand){
                 case("list"):
-                    int index = 0;
                     tasks.getList(addedList);
                     break;
 
                 case("done"):
                     try{
-                        if(secondCommand!=""){
+                        if(cli[1]!=""){
                             String doneIndex = echo.substring(5);
                             tasks.addDone(Integer.parseInt(doneIndex));
                             System.out.println("-------------------------------");
@@ -58,7 +56,7 @@ public class Duke  {
 
                 case("todo"):
                     try{
-                        if(secondCommand!=""){
+                        if(cli[1]!=""){
                             String todoIndex = echo.substring(5);
 
                             Todo todo = new Todo(echo.substring(5));
@@ -80,7 +78,7 @@ public class Duke  {
 
                 case("event"):
                     try {
-                        if (secondCommand != "") {
+                        if (cli[1] != "") {
                             int task_stringIndex_After_taskWord = 0;
                             String task_words ="", by_words = " ";
 
@@ -116,7 +114,7 @@ public class Duke  {
 
                 case("deadline"):
                     try {
-                        if (secondCommand != "") {
+                        if (cli[1] != "") {
                             //                    int task_stringIndex_After_taskWord = 0;
                             String task_words ="";
                             String by_words = " ";
@@ -151,10 +149,12 @@ public class Duke  {
                     }
                     break;
 
+                case("delete"):
+                    tasks.removeTaskList(Integer.valueOf(cli[1]));
+                    break;
 
                 default:
             }
-
         }
 
         System.out.println("-------------------------------");
