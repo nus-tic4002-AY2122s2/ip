@@ -14,10 +14,7 @@ public class Tasks {
         this.isDone = false;
     }
 
-    /***
-     *
-     * @return done return tick else return X symbols
-     */
+
     public String getStatusIcon() {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
