@@ -56,6 +56,4 @@ public class FlightList {
         int index = new Parser().parseIntValue(message);
         list.remove(index);
     }
-
-
 }
