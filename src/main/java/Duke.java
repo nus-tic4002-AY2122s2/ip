@@ -13,6 +13,14 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 
+/**
+ * The Duke program implements an application that
+ * a personal Assistant Chatbot that helps to keep track various of daily items.
+ *
+ * @author  jr-mojito
+ * @version 1.0
+ * @since   2021-08-16
+ */
 public class Duke  {
     public static void main(String[] args){
         String logo = " ____        _\n"

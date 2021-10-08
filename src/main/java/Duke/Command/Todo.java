@@ -11,6 +11,7 @@ public class Todo extends Tasks {
         isToDo = false;
     }
 
+
     public void setToDo() {
         this.isToDo = true;
     }
