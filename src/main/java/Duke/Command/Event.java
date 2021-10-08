@@ -23,6 +23,10 @@ public class Event extends Tasks {
         isEvent = false;
     }
 
+    /***
+     *
+     * @return Override the toString() method
+     */
     @Override
     public String toString(){
         try{

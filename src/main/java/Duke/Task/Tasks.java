@@ -14,7 +14,10 @@ public class Tasks {
         this.isDone = false;
     }
 
-
+    /***
+     *
+     * @return done return ✓ else return ✘ symbols
+     */
     public String getStatusIcon() {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
@@ -35,7 +38,6 @@ public class Tasks {
                 t.status = true;
             }
             ++index;
-            //            System.out.println("    " + ++index + ". " + "[" + t.status + "]" + t.desc);
         }
     }
 

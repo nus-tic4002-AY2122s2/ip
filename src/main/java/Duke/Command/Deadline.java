@@ -10,14 +10,21 @@ public class Deadline extends Tasks {
     protected boolean isDeadline;
     protected String by;
 
-
+    /***
+     *
+     * @param description for deadline task description
+     * @param by string enter by user after keyword /by
+     */
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
         isDeadline = false;
     }
 
-
+    /***
+     *
+     * @return Override the toString() method
+     */
     @Override
     public String toString() {
 
