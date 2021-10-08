@@ -16,6 +16,12 @@ public class Event extends Tasks {
     protected String atDate;
     SimpleDateFormat format1 = new SimpleDateFormat("dd-MMM-yy hh:mm a");
 
+
+    /**
+     *
+     * @param description for Event task description
+     * @param at string enter by user after keyword /at
+     */
     public Event(String description, String at) {
         super(description);
         this.at = at;
@@ -23,6 +29,10 @@ public class Event extends Tasks {
         isEvent = false;
     }
 
+    /***
+     *
+     * @return Override the toString() method
+     */
     @Override
     public String toString(){
         try{

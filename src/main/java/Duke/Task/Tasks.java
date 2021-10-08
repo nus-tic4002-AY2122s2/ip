@@ -9,24 +9,35 @@ public class Tasks {
     protected boolean isDone;
     protected ArrayList<Task> addedList = new ArrayList<>();
 
+
     public Tasks(String description) {
         this.description = description;
         this.isDone = false;
     }
 
     /***
-     *
-     * @return done return tick else return X symbols
+     * Get Status Icon when done or not done
+     * @return done return ✓ else return ✘ symbols
      */
     public String getStatusIcon() {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
+
+    /**
+     * Mark the certain task is done
+     * @param doneIndex the index to mark as done
+     * @return string with task's status and description
+     */
     public String markAsDone(int doneIndex) {
         this.isDone = true;
         return ("[" + getStatusIcon() + "]" + this.addedList.get(doneIndex).desc);
     }
 
+    /**
+     * Modify the status of task is done
+     * @param doneIndex the index to add done for the task
+     */
     public void addDone(int doneIndex) {
         int index = 0;
 
@@ -38,10 +49,14 @@ public class Tasks {
                 t.status = true;
             }
             ++index;
-            //            System.out.println("    " + ++index + ". " + "[" + t.status + "]" + t.desc);
         }
     }
 
+
+    /**
+     * Get all the task list from system, iterate the added list, print at the UI
+     * @param addedList input the latest added list
+     */
     public void getList(ArrayList<Task> addedList) {
         int index1 = 0;
 
@@ -57,10 +72,20 @@ public class Tasks {
         System.out.println("-------------------------------");
     }
 
+
+    /**
+     *
+     * @return the number of the list
+     */
     public int getNumOfList(){
         return this.addedList.toArray().length;
     }
 
+
+    /**
+     * Remove the certain task by removeTaskNumber
+     * @param removeTaskNumber
+     */
     public void removeTaskList(int removeTaskNumber) {
 
         System.out.println("-------------------------------");

@@ -11,10 +11,15 @@ public class Todo extends Tasks {
         isToDo = false;
     }
 
+
     public void setToDo() {
         this.isToDo = true;
     }
 
+    /***
+     *
+     * @return Override the toString() method
+     */
     @Override
     public String toString(){
         return "[T]" + description;
