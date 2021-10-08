@@ -33,6 +33,7 @@ public class Duke  {
             String[] command = new String[100];
             command = echo.split(" ");
 
+
             switch (command[0]){
                 case("list"):
                     int index = 0;
