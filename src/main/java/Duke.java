@@ -4,7 +4,12 @@ import Duke.Command.Todo;
 import Duke.Task.Task;
 import Duke.Task.Tasks;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 
@@ -151,6 +156,29 @@ public class Duke  {
 
                 case("delete"):
                     tasks.removeTaskList(Integer.valueOf(cli[1]));
+                    break;
+
+                case ("save"):
+                    try {
+                        FileWriter fw = new FileWriter("/Users/chunyg/TIC4001/ip/dukesave.txt");
+                        File f = new File("dukesave.txt");
+
+                        int index1 = 0;
+                        System.out.println("-------------------------------");
+                        Iterator itr = addedList.iterator();
+                        while (itr.hasNext()){
+                            Task t = (Task)itr.next();
+                            fw.write("  " + ++index1 +"[" + (t.status ?"\u2713": "\u2718") +"]" + t.desc + System.lineSeparator());
+                        }
+
+                        System.out.println("File save successfully to dukesave.txt");
+                        System.out.println("-------------------------------");
+                        fw.close();
+                    } catch (FileNotFoundException e) {
+                        System.out.println("File not found");
+                    } catch (IOException e) {
+                        System.out.println("Something went wrong" + e.getMessage());
+                    }
                     break;
 
                 default:
