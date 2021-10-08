@@ -67,6 +67,8 @@ public class Tasks {
         System.out.println("    "+ "[" + (this.addedList.get(removeTaskNumber).status ? "\u2713" : "\u2718") + "]" + this.addedList.get(removeTaskNumber).desc);
         System.out.println("-------------------------------");
         this.addedList.remove(removeTaskNumber);
+        System.out.println("Now you have "+this.addedList.toArray().length +" tasks in the list.");
+
     }
 
 }
