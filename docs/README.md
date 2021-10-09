@@ -44,7 +44,7 @@ Expected outcome:
 
 Description of the outcome.
 
-todo borrow book
+*todo borrow book*
 ```
 -------------------------------
     Got it. I've added this task:
@@ -53,7 +53,7 @@ todo borrow book
     Now you have 0 tasks in the list.
 ```
     
-event project meeting /at Mon 2-4pm
+*event project meeting /at Mon 2-4pm*
 ```  
 -------------------------------
     Got it. I've added this task:
@@ -62,22 +62,21 @@ event project meeting /at Mon 2-4pm
     Now you have 0 tasks in the list.
 ```
     
-list
--------------------------------
+*list*
 ```
 Here are the TaskPackage.Task in your list:
     1. [✘][T]borrow book
     2. [✘][E] project meeting (at: Mon 2-4pm)
 ```
     
-done 1
+*done 1*
 ```
 -------------------------------
     Nice! I've marked this task as done:
     [✓][E] project meeting (at: Mon 2-4pm)
 ```
     
-bye
+*bye*
 ```
 -------------------------------
 Bye. Hope to see you again soon!
