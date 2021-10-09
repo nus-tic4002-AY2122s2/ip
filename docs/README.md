@@ -13,15 +13,15 @@ a personal Assistant Chatbot that helps to keep track various of daily items.
 
 ### Feature- Add Task
 
-Add Todo - tasks without any date/time attached to it
-Add Deadline - tasks that need to be done before a specific date/time
-Add Event - tasks that start at a specific time and ends at a specific time
+* Add Todo - tasks without any date/time attached to it
+* Add Deadline - tasks that need to be done before a specific date/time
+* Add Event - tasks that start at a specific time and ends at a specific time
 
 ### Feature- Interact with Task
 
-Done - Mark to for different task on the list
-List - List all added tasks
-Exit - Quit the Duke program
+* Done - Mark to for different task on the list
+* List - List all added tasks
+* Exit - Quit the Duke program
 
 
 ## Usage
@@ -44,7 +44,7 @@ Expected outcome:
 
 Description of the outcome.
 
-*todo borrow book*
+**todo borrow book**
 ```
 -------------------------------
     Got it. I've added this task:
@@ -53,7 +53,7 @@ Description of the outcome.
     Now you have 0 tasks in the list.
 ```
     
-*event project meeting /at Mon 2-4pm*
+**event project meeting /at Mon 2-4pm**
 ```  
 -------------------------------
     Got it. I've added this task:
@@ -62,21 +62,21 @@ Description of the outcome.
     Now you have 0 tasks in the list.
 ```
     
-*list*
+**list**
 ```
 Here are the TaskPackage.Task in your list:
     1. [✘][T]borrow book
     2. [✘][E] project meeting (at: Mon 2-4pm)
 ```
     
-*done 1*
+**done 1**
 ```
 -------------------------------
     Nice! I've marked this task as done:
     [✓][E] project meeting (at: Mon 2-4pm)
 ```
     
-*bye*
+**bye**
 ```
 -------------------------------
 Bye. Hope to see you again soon!
