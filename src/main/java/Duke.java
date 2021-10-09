@@ -172,7 +172,7 @@ public class Duke  {
 
                 case ("save"):
                     try {
-                        FileWriter fw = new FileWriter("/Users/chunyg/TIC4001/ip/dukesave.txt");
+                        FileWriter fw = new FileWriter("./dukesave.txt");
                         File f = new File("dukesave.txt");
 
                         int index1 = 0;
