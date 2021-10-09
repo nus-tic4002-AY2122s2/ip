@@ -3,6 +3,7 @@ import Duke.Command.Event;
 import Duke.Command.Todo;
 import Duke.Task.Task;
 import Duke.Task.Tasks;
+import Duke.Ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
+import Duke.Parser;
 
 
 /**
@@ -22,29 +24,31 @@ import java.util.Scanner;
  * @since   2021-08-16
  */
 public class Duke  {
+
+    private static Ui ui;
+
+    public void run(){
+        ui.showWelcome();
+    }
+
     public static void main(String[] args){
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(logo);
-        System.out.println("-------------------------------");
-        System.out.println("Hello! I'm Duke\n" +
-                "What can I do for you?");
-        System.out.println("-------------------------------");
+        ui = new Ui();
+        new Duke().run();
+
+        Scanner fullCommand = ui.readCommand();
 
         String echo = " ";
         ArrayList<Task> addedList = new ArrayList<>();
-
-        Scanner input = new Scanner(System.in);
+//        Scanner input = new Scanner(System.in);
         Tasks tasks= new Tasks("");
 
         while (!echo.equals("bye")) {
 
-            echo = input.nextLine();
-            String[] cli = new String[100];
-            cli = echo.split(" ");
+            echo = fullCommand.nextLine();
+            String[] cli = Parser.parse(echo);
+
+//            String[] cli = new String[100];
+//            cli = echo.split(" ");
             String firstCommand = cli[0];
 
             switch (firstCommand){
