@@ -32,13 +32,13 @@ Describe the action and its outcome.
 
 Example of usage: 
 
-*`todo <borrow book>`
-*`deadline <return book /by Sunday>`
-*`event <project meeting /at Mon 2-4pm>`
+* `todo <borrow book>`
+* `deadline <return book /by Sunday>`
+* `event <project meeting /at Mon 2-4pm>`
 
-*`list`
-*`done 1`
-*`bye`
+* `list`
+* `done 1`
+* `bye`
 
 Expected outcome:
 
