@@ -1,4 +1,5 @@
-# User Guide - Duke Personal Assistant
+# User Guide  
+# Duke Personal Assistant
 The Duke program implements an application that
 a personal Assistant Chatbot that helps to keep track various of daily items.
 
@@ -41,8 +42,6 @@ Example of usage:
 * `bye`
 
 Expected outcome:
-
-Description of the outcome.
 
 **todo borrow book**
 ```
