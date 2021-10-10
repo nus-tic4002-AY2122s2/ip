@@ -29,9 +29,8 @@ public class Deadline extends Tasks {
     public String toString() {
 
             String byDate = by.trim();
-            LocalDate d1 = LocalDate.parse(byDate);
-            byDate = d1.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-            return "[D]" + description+  "(by:" + by  + ")" ;
-
+//            LocalDate d1 = LocalDate.parse(byDate);
+//            byDate = d1.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+            return "[D]" + description+  "(by:" + byDate  + ")" ;
     }
 }

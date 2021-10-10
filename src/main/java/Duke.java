@@ -39,7 +39,6 @@ public class Duke  {
 
         String echo = " ";
         ArrayList<Task> addedList = new ArrayList<>();
-//        Scanner input = new Scanner(System.in);
         Tasks tasks= new Tasks("");
 
         while (!echo.equals("bye")) {
@@ -47,8 +46,6 @@ public class Duke  {
             echo = fullCommand.nextLine();
             String[] cli = Parser.parse(echo);
 
-//            String[] cli = new String[100];
-//            cli = echo.split(" ");
             String firstCommand = cli[0];
 
             switch (firstCommand){
