@@ -132,7 +132,6 @@ public class Duke  {
                 case("deadline"):
                     try {
                         if (cli[1] != "") {
-                            //                    int task_stringIndex_After_taskWord = 0;
                             String task_words ="";
                             String by_words = " ";
 
@@ -172,7 +171,7 @@ public class Duke  {
 
                 case ("save"):
                     try {
-                        FileWriter fw = new FileWriter("/Users/chunyg/TIC4001/ip/dukesave.txt");
+                        FileWriter fw = new FileWriter("./dukesave.txt");
                         File f = new File("dukesave.txt");
 
                         int index1 = 0;
