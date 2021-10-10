@@ -25,7 +25,7 @@ at Mon 2-4pm
 -------------------------------
     Now you have 0 tasks in the list.
 -------------------------------
-Here are the Task in your list:
+Here are the seedu.duke.Command in your list:
     1. [?][T]borrow book
     2. [?][D] return book (by: Sunday)
     3. [?][E] project meeting (at: Mon 2-4pm)
@@ -35,7 +35,7 @@ Here are the Task in your list:
     [?][D] return book (by: Sunday)
 -------------------------------
 -------------------------------
-Here are the Task in your list:
+Here are the seedu.duke.Command in your list:
     1. [?][T]borrow book
     2. [?][D] return book (by: Sunday)
     3. [?][E] project meeting (at: Mon 2-4pm)

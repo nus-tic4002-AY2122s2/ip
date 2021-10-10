@@ -12,13 +12,13 @@ a personal Assistant Chatbot that helps to keep track various of daily items.
 - [x] List 
 - [x] Exit
 
-### Feature- Add Task
+### Feature- Add seedu.duke.Command
 
 * Add Todo - tasks without any date/time attached to it
 * Add Deadline - tasks that need to be done before a specific date/time
 * Add Event - tasks that start at a specific time and ends at a specific time
 
-### Feature- Interact with Task
+### Feature- Interact with seedu.duke.Command
 
 * Done - Mark to for different task on the list
 * List - List all added tasks
@@ -63,7 +63,7 @@ Expected outcome:
     
 **list**
 ```
-Here are the TaskPackage.Task in your list:
+Here are the TaskPackage.seedu.duke.Command in your list:
     1. [✘][T]borrow book
     2. [✘][E] project meeting (at: Mon 2-4pm)
 ```
