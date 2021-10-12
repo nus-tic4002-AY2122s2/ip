@@ -24,26 +24,28 @@ public class Duke {
 
     public static void run() {
 
-        FlightList flightList = new FlightList();
-        String userInput;
-        boolean online = true;
+        try {
+            FlightList flightList = new FlightList();
+            String userInput;
+            boolean online = true;
 
-        while (online) {
-            Scanner scan = new Scanner(System.in);
-            userInput = scan.nextLine().trim();
-            String command = new Parser().parseInput(userInput);
-            switch (command) {
+            while (online) {
+                Scanner scan = new Scanner(System.in);
+                userInput = scan.nextLine().trim();
+                String command = new Parser().parseInput(userInput);
+                switch (command) {
                 case "bye":
                     System.out.println("Bye. Your flights have been recorded.\n Hope to see you again soon!");
                     online = false;
                     break;
                 case "add":
                     flightList.addFlight(userInput);
-                    System.out.println("Your flight has been added.\n" + "You have " + flightList.getSize() + " flights in your record");
+                    System.out.println("Your flight has been added.\n" + "You have " + flightList.getSize()
+                            + " flights in your record");
                     break;
                 case "show all":
 
-                    for (int i = 0; i < flightList.getSize(); i++){
+                    for (int i = 0; i < flightList.getSize(); i++) {
                         System.out.println(flightList.getList().get(i).flightDetails);
                     }
 
@@ -53,7 +55,10 @@ public class Duke {
                     break;
                 default:
                     System.out.println(errorUnknown);
+                }
             }
+        } catch (Exception e) {
+            System.out.println(errorUnknown);
         }
     }
 }
