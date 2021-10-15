@@ -4,11 +4,11 @@ Air Rec is a desktop app for managing flight records, optimized for use via a Co
 
 1. Quick start
 1. Features
-	1. Adding a flight: add
-	1. Showing all flights: show all
-	1. Showing upcoming flight: show upcoming
-	1. Deleting a flight: delete
-	1. Exiting the program : exit
+	1. Adding a flight: `add`
+	1. Showing all flights: `show all`
+	1. Showing upcoming flight: `show upcoming`
+	1. Deleting a flight: `delete`
+	1. Exiting the program : `bye`
 
 1. FAQ
 1. Command summary
@@ -41,9 +41,9 @@ Some example commands you can try:
 
 	1. show upcoming: List out the flight that is the first index of the list
 
-	1. delete3 : Deletes the 3rd flight shown in the current list.
+	1. delete 3 : Deletes the 3rd flight shown in the current list.
 
-	1. exit : Exits the application.
+	1. exit : Exit the application.
 
 6. Duke has auto-save and auto-load function. The list is being save as a text file named "Duke.txt" which is auto created and overwritten in the root folder.
 
@@ -67,7 +67,7 @@ Example:
 add /from Australia /to Singapore /date 10 Jan 2021 12:00 /price 500
 
 
-### Showing all flights: show all
+### Showing all flights: `show all`
 
 List out all flight trip
 
@@ -78,7 +78,7 @@ Example:
 show all
 
 
-### Showing upcoming flight: show upcoming
+### Showing upcoming flight: `show upcoming`
 
 List out the first index of the flight in the list
 
@@ -89,7 +89,7 @@ Example:
 show upcoming
 
 
-### Deleting a flight: delete
+### Deleting a flight: `delete`
 
 Deletes a trip from the list
 
@@ -99,20 +99,21 @@ Example:
 
 delete 3
 
-### Exiting the program : exit
+### Exiting the program : `exit`
 
 Exits the application.
 
-Format: [exit]
+Format: [bye]
 
 Example:
 
-exit
+bye
 
 
 ## FAQ
 
 <b>Q</b>: How do I save multiple trip?
+
 <b>A</b>: You only can save one trip at a time.
 
 ## Command summary
@@ -123,4 +124,4 @@ Action | Format, Examples
 <b>show all</b> | Format: [show] [all] Example: show all
 <b>show upcoming</b> | Format: [show] [upcoming] Example: show upcoming
 <b>delete</b> | Format: [delete] [index] Example: delete 3
-<b>exit</b> | Format: [exit] Example: exit
+<b>bye</b> | Format: [bye] Example: bye
