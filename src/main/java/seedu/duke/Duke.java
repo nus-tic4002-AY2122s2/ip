@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -53,6 +54,25 @@ public class Duke {
                     flightList.deleteFlight(userInput);
                     System.out.println("Your flight has been deleted.\n" + "You have " + flightList.getSize()
                                 + " flights in your record");
+                    break;
+                case "help":
+                    System.out.println("Do email us at support@airrec.com. See you!");
+                    break;
+                case "search":
+                    if (userInput.equals("search")) {
+                        System.out.println("☹ OOPS!!! There is nothing to find.");
+                    } else {
+                        ArrayList<Flight> tempList = flightList.searchFlight(userInput);
+
+                        if (tempList.size() > 0) {
+                            System.out.println("Here are the matching flights in your list:");
+                            for (Flight flight : tempList) {
+                                System.out.println(flight.getFlightDetails());
+                            }
+                        } else {
+                            System.out.println("There is no matching task in your list.");
+                        }
+                    }
                     break;
                 default:
                     System.out.println(errorUnknown);
