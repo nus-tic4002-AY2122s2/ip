@@ -41,17 +41,18 @@ public class Duke {
                 case "add":
                     flightList.addFlight(userInput);
                     System.out.println("Your flight has been added.\n" + "You have " + flightList.getSize()
-                            + " flights in your record");
+                                + " flights in your record");
                     break;
                 case "show all":
 
                     for (int i = 0; i < flightList.getSize(); i++) {
                         System.out.println(flightList.getList().get(i).flightDetails);
                     }
-
                     break;
                 case "delete":
                     flightList.deleteFlight(userInput);
+                    System.out.println("Your flight has been deleted.\n" + "You have " + flightList.getSize()
+                                + " flights in your record");
                     break;
                 default:
                     System.out.println(errorUnknown);
@@ -61,4 +62,5 @@ public class Duke {
             System.out.println(errorUnknown);
         }
     }
+
 }

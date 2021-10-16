@@ -8,7 +8,7 @@ Air Rec is a desktop app for managing flight records, optimized for use via a Co
 	1. Showing all flights: `show all`
 	1. Showing upcoming flight: `show upcoming`
 	1. Deleting a flight: `delete`
-	1. Exiting the program : `exit`
+	1. Exiting the program : `bye`
 
 1. FAQ
 1. Command summary
@@ -103,11 +103,11 @@ delete 3
 
 Exits the application.
 
-Format: [exit]
+Format: [bye]
 
 Example:
 
-exit
+bye
 
 
 ## FAQ
@@ -124,4 +124,4 @@ Action | Format, Examples
 <b>show all</b> | Format: [show] [all] Example: show all
 <b>show upcoming</b> | Format: [show] [upcoming] Example: show upcoming
 <b>delete</b> | Format: [delete] [index] Example: delete 3
-<b>exit</b> | Format: [exit] Example: exit
+<b>bye</b> | Format: [bye] Example: bye

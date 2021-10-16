@@ -53,7 +53,9 @@ public class FlightList {
      * version 1.0 will be deleting the flight by index.
      */
     public void deleteFlight(String message) {
-        int index = new Parser().parseIntValue(message);
+        String number = message.substring(7).trim();
+        int index = Integer.parseInt(number);
+        index = index - 1;
         list.remove(index);
     }
 }
