@@ -17,10 +17,8 @@ public class addTodoCommand extends Command{
 
 
     public void execute(TaskList tasklist, Ui ui, Storage storage){
-        String tmp = new myMethods().parsed(description)[1];
         Task newTask = new toDos(description);
         tasklist.addTask(newTask);
-//        ui.newTask(newTask, tasklist);
         ui.newTodo(tasklist);
     }
 }

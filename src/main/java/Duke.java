@@ -1,4 +1,6 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,59 +12,85 @@ import Exceptions.*;
 import TaskList.*;
 import Ui.Ui;
 
+
 public class Duke {
+
     private Storage storage;
     private TaskList tasklist;
     private Ui ui;
     private Parser parser;
 
-    public Duke() {
+    public Duke(String filename){
         ui = new Ui();
-        storage = new Storage();
+        storage = new Storage(filename);
         try {
-            storage.load();
-            tasklist = new TaskList();
-        } catch (FileNotFoundException e) {
+            tasklist = new TaskList(storage.load());
+        }
+
+        catch (FileNotFoundException | ParseException e){
             ui.showLoadingError();
             tasklist = new TaskList();
         }
+
     }
 
-    public void runDuke() {
+
+
+
+    public void runDuke(){
         ui.Greet();
         parser = new Parser();
         boolean exit = true;
-        //System.out.println(" WHAT IS THIS EXIT STATUS : " + exit);
         int i = 0;
-        while (exit) {
+        while(exit){
             try {
-                //exit = parser.getExitStatus()
-                String cmd = ui.readCommand();
-                Command c = Parser.parse(cmd, tasklist);
+                String cmd =  ui.readCommand();
+
+                Command c = Parser.parse(cmd,tasklist);
                 c.execute(tasklist, ui, storage);
                 storage.saveFile(tasklist.getAllTasks());
-                //exit = c.isExit();
-                System.out.println(" WHAT IS THIS EXIT STATUS : " + exit);
-            } catch (Exception e) {
-                ui.showLoadingError();
-            } finally {
+                if(!parser.getExitStatus()){
+                    exit = c.isExit();
+                }
+
+            }
+            catch (DukeEmptyExceptions e){
+                ui.Line();
+                System.out.println(e.getMessage());
+                ui.Line();
+            }
+            catch (DukeOutOfBoundsException e){
+                ui.Line();
+                System.out.println(e.getMessage());
+                ui.Line();
+            }
+            catch (NumberFormatException e){
+                ui.Line();
+                System.out.println(e.getMessage());
+                ui.Line();
+            }
+            catch (InvalidDateException e){
+                ui.Line();
+                System.out.println(e.getMessage());
+                ui.Line();
+            }
+            catch (IOException e){
+                ui.showIOException();
+            }
+            catch (DukeException e){
+                ui.Line();
+                System.out.println(e.getMessage());
+                ui.Line();
+            }
+            finally {
                 //ui.printLine();
+                //exit = false;
             }
         }
     }
 
-
-
-
     public static void main(String[] args) {
-            new Duke().runDuke();
+        new Duke("data/dukeTaskOuput.txt").runDuke();
     }
+
 }
-
-
-
-
-
-
-
-
