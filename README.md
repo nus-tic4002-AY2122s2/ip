@@ -43,7 +43,7 @@ Adds todo task to the list.
 
 Format: [todo] [description]
 
-####example:
+#### example:
 `todo read book`
 
 ### Add event task - Command : event
@@ -51,7 +51,7 @@ Adds event task to the list.
 
 Format: [event] [description] [/at] [Location]
 
-####example:
+#### example:
 
 `event Study Session /at NUS Computing.`
 
@@ -60,7 +60,7 @@ Adds deadline task to the list.
 
 Format: [deadline] [description] [/by] [yyyy-mm-dd HHMM]
 
-####example:
+#### example:
 
 `deadline Duke Project ip /by 2021-01-01 1212`
 
@@ -70,7 +70,7 @@ Updates a selected task's status as done in the list.
 
 Format: [done] [Task’s index in list]
 
-####example:
+#### example:
 
 `done 1`
 ### Deleting a task: delete
@@ -79,7 +79,7 @@ Deletes task from list. List will be updated
 
 Format: [delete] [Task’s index in list]
 
-####example:
+#### example:
 
 `delete1`
 
@@ -89,7 +89,7 @@ Search for a task based on keyword
 
 Format: [find] [keyword]
 
-####example:
+#### example:
 
 `find book`
 
@@ -99,13 +99,13 @@ This will exit the application.
 
 Format: [bye]
 
-####example:
+#### example:
 
 `bye`
 
 `Bye`
 
-#Sample Flow
+# Sample Flow
 
 Sequential order
 
@@ -135,7 +135,7 @@ Sequential order
 
 `bye`
 
-#How to Run Jar File
+# How to Run Jar File
 
 `Step 1:`
 
