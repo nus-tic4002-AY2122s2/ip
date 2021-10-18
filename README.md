@@ -133,6 +133,10 @@ Sequential order
 
 `list`
 
+`delete 1`
+
+`list`
+
 `bye`
 
 # How to Run Jar File
