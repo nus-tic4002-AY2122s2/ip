@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import Tasks.*;
+import Exceptions.*;
 
 public class Duke {
     static final String line = "    ____________________________________________________________";
@@ -51,24 +52,108 @@ public class Duke {
         int lastIdx = tasklist.size() - 1;
         switch (parsed) {
             case "list" :
+                try {
+                    if(tasklist.size() == 0){
+                        throw new DukeException();
+                    }
+                }
+                catch (Exception e){
+                    printLines(line);
+                    System.out.println("     ☹ OOPS!!! The list is empty.");
+                    printLines(line);
+                    break;
+                }
                 displayTaskList(userInput);
                 break;
             case "done" :
-                String tmp = parse(userInput)[1].toString();
-                int tmpp = Integer.parseInt(parse(userInput)[1]);
-                tasklist.get(tmpp-1).markAsDone();
-                tasklist.set(tmpp-1, tasklist.get(tmpp-1));
+                String tmp = "";
+                int storeTaskNo = 0;
+                if(userInput.length() == 4){
+                    tmp = "";
+                    storeTaskNo = 0;
+                }
+                else {
+                    tmp = userInput.substring(userInput.indexOf("done") + 5, userInput.length()).trim();
+                    if (!tmp.equals("")) {
+                        storeTaskNo = Integer.parseInt(parse(userInput)[1]);
+                    }
+                }
+                System.out.println(" WHAT IS THIS LA : " + tmp);
+                //System.out.println("@@@@@ WHAT IS THE STIRNG : " + userInput.substring(userInput.indexOf("done")));
+                System.out.println("CHECK THIS FKING VALUE : " + storeTaskNo);
                 printLines(line);
+                try {
+                    if(userInput.substring(userInput.indexOf("done")).length() == 4
+                            || userInput.substring(userInput.indexOf("done")+5, userInput.length()).trim().equals("")){
+                        throw new DukeEmptyExceptions("done");
+                    }
+                    if(tmp.equals("")){
+                        throw new DukeEmptyExceptions("done");
+                    }
+                    int t = Integer.parseInt((userInput.substring(userInput.indexOf("done")+5).trim()));
+                    if(storeTaskNo > tasklist.size() || storeTaskNo > t || storeTaskNo == 0) {
+                        throw new DukeOutOfBoundsException("done");
+                    }
+                    if(parse(userInput)[1].toString()==null){
+                        throw new NumberFormatException();
+                    }
+                }
+                catch (DukeEmptyExceptions e){
+                    System.out.println(e.getMessage());
+                    //System.out.println("     ☹ OOPS!!! The description of a todo cannot be empty.");
+                    printLines(line);
+                    break;
+                }
+                catch (NumberFormatException e){
+                    System.out.println("     ☹ OOPS!!! The task number must be a numerical value.");
+                    printLines(line);
+                    break;
+                }
+                catch (DukeOutOfBoundsException e){
+                    System.out.println("     ☹ OOPS!!! The task number must be within range.");
+                    printLines(line);
+                    break;
+                }
+                catch (Exception e){
+                    System.out.println(e.getMessage());
+                    //System.out.println("     ☹ OOPS!!! The description of a todo cannot be empty.");
+                    printLines(line);
+                    break;
+                }
+                tasklist.get(storeTaskNo-1).markAsDone();
+                tasklist.set(storeTaskNo-1, tasklist.get(storeTaskNo-1));
                 System.out.println("     Nice! I've marked this task as done:");
-                System.out.println("      " + tasklist.get(tmpp-1).getDescription());
+                System.out.println("      " + tasklist.get(storeTaskNo-1).getDescription());
                 printLines(line);
-
                 break;
 
             case "todo" :
                 printLines(line);
+                try {
+                    if(userInput.substring(userInput.indexOf("todo")).length() == 4){
+                        throw new DukeEmptyExceptions("todo");
+                    }
+                    if((userInput.substring(userInput.indexOf("todo")+5, userInput.length())).trim().equals("")){
+                        throw new DukeEmptyExceptions("todo");
+                    }
+                }
+                catch (DukeEmptyExceptions e){
+                    System.out.println(e.getMessage());
+                    //System.out.println("     ☹ OOPS!!! The description of a todo cannot be empty.");
+                    printLines(line);
+                    break;
+                }
+                catch (NumberFormatException e){
+                    System.out.println("     ☹ OOPS!!! The task number must be a numerical value.");
+                    break;
+                }
+                catch (Exception e){
+                    System.out.println(e.getMessage());
+                    //System.out.println("     ☹ OOPS!!! The description of a todo cannot be empty.");
+                    printLines(line);
+                    break;
+                }
                 System.out.println("     Got it. I've added this task:");
-                // tasklist.get(tasklist.size()) = new toDos(userInput, true);
                 tasklist.add(new toDos(parse(userInput)[1]));
                 //.set()
                 System.out.println("       " + tasklist.get(tasklist.size()-1).getDescription());
@@ -77,6 +162,18 @@ public class Duke {
                 break;
 
             case "deadline" :
+                try {
+                    if(userInput.substring(userInput.indexOf("deadline")).length() == 8
+                            || userInput.substring(userInput.indexOf("deadline")+9, userInput.length()).trim().equals("")){
+                        throw new DukeEmptyExceptions("deadline");
+                    }
+
+                }
+                catch (DukeEmptyExceptions e){
+                    System.out.println(e.getMessage());
+                    printLines(line);
+                    break;
+                }
                 String des = userInput.substring(userInput.indexOf("deadline")+9, userInput.indexOf("by")-1);
                 String by = userInput.substring(userInput.indexOf("by")+3, userInput.length());
                 System.out.println(by);
@@ -91,6 +188,27 @@ public class Duke {
 
             case "event" :
                 printLines(line);
+                try {
+                    if(userInput.substring(userInput.indexOf("event")).length() == 5 || (userInput.substring(userInput.indexOf("event")+5, userInput.length())).trim().equals("")){
+                        throw new DukeEmptyExceptions("event");
+                    }
+                }
+                catch (DukeEmptyExceptions e){
+                    System.out.println(e.getMessage());
+                    //System.out.println("     ☹ OOPS!!! The description of a event cannot be empty.");
+                    printLines(line);
+                    break;
+                }
+                catch (NumberFormatException e){
+                    System.out.println("     ☹ OOPS!!! The task number must be a numerical value.");
+                    break;
+                }
+                catch (Exception e){
+                    System.out.println(e.getMessage());
+                    //System.out.println("     ☹ OOPS!!! The description of a event cannot be empty.");
+                    printLines(line);
+                    break;
+                }
                 System.out.println("      Got it. I've added this task:");
                 tasklist.add(new Events(parse(userInput)[1]));
                 System.out.println("       " + tasklist.get(tasklist.size()-1).getDescription());
@@ -107,12 +225,33 @@ public class Duke {
                 status = false;
                 break;
             default:
-                tasklist.add(new Task(userInput));
-                System.out.println(userInput);
-                printLines(line);
-                System.out.println("     added: " + userInput);
-                printLines(line);
-                status = true;
+                try {
+                    if(userInput.length() == 0){
+                        throw new DukeEmptyExceptions("input");
+                    }
+                    else {
+                        throw new DukeException();
+                    }
+//                    tasklist.add(new Task(userInput));
+//                    System.out.println(userInput);
+//                    printLines(line);
+//                    System.out.println("     added: " + userInput);
+//                    printLines(line);
+//                    status = true;
+                }
+                catch (DukeEmptyExceptions e){
+                    System.out.println(e.getMessage());
+                    //System.out.println("     ☹ OOPS!!! The description of a todo cannot be empty.");
+                    printLines(line);
+                    status = true;
+                    break;
+                }
+                catch (DukeException e){
+                    System.out.println("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    printLines(line);
+                    status = true;
+                    break;
+                }
         }
         return status;
     }
