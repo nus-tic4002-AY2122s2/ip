@@ -1,16 +1,43 @@
 package Tasks;
-import Tasks.myMethods;
+
+import Parser.myMethods;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Events extends Task{
-    public Events(String description){
+//    public Events(String description){
+//        super(description);
+//        isDone = false;
+//    }
+    protected Date date;
+    /**
+     * Constructor for Events
+     * @param description
+     * @param date
+     */
+    public Events(String description, Date date){
         super(description);
         isDone = false;
+        this.date = date;
     }
+    /**
+     * To convert Date back to String for Printing
+     * @return
+     */
+    public String printDeadlineDte(){
+        SimpleDateFormat formatter = new SimpleDateFormat("E, dd MMM yyyy HH:mm");
 
+        //System.out.println("WHAT IS THIS : " + formatter);
 
-        @Override
-        public String getDescription(){
-            return getStatus() + getStatusIcon() + " " + new myMethods().parseEvents(description) + new myMethods().parseSlash(description);
-        }
+        String strDate = formatter.format(this.date);
+
+        return strDate;
+    }
+//        @Override
+//        public String getDescription(){
+//            return getStatus() + getStatusIcon() + " " + new myMethods().parseEvents(description) + new myMethods().parseSlash(description);
+//        }
 
         @Override
         public String getStatus() {
@@ -21,6 +48,6 @@ public class Events extends Task{
 
         @Override
         public String toString() {
-            return "[E]" +  this.getStatusIcon() + new myMethods().parseEvents(description) + new myMethods().parseSlash(description);
+            return "[E]" +  this.getStatusIcon() + this.description + "(at: " + printDeadlineDte() + " )";
         }
-    }
+}
