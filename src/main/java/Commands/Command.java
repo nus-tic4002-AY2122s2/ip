@@ -5,6 +5,8 @@ import TaskList.*;
 
 import Tasks.Task;
 
+import java.io.UnsupportedEncodingException;
+
 public abstract class Command {
     public boolean exit = false;
     protected String userInput;
@@ -57,5 +59,5 @@ public abstract class Command {
         return this.exit;
     }
 
-    public abstract void execute(TaskList tasklist, Ui ui, Storage storage);
+    public abstract void execute(TaskList tasklist, Ui ui, Storage storage) throws UnsupportedEncodingException;
 }

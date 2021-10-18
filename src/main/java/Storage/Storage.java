@@ -13,7 +13,7 @@ public class Storage {
      */
 //    C:\Users\lmkan\Desktop\NUS\TIC 4001\ip\data
     public static final String DEFAULT_PATH = "C:/Users/lmkan/Desktop/NUS/TIC 4001/ip/data/dukeTaskOutput.txt";
-
+    public String file_path = "data/dukeTaskOuput.txt";
     private  String filename;
 
     /**
@@ -26,7 +26,7 @@ public class Storage {
     public ArrayList<String> load() throws FileNotFoundException {
 
         ArrayList<String> output = new ArrayList<>();
-        File f = new File(DEFAULT_PATH);
+        File f = new File(file_path);
         Scanner scan = new Scanner(f);
         while (scan.hasNextLine()) {
             output.add(scan.nextLine());

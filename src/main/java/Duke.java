@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -27,8 +29,8 @@ public class Duke {
             tasklist = new TaskList(storage.load());
         }
 
-        catch (FileNotFoundException | ParseException e){
-            ui.showLoadingError();
+        catch (ParseException | IOException e){
+//            ui.showLoadingError();
             tasklist = new TaskList();
         }
 
@@ -48,7 +50,7 @@ public class Duke {
 
                 Command c = Parser.parse(cmd,tasklist);
                 c.execute(tasklist, ui, storage);
-                storage.saveFile(tasklist.getAllTasks());
+//                storage.saveFile(tasklist.getAllTasks());
                 if(!parser.getExitStatus()){
                     exit = c.isExit();
                 }
@@ -74,15 +76,16 @@ public class Duke {
                 System.out.println(e.getMessage());
                 ui.Line();
             }
-            catch (IOException e){
-                ui.showIOException();
-            }
+//            catch (IOException e){
+//                ui.showIOException();
+//            }
             catch (DukeException e){
                 ui.Line();
                 System.out.println(e.getMessage());
                 ui.Line();
-            }
-            finally {
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } finally {
                 //ui.printLine();
                 //exit = false;
             }

@@ -2,6 +2,9 @@ package Ui;
 
 import Tasks.Task;
 import TaskList.*;
+
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 import Parser.*;
 
@@ -112,12 +115,13 @@ public class Ui {
     }
 
     //Displaying Task class list
-    public void displayTaskList(String input,TaskList tasklist){
+    public void displayTaskList(String input,TaskList tasklist) throws UnsupportedEncodingException {
         System.out.println(input);
         printLines(line);
         System.out.println("     Here are the tasks in your list:");
         for(int i = 0; i < tasklist.getSize(); i++){
             int idx = i+1;
+            PrintStream out = new PrintStream(System.out, true, "UTF-8");
             System.out.println("     "+ idx + ". " + tasklist.getTask(i).toString() );
         }
         printLines(line);

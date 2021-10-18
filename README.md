@@ -27,26 +27,121 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 
 ## Features
 
-### Feature 1
-Description of feature.
-Level 1 -
-Greet, Echo & Exit
-Echo - Repeats userInput
-Exit - when userInput = bye
+### Listing all task - Command : list
 
-Level 2 -
+Shows a list of all tasks in the task list.
 
-## Usage
+Format: [list]
 
-### `Keyword` - Describe action
+####example: 
 
-Describe action and its outcome.
+`list`
 
-Example of usage:
 
-`keyword (optional arguments)`
+### Add to-do task - Command : todo
+Adds todo task to the list.
 
-Expected outcome:
+Format: [todo] [description]
 
-`outcome`
+####example:
+`todo read book`
+
+### Add event task - Command : event
+Adds event task to the list.
+
+Format: [event] [description] [/at] [Location]
+
+####example:
+
+`event Study Session /at NUS Computing.`
+
+### Add task with deadline - Command : deadline 
+Adds deadline task to the list.
+
+Format: [deadline] [description] [/by] [yyyy-mm-dd HHMM]
+
+####example:
+
+`deadline Duke Project ip /by 2021-01-01 1212`
+
+### Mark tasks as done - Command : done
+
+Updates a selected task's status as done in the list.
+
+Format: [done] [Task’s index in list]
+
+####example:
+
+`done 1`
+### Deleting a task: delete
+
+Deletes task from list. List will be updated
+
+Format: [delete] [Task’s index in list]
+
+####example:
+
+`delete1`
+
+### Finding a task: find
+
+Search for a task based on keyword
+
+Format: [find] [keyword]
+
+####example:
+
+`find book`
+
+### Exiting duke: bye
+
+This will exit the application.
+
+Format: [bye]
+
+####example:
+
+`bye`
+
+`Bye`
+
+#Sample Flow
+
+Sequential order
+
+`todo read book`
+
+`list`
+
+`done 1`
+
+`list`
+
+`deadline Duke Project ip /by 2021-01-01 1212`
+
+`list`
+
+`event Study Session /at NUS Computing.`
+
+`list`
+
+`find book`
+
+`done 2`
+
+`done 3`
+
+`list`
+
+`bye`
+
+#How to Run Jar File
+
+`Step 1:`
+
+`copy jar file to empy directory`
+
+`type cmd in explorer header`
+
+`type java -jar <jar file name>`
 
