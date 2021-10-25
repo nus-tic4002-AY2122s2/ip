@@ -3,15 +3,17 @@
 Air Rec is a desktop app for managing flight records, optimized for use via a Command Line Interface (CLI). User will not have to remember flight details and it can be found easily with commands.
 
 1. Quick start
-1. Features
-	1. Adding a flight: `add`
-	1. Showing all flights: `show all`
-	1. Showing upcoming flight: `show upcoming`
-	1. Deleting a flight: `delete`
-	1. Exiting the program : `bye`
+2. Features
+    1. Adding a flight: `add`
+    2. Showing all flights: `show all`
+    3. Showing upcoming flight: `show upcoming`
+    4. Deleting a flight: `delete`
+    5. Help: `help`
+    6. Search a flight: `search`
+    7. Exiting the program : `bye`
 
-1. FAQ
-1. Command summary
+3. FAQ
+4. Command summary
 
 
 
@@ -35,15 +37,15 @@ How can I assist you today?”
  5. Type the command in the command box and press Enter to execute it. e.g. typing list and pressing Enter will display all task that you have saved so far in the window.
 Some example commands you can try:
 
-	1. add /from Australia /to Singapore /date 10 Jan 2021 12:00 /price 500: Add a trip departing from Australia to Singapore on 10 Jan 2021 12pm with a price of $500
+    1. add /from Australia /to Singapore /date 10 Jan 2021 12:00 /price 500: Add a trip departing from Australia to Singapore on 10 Jan 2021 12pm with a price of $500
 
-	1. show all: List out all flight details
+    2. show all: List out all flight details
 
-	1. show upcoming: List out the flight that is the first index of the list
+    3. show upcoming: List out the flight that is the first index of the list
 
-	1. delete 3 : Deletes the 3rd flight shown in the current list.
+    4. delete 3 : Deletes the 3rd flight shown in the current list.
 
-	1. exit : Exit the application.
+    5. exit : Exit the application.
 
 6. Duke has auto-save and auto-load function. The list is being save as a text file named "Duke.txt" which is auto created and overwritten in the root folder.
 
@@ -98,6 +100,25 @@ Format: [delete] [index]
 Example:
 
 delete 3
+
+
+### Help: `help`
+
+Get Support
+
+Format: [help]
+
+
+### Search a flight: `search`
+
+Search a trip from the list
+
+Format: [search] [keyword]
+
+Example:
+
+search Australia
+
 
 ### Exiting the program : `exit`
 
