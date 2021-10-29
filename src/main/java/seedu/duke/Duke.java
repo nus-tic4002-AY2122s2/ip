@@ -74,7 +74,7 @@ public class Duke {
                             Message.getVal("SEARCH_MATCHING_START_MESSAGE");
                             //System.out.println("Here are the matching flights in your list:");
                             for (Flight flight : tempList) {
-                                System.out.println(flight.getFlightDetails());
+                                System.out.println(flight.getFullFlightDetails());
                             }
                         } else {
                             Message.getVal("NO_MATCH");
