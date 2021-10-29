@@ -26,6 +26,15 @@ public class Parser {
         if (userInput.contains("show all") || userInput.contains("show All")) {
             command = "show all";
         }
+        if (userInput.contains("edit")) {
+            command = "edit";
+        }
+        if (userInput.contains("help")) {
+            command = "help";
+        }
+        if (userInput.contains("search")) {
+            command = "search";
+        }
         return command;
     }
 
