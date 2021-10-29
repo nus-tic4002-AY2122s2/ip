@@ -44,9 +44,8 @@ public class Duke {
                                 + " flights in your record");
                     break;
                 case "show all":
-
                     for (int i = 0; i < flightList.getSize(); i++) {
-                        System.out.println(flightList.getList().get(i).flightDetails);
+                        System.out.println("Flight " + (i+1) + ": " + flightList.getList().get(i).getFullFlightDetails());
                     }
                     break;
                 case "delete":
