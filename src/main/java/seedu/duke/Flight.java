@@ -77,4 +77,8 @@ public class Flight {
         }
         return -1;
     }
+
+    public String getFlightDetails() {
+        return flightDetails;
+    }
 }
