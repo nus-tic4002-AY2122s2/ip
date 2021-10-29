@@ -42,6 +42,7 @@ public class FlightList {
      * version 1.0 will be saving the details as string.
      * version 2.0 will be able to process string into data.
      * All index are there to extract the exact data for each parameter.
+     *
      * @param message Details of the Flight.
      */
     public void addFlight(String message) {
@@ -53,7 +54,7 @@ public class FlightList {
         String to = message.substring(toIndex + 4, dateIndex);
         String date = message.substring(dateIndex + 6, priceIndex);
         String price = message.substring(priceIndex + 7);
-        list.add(new Flight(from,to,date,price));
+        list.add(new Flight(from, to, date, price));
     }
 
     /**

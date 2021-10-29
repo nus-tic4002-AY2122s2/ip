@@ -10,7 +10,7 @@ public class Flight {
     protected String stringDateAndTime; //Date & Time in String type
     protected Integer price; // Price of the flight
 
-    public Flight(String from, String to,String dateAndTimeDetails, String price) {
+    public Flight(String from, String to, String dateAndTimeDetails, String price) {
         this.from = from;
         this.to = to;
         this.price = Integer.parseInt(price);
@@ -37,7 +37,6 @@ public class Flight {
     public String getFullFlightDetails() {
         return "Traveling from " + getFrom() + "to " + getTo() + "on " + getStringDateAndTime() + " which cost $" + String.valueOf(getPrice() + " per pax.");
     }
-
 
 
     private LocalDateTime processDateAndTime(String dateAndTimeDetails) {
