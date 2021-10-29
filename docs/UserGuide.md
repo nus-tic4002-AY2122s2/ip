@@ -6,7 +6,7 @@ Air Rec is a desktop app for managing flight records, optimized for use via a Co
 2. Features
     1. Adding a flight: `add`
     2. Showing all flights: `show all`
-    3. Showing upcoming flight: `show upcoming`
+    3. Showing upcoming flight: `show upcoming` [to be implemented in v3.0]
     4. Deleting a flight: `delete`
     5. Help: `help`
     6. Search a flight: `search`
@@ -37,7 +37,7 @@ How can I assist you today?”
  5. Type the command in the command box and press Enter to execute it. e.g. typing list and pressing Enter will display all task that you have saved so far in the window.
 Some example commands you can try:
 
-    1. add /from Australia /to Singapore /date 10 Jan 2021 12:00 /price 500: Add a trip departing from Australia to Singapore on 10 Jan 2021 12pm with a price of $500
+    1. add /from Australia /to Singapore /date 2021-10-31 1400 /price 500: Add a trip departing from Australia to Singapore on 31 Oct 2021 2pm with a price of $500
 
     2. show all: List out all flight details
 
@@ -66,7 +66,7 @@ Format: [add] [/from] [depart details] [/to] [destination] [/date] [date & time 
 
 Example: 
 
-add /from Australia /to Singapore /date 10 Jan 2021 12:00 /price 500
+add /from Australia /to Singapore /date 2021-10-31 1400 /price 500
 
 
 ### Showing all flights: `show all`
@@ -143,6 +143,8 @@ Action | Format, Examples
 ------------ | -------------
 <b>add</b> | Format: [add] [/departing] [depart details] [/destination] [destination] [/date] [date & time of departure] [/price] [price of trip] Example: add /departing Australia /destination Singapore /date 10 Jan 2021 12:00 /price 500
 <b>show all</b> | Format: [show] [all] Example: show all
-<b>show upcoming</b> | Format: [show] [upcoming] Example: show upcoming
+<b>show upcoming</b> | Format: [show] [upcoming] Example: show upcoming [to be implemented in v3.0]
+<b>search</b> | Format: [search] [keyword] Example: search Australia
+<b>help</b> | Format: [help] 
 <b>delete</b> | Format: [delete] [index] Example: delete 3
 <b>bye</b> | Format: [bye] Example: bye
