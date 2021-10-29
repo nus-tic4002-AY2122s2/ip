@@ -35,7 +35,8 @@ public class Flight {
     }
 
     public String getFullFlightDetails() {
-        return "Traveling from " + getFrom() + "to " + getTo() + "on " + getStringDateAndTime() + " which cost $" + String.valueOf(getPrice() + " per pax.");
+        return "Traveling from " + getFrom() + "to "
+                + getTo() + "on " + getStringDateAndTime() + " which cost $" + String.valueOf(getPrice() + " per pax.");
     }
 
 
