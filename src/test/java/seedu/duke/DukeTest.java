@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -15,4 +16,5 @@ class DukeTest {
     public void flightCreationTask() {
         Flight testFlight = new Flight("Singapore", "Australia","2021-12-31 0800", "500");
     }
+
 }

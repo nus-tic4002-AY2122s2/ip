@@ -67,4 +67,21 @@ public class FlightList {
         index = index - 1;
         list.remove(index);
     }
+
+    /**
+     * Air Rec search Flight.
+     * version 2.0 will be search flight by keyword.
+     */
+    public ArrayList<Flight> searchFlight(String message) {
+        list.indexOf(message.substring(6));
+        int i = 0;
+        ArrayList<Flight> tempList = new ArrayList<Flight>();
+        for (Flight flight : this.list) {
+            if (flight.getFlightDetails().contains(message.substring(6))) {
+                i = i + 1;
+                tempList.add(new Flight(flight.getFlightDetails()));
+            }
+        }
+        return tempList;
+    }
 }
