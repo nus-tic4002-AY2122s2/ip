@@ -9,19 +9,36 @@ public class Flight {
     protected LocalDateTime dateAndTime; //Date & Time in LocalDateTime type
     protected String stringDateAndTime; //Date & Time in String type
     protected Integer price; // Price of the flight
-    protected String flightDetails; // flight details in string type for version 1.0
 
-    public Flight(String details) {
-        this.flightDetails = details;
-    }
-
-    public Flight(String from, String to, String dateAndTimeDetails, Integer price) {
+    public Flight(String from, String to, String dateAndTimeDetails, String price) {
         this.from = from;
         this.to = to;
-        this.price = price;
+        this.price = Integer.parseInt(price);
         this.dateAndTime = processDateAndTime(dateAndTimeDetails);
-        this.stringDateAndTime = dateAndTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"));
+        this.stringDateAndTime = dateAndTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm")) + "H";
     }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public String getStringDateAndTime() {
+        return stringDateAndTime;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public String getFullFlightDetails() {
+        return "Traveling from " + getFrom() + "to "
+                + getTo() + "on " + getStringDateAndTime() + " which cost $" + String.valueOf(getPrice() + " per pax.");
+    }
+
 
     private LocalDateTime processDateAndTime(String dateAndTimeDetails) {
         String changedDate;
@@ -35,7 +52,7 @@ public class Flight {
             formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
             formattedDate = LocalDateTime.parse(dateAndTimeDetails, formatter);
         } else {
-            formattedDate = LocalDateTime.now();
+            formattedDate = formattedDate.now();
             julianDate = formattedDate.getDayOfYear();
             day = julianDate % 7;
             daysToAdd = day - daysToAdd;
@@ -78,7 +95,4 @@ public class Flight {
         return -1;
     }
 
-    public String getFlightDetails() {
-        return flightDetails;
-    }
 }

@@ -49,7 +49,8 @@ public class Duke {
                     break;
                 case "show all":
                     for (int i = 0; i < flightList.getSize(); i++) {
-                        System.out.println(flightList.getList().get(i).flightDetails);
+                        System.out.println("Flight " + (i + 1) + ": "
+                                + flightList.getList().get(i).getFullFlightDetails());
                     }
                     break;
                 case "delete":
@@ -73,7 +74,7 @@ public class Duke {
                             Message.getVal("SEARCH_MATCHING_START_MESSAGE");
                             //System.out.println("Here are the matching flights in your list:");
                             for (Flight flight : tempList) {
-                                System.out.println(flight.getFlightDetails());
+                                System.out.println(flight.getFullFlightDetails());
                             }
                         } else {
                             Message.getVal("NO_MATCH");

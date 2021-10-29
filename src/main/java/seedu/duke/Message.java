@@ -13,7 +13,7 @@ public class Message {
         message.put("HELP_MESSAGE", "Do email us at support@airrec.com. See you!");
         message.put("BYE_MESSAGE", "Bye. Your flights have been recorded.\n Hope to see you again soon!");
         message.put("SEARCH_EMPTY","☹ OOPS!!! There is nothing to find.");
-        message.put("NO_MATCH","There is no matching task in your list.");
+        message.put("NO_MATCH","There is no matching flight in your list.");
         message.put("ERROR_UNKNOWN","☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         message.put("GREETING","Hi I’m AIR REC\n[input]\nI can help you save all the flight details!"
                 + "\nHow can I assist you today?");
