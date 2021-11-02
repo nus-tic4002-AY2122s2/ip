@@ -40,12 +40,21 @@ public class FlightList {
     /**
      * Air Rec adds a Flight.
      * version 1.0 will be saving the details as string.
+     * version 2.0 will be able to process string into data.
+     * All index are there to extract the exact data for each parameter.
      *
      * @param message Details of the Flight.
      */
     public void addFlight(String message) {
-        int index = message.indexOf("/");
-        list.add(new Flight(message.substring(3)));
+        int fromIndex = message.indexOf("/from");
+        int toIndex = message.indexOf("/to");
+        int dateIndex = message.indexOf("/date");
+        int priceIndex = message.indexOf("/price");
+        String from = message.substring(fromIndex + 6, toIndex);
+        String to = message.substring(toIndex + 4, dateIndex);
+        String date = message.substring(dateIndex + 6, priceIndex);
+        String price = message.substring(priceIndex + 7);
+        list.add(new Flight(from, to, date, price));
     }
 
     /**
@@ -57,5 +66,22 @@ public class FlightList {
         int index = Integer.parseInt(number);
         index = index - 1;
         list.remove(index);
+    }
+
+    /**
+     * Air Rec search Flight.
+     * version 2.0 will be search flight by keyword.
+     */
+    public ArrayList<Flight> searchFlight(String message) {
+        list.indexOf(message.substring(6));
+        int i = 0;
+        ArrayList<Flight> tempList = new ArrayList<Flight>();
+        for (Flight flight : this.list) {
+            if (flight.getFullFlightDetails().contains(message.substring(6))) {
+                i = i + 1;
+                tempList.add(flight);
+            }
+        }
+        return tempList;
     }
 }
