@@ -84,4 +84,16 @@ public class FlightList {
         }
         return tempList;
     }
+
+    /**
+     * Air Rec edit Flight detail
+     * Version 3.0 will be edit flight detail by keyword.
+     */
+    public void editFlight(String message) {
+        String number = message.substring(5,indexOf('/')).trim();
+        System.out.println(number);
+        //int index = Integer.parseInt(number);
+        //index = index - 1;
+        //list.remove(index);
+    }
 }
