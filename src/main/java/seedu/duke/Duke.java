@@ -65,6 +65,7 @@ public class Duke {
                     break;
                 case "edit" :
                     System.out.println("edit call");
+                    flightList.editFlight(userInput);
                     break;
                 case "search":
                     if (userInput.equals("search")) {
