@@ -51,7 +51,7 @@ These make the booking of flights more interactive and enjoyable as well as incr
 
 We will also include answers to common FAQs in regards to FLIGHT BOOKING only. We do not want to go out of scope to become a HELPDESK chat bot.
 
-##Overview of the system - Sequence Diagram
+## Overview of the system - Sequence Diagram
 ![sequence diagram drawio (1)](https://user-images.githubusercontent.com/54314980/140071853-ff64cdd3-3445-4f71-b2bd-4e96229589f9.png)
 
 ## User Stories
