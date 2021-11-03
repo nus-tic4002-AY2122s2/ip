@@ -30,6 +30,8 @@ public class Duke {
             FlightList flightList = new FlightList();
             String userInput;
             boolean online = true;
+            Storage storage = new Storage(flightList);
+            storage.readFile();
 
             while (online) {
                 Scanner scan = new Scanner(System.in);
@@ -43,6 +45,7 @@ public class Duke {
                     break;
                 case "add":
                     flightList.addFlight(userInput);
+                    storage.saveToDB(userInput);
                     Message.getVal("ADDED_SUCCESSFULLY",Integer.toString(flightList.getSize()));
                     /* System.out.println("Your flight has been added.\n" + "You have " + flightList.getSize()
                             + " flights in your record");*/
@@ -55,6 +58,7 @@ public class Duke {
                     break;
                 case "delete":
                     flightList.deleteFlight(userInput);
+                    storage.deleteFromDB(userInput);
                     Message.getVal("DELETE_SUCCESSFULLY",Integer.toString(flightList.getSize()));
                     /*System.out.println("Your flight has been deleted.\n" + "You have " + flightList.getSize()
                             + " flights in your record");*/
