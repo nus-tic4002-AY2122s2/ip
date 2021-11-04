@@ -96,16 +96,16 @@ public class FlightList {
         String to = "";
         String date = "";
         String price = "";
+        int fromIndex = message.indexOf("/from");
+        int toIndex = message.indexOf("/to");
+        int dateIndex = message.indexOf("/date");
+        int priceIndex = message.indexOf("/price");
         if (message.indexOf('/') == -1) {
-            System.out.println("☹ OOPS!!! I'm sorry, Please check that you have enter the correct format for edit command :-(");
+            System.out.println("☹ OOPS!!! I'm sorry, Please check the format for edit command :-(");
         } else {
             String number = message.substring(5,message.indexOf('/')).trim();
             int index = Integer.parseInt(number);
             index = index - 1;
-            int fromIndex = message.indexOf("/from");
-            int toIndex = message.indexOf("/to");
-            int dateIndex = message.indexOf("/date");
-            int priceIndex = message.indexOf("/price");
             int counter = 0;
             for (Flight flight : this.list) {
                 if (counter == index) {
@@ -153,7 +153,7 @@ public class FlightList {
                     default:
                         break;
                     }
-                    String time = splitDate[3].substring(0,splitDate[3].length()-1);
+                    String time = splitDate[3].substring(0,splitDate[3].length() - 1);
                     date = splitDate[2] + "-" + splitDate[1] + "-" + splitDate[0] + " " + time;
                 }
                 counter++;
