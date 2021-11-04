@@ -67,9 +67,9 @@ public class Storage {
         fileOut.close();
     }
 
-     /**
-      * edit flight details in flightDB.
-      */
+    /**
+     * edit flight details in flightDB.
+     */
     public static void editFlightDB(String message) throws IOException {
         FileWriter fileWriter = new FileWriter("FlightDB.txt", true);
         BufferedReader fileRead = new BufferedReader(new FileReader("FlightDB.txt"));
@@ -83,21 +83,21 @@ public class Storage {
         String number = message.substring(5,message.indexOf('/')).trim();
         int index = Integer.parseInt(number);
         index = index - 1;
+        int fromIndex = message.indexOf("/from");
+        int toIndex = message.indexOf("/to");
+        int dateIndex = message.indexOf("/date");
+        int priceIndex = message.indexOf("/price");
         for (int i = 0; i < flightList.getSize(); i++) {
             line = fileRead.readLine();
             if (i == index) {
-                int DBFromIndex = line.indexOf("/from");
-                int DBToIndex = line.indexOf("/to");
-                int DBDateIndex = line.indexOf("/date");
-                int DBPriceIndex = line.indexOf("/price");
-                from = line.substring(DBFromIndex + 6, DBToIndex);
-                to = line.substring(DBToIndex + 4, DBDateIndex);
-                date = line.substring(DBDateIndex + 6, DBPriceIndex);
-                price = line.substring(DBPriceIndex + 7);
-                int fromIndex = message.indexOf("/from");
-                int toIndex = message.indexOf("/to");
-                int dateIndex = message.indexOf("/date");
-                int priceIndex = message.indexOf("/price");
+                int fileFromIndex = line.indexOf("/from");
+                int fileToIndex = line.indexOf("/to");
+                int fileDateIndex = line.indexOf("/date");
+                int filePriceIndex = line.indexOf("/price");
+                from = line.substring(fileFromIndex + 6, fileToIndex);
+                to = line.substring(fileToIndex + 4, fileDateIndex);
+                date = line.substring(fileDateIndex + 6, filePriceIndex);
+                price = line.substring(filePriceIndex + 7);
                 if (fromIndex != -1) {
                     from = message.substring(fromIndex + 6) + " ";
                 }
