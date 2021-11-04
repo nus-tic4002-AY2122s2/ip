@@ -68,8 +68,8 @@ public class Duke {
                     //System.out.println("Do email us at support@airrec.com. See you!");
                     break;
                 case "edit" :
-                    System.out.println("edit call");
                     flightList.editFlight(userInput);
+                    storage.editFlightDB(userInput);
                     break;
                 case "search":
                     if (userInput.equals("search")) {

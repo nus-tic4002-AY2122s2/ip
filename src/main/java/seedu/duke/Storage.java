@@ -71,9 +71,7 @@ public class Storage {
      * edit flight details in flightDB.
      */
     public static void editFlightDB(String message) throws IOException {
-        FileWriter fileWriter = new FileWriter("FlightDB.txt", true);
         BufferedReader fileRead = new BufferedReader(new FileReader("FlightDB.txt"));
-        PrintWriter printWriter = new PrintWriter(fileWriter);
         StringBuffer inputBuffer = new StringBuffer();
         String from = "";
         String to = "";
@@ -119,9 +117,7 @@ public class Storage {
         }
         FileOutputStream fileOut = new FileOutputStream("FlightDB.txt");
         fileOut.write(inputBuffer.toString().getBytes());
-        fileWriter.close();
         fileRead.close();
-        printWriter.close();
         fileOut.close();
     }
 }
