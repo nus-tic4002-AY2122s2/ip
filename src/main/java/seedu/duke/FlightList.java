@@ -86,26 +86,7 @@ public class FlightList {
         }
         return tempList;
     }
-<<<<<<< Updated upstream
 
-    /**
-     * Air Rec edit Flight detail
-     * Version 3.0 will be edit flight detail by keyword.
-     */
-    public void editFlight(String message) {
-        if (message.indexOf('/') != -1) {
-            String number = message.substring(5,message.indexOf('/')).trim();
-            int index = Integer.parseInt(number);
-            index = index - 1;
-            System.out.println(number);
-
-        } else {
-            System.out.println("☹ OOPS!!! I'm sorry, Please key in the correct format for edit command :-(");
-        }
-
-        //
-        //list.remove(index);
-=======
     /**
      * Air Rec edit Flight details.
      * version 3.0 will be able to edit flight details by keyword.
@@ -191,6 +172,5 @@ public class FlightList {
             }
             this.list.set(index, new Flight(from, to, date, price));
         }
->>>>>>> Stashed changes
     }
 }
