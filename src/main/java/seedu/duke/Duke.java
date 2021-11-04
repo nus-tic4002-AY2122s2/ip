@@ -87,7 +87,7 @@ public class Duke {
                     break;
 
                 case "show upcoming":
-                    if(!flightList.isEmpty()){
+                    if (!flightList.isEmpty()) {
                         Flight upComingFlight = new Parser().dateCompare(flightList);
                         System.out.println("Flight : " + upComingFlight.getFullFlightDetails());
                     }

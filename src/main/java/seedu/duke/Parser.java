@@ -57,8 +57,8 @@ public class Parser {
     public Flight dateCompare(FlightList flights) {
         LocalDateTime currentTime = LocalDateTime.now();
         List<Flight> listOfFlights = new ArrayList<>();
-        for (int i = 0; i < flights.getSize(); i++){
-            if(flights.getList().get(i).dateAndTime.isAfter(currentTime)){
+        for (int i = 0; i < flights.getSize(); i++) {
+            if (flights.getList().get(i).dateAndTime.isAfter(currentTime)) {
                 listOfFlights.add(flights.getList().get(i));
             }
         }
