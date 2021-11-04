@@ -66,4 +66,62 @@ public class Storage {
         fileRead.close();
         fileOut.close();
     }
+
+    /**
+     * edit flight details in flightDB.
+     */
+     public static void editFlightDB(String message) throws IOException {
+         FileWriter fileWriter = new FileWriter("FlightDB.txt", true);
+         BufferedReader fileRead = new BufferedReader(new FileReader("FlightDB.txt"));
+         PrintWriter printWriter = new PrintWriter(fileWriter);
+         StringBuffer inputBuffer = new StringBuffer();
+         String from = "";
+         String to = "";
+         String date = "";
+         String price = "";
+         String line = "";
+         String number = message.substring(5,message.indexOf('/')).trim();
+         int index = Integer.parseInt(number);
+         index = index - 1;
+         for (int i = 0; i < flightList.getSize(); i++) {
+             line = fileRead.readLine();
+             if (i == index) {
+                 int DBFromIndex = line.indexOf("/from");
+                 int DBToIndex = line.indexOf("/to");
+                 int DBDateIndex = line.indexOf("/date");
+                 int DBPriceIndex = line.indexOf("/price");
+                 from = line.substring(DBFromIndex + 6, DBToIndex);
+                 to = line.substring(DBToIndex + 4, DBDateIndex);
+                 date = line.substring(DBDateIndex + 6, DBPriceIndex);
+                 price = line.substring(DBPriceIndex + 7);
+                 int fromIndex = message.indexOf("/from");
+                 int toIndex = message.indexOf("/to");
+                 int dateIndex = message.indexOf("/date");
+                 int priceIndex = message.indexOf("/price");
+                 if (fromIndex != -1) {
+                     from = message.substring(fromIndex + 6) + " ";
+                 }
+                 if (toIndex != -1) {
+                     to = message.substring(toIndex + 4) + " ";
+                 }
+                 if (dateIndex != -1) {
+                     date = message.substring(dateIndex + 6) + " ";
+                 }
+                 if (priceIndex != -1) {
+                     price = message.substring(priceIndex + 7);
+                 }
+                 String newDetail = "add /from " + from + "/to " + to + "/date " + date +"/price " + price;
+                 inputBuffer.append(newDetail);
+             }else{
+                 inputBuffer.append(line);
+             }
+             inputBuffer.append('\n');
+         }
+         FileOutputStream fileOut = new FileOutputStream("FlightDB.txt");
+         fileOut.write(inputBuffer.toString().getBytes());
+         fileWriter.close();
+         fileRead.close();
+         printWriter.close();
+         fileOut.close();
+     }
 }

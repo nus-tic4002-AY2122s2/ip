@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FlightList {
 
@@ -84,6 +86,7 @@ public class FlightList {
         }
         return tempList;
     }
+<<<<<<< Updated upstream
 
     /**
      * Air Rec edit Flight detail
@@ -102,5 +105,92 @@ public class FlightList {
 
         //
         //list.remove(index);
+=======
+    /**
+     * Air Rec edit Flight details.
+     * version 3.0 will be able to edit flight details by keyword.
+    */
+    public void editFlight(String message) {
+        String from = "";
+        String to = "";
+        String date = "";
+        String price = "";
+        if (message.indexOf('/') == -1) {
+            System.out.println("☹ OOPS!!! I'm sorry, Please check that you have enter the correct format for edit command :-(");
+        } else {
+            String number = message.substring(5,message.indexOf('/')).trim();
+            int index = Integer.parseInt(number);
+            index = index - 1;
+            int fromIndex = message.indexOf("/from");
+            int toIndex = message.indexOf("/to");
+            int dateIndex = message.indexOf("/date");
+            int priceIndex = message.indexOf("/price");
+            int counter = 0;
+            for (Flight flight : this.list) {
+                if (counter == index) {
+                    from = flight.getFrom();
+                    to = flight.getTo();
+                    String[] splitDate = flight.getStringDateAndTime().split("\\s+");
+                    price = Integer.toString(flight.getPrice());
+                    switch (splitDate[1]) {
+                    case "Jan":
+                        splitDate[1] = "01";
+                        break;
+                    case "Feb":
+                        splitDate[1] = "02";
+                        break;
+                    case "Mar":
+                        splitDate[1] = "04";
+                        break;
+                    case "Apr":
+                        splitDate[1] = "04";
+                        break;
+                    case "May":
+                        splitDate[1] = "05";
+                        break;
+                    case "Jun":
+                        splitDate[1] = "06";
+                        break;
+                    case "Jul":
+                        splitDate[1] = "07";
+                        break;
+                    case "Aug":
+                        splitDate[1] = "08";
+                        break;
+                    case "Sep":
+                        splitDate[1] = "09";
+                        break;
+                    case "Oct":
+                        splitDate[1] = "10";
+                        break;
+                    case "Nov":
+                        splitDate[1] = "11";
+                        break;
+                    case "Dec":
+                        splitDate[1] = "12";
+                        break;
+                    default:
+                        break;
+                    }
+                    String time = splitDate[3].substring(0,splitDate[3].length()-1);
+                    date = splitDate[2] + "-" + splitDate[1] + "-" + splitDate[0] + " " + time;
+                }
+                counter++;
+            }
+            if (fromIndex != -1) {
+                from = message.substring(fromIndex + 6) + " ";
+            }
+            if (toIndex != -1) {
+                to = message.substring(toIndex + 4) + " ";
+            }
+            if (dateIndex != -1) {
+                date = message.substring(dateIndex + 6) + " ";
+            }
+            if (priceIndex != -1) {
+                price = message.substring(priceIndex + 7);
+            }
+            this.list.set(index, new Flight(from, to, date, price));
+        }
+>>>>>>> Stashed changes
     }
 }
