@@ -63,10 +63,6 @@ public class Duke {
                     /*System.out.println("Your flight has been deleted.\n" + "You have " + flightList.getSize()
                             + " flights in your record");*/
                     break;
-                case "edit":
-                    flightList.editFlight(userInput);
-                    storage.editFlightDB(userInput);
-                    break;
                 case "help":
                     Message.getVal("HELP_MESSAGE");
                     //System.out.println("Do email us at support@airrec.com. See you!");
