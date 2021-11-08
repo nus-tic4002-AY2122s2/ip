@@ -1,5 +1,11 @@
 package seedu.duke;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 public class Parser {
     /**
      * This parser will be able to parse the inputs from the user to a readable command
@@ -35,6 +41,10 @@ public class Parser {
         if (userInput.contains("search")) {
             command = "search";
         }
+
+        if (userInput.contains("show upcoming") || userInput.contains("show Upcoming")) {
+            command = "show upcoming";
+        }
         return command;
     }
 
@@ -43,4 +53,20 @@ public class Parser {
         return Integer.parseInt(userInput.substring(7));
     }
 
+    // To parse and compare dates.
+    public Flight dateCompare(FlightList flights) {
+        LocalDateTime currentTime = LocalDateTime.now();
+        List<Flight> listOfFlights = new ArrayList<>();
+        for (int i = 0; i < flights.getSize(); i++) {
+            if (flights.getList().get(i).dateAndTime.isAfter(currentTime)) {
+                listOfFlights.add(flights.getList().get(i));
+            }
+        }
+        Comparator<Flight> dateComparator = Comparator.comparing(Flight::getLocalDateTime);
+
+        Flight upComingFlight = listOfFlights.stream().min(dateComparator).get();
+        return upComingFlight;
+
+
+    }
 }

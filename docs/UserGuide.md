@@ -60,7 +60,8 @@ Some example commands you can try:
 ### Adding a flight: add
 
 Adds a new flight trip to the list.
-NOTE: For version 1.1 Air Rec will be reading the descriptions after add as a full string. We will work on to process these strings into data on version 1.2 onwards.
+NOTE: For version 1.1 Air Rec will be reading the descriptions after add as a full string. We will work on to process 
+these strings into data on version 1.2 onwards.
 
 Format: [add] [/from] [depart details] [/to] [destination] [/date] [date & time of departure] [/price] [price of trip]
 

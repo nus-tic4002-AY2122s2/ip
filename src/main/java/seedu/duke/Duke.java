@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -53,12 +54,14 @@ public class Duke {
                                 + flightList.getList().get(i).getFullFlightDetails());
                     }
                     break;
+
                 case "delete":
                     flightList.deleteFlight(userInput);
                     Message.getVal("DELETE_SUCCESSFULLY",Integer.toString(flightList.getSize()));
                     /*System.out.println("Your flight has been deleted.\n" + "You have " + flightList.getSize()
                             + " flights in your record");*/
                     break;
+
                 case "help":
                     Message.getVal("HELP_MESSAGE");
                     //System.out.println("Do email us at support@airrec.com. See you!");
@@ -82,6 +85,15 @@ public class Duke {
                         }
                     }
                     break;
+
+                case "show upcoming":
+                    if (!flightList.isEmpty()) {
+                        Flight upComingFlight = new Parser().dateCompare(flightList);
+                        System.out.println("Flight : " + upComingFlight.getFullFlightDetails());
+                    }
+                    break;
+
+
                 default:
                     Message.getVal("ERROR_UNKNOWN");
                     //System.out.println(errorUnknown);
