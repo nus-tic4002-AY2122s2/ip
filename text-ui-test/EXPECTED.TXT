@@ -7,5 +7,6 @@ Hi I’m AIR REC
 
 I can help you save all the flight details!
 How can I assist you today?
+You have 0 flights in your record
 Bye. Your flights have been recorded.
  Hope to see you again soon!
