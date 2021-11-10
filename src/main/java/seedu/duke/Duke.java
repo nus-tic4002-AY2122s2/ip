@@ -70,6 +70,10 @@ public class Duke {
                     Message.getVal("HELP_MESSAGE");
                     //System.out.println("Do email us at support@airrec.com. See you!");
                     break;
+                case "edit" :
+                    flightList.editFlight(userInput);
+                    storage.editFlightDB(userInput);
+                    break;
                 case "search":
                     if (userInput.equals("search")) {
                         Message.getVal("SEARCH_EMPTY");
