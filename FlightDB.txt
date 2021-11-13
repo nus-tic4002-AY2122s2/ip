@@ -1,0 +1,2 @@
+add /from Australia /to Singapore /date 2021-01-31 1400 /price 500
+add /from Japan /to Singapore /date 2021-10-31 1400 /price 800
