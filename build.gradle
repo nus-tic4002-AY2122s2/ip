@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'checkstyle'
 }
 
 group 'edu.nus'
@@ -26,4 +27,8 @@ test {
 
 run {
     standardInput = System.in
+}
+
+checkstyle {
+    toolVersion = '8.29'
 }
