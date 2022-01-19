@@ -89,7 +89,7 @@ class EventTest {
     })
     void testTaskType(ArgumentsAccessor arguments) {
         Task t = new Event("Class gathering", "12 oct 2021");
-        if (arguments.getString(0).equals("events")) {
+        if (arguments.getString(0).equals("event")) {
             assertTrue(t.taskType(arguments.getString(0)));
         } else {
             assertFalse(t.taskType(arguments.getString(0)));

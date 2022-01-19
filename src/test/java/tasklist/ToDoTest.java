@@ -32,7 +32,7 @@ class ToDoTest {
     })
     void testTaskType(ArgumentsAccessor arguments) {
         Task t = new ToDo("Bills");
-        if (arguments.getString(0).equals("todos")){
+        if (arguments.getString(0).equals("todo")){
             assertTrue(t.taskType(arguments.getString(0)));
         }else {
             assertFalse(t.taskType(arguments.getString(0)));

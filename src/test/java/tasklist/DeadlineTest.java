@@ -90,7 +90,7 @@ class DeadlineTest {
     })
     void testTaskType(ArgumentsAccessor arguments) {
         Task t = new Deadline("Duke", "12 oct 2021");
-        if (arguments.getString(0).equals("deadlines")){
+        if (arguments.getString(0).equals("deadline")){
             assertTrue(t.taskType(arguments.getString(0)));
         }else {
             assertFalse(t.taskType(arguments.getString(0)));
