@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
     // Variables
-    private Scanner scanner;
+    private final Scanner scanner;
 
     // Constructor
     public Ui() {
@@ -42,7 +42,7 @@ public class Ui {
      *
      * @param message String to be printed.
      */
-    public static void printMessage_Exit(String message) {
+    public static void printMessageExit(String message) {
         printMessage(message);
         System.exit(1);
     }

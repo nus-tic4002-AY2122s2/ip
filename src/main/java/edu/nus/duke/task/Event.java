@@ -12,11 +12,25 @@ public class Event extends Task {
     protected LocalDateTime at;
 
     // Constructor
+
+    /**
+     * Constructor of Event class.
+     *
+     * @param taskName Name of task.
+     * @param at Event datetime.
+     */
     public Event(String taskName, LocalDateTime at) {
         super('E', taskName);
         this.at = at;
     }
 
+    /**
+     * Constructor of Event class.
+     *
+     * @param taskName Name of task.
+     * @param at Event datetime.
+     * @param isDone Done status of task.
+     */
     public Event(String taskName, LocalDateTime at, boolean isDone) {
         this(taskName, at);
         this.isDone = isDone;

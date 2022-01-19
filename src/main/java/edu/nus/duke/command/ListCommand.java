@@ -2,8 +2,8 @@ package edu.nus.duke.command;
 
 import java.time.LocalDate;
 
-import edu.nus.duke.ui.Ui;
 import edu.nus.duke.task.TaskList;
+import edu.nus.duke.ui.Ui;
 
 /**
  * Represent list command that extends from Command.

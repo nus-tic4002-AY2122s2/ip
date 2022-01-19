@@ -5,16 +5,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 import edu.nus.duke.parser.Parser;
 import edu.nus.duke.ui.Ui;
-import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 
 /**
  * Class that contains the task list
  */
 public class TaskList {
     // Variables
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     // Constructor
     public TaskList() {
@@ -91,19 +91,19 @@ public class TaskList {
         String taskName = elements[2];
 
         switch (taskType) {
-            case "T":
-                tasks.add(new Todo(taskName, isDone));
-                break;
-            case "D":
-                LocalDateTime by = Parser.parseDt(elements[3]);
-                tasks.add(new Deadline(taskName, by, isDone));
-                break;
-            case "E":
-                LocalDateTime at = Parser.parseDt(elements[3]);
-                tasks.add(new Event(taskName, at, isDone));
-                break;
-            default:
-                throw new DukeInvalidTaskIndexException();
+        case "T":
+            tasks.add(new Todo(taskName, isDone));
+            break;
+        case "D":
+            LocalDateTime by = Parser.parseDt(elements[3]);
+            tasks.add(new Deadline(taskName, by, isDone));
+            break;
+        case "E":
+            LocalDateTime at = Parser.parseDt(elements[3]);
+            tasks.add(new Event(taskName, at, isDone));
+            break;
+        default:
+            throw new DukeInvalidTaskIndexException();
         }
     }
 
@@ -141,9 +141,9 @@ public class TaskList {
     private boolean isExclude(Task task, LocalDate date, String text) {
         if (date != null) {
             if (task instanceof Deadline) {
-                return !((Deadline)task).getBy().toLocalDate().equals(date);
+                return !((Deadline) task).getBy().toLocalDate().equals(date);
             } else if (task instanceof Event) {
-                return !((Event)task).getAt().toLocalDate().equals(date);
+                return !((Event) task).getAt().toLocalDate().equals(date);
             } else {
                 return true;
             }

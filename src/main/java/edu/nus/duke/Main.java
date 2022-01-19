@@ -2,22 +2,28 @@ package edu.nus.duke;
 
 import java.time.format.DateTimeParseException;
 
-import edu.nus.duke.ui.Ui;
-import edu.nus.duke.task.TaskList;
-import edu.nus.duke.storage.Storage;
-import edu.nus.duke.parser.Parser;
 import edu.nus.duke.command.Command;
 import edu.nus.duke.command.ExitCommand;
-import edu.nus.duke.exception.DukeInvalidInputException;
 import edu.nus.duke.exception.DukeDisallowInputException;
+import edu.nus.duke.exception.DukeInvalidInputException;
+import edu.nus.duke.parser.Parser;
+import edu.nus.duke.storage.Storage;
+import edu.nus.duke.task.TaskList;
+import edu.nus.duke.ui.Ui;
 
 public class Main {
     // Variables
-    private TaskList taskList;
-    private Storage storage;
-    private Ui ui;
+    private final TaskList taskList;
+    private final Storage storage;
+    private final Ui ui;
 
     // Constructor
+
+    /**
+     * Constructor of Main class.
+     *
+     * @param filePath File path of txt storage.
+     */
     public Main(String filePath) {
         taskList = new TaskList();
         storage = new Storage(filePath, taskList);
