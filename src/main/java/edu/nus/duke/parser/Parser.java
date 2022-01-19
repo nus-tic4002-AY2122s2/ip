@@ -5,19 +5,19 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import edu.nus.duke.storage.Storage;
-import edu.nus.duke.command.Command;
 import edu.nus.duke.command.AddCommand;
-import edu.nus.duke.command.ListCommand;
-import edu.nus.duke.command.DoneCommand;
+import edu.nus.duke.command.Command;
 import edu.nus.duke.command.DeleteCommand;
+import edu.nus.duke.command.DoneCommand;
 import edu.nus.duke.command.ExitCommand;
 import edu.nus.duke.command.FindCommand;
-import edu.nus.duke.task.Todo;
+import edu.nus.duke.command.ListCommand;
+import edu.nus.duke.exception.DukeDisallowInputException;
+import edu.nus.duke.exception.DukeInvalidInputException;
+import edu.nus.duke.storage.Storage;
 import edu.nus.duke.task.Deadline;
 import edu.nus.duke.task.Event;
-import edu.nus.duke.exception.DukeInvalidInputException;
-import edu.nus.duke.exception.DukeDisallowInputException;
+import edu.nus.duke.task.Todo;
 
 /**
  * Class that deals with making sense of the user command
@@ -78,7 +78,7 @@ public class Parser {
         return dt.format(DateTimeFormatter.ofPattern(DT_FORMAT_PRINT));
     }
 
-    private static Command parseInput_MultiArgs(String cmd, String args) throws ArrayIndexOutOfBoundsException,
+    private static Command parseInputMultiArgs(String cmd, String args) throws ArrayIndexOutOfBoundsException,
             DukeInvalidInputException, DateTimeParseException {
         String[] argsArray;
         String taskName;
@@ -87,17 +87,17 @@ public class Parser {
         switch (cmd) {
         case AddCommand.CMD_TODO:
             taskName = args;
-            return ( new AddCommand(new Todo(taskName)) );
+            return (new AddCommand(new Todo(taskName)));
         case AddCommand.CMD_DEADLINE:
             argsArray = args.split("/by");
             taskName = argsArray[0].trim();
-            LocalDateTime by = parseDt( argsArray[1].trim() );
-            return ( new AddCommand(new Deadline(taskName, by)) );
+            LocalDateTime by = parseDt(argsArray[1].trim());
+            return (new AddCommand(new Deadline(taskName, by)));
         case AddCommand.CMD_EVENT:
             argsArray = args.split("/at");
             taskName = argsArray[0].trim();
-            LocalDateTime at = parseDt( argsArray[1].trim() );
-            return ( new AddCommand(new Event(taskName, at)) );
+            LocalDateTime at = parseDt(argsArray[1].trim());
+            return (new AddCommand(new Event(taskName, at)));
         case DoneCommand.CMD:
             idx = Integer.parseInt(args) - 1;
             return (new DoneCommand(idx));
@@ -138,7 +138,7 @@ public class Parser {
             return (new ExitCommand());
         } else {
             String args = inputArray[1];
-            return parseInput_MultiArgs(cmd, args);
+            return parseInputMultiArgs(cmd, args);
         }
     }
 }

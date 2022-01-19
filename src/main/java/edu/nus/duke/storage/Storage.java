@@ -2,17 +2,17 @@ package edu.nus.duke.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 import java.time.format.DateTimeParseException;
+import java.util.Scanner;
 
-import edu.nus.duke.ui.Ui;
-import edu.nus.duke.task.TaskList;
 import edu.nus.duke.exception.DukeInvalidTaskIndexException;
+import edu.nus.duke.task.TaskList;
+import edu.nus.duke.ui.Ui;
 
 /**
  * Class that deals with loading tasks from the file and saving tasks in the file
@@ -20,8 +20,14 @@ import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 public class Storage {
     // Variables
     private static final String SAVE_SEP = ";";
-    private String filePath;
+    private final String filePath;
 
+    /**
+     * Constructor of Storage class.
+     *
+     * @param filePath File path of txt storage.
+     * @param taskList TaskList to be saved.
+     */
     public Storage(String filePath, TaskList taskList) {
         this.filePath = filePath;
         File f = new File(this.filePath);
@@ -49,15 +55,15 @@ public class Storage {
                 try {
                     taskList.addTask(line.split(SAVE_SEP));
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    Ui.printMessage_Exit("Bad data in " + filePath);
+                    Ui.printMessageExit("Bad data in " + filePath);
                 } catch (DukeInvalidTaskIndexException e) {
-                    Ui.printMessage_Exit("Invalid task index in " + filePath);
+                    Ui.printMessageExit("Invalid task index in " + filePath);
                 } catch (DateTimeParseException e) {
-                    Ui.printMessage_Exit("Invalid datetime in " + filePath);
+                    Ui.printMessageExit("Invalid datetime in " + filePath);
                 }
             }
         } catch (FileNotFoundException e) {
-            Ui.printMessage_Exit(filePath + " not found!");
+            Ui.printMessageExit(filePath + " not found!");
         }
 
     }
@@ -70,7 +76,7 @@ public class Storage {
         try {
             Files.createDirectory(path);
         } catch (IOException e) {
-            Ui.printMessage_Exit(e.getMessage());
+            Ui.printMessageExit(e.getMessage());
         }
     }
 
@@ -86,7 +92,7 @@ public class Storage {
             fw.write(txt);
             fw.close();
         } catch (IOException e) {
-            Ui.printMessage_Exit(e.getMessage());
+            Ui.printMessageExit(e.getMessage());
         }
     }
 }

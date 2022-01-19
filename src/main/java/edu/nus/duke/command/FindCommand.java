@@ -1,7 +1,6 @@
 package edu.nus.duke.command;
 
 import edu.nus.duke.task.TaskList;
-
 import edu.nus.duke.ui.Ui;
 
 /**
@@ -10,7 +9,7 @@ import edu.nus.duke.ui.Ui;
 public class FindCommand extends Command {
     // Variables
     public static final String CMD = "find";
-    private String textFilter;
+    private final String textFilter;
 
     // Constructor
     public FindCommand(String textFilter) {
