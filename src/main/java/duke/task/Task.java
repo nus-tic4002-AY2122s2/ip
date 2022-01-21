@@ -7,17 +7,25 @@ import java.time.format.DateTimeFormatter;
  * Represents a task in the taskList
  */
 public abstract class Task {
+
+    private static final String TASK_TYPE = "A";
+
     private String description;
     private boolean isDone;
     private LocalDateTime taskTime = LocalDateTime.of(2000, 1, 1, 0, 0);
     private LocalDateTime finishTime;
-    private static final String TASK_TYPE = "A";
 
+    /**
+     * Constructor of the Task when create without done status and finishTime
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Constructor of the Task when create with done status and finishTime
+     */
     public Task(String description, boolean isDone, LocalDateTime finishTime) {
         this.description = description;
         this.isDone = isDone;

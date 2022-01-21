@@ -1,15 +1,14 @@
 package duke.exception;
 
-public class EmptyDescriptionException extends Exception{
+public class EmptyDescriptionException extends Exception {
     private String message;
 
-    public EmptyDescriptionException(String message)
-    {
-        this.message=message;
+    public EmptyDescriptionException(String message) {
+        this.message = message;
     }
 
     @Override
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 }

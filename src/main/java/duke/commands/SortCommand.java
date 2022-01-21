@@ -10,7 +10,8 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = "||" + COMMAND_WORD + ": sort the all the tasks in the task list by finish date in descending order.";
+    public static final String MESSAGE_USAGE = "||"
+            + COMMAND_WORD + ": sort the all the tasks in the task list by finish date in descending order.";
 
 
     @Override
@@ -21,7 +22,7 @@ public class SortCommand extends Command {
         }
 
         Collections.sort(taskList.getTasks(), (t1, t2) -> {
-           if (t1.getFinishTime().isAfter(t2.getFinishTime())) {
+            if (t1.getFinishTime().isAfter(t2.getFinishTime())) {
                 return -1;
             } else {
                 return 1;

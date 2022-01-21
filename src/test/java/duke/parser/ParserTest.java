@@ -1,13 +1,13 @@
 package duke.parser;
 
-import duke.commands.Command;
-import duke.commands.ExitCommand;
-import duke.commands.ListCommand;
-import duke.parser.Parser;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import duke.commands.Command;
+import duke.commands.ExitCommand;
+import duke.commands.ListCommand;
 
 public class ParserTest {
 
@@ -23,17 +23,17 @@ public class ParserTest {
      * Tests for 0-argument commands =======================================================================
      */
 
-//    @Test
-//    public void parse_helpCommand_parsedCorrectly() {
-//        final String input = "help";
-//        parseAndAssertCommandType(input, HelpCommand.class);
-//    }
+    //@Test
+    //public void parse_helpCommand_parsedCorrectly() {
+    //    final String input = "help";
+    //    parseAndAssertCommandType(input, HelpCommand.class);
+    //}
 
-//    @Test
-//    public void parse_clearCommand_parsedCorrectly() {
-//        final String input = "clear";
-//        parseAndAssertCommandType(input, ClearCommand.class);
-//    }
+    //@Test
+    //public void parse_clearCommand_parsedCorrectly() {
+    //    final String input = "clear";
+    //    parseAndAssertCommandType(input, ClearCommand.class);
+    //}
 
     @Test
     public void parse_listCommand_parsedCorrectly() {

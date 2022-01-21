@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 /**
  * Represents a todoTask
  */
-public class Todo extends Task{
-    private static final String TASK_TYPE="T";
+public class Todo extends Task {
+    private static final String TASK_TYPE = "T";
 
     /**
      * Constructs a todoTask with description
@@ -20,21 +20,25 @@ public class Todo extends Task{
      * Constructs a todoTask with description and isDone
      */
     public Todo(String description, boolean isDone, LocalDateTime finishTime) {
-        super(description,isDone,finishTime);
+        super(description, isDone, finishTime);
     }
 
     @Override
-    public String getTaskType(){
+    public String getTaskType() {
         return TASK_TYPE;
     }
 
     @Override
     public boolean equals(Object obj) {
 
-        if (! super.equals(obj)) return false;
-        if (this.getClass() != obj.getClass())
+        if (!super.equals(obj)) {
             return false;
-        else return true;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        } else {
+            return true;
+        }
 
     }
 

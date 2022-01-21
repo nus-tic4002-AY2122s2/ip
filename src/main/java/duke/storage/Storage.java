@@ -1,17 +1,19 @@
 package duke.storage;
 
-import duke.exception.IllegalValueException;
-import duke.task.TaskList;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import duke.exception.IllegalValueException;
+import duke.task.TaskList;
+
 public class Storage {
 
-    /** Default file path used if the user doesn't provide the file name. */
+    /**
+     * Default file path used if the user doesn't provide the file name.
+     */
     public static final String DEFAULT_STORAGE_FILEPATH = "duke.txt";
 
     public final Path path;
@@ -26,8 +28,8 @@ public class Storage {
     /**
      * @throws InvalidStorageFilePathException if the given file path is invalid
      */
-    public Storage(String filePath) throws InvalidStorageFilePathException{
-        path= Paths.get(filePath);
+    public Storage(String filePath) throws InvalidStorageFilePathException {
+        path = Paths.get(filePath);
         if (!isValidPath(path)) {
             throw new InvalidStorageFilePathException("Storage file should end with '.txt'");
         }
@@ -46,12 +48,11 @@ public class Storage {
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
-    public void save(TaskList taskList) throws StorageOperationException{
-        try{
-            List<String> encodedTaskList=TaskListEncorder.encodeTaskList(taskList);
-            Files.write(path,encodedTaskList);
-        }catch (IOException ioe)
-        {
+    public void save(TaskList taskList) throws StorageOperationException {
+        try {
+            List<String> encodedTaskList = TaskListEncorder.encodeTaskList(taskList);
+            Files.write(path, encodedTaskList);
+        } catch (IOException ioe) {
             throw new StorageOperationException("Saving went wrong");
         }
 
@@ -73,9 +74,9 @@ public class Storage {
         }
         try {
             return TaskListDecoder.decodeTaskList(Files.readAllLines(path));
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             throw new StorageOperationException("Loading went wrong");
-        }catch (IllegalValueException ive){
+        } catch (IllegalValueException ive) {
             throw new StorageOperationException("File contains incorrect format.");
         }
 

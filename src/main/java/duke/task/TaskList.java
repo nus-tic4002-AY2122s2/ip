@@ -3,8 +3,8 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * A list of tasks.
@@ -16,7 +16,8 @@ public class TaskList implements Iterable<Task> {
     /**
      * Construct an empty taskList.
      */
-    public TaskList() {    }
+    public TaskList() {
+    }
 
     /**
      * z
@@ -89,21 +90,21 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Remove a tasks set from a list based on List<Task>
-     *
-     * @param toRemove the task set to remove
-     */
-    public void removeTasks(List<Task> toRemove) {
-        taskList.removeAll(toRemove);
-    }
-
-    /**
      * Remove a task from the list based on the index
      *
      * @param toRemoveIdx the index in the taskList
      */
     public void removeTask(int toRemoveIdx) {
         taskList.remove(toRemoveIdx);
+    }
+
+    /**
+     * Remove a tasks set from a list based on {@link List} of {@link Task}
+     *
+     * @param toRemove the task set to remove
+     */
+    public void removeTasks(List<Task> toRemove) {
+        taskList.removeAll(toRemove);
     }
 
     /**
@@ -120,7 +121,7 @@ public class TaskList implements Iterable<Task> {
      *
      * @return the tasklist
      */
-    public List<Task> getTasks(){
+    public List<Task> getTasks() {
         return taskList;
     }
 

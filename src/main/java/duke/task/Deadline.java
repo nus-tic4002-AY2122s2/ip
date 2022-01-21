@@ -6,10 +6,10 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a Deadline task
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
 
+    private static final String TASK_TYPE = "D";
     protected LocalDateTime by;
-    private static final String TASK_TYPE="D";
 
     /**
      * Constructs a deadline task with description and time
@@ -17,15 +17,15 @@ public class Deadline extends Task{
      */
     public Deadline(String description, LocalDateTime by) {
         super(description);
-        this.by=by;
+        this.by = by;
     }
 
     /**
      * Constructs a deadline task with description, time and isDone
      */
-    public Deadline(String description, LocalDateTime by, boolean isDone,LocalDateTime finishTime){
-        super(description,isDone,finishTime);
-        this.by=by;
+    public Deadline(String description, LocalDateTime by, boolean isDone, LocalDateTime finishTime) {
+        super(description, isDone, finishTime);
+        this.by = by;
     }
 
     public LocalDateTime getTaskTime() {
@@ -33,16 +33,19 @@ public class Deadline extends Task{
     }
 
     @Override
-    public String getTaskType(){
+    public String getTaskType() {
         return TASK_TYPE;
     }
 
     @Override
     public boolean equals(Object obj) {
 
-        if (! super.equals(obj)) return false;
-        if (this.getClass() != obj.getClass())
+        if (!super.equals(obj)) {
             return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
         Deadline d = (Deadline) obj;
         return this.by.equals(d.by);
     }

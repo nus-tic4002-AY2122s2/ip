@@ -23,6 +23,7 @@ public class Command {
     private void setTargetIndex(int[] targetIndex) {
         this.targetIndex = targetIndex;
     }
+
     public int[] getTargetIndex() {
         return targetIndex;
     }
@@ -33,8 +34,8 @@ public class Command {
     /**
      * Supplies the data the command will operate on.
      */
-    public void setData(TaskList taskList){
-        this.taskList=taskList;
+    public void setData(TaskList taskList) {
+        this.taskList = taskList;
     }
 
 

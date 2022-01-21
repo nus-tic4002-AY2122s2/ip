@@ -1,16 +1,15 @@
 package duke;
 
+import java.io.IOException;
+
 import duke.commands.Command;
 import duke.commands.ExitCommand;
 import duke.parser.Parser;
 import duke.storage.Storage;
+import duke.storage.Storage.InvalidStorageFilePathException;
+import duke.storage.Storage.StorageOperationException;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import duke.storage.Storage.StorageOperationException;
-import duke.storage.Storage.InvalidStorageFilePathException;
-
-import java.io.IOException;
 
 public class Duke {
 
@@ -19,6 +18,9 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
 
+    /**
+     * The main entry point to the application.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         try {
@@ -30,9 +32,12 @@ public class Duke {
         }
     }
     public static void main(String[] args) {
-        new Duke(System.getProperty("user.dir")+"/data/duke.txt").run();
+        new Duke(System.getProperty("user.dir") + "/data/duke.txt").run();
     }
 
+    /**
+     * Runs the application.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

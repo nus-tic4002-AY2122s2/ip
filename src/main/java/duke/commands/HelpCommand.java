@@ -1,14 +1,13 @@
 package duke.commands;
 
 
-
 public class HelpCommand extends Command {
-    public static final String COMMAND_WORD="help";
+    public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = "||"+COMMAND_WORD + ": Shows program usage instructions.";
+    public static final String MESSAGE_USAGE = "||" + COMMAND_WORD + ": Shows program usage instructions.";
 
     @Override
-    public void execute(){
+    public void execute() {
 
         System.out.println(AddCommand.MESSAGE_USAGE
                 + "\n" + ClearCommand.MESSAGE_USAGE
@@ -20,6 +19,6 @@ public class HelpCommand extends Command {
                 + "\n" + SortCommand.MESSAGE_USAGE
                 + "\n" + ViewDoneCommand.MESSAGE_USAGE
                 + "\n" + ExitCommand.MESSAGE_USAGE
-                );
+        );
     }
 }

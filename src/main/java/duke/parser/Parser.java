@@ -1,12 +1,5 @@
 package duke.parser;
 
-import duke.commands.*;
-import duke.common.Utils;
-import duke.exception.IllegalValueException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Todo;
-
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -14,6 +7,24 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+
+import duke.commands.AddCommand;
+import duke.commands.ClearCommand;
+import duke.commands.Command;
+import duke.commands.DeleteCommand;
+import duke.commands.DoneCommand;
+import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
+import duke.commands.HelpCommand;
+import duke.commands.IncorrectCommand;
+import duke.commands.ListCommand;
+import duke.commands.SortCommand;
+import duke.commands.ViewDoneCommand;
+import duke.common.Utils;
+import duke.exception.IllegalValueException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
 
 /**
  * Parses user input.
@@ -25,8 +36,9 @@ public class Parser {
      */
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    // one or more keywords separated by whitespace
     public static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?:(?<isCombined>[01])\\s+)?(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+            Pattern.compile("(?:(?<isCombined>[01])\\s+)?(?<keywords>\\S+(?:\\s+\\S+)*)");
 
 
     public static final Pattern TASK_TYPE_DEADLINE_ARGS_FORMAT =
@@ -58,8 +70,8 @@ public class Parser {
     public Command parse(String inputCommand) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(inputCommand.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type the list to see all the commands.");
+            return new IncorrectCommand("This is a incorrect format, "
+                    + " you may type the list to see all the commands.");
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -67,33 +79,33 @@ public class Parser {
 
         switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD_ONE:
-                return prepareAddTodo(arguments);
-            case AddCommand.COMMAND_WORD_TWO:
-                return prepareAddDeadline(arguments);
-            case AddCommand.COMMAND_WORD_THREE:
-                return prepareAddEvent(arguments);
+        case AddCommand.COMMAND_WORD_ONE:
+            return prepareAddTodo(arguments);
+        case AddCommand.COMMAND_WORD_TWO:
+            return prepareAddDeadline(arguments);
+        case AddCommand.COMMAND_WORD_THREE:
+            return prepareAddEvent(arguments);
 
-            case DoneCommand.COMMAND_WORD:
-                return prepareDone(arguments);
-            case DeleteCommand.COMMAND_WORD:
-                return prepareDelete(arguments);
-            case FindCommand.COMMAND_WORD:
-                return prepareFind(arguments);
-            case ViewDoneCommand.COMMAND_WORD:
-                return prepareViewDone(arguments);
+        case DoneCommand.COMMAND_WORD:
+            return prepareDone(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDelete(arguments);
+        case FindCommand.COMMAND_WORD:
+            return prepareFind(arguments);
+        case ViewDoneCommand.COMMAND_WORD:
+            return prepareViewDone(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
-            case SortCommand.COMMAND_WORD:
-                return new SortCommand();
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
-            case HelpCommand.COMMAND_WORD:
-            default:
-                return new HelpCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+        case HelpCommand.COMMAND_WORD:
+        default:
+            return new HelpCommand();
         }
 
     }
@@ -118,8 +130,8 @@ public class Parser {
     private Command prepareAddDeadline(String args) {
         final Matcher matcher = TASK_TYPE_DEADLINE_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type 'help' to see all the commands.");
+            return new IncorrectCommand("This is a incorrect format, "
+                    + " you may type 'help' to see all the commands.");
         }
         return new AddCommand(new Deadline(matcher.group("deadlineDesc"),
                 LocalDateTime.of(Integer.parseInt(matcher.group("byYear")),
@@ -138,8 +150,8 @@ public class Parser {
     private Command prepareAddEvent(String args) {
         final Matcher matcher = TASK_TYPE_EVENT_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type 'help' to see all the commands.");
+            return new IncorrectCommand("This is a incorrect format, "
+                    + " you may type 'help' to see all the commands.");
         }
 
 
@@ -161,7 +173,8 @@ public class Parser {
         try {
             Matcher matcher = TASK_DONE_TIME_FORMAT.matcher(args.trim());
             if (matcher.matches()) {
-                int[] targetIndex = Stream.of(matcher.group("targetIndex").split("\\s+")).mapToInt(Integer::parseInt).toArray();
+                int[] targetIndex = Stream.of(matcher.group("targetIndex")
+                        .split("\\s+")).mapToInt(Integer::parseInt).toArray();
                 return new DoneCommand(targetIndex,
                         LocalDateTime.of(Integer.parseInt(matcher.group("year")),
                                 Integer.parseInt(matcher.group("month")),
@@ -173,8 +186,8 @@ public class Parser {
                 return new DoneCommand(targetIndex, LocalDateTime.now());
             }
         } catch (ParseException pe) {
-            return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type 'help' to see all the commands.");
+            return new IncorrectCommand("This is a incorrect format, "
+                    + " you may type 'help' to see all the commands.");
         }
 
     }
@@ -189,12 +202,12 @@ public class Parser {
         try {
             final int[] targetIndex = parseArgsAsDisplayedIndex(args);
             for (int i : targetIndex) {
-                assert  i > 0 : "Invalid number, the index should be larger than 0.";
+                assert i > 0 : "Invalid number, the index should be larger than 0.";
             }
             return new DeleteCommand(targetIndex);
         } catch (ParseException pe) {
-            return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type the list to see all the commands.");
+            return new IncorrectCommand("This is a incorrect format, "
+                    + " you may type the list to see all the commands.");
         }
     }
 
@@ -207,8 +220,8 @@ public class Parser {
     private Command prepareFind(String args) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher((args.trim()));
         if (!matcher.matches()) {
-            return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type 'help' to see all the commands.");
+            return new IncorrectCommand("This is a incorrect format, "
+                    + " you may type 'help' to see all the commands.");
         }
         // keywords delimited by whitespace
         final String[] keywords = matcher.group("keywords").split("\\s+");
@@ -231,14 +244,14 @@ public class Parser {
         try {
             final Matcher matcher = VIEW_DONE_TASK_BY_TIME_FORMAT.matcher(args.trim());
             if (!matcher.matches()) {
-                return new IncorrectCommand("This is a incorrect format, " +
-                        " you may type 'help' to see all the commands.");
+                return new IncorrectCommand("This is a incorrect format, "
+                        + " you may type 'help' to see all the commands.");
             }
             return new ViewDoneCommand(Utils.getDatetimeFromString(matcher.group("fromTime")),
                     Utils.getDatetimeFromString(matcher.group("toTime")));
         } catch (IllegalValueException ive) {
-            return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type 'help' to see all the commands.");
+            return new IncorrectCommand("This is a incorrect format, "
+                    + " you may type 'help' to see all the commands.");
         }
 
     }
@@ -255,7 +268,7 @@ public class Parser {
         if (!matcher.matches()) {
             throw new ParseException("Could not match to the correct index.");
         }
-//        return Integer.parseInt(matcher.group("targetIndex"));
+        //return Integer.parseInt(matcher.group("targetIndex"));
         return Stream.of(matcher.group("targetIndex").split("\\s+")).mapToInt(Integer::parseInt).toArray();
     }
 
