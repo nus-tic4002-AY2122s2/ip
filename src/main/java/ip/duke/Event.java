@@ -1,8 +1,10 @@
 package ip.duke;
+
 /**
  * Event.java - a simple class for event objects.
  * A subclass of Deadline
- * @author  Alvin Gwee
+ *
+ * @author Alvin Gwee
  * @version 1.0
  * @see Deadline
  */
@@ -15,9 +17,11 @@ public class Event extends Deadline {
     public void setId() {
         this.id = 'E';
     }
+
     /**
      * Method gives the string representation
      * of the Event object.
+     *
      * @return A String value.
      */
     @Override

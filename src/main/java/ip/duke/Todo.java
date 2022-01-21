@@ -5,18 +5,27 @@ import ip.duke.task.Task;
 /**
  * Todo.java - a simple class for todo objects.
  * A subclass of Task
- * @author  Alvin Gwee
+ *
+ * @author Alvin Gwee
  * @version 1.0
  * @see Task
  */
 public class Todo extends Task {
+    /**
+     * Constructor for class Todo
+     * for a Todo object.
+     *
+     * @param description - A String value for task description.
+     */
     public Todo(String description) {
         super(description);
         setId();
     }
+
     /**
      * Method gives the string representation
      * of the Todo object.
+     *
      * @return A String value.
      */
     @Override

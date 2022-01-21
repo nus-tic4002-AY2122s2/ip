@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
+
 /**
  * LisGenie Chat Bot CLI App - a task management online assistant.
  *
@@ -77,7 +78,7 @@ public class Duke {
         File f = new File(DATA_PATH);
         File f_backup = new File(BACKUP_PATH);
 
-        if(!f.exists() && !f_backup.exists()){
+        if (!f.exists() && !f_backup.exists()) {
             f.getParentFile().mkdirs();
             f_backup.getParentFile().mkdirs();
             try {

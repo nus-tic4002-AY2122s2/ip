@@ -1,24 +1,30 @@
 # User Guide
 
-## Features 
+## Features
+
 An Online CLI-type App for users who can type fast on their keyboards!
+
 ### Feature-An easy to use Task Manager
 
 A callable online store and point-of-contact for a single user to register in the tasks that he/she often does.
+
 - E.g. todo, deadlines and events tasks.
+
 ### Feature A Lively ChatBot Service
 
 User will be able to chat with LisGenie, the funny ChatBot, who helps in the tasks parsing, creation, storage and admin.
-- Admin tasks include IO errors recovery via backup file, `done`, `delete`, `find`, `list`, `bye` commands, among others.
+
+- Admin tasks include IO errors recovery via backup file, `done`, `delete`, `find`, `list`, `bye` commands, among
+  others.
 - User will be advised if the database is full, to delete some old records before use for optimal performance.
 
-## Usage <all commands in lowercase> 
+## Usage <all commands in lowercase>
 
-### `bye` - Action Describe 
+### `bye` - Action Describe
 
 exit the LisGenie App.
 
-Example of usage: 
+Example of usage:
 
 `bye`
 
@@ -30,11 +36,11 @@ Description of the outcome.
 Bye. Hope to see you again soon!
 ```
 
-### `list` - Action Describe 
+### `list` - Action Describe
 
 display the task database to user.
 
-Example of usage: 
+Example of usage:
 
 `list`
 
@@ -49,17 +55,17 @@ Description of the outcome.
 10.[E][X] attend another meeting (at: Dec 2 2021)
 ```
 
-### `delete` - Action Describe 
+### `delete` - Action Describe
 
-delete a numbered task from the online database list. 
+delete a numbered task from the online database list.
 
-Example of usage: 
+Example of usage:
 
 `delete 7`
 
 Expected outcome: display task deleted, also deleted from the saved database file permanently.
 
-Description of the outcome. 
+Description of the outcome.
 
 ```
 Noted. I've removed this task:
@@ -67,11 +73,11 @@ Noted. I've removed this task:
 Now you have 11 tasks in the list.
 ```
 
-### `find` - Action Describe 
+### `find` - Action Describe
 
 find all tasks that contain a word inputted by the user.
 
-Example of usage: 
+Example of usage:
 
 `find book`
 
@@ -85,11 +91,11 @@ Here are the matching tasks in your list:
 2.[T][ ] borrow another book
 ```
 
-### `done` - Action Describe 
+### `done` - Action Describe
 
 update the done status of a task by its numbered position in the list.
 
-Example of usage: 
+Example of usage:
 
 `done 3`
 
@@ -103,11 +109,11 @@ Here are the matching tasks in your list:
 2.[T][ ] borrow another book
 ```
 
-### `todo` - Action Describe 
+### `todo` - Action Describe
 
 add a Todo task into the database.
 
-Example of usage: 
+Example of usage:
 
 `todo borrow another book`
 
@@ -121,11 +127,11 @@ Got it. I've added this task:
 Now you have 11 tasks in the list.
 ```
 
-### `deadline` - Action Describe 
+### `deadline` - Action Describe
 
 add a Todo task into the database.
 
-Example of usage: 
+Example of usage:
 
 `deadline attend the Maths Quiz /by 2021-10-6`
 
@@ -139,11 +145,11 @@ Got it. I've added this task:
 Now you have 12 tasks in the list.
 ```
 
-### `event` - Action Describe 
+### `event` - Action Describe
 
 add a Todo task into the database.
 
-Example of usage: 
+Example of usage:
 
 `event attend exhibition Expo@Changi venue /at 2-4:30pm Fri`
 
@@ -157,4 +163,7 @@ Got it. I've added this task:
 Now you have 13 tasks in the list.
 ```
 
-#**NB**: - dates, if used, must be the sole entry entered after `/by` or `/at`, entered as yyyy-MM-dd or yyyy/MM/dd, to be parsed correctly.
+# **
+
+NB**: - dates, if used, must be the sole entry entered after `/by` or `/at`, entered as yyyy-MM-dd or yyyy/MM/dd, to be
+parsed correctly.

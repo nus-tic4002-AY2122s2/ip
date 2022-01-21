@@ -7,8 +7,10 @@ import ip.duke.exceptions.DukeException;
 import ip.duke.storage.Storage;
 import ip.duke.task.Task;
 import ip.duke.ui.Ui;
+
 import java.io.*;
 import java.util.LinkedHashSet;
+
 /**
  * This utility class provides an online database for tasks storage
  *
@@ -24,11 +26,11 @@ public class TaskList {
     // Collection preserves input sequence, gives constant time for add, update & remove operations
     private final static LinkedHashSet<Task> TASKS = new LinkedHashSet<>(105, (float) 1.0);
 
-    public static int listSize(){
+    public static int listSize() {
         return TASKS.size();
     }
 
-    public static LinkedHashSet<Task> getList(){
+    public static LinkedHashSet<Task> getList() {
         return TASKS;
     }
 
@@ -46,20 +48,22 @@ public class TaskList {
             }
         }
     }
+
     /**
      * Extracts a Task item by "index" or its sequenced order.
+     *
      * @param idx indexed location of target Task item
      * @return A Task object.
      */
-    public static Task getItem(int idx){
+    public static Task getItem(int idx) {
         int currentIndex = 0;
         Task item = null;
 
-        for(Task element : TASKS){
-            if(currentIndex == idx){
+        for (Task element : TASKS) {
+            if (currentIndex == idx) {
                 item = element;
                 break;
-            }else{
+            } else {
                 ++currentIndex;
             }
         }
@@ -88,13 +92,13 @@ public class TaskList {
         }
     }
 
-    public static void drop(int idx){
+    public static void drop(int idx) {
         Task item = getItem(idx);
 
-        if(item != null) {
+        if (item != null) {
             TASKS.remove(item);
             Ui.echoDelete(item);
-        }else{
+        } else {
             Ui.echoNoEntries();
         }
     }
@@ -150,16 +154,16 @@ public class TaskList {
 
         } catch (IOException e) {
             throw new DukeException("File access/read error!", e);
-        } finally{
+        } finally {
             toClose(reader);
         }
         return TASKS;
     }
 
-    public static void updateDoneStatus(int idx){
+    public static void updateDoneStatus(int idx) {
         Task item = getItem(idx);
 
-        if(item != null) {
+        if (item != null) {
             if (!item.getStatusIcon().equals(" ")) {
                 System.out.print("LisGenie : ");
                 System.out.println("Mmm...item already marked done, O Master? Next @|@ task?");
@@ -167,7 +171,7 @@ public class TaskList {
                 item.setDone();
                 Ui.echoDone(item);
             }
-        }else{
+        } else {
             Ui.echoNoEntries();
         }
     }

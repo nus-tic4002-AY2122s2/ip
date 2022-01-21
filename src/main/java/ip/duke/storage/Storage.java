@@ -2,6 +2,7 @@ package ip.duke.storage;
 
 import ip.duke.task.Task;
 import ip.duke.tasklist.TaskList;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class Storage {
         FILE_PATH = filePath;
     }
 
-    public void setFilePath(String path){
+    public void setFilePath(String path) {
         FILE_PATH = path;
     }
 
