@@ -1,4 +1,4 @@
-package main.java.duke.exception;
+package duke.exception;
 
 /**
  * Signals that some given data does not fulfill some constraints.

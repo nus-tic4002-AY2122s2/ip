@@ -1,7 +1,7 @@
-package main.java.duke.storage;
+package duke.storage;
 
-import main.java.duke.task.Task;
-import main.java.duke.task.TaskList;
+import duke.task.Task;
+import duke.task.TaskList;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

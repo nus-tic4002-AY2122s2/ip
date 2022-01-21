@@ -1,7 +1,7 @@
 package storage;
 
-import main.java.duke.storage.Storage;
-import main.java.duke.storage.Storage.StorageOperationException;
+import duke.storage.Storage;
+import duke.storage.Storage.StorageOperationException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 

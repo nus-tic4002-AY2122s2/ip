@@ -1,9 +1,9 @@
 package duke.parser;
 
-import main.java.duke.commands.Command;
-import main.java.duke.commands.ExitCommand;
-import main.java.duke.commands.ListCommand;
-import main.java.duke.parser.Parser;
+import duke.commands.Command;
+import duke.commands.ExitCommand;
+import duke.commands.ListCommand;
+import duke.parser.Parser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

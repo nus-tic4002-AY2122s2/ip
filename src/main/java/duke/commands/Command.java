@@ -1,6 +1,6 @@
-package main.java.duke.commands;
+package duke.commands;
 
-import main.java.duke.task.TaskList;
+import duke.task.TaskList;
 
 
 /**

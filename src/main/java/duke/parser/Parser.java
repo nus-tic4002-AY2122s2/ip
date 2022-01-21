@@ -1,11 +1,11 @@
-package main.java.duke.parser;
+package duke.parser;
 
-import main.java.duke.commands.*;
-import main.java.duke.common.Utils;
-import main.java.duke.exception.IllegalValueException;
-import main.java.duke.task.Deadline;
-import main.java.duke.task.Event;
-import main.java.duke.task.Todo;
+import duke.commands.*;
+import duke.common.Utils;
+import duke.exception.IllegalValueException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

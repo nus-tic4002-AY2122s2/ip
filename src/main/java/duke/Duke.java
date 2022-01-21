@@ -1,14 +1,14 @@
-package main.java.duke;
+package duke;
 
-import main.java.duke.commands.Command;
-import main.java.duke.commands.ExitCommand;
-import main.java.duke.parser.Parser;
-import main.java.duke.storage.Storage;
-import main.java.duke.task.TaskList;
-import main.java.duke.ui.Ui;
+import duke.commands.Command;
+import duke.commands.ExitCommand;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
-import main.java.duke.storage.Storage.StorageOperationException;
-import main.java.duke.storage.Storage.InvalidStorageFilePathException;
+import duke.storage.Storage.StorageOperationException;
+import duke.storage.Storage.InvalidStorageFilePathException;
 
 import java.io.IOException;
 

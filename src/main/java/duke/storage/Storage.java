@@ -1,7 +1,7 @@
-package main.java.duke.storage;
+package duke.storage;
 
-import main.java.duke.exception.IllegalValueException;
-import main.java.duke.task.TaskList;
+import duke.exception.IllegalValueException;
+import duke.task.TaskList;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,6 +1,6 @@
-package main.java.duke.common;
+package duke.common;
 
-import main.java.duke.exception.IllegalValueException;
+import duke.exception.IllegalValueException;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

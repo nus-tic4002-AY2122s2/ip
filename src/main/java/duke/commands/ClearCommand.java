@@ -1,4 +1,4 @@
-package main.java.duke.commands;
+package duke.commands;
 
 public class ClearCommand extends Command{
 

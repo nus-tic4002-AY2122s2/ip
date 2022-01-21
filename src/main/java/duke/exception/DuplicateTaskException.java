@@ -1,4 +1,4 @@
-package main.java.duke.exception;
+package duke.exception;
 
 /**
  * Signals that an operation would have violated the 'no duplicates' task of the list.

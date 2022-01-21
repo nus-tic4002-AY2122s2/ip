@@ -1,12 +1,12 @@
-package main.java.duke.storage;
+package duke.storage;
 
-import main.java.duke.common.Utils;
-import main.java.duke.exception.IllegalValueException;
-import main.java.duke.task.Deadline;
-import main.java.duke.task.Task;
-import main.java.duke.task.TaskList;
-import main.java.duke.task.Todo;
-import main.java.duke.task.Event;
+import duke.common.Utils;
+import duke.exception.IllegalValueException;
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
+import duke.task.Event;
 
 import java.util.ArrayList;
 import java.util.List;
