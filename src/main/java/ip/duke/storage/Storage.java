@@ -1,33 +1,33 @@
 package ip.duke.storage;
 
-import ip.duke.task.Task;
-import ip.duke.tasklist.TaskList;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import ip.duke.task.Task;
+import ip.duke.tasklist.TaskList;
+
 public class Storage {
     // This class-level text file is to save all online records stored in TASKS database
-    private static String FILE_PATH;
+    private static String fileLocation;
 
     public Storage(String filePath) {
-        FILE_PATH = filePath;
+        fileLocation = filePath;
     }
 
     public void setFilePath(String path) {
-        FILE_PATH = path;
+        fileLocation = path;
     }
 
     public static String getFilePath() {
-        return FILE_PATH;
+        return fileLocation;
     }
 
     public static void appendToFile(int index) {
         BufferedWriter disk = null;
 
         try {
-            disk = new BufferedWriter(new FileWriter(FILE_PATH, true));
+            disk = new BufferedWriter(new FileWriter(fileLocation, true));
             disk.write(TaskList.getItem(index).toFileString() + System.lineSeparator());
 
         } catch (IOException e) {
@@ -43,7 +43,7 @@ public class Storage {
         BufferedWriter disk = null;
 
         try {
-            disk = new BufferedWriter(new FileWriter(FILE_PATH));
+            disk = new BufferedWriter(new FileWriter(fileLocation));
 
             for (Task item : TaskList.getList()) {
                 disk.write(item.toFileString() + System.lineSeparator());

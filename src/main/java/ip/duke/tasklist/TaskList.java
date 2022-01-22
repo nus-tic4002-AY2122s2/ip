@@ -1,5 +1,11 @@
 package ip.duke.tasklist;
 
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.LinkedHashSet;
+
 import ip.duke.Deadline;
 import ip.duke.Event;
 import ip.duke.Todo;
@@ -7,9 +13,6 @@ import ip.duke.exceptions.DukeException;
 import ip.duke.storage.Storage;
 import ip.duke.task.Task;
 import ip.duke.ui.Ui;
-
-import java.io.*;
-import java.util.LinkedHashSet;
 
 /**
  * This utility class provides an online database for tasks storage
@@ -24,7 +27,7 @@ import java.util.LinkedHashSet;
  */
 public class TaskList {
     // Collection preserves input sequence, gives constant time for add, update & remove operations
-    private final static LinkedHashSet<Task> TASKS = new LinkedHashSet<>(105, (float) 1.0);
+    private static final LinkedHashSet<Task> TASKS = new LinkedHashSet<>(105, (float) 1.0);
 
     public static int listSize() {
         return TASKS.size();
@@ -120,7 +123,8 @@ public class TaskList {
                 t = new Event(text[2], text[3]);
                 break;
             default:
-                throw new IllegalStateException("Alert!! Load-from-file Format Error detected! : " + "\"" + text[0] + "\"");
+                throw new IllegalStateException("Alert!! Load-from-file Format Error detected! : "
+                        + "\"" + text[0] + "\"");
             }
 
             if (text[1].equals("1")) {
@@ -135,7 +139,7 @@ public class TaskList {
         return t;
     }
 
-    public static LinkedHashSet<Task> load(String path) throws DukeException {  //load from file
+    public static LinkedHashSet<Task> load(String path) throws DukeException { //load from file
         BufferedReader reader = null;
 
         try {

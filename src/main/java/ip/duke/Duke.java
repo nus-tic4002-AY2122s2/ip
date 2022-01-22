@@ -1,16 +1,16 @@
 package ip.duke;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedHashSet;
+import java.util.Scanner;
+
 import ip.duke.exceptions.DukeException;
 import ip.duke.parser.Parser;
 import ip.duke.storage.Storage;
 import ip.duke.task.Task;
 import ip.duke.tasklist.TaskList;
 import ip.duke.ui.Ui;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedHashSet;
-import java.util.Scanner;
 
 /**
  * LisGenie Chat Bot CLI App - a task management online assistant.
@@ -25,8 +25,8 @@ import java.util.Scanner;
  */
 public class Duke {
     private static LinkedHashSet<Task> tasks;
-    private final static String DATA_PATH = "data/tasks.txt";
-    private final static String BACKUP_PATH = "backup_db/backup.txt";
+    private static final String DATA_PATH = "data/tasks.txt";
+    private static final String BACKUP_PATH = "backup_db/backup.txt";
 
     public Duke(String filePath) {
         Storage storage = new Storage(filePath);
@@ -76,14 +76,14 @@ public class Duke {
 
     public static void main(String[] args) {
         File f = new File(DATA_PATH);
-        File f_backup = new File(BACKUP_PATH);
+        File fBackup = new File(BACKUP_PATH);
 
-        if (!f.exists() && !f_backup.exists()) {
+        if (!f.exists() && !fBackup.exists()) {
             f.getParentFile().mkdirs();
-            f_backup.getParentFile().mkdirs();
+            fBackup.getParentFile().mkdirs();
             try {
                 f.createNewFile();
-                f_backup.createNewFile();
+                fBackup.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }

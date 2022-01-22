@@ -1,10 +1,10 @@
 package ip.duke.ui;
 
+import java.util.stream.Stream;
+
 import ip.duke.exceptions.DukeException;
 import ip.duke.task.Task;
 import ip.duke.tasklist.TaskList;
-
-import java.util.stream.Stream;
 
 /**
  * Utility Class that provides console displays and messages output
@@ -77,8 +77,9 @@ public class Ui {
 
         int counter = 1;
         for (Task item : TaskList.getList()) {
-            if (item != null)
+            if (item != null) {
                 System.out.printf("%12d.[%c][%s] %s%n", counter++, item.getId(), item.getStatusIcon(), item);
+            }
         }
     }
 
@@ -153,12 +154,15 @@ public class Ui {
 
     public static void showLoadingError(DukeException err) {
         System.out.println();
-        System.out.println("         ***----------------------------------------------------------------------------------------***");
+        System.out.println("         ***-----------------------------------------------------------------------------"
+                + "-----------***");
         System.out.print("LisGenie : ");
         System.out.println(err.getMessage());
         System.out.printf("%11s", " ");
-        System.out.println("File access error...starting with a blank database & a backup.txt file. Contact Admin soon!");
-        System.out.println("         ***----------------------------------------------------------------------------------------***");
+        System.out.println("File access error...starting with a blank database & a backup.txt file. Contact Admin"
+                + " soon!");
+        System.out.println("         ***-----------------------------------------------------------------------------"
+                + "-----------***");
         System.out.println();
     }
 
