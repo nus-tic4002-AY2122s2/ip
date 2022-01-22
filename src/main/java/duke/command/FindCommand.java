@@ -18,10 +18,11 @@ public class FindCommand extends Command {
     }
 
     private static void checkElement(String fullCommand) throws LackOfKeywordException {
-        if (fullCommand.trim().equals("find") ) {
+        if (fullCommand.trim().equals("find")) {
             throw new LackOfKeywordException();
         }
     }
+
     /**
      * Method to execute find command.
      * @param taskList task list to be found.

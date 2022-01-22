@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.*;
 import duke.exception.CommandException;
+
 /**
  * Execute user command.
  * */
@@ -9,6 +10,7 @@ public class Execution {
     protected String fullCommand;
     protected String command;
     protected boolean isExit;
+
     /**
      * Create new command.
      * @param fullCommand user full command.
@@ -20,12 +22,13 @@ public class Execution {
     }
 
     private static void checkCommand(String command) throws CommandException {
-        if ( !(command.equals("todo") || command.equals("deadline") || command.equals("event")
+        if (!(command.equals("todo") || command.equals("deadline") || command.equals("event")
                 || command.equals("bye") || command.equals("list") || command.equals("done")
-                || command.equals("delete") || command.equals("find")) ) {
+                || command.equals("delete") || command.equals("find"))) {
             throw new CommandException();
         }
     }
+
     /**
      * Execute new command.
      * @param taskList task list to be updated

@@ -11,6 +11,7 @@ public class ByeCommand extends Command {
     public ByeCommand(String fullCommand) {
         super(fullCommand);
     }
+
     /**
      * Method to execute bye command.
      * @param taskList task list to be updated

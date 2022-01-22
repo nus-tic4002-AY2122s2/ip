@@ -11,6 +11,7 @@ public class ListCommand extends Command {
     public ListCommand(String fullCommand) {
         super(fullCommand);
     }
+
     /**
      * Method to execute list command.
      * @param taskList task list to be updated

@@ -14,6 +14,7 @@ import java.io.IOException;
  * */
 public class Storage {
     protected String filePath;
+
     /**
      * Create new Storage.
      * @param filePath file address.
@@ -21,6 +22,7 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
     }
+
     /**
      * Load file to new Duke task list.
      * @param taskList task list to be loaded.
@@ -36,21 +38,24 @@ public class Storage {
                 case "T":
                     taskList.tasks.add(new Todo(command[2].trim()));
                     taskList.size++;
-                    if (command[1].trim().equals("\u2713"))
+                    if (command[1].trim().equals("\u2713")) {
                         taskList.tasks.get(taskList.size - 1).markAsDone();
+                    }
                     break;
                 case "E":
                     taskList.tasks.add(new Event(command[2].trim(), command[3].trim(),
                             Parser.convertDate(command[3].trim())));
-                    if (command[1].trim().equals("\u2713"))
+                    if (command[1].trim().equals("\u2713")) {
                         taskList.tasks.get(taskList.size - 1).markAsDone();
+                    }
                     taskList.size++;
                     break;
                 case "D":
                     taskList.tasks.add(new Deadline(command[2].trim(), command[3].trim(),
                             Parser.convertDate(command[3].trim())));
-                    if (command[1].trim().equals("\u2713"))
+                    if (command[1].trim().equals("\u2713")) {
                         taskList.tasks.get(taskList.size - 1).markAsDone();
+                    }
                     taskList.size++;
                     break;
                 }
@@ -61,6 +66,7 @@ public class Storage {
             UI.splitLine();
         }
     }
+
     /**
      * Save updates to file.
      * @param taskList task list to be saved.
@@ -68,9 +74,9 @@ public class Storage {
     public void saveFile(TaskList taskList) {
         try {
             FileOutputStream out = new FileOutputStream(filePath);
-            for(int i=0; i < taskList.tasks.size(); i++) {
+            for (int i = 0; i < taskList.tasks.size(); i++) {
                 String s = taskList.tasks.get(i).save_toString() + System.lineSeparator();
-                byte b[]= s.getBytes();
+                byte b[] = s.getBytes();
                 out.write(b);
             }
             out.close();

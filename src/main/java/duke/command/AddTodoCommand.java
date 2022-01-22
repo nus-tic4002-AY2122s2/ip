@@ -15,10 +15,11 @@ public class AddTodoCommand extends Command {
     }
 
     private static void checkDescription(String fullCommand) throws LackOfDescriptionException {
-        if (fullCommand.trim().equals("todo") ) {
+        if (fullCommand.trim().equals("todo")) {
             throw new LackOfDescriptionException();
         }
     }
+
     /**
      * Method to execute add-todo command.
      * @param taskList task list to be updated.

@@ -9,6 +9,7 @@ import java.util.Date;
 public class Deadline extends Task {
     protected String date;
     protected Date by;
+
     /**
      * Creation of new Deadline with description.
      * @param description description of Deadline.
@@ -20,16 +21,18 @@ public class Deadline extends Task {
         this.date = date;
         this.by = by;
     }
+
     /**
      * Update the printing format by adding icon and date for deadline.
      * @return printing format.
      * */
     @Override
     public String toString() {
-        SimpleDateFormat format = new SimpleDateFormat ("MMM dd yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("MMM dd yyyy");
         String dateString = format.format(by);
         return "[D]" + super.toString() + " (by: " + dateString + ")";
     }
+
     /**
      * Update the saving format by adding icon and date for deadline.
      * @return printing format.

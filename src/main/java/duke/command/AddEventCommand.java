@@ -19,14 +19,14 @@ public class AddEventCommand extends Command {
     }
 
     private static void checkDescription(String fullCommand) throws LackOfDescriptionException {
-        if (fullCommand.trim().equals("event") ) {
+        if (fullCommand.trim().equals("event")) {
             throw new LackOfDescriptionException();
         }
     }
 
     private static void checkDate(String fullCommand, String description) throws LackOfDateException {
-        if ( fullCommand.equals("event " + description)
-                || fullCommand.trim().equals("event " + description + " /at") ) {
+        if (fullCommand.equals("event " + description)
+                || fullCommand.trim().equals("event " + description + " /at")) {
             throw new LackOfDateException();
         }
     }
@@ -36,6 +36,7 @@ public class AddEventCommand extends Command {
             throw new DateFormatException();
         }
     }
+
     /**
      * Method to execute add-event command.
      * @param taskList task list to be updated.

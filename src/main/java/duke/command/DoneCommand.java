@@ -15,10 +15,11 @@ public class DoneCommand extends Command {
     }
 
     private static void checkElement(String fullCommand) throws LackOfIndexException {
-        if (fullCommand.trim().equals("done") ) {
+        if (fullCommand.trim().equals("done")) {
             throw new LackOfIndexException();
         }
     }
+
     /**
      * Method to execute done command.
      * @param taskList task list to be updated

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Duke {
     private TaskList taskList;
     private String filePath;
+
     /**
      * Create new Duke with new task list and filepath for loading and saving data.
      * */
@@ -21,7 +22,7 @@ public class Duke {
         storage.loadFile(taskList);
         UI.welcome();
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             try {
                 String fullCommand = UI.readCommand();
                 Execution execution = new Execution(fullCommand);

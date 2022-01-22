@@ -14,6 +14,7 @@ import java.util.Date;
 public class TaskList {
     public ArrayList<Task> tasks;
     public int size;
+
     /**
      * Creation of new TaskList.
      * @param tasks list to store all tasks.
@@ -22,6 +23,7 @@ public class TaskList {
         this.tasks = tasks;
         this.size = tasks.size();
     }
+
     /**
      * Method to mark task as done.
      * @param index task index.
@@ -29,6 +31,7 @@ public class TaskList {
     public void done(int index) {
         tasks.get(index).markAsDone();
     }
+
     /**
      * Method to add Todo.
      * @param description task description.
@@ -38,6 +41,7 @@ public class TaskList {
         tasks.add(task);
         size++;
     }
+
     /**
      * Method to deal with add Deadline.
      * @param description task description.
@@ -48,6 +52,7 @@ public class TaskList {
         tasks.add(task);
         size++;
     }
+
     /**
      * Method to deal with add Event.
      * @param description task description.
@@ -58,6 +63,7 @@ public class TaskList {
         tasks.add(task);
         size++;
     }
+
     /**
      * Method to deal with delete.
      * @param index task index.
@@ -66,6 +72,7 @@ public class TaskList {
         tasks.remove(index);
         size--;
     }
+
     /**
      * Method to deal with find.
      * @param keyword keyword user want to find.

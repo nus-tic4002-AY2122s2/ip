@@ -16,10 +16,11 @@ public class DeleteCommand extends Command {
     }
 
     private static void checkElement(String fullCommand) throws LackOfIndexException {
-        if (fullCommand.trim().equals("delete") ) {
+        if (fullCommand.trim().equals("delete")) {
             throw new LackOfIndexException();
         }
     }
+
     /**
      * Method to execute delete command.
      * @param taskList task list to be updated
