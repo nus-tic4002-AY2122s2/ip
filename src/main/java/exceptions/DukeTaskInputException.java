@@ -26,7 +26,7 @@ public class DukeTaskInputException extends Exception {
     /**
      * To print the error message if user try to reach any task in empty task list
      */
-    public static void toPrintListIsEmtpyError(){
+    public static void toPrintListIsEmptyError(){
         System.out.println("     ☹ OOPS!!! The Task List is empty.");
     }
 

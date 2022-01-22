@@ -58,7 +58,7 @@ public class Duke {
 
                 switch (errorType) {
                     case "taskListEmpty":
-                        DukeTaskInputException.toPrintListIsEmtpyError();
+                        DukeTaskInputException.toPrintListIsEmptyError();
                         break;
                     case "commandCreateError":
                         DukeTaskInputException.toPrintCommandCreateError();
