@@ -1,16 +1,19 @@
 package commands;
 
+import java.util.Vector;
 
 import exceptions.DukeDateTimeError;
 import exceptions.DukeTaskInputException;
-import storage.Storage;
-import task_classes.*;
 import parser.Parser;
+import storage.Storage;
+import taskclasses.Deadline;
+import taskclasses.Event;
+import taskclasses.Task;
+import taskclasses.TaskList;
+import taskclasses.Todo;
 import ui.Ui;
 
-import java.util.Vector;
-
-public class AddCommand extends Command{
+public class AddCommand extends Command {
 
     private String type;
     private String[] inputWords;
@@ -35,7 +38,7 @@ public class AddCommand extends Command{
      *
      * @param list the entire task list
      */
-    private void addTodoTask(Vector<Task> list){
+    private void addTodoTask(Vector<Task> list) {
 
         Todo inputTask = new Todo (description);
         list.add(inputTask);
@@ -94,15 +97,17 @@ public class AddCommand extends Command{
         Vector<Task> list = taskList.getVectorList();
 
         switch (type) {
-            case "todo":
-                addTodoTask(list);
-                break;
-            case "deadline":
-                addDeadlineTask(list);
-                break;
-            case "event":
-                addEventTask(list);
-                break;
+        case "todo":
+            addTodoTask(list);
+            break;
+        case "deadline":
+            addDeadlineTask(list);
+            break;
+        case "event":
+            addEventTask(list);
+            break;
+        default:
+            break;
         }
     }
 

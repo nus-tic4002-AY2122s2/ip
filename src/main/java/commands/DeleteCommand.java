@@ -2,8 +2,8 @@ package commands;
 
 import exceptions.DukeTaskInputException;
 import storage.Storage;
-import task_classes.TaskList;
-import task_classes.Task;
+import taskclasses.Task;
+import taskclasses.TaskList;
 import ui.Ui;
 
 
@@ -14,7 +14,7 @@ public class DeleteCommand extends Command {
     /**
      * To initialize DeleteCommand
      *
-     * @param index the index number of the task in the task list, not the index in Vector<Task>
+     * @param index the index number of the task in the task list, not the index in Task type Vector
      */
     public DeleteCommand(int index) {
         this.index = index - 1;
@@ -30,7 +30,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute (TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
-        if(taskList.isEmpty()){
+        if (taskList.isEmpty()) {
             throw new DukeTaskInputException("listIsEmpty");
         }
 

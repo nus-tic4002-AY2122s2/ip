@@ -1,12 +1,12 @@
 package commands;
 
+import java.util.Vector;
+
 import exceptions.DukeTaskInputException;
 import storage.Storage;
-import task_classes.Task;
-import task_classes.TaskList;
+import taskclasses.Task;
+import taskclasses.TaskList;
 import ui.Ui;
-
-import java.util.Vector;
 
 public class FindCommand extends Command {
 
@@ -54,11 +54,11 @@ public class FindCommand extends Command {
      */
     private Vector<Task> getMatchedTasks (Vector<Task> list) {
         Vector<Task> matchedTaskList = new Vector<>();
-        for(Task task: list){
+        for (Task task: list) {
             String description = task.getDescription();
             String[] descriptionWords = description.split(" ");
-            for(String word : descriptionWords) {
-                if(word.equals(keyword)) {
+            for (String word : descriptionWords) {
+                if (word.equals(keyword)) {
                     matchedTaskList.add(task);
                 }
             }

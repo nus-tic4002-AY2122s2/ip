@@ -1,16 +1,18 @@
 package storage;
 
-import exceptions.DukeDateTimeError;
-import exceptions.DukeStorageError;
-import task_classes.Task;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.Vector;
-import java.nio.file.Files;
 
+import exceptions.DukeDateTimeError;
+import exceptions.DukeStorageError;
+import taskclasses.Task;
 
 public class Storage {
 
@@ -18,17 +20,17 @@ public class Storage {
      * An default file path which is "data/dukeTasks.txt"
      */
 
-    private final String DEFAULT_STORAGE_FILEPATH = "data/dukeTasks.txt";
+    private final String defaultStorageFilepath = "data/dukeTasks.txt";
     private final Path rootPath = Paths.get("").toAbsolutePath();
     private final String rootDir = rootPath.normalize().toString();
-    private Path path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
+    private Path path = Paths.get(rootDir + "/" + defaultStorageFilepath);
 
 
     /**
      * Constructs StorageFile with default file path
      */
     public Storage() {
-        path = Paths.get(rootDir + "/" + DEFAULT_STORAGE_FILEPATH);
+        path = Paths.get(rootDir + "/" + defaultStorageFilepath);
     }
 
     /**
@@ -42,18 +44,18 @@ public class Storage {
     /**
      * To add all the Task which in String type in the list into txt file as local storage
      *
-     * @param List all the task
+     * @param lst all the task
      * @throws IOException to handle all errors for FileWriter
      */
-    private void toSaveTaskListToLocal(Vector<Task> List) throws IOException {
+    private void toSaveTaskListToLocal(Vector<Task> lst) throws IOException {
 
-        if(List.size() == 0){
+        if (lst.size() == 0) {
             return;
         }
 
-        Vector<String> taskListInString = TaskListEncoder.encodeTaskList(List);
+        Vector<String> taskListInString = TaskListEncoder.encodeTaskList(lst);
 
-        String fileDirectory = String.valueOf(DEFAULT_STORAGE_FILEPATH);
+        String fileDirectory = String.valueOf(defaultStorageFilepath);
 
         //To clear content of existing txt file
         FileWriter fw = new FileWriter(fileDirectory);
@@ -74,7 +76,7 @@ public class Storage {
      * To check whether the default file path is exist
      * @return return boolean whether the default file path is exist
      */
-    private boolean fileDoExist(){
+    private boolean fileDoExist() {
         return (Files.exists(path));
     }
 
@@ -88,34 +90,36 @@ public class Storage {
     }
 
     /**
-     * The function to transfer all the Task information by using Encoder function from Vector<Task> List to String and store into txt file
-     * @param List Vector<Task> List
+     * The function to transfer all the Task information
+     * by using Encoder function from Task type Vector List to String and store into txt file
+     * @param lst Task type Vector List
      * @throws IOException If the FileWrite those kind of function got any error, an error will be thrown to user
      */
-    public void transferToFile(Vector<Task> List) throws IOException {
+    public void transferToFile(Vector<Task> lst) throws IOException {
 
-        if(!fileDoExist()){
-            if(!dirDoExist()){
+        if (!fileDoExist()) {
+            if (!dirDoExist()) {
                 Files.createDirectories(Paths.get(rootDir + "/data"));
             }
 
             Files.createFile(path);
         }
 
-        toSaveTaskListToLocal(List);
+        toSaveTaskListToLocal(lst);
     }
 
     /**
      * The method to extract date from local storage, txt file.
-     * @return the task list extracted in Vector<Task> format
+     * @return the task list extracted in Task type Vector format
      * @throws DukeStorageError handles all storage errors during data extraction and storing
      * @throws IOException handles all input errors
+     * @throws DukeDateTimeError handles all date time error
      */
     public Vector<Task> load() throws DukeStorageError, IOException, DukeDateTimeError {
         Vector<String> extractedTaskInfo = extractTaskInfoFromTxt();
         Vector<Task> list = new Vector<>();
 
-        if(extractedTaskInfo.size() == 0){
+        if (extractedTaskInfo.size() == 0) {
             return list;
         }
 
@@ -126,14 +130,14 @@ public class Storage {
 
     /**
      * The method to extract date from local storage, txt file.
-     * @return the task list extracted in Vector<String> format
+     * @return the task list extracted in String type Vector format
      * @throws DukeStorageError handles all storage errors during data extraction and storing
      * @throws IOException handles all input errors
      */
     private Vector<String> extractTaskInfoFromTxt() throws IOException, DukeStorageError {
 
-        if(!fileDoExist()){
-            if(!dirDoExist()){
+        if (!fileDoExist()) {
+            if (!dirDoExist()) {
                 Files.createDirectories(Paths.get(rootDir + "/data"));
             }
 
@@ -146,7 +150,7 @@ public class Storage {
         Scanner sc = null;
 
         try {
-            File file = new File(DEFAULT_STORAGE_FILEPATH); // java.io.File
+            File file = new File(defaultStorageFilepath); // java.io.File
             sc = new Scanner(file);
             String line;
 
@@ -154,13 +158,12 @@ public class Storage {
                 line = sc.nextLine();
                 extractedInfo.add(line);
             }
-        }
-        catch(FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        finally {
-            if (sc != null) sc.close();
+        } finally {
+            if (sc != null) {
+                sc.close();
+            }
         }
 
         return extractedInfo;

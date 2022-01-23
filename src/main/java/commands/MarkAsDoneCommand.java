@@ -2,17 +2,17 @@ package commands;
 
 import exceptions.DukeTaskInputException;
 import storage.Storage;
-import task_classes.TaskList;
+import taskclasses.TaskList;
 import ui.Ui;
 
-public class MarkAsDoneCommand extends Command{
+public class MarkAsDoneCommand extends Command {
 
     private int index;
 
     /**
      * The method to initialize MarkAsDoneCommand
      *
-     * @param index the index of the task in the task list, not in the Vector<Task>
+     * @param index the index of the task in the task list, not in the Task type Vector
      */
     public MarkAsDoneCommand(int index) {
         this.index = index - 1;
@@ -31,7 +31,7 @@ public class MarkAsDoneCommand extends Command{
 
         int taskListSize = taskList.size();
 
-        if(index >= taskListSize || index <= 0) {
+        if (index >= taskListSize || index <= 0) {
             throw new DukeTaskInputException("listIsEmpty");
         }
 

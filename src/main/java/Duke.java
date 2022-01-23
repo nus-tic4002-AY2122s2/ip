@@ -6,7 +6,7 @@ import exceptions.DukeStorageError;
 import exceptions.DukeTaskInputException;
 import parser.Parser;
 import storage.Storage;
-import task_classes.TaskList;
+import taskclasses.TaskList;
 import ui.Ui;
 
 /*
@@ -20,20 +20,19 @@ public class Duke {
     private Storage storage;
 
     /**
-     * initialize Duke
+     * initialize Duke function
      *
      * @param filePath the target file location in local drive to store or extract task data from
      * @throws IOException handles all input error
-     * @throws DukeStorageError handles all error during local file extraction and save
      */
-    public Duke (String filePath) throws IOException, DukeStorageError {
+    public Duke(String filePath) throws IOException {
         ui = new Ui();
         ui.showGreetingMessage();
-        storage = new Storage (filePath);
+        storage = new Storage(filePath);
 
         try {
             taskList = new TaskList(storage.load());
-        } catch (DukeStorageError |  DukeDateTimeError e) {
+        } catch (DukeStorageError | DukeDateTimeError e) {
             ui.showLoadingError();
             taskList = new TaskList();
         }
@@ -57,19 +56,19 @@ public class Duke {
                 String errorType = DukeTaskInputException.getErrorType();
 
                 switch (errorType) {
-                    case "taskListEmpty":
-                        DukeTaskInputException.toPrintListIsEmptyError();
-                        break;
-                    case "commandCreateError":
-                        DukeTaskInputException.toPrintCommandCreateError();
-                        break;
-                    case "cannotUnderstand":
-                        DukeTaskInputException.invalidFirstWordInput();
-                        break;
-                    default:
-                        DukeTaskInputException.formatWrong();
+                case "taskListEmpty":
+                    DukeTaskInputException.toPrintListIsEmptyError();
+                    break;
+                case "commandCreateError":
+                    DukeTaskInputException.toPrintCommandCreateError();
+                    break;
+                case "cannotUnderstand":
+                    DukeTaskInputException.invalidFirstWordInput();
+                    break;
+                default:
+                    DukeTaskInputException.formatWrong();
                 }
-            } catch(Exception  e) {
+            } catch (Exception e) {
                 DukeTaskInputException.formatWrong();
             } catch (DukeDateTimeError e) {
                 System.out.println("     OOps! The input dateTime format wrong. Please try again.");

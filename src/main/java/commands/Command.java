@@ -3,7 +3,7 @@ package commands;
 import exceptions.DukeDateTimeError;
 import exceptions.DukeTaskInputException;
 import storage.Storage;
-import task_classes.TaskList;
+import taskclasses.TaskList;
 import ui.Ui;
 
 public abstract class Command {
@@ -21,7 +21,8 @@ public abstract class Command {
      * @throws DukeTaskInputException throw all errors about input command
      * @throws DukeDateTimeError throw all errors about date and time
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException, DukeDateTimeError, DukeTaskInputException;
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage)
+            throws DukeDateTimeError, DukeTaskInputException;
 
     /**
      * The method to let system know whether the command is to exit the Duke

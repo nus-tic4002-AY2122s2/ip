@@ -29,10 +29,7 @@
         <property name="file" value="${config_loc}/suppressions.xml"/>
     </module>
 
-    <module name="LineLength">
-        <!-- Checks if a line is too long. -->
-        <property name="max" value="120"/>
-    </module>
+
 
     <!-- All Java AST specific tests live under TreeWalker module. -->
     <module name="TreeWalker">
@@ -42,6 +39,11 @@
             <property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
             <property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
             <property name="checkFormat" value="$1"/>
+        </module>
+
+        <module name="LineLength">
+            <!-- Checks if a line is too long. -->
+            <property name="max" value="120"/>
         </module>
 
         <!--
@@ -221,12 +223,12 @@
 
         <module name="MissingSwitchDefault"/>
 
-        <!-- Checks that Class variables should never be declared public. -->
+<!--        &lt;!&ndash; Checks that Class variables should never be declared public. &ndash;&gt;
         <module name="VisibilityModifier">
             <property name="protectedAllowed" value="true"/>
             <property name="allowPublicFinalFields" value="true"/>
             <property name="ignoreAnnotationCanonicalNames" value="RegisterExtension, TempDir"/>
-        </module>
+        </module>-->
 
         <!--
         ORDER CHECKS

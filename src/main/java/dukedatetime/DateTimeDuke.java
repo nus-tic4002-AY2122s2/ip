@@ -1,10 +1,10 @@
-package dateTime;
-
-import exceptions.DukeDateTimeError;
+package dukedatetime;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import exceptions.DukeDateTimeError;
 
 /**
  * Deadline:

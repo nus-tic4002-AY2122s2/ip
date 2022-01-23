@@ -1,6 +1,6 @@
-package task_classes;
+package taskclasses;
 
-import dateTime.DateTimeDuke;
+import dukedatetime.DateTimeDuke;
 import exceptions.DukeDateTimeError;
 
 public class Deadline extends Task {
@@ -24,7 +24,8 @@ public class Deadline extends Task {
      *
      * @return status icon of the task
      */
-    public String getStatusIcon(){
+    public String getStatusIcon() {
+
         return (isDone ? "X" : " ");
     }
 
@@ -33,14 +34,16 @@ public class Deadline extends Task {
      *
      * @return the description of the task
      */
-    public String getDescription(){
+    public String getDescription() {
+
         return this.description;
     }
 
     /**
      * To get the status of the task
      */
-    public void markAsDone(){
+    public void markAsDone() {
+
         this.isDone = true;
     }
 
@@ -50,7 +53,8 @@ public class Deadline extends Task {
      * @return the type of the task
      */
     @Override
-    public String getType(){
+    public String getType() {
+
         return this.type;
     }
 
@@ -87,7 +91,7 @@ public class Deadline extends Task {
      * @return the time/date of the Deadline task
      */
     @Override
-    public String getDeadlineDateTimeString(){
+    public String getDeadlineDateTimeString() {
         DateTimeDuke deadlineDateTime = super.deadlineTime;
 
         return deadlineDateTime.convertToStringTypeI();

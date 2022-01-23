@@ -1,6 +1,6 @@
-package task_classes;
+package taskclasses;
 
-import dateTime.DateTimeDuke;
+import dukedatetime.DateTimeDuke;
 
 public abstract class Task {
     String description;
@@ -14,7 +14,7 @@ public abstract class Task {
     DateTimeDuke startingTime;
     DateTimeDuke endingTime;
 
-    Task(String description){
+    Task(String description) {
         this.description = description;
         this.isDone = false;
         this.type = null;
@@ -88,4 +88,53 @@ public abstract class Task {
      * @return ending date time
      */
     public abstract String getEndingDateTime();
+
+    /**
+     * The function to set up Task description
+     * @param description the Task's description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * The function to set up whether the task has done
+     * @param isDone the task status
+     */
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
+    /**
+     * The function to set up the Task's type
+     * @param type Task type
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * The function to set up the Task's deadline Time;
+     * @param deadlineTime the function's deadline Time;
+     */
+    public void setDeadlineTime(DateTimeDuke deadlineTime) {
+        this.deadlineTime = deadlineTime;
+    }
+
+    /**
+     * The function to set up the Task's starting time
+     * @param startingTime the Task's starting time
+     */
+    public void setStartingTime(DateTimeDuke startingTime) {
+        this.startingTime = startingTime;
+    }
+
+    /**
+     * The function to set up the Task's ending time
+     * @param endingTime The Task's ending time
+     */
+    public void setEndingTime(DateTimeDuke endingTime) {
+        this.endingTime = endingTime;
+    }
+
 }

@@ -1,20 +1,20 @@
 package ui;
 
-import task_classes.Deadline;
-import task_classes.Event;
-import task_classes.Task;
-import task_classes.Todo;
-
 import java.util.Scanner;
+
+import taskclasses.Deadline;
+import taskclasses.Event;
+import taskclasses.Task;
+import taskclasses.Todo;
 
 public class Ui {
 
-    public Ui (){}
+    public Ui () {}
 
     /**
      * The greeting with some instruction
      */
-    public void showGreetingMessage(){
+    public void showGreetingMessage() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -32,16 +32,16 @@ public class Ui {
     /**
      * The method to print loading error message
      */
-    public void showLoadingError(){
+    public void showLoadingError() {
         ErrorMessage.showLoadingError();
     }
 
     /**
      * Print out Separated_Line onto screen
      */
-    public static void toPrintSeparateLine(){
+    public static void toPrintSeparateLine() {
         System.out.print("    ");
-        for(int i=0; i<100; i++){
+        for (int i = 0; i < 100; i++) {
             System.out.print("_");
         }
         System.out.println("");
@@ -51,7 +51,7 @@ public class Ui {
      * The method to read user input
      * @return user input information in String type
      */
-    public String readCommand(){
+    public String readCommand() {
         String input;
         Scanner in = new Scanner(System.in);
         return input = in.nextLine();
@@ -73,9 +73,11 @@ public class Ui {
      * @param newTask the new task detected from user input and needs to be added to List, type is Todo
      * @param listQty the total quantity of task in the List after added current new task
      */
-    public static void printTodoAddedOutput(Todo newTask, int listQty){
+    public static void printTodoAddedOutput(Todo newTask, int listQty) {
         System.out.println("     Got it. I've added this task:");
-        System.out.println("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
+        System.out.println("        [" + newTask.getType() + "]["
+                + newTask.getStatusIcon() + "] "
+                + newTask.getDescription());
         System.out.println("     Now you have " + listQty + " tasks in the list.");
     }
 
@@ -85,9 +87,11 @@ public class Ui {
      * @param newTask the new task detected from user input and needs to be added to List, type is Deadline
      * @param listQty the total quantity of task in the List after added current new task
      */
-    public static void printDeadlineAddedOutput(Deadline newTask, int listQty){
+    public static void printDeadlineAddedOutput(Deadline newTask, int listQty) {
         System.out.println("     Got it. I've added this task:");
-        System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
+        System.out.print("        [" + newTask.getType() + "]["
+                + newTask.getStatusIcon() + "] "
+                + newTask.getDescription());
 
         System.out.println(" (by: " + newTask.getDeadlineDateTimeString() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
@@ -99,9 +103,11 @@ public class Ui {
      * @param newTask the new task detected from user input and needs to be added to List, type is Event
      * @param listQty the total quantity of task in the List after added current new task
      */
-    public static void printEventAddedOutput(Event newTask, int listQty){
+    public static void printEventAddedOutput(Event newTask, int listQty) {
         System.out.println("     Got it. I've added this task:");
-        System.out.print("        [" + newTask.getType() + "][" + newTask.getStatusIcon() + "] " + newTask.getDescription());
+        System.out.print("        [" + newTask.getType() + "]["
+                + newTask.getStatusIcon() + "] "
+                + newTask.getDescription());
 
         System.out.println(" (by: " + newTask.getStartingDateTime() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
@@ -110,7 +116,8 @@ public class Ui {
     /**
      * Goodbye Output
      */
-    public static void printGoodbyeOutput(){
+    public static void printGoodbyeOutput() {
+
         System.out.println("     Bye. Hope to see you again soon!");
     }
 
@@ -119,27 +126,27 @@ public class Ui {
      *
      * @param task the task which be marked as done
      */
-    public static void printMarkAsDoneOutput(Task task){
+    public static void printMarkAsDoneOutput(Task task) {
 
         String taskType = task.getType();
         System.out.println("     Nice! I've marked this task as done:");
-        System.out.print("       [" +
-                task.getType() + "][" +
-                task.getStatusIcon() + "] " + task.getDescription());
+        System.out.print("       [" + task.getType() + "]["
+                + task.getStatusIcon() + "] "
+                + task.getDescription());
 
-        switch (taskType){
-            case "E":
-                String eventDateTime = task.getStartingDateTime();
-                System.out.println(" (at: " + eventDateTime + ")");
+        switch (taskType) {
+        case "E":
+            String eventDateTime = task.getStartingDateTime();
+            System.out.println(" (at: " + eventDateTime + ")");
 
-                break;
-            case "D":
-                String deadlineDateTime = task.getDeadlineDateTimeString();
-                System.out.println(" (by: " + deadlineDateTime + ")");
+            break;
+        case "D":
+            String deadlineDateTime = task.getDeadlineDateTimeString();
+            System.out.println(" (by: " + deadlineDateTime + ")");
 
-                break;
-            default:
-                System.out.println("");
+            break;
+        default:
+            System.out.println("");
         }
     }
 }

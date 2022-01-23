@@ -25,16 +25,16 @@ public class DukeTaskInputException extends Exception {
      * To print the error message if user try to reach any task in empty task list
      */
     public static void toPrintListIsEmptyError() {
-
-        System.out.println("     ☹ OOPS!!! The Task List is empty.");
+        System.out.print("     " + "\\U+2639" + " OOPS!!! ");
+        System.out.println("The Task List is empty.");
     }
 
     /**
      * The method to print command creation error
      */
     public static void toPrintCommandCreateError() {
-
-        System.out.println("     ☹ OOPS!!! The Command you just input was in wrong format.");
+        System.out.print("     " + "\\U+2639" + " OOPS!!! ");
+        System.out.println("The Command you just input was in wrong format.");
     }
 
     /**

@@ -1,6 +1,6 @@
-package task_classes;
+package taskclasses;
 
-import dateTime.DateTimeDuke;
+import dukedatetime.DateTimeDuke;
 import exceptions.DukeDateTimeError;
 
 public class Event extends Task {
@@ -12,7 +12,8 @@ public class Event extends Task {
      * @param startingDateTime task starting date time
      * @param endingDateTime task ending date time
      */
-    public Event (String description, Boolean taskStatus, String startingDateTime, String endingDateTime) throws DukeDateTimeError {
+    public Event (String description, Boolean taskStatus,
+                  String startingDateTime, String endingDateTime) throws DukeDateTimeError {
         super(description);
         super.isDone = taskStatus;
         super.type = "E";
@@ -52,7 +53,7 @@ public class Event extends Task {
      *
      * @return status icon of the task
      */
-    public String getStatusIcon(){
+    public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
@@ -61,14 +62,14 @@ public class Event extends Task {
      *
      * @return the description of the task
      */
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 
     /**
      * To get the status of the task
      */
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 
@@ -77,7 +78,7 @@ public class Event extends Task {
      *
      * @return the type of the task
      */
-    public String getType(){
+    public String getType() {
         return this.type;
     }
 
@@ -86,7 +87,7 @@ public class Event extends Task {
      * @return staring date time
      */
     @Override
-    public String getStartingDateTime(){
+    public String getStartingDateTime() {
         DateTimeDuke dateTimeDuke = super.startingTime;
 
         return dateTimeDuke.convertToStringTypeI();
@@ -109,7 +110,7 @@ public class Event extends Task {
      * @return null
      */
     @Override
-    public String getDeadlineDateTimeString(){
+    public String getDeadlineDateTimeString() {
         return null;
     }
 }

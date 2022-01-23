@@ -1,18 +1,28 @@
-package task_classes;
+package taskclasses;
 
-import dateTime.DateTimeDuke;
+import dukedatetime.DateTimeDuke;
 
 public class Todo extends Task {
 
-    public Todo (String description){
+    /**
+     * default function with only the Todo task description
+     * @param description the description of the Todo Task
+     */
+    public Todo (String description) {
         super(description);
-        super.type = "T";
+        super.setType("T");
     }
 
+    /**
+     * default function with two parameter:
+     * 1. description of the Todo Task
+     * 2. taskStatus of the Todo Task
+     * @param description The Todo Task's description
+     * @param taskStatus The Todo Task's status
+     */
     public Todo (String description, Boolean taskStatus) {
         super(description);
-        super.isDone = taskStatus;
-        super.type = "T";
+        super.setIsDone(taskStatus);
     }
 
     /**
@@ -20,7 +30,7 @@ public class Todo extends Task {
      *
      * @return status icon of the task
      */
-    public String getStatusIcon(){
+    public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
@@ -29,14 +39,14 @@ public class Todo extends Task {
      *
      * @return the description of the task
      */
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 
     /**
-     * To get the status of the task
+     * To mark the status as done
      */
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 
@@ -45,7 +55,7 @@ public class Todo extends Task {
      *
      * @return the type of the task
      */
-    public String getType(){
+    public String getType() {
         return this.type;
     }
 
@@ -55,7 +65,7 @@ public class Todo extends Task {
      * @return null
      */
     @Override
-    public String getDeadlineDateTimeString(){
+    public String getDeadlineDateTimeString() {
         return null;
     }
 
@@ -64,7 +74,7 @@ public class Todo extends Task {
      * @return null
      */
     @Override
-    public String getStartingDateTime(){
+    public String getStartingDateTime() {
         return null;
     }
 
