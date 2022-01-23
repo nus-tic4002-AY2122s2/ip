@@ -7,7 +7,9 @@ import duke.ui.Message;
  * correct number of arguments
  */
 public class NumArgsException extends DukeException {
-    public NumArgsException() {super();}
+    public NumArgsException() {
+        super();
+    }
 
     @Override
     public String getMessage() {

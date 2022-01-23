@@ -11,15 +11,22 @@ import java.util.stream.Stream;
  * It provides PropertyChangeSupport so that Listeners could be added
  * and get notified when new item added
  */
-public class TempList<T> implements Iterable<T>{
+public class TempList<T> implements Iterable<T> {
     protected ArrayList<T> list;
     protected PropertyChangeSupport support;
 
+    /**
+     * constructor
+     */
     public TempList() {
         list = new ArrayList<T>();
         support = new PropertyChangeSupport(this);
     }
 
+    /**
+     * inform that element added
+     * @param element
+     */
     public void add(T element) {
         var oldlist = list.clone();
         list.add(element);
@@ -30,6 +37,10 @@ public class TempList<T> implements Iterable<T>{
         list.add(element);
     }
 
+    /**
+     * remove at index
+     * @param index
+     */
     public void removeAt(int index) {
         var oldlist = list.clone();
         list.remove(index);
@@ -39,8 +50,12 @@ public class TempList<T> implements Iterable<T>{
     public Stream<T> stream() {
         return list.stream();
     }
-    public T get(int index) {return list.get(index);}
-    public Integer size() {return list.size();}
+    public T get(int index) {
+        return list.get(index);
+    }
+    public Integer size() {
+        return list.size();
+    }
 
     /**
      * call this method on a TempList object instance to add

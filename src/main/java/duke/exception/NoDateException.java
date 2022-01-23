@@ -8,7 +8,9 @@ import duke.ui.Message;
  * initiated correctly with date
  */
 public class NoDateException extends DukeException {
-    public NoDateException() {super();}
+    public NoDateException() {
+        super();
+    }
 
     @Override
     public String getMessage() {

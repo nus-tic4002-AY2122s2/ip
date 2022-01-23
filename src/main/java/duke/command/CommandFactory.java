@@ -1,11 +1,11 @@
 package duke.command;
 
-import duke.storage.TempTaskList;
-import duke.ui.Message;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import duke.storage.TempTaskList;
+import duke.ui.Message;
 
 /**
  * This is a data structure holds all commands with their
@@ -19,6 +19,10 @@ public class CommandFactory implements Iterable {
     private TempTaskList list;
     private File file;
 
+    /**
+     * constractor
+     * @param list
+     */
     public CommandFactory(TempTaskList list) {
         this.list = list;
 
@@ -31,14 +35,14 @@ public class CommandFactory implements Iterable {
     private void config() {
         add("todo", new TodoCreationCmd(list));
         add("event", new EventCreationCmd(list));
-        add("deadline", new DLCreationCmd(list));
+        add("deadline", new DlCreationCmd(list));
         add("done", new TaskMarkDoneCmd(list));
         add("cmd", new AllCommandCmd(this));
         add("delete", new TaskDeleteCmd(list));
         add("find", new FindCmd(list));
     }
 
-    public Command get(String key)  {
+    public Command get(String key) {
         return commands.get(key);
     }
 
@@ -50,6 +54,9 @@ public class CommandFactory implements Iterable {
         return commands.containsKey(key);
     }
 
+    /**
+     * prints all cmd keywords
+     */
     public void print() {
         for (String key : commands.keySet()) {
             Message.echo(key);

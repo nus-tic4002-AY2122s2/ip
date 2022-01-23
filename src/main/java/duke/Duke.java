@@ -1,13 +1,13 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.command.CommandCaller;
 import duke.command.CommandFactory;
 import duke.parse.StringParser;
 import duke.storage.Storage;
 import duke.storage.TempTaskList;
 import duke.ui.Message;
-
-import java.util.Scanner;
 
 /**
  * @author      Li Shihao
@@ -25,14 +25,20 @@ public class Duke {
      */
     private Scanner in = new Scanner(System.in);
 
-
+    /**
+     * constrctor
+     */
     public Duke() {
         tasks.addPropertyChangeListener(storage);
         strParser.addPropertyChangeListener(commandCaller);
         storage.listInit(tasks);
     }
 
-    public static void main(String[] args)  {
+    /**
+     * entrance of the program
+     * @param args
+     */
+    public static void main(String[] args) {
         Message.greeting();
         new Duke().start();
         Message.exit();
@@ -42,13 +48,13 @@ public class Duke {
         String userInput = in.nextLine();
 
         switch(userInput.strip()) {
-            case "bye":
-                return;
-            case "list":
-                tasks.print();
-                break;
-            default:
-                strParser.passToCaller(userInput);
+        case "bye":
+            return;
+        case "list":
+            tasks.print();
+            break;
+        default:
+            strParser.passToCaller(userInput);
         }
 
         start();

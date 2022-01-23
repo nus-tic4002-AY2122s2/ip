@@ -15,9 +15,9 @@ public class AllCommandCmd implements Command {
 
     @Override
     public void run(String[] args) {
-        Message.echo("bye" +
-                     System.lineSeparator() +
-                  "\tlist");
+        Message.echo("bye"
+                    + System.lineSeparator()
+                    + "\tlist");
         commands.print();
     }
 }

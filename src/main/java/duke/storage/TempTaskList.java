@@ -1,8 +1,6 @@
 package duke.storage;
-import duke.ui.Message;
 import duke.task.Task;
-
-import java.beans.PropertyChangeSupport;
+import duke.ui.Message;
 
 /**
  * Inherent from generic TempList class,
@@ -15,13 +13,16 @@ public class TempTaskList extends TempList<Task> {
         super();
     }
 
+    /**
+     * print all tasks in the list
+     */
     public void print() {
         if (list.size() == 0) {
             Message.emptyList();
         }
         int i = 1;
         for (Task task : list) {
-            Message.echo( i + ". " + task.toString());
+            Message.echo(i + ". " + task.toString());
             i++;
         }
     }
@@ -38,11 +39,17 @@ public class TempTaskList extends TempList<Task> {
         int numTask = this.count();
         int numDoneTask = 0;
         for (Task task : list) {
-            if (task.isDone()) numDoneTask++;
+            if (task.isDone()) {
+                numDoneTask++;
+            }
         }
         Message.tellTaskNum(numTask, numDoneTask);
     }
 
+    /**
+     * mark done at index
+     * @param index
+     */
     public void markDoneAt(int index) {
         list.get(index).markDone();
         support.firePropertyChange("list", null, list);

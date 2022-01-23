@@ -1,13 +1,13 @@
 package duke.command;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import duke.parse.StringParser;
 import duke.storage.TempTaskList;
 import duke.ui.Message;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class FindCmd implements Command {
-    TempTaskList list;
+    protected TempTaskList list;
 
     public FindCmd(TempTaskList list) {
         this.list = list;

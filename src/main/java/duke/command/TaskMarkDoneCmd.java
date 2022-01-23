@@ -12,13 +12,13 @@ public class TaskMarkDoneCmd implements UndoableCommand {
     private TempTaskList list;
     private Task task;
 
-    public TaskMarkDoneCmd( TempTaskList list) {
+    public TaskMarkDoneCmd(TempTaskList list) {
         this.list = list;
     }
 
     @Override
     public void run(String[] args) {
-       // list.stream().filter(e -> e)
+        // list.stream().filter(e -> e)
         for (String arg : args) {
             try {
                 int index = Integer.parseInt(arg) - 1;

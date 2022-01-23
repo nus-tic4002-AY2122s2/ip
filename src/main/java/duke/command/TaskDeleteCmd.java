@@ -1,18 +1,18 @@
 package duke.command;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+
 import duke.storage.TempTaskList;
 import duke.task.Task;
 import duke.ui.Message;
-
-import java.util.ArrayList;
-import java.util.Comparator;
 
 public class TaskDeleteCmd implements UndoableCommand {
     // Task is a Receiver Class in this Command
     private TempTaskList list;
     private Task task;
 
-    public TaskDeleteCmd( TempTaskList list) {
+    public TaskDeleteCmd(TempTaskList list) {
         this.list = list;
     }
 
@@ -22,7 +22,7 @@ public class TaskDeleteCmd implements UndoableCommand {
         ArrayList<Integer> indexes = new ArrayList<>();
         ArrayList<String> deletedTasks = new ArrayList<>();
 
-        for(String arg : args) {
+        for (String arg : args) {
             int index = Integer.parseInt(arg) - 1;
             indexes.add(index);
         }

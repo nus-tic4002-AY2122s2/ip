@@ -6,10 +6,15 @@ import java.time.format.DateTimeFormatter;
 /**
  * Event is a Task with datetime at property
  */
-public class Event extends Task{
+public class Event extends Task {
     private LocalDateTime from;
     private LocalDateTime till;
 
+    /**
+     * constructor
+     * @param title
+     * @param duration
+     */
     public Event(String title, LocalDateTime[] duration) {
         super(title);
         this.from = duration[0];

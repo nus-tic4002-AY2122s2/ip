@@ -7,19 +7,19 @@ import duke.task.Task;
 import duke.task.Todo;
 import duke.ui.Message;
 
-public class TodoCreationCmd implements UndoableCommand{
+public class TodoCreationCmd implements UndoableCommand {
     // Task is a Receiver Class in this Command
     private TempTaskList list;
     private Task task;
 
-    public TodoCreationCmd( TempTaskList list) {
+    public TodoCreationCmd(TempTaskList list) {
         this.list = list;
     }
 
     @Override
     public void run(String[] args) {
         String arg = StringParser.join(args);
-        if(args.length == 0) {
+        if (args.length == 0) {
             try {
                 throw new NumArgsException();
             } catch (NumArgsException e) {

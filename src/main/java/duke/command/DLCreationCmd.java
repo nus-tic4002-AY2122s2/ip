@@ -1,25 +1,25 @@
 package duke.command;
 
+import java.time.format.DateTimeParseException;
+
 import duke.exception.NoDateException;
 import duke.exception.NumArgsException;
 import duke.parse.StringParser;
 import duke.storage.TempTaskList;
-import duke.task.Task;
 import duke.task.Deadline;
+import duke.task.Task;
 import duke.ui.Message;
-
-import java.time.format.DateTimeParseException;
 
 /**
  * As a command, run() with arguments to
  * create a new deadline task
  */
-public class DLCreationCmd implements UndoableCommand{
+public class DlCreationCmd implements UndoableCommand {
     // Task is a Receiver Class in this Command
     private TempTaskList list;
     private Task task;
 
-    public DLCreationCmd( TempTaskList list) {
+    public DlCreationCmd(TempTaskList list) {
         this.list = list;
     }
 
@@ -29,7 +29,7 @@ public class DLCreationCmd implements UndoableCommand{
 
         String[] parts = arg.split("/by");
 
-        if(args.length == 0 || args.length == 1) {
+        if (args.length == 0 || args.length == 1) {
             try {
                 throw new NumArgsException();
             } catch (NumArgsException e) {
