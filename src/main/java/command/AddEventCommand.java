@@ -12,14 +12,13 @@ import task.Event;
 public class AddEventCommand extends Command {
     private String input;
 
-    /**
-     * @param input A String inputted by the user.
-     */
     public AddEventCommand(String input) {
         this.input = input;
     }
 
     /**
+     * Executes AddEventCommand.
+     *
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
@@ -30,31 +29,28 @@ public class AddEventCommand extends Command {
         int position;
         input = input.toLowerCase();
 
-        if (input.contains("event")){
+        if (input.contains("event")) {
             input = input.replace("event", "");
-        }
-        else{
+        } else {
             input = input.replaceFirst("e", "");
         }
         if (input.contains("/at")) {
             position = input.indexOf("/at");
-        }
-        else {
+        } else {
             position = -1;
         }
 
         boolean isInputEmpty = input.substring(0, position - 1).equals("");
         boolean isInputEmptySpace = input.substring(0, position - 2).equals(" ");
         // Add task if command contains "/by" and descriptions
-        if (position != -1 && (!isInputEmpty || !isInputEmptySpace )) {
+        if (position != -1 && (!isInputEmpty || !isInputEmptySpace)) {
             String date = input.substring(position + 4);
             input = input.substring(0, position - 1);
             Event event = new Event(input, date);
             tasks.addTask(event);
             ui.showAdded();
             ui.printTaskNum(tasks, event);
-        }
-        else {
+        } else {
             throw new EmptyException("an event");
         }
     }

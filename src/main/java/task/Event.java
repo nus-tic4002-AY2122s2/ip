@@ -1,7 +1,7 @@
 package task;
 
 /**
- * Represents an Event task
+ * Represents an Event task.
  */
 public class Event extends Task {
     private String at;
@@ -12,7 +12,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a formatted Event task
+     * Returns a formatted Event task.
      */
     @Override
     public String toString() {

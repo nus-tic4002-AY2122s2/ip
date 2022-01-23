@@ -18,6 +18,8 @@ public class Command {
     }
 
     /**
+     * Executes Command.
+     *
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.

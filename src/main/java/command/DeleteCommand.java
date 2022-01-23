@@ -18,6 +18,8 @@ public class DeleteCommand extends Command {
     }
 
     /**
+     * Executes DeleteCommand.
+     *
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
@@ -26,8 +28,9 @@ public class DeleteCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         input = input.toLowerCase();
         int num = 0;
-        if (input.matches(".*\\d.*"))
+        if (input.matches(".*\\d.*")) {
             num = Integer.parseInt(input.replaceAll("[\\D]", ""));
+        }
         if (num > 0 && num <= tasks.sizeOfTask()) {
             Task echo = tasks.returnTask(num - 1);
             tasks.deleteTask(num - 1);

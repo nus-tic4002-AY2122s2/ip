@@ -41,7 +41,7 @@ public class Duke {
     }
 
     /**
-     * Runs Duke
+     * Runs Duke.
      */
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         new Duke().run();

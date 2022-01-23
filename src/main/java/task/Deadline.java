@@ -1,7 +1,7 @@
 package task;
 
 /**
- * Represents a Deadline task
+ * Represents a Deadline task.
  */
 public class Deadline extends Task {
     private String by;
@@ -12,7 +12,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a formatted Deadline task
+     * Returns a formatted Deadline task.
      */
     @Override
     public String toString() {
