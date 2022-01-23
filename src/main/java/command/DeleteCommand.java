@@ -1,10 +1,10 @@
 package command;
 
 import exception.DukeException;
+import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
 import task.Task;
-import basic.Storage;
 
 /**
  * Deletes a task identified using it's index from the task list.

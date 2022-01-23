@@ -1,10 +1,10 @@
 package command;
 
 import exception.EmptyException;
+import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
 import task.Todo;
-import basic.Storage;
 
 /**
  * Adds a todo task to the task list.

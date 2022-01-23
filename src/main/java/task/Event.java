@@ -11,6 +11,9 @@ public class Event extends Task {
         this.at = at;
     }
 
+    /**
+     * Returns a formatted Event task
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";

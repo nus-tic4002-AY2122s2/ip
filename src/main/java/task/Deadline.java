@@ -11,6 +11,9 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * Returns a formatted Deadline task
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";

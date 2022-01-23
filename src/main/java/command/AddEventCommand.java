@@ -1,10 +1,10 @@
 package command;
 
 import exception.EmptyException;
+import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
 import task.Event;
-import basic.Storage;
 
 /**
  * Adds an event task to the task list.

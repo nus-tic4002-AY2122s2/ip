@@ -1,9 +1,9 @@
 package command;
 
 import exception.DukeException;
+import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
-import basic.Storage;
 
 /**
  * Lists all tasks in the task list to the user.

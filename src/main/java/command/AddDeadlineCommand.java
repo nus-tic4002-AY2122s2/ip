@@ -1,10 +1,10 @@
 package command;
 
 import exception.EmptyException;
+import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
 import task.Deadline;
-import basic.Storage;
 
 /**
  * Adds a deadline task to the task list.
