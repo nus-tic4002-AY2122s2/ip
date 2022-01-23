@@ -6,19 +6,18 @@ import basic.TaskList;
 import basic.Ui;
 
 /**
- * Finds relevant tasks in the TaskList
+ * Finds relevant tasks in the TaskList.
 */
 public class FindCommand extends Command {
     private String input;
 
-    /**
-     * @param input A String inputted by the user.
-     */
     public FindCommand(String input) {
         this.input = input;
     }
 
     /**
+     * Executes FindCommand.
+     *
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
@@ -33,8 +32,9 @@ public class FindCommand extends Command {
             int count = 0;
             for (int i = 0; i < tasks.sizeOfTask(); i++) {
                 if (tasks.returnTask(i).description.contains(input)) {
-                    if (count == 0)
+                    if (count == 0) {
                         ui.printMatching();
+                    }
                     ui.printMatchingTask(tasks.returnTask(i), i + 1);
                     count++;
                 }

@@ -18,7 +18,7 @@ public class TaskList {
     public ArrayList<Task> tasks = new ArrayList<Task>();
 
     /**
-     * Checks if the task was marked as done
+     * Checks if the task was marked as done.
      *
      * @param myString one task in the txt file
      * @return true if the tasks was marked as done, else return false
@@ -28,39 +28,39 @@ public class TaskList {
     }
 
     /**
-     * Trims one task to get description
+     * Trims one task to get description.
      *
      * @param s one task in the txt file
      * @return string The description of the task
      */
-    private String getDescription(String s){
+    private String getDescription(String s) {
         int positionOfDes = s.indexOf("]");
         int startPosition;
-        if (s.contains("("))
+        if (s.contains("(")) {
             startPosition = s.indexOf("(");
-        else {
+        } else {
             startPosition = s.length() + 1;
         }
         return s.substring(positionOfDes + 4, startPosition - 1);
     }
 
     /**
-     * Create one Todo task
+     * Create one Todo task.
      *
      * @param description the description of the task
      */
-    private void createTodoTask(String description){
+    private void createTodoTask(String description) {
         Todo oneTask = new Todo(description);
         addTask(oneTask);
     }
 
     /**
-     * Create one Deadline task
+     * Create one Deadline task.
      *
      * @param s the full string of the task
      * @param description the description of the task
      */
-    private void createDeadlineTask(String s, String description){
+    private void createDeadlineTask(String s, String description) {
         int positionOfDate = s.indexOf("by");
         int endPosition = s.indexOf(")");
         String dateString = s.substring(positionOfDate + 4, endPosition);
@@ -69,12 +69,12 @@ public class TaskList {
     }
 
     /**
-     * Create one Event task
+     * Create one Event task.
      *
      * @param s the full string of the task
      * @param description the description of the task
      */
-    private void createEventTask(String s, String description){
+    private void createEventTask(String s, String description) {
         int positionOfDate = s.indexOf("at");
         int endPosition = s.indexOf(")");
         String dateString = s.substring(positionOfDate + 4, endPosition);
@@ -83,7 +83,7 @@ public class TaskList {
     }
 
     /**
-     * Converts all strings in the txt file to tasks
+     * Converts all strings in the txt file to tasks.
      *
      * @param list task list in string form.
      */

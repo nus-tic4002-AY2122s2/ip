@@ -1,8 +1,8 @@
 package command;
 
+import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
-import basic.Storage;
 /**
  * Terminates the program.
  */

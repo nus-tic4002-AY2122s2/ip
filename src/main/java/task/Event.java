@@ -1,7 +1,7 @@
 package task;
 
 /**
- * Represents an Event task
+ * Represents an Event task.
  */
 public class Event extends Task {
     private String at;
@@ -11,6 +11,9 @@ public class Event extends Task {
         this.at = at;
     }
 
+    /**
+     * Returns a formatted Event task.
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";

@@ -1,10 +1,10 @@
 package command;
 
 import exception.EmptyException;
+import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
 import task.Todo;
-import basic.Storage;
 
 /**
  * Adds a todo task to the task list.
@@ -13,14 +13,13 @@ public class AddTodoCommand extends Command {
     protected static Ui ui = new Ui();
     private String input;
 
-    /**
-     * @param input A String inputted by the user.
-     */
     public AddTodoCommand(String input) {
         this.input = input;
     }
 
     /**
+     * Executes AddTodoCommand.
+     *
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
@@ -29,7 +28,7 @@ public class AddTodoCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws EmptyException  {
         input = input.toLowerCase();
-        if (input.contains("todo")){
+        if (input.contains("todo")) {
             input = input.replace("todo", "");
         }
         if (!input.equals("") && !input.equals(" ")) {
@@ -37,8 +36,7 @@ public class AddTodoCommand extends Command {
             tasks.addTask(todo);
             ui.showAdded();
             ui.printTaskNum(tasks, todo);
-        }
-        else {
+        } else {
             throw new EmptyException("a todo");
         }
     }

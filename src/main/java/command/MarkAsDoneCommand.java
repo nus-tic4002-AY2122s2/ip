@@ -1,9 +1,9 @@
 package command;
 
 import exception.DukeException;
+import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
-import basic.Storage;
 
 /**
  * Marks a task identified using it's index as done.
@@ -17,6 +17,8 @@ public class MarkAsDoneCommand extends Command {
     }
 
     /**
+     * Executes MarkAsDoneCommand.
+     *
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.

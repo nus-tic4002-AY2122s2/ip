@@ -1,6 +1,14 @@
 package basic;
 
-import command.*;
+import command.AddDeadlineCommand;
+import command.AddEventCommand;
+import command.AddTodoCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.ExitCommand;
+import command.FindCommand;
+import command.ListCommand;
+import command.MarkAsDoneCommand;
 
 /**
  * Parses user input.
@@ -15,19 +23,22 @@ public class Parser {
      * @return the command based on the user input
      */
     static Command parse(String userInput) {
-        if (userInput.toLowerCase().equals("bye")||userInput.toLowerCase().equals("exit") ) {
+        if (userInput.toLowerCase().equals("bye") || userInput.toLowerCase().equals("exit")) {
             return new ExitCommand();
         } else if (userInput.toLowerCase().equals("list")) {
             return new ListCommand();
         } else if (userInput.toLowerCase().contains("done")) {
             return new MarkAsDoneCommand(userInput);
-        } else if (userInput.toLowerCase().contains("todo") && !userInput.toLowerCase().contains("event") && !userInput.toLowerCase().contains("deadline")) {
+        } else if (userInput.toLowerCase().contains("todo") && !userInput.toLowerCase().contains("event") 
+                && !userInput.toLowerCase().contains("deadline")) {
             return new AddTodoCommand(userInput);
-        } else if ((userInput.toLowerCase().substring(0,1).equals("d")  && !userInput.toLowerCase().contains("date") && !userInput.toLowerCase().contains("delete"))||
-                userInput.toLowerCase().contains("deadline") && !userInput.toLowerCase().contains("event") && !userInput.toLowerCase().contains("todo")) {
+        } else if ((userInput.toLowerCase().substring(0,1).equals("d")  && !userInput.toLowerCase().contains("date") 
+                && !userInput.toLowerCase().contains("delete")) || userInput.toLowerCase().contains("deadline") 
+                && !userInput.toLowerCase().contains("event") && !userInput.toLowerCase().contains("todo")) {
             return new AddDeadlineCommand(userInput);
-        } else if (userInput.toLowerCase().substring(0,1).equals("e") ||
-                userInput.toLowerCase().contains("event") && !userInput.toLowerCase().contains("deadline") && !userInput.toLowerCase().contains("todo")) {
+        } else if (userInput.toLowerCase().substring(0,1).equals("e") 
+                || userInput.toLowerCase().contains("event") && !userInput.toLowerCase().contains("deadline") 
+                && !userInput.toLowerCase().contains("todo")) {
             return new AddEventCommand(userInput);
         } else if (userInput.toLowerCase().contains("find")) {
             return new FindCommand(userInput);

@@ -40,7 +40,7 @@ public class Ui {
     }
 
     /**
-     * Displays the response when the program is exited
+     * Displays the response when the program is exited.
     */
     public void showBye() {
         System.out.println("   Bye. Hope to see you again soon!");
@@ -48,21 +48,21 @@ public class Ui {
     }
 
     /**
-     * Displays the response when a task is marked as done
+     * Displays the response when a task is marked as done.
     */
     public void showDone() {
         System.out.print("   " + "Nice! I've marked this task as done: \n" + "   ");
     }
 
     /**
-     * Displays an empty line
+     * Displays an empty line.
     */
     public void printEmptyLine() {
         System.out.println("\n");
     }
 
     /**
-     * Displays the response when a task is added
+     * Displays the response when a task is added.
     */
     public void showAdded() {
         System.out.print("   " + "Got it. I've added this task:\n" + "   ");
@@ -71,7 +71,7 @@ public class Ui {
     /**
      * Shows a list of tasks to the user, formatted as an indexed list.
      */
-    public void printTask(TaskList tasks) {
+    public void printTasks(TaskList tasks) {
         for (int j = 1; j <= tasks.sizeOfTask(); j++) {
             System.out.print("   " + j + ".");
             System.out.println(tasks.returnTask(j - 1));
@@ -87,35 +87,36 @@ public class Ui {
     }
 
     /**
-     * Displays a task
+     * Displays a task.
     */
     public void printTask(Task task) {
         System.out.println(task);
     }
 
     /**
-     * Displays a number of tasks in the Tasklist
+     * Displays a number of tasks in the Tasklist.
     */
     public void printTaskNum(TaskList tasks, Task task) {
         System.out.println(task + "\n   Now you have " + tasks.sizeOfTask() + " tasks in the list.\n");
     }
 
     /**
-     * Displays the response when a task is deleted
+     * Displays the response when a task is deleted.
     */
     public void printDeleteCommand(Task task, int num) {
-        System.out.println("   Noted. I've removed this task:\n   " + task + "\n   Now you have " + num + " tasks in the list.");
+        System.out.println("   Noted. I've removed this task:\n   " + task + "\n   Now you have " 
+                + num + " tasks in the list.");
     }
 
     /**
-     * Displays the header of response when a find command is entered
+     * Displays the header of response when a find command is entered.
     */
     public void printMatching() {
         System.out.println("   Here are the matching tasks in your list:");
     }
 
     /**
-     * Displays the exception message
+     * Displays the exception message.
     */
     void printException(Exception e) {
         System.out.println(e.toString());

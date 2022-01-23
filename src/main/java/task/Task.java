@@ -1,6 +1,7 @@
 package task;
+
 /**
- * Represents a Task
+ * Represents a Task.
  */
 public abstract class Task {
     public String description;
@@ -15,6 +16,9 @@ public abstract class Task {
         return (isDone ? "✓" : "✘"); //return tick or X symbols
     }
 
+    /**
+     * Returns a formatted task.
+     */
     public String toString() {
         return "[" + getStatusIcon() + "]" + description;
     }

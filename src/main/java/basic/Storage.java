@@ -2,7 +2,14 @@ package basic;
 
 import task.Task;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,8 +31,8 @@ public class Storage {
         while (isFileCreated == false) {
             try {
                 isFileCreated = true;
-                lines =
-                        Files.readAllLines(Paths.get(System.getProperty("user.dir") + "/duke.txt"), StandardCharsets.UTF_8);
+                lines = Files.readAllLines(Paths.get(System.getProperty("user.dir") 
+                        + "/duke.txt"), StandardCharsets.UTF_8);
             } catch (IOException e) {
                 isFileCreated = true;
                 PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/duke.txt", "UTF-8");
@@ -44,7 +51,7 @@ public class Storage {
      */
     void save(ArrayList<Task> txt) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(System.getProperty("user.dir")+"/duke.txt"), StandardCharsets.UTF_8))) {
+                new FileOutputStream(System.getProperty("user.dir") + "/duke.txt"), StandardCharsets.UTF_8))) {
             for (Task task : txt) {
                 writer.write(task.toString());
                 writer.write("\n");

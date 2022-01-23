@@ -1,7 +1,7 @@
 package task;
 
 /**
- * Represents a Deadline task
+ * Represents a Deadline task.
  */
 public class Deadline extends Task {
     private String by;
@@ -11,6 +11,9 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * Returns a formatted Deadline task.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
