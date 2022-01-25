@@ -19,7 +19,6 @@ public class Duke {
         ui.showWelcomeMessage();
         try {
             textFile.readFile(taskList);
-        } catch (FileNotFoundException a) {
             textFile.saveFile(taskList.getList());
         } catch (DukeExceptionFileInput e) {
             ui.showFileInputError();
