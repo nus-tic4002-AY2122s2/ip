@@ -39,6 +39,10 @@ checkstyle {
     toolVersion = '8.29'
 }
 
+shadowJar {
+    archiveName = 'Duke.jar'
+}
+
 run {
     enableAssertions = true
 }

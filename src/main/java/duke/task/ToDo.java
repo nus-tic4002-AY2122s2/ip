@@ -15,7 +15,8 @@ public class ToDo extends Task {
     }
 
     /**
-     * When this function is called, it will return the task type with the task that the user input and whether it is done or not
+     * When this function is called, it will return the task type with the task that the user input
+     * and whether it is done or not
      * @return the structure for display
      */
     @Override

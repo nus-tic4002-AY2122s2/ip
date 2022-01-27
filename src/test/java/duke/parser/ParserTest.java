@@ -1,18 +1,21 @@
 package duke.parser;
 
-import org.junit.jupiter.api.Test;
-import duke.dukeexception.DukeException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import duke.dukeexception.DukeException;
+
+
 
 public class ParserTest {
 
     @Test
-    public void ParserDateTest1() throws DukeException {
+    public void parserDateTestA() throws DukeException {
         LocalDate d1 = Parser.convertStringToDate("2020-12-12");
         LocalDate d2 = Parser.convertStringToDate("2019-12-12");
 
@@ -21,7 +24,7 @@ public class ParserTest {
     }
 
     @Test
-    public void ParserTimeTest1() throws DukeException {
+    public void parserTimeTestB() throws DukeException {
         LocalTime t1 = Parser.convertStringToTime("1000");
         LocalTime t2 = Parser.convertStringToTime("10:00");
 

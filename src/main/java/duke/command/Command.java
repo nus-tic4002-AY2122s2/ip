@@ -1,10 +1,9 @@
 package duke.command;
 
 import duke.dukeexception.DukeException;
+import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.storage.Storage;
-
 
 /**
  * abstract class command
@@ -15,7 +14,7 @@ public abstract class Command {
     /**
      * Constructs command
      */
-    public Command(){
+    public Command() {
 
     }
 
@@ -23,7 +22,7 @@ public abstract class Command {
      *Constructs command
      * @param commandInstruction will store the command that the user input
      */
-    public Command(String commandInstruction){
+    public Command(String commandInstruction) {
         this.commandInstruction = commandInstruction;
     }
 
@@ -42,7 +41,7 @@ public abstract class Command {
      * This function will be default to false until exit or bye is called.
      * @return false to keep it looping for user input
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 

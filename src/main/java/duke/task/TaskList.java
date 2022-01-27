@@ -14,7 +14,7 @@ public class TaskList {
     /**
      * Constructs the task list
      */
-    public TaskList(){
+    public TaskList() {
 
     }
 
@@ -22,12 +22,12 @@ public class TaskList {
      * Constructs the task list with an available list of task
      * @param tasks
      */
-    public TaskList(ArrayList<Task> tasks){
+    public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
 
     }
 
-    public static Task getTask(int i){
+    public static Task getTask(int i) {
         return tasks.get(i);
     }
 
@@ -37,7 +37,7 @@ public class TaskList {
      */
     public void remove(int taskIndex) {
         tasks.remove(taskIndex);
-        for(int i = taskIndex; i < tasks.size(); i++){
+        for (int i = taskIndex; i < tasks.size(); i++) {
             tasks.get(i).setTaskIndex(i);
         }
     }
@@ -45,7 +45,7 @@ public class TaskList {
      * Getting the number of task in the list
      * @return the number of task in the list
      */
-    public static int getSize(){
+    public static int getSize() {
         return tasks.size();
     }
 
@@ -53,7 +53,7 @@ public class TaskList {
      * Adding of task into the task list and set the task index as well as display the action after it has been added
      * @param s the task that the user requested to be added
      */
-    public static void addTask(Task s){
+    public static void addTask(Task s) {
         tasks.add(s);
         s.setTaskIndex(tasks.size() - 1);
         Ui.displayAddMessage(s.toString(), tasks.size());
@@ -64,14 +64,14 @@ public class TaskList {
      * Check if task list is empty
      * @return if task is empty or not
      */
-    public static boolean isEmpty(){
+    public static boolean isEmpty() {
         return tasks.isEmpty();
     }
 
     /**
      * Remove everything from the task list
      */
-    public void clearAll(){
+    public void clearAll() {
         tasks.clear();
     }
 }

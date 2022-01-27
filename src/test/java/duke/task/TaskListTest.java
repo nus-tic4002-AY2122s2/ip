@@ -1,15 +1,16 @@
 package duke.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
 
 public class TaskListTest {
 
     @Test
-    public void TaskListTest1() {
+    public void taskListTest1() {
 
         ToDo t = new ToDo("Learn Java");
         TaskList tasks = new TaskList();
@@ -20,7 +21,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void TaskListTest2() {
+    public void taskListTest2() {
 
         LocalDate d1 = LocalDate.parse("2019-12-12");
         Event e = new Event("Learn Java", d1);
@@ -30,6 +31,6 @@ public class TaskListTest {
 
         assertEquals(1, tasks.getSize());
         assertEquals(e, tasks.getTask(0));
-        assertEquals(0,tasks.getTask(0).getTaskIndex());
+        assertEquals(0, tasks.getTask(0).getTaskIndex());
     }
 }

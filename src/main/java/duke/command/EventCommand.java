@@ -1,43 +1,49 @@
 package duke.command;
 
-import duke.storage.Storage;
-import duke.ui.Ui;
-import duke.task.TaskList;
-import duke.dukeexception.DukeException;
-import duke.task.Event;
-import duke.parser.Parser;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+
+import duke.dukeexception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.Event;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 
 /**
  * Command to Create a new Events task
  */
-public class EventCommand extends Command{
+public class EventCommand extends Command {
 
     /**
      * Constructs the Event Command
      * @param taskDes the Command the User input
      */
-    public EventCommand(String taskDes){
+    public EventCommand(String taskDes) {
         super(taskDes);
     }
 
+    /**
+     * Execute the Event command to add an event
+     * @param tasks The task list will store the task
+     * @param ui The Ui class which will help to display to the user
+     * @param storage The Storage which will save the list of task to
+     * @throws DukeException Any expected error
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        try{
+        try {
             commandInstruction.substring(6);
-        }
-        catch(StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("Event command can't be empty");
         }
-        if(!commandInstruction.contains(" /at ")){
+        if (!commandInstruction.contains(" /at ")) {
             throw new DukeException("Please state /at yyyy-mm-dd");
         }
         int dividerPosition2 = commandInstruction.indexOf(" /at ");
         String taskDes = commandInstruction.substring(6, dividerPosition2);
-        String taskDateTime = commandInstruction.substring(dividerPosition2+5);
+        String taskDateTime = commandInstruction.substring(dividerPosition2 + 5);
         Event event = eventTimeSetter(taskDes, taskDateTime);
         tasks.addTask(event);
         storage.save(tasks);
@@ -51,7 +57,7 @@ public class EventCommand extends Command{
      * @throws DukeException any expected error
      */
     public static Event eventTimeSetter(String taskDes, String taskDateTime) throws DukeException {
-        try{
+        try {
             if (!taskDateTime.contains(" ")) {
                 LocalDate d1 = Parser.convertStringToDate(taskDateTime);
                 return new Event(taskDes, d1);
@@ -64,7 +70,7 @@ public class EventCommand extends Command{
                 return new Event(taskDes, d1, t1);
 
             }
-        }catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             throw new DukeException("Please set date as YYYY-MM-DD");
         }
     }

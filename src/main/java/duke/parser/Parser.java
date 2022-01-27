@@ -1,14 +1,24 @@
 package duke.parser;
 
-
-import duke.command.*;
-import duke.dukeexception.DukeException;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.DoneCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.OtherCommand;
+import duke.command.ToDoCommand;
+import duke.dukeexception.DukeException;
+
+
 
 /**
  * Parser class to spilt up the text from the command
@@ -21,45 +31,34 @@ public class Parser {
      * @return the individual command
      * @throws DukeException any expected error
      */
-    public static Command parse(String fullCommand) throws DukeException{
-
-            String keyCommand = fullCommand.split(" ")[0].toLowerCase();
-            switch(keyCommand){
-                case ("list"):
-                    return new ListCommand();
-
-
-                case ("exit"):
-                case ("quit"):
-                case ("bye"):
-                    return new ExitCommand();
-
-                case ("find"):
-                    return new FindCommand(fullCommand);
-                case ("done"):
-                    return new DoneCommand(fullCommand);
-                case ("deadline"):
-                    return new DeadlineCommand(fullCommand);
-                case("event"):
-                    return new EventCommand(fullCommand);
-
-                case("todo"):
-                    return new ToDoCommand(fullCommand);
-
-                case ("delete"):
-                    return new DeleteCommand(fullCommand);
-
-                case "hi":
-                case "help":
-                case "clearlist":
-                    return new OtherCommand(fullCommand);
-
-                default:
-                    throw new DukeException("Unknown command! Please type 'help' for list of command!");
-
-            }
-
-
+    public static Command parse(String fullCommand) throws DukeException {
+        String keyCommand = fullCommand.split(" ")[0].toLowerCase();
+        switch(keyCommand) {
+        case ("list"):
+            return new ListCommand();
+        case ("exit"):
+        case ("quit"):
+        case ("bye"):
+            return new ExitCommand();
+        case ("find"):
+            return new FindCommand(fullCommand);
+        case ("done"):
+            return new DoneCommand(fullCommand);
+        case ("deadline"):
+            return new DeadlineCommand(fullCommand);
+        case("event"):
+            return new EventCommand(fullCommand);
+        case("todo"):
+            return new ToDoCommand(fullCommand);
+        case ("delete"):
+            return new DeleteCommand(fullCommand);
+        case "hi":
+        case "help":
+        case "clearlist":
+            return new OtherCommand(fullCommand);
+        default:
+            throw new DukeException("Unknown command! Please type 'help' for list of command!");
+        }
     }
 
     /**
@@ -71,13 +70,12 @@ public class Parser {
     public static LocalDate convertStringToDate(String text) throws DukeException {
 
         LocalDate d1;
-        if(!text.contains("-")){
+        if (!text.contains("-")) {
             return checkForOtherWording(text);
         }
         try {
             d1 = LocalDate.parse(text);
-        }
-        catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             throw new DukeException("Please set date as YYYY-MM-DD");
         }
         return d1;
@@ -96,8 +94,8 @@ public class Parser {
         DayOfWeek commandDay = getCommandDay(text);
         int dayOfTodayIntValue = dayOfToday.getValue();
         int commandDayIntValue = commandDay.getValue();
-        int date_diff = (commandDayIntValue + 7 - dayOfTodayIntValue) % 7;
-        LocalDate d1 = today.plus(date_diff, ChronoUnit.DAYS);
+        int dateDiff = (commandDayIntValue + 7 - dayOfTodayIntValue) % 7;
+        LocalDate d1 = today.plus(dateDiff, ChronoUnit.DAYS);
         return d1;
 
     }
@@ -109,30 +107,30 @@ public class Parser {
      * @throws DukeException error when user typed something else instead of the day of the week
      */
     public static DayOfWeek getCommandDay(String text) throws DukeException {
-        switch(text){
-            case "mon":
-            case "monday":
-                return DayOfWeek.MONDAY;
-            case "tue":
-            case "tuesday":
-                return DayOfWeek.TUESDAY;
-            case "wed":
-            case "wednesday":
-                return DayOfWeek.WEDNESDAY;
-            case "thu":
-            case "thursday":
-                return DayOfWeek.THURSDAY;
-            case "fri":
-            case "friday":
-                return DayOfWeek.FRIDAY;
-            case "sat":
-            case "saturday":
-                return DayOfWeek.SATURDAY;
-            case "sun":
-            case "sunday":
-                return DayOfWeek.SUNDAY;
-            default:
-                throw new DukeException("Please state date");
+        switch(text) {
+        case "mon":
+        case "monday":
+            return DayOfWeek.MONDAY;
+        case "tue":
+        case "tuesday":
+            return DayOfWeek.TUESDAY;
+        case "wed":
+        case "wednesday":
+            return DayOfWeek.WEDNESDAY;
+        case "thu":
+        case "thursday":
+            return DayOfWeek.THURSDAY;
+        case "fri":
+        case "friday":
+            return DayOfWeek.FRIDAY;
+        case "sat":
+        case "saturday":
+            return DayOfWeek.SATURDAY;
+        case "sun":
+        case "sunday":
+            return DayOfWeek.SUNDAY;
+        default:
+            throw new DukeException("Please state date");
         }
     }
 
@@ -143,15 +141,13 @@ public class Parser {
      * @throws DukeException error when user put something other than the correct time format
      */
     public static LocalTime convertStringToTime(String text) throws DukeException {
-
         LocalTime t1;
-        if(!text.contains(":")){
+        if (!text.contains(":")) {
             text = convertTimeTextToTimeStyle(text);
         }
         try {
             t1 = LocalTime.parse(text);
-        }
-        catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             throw new DukeException("Please set time as hhmm or hh:mm e.g.1301 or 13:01");
         }
         return t1;
@@ -164,15 +160,12 @@ public class Parser {
      * @throws DukeException error when the user didnt keep to 4 digit
      */
     public static String convertTimeTextToTimeStyle(String text) throws DukeException {
-        if (!text.substring(4).isEmpty()){
+        if (!text.substring(4).isEmpty()) {
             throw new DukeException("Invalid time! Please keep it to 4 digit");
         }
-        String hour = text.substring(0,2);
-        String min = text.substring(2,4);
+        String hour = text.substring(0, 2);
+        String min = text.substring(2, 4);
         String newTime = hour + ":" + min;
         return newTime;
     }
-
-
-
 }

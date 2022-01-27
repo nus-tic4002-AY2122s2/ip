@@ -1,19 +1,19 @@
 package duke.command;
 
 import duke.dukeexception.DukeException;
-import duke.ui.Ui;
-import duke.task.TaskList;
 import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Command to show the list of task the user has
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
 
     /**
      * Constructs the list command
      */
-    public ListCommand(){
+    public ListCommand() {
 
     }
 

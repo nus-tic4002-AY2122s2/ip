@@ -45,7 +45,7 @@ public class Event extends Task {
      * return the date and time of the task in String
      * @return the date and time in String
      */
-    public String getDateTimeString(){
+    public String getDateTimeString() {
         return hasTime
                 ? taskDate + " " + taskTime
                 : taskDate.toString();
@@ -55,9 +55,10 @@ public class Event extends Task {
      * return the date and time formatted in String
      * @return the formatted date and time in String
      */
-    public String getDateTimeStringFormat(){
+    public String getDateTimeStringFormat() {
         return hasTime
-                ? taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + taskTime.format(DateTimeFormatter.ofPattern("hh:mm a"))
+                ? taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " "
+                + taskTime.format(DateTimeFormatter.ofPattern("hh:mm a"))
                 : taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 

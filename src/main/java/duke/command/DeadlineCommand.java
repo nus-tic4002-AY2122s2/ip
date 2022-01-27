@@ -6,22 +6,22 @@ import java.time.format.DateTimeParseException;
 
 import duke.dukeexception.DukeException;
 import duke.parser.Parser;
-import duke.ui.Ui;
-import duke.task.TaskList;
 import duke.storage.Storage;
 import duke.task.Deadline;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 
 /**
  * Command to Create a new Deadlines task
  */
-public class DeadlineCommand extends Command{
+public class DeadlineCommand extends Command {
 
     /**
      * Constructs the Deadlines Command
      * @param taskDes the Command the User input
      */
-    public DeadlineCommand(String taskDes){
+    public DeadlineCommand(String taskDes) {
         super(taskDes);
     }
 
@@ -33,10 +33,9 @@ public class DeadlineCommand extends Command{
      * @throws DukeException any expected error
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        try{
+        try {
             commandInstruction.substring(9);
-        }
-        catch(StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("Deadline command can't be empty");
         }
         if (!commandInstruction.contains(" /by ")) {
@@ -58,7 +57,7 @@ public class DeadlineCommand extends Command{
      * @throws DukeException any expected error
      */
     public static Deadline deadlineTimeSetter(String taskDes, String taskDateTime) throws DukeException {
-        try{
+        try {
             if (!taskDateTime.contains(" ")) {
                 LocalDate d1 = Parser.convertStringToDate(taskDateTime);
                 return new Deadline(taskDes, d1);
@@ -71,7 +70,7 @@ public class DeadlineCommand extends Command{
                 return new Deadline(taskDes, d1, t1);
 
             }
-        }catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             throw new DukeException("Please set date as YYYY-MM-DD");
         }
     }

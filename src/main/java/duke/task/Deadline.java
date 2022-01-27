@@ -45,7 +45,7 @@ public class Deadline extends Task {
      * return the date and time that was stored in string
      * @return the date and time that was stored in string
      */
-    public String getDateTimeString(){
+    public String getDateTimeString() {
         return hasTime
                 ? taskDate + " " + taskTime
                 : taskDate.toString();
@@ -55,9 +55,10 @@ public class Deadline extends Task {
      * return the date and time formatted that was stored in string
      * @return the date and time formatted that was stored in string
      */
-    public String getDateTimeStringFormat(){
+    public String getDateTimeStringFormat() {
         return hasTime
-                ? taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + taskTime.format(DateTimeFormatter.ofPattern("hh:mm a"))
+                ? taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " "
+                + taskTime.format(DateTimeFormatter.ofPattern("hh:mm a"))
                 : taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 

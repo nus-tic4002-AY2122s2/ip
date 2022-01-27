@@ -30,7 +30,7 @@ public abstract class Task {
      * Edit the status of the task
      * @param isDone the new status of the task
      */
-    public void editDone(Boolean isDone){
+    public void editDone(Boolean isDone) {
         this.isDone = isDone;
     }
 
@@ -38,7 +38,7 @@ public abstract class Task {
      * Return the task done status
      * @return the task done status
      */
-    public boolean getIsDone(){
+    public boolean getIsDone() {
         return isDone;
     }
 
@@ -46,7 +46,7 @@ public abstract class Task {
      * Set the task Index
      * @param i The task index of the task
      */
-    public void setTaskIndex(int i){
+    public void setTaskIndex(int i) {
         taskIndex = i;
     }
 
@@ -54,7 +54,7 @@ public abstract class Task {
      * Return the task index of the task
      * @return the task index
      */
-    public int getTaskIndex(){
+    public int getTaskIndex() {
         return taskIndex;
     }
 
@@ -63,7 +63,7 @@ public abstract class Task {
      * Return the task that the user set
      * @return the task that was store
      */
-    public String getTaskDescription(){
+    public String getTaskDescription() {
         return description;
     }
 
@@ -79,7 +79,7 @@ public abstract class Task {
      * return the task type
      * @return the task type
      */
-    public TaskType getTaskType(){
+    public TaskType getTaskType() {
         return taskType;
     }
 
