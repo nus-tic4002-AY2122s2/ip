@@ -4,6 +4,12 @@ import commands.Command;
 import exceptions.DukeDateTimeError;
 import exceptions.DukeStorageError;
 import exceptions.DukeTaskInputException;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 import parser.Parser;
 import storage.Storage;
 import taskclasses.TaskList;
@@ -13,7 +19,7 @@ import ui.Ui;
     15th Jan 2022, Repo to the new upstream repo (https://github.com/nus-tic4002-AY2122S2/ip)
  */
 
-public class Duke {
+public class Duke extends Application {
 
     private TaskList taskList;
     private Ui ui;
@@ -83,5 +89,14 @@ public class Duke {
 
     public static void main(String[] args) throws IOException, DukeStorageError {
         new Duke("data/dukeTasks.txt").run();
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 }
