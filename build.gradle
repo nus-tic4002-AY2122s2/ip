@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'checkstyle'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
 group 'edu.nus'
@@ -19,6 +20,11 @@ dependencies {
 
 application {
     mainClass = 'edu.nus.duke.Main'
+}
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 test {
