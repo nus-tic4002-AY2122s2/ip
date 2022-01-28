@@ -1,6 +1,6 @@
 package edu.nus.duke.view;
 
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
-public class MainWindow extends AnchorPane {
+public class MainWindow extends VBox {
 }
