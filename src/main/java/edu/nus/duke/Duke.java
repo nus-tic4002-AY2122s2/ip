@@ -11,7 +11,7 @@ import edu.nus.duke.storage.Storage;
 import edu.nus.duke.task.TaskList;
 import edu.nus.duke.ui.Ui;
 
-public class Main {
+public class Duke {
     // Variables
     private final TaskList taskList;
     private final Storage storage;
@@ -20,11 +20,11 @@ public class Main {
     // Constructor
 
     /**
-     * Constructor of Main class.
+     * Constructor of Duke class.
      *
      * @param filePath File path of txt storage.
      */
-    public Main(String filePath) {
+    public Duke(String filePath) {
         taskList = new TaskList();
         storage = new Storage(filePath, taskList);
         ui = new Ui();
@@ -55,6 +55,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        new Main("data/duke.txt");
+        new Duke("data/duke.txt");
     }
 }
