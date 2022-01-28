@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -11,7 +12,14 @@
       prefHeight="550.0" prefWidth="390.0">
     <ScrollPane VBox.vgrow="ALWAYS"/>
     <HBox>
-        <TextField HBox.hgrow="ALWAYS"/>
-        <Button text="Send"/>
+        <VBox.margin>
+            <Insets topRightBottomLeft="10"/>
+        </VBox.margin>
+        <TextField HBox.hgrow="ALWAYS" style="-fx-padding: 8;">
+            <HBox.margin>
+                <Insets right="10"/>
+            </HBox.margin>
+        </TextField>
+        <Button text="Send" style="-fx-padding: 8 15 8 15;"/>
     </HBox>
 </VBox>
