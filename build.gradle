@@ -19,7 +19,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'edu.nus.duke.Main'
+    mainClass = 'edu.nus.duke.Launcher'
 }
 
 javafx {
