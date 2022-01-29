@@ -10,5 +10,5 @@ public abstract class Command {
     /**
      * Run the command.
      */
-    public abstract void run(TaskList taskList);
+    public abstract CommandResult run(TaskList taskList);
 }
