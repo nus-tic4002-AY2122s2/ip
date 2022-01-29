@@ -19,10 +19,10 @@ public class DoneCommand extends Command{
             DukeStorage.doneFunction(Integer.valueOf(input.trim())-1);
             DukeStorage.changeIsDone(Integer.valueOf(input.trim())-1);
         }catch (IndexOutOfBoundsException e){
-            throw new DukeException("☹ OOPS!!! Please enter an index.");
+            throw new DukeException("OOPS!!! Please enter an index.");
         }
         catch (NullPointerException e){
-            throw new DukeException(" ☹ OOPS!!! The index you have key in dose not exist.");
+            throw new DukeException("OOPS!!! The index you have key in dose not exist.");
         }catch(IOException e1){
             e1.printStackTrace();
         }

@@ -170,7 +170,7 @@ public class DukeStorage {
                     }catch(ParseException e){
                         System.out.println("please key in the correct date time");
                     }catch(DukeException e){
-                        throw new DukeException("☹ OOPS!!! Please check deadline command that you have key in is in correct format.");
+                        throw new DukeException("OOPS!!! Please check deadline command that you have key in is in correct format.");
                     }
 
 

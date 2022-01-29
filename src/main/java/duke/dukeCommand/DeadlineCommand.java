@@ -50,7 +50,6 @@ public class DeadlineCommand extends Command{
             e1.printStackTrace();
         }catch(ParseException e){
             System.out.println("please enter the correct date format \"dd-MM-yyyy HH:mm:ss\" ");
-            //throw new DukeException("☹ OOPS!!! Please check deadline command that you have key in is in correct format.");
         }catch(DukeException e){
             System.out.println(e);
         }

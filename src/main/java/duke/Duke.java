@@ -49,6 +49,6 @@ public class Duke{
     }
 
     public static void main(String[] args) {
-        new Duke("/Users/joseph/Desktop/ip/src/main/java/taskList.txt").run();
+        new Duke("taskList.txt").run();
     }
 }
