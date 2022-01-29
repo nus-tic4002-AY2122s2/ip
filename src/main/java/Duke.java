@@ -24,13 +24,13 @@ public class Duke extends Application {
     private TaskList taskList;
     private Ui ui;
     private Storage storage;
-
-    /**
+/*
+    *//**
      * initialize Duke function
      *
      * @param filePath the target file location in local drive to store or extract task data from
      * @throws IOException handles all input error
-     */
+     *//*
     public Duke(String filePath) throws IOException {
         ui = new Ui();
         ui.showGreetingMessage();
@@ -44,11 +44,11 @@ public class Duke extends Application {
         }
     }
 
-    /**
+    *//**
      * Start Duke
      *
      * @throws IOException Handle all input errors
-     */
+     *//*
     private void run() throws IOException {
         boolean isExit = false;
         while (!isExit) {
@@ -88,8 +88,8 @@ public class Duke extends Application {
     }
 
     public static void main(String[] args) throws IOException, DukeStorageError {
-        new Duke("data/dukeTasks.txt").run();
-    }
+        //new Duke("data/dukeTasks.txt").run();
+    }*/
 
     @Override
     public void start(Stage stage) {
