@@ -11,17 +11,17 @@
       fx:controller="edu.nus.duke.view.MainWindow"
       prefHeight="550.0" prefWidth="390.0">
     <ScrollPane VBox.vgrow="ALWAYS">
-        <VBox/>
+        <VBox fx:id="dialogContainer"/>
     </ScrollPane>
     <HBox>
         <VBox.margin>
             <Insets topRightBottomLeft="10"/>
         </VBox.margin>
-        <TextField HBox.hgrow="ALWAYS" style="-fx-padding: 8;">
+        <TextField fx:id="userInput" HBox.hgrow="ALWAYS" style="-fx-padding: 8;">
             <HBox.margin>
                 <Insets right="10"/>
             </HBox.margin>
         </TextField>
-        <Button text="Send" style="-fx-padding: 8 15 8 15;"/>
+        <Button text="Send" style="-fx-padding: 8 15 8 15;" onAction="#handleUserInput"/>
     </HBox>
 </VBox>
