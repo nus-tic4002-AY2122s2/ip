@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 
 <fx:root xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-         type="javafx.scene.layout.HBox">
-    <Label fx:id="dialog" wrapText="true" prefWidth="320.0"/>
-    <ImageView fx:id="displayPicture"/>
+         type="javafx.scene.layout.HBox" style="-fx-padding: 10 10 0 10;">
+    <Label fx:id="dialog" wrapText="true" alignment="TOP_RIGHT" textAlignment="RIGHT" prefWidth="305.0" style="-fx-padding: 0 10 0 0;"/>
+    <ImageView fx:id="displayPicture" fitWidth="50.0" preserveRatio="true"/>
 </fx:root>
