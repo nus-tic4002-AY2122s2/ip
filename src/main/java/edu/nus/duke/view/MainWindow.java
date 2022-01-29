@@ -27,6 +27,14 @@ public class MainWindow extends VBox {
         this.duke = duke;
     }
 
+    /**
+     * Add initial Duke DialogBox.
+     */
+    public void initDuke() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog("Hello! I'm Duke\nWhat can I do for you?", dukeImage));
+    }
+
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();

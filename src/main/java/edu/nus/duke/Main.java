@@ -18,6 +18,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             VBox vBox = fxmlLoader.load();
             fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().initDuke();
             fxmlLoader.<MainWindow>getController().initScrollPane();
             Scene scene = new Scene(vBox);
             stage.setScene(scene);
