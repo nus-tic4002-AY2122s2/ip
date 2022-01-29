@@ -1,8 +1,8 @@
 package edu.nus.duke.view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
 public class MainWindow extends VBox {
@@ -10,9 +10,12 @@ public class MainWindow extends VBox {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
+
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+
     @FXML
     private void handleUserInput() {
-        dialogContainer.getChildren().add(new Label(userInput.getText()));
+        dialogContainer.getChildren().add(new DialogBox(userInput.getText(), userImage));
         userInput.clear();
     }
 }

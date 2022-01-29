@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+
+<fx:root xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+         type="javafx.scene.layout.HBox">
+    <Label fx:id="dialog" wrapText="true" prefWidth="320.0"/>
+    <ImageView fx:id="displayPicture"/>
+</fx:root>
