@@ -17,6 +17,7 @@ public class MainWindow extends VBox {
 
     private Duke duke;
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
     public void initScrollPane() {
         dialogContainer.heightProperty().addListener((observable -> scrollPane.setVvalue(1.0)));
@@ -30,7 +31,8 @@ public class MainWindow extends VBox {
     private void handleUserInput() {
         String input = userInput.getText();
         String feedback = duke.getResponse(input);
-        dialogContainer.getChildren().addAll(new DialogBox(input, userImage), new DialogBox(feedback, userImage));
+        dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImage),
+                DialogBox.getDukeDialog(feedback, dukeImage));
         userInput.clear();
     }
 }
