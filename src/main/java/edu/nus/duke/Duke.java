@@ -10,13 +10,15 @@ import edu.nus.duke.parser.Parser;
 import edu.nus.duke.storage.Storage;
 import edu.nus.duke.task.TaskList;
 
+/**
+ * Class of the Duke app.
+ */
 public class Duke {
     // Variables
     private final TaskList taskList;
     private final Storage storage;
 
     // Constructor
-
     /**
      * Constructor of Duke class.
      *
@@ -28,6 +30,13 @@ public class Duke {
     }
 
     // Methods
+
+    /**
+     * Execute Duke logic and return feedback to user.
+     *
+     * @param inputTxt String input from user.
+     * @return Feedback to user
+     */
     public String getResponse(String inputTxt) {
         try {
             Command cmd = Parser.parseInput(inputTxt);

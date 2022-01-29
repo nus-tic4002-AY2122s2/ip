@@ -19,10 +19,17 @@ public class MainWindow extends VBox {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
-    public void initScrollPane() {
+    /**
+     * Set ScrollPane to auto scroll with new user inputs.
+     */
+    public void setAutoScrollPane() {
         dialogContainer.heightProperty().addListener((observable -> scrollPane.setVvalue(1.0)));
     }
 
+    /**
+     * Set up Duke.
+     * @param duke Duke class.
+     */
     public void setDuke(Duke duke) {
         this.duke = duke;
     }
@@ -30,7 +37,7 @@ public class MainWindow extends VBox {
     /**
      * Add initial Duke DialogBox.
      */
-    public void initDuke() {
+    public void initDukeFeedback() {
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog("Hello! I'm Duke\nWhat can I do for you?", dukeImage));
     }

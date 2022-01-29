@@ -18,8 +18,8 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             VBox vBox = fxmlLoader.load();
             fxmlLoader.<MainWindow>getController().setDuke(duke);
-            fxmlLoader.<MainWindow>getController().initDuke();
-            fxmlLoader.<MainWindow>getController().initScrollPane();
+            fxmlLoader.<MainWindow>getController().initDukeFeedback();
+            fxmlLoader.<MainWindow>getController().setAutoScrollPane();
             Scene scene = new Scene(vBox);
             stage.setScene(scene);
             stage.setTitle("Duke");

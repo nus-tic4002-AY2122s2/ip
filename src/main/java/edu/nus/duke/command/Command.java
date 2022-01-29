@@ -8,7 +8,10 @@ import edu.nus.duke.task.TaskList;
 public abstract class Command {
     // Methods
     /**
-     * Run the command.
+     * Run the command and return a CommandResult.
+     *
+     * @param taskList Duke TaskList.
+     * @return CommandResult.
      */
     public abstract CommandResult run(TaskList taskList);
 }

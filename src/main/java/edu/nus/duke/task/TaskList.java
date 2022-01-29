@@ -33,6 +33,7 @@ public class TaskList {
     /**
      * Print tasks with total count, filtered by date or text.
      *
+     * @param initMessage Feedback prefix string to the user.
      * @param dateFilter Date filter.
      * @param textFilter Text filter.
      */
@@ -75,9 +76,10 @@ public class TaskList {
 
     // Setter
     /**
-     * Add a task.
+     * Add a task and return feedback string to the user.
      *
      * @param task A {@code Task} to be added.
+     * @return Feedback string to user.
      */
     public String addTask(Task task) {
         tasks.add(task);
@@ -116,9 +118,10 @@ public class TaskList {
     }
 
     /**
-     * Set a task to done.
+     * Set a task to done and return feedback string to the user.
      *
      * @param idx Task index.
+     * @return Feedback string to user.
      */
     public String doneTask(int idx) {
         try {
@@ -130,9 +133,10 @@ public class TaskList {
     }
 
     /**
-     * Delete a task.
+     * Delete a task and return feedback string to the user.
      *
      * @param idx Task index.
+     * @return Feedback string to the user.
      */
     public String deleteTask(int idx) {
         try {

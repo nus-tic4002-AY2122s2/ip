@@ -19,12 +19,6 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    /**
-     * Constructor of DialogBox class.
-     *
-     * @param text String of user input.
-     * @param img Image file of display picture.
-     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -47,10 +41,24 @@ public class DialogBox extends HBox {
         dialog.setStyle("-fx-padding: 0 0 0 10;");
     }
 
+    /**
+     * Return a user customised DialogBox.
+     *
+     * @param text String of user input.
+     * @param img Image file of display picture.
+     * @return DialogBox.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Return a Duke customised DialogBox.
+     *
+     * @param text Duke feedback to user.
+     * @param img Image file of display picture.
+     * @return DialogBox.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         DialogBox dialogBox = new DialogBox(text, img);
         dialogBox.flip();
