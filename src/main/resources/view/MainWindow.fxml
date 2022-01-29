@@ -17,7 +17,7 @@
         <VBox.margin>
             <Insets topRightBottomLeft="10"/>
         </VBox.margin>
-        <TextField fx:id="userInput" HBox.hgrow="ALWAYS" style="-fx-padding: 8;">
+        <TextField fx:id="userInput" HBox.hgrow="ALWAYS" style="-fx-padding: 8;" onAction="#handleUserInput">
             <HBox.margin>
                 <Insets right="10"/>
             </HBox.margin>
