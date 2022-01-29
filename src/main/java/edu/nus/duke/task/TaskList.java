@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import edu.nus.duke.exception.DukeInvalidTaskIndexException;
 import edu.nus.duke.parser.Parser;
-import edu.nus.duke.ui.Ui;
 
 /**
  * Class that contains the task list
@@ -34,10 +33,14 @@ public class TaskList {
     /**
      * Print tasks with total count, filtered by date or text.
      *
+     * @param initMessage Feedback prefix string to the user.
      * @param dateFilter Date filter.
      * @param textFilter Text filter.
      */
-    public void printTasks(LocalDate dateFilter, String textFilter) {
+    public String printTasks(String initMessage, LocalDate dateFilter, String textFilter) {
+        StringBuilder feedback = new StringBuilder();
+        feedback.append(initMessage);
+        feedback.append(System.lineSeparator());
         int printCount = 0;
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
@@ -45,10 +48,16 @@ public class TaskList {
                 continue;
             }
 
-            Ui.printMessage((i + 1) + ". " + task.getTask(), false);
+            feedback.append(i + 1);
+            feedback.append(". ");
+            feedback.append(task.getTask());
+            feedback.append(System.lineSeparator());
             printCount++;
         }
-        Ui.printMessage("Total tasks: " + printCount);
+        feedback.append("Total tasks: ");
+        feedback.append(printCount);
+        feedback.append(System.lineSeparator());
+        return feedback.toString();
     }
 
     /**
@@ -67,13 +76,14 @@ public class TaskList {
 
     // Setter
     /**
-     * Add a task.
+     * Add a task and return feedback string to the user.
      *
      * @param task A {@code Task} to be added.
+     * @return Feedback string to user.
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         tasks.add(task);
-        Ui.printMessage("added: " + task.getTask());
+        return ("added: " + task.getTask());
     }
 
     /**
@@ -108,31 +118,33 @@ public class TaskList {
     }
 
     /**
-     * Set a task to done.
+     * Set a task to done and return feedback string to the user.
      *
      * @param idx Task index.
+     * @return Feedback string to user.
      */
-    public void doneTask(int idx) {
+    public String doneTask(int idx) {
         try {
             tasks.get(idx).setDone();
-            Ui.printMessage("done: " + tasks.get(idx).getTask());
+            return ("done: " + tasks.get(idx).getTask());
         } catch (IndexOutOfBoundsException e) {
-            Ui.printMessage("Invalid/missing index");
+            return ("Invalid/missing index");
         }
     }
 
     /**
-     * Delete a task.
+     * Delete a task and return feedback string to the user.
      *
      * @param idx Task index.
+     * @return Feedback string to the user.
      */
-    public void deleteTask(int idx) {
+    public String deleteTask(int idx) {
         try {
             String task = tasks.get(idx).getTask();
             tasks.remove(idx);
-            Ui.printMessage("deleted: " + task);
+            return ("deleted: " + task);
         } catch (IndexOutOfBoundsException e) {
-            Ui.printMessage("Invalid/missing index");
+            return ("Invalid/missing index");
         }
 
     }

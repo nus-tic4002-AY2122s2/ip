@@ -1,60 +1,32 @@
 package edu.nus.duke;
 
-import java.time.format.DateTimeParseException;
+import java.io.IOException;
 
-import edu.nus.duke.command.Command;
-import edu.nus.duke.command.ExitCommand;
-import edu.nus.duke.exception.DukeDisallowInputException;
-import edu.nus.duke.exception.DukeInvalidInputException;
-import edu.nus.duke.parser.Parser;
-import edu.nus.duke.storage.Storage;
-import edu.nus.duke.task.TaskList;
-import edu.nus.duke.ui.Ui;
+import edu.nus.duke.view.MainWindow;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class Main {
-    // Variables
-    private final TaskList taskList;
-    private final Storage storage;
-    private final Ui ui;
+public class Main extends Application {
+    private Duke duke = new Duke("data/duke.txt");
 
-    // Constructor
-
-    /**
-     * Constructor of Main class.
-     *
-     * @param filePath File path of txt storage.
-     */
-    public Main(String filePath) {
-        taskList = new TaskList();
-        storage = new Storage(filePath, taskList);
-        ui = new Ui();
-
-        Ui.printMessage("Hello! I'm Duke\nWhat can I do for you?");
-        runApp();
-    }
-
-    // Methods
-    private void runApp() {
-        String inputTxt;
-        do {
-            inputTxt = ui.getUserInput();
-            try {
-                Command cmd = Parser.parseInput(inputTxt);
-                cmd.run(taskList);
-                storage.writeToFile(taskList.printForFile());
-            } catch (DukeInvalidInputException e) {
-                Ui.printMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
-            } catch (DukeDisallowInputException e) {
-                Ui.printMessage("'" + Storage.getSaveSep() + "' is not allowed!");
-            } catch (ArrayIndexOutOfBoundsException e) {
-                Ui.printMessage("Invalid input");
-            } catch (DateTimeParseException e) {
-                Ui.printMessage("Invalid datetime input");
-            }
-        } while (!inputTxt.equals(ExitCommand.CMD));
-    }
-
-    public static void main(String[] args) {
-        new Main("data/duke.txt");
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            VBox vBox = fxmlLoader.load();
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().initDukeFeedback();
+            fxmlLoader.<MainWindow>getController().setAutoScrollPane();
+            Scene scene = new Scene(vBox);
+            stage.setScene(scene);
+            stage.setTitle("Duke");
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

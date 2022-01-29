@@ -20,7 +20,8 @@ public class AddCommand extends Command {
 
     // Methods
     @Override
-    public void run(TaskList taskList) {
-        taskList.addTask(task);
+    public CommandResult run(TaskList taskList) {
+        String feedback = taskList.addTask(task);
+        return (new CommandResult(feedback, false));
     }
 }

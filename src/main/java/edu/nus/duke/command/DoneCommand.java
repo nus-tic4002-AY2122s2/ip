@@ -17,7 +17,8 @@ public class DoneCommand extends Command {
 
     // Methods
     @Override
-    public void run(TaskList taskList) {
-        taskList.doneTask(idx);
+    public CommandResult run(TaskList taskList) {
+        String feedback = taskList.doneTask(idx);
+        return (new CommandResult(feedback, false));
     }
 }

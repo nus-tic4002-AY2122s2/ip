@@ -17,7 +17,8 @@ public class DeleteCommand extends Command {
 
     // Methods
     @Override
-    public void run(TaskList taskList) {
-        taskList.deleteTask(idx);
+    public CommandResult run(TaskList taskList) {
+        String feedback = taskList.deleteTask(idx);
+        return (new CommandResult(feedback, false));
     }
 }

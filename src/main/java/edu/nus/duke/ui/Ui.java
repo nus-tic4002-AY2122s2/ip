@@ -1,19 +1,9 @@
 package edu.nus.duke.ui;
 
-import java.util.Scanner;
-
 /**
  * Class that deals with interactions with the user
  */
 public class Ui {
-    // Variables
-    private final Scanner scanner;
-
-    // Constructor
-    public Ui() {
-        scanner = new Scanner(System.in);
-    }
-
     // Methods
     /**
      * Print a message and separator line to {@code System.out}.
@@ -45,14 +35,5 @@ public class Ui {
     public static void printMessageExit(String message) {
         printMessage(message);
         System.exit(1);
-    }
-
-    /**
-     * Return a string from user input.
-     *
-     * @return string from user input.
-     */
-    public String getUserInput() {
-        return (scanner.nextLine());
     }
 }
