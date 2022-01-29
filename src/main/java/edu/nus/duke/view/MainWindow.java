@@ -14,7 +14,7 @@ public class MainWindow extends VBox {
     @FXML
     private TextField userInput;
 
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
 
     public void initScrollPane() {
         dialogContainer.heightProperty().addListener((observable -> scrollPane.setVvalue(1.0)));
