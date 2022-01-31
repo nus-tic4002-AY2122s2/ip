@@ -17,33 +17,32 @@ public class Parser {
     public String parseInput(String userInput) {
         userInput = userInput.toLowerCase();
         String command = "unknown";
-        if (userInput.contains("bye")) {
-            command = "bye";
+        if (userInput.contains("todo")) {
+            command = "todo";
+        }
+        if (userInput.contains("deadline")) {
+            command = "deadline";
+        }
+        if (userInput.contains("event")) {
+            command = "event";
+        }
+        if (userInput.contains("find")) {
+            command = "find";
         }
         if (userInput.contains("list")) {
             command = "list";
         }
+        if (userInput.contains("done")) {
+            command = "done";
+        }
         if (userInput.contains("delete")) {
             command = "delete";
         }
-        if (userInput.contains("add")) {
-            command = "add";
-        }
-        if (userInput.contains("show all") || userInput.contains("show All")) {
-            command = "show all";
-        }
-        if (userInput.contains("edit")) {
-            command = "edit";
+        if (userInput.contains("bye")) {
+            command = "bye";
         }
         if (userInput.contains("help")) {
             command = "help";
-        }
-        if (userInput.contains("search")) {
-            command = "search";
-        }
-
-        if (userInput.contains("show upcoming") || userInput.contains("show Upcoming")) {
-            command = "show upcoming";
         }
         return command;
     }
@@ -54,7 +53,7 @@ public class Parser {
     }
 
     // To parse and compare dates.
-    public Flight dateCompare(FlightList flights) {
+    /*public Flight dateCompare(FlightList flights) {
         LocalDateTime currentTime = LocalDateTime.now();
         List<Flight> listOfFlights = new ArrayList<>();
         for (int i = 0; i < flights.getSize(); i++) {
@@ -68,5 +67,5 @@ public class Parser {
         return upComingFlight;
 
 
-    }
+    }*/
 }

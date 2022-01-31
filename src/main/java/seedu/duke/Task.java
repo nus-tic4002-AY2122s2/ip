@@ -3,47 +3,50 @@ package seedu.duke;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Flight {
-    protected String from; // Departing details
-    protected String to; // Destination details
-    protected LocalDateTime dateAndTime; //Date & Time in LocalDateTime type
-    protected String stringDateAndTime; //Date & Time in String type
-    protected Integer price; // Price of the flight
+public abstract class Task {
+    protected String description;
+    protected Boolean mark = false;
+    //protected String additionalDetails;
+    //protected LocalDateTime deadline;
 
-    public Flight(String from, String to, String dateAndTimeDetails, String price) {
-        this.from = from;
-        this.to = to;
-        this.price = Integer.parseInt(price);
-        this.dateAndTime = processDateAndTime(dateAndTimeDetails);
-        this.stringDateAndTime = dateAndTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm")) + "H";
+    public Task() {
+
     }
 
-    public String getFrom() {
-        return from;
+    public Task(String description, boolean mark) {
+        this.description = description;
+        this.mark = mark;
     }
 
-    public String getTo() {
-        return to;
+    public Boolean getMark() {
+        return mark;
     }
 
-    public String getStringDateAndTime() {
-        return stringDateAndTime;
+    public String getMarkSymbol() {
+        if (mark) {
+            return ("[X]");
+        } else {
+            return ("[ ]");
+        }
     }
 
-    public Integer getPrice() {
-        return price;
+    public String getDescription() {
+        return description;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return dateAndTime;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getFullFlightDetails() {
-        return "Traveling from " + getFrom() + "to "
-                + getTo() + "on " + getStringDateAndTime() + " which cost $" + String.valueOf(getPrice() + " per pax.");
+    public void setMark(Boolean mark) {
+        this.mark = mark;
     }
 
-    private LocalDateTime processDateAndTime(String dateAndTimeDetails) {
+    public String getTaskDetails() {
+        return  getMarkSymbol() + " "  + getDescription();
+    }
+
+    /*private LocalDateTime processDateAndTime(String dateAndTimeDetails) {
         String changedDate;
         int julianDate;
         int day;
@@ -96,6 +99,6 @@ public class Flight {
             return 6;
         }
         return -1;
-    }
+    }*/
 
 }

@@ -1,15 +1,13 @@
 package seedu.duke;
 
 import java.util.ArrayList;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class FlightList {
+public class TaskList {
 
-    public ArrayList<Flight> list;
+    public ArrayList<Task> list;
 
-    public FlightList() {
-        this.list = new ArrayList<Flight>();
+    public TaskList() {
+        this.list = new ArrayList<Task>();
     }
 
     /**
@@ -26,7 +24,7 @@ public class FlightList {
      *
      * @return The current list.
      */
-    public ArrayList<Flight> getList() {
+    public ArrayList<Task> getList() {
         return this.list;
     }
 
@@ -40,30 +38,56 @@ public class FlightList {
     }
 
     /**
-     * Air Rec adds a Flight.
-     * version 1.0 will be saving the details as string.
-     * version 2.0 will be able to process string into data.
+     * Duke adds a Task.
      * All index are there to extract the exact data for each parameter.
      *
-     * @param message Details of the Flight.
+     * @param message Details of the Task.
      */
-    public void addFlight(String message) {
-        int fromIndex = message.indexOf("/from");
-        int toIndex = message.indexOf("/to");
-        int dateIndex = message.indexOf("/date");
-        int priceIndex = message.indexOf("/price");
-        String from = message.substring(fromIndex + 6, toIndex);
-        String to = message.substring(toIndex + 4, dateIndex);
-        String date = message.substring(dateIndex + 6, priceIndex);
-        String price = message.substring(priceIndex + 7);
-        list.add(new Flight(from, to, date, price));
+    public void addToDo(String message) {
+        String description = message.substring(5);
+        list.add(new Todo(description));
+    }
+
+    public void addDeadline(String message) {
+        int deadlineIndex = message.indexOf("/by");
+        String deadline = message.substring(deadlineIndex + 4);
+        String description = message.substring(9, deadlineIndex - 1);
+        list.add(new Deadline(description, deadline));
+    }
+
+    public void addEvent(String message) {
+        int eventIndex = message.indexOf("/at");
+        String event = message.substring(eventIndex + 5);
+        String description = message.substring(6, eventIndex - 1);
+        list.add(new Event(description, event));
+    }
+
+    public void getTaskDetails() {
+        for (Task task : list) {
+            if (task instanceof Todo) {
+                ((Todo) task).getTaskDetails();
+            } else if (task instanceof Deadline) {
+                ((Deadline) task).getTaskDetails();
+            } else {
+                ((Event) task).getTaskDetails();
+            }
+        }
     }
 
     /**
-     * Air Rec deletes a Flight.
-     * version 1.0 will be deleting the flight by index.
+     * Duke update a Task.
      */
-    public void deleteFlight(String message) {
+    public void markTask(String message) {
+        String number = message.substring(5).trim();
+        int index = Integer.parseInt(number);
+        index = index - 1;
+        list.get(index).setMark(true);
+    }
+
+    /**
+     * Duke delete a Task.
+     */
+    public void deleteTask(String message) {
         String number = message.substring(7).trim();
         int index = Integer.parseInt(number);
         index = index - 1;
@@ -71,17 +95,16 @@ public class FlightList {
     }
 
     /**
-     * Air Rec search Flight.
-     * version 2.0 will be search flight by keyword.
+     * Duke search Task.
      */
-    public ArrayList<Flight> searchFlight(String message) {
-        list.indexOf(message.substring(6));
+    public ArrayList<Task> searchTask(String message) {
+        list.indexOf(message.substring(5));
         int i = 0;
-        ArrayList<Flight> tempList = new ArrayList<Flight>();
-        for (Flight flight : this.list) {
-            if (flight.getFullFlightDetails().contains(message.substring(6))) {
+        ArrayList<Task> tempList = new ArrayList<Task>();
+        for (Task task : this.list) {
+            if (task.getTaskDetails().contains(message.substring(5))) {
                 i = i + 1;
-                tempList.add(flight);
+                tempList.add(task);
             }
         }
         return tempList;
@@ -91,7 +114,7 @@ public class FlightList {
      * Air Rec edit Flight details.
      * version 3.0 will be able to edit flight details by keyword.
     */
-    public void editFlight(String message) {
+    /*public void editFlight(String message) {
         String from = "";
         String to = "";
         String date = "";
@@ -172,5 +195,5 @@ public class FlightList {
             }
             this.list.set(index, new Flight(from, to, date, price));
         }
-    }
+    }*/
 }

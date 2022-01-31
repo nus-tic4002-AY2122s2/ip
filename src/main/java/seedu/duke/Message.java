@@ -10,16 +10,17 @@ public class Message {
 
     static {
         Map<String,String> message = new HashMap<>();
-        message.put("HELP_MESSAGE", "Do email us at support@airrec.com. See you!");
-        message.put("BYE_MESSAGE", "Bye. Your flights have been recorded.\n Hope to see you again soon!");
+        message.put("GREETING","Hi I’m Duke\n[input]\nHow can I assist you today?");
+        message.put("HELP_MESSAGE", "Please refer to the user guide for a quick reference.\n"
+                + "If you have any other question, do drop us an email at support@duke.com. See you!");
+        message.put("BYE_MESSAGE", "Bye. Your tasks have been recorded.\n Hope to see you again soon!");
         message.put("SEARCH_EMPTY","☹ OOPS!!! There is nothing to find.");
-        message.put("NO_MATCH","There is no matching flight in your list.");
+        message.put("NO_MATCH","There is no matching task in your list.");
         message.put("ERROR_UNKNOWN","☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        message.put("GREETING","Hi I’m AIR REC\n[input]\nI can help you save all the flight details!"
-                + "\nHow can I assist you today?");
-        message.put("ADDED_SUCCESSFULLY","Your flight has been added.\nYou have [input] flights in your record");
-        message.put("DELETE_SUCCESSFULLY","Your flight has been deleted.\nYou have [input] flights in your record");
-        message.put("SEARCH_MATCHING_START_MESSAGE","Here are the matching flights in your list:");
+        message.put("ADDED_SUCCESSFULLY","Your task has been added.\nYou have [input] tasks in the list.");
+        message.put("DELETE_SUCCESSFULLY","Your task has been deleted.\nYou have [input] tasks in the list.");
+        message.put("SEARCH_MATCHING_START_MESSAGE","Here are the matching tasks in your list:");
+        message.put("MARK_SUCCESSFULLY","Nice! I've marked this task as done.");
 
         myMessage = Collections.unmodifiableMap(message);
     }

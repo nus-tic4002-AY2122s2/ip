@@ -11,49 +11,48 @@ import java.text.ParseException;
 import java.io.FileOutputStream;
 
 public class Storage {
-    public static FlightList flightList;
+    public static TaskList taskList;
 
-    public Storage(FlightList flightList) {
-        this.flightList = flightList;
+    public Storage(TaskList taskList) {
+        this.taskList = taskList;
     }
 
     /**
-     * Read all flight details from DB file and store them to fightList.
+     * Read all task details from DB file and store them to taskList.
      */
     public void readFile() throws FileNotFoundException, IOException {
-        BufferedReader fileRead = new BufferedReader(new FileReader("FlightDB.txt"));
+        BufferedReader fileRead = new BufferedReader(new FileReader("TaskDB.txt"));
         String line = fileRead.readLine();
         while (line != null) {
-            flightList.addFlight(line);
             line = fileRead.readLine();
         }
-        System.out.println("You have " + flightList.getSize()
-                                        + " flights in your record");
+        System.out.println("You have " + taskList.getSize()
+                                        + " tasks in your record.");
         fileRead.close();
 
     }
 
     /**
-     * Save fight details into flightDB file.
+     * Save task details into taskDB file.
      */
-    public static void saveToDB(String flightData) throws IOException {
-        FileWriter fileWriter = new FileWriter("FlightDB.txt", true);
+    public static void saveToDB(String taskData) throws IOException {
+        FileWriter fileWriter = new FileWriter("TaskDB.txt", true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.println(flightData);
+        printWriter.println(taskData);
         fileWriter.close();
         printWriter.close();
     }
 
     /**
-     * deleted flight details from flightDB file.
+     * deleted task details from taskDB file.
      */
     public static void deleteFromDB(String message) throws IOException {
-        BufferedReader fileRead = new BufferedReader(new FileReader("FlightDB.txt"));
+        BufferedReader fileRead = new BufferedReader(new FileReader("taskDB.txt"));
         StringBuffer inputBuffer = new StringBuffer();
         String line = "";
         String number = message.substring(7).trim();
         int index = Integer.parseInt(number);
-        for (int i = 0; i < flightList.getSize(); i++) {
+        for (int i = 0; i < taskList.getSize(); i++) {
             line = fileRead.readLine();
             if (i != index) {
                 // keep all other task other than deleted task
@@ -61,17 +60,53 @@ public class Storage {
                 inputBuffer.append('\n');
             }
         }
-        FileOutputStream fileOut = new FileOutputStream("FlightDB.txt");
+        FileOutputStream fileOut = new FileOutputStream("TaskDB.txt");
         fileOut.write(inputBuffer.toString().getBytes());
         fileRead.close();
         fileOut.close();
     }
 
     /**
-     * edit flight details in flightDB.
+     * mark task in taskDB.
      */
-    public static void editFlightDB(String message) throws IOException {
-        BufferedReader fileRead = new BufferedReader(new FileReader("FlightDB.txt"));
+    //can try to add /mark true/false as the record, need to check /mark before checking/assign
+    public static void markTaskDB(String message) throws IOException {
+        BufferedReader fileRead = new BufferedReader(new FileReader("TaskDB.txt"));
+        StringBuffer inputBuffer = new StringBuffer();
+        String desc = "";
+        String line = "";
+        String number = message.substring(5,message.indexOf('/')).trim();
+        int index = Integer.parseInt(number);
+        index = index - 1;
+        int markIndex = message.indexOf("/mark");
+        for (int i = 0; i < taskList.getSize(); i++) {
+            line = fileRead.readLine();
+            if (i == index) {
+                int fileMarkIndex = line.indexOf("/mark");
+                if (fileMarkIndex != -1) {
+                    desc = message.substring(0, fileMarkIndex - 1);
+                } else {
+                    desc = message;
+                }
+                String newDetail = desc + " /mark true";
+                inputBuffer.append(newDetail);
+            } else {
+                inputBuffer.append(line);
+            }
+            inputBuffer.append('\n');
+        }
+        FileOutputStream fileOut = new FileOutputStream("TaskDB.txt");
+        fileOut.write(inputBuffer.toString().getBytes());
+        fileRead.close();
+        fileOut.close();
+    }
+
+    /**
+     * edit task details in taskDB.
+     */
+    //can try to add /mark true/false as the record, need to check /mark before checking/assign
+    /*public static void editFlightDB(String message) throws IOException {
+        BufferedReader fileRead = new BufferedReader(new FileReader("TaskDB.txt"));
         StringBuffer inputBuffer = new StringBuffer();
         String from = "";
         String to = "";
@@ -85,7 +120,7 @@ public class Storage {
         int toIndex = message.indexOf("/to");
         int dateIndex = message.indexOf("/date");
         int priceIndex = message.indexOf("/price");
-        for (int i = 0; i < flightList.getSize(); i++) {
+        for (int i = 0; i < taskList.getSize(); i++) {
             line = fileRead.readLine();
             if (i == index) {
                 int fileFromIndex = line.indexOf("/from");
@@ -115,9 +150,9 @@ public class Storage {
             }
             inputBuffer.append('\n');
         }
-        FileOutputStream fileOut = new FileOutputStream("FlightDB.txt");
+        FileOutputStream fileOut = new FileOutputStream("TaskDB.txt");
         fileOut.write(inputBuffer.toString().getBytes());
         fileRead.close();
         fileOut.close();
-    }
+    }*/
 }
