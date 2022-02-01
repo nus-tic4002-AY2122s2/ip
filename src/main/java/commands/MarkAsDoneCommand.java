@@ -27,7 +27,7 @@ public class MarkAsDoneCommand extends Command {
      * @throws DukeTaskInputException throw all errors about input command
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
 
         int taskListSize = taskList.size();
 
@@ -37,6 +37,8 @@ public class MarkAsDoneCommand extends Command {
 
         taskList.getTask(index).markAsDone();
         ui.printMarkAsDoneOutput(taskList.getTask(index));
+
+        return "Mark As Done Command";
     }
 
     /**
