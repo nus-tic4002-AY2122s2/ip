@@ -92,6 +92,7 @@ public class Duke {
 
     private String runDuke(String input) {
 
+        String echoInfo = "";
         String errorInfo = "     "
                 + "\\U+2639"
                 + " OOPS!!! ";
@@ -102,10 +103,10 @@ public class Duke {
 
         try {
             Command c = Parser.parse(input);
-            c.execute(taskList, ui, storage);
+            echoInfo = c.execute(taskList, ui, storage);
             storage.transferToFile(taskList.getVectorList());
 
-            return "Good";
+            return echoInfo;
         } catch (DukeTaskInputException e) {
             String errorType = DukeTaskInputException.getErrorType();
             switch (errorType) {

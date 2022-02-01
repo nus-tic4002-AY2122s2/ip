@@ -21,7 +21,7 @@ public abstract class Command {
      * @throws DukeTaskInputException throw all errors about input command
      * @throws DukeDateTimeError throw all errors about date and time
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage)
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage)
             throws DukeDateTimeError, DukeTaskInputException;
 
     /**

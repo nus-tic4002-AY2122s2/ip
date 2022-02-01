@@ -17,9 +17,29 @@ public class ListCommand extends Command {
      * @param ui Ui class
      * @param storage Storage class
      */
-    @Override
+    /*@Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.toPrintEntireTaskList();
+        //For command line type
+        //taskList.toPrintEntireTaskList();
+
+        //For GUI type
+        //taskList.toPrintEntireTaskListGUI();
+    }*/
+
+    /**
+     * The method to execute command
+     *
+     * @param taskList contain all the task
+     * @param ui Ui class
+     * @param storage Storage class
+     */
+    @Override
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        String echoInfo;
+        //For GUI type
+        echoInfo = taskList.toPrintEntireTaskListGUI();
+
+        return echoInfo;
     }
 
     /**

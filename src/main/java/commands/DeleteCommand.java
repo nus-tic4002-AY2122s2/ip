@@ -29,7 +29,7 @@ public class DeleteCommand extends Command {
      * @throws DukeTaskInputException throw all errors about input command
      */
     @Override
-    public void execute (TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
+    public String execute (TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
         if (taskList.isEmpty()) {
             throw new DukeTaskInputException("listIsEmpty");
         }
@@ -37,6 +37,8 @@ public class DeleteCommand extends Command {
         Task deletedTask = taskList.getTask(index);
         taskList.deleteTask(index);
         Ui.toPrintTaskDeletedMessage(deletedTask, taskList.size());
+
+        return "Delete Command";
     }
 
     /**

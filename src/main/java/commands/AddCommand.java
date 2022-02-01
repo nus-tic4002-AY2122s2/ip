@@ -93,7 +93,7 @@ public class AddCommand extends Command {
      * @throws DukeDateTimeError throw all errors about date and time
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException, DukeDateTimeError {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException, DukeDateTimeError {
         Vector<Task> list = taskList.getVectorList();
 
         switch (type) {
@@ -109,6 +109,8 @@ public class AddCommand extends Command {
         default:
             break;
         }
+
+        return "Add Command";
     }
 
     /**
