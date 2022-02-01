@@ -137,8 +137,21 @@ public class Duke extends Application {
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
+
         userInput.clear();
     }
+
+    private void handleUserInput_Duke() {
+
+        //OutputInfo to get what user input as String type variable
+        outputInfo = userInput.getText();
+
+    }
+    private void handleDukeInfo() {
+
+    }
+
+    String outputInfo;
 
     @Override
     public void start(Stage stage) {
@@ -191,19 +204,14 @@ public class Duke extends Application {
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        //Step 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+
+        dialogContainer.getChildren().addAll(
+
+            DialogBox.getDukeDialog(new Label(Ui.showGreetingMessageGUI()),
+                    new ImageView(duke))
+        );
 
         //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event -> {

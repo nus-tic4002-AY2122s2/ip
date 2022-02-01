@@ -30,6 +30,23 @@ public class Ui {
     }
 
     /**
+     * The greeting with some instruction in GUI
+     */
+    public static String showGreetingMessageGUI() {
+        /*String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";*/
+        String logo = "";
+
+        logo = " Hello! I'm Duke\n"
+                + " What can I do for you?";
+
+        return logo;
+    }
+
+    /**
      * The method to print loading error message
      */
     public void showLoadingError() {
