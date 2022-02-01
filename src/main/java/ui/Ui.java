@@ -79,9 +79,11 @@ public class Ui {
      * @param deletedTask task be deleted
      * @param taskListRemainingSize the task list size after deletion
      */
-    public static void toPrintTaskDeletedMessage(Task deletedTask, int taskListRemainingSize) {
+    public static String toPrintTaskDeletedMessage(Task deletedTask, int taskListRemainingSize) {
         TaskDeletedMessage taskDeletedMessage = new TaskDeletedMessage(deletedTask, taskListRemainingSize);
-        taskDeletedMessage.printTaskDeletedMessage();
+        String echoInfo = taskDeletedMessage.printTaskDeletedMessage();
+
+        return echoInfo;
     }
 
     /**
@@ -90,12 +92,24 @@ public class Ui {
      * @param newTask the new task detected from user input and needs to be added to List, type is Todo
      * @param listQty the total quantity of task in the List after added current new task
      */
-    public static void printTodoAddedOutput(Todo newTask, int listQty) {
-        System.out.println("     Got it. I've added this task:");
+    public static String printTodoAddedOutput(Todo newTask, int listQty) {
+/*        System.out.println("     Got it. I've added this task:");
         System.out.println("        [" + newTask.getType() + "]["
                 + newTask.getStatusIcon() + "] "
                 + newTask.getDescription());
-        System.out.println("     Now you have " + listQty + " tasks in the list.");
+        System.out.println("     Now you have " + listQty + " tasks in the list.");*/
+
+        String echoInfo = "";
+
+        echoInfo = echoInfo
+                + "     Got it. I've added this task:"
+                + "        [" + newTask.getType() + "]["
+                + newTask.getStatusIcon() + "] "
+                + newTask.getDescription() + "\n"
+                + "     Now you have " + listQty
+                + " tasks in the list.";
+
+        return echoInfo;
     }
 
     /**
@@ -143,27 +157,41 @@ public class Ui {
      *
      * @param task the task which be marked as done
      */
-    public static void printMarkAsDoneOutput(Task task) {
+    public static String printMarkAsDoneOutput(Task task) {
 
         String taskType = task.getType();
-        System.out.println("     Nice! I've marked this task as done:");
+        String echoInfo = "";
+        /*System.out.println("     Nice! I've marked this task as done:");
         System.out.print("       [" + task.getType() + "]["
                 + task.getStatusIcon() + "] "
-                + task.getDescription());
+                + task.getDescription());*/
+
+        echoInfo = echoInfo
+                + "     Nice! I've marked this task as done:\n"
+                + "       [" + task.getType() + "]["
+                + task.getStatusIcon() + "] "
+                + task.getDescription();
 
         switch (taskType) {
         case "E":
             String eventDateTime = task.getStartingDateTime();
             System.out.println(" (at: " + eventDateTime + ")");
 
+            echoInfo = echoInfo
+                    + " (at: " + eventDateTime + ")\n";
+
             break;
         case "D":
             String deadlineDateTime = task.getDeadlineDateTimeString();
             System.out.println(" (by: " + deadlineDateTime + ")");
 
+            echoInfo = echoInfo
+                    + " (by: " + deadlineDateTime + ")\n";
+
             break;
         default:
-            System.out.println("");
         }
+
+        return echoInfo;
     }
 }

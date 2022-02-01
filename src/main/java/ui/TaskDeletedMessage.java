@@ -25,41 +25,58 @@ class TaskDeletedMessage {
     /**
      * To print deleted message after task deleted successfully
      */
-    void printTaskDeletedMessage() {
+    String printTaskDeletedMessage() {
+
+        String echoInfo = "";
+
         switch (taskType) {
         case "E":
-            printDeletedEvent();
+            echoInfo = printDeletedEvent();
             break;
         case "D":
-            printDeletedDeadline();
+            echoInfo = printDeletedDeadline();
             break;
         case "T":
-            printDeletedTodo();
+            echoInfo = printDeletedTodo();
             break;
         default:
             break;
         }
+
+        return echoInfo;
     }
 
     /**
      * To print message after user deleted a deadline task successfully
      */
-    private void printDeletedDeadline() {
+    private String printDeletedDeadline() {
 
         String dateTime = deletedTask.getDeadlineDateTimeString();
+        String echoInfo = "";
 
         System.out.println("     Noted. I've removed this task:");
         System.out.println("       [" + taskType + "]["
                 + taskStatus + "] "
                 + taskDescription + "(by: " + dateTime + ")");
         System.out.println("     Now you have " + remainingTaskListSize + " task(s) in the list.");
+
+        echoInfo = echoInfo
+                + "     Noted. I've removed this task:\n"
+                + "       [" + taskType + "]["
+                + taskStatus + "] "
+                + taskDescription + "(by: " + dateTime + ")\n"
+                + "     Now you have "
+                + remainingTaskListSize
+                + " task(s) in the list.";
+
+        return echoInfo;
     }
 
     /**
      * To print message after user deleted a event task successfully
      */
-    private void printDeletedEvent() {
-
+    private String printDeletedEvent() {
+        String echoInfo = "";
         String dateTime = deletedTask.getStartingDateTime();
 
         System.out.println("     Noted. I've removed this task:");
@@ -68,16 +85,40 @@ class TaskDeletedMessage {
                 + taskDescription
                 + "(at: " + dateTime + ")");
         System.out.println("     Now you have " + remainingTaskListSize + " task(s) in the list.");
+
+        echoInfo = echoInfo
+                + "     Noted. I've removed this task:\n"
+                + "       [" + taskType + "]["
+                + taskStatus + "] "
+                + taskDescription
+                + "(at: " + dateTime + ")" + "\n"
+                + "     Now you have "
+                + remainingTaskListSize
+                + " task(s) in the list.";
+
+        return echoInfo;
     }
 
     /**
      * To print message after user deleted a todo task successfully
      */
-    public void printDeletedTodo() {
+    public String printDeletedTodo() {
+
+        String echoInfo = "";
 
         System.out.println("     Noted. I've removed this task:");
         System.out.println("       [" + taskType + "][" + taskStatus + "] " + taskDescription);
         System.out.println("     Now you have " + remainingTaskListSize + " task(s) in the list.");
 
+        echoInfo = echoInfo
+                + "     Noted. I've removed this task:\n"
+                + "       [" + taskType + "]["
+                + taskStatus + "] "
+                + taskDescription + "\n"
+                + "     Now you have "
+                + remainingTaskListSize
+                + " task(s) in the list.";
+
+        return echoInfo;
     }
 }

@@ -38,12 +38,15 @@ public class AddCommand extends Command {
      *
      * @param list the entire task list
      */
-    private void addTodoTask(Vector<Task> list) {
+    private String addTodoTask(Vector<Task> list) {
 
         Todo inputTask = new Todo (description);
         list.add(inputTask);
 
-        Ui.printTodoAddedOutput(inputTask, list.size());
+        //Ui.printTodoAddedOutput(inputTask, list.size());
+        String echoInfo = Ui.printTodoAddedOutput(inputTask, list.size());
+
+        return echoInfo;
     }
 
     /**
