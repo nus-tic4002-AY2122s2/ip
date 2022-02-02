@@ -31,12 +31,16 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
+
         Vector<Task> list = taskList.getVectorList();
         Vector<Task> matchedTaskList = getMatchedTasks(list);
 
-        TaskList.toPrintEntireTaskList(matchedTaskList); // print all the matched task
+        String echoInfo = "";
 
-        return "Find Command";
+        echoInfo = TaskList.toPrintEntireTaskList(matchedTaskList); // print all the matched task
+
+        return echoInfo;
+
     }
 
     /**

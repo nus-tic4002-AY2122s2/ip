@@ -101,7 +101,6 @@ public class Storage {
             if (!dirDoExist()) {
                 Files.createDirectories(Paths.get(rootDir + "/data"));
             }
-
             Files.createFile(path);
         }
 

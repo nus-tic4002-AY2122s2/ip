@@ -35,7 +35,8 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        String echoInfo;
+        String echoInfo = "";
+
         //For GUI type
         echoInfo = taskList.toPrintEntireTaskListGUI();
 

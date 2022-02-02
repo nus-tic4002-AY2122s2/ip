@@ -31,14 +31,16 @@ public class MarkAsDoneCommand extends Command {
 
         int taskListSize = taskList.size();
 
-        if (index >= taskListSize || index <= 0) {
+        if (index >= taskListSize || index < 0) {
             throw new DukeTaskInputException("listIsEmpty");
         }
 
-        taskList.getTask(index).markAsDone();
-        ui.printMarkAsDoneOutput(taskList.getTask(index));
+        String echoInfo = "";
 
-        return "Mark As Done Command";
+        taskList.getTask(index).markAsDone();
+        echoInfo = ui.printMarkAsDoneOutput(taskList.getTask(index));
+
+        return echoInfo;
     }
 
     /**

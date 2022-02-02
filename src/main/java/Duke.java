@@ -104,6 +104,7 @@ public class Duke {
         try {
             Command c = Parser.parse(input);
             echoInfo = c.execute(taskList, ui, storage);
+
             storage.transferToFile(taskList.getVectorList());
 
             return echoInfo;
@@ -143,11 +144,14 @@ public class Duke {
 
     String getResponse(String input) throws IOException {
         String filePath = "data/dukeTasks.txt";
-        String achoInfo = "";
+        String echoInfo = "";
 
         Duke dk = new Duke (filePath);
-        achoInfo = dk.runDuke(input);
 
-        return achoInfo;
+
+        //echoInfo = String.valueOf(dk.taskList.size());
+        echoInfo = dk.runDuke(input);
+
+        return echoInfo;
     }
 }
