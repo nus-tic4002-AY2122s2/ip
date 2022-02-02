@@ -19,12 +19,11 @@ public class ListCommand extends Command {
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (tasks.sizeOfTask() == 0) {
             throw new DukeException("☹ The list is empty.");
         }
-        ui.printTasks(tasks);
-        ui.printEmptyLine();
+        return ui.printTasks(tasks);
     }
 
 }

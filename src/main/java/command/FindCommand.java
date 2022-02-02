@@ -10,6 +10,7 @@ import basic.Ui;
 */
 public class FindCommand extends Command {
     private String input;
+    private String response = "";
 
     public FindCommand(String input) {
         this.input = input;
@@ -23,26 +24,26 @@ public class FindCommand extends Command {
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         input = input.toLowerCase();
         input = input.replace("find ", "");
         if (input.equals("") || input.equals(" ")) {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means.\n");
+            throw new DukeException("\u2639 OOPS!!! I'm sorry, but I don't know what that means.\n");
         } else {
             int count = 0;
             for (int i = 0; i < tasks.sizeOfTask(); i++) {
                 if (tasks.returnTask(i).description.contains(input)) {
                     if (count == 0) {
-                        ui.printMatching();
+                        response += ui.printMatching();
                     }
-                    ui.printMatchingTask(tasks.returnTask(i), i + 1);
+                    response += ui.printMatchingTask(tasks.returnTask(i), i + 1);
                     count++;
                 }
             }
             if (count == 0) {
-                throw new DukeException("☹ No matching tasks in your list.");
+                throw new DukeException("\u2639 No matching tasks in your list.");
             }
-            ui.printEmptyLine();
+            return response;
         }
     }
 

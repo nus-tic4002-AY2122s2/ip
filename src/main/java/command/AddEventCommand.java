@@ -25,7 +25,7 @@ public class AddEventCommand extends Command {
      * @throws EmptyException If an empty description is inputted.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws EmptyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws EmptyException {
         int position;
         input = input.toLowerCase();
 
@@ -48,8 +48,7 @@ public class AddEventCommand extends Command {
             input = input.substring(0, position - 1);
             Event event = new Event(input, date);
             tasks.addTask(event);
-            ui.showAdded();
-            ui.printTaskNum(tasks, event);
+            return ui.printTaskNum(tasks, event);
         } else {
             throw new EmptyException("an event");
         }

@@ -26,7 +26,7 @@ public class AddTodoCommand extends Command {
      * @throws EmptyException If an empty description is inputted.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws EmptyException  {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws EmptyException  {
         input = input.toLowerCase();
         if (input.contains("todo")) {
             input = input.replace("todo", "");
@@ -34,8 +34,7 @@ public class AddTodoCommand extends Command {
         if (!input.equals("") && !input.equals(" ")) {
             Todo todo = new Todo(input);
             tasks.addTask(todo);
-            ui.showAdded();
-            ui.printTaskNum(tasks, todo);
+            return ui.printTaskNum(tasks, todo);
         } else {
             throw new EmptyException("a todo");
         }
