@@ -43,11 +43,9 @@ public class AddCommand extends Command {
         Todo inputTask = new Todo (description);
         list.add(inputTask);
 
-        //Ui.printTodoAddedOutput(inputTask, list.size());
         String echoInfo = Ui.printTodoAddedOutput(inputTask, list.size());
 
         return echoInfo;
-        //return "Add Todo Task";
     }
 
     /**

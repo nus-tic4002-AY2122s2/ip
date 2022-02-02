@@ -37,8 +37,6 @@ public class ListCommand extends Command {
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         String echoInfo = "";
 
-        //echoInfo = String.valueOf(taskList.size());
-
         //For GUI type
         echoInfo = taskList.toPrintEntireTaskListGUI();
 

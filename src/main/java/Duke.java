@@ -104,7 +104,7 @@ public class Duke {
         try {
             Command c = Parser.parse(input);
             echoInfo = c.execute(taskList, ui, storage);
-            //storage.transferToFile(taskList.getVectorList());
+            storage.transferToFile(taskList.getVectorList());
 
             return echoInfo;
         } catch (DukeTaskInputException e) {
