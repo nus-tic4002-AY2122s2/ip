@@ -123,58 +123,6 @@ public class TaskList {
     }
 
     /**
-     * The method to print entire task list for GUI type
-     */
-    public String toPrintEntireTaskListGUI() {
-        if (list.isEmpty()) {
-
-            return "     Here is no task in your list.";
-        }
-
-        String echoInfo = "     Here are the task(s) in your list:\n";
-
-        for (int i = 0; i < list.size(); i++) {
-            int j = i + 1;
-            Task task = list.get(i);
-
-            /*System.out.print("     " + j + "."
-                    + "[" + task.getType() + "]"
-                    + "[" + task.getStatusIcon() + "] "
-                    + task.getDescription());*/
-
-            echoInfo = echoInfo
-                    + "     " + j + "."
-                    + "[" + task.getType() + "]"
-                    + "[" + task.getStatusIcon() + "] "
-                    + task.getDescription() + "\n";
-
-            String taskType = task.getType();
-
-            /*switch (taskType) {
-            case "E":
-                String eventStartingDateTime = task.getStartingDateTime();
-                String eventEndingDateTime = task.getEndingDateTime();
-
-                echoInfo = echoInfo
-                        + " (at: " + eventStartingDateTime
-                        + " ---> " + eventEndingDateTime + ")";
-
-                break;
-            case "D":
-                String deadlineDateTime = task.getDeadlineDateTimeString();
-
-                echoInfo = echoInfo
-                        + " (by: " + deadlineDateTime + ")";
-
-                break;
-            default:
-            }*/
-        }
-
-        return echoInfo;
-    }
-
-    /**
      * The method to print entire task list
      *
      * @param taskList task list in TaskList type
@@ -206,17 +154,64 @@ public class TaskList {
             String taskType = task.getType();
 
             switch (taskType) {
+                case "E":
+                    String eventStartingDateTime = task.getStartingDateTime();
+                    String eventEndingDateTime = task.getStartingDateTime();
+
+                    echoInfo = echoInfo
+                            + " (at: " + eventStartingDateTime
+                            + " ---> " + eventEndingDateTime + ")\n";
+                    break;
+                case "D":
+                    String deadlineDateTime = task.getDeadlineDateTimeString();
+                    System.out.println(" (by: " + deadlineDateTime + ")");
+
+                    echoInfo = echoInfo
+                            + " (by: " + deadlineDateTime + ")\n";
+
+                    break;
+                default:
+            }
+        }
+
+        return echoInfo;
+    }
+
+    /**
+     * The method to print entire task list for GUI type
+     */
+    public String toPrintEntireTaskListGui() {
+        if (list.isEmpty()) {
+
+            return "     Here is no task in your list.";
+        }
+
+        String echoInfo = "     Here are the task(s) in your list:\n";
+
+        for (int i = 0; i < list.size(); i++) {
+            int j = i + 1;
+            Task task = list.get(i);
+
+            echoInfo = echoInfo
+                    + "     " + j + "."
+                    + "[" + task.getType() + "]"
+                    + "[" + task.getStatusIcon() + "] "
+                    + task.getDescription() + "\n";
+
+            String taskType = task.getType();
+
+            switch (taskType) {
             case "E":
                 String eventStartingDateTime = task.getStartingDateTime();
-                String eventEndingDateTime = task.getStartingDateTime();
+                String eventEndingDateTime = task.getEndingDateTime();
 
                 echoInfo = echoInfo
                         + " (at: " + eventStartingDateTime
                         + " ---> " + eventEndingDateTime + ")\n";
+
                 break;
             case "D":
                 String deadlineDateTime = task.getDeadlineDateTimeString();
-                System.out.println(" (by: " + deadlineDateTime + ")");
 
                 echoInfo = echoInfo
                         + " (by: " + deadlineDateTime + ")\n";

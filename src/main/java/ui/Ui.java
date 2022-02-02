@@ -32,7 +32,7 @@ public class Ui {
     /**
      * The greeting with some instruction in GUI
      */
-    public static String showGreetingMessageGUI() {
+    public static String showGreetingMessageGui() {
         /*String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
