@@ -25,7 +25,7 @@ public class Command {
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, EmptyException  {
-        throw new DukeException("\u2639 OOPS!!! I'm sorry, but I don't know what that means.");
+        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means.");
     }
 
 }
