@@ -23,6 +23,7 @@ public class Todo extends Task {
     public Todo (String description, Boolean taskStatus) {
         super(description);
         super.setIsDone(taskStatus);
+        super.setType("T");
     }
 
     /**

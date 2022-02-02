@@ -47,6 +47,7 @@ public class AddCommand extends Command {
         String echoInfo = Ui.printTodoAddedOutput(inputTask, list.size());
 
         return echoInfo;
+        //return "Add Todo Task";
     }
 
     /**
@@ -55,15 +56,14 @@ public class AddCommand extends Command {
      *
      * @param list the entire task list
      */
-    private void addDeadlineTask (Vector<Task> list) throws DukeTaskInputException, DukeDateTimeError {
-
+    private String addDeadlineTask (Vector<Task> list) throws DukeTaskInputException, DukeDateTimeError {
         String date = Parser.toExtractDate(inputWords);
 
         Deadline newTask = new Deadline(description, false, date);
 
         list.add(newTask);
 
-        Ui.printDeadlineAddedOutput(newTask, list.size());
+        return Ui.printDeadlineAddedOutput(newTask, list.size());
     }
 
     /**
@@ -72,7 +72,7 @@ public class AddCommand extends Command {
      *
      * @param list the entire task list
      */
-    private void addEventTask (Vector<Task> list) throws DukeTaskInputException, DukeDateTimeError {
+    private String addEventTask (Vector<Task> list) throws DukeTaskInputException, DukeDateTimeError {
 
         String date = Parser.toExtractDate(inputWords);
         String startingDateTime = Parser.extractStartingDateTime(date);
@@ -83,7 +83,7 @@ public class AddCommand extends Command {
 
         list.add(newTask);
 
-        Ui.printEventAddedOutput(newTask, list.size());
+        return Ui.printEventAddedOutput(newTask, list.size());
     }
 
     /**
@@ -98,22 +98,24 @@ public class AddCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException, DukeDateTimeError {
         Vector<Task> list = taskList.getVectorList();
+        String echoInfo = "";
 
         switch (type) {
         case "todo":
-            addTodoTask(list);
+            echoInfo = addTodoTask(list);
             break;
         case "deadline":
-            addDeadlineTask(list);
+            echoInfo = addDeadlineTask(list);
             break;
         case "event":
-            addEventTask(list);
+            echoInfo = addEventTask(list);
             break;
         default:
             break;
         }
 
-        return "Add Command";
+        //return "Add Command";
+        return echoInfo;
     }
 
     /**

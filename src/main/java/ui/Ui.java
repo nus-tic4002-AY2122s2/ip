@@ -83,7 +83,9 @@ public class Ui {
         TaskDeletedMessage taskDeletedMessage = new TaskDeletedMessage(deletedTask, taskListRemainingSize);
         String echoInfo = taskDeletedMessage.printTaskDeletedMessage();
 
-        return echoInfo;
+        //return echoInfo;
+
+        return "Deleted Task";
     }
 
     /**
@@ -118,7 +120,7 @@ public class Ui {
      * @param newTask the new task detected from user input and needs to be added to List, type is Deadline
      * @param listQty the total quantity of task in the List after added current new task
      */
-    public static void printDeadlineAddedOutput(Deadline newTask, int listQty) {
+    public static String printDeadlineAddedOutput(Deadline newTask, int listQty) {
         System.out.println("     Got it. I've added this task:");
         System.out.print("        [" + newTask.getType() + "]["
                 + newTask.getStatusIcon() + "] "
@@ -126,6 +128,19 @@ public class Ui {
 
         System.out.println(" (by: " + newTask.getDeadlineDateTimeString() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
+
+        String echoInfo = "";
+
+        echoInfo = echoInfo
+                + "     Got it. I've added this task:\n"
+                + "        [" + newTask.getType() + "]["
+                + newTask.getStatusIcon() + "] "
+                + newTask.getDescription()
+                + " (by: " + newTask.getDeadlineDateTimeString() + ")\n"
+                + "     Now you have " + listQty + " tasks in the list.";
+
+        //return echoInfo;
+        return "Added Deadline Task";
     }
 
     /**
@@ -134,7 +149,7 @@ public class Ui {
      * @param newTask the new task detected from user input and needs to be added to List, type is Event
      * @param listQty the total quantity of task in the List after added current new task
      */
-    public static void printEventAddedOutput(Event newTask, int listQty) {
+    public static String printEventAddedOutput(Event newTask, int listQty) {
         System.out.println("     Got it. I've added this task:");
         System.out.print("        [" + newTask.getType() + "]["
                 + newTask.getStatusIcon() + "] "
@@ -142,6 +157,19 @@ public class Ui {
 
         System.out.println(" (by: " + newTask.getStartingDateTime() + ")");
         System.out.println("     Now you have " + listQty + " tasks in the list.");
+
+        String echoInfo = "";
+
+        echoInfo = echoInfo
+                + "     Got it. I've added this task:\n"
+                + "        [" + newTask.getType() + "]["
+                + newTask.getStatusIcon() + "] "
+                + newTask.getDescription()
+                + " (by: " + newTask.getStartingDateTime() + ")\n"
+                + "     Now you have " + listQty + " tasks in the list.";
+
+        //return echoInfo;
+        return "Added Event Task";
     }
 
     /**

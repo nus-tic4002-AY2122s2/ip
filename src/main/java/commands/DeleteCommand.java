@@ -30,13 +30,15 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute (TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
-        if (taskList.isEmpty()) {
+
+        String echoInfo = "";
+/*        if (taskList.isEmpty()) {
             throw new DukeTaskInputException("listIsEmpty");
         }
-        String echoInfo;
+
         Task deletedTask = taskList.getTask(index);
         taskList.deleteTask(index);
-        echoInfo = Ui.toPrintTaskDeletedMessage(deletedTask, taskList.size());
+        echoInfo = Ui.toPrintTaskDeletedMessage(deletedTask, taskList.size());*/
 
         return echoInfo;
     }

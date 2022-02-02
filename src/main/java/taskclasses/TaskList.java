@@ -131,9 +131,7 @@ public class TaskList {
             return "     Here is no task in your list.";
         }
 
-        //System.out.println("     Here are the task(s) in your list:");
-
-        String echoInfo = "     Here are the task(s) in your list:";
+        String echoInfo = "     Here are the task(s) in your list:\n";
 
         for (int i = 0; i < list.size(); i++) {
             int j = i + 1;
@@ -148,31 +146,29 @@ public class TaskList {
                     + "     " + j + "."
                     + "[" + task.getType() + "]"
                     + "[" + task.getStatusIcon() + "] "
-                    + task.getDescription();
+                    + task.getDescription() + "\n";
 
             String taskType = task.getType();
 
-            switch (taskType) {
-                case "E":
-                    String eventStartingDateTime = task.getStartingDateTime();
-                    String eventEndingDateTime = task.getEndingDateTime();
-                    //System.out.println(" (at: " + eventStartingDateTime + " ---> " + eventEndingDateTime + ")");
+            /*switch (taskType) {
+            case "E":
+                String eventStartingDateTime = task.getStartingDateTime();
+                String eventEndingDateTime = task.getEndingDateTime();
 
-                    echoInfo = echoInfo
-                            + " (at: " + eventStartingDateTime
-                            + " ---> " + eventEndingDateTime + ")";
+                echoInfo = echoInfo
+                        + " (at: " + eventStartingDateTime
+                        + " ---> " + eventEndingDateTime + ")";
 
-                    break;
-                case "D":
-                    String deadlineDateTime = task.getDeadlineDateTimeString();
-                    System.out.println(" (by: " + deadlineDateTime + ")");
+                break;
+            case "D":
+                String deadlineDateTime = task.getDeadlineDateTimeString();
 
-                    echoInfo = echoInfo
-                            + " (by: " + deadlineDateTime + ")";
+                echoInfo = echoInfo
+                        + " (by: " + deadlineDateTime + ")";
 
-                    break;
-                default:
-            }
+                break;
+            default:
+            }*/
         }
 
         return echoInfo;
