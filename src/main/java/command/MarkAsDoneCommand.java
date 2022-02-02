@@ -24,7 +24,7 @@ public class MarkAsDoneCommand extends Command {
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String editedInput = input.toLowerCase().replace("done ", "");
         assert editedInput.replaceAll("[\\D]", "").equals(editedInput) : "wrong format key in numeric number instead";
         int num = 0;
@@ -35,9 +35,7 @@ public class MarkAsDoneCommand extends Command {
         }
 
         if (num > 0 && num <= tasks.sizeOfTask()) {
-            ui.showDone();
-            ui.printTask(tasks.returnTask(num - 1));
-            ui.printEmptyLine();
+            return ui.showDone(tasks.returnTask(num - 1));
         } else {
             throw new DukeException("☹ Item not found.");
         }

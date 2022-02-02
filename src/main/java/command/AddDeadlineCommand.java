@@ -26,7 +26,7 @@ public class AddDeadlineCommand extends Command {
      * @throws EmptyException If an empty description is inputted.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws EmptyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws EmptyException {
         int position;
         input = input.toLowerCase();
         if (input.contains("deadline")) {
@@ -47,8 +47,7 @@ public class AddDeadlineCommand extends Command {
             input = input.substring(0, position - 1);
             Deadline deadline = new Deadline(input, date);
             tasks.addTask(deadline);
-            ui.showAdded();
-            ui.printTaskNum(tasks, deadline);
+            return ui.printTaskNum(tasks, deadline);
         } else {
             throw new EmptyException("a deadline");
         }
