@@ -197,18 +197,11 @@ public class TaskList {
             int j = i + 1;
             Task task = taskList.get(i);
 
-/*
-            System.out.print("     " + j + "."
-                    + "[" + task.getType() + "]"
-                    + "[" + task.getStatusIcon() + "] "
-                    + task.getDescription());
-*/
-
             echoInfo = echoInfo
                     + "     " + j + "."
                     + "[" + task.getType() + "]"
                     + "[" + task.getStatusIcon() + "] "
-                    + task.getDescription();
+                    + task.getDescription() + "\n";
 
             String taskType = task.getType();
 
@@ -216,7 +209,6 @@ public class TaskList {
             case "E":
                 String eventStartingDateTime = task.getStartingDateTime();
                 String eventEndingDateTime = task.getStartingDateTime();
-                //System.out.println(" (at: " + eventStartingDateTime + " ---> " + eventEndingDateTime + ")");
 
                 echoInfo = echoInfo
                         + " (at: " + eventStartingDateTime

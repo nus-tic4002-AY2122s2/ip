@@ -1,6 +1,5 @@
-T | 1 | return books
-T | 1 | return food
-T | 1 | return tray
+T | 0 | return books
+T | 0 | return tray
 T | 1 | take breakfast
-D | 1 | return books | 2022-02-11 23:59
-E | 1 | CNY | 2022-01-31 19:00 | 2022-02-01 00:15
+D | 0 | return books | 2022-02-11 23:59
+E | 0 | CNY | 2022-01-31 19:00 | 2022-02-01 00:15
