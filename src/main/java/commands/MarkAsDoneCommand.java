@@ -31,7 +31,7 @@ public class MarkAsDoneCommand extends Command {
 
         int taskListSize = taskList.size();
 
-        if (index >= taskListSize || index <= 0) {
+        if (index >= taskListSize || index < 0) {
             throw new DukeTaskInputException("listIsEmpty");
         }
 
