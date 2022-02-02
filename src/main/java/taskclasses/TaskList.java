@@ -154,23 +154,23 @@ public class TaskList {
             String taskType = task.getType();
 
             switch (taskType) {
-                case "E":
-                    String eventStartingDateTime = task.getStartingDateTime();
-                    String eventEndingDateTime = task.getStartingDateTime();
+            case "E":
+                String eventStartingDateTime = task.getStartingDateTime();
+                String eventEndingDateTime = task.getStartingDateTime();
 
-                    echoInfo = echoInfo
-                            + " (at: " + eventStartingDateTime
-                            + " ---> " + eventEndingDateTime + ")\n";
-                    break;
-                case "D":
-                    String deadlineDateTime = task.getDeadlineDateTimeString();
-                    System.out.println(" (by: " + deadlineDateTime + ")");
+                echoInfo = echoInfo
+                        + " (at: " + eventStartingDateTime
+                        + " ---> " + eventEndingDateTime + ")\n";
+                break;
+            case "D":
+                String deadlineDateTime = task.getDeadlineDateTimeString();
+                System.out.println(" (by: " + deadlineDateTime + ")");
 
-                    echoInfo = echoInfo
-                            + " (by: " + deadlineDateTime + ")\n";
+                echoInfo = echoInfo
+                        + " (by: " + deadlineDateTime + ")\n";
 
-                    break;
-                default:
+                break;
+            default:
             }
         }
 
