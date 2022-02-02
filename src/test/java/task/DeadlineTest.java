@@ -1,10 +1,12 @@
 package task;
 
-import org.junit.jupiter.api.Assertions;
+import junit.framework.TestCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class DeadlineTest {
+    private TestCase Assertions;
+
     @Test
     @DisplayName("Inserting Test Case 2 /by 2021-10-01 23:59")
     void TestToString() {
