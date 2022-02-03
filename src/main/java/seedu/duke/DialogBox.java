@@ -1,4 +1,5 @@
 package seedu.duke;
+
 import java.io.IOException;
 import java.util.Collections;
 
@@ -24,7 +25,7 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text) { //, Image img
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -35,7 +36,7 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        displayPicture.setImage(img);
+        //displayPicture.setImage(img);
     }
 
     /**
@@ -48,12 +49,13 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+    public static DialogBox getUserDialog(String text) { //, Image img
+        return new DialogBox(text);//, img
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+    public static DialogBox getDukeDialog(String text) { //, Image img
+        var reply = Duke.run(text);
+        var db = new DialogBox(reply);//text, img
         db.flip();
         return db;
     }

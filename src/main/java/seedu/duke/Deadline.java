@@ -20,7 +20,7 @@ public class Deadline extends Task {
     }
 
     public String getDeadline() {
-        return "(by: " + deadline + ")";
+        return " (by: " + deadline + ")";
     }
 
     public void setDeadline(String deadline) {

@@ -21,7 +21,7 @@ public class Event extends Task {
     }
 
     public String getEventDate() {
-        return "(at: " + eventDate + ")";
+        return " (at: " + eventDate + ")";
     }
 
     public void setEventDate(String deadline) {
@@ -30,7 +30,7 @@ public class Event extends Task {
 
     public String getTaskDetails() {
         return "[E]" + getMarkSymbol() + " "
-                + getDescription() + "( " + getEventDate() + ")";
+                + getDescription() + getEventDate();
     }
 
 }

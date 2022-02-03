@@ -26,8 +26,7 @@ public class Storage {
         while (line != null) {
             line = fileRead.readLine();
         }
-        System.out.println("You have " + taskList.getSize()
-                                        + " tasks in your record.");
+        System.out.println("You have " + taskList.getSize() + " tasks in your record.");
         fileRead.close();
 
     }
@@ -75,7 +74,7 @@ public class Storage {
         StringBuffer inputBuffer = new StringBuffer();
         String desc = "";
         String line = "";
-        String number = message.substring(5,message.indexOf('/')).trim();
+        String number = message.substring(5).trim();
         int index = Integer.parseInt(number);
         index = index - 1;
         int markIndex = message.indexOf("/mark");
