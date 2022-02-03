@@ -129,7 +129,7 @@ Now you have 11 tasks in the list.
 
 ### `deadline` - Action Describe
 
-add a Todo task into the database.
+add a Deadline task into the database.
 
 Example of usage:
 
@@ -147,7 +147,7 @@ Now you have 12 tasks in the list.
 
 ### `event` - Action Describe
 
-add a Todo task into the database.
+add a Event task into the database.
 
 Example of usage:
 
