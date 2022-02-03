@@ -128,60 +128,59 @@ public class Duke extends Application {
         try {
             String command = new Parser().parseInput(userInput);
             switch (command) {
-                case "bye":
-                    return(Message.getVal("BYE_MESSAGE"));
-                case "todo":
-                    Main.taskList.addToDo(userInput);
-                    Main.storage.saveToDB(userInput);
-                    //Message.getVal("ADDED_SUCCESSFULLY",Integer.toString(taskList.getSize()));
-                    return(Message.getVal("ADDED_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
-                case "deadline":
-                    Main.taskList.addDeadline(userInput);
-                    Main.storage.saveToDB(userInput);
-                    return(Message.getVal("ADDED_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
-                case "event":
-                    Main.taskList.addEvent(userInput);
-                    Main.storage.saveToDB(userInput);
-                    return(Message.getVal("ADDED_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
-                case "list":
-                    String result = "";
-                    for (int i = 0; i < Main.taskList.getSize(); i++) {
-                        if(i > 0){
-                            result = result + "\n";
-                        }
-                        result = result + "Task " + (i + 1) + ": "
-                                + Main.taskList.getList().get(i).getTaskDetails();
+            case "bye":
+                return (Message.getVal("BYE_MESSAGE"));
+            case "todo":
+                Main.taskList.addToDo(userInput);
+                Main.storage.saveToDB(userInput);
+                return (Message.getVal("ADDED_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
+            case "deadline":
+                Main.taskList.addDeadline(userInput);
+                Main.storage.saveToDB(userInput);
+                return (Message.getVal("ADDED_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
+            case "event":
+                Main.taskList.addEvent(userInput);
+                Main.storage.saveToDB(userInput);
+                return (Message.getVal("ADDED_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
+            case "list":
+                String result = "";
+                for (int i = 0; i < Main.taskList.getSize(); i++) {
+                    if (i > 0) {
+                        result = result + "\n";
                     }
-                    return result;
-                case "find":
-                    if (userInput.equals("search")) {
-                        return(Message.getVal("SEARCH_EMPTY"));
+                    result = result + "Task " + (i + 1) + ": "
+                            + Main.taskList.getList().get(i).getTaskDetails();
+                }
+                return result;
+            case "find":
+                if (userInput.equals("search")) {
+                    return (Message.getVal("SEARCH_EMPTY"));
+                } else {
+                    ArrayList<Task> tempList = Main.taskList.searchTask(userInput);
+                    if (tempList.size() > 0) {
+                        String result2 = Message.getVal("SEARCH_MATCHING_START_MESSAGE");
+                        //System.out.println("Here are the matching flights in your list:");
+                        for (Task task : tempList) {
+                            result2 = result2 + "\n" + task.getTaskDetails();
+                        }
+                        return (result2);
                     } else {
-                        ArrayList<Task> tempList = Main.taskList.searchTask(userInput);
-                        if (tempList.size() > 0) {
-                            String result2 = Message.getVal("SEARCH_MATCHING_START_MESSAGE");
-                            //System.out.println("Here are the matching flights in your list:");
-                            for (Task task : tempList) {
-                                result2 = result2 + "\n" + task.getTaskDetails();
-                            }
-                            return (result2);
-                        } else {
-                            return(Message.getVal("NO_MATCH"));
-                        }
+                        return (Message.getVal("NO_MATCH"));
                     }
-                case "done":
-                    Main.taskList.markTask(userInput);
-                    Main.storage.markTaskDB(userInput);
-                    return(Message.getVal("MARK_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
-                case "delete":
-                    Main.taskList.deleteTask(userInput);
-                    Main.storage.deleteFromDB(userInput);
-                    return(Message.getVal("DELETE_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
-                case "help":
-                    return(Message.getVal("HELP_MESSAGE"));
+                }
+            case "done":
+                Main.taskList.markTask(userInput);
+                Main.storage.markTaskDB(userInput);
+                return (Message.getVal("MARK_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
+            case "delete":
+                Main.taskList.deleteTask(userInput);
+                Main.storage.deleteFromDB(userInput);
+                return (Message.getVal("DELETE_SUCCESSFULLY",Integer.toString(Main.taskList.getSize())));
+            case "help":
+                return (Message.getVal("HELP_MESSAGE"));
 
-                default:
-                    return(Message.getVal("ERROR_UNKNOWN"));
+            default:
+                return (Message.getVal("ERROR_UNKNOWN"));
 
             }
         } catch (Exception e) {

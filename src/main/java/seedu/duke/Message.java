@@ -30,7 +30,7 @@ public class Message {
     }*/
 
     public static String getVal(String key) {
-        return(myMessage.get(key));
+        return (myMessage.get(key));
     }
 
     /*public static void getVal(String key, String input) {
@@ -39,7 +39,7 @@ public class Message {
     }*/
 
     public static String getVal(String key, String input) {
-        return(myMessage.get(key).replace("[input]",input));
+        return (myMessage.get(key).replace("[input]",input));
     }
 
     public static String get(String key) {
