@@ -14,13 +14,7 @@ public abstract class Task {
 
     // Constructor
 
-    /**
-     * Constructor of Task class.
-     *
-     * @param prefix Character code of Task type.
-     * @param taskName Name of task.
-     */
-    public Task(char prefix, String taskName) {
+    protected Task(char prefix, String taskName) {
         this.prefix = prefix;
         this.taskName = taskName;
     }
