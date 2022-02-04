@@ -13,7 +13,7 @@ import edu.nus.duke.parser.Parser;
  */
 public class TaskList {
     // Variables
-    private final ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     // Constructor
     public TaskList() {
@@ -72,6 +72,31 @@ public class TaskList {
             output.append(System.lineSeparator());
         }
         return output.toString();
+    }
+
+    /**
+     * Returns a copy of the tasks ArrayList.
+     *
+     * @return A copy of ArrayList Task.
+     */
+    public ArrayList<Task> getTasksCopy() {
+        ArrayList<Task> tasksCopy = new ArrayList<>();
+        for (Task task : tasks) {
+            switch (task.getPrefix()) {
+            case 'T':
+                tasksCopy.add(new Todo(task.getTaskName(), task.getIsDone()));
+                break;
+            case 'D':
+                tasksCopy.add(new Deadline(task.getTaskName(), ((Deadline) task).getBy(), task.getIsDone()));
+                break;
+            case 'E':
+                tasksCopy.add(new Event(task.getTaskName(), ((Event) task).getAt(), task.getIsDone()));
+                break;
+            default:
+                break;
+            }
+        }
+        return tasksCopy;
     }
 
     // Setter
@@ -147,6 +172,15 @@ public class TaskList {
             return ("Invalid/missing index");
         }
 
+    }
+
+    /**
+     * Set current tasks to new ArrayList Task provided.
+     *
+     * @param tasks new ArrayList Task.
+     */
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     // Methods

@@ -3,8 +3,10 @@ package edu.nus.duke;
 import java.time.format.DateTimeParseException;
 
 import edu.nus.duke.command.Command;
+import edu.nus.duke.command.CommandDataHistory;
 import edu.nus.duke.command.CommandResult;
 import edu.nus.duke.exception.DukeDisallowInputException;
+import edu.nus.duke.exception.DukeEmptyUndoException;
 import edu.nus.duke.exception.DukeInvalidInputException;
 import edu.nus.duke.parser.Parser;
 import edu.nus.duke.storage.Storage;
@@ -15,8 +17,9 @@ import edu.nus.duke.task.TaskList;
  */
 public class Duke {
     // Variables
-    private final TaskList taskList;
-    private final Storage storage;
+    private TaskList taskList;
+    private CommandDataHistory commandDataHistory;
+    private Storage storage;
 
     // Constructor
     /**
@@ -26,6 +29,7 @@ public class Duke {
      */
     public Duke(String filePath) {
         taskList = new TaskList();
+        commandDataHistory = new CommandDataHistory();
         storage = new Storage(filePath, taskList);
     }
 
@@ -35,12 +39,12 @@ public class Duke {
      * Execute Duke logic and return feedback to user.
      *
      * @param inputTxt String input from user.
-     * @return Feedback to user
+     * @return Feedback to user.
      */
     public String getResponse(String inputTxt) {
         try {
             Command cmd = Parser.parseInput(inputTxt);
-            CommandResult commandResult = cmd.run(taskList);
+            CommandResult commandResult = cmd.run(taskList, commandDataHistory);
             if (commandResult.getIsExit()) {
                 System.exit(0);
             }
@@ -54,6 +58,8 @@ public class Duke {
             return ("Invalid input");
         } catch (DateTimeParseException e) {
             return ("Invalid datetime input");
+        } catch (DukeEmptyUndoException e) {
+            return ("No undo to return");
         }
     }
 }

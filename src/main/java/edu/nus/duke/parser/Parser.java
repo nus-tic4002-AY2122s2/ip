@@ -12,6 +12,7 @@ import edu.nus.duke.command.DoneCommand;
 import edu.nus.duke.command.ExitCommand;
 import edu.nus.duke.command.FindCommand;
 import edu.nus.duke.command.ListCommand;
+import edu.nus.duke.command.UndoCommand;
 import edu.nus.duke.exception.DukeDisallowInputException;
 import edu.nus.duke.exception.DukeInvalidInputException;
 import edu.nus.duke.storage.Storage;
@@ -128,15 +129,18 @@ public class Parser {
         String[] inputArray = inputTxt.split(" ", 2);
         String cmd = inputArray[0];
 
-        if (cmd.equals(ListCommand.CMD)) {
+        switch(cmd) {
+        case ListCommand.CMD:
             if (inputArray.length == 2) {
                 LocalDate date = parseDate(inputArray[1]);
                 return (new ListCommand(date));
             }
             return (new ListCommand());
-        } else if (cmd.equals(ExitCommand.CMD)) {
+        case UndoCommand.CMD:
+            return (new UndoCommand());
+        case ExitCommand.CMD:
             return (new ExitCommand());
-        } else {
+        default:
             String args = inputArray[1];
             return parseInputMultiArgs(cmd, args);
         }

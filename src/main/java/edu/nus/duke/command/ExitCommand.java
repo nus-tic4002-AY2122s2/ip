@@ -11,7 +11,7 @@ public class ExitCommand extends Command {
 
     // Methods
     @Override
-    public CommandResult run(TaskList taskList) {
+    public CommandResult run(TaskList taskList, CommandDataHistory commandDataHistory) {
         return (new CommandResult("Bye. Hope to see you again soon!", true));
     }
 }

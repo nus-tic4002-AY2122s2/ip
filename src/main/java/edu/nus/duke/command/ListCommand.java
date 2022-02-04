@@ -22,7 +22,7 @@ public class ListCommand extends Command {
 
     // Methods
     @Override
-    public CommandResult run(TaskList taskList) {
+    public CommandResult run(TaskList taskList, CommandDataHistory commandDataHistory) {
         String message = "Here are the tasks in your list:";
         if (dateFilter != null) {
             message = "Here are the filtered tasks in your list:";

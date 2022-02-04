@@ -14,18 +14,22 @@ public abstract class Task {
 
     // Constructor
 
-    /**
-     * Constructor of Task class.
-     *
-     * @param prefix Character code of Task type.
-     * @param taskName Name of task.
-     */
-    public Task(char prefix, String taskName) {
+    protected Task(char prefix, String taskName) {
         this.prefix = prefix;
         this.taskName = taskName;
     }
 
     // Getter
+
+    /**
+     * Returns task prefix.
+     *
+     * @return Task prefix.
+     */
+    public char getPrefix() {
+        return prefix;
+    }
+
     /**
      * Returns task name.
      *
@@ -33,6 +37,15 @@ public abstract class Task {
      */
     public String getTaskName() {
         return taskName;
+    }
+
+    /**
+     * Returns task isDone status.
+     *
+     * @return Boolean isDone.
+     */
+    public boolean getIsDone() {
+        return isDone;
     }
 
     /**
