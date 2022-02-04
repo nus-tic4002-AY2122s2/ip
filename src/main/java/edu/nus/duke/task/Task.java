@@ -20,6 +20,10 @@ public abstract class Task {
     }
 
     // Getter
+    public char getPrefix() {
+        return prefix;
+    }
+
     /**
      * Returns task name.
      *
@@ -27,6 +31,10 @@ public abstract class Task {
      */
     public String getTaskName() {
         return taskName;
+    }
+
+    public boolean getIsDone() {
+        return isDone;
     }
 
     /**
