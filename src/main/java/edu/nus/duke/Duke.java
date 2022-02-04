@@ -28,6 +28,7 @@ public class Duke {
      */
     public Duke(String filePath) {
         taskList = new TaskList();
+        commandDataHistory = new CommandDataHistory();
         storage = new Storage(filePath, taskList);
     }
 
