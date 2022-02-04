@@ -13,5 +13,5 @@ public abstract class Command {
      * @param taskList Duke TaskList.
      * @return CommandResult.
      */
-    public abstract CommandResult run(TaskList taskList);
+    public abstract CommandResult run(TaskList taskList, CommandDataHistory commandDataHistory);
 }

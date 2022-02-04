@@ -3,6 +3,7 @@ package edu.nus.duke;
 import java.time.format.DateTimeParseException;
 
 import edu.nus.duke.command.Command;
+import edu.nus.duke.command.CommandDataHistory;
 import edu.nus.duke.command.CommandResult;
 import edu.nus.duke.exception.DukeDisallowInputException;
 import edu.nus.duke.exception.DukeInvalidInputException;
@@ -16,6 +17,7 @@ import edu.nus.duke.task.TaskList;
 public class Duke {
     // Variables
     private TaskList taskList;
+    private CommandDataHistory commandDataHistory;
     private Storage storage;
 
     // Constructor
@@ -40,7 +42,7 @@ public class Duke {
     public String getResponse(String inputTxt) {
         try {
             Command cmd = Parser.parseInput(inputTxt);
-            CommandResult commandResult = cmd.run(taskList);
+            CommandResult commandResult = cmd.run(taskList, commandDataHistory);
             if (commandResult.getIsExit()) {
                 System.exit(0);
             }

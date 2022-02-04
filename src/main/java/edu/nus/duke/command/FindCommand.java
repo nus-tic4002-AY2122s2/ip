@@ -17,7 +17,7 @@ public class FindCommand extends Command {
 
     // Methods
     @Override
-    public CommandResult run(TaskList taskList) {
+    public CommandResult run(TaskList taskList, CommandDataHistory commandDataHistory) {
         String feedback = taskList.printTasks("Here are the matching tasks in your list:", null, textFilter);
         return (new CommandResult(feedback, false));
     }
