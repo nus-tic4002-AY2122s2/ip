@@ -74,6 +74,11 @@ public class TaskList {
         return output.toString();
     }
 
+    /**
+     * Returns a copy of the tasks ArrayList.
+     *
+     * @return A copy of ArrayList Task.
+     */
     public ArrayList<Task> getTasksCopy() {
         ArrayList<Task> tasksCopy = new ArrayList<>();
         for (Task task : tasks) {
@@ -169,6 +174,11 @@ public class TaskList {
 
     }
 
+    /**
+     * Set current tasks to new ArrayList Task provided.
+     *
+     * @param tasks new ArrayList Task.
+     */
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }

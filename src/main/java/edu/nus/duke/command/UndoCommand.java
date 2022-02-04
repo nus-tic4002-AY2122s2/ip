@@ -6,6 +6,9 @@ import edu.nus.duke.exception.DukeEmptyUndoException;
 import edu.nus.duke.task.Task;
 import edu.nus.duke.task.TaskList;
 
+/**
+ * Represent undo command that extends from Command.
+ */
 public class UndoCommand extends Command {
     public static final String CMD = "undo";
 

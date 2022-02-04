@@ -39,7 +39,7 @@ public class Duke {
      * Execute Duke logic and return feedback to user.
      *
      * @param inputTxt String input from user.
-     * @return Feedback to user
+     * @return Feedback to user.
      */
     public String getResponse(String inputTxt) {
         try {

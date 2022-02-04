@@ -20,6 +20,12 @@ public abstract class Task {
     }
 
     // Getter
+
+    /**
+     * Returns task prefix.
+     *
+     * @return Task prefix.
+     */
     public char getPrefix() {
         return prefix;
     }
@@ -33,6 +39,11 @@ public abstract class Task {
         return taskName;
     }
 
+    /**
+     * Returns task isDone status.
+     *
+     * @return Boolean isDone.
+     */
     public boolean getIsDone() {
         return isDone;
     }
