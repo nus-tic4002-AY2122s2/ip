@@ -5,12 +5,17 @@ package edu.nus.duke.task;
  */
 public class Todo extends Task {
     // Constructor
+    /**
+     * Constructor of Todo class.
+     *
+     * @param taskName Name of task.
+     */
     public Todo(String taskName) {
         super('T', taskName);
     }
 
     /**
-     * Constructor.
+     * Constructor of Todo class.
      *
      * @param taskName Name of task.
      * @param isDone Done status of task.
