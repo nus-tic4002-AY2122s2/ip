@@ -1,6 +1,9 @@
 package edu.nus.duke.command;
 
+import java.util.ArrayList;
+
 import edu.nus.duke.exception.DukeEmptyUndoException;
+import edu.nus.duke.task.Task;
 import edu.nus.duke.task.TaskList;
 
 public class UndoCommand extends Command {
@@ -8,9 +11,14 @@ public class UndoCommand extends Command {
 
     @Override
     public CommandResult run(TaskList taskList, CommandDataHistory commandDataHistory) throws DukeEmptyUndoException {
-        if (commandDataHistory.getSize() == 0) {
+        int historySize = commandDataHistory.getSize();
+
+        if (historySize == 0) {
             throw new DukeEmptyUndoException();
         }
+
+        ArrayList<Task> previousTaskList = commandDataHistory.pop();
+        taskList.setTasks(previousTaskList);
         return (new CommandResult("Undo success", false));
     }
 }

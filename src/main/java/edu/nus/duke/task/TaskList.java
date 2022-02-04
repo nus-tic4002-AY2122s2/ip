@@ -74,6 +74,26 @@ public class TaskList {
         return output.toString();
     }
 
+    public ArrayList<Task> getTasksCopy() {
+        ArrayList<Task> tasksCopy = new ArrayList<>();
+        for (Task task : tasks) {
+            switch (task.getPrefix()) {
+            case 'T':
+                tasksCopy.add(new Todo(task.getTaskName(), task.getIsDone()));
+                break;
+            case 'D':
+                tasksCopy.add(new Deadline(task.getTaskName(), ((Deadline) task).getBy(), task.getIsDone()));
+                break;
+            case 'E':
+                tasksCopy.add(new Event(task.getTaskName(), ((Event) task).getAt(), task.getIsDone()));
+                break;
+            default:
+                break;
+            }
+        }
+        return tasksCopy;
+    }
+
     // Setter
     /**
      * Add a task and return feedback string to the user.
@@ -147,6 +167,10 @@ public class TaskList {
             return ("Invalid/missing index");
         }
 
+    }
+
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     // Methods
