@@ -1,5 +1,6 @@
 package edu.nus.duke.command;
 
+import edu.nus.duke.exception.DukeEmptyUndoException;
 import edu.nus.duke.task.TaskList;
 
 /**
@@ -13,5 +14,6 @@ public abstract class Command {
      * @param taskList Duke TaskList.
      * @return CommandResult.
      */
-    public abstract CommandResult run(TaskList taskList, CommandDataHistory commandDataHistory);
+    public abstract CommandResult run(TaskList taskList, CommandDataHistory commandDataHistory)
+            throws DukeEmptyUndoException;
 }

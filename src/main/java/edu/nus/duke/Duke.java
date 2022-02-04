@@ -6,6 +6,7 @@ import edu.nus.duke.command.Command;
 import edu.nus.duke.command.CommandDataHistory;
 import edu.nus.duke.command.CommandResult;
 import edu.nus.duke.exception.DukeDisallowInputException;
+import edu.nus.duke.exception.DukeEmptyUndoException;
 import edu.nus.duke.exception.DukeInvalidInputException;
 import edu.nus.duke.parser.Parser;
 import edu.nus.duke.storage.Storage;
@@ -57,6 +58,8 @@ public class Duke {
             return ("Invalid input");
         } catch (DateTimeParseException e) {
             return ("Invalid datetime input");
+        } catch (DukeEmptyUndoException e) {
+            return ("No undo to return");
         }
     }
 }

@@ -11,6 +11,10 @@ public class CommandDataHistory {
         taskLists = new ArrayList<>();
     }
 
+    public int getSize() {
+        return taskLists.size();
+    }
+
     public void add(TaskList taskList) {
         taskLists.add(taskList);
     }
