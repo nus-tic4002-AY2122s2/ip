@@ -8,12 +8,16 @@ import duke.parse.StringParser;
 import duke.storage.Storage;
 import duke.storage.TempTaskList;
 import duke.ui.Message;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * @author      Li Shihao
  * @since       2021 Aug
  */
-public class Duke {
+public class Duke extends Application {
     private TempTaskList tasks = new TempTaskList();
     private Storage storage = new Storage();
     private CommandFactory commandFactory = new CommandFactory(tasks);
@@ -38,11 +42,11 @@ public class Duke {
      * entrance of the program
      * @param args
      */
-    public static void main(String[] args) {
-        Message.greeting();
-        new Duke().start();
-        Message.exit();
-    }
+    // public static void main(String[] args) {
+    //     Message.greeting();
+    //     new Duke().start();
+    //     Message.exit();
+    // }
 
     private void start() {
         String userInput = in.nextLine();
@@ -58,6 +62,15 @@ public class Duke {
         }
 
         start();
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        primaryStage.setScene(scene); // Setting the stage to show our screen
+        primaryStage.show(); // Render the stage.
     }
 
 }

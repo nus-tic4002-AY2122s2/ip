@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <StackPane alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="189.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" opacity="0.31" stroke="BLACK" strokeType="INSIDE" width="200.0">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </Rectangle>
+              <Label fx:id="dialog" text="Label" wrapText="true" />
+         </children>
+      </StackPane>
+      <StackPane prefHeight="60.0" prefWidth="101.0">
+         <children>
+            <Circle fill="DODGERBLUE" radius="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Label text="Label" />
+         </children>
+      </StackPane>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+    </padding>
+</fx:root>
