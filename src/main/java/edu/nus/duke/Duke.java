@@ -15,8 +15,8 @@ import edu.nus.duke.task.TaskList;
  */
 public class Duke {
     // Variables
-    private final TaskList taskList;
-    private final Storage storage;
+    private TaskList taskList;
+    private Storage storage;
 
     // Constructor
     /**

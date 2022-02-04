@@ -13,7 +13,7 @@ import edu.nus.duke.parser.Parser;
  */
 public class TaskList {
     // Variables
-    private final ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     // Constructor
     public TaskList() {
