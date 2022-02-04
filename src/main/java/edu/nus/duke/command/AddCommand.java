@@ -21,6 +21,7 @@ public class AddCommand extends Command {
     // Methods
     @Override
     public CommandResult run(TaskList taskList, CommandDataHistory commandDataHistory) {
+        commandDataHistory.add(taskList);
         String feedback = taskList.addTask(task);
         return (new CommandResult(feedback, false));
     }
