@@ -8,11 +8,11 @@ import basic.Ui;
 /**
  * Marks a task identified using it's index as done.
  */
-public class MarkAsDoneCommand extends Command {
+public class MarkAsUndoneCommand extends Command {
     protected static Ui ui = new Ui();
     private String input;
 
-    public MarkAsDoneCommand(String input) {
+    public MarkAsUndoneCommand(String input) {
         this.input = input;
     }
 
@@ -31,8 +31,8 @@ public class MarkAsDoneCommand extends Command {
         //replacing all the non digit elements
         num = Integer.parseInt(input.replaceAll("[\\D]", ""));
         if (num > 0 && num <= tasks.sizeOfTask()) {
-            tasks.returnTask(num - 1).isDone = true;
-            return ui.showDone(tasks.returnTask(num - 1));
+            tasks.returnTask(num - 1).isDone = false;
+            return ui.showUndone(tasks.returnTask(num - 1));
         } else {
             throw new DukeException("☹ Item not found.");
         }

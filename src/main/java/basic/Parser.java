@@ -9,6 +9,7 @@ import command.ExitCommand;
 import command.FindCommand;
 import command.ListCommand;
 import command.MarkAsDoneCommand;
+import command.UndoCommand;
 
 /**
  * Parses user input.
@@ -44,6 +45,8 @@ public class Parser {
             return new FindCommand(userInput);
         } else if (userInput.toLowerCase().contains("delete")) {
             return new DeleteCommand(userInput);
+        } else if (userInput.toLowerCase().contains("undo")) {
+            return new UndoCommand();
         } else {
             return new Command();
         }
