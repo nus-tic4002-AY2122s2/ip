@@ -25,7 +25,8 @@ public class FindCommand extends Command {
      * @return
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, String exCommand) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
+                            String exCommand) throws DukeException {
         input = input.toLowerCase();
         input = input.replace("find ", "");
         if (input.equals("") || input.equals(" ")) {

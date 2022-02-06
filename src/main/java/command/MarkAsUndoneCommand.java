@@ -24,7 +24,8 @@ public class MarkAsUndoneCommand extends Command {
      * @return
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, String exCommand) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
+                            String exCommand) throws DukeException {
         String editedInput = input.toLowerCase().replace("done ", "");
         assert editedInput.replaceAll("[\\D]", "").equals(editedInput) : "wrong format key in numeric number instead";
         int num = 0;

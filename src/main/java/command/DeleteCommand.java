@@ -25,7 +25,8 @@ public class DeleteCommand extends Command {
      * @return
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, String exCommand) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
+                            String exCommand) throws DukeException {
         input = input.toLowerCase();
         int num = 0;
         if (input.matches(".*\\d.*")) {
