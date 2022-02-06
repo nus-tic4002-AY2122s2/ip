@@ -28,7 +28,7 @@ public class FindCommand extends Command {
         input = input.toLowerCase();
         input = input.replace("find ", "");
         if (input.equals("") || input.equals(" ")) {
-            throw new DukeException("\u2639 OOPS!!! I'm sorry, but I don't know what that means.\n");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means.\n");
         } else {
             int count = 0;
             for (int i = 0; i < tasks.sizeOfTask(); i++) {
@@ -41,7 +41,7 @@ public class FindCommand extends Command {
                 }
             }
             if (count == 0) {
-                throw new DukeException("\u2639 No matching tasks in your list.");
+                throw new DukeException("No matching tasks in your list.");
             }
             return response;
         }
