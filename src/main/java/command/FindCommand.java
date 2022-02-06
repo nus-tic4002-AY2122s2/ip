@@ -5,6 +5,7 @@ import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
 
+
 /**
  * Finds relevant tasks in the TaskList.
 */
@@ -18,13 +19,14 @@ public class FindCommand extends Command {
 
     /**
      * Executes FindCommand.
-     *
-     * @param tasks   The tasks stored in an ArrayList.
+     *  @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
+     * @return
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
+                            String exCommand) throws DukeException {
         input = input.toLowerCase();
         input = input.replace("find ", "");
         if (input.equals("") || input.equals(" ")) {

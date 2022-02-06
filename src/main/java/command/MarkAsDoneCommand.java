@@ -18,13 +18,14 @@ public class MarkAsDoneCommand extends Command {
 
     /**
      * Executes MarkAsDoneCommand.
-     *
-     * @param tasks   The tasks stored in an ArrayList.
+     *  @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
+     * @return
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
+                            String exCommand) throws DukeException {
         String editedInput = input.toLowerCase().replace("done ", "");
         assert editedInput.replaceAll("[\\D]", "").equals(editedInput) : "wrong format key in numeric number instead";
         int num = 0;
@@ -32,9 +33,6 @@ public class MarkAsDoneCommand extends Command {
         num = Integer.parseInt(input.replaceAll("[\\D]", ""));
         if (num > 0 && num <= tasks.sizeOfTask()) {
             tasks.returnTask(num - 1).isDone = true;
-        }
-
-        if (num > 0 && num <= tasks.sizeOfTask()) {
             return ui.showDone(tasks.returnTask(num - 1));
         } else {
             throw new DukeException("☹ Item not found.");

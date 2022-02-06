@@ -54,6 +54,13 @@ public class Ui {
     }
 
     /**
+     * Displays the response when a task is marked as undone.
+    */
+    public String showUndone(Task task) {
+        return "   " + "I've marked this task as undone:" + "   " + task;
+    }
+
+    /**
      * Displays an empty line.
     */
     public void printEmptyLine() {

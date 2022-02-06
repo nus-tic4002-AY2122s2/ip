@@ -4,21 +4,20 @@ import exception.DukeException;
 import basic.Storage;
 import basic.TaskList;
 import basic.Ui;
-import task.Task;
 
 /**
- * Deletes a task identified using it's index from the task list.
+ * Marks a task identified using it's index as done.
  */
-public class DeleteCommand extends Command {
+public class MarkAsUndoneCommand extends Command {
     protected static Ui ui = new Ui();
     private String input;
 
-    public DeleteCommand(String input) {
+    public MarkAsUndoneCommand(String input) {
         this.input = input;
     }
 
     /**
-     * Executes DeleteCommand.
+     * Executes MarkAsDoneCommand.
      *  @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
@@ -27,18 +26,16 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
                             String exCommand) throws DukeException {
-        input = input.toLowerCase();
+        String editedInput = input.toLowerCase().replace("done ", "");
+        assert editedInput.replaceAll("[\\D]", "").equals(editedInput) : "wrong format key in numeric number instead";
         int num = 0;
-        if (input.matches(".*\\d.*")) {
-            num = Integer.parseInt(input.replaceAll("[\\D]", ""));
-        }
+        //replacing all the non digit elements
+        num = Integer.parseInt(input.replaceAll("[\\D]", ""));
         if (num > 0 && num <= tasks.sizeOfTask()) {
-            Task echo = tasks.returnTask(num - 1);
-            tasks.deleteTask(num - 1);
-            deletedTasks.addTask(echo);
-            return ui.printDeleteCommand(echo, tasks.sizeOfTask());
+            tasks.returnTask(num - 1).isDone = false;
+            return ui.showUndone(tasks.returnTask(num - 1));
         } else {
-            throw new DukeException("☹ Item not found.\n");
+            throw new DukeException("☹ Item not found.");
         }
     }
 

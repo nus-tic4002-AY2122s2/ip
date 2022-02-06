@@ -23,9 +23,11 @@ public class AddEventCommand extends Command {
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
      * @throws EmptyException If an empty description is inputted.
+     * @return
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws EmptyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
+                            String exCommand) throws EmptyException {
         int position;
         input = input.toLowerCase();
 
