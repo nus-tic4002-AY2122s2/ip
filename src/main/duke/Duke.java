@@ -23,7 +23,7 @@ public class Duke {
     }
 
     /**
-     * Run loop of Duke.
+     * Run loop of Duke. Now to update for TIC4002.
      */
     public void run() {
         boolean running = true;
