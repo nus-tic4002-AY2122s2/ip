@@ -10,7 +10,7 @@ class TodoTest {
     @DisplayName("Inserting Test Case 1 ")
     void testToString() {
         Todo todo = new Todo("To complete Todo task");
-        assertEquals("[T][\u2717]To complete Todo task", todo.toString());
+        assertEquals("[T][✗]To complete Todo task", todo.toString());
     }
 
 }
