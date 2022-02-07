@@ -5,6 +5,14 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'ip.duke.gui.Launcher'
+        )
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -44,11 +52,11 @@ test {
 }
 
 application {
-    mainClassName = "ip.duke.Duke"
+    mainClassName = "ip.duke.gui.Launcher"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "LisGenie"
     archiveClassifier = null
 }
 
