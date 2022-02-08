@@ -15,10 +15,10 @@ public class SortCommand extends Command {
 
 
     @Override
-    public void execute() {
+    public String execute() {
+        String commandResult = "";
         if (taskList.getSize() == 0) {
-            System.out.println("There isn't any tasks in the list.");
-            return;
+            return "There isn't any tasks in the list.\n";
         }
 
         Collections.sort(taskList.getTasks(), (t1, t2) -> {
@@ -30,8 +30,8 @@ public class SortCommand extends Command {
         });
 
         for (int i = 1; i <= taskList.getSize(); i++) {
-            System.out.println(i + ". " + taskList.getTaskByIdx(i).toString());
+            commandResult += i + ". " + taskList.getTaskByIdx(i).toString() + "\n";
         }
-
+        return  commandResult;
     }
 }

@@ -28,12 +28,13 @@ public class DoneCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
+        String commandResult = "";
         for (int i : getTargetIndex()) {
             taskList.getTaskByIdx(i).markAsDone(finishTime);
-            System.out.print(taskList.getTaskByIdx(i) + " is done on "
-                    + finishTime.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")) + "\n");
+            commandResult += taskList.getTaskByIdx(i) + " is done on "
+                    + finishTime.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")) + "\n";
         }
-
+        return commandResult;
     }
 }

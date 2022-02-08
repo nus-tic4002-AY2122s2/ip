@@ -11,8 +11,8 @@ public class ExitCommand extends Command {
             + COMMAND_WORD + ": Exit the program and save the changes to the txt file.";
 
     @Override
-    public void execute() {
-        System.out.print("See you next time.\n");
+    public String execute() {
+        return "See you next time.\n";
     }
 
     public static boolean isExit(Command command) {

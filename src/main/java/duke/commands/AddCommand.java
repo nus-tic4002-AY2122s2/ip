@@ -29,13 +29,13 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         try {
             taskList.addTask(toAdd);
-            System.out.println("New " + toAdd.getTaskType() + " Added: " + toAdd.toString());
-            System.out.println("Now you have " + taskList.getSize() + " tasks in the list.");
+            return "New " + toAdd.getTaskType() + " Added: " + toAdd.toString() + "\n"
+                    + "Now you have " + taskList.getSize() + " tasks in the list.";
         } catch (TaskList.DuplicateTaskException e) {
-            e.printStackTrace();
+            return e.getMessage();
         }
 
     }

@@ -22,12 +22,12 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         List<Task> toRemove = new ArrayList<>();
         for (int i : getTargetIndex()) {
             toRemove.add(taskList.getTaskByIdx(i));
         }
         taskList.removeTasks(toRemove);
-        System.out.print("Remove successfully.\n");
+        return "Remove successfully.\n";
     }
 }

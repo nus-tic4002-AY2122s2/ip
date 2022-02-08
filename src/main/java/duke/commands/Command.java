@@ -28,7 +28,8 @@ public class Command {
         return targetIndex;
     }
 
-    public void execute() {
+    public String execute() {
+        return "You need implement the method in child class";
     }
 
     /**

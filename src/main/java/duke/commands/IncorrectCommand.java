@@ -12,8 +12,8 @@ public class IncorrectCommand extends Command {
         this.feedbackToUser = feedbackToUser;
     }
 
-
-    public void execute() {
-        System.out.println(feedbackToUser);
+    @Override
+    public String execute() {
+        return feedbackToUser + "\n";
     }
 }

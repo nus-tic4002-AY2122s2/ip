@@ -43,16 +43,16 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         final List<Task> foundTasks = getTasksFromKeyword(keywords, isCombined);
+        String commandResult = "";
         if (foundTasks.isEmpty()) {
-            System.out.print("No Result Found\n");
-            return;
+            return "No Result Found\n";
         }
         for (int i = 1; i <= foundTasks.size(); i++) {
-            System.out.println(i + ". " + foundTasks.get(i - 1).toString());
+            commandResult += i + ". " + foundTasks.get(i - 1).toString() + "\n";
         }
-
+        return commandResult;
     }
 
 

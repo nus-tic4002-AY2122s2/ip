@@ -7,9 +7,8 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = "||" + COMMAND_WORD + ": Shows program usage instructions.";
 
     @Override
-    public void execute() {
-
-        System.out.println(AddCommand.MESSAGE_USAGE
+    public String execute() {
+        return AddCommand.MESSAGE_USAGE
                 + "\n" + ClearCommand.MESSAGE_USAGE
                 + "\n" + DeleteCommand.MESSAGE_USAGE
                 + "\n" + DoneCommand.MESSAGE_USAGE
@@ -19,6 +18,6 @@ public class HelpCommand extends Command {
                 + "\n" + SortCommand.MESSAGE_USAGE
                 + "\n" + ViewDoneCommand.MESSAGE_USAGE
                 + "\n" + ExitCommand.MESSAGE_USAGE
-        );
+                + "\n";
     }
 }

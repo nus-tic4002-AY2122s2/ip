@@ -30,14 +30,22 @@ public class Ui {
         this.out = out;
     }
 
+//    /**
+//     * Prints the welcome message upon the start of the application.
+//     */
+//    public void showWelcome() {
+//        System.out.println("Hello from\n" + LOGO);
+//        System.out.println(SEPARATE_LINE);
+//        System.out.println("Hello! I am Duke\nWhat can I do for you?");
+//        System.out.println(SEPARATE_LINE);
+//    }
+
     /**
      * Prints the welcome message upon the start of the application.
      */
-    public void showWelcome() {
-        System.out.println("Hello from\n" + LOGO);
-        System.out.println(SEPARATE_LINE);
-        System.out.println("Hello! I am Duke\nWhat can I do for you?");
-        System.out.println(SEPARATE_LINE);
+    public String showWelcome() {
+        return "Hello from\n" + LOGO + SEPARATE_LINE
+                + "Hello! I am Duke\nWhat can I do for you?" + SEPARATE_LINE;
     }
 
     /**
@@ -49,6 +57,10 @@ public class Ui {
         out.print("Enter Command: ");
         String line = in.nextLine();
         return line;
+    }
+
+    public void showResponse(String commandResult){
+        out.println(commandResult);
     }
 
     /**

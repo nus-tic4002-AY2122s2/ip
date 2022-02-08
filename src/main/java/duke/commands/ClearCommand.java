@@ -6,8 +6,8 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_USAGE = "||" + COMMAND_WORD + ": clear all the tasks in the task list.";
 
     @Override
-    public void execute() {
+    public String execute() {
         taskList.clear();
-        System.out.println("All the tasks are cleared");
+        return "All the tasks are cleared.\n";
     }
 }
