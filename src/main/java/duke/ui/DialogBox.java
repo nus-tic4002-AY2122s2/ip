@@ -32,21 +32,8 @@ public class DialogBox extends UiPart<Region> {
     @FXML
     private HBox dialogBoxPane;
 
-//    private static Image userImage = new Image(Duke.class.getResourceAsStream("/images/DaUser.png"));
-//    private static Image dukeImage = new Image(Duke.class.getResourceAsStream("/images/DaDuke.png"));
-
-
     private DialogBox(String text, Image img) {
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader(Duke.class.getResource("/view/DialogBox.fxml"));
-//            fxmlLoader.setController(this);
-//            fxmlLoader.setRoot(null);
-//            fxmlLoader.load();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         super(FXML);
-
         dialog.setText(text);
         displayPicture.setImage(img);
     }

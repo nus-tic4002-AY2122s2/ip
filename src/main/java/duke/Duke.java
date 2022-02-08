@@ -27,34 +27,15 @@ public class Duke extends Application {
 
     @Override
     public void init() {
-//        ui = new Ui();
+        //ui = new Ui();
         try {
             storage = new Storage(System.getProperty("user.dir") + "/data/duke.txt");
             tasks = new TaskList(storage.load());
         } catch (StorageOperationException | InvalidStorageFilePathException | IOException e) {
-//            ui.showLoadingError();
+            //ui.showLoadingError();
             tasks = new TaskList();
         }
     }
-
-    /**
-     * The main entry point to the application.
-     */
-    /*public Duke(String filePath) {
-        ui = new Ui();
-        try {
-            storage = new Storage(filePath);
-            tasks = new TaskList(storage.load());
-        } catch (StorageOperationException | InvalidStorageFilePathException | IOException e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
-        }
-    }*/
-
-//    public static void main(String[] args) {
-//        //new Duke(System.getProperty("user.dir") + "/data/duke.txt").run();
-//        Application.launch(args);
-//    }
 
     /**
      * Runs the application.
@@ -84,18 +65,7 @@ public class Duke extends Application {
     public void start(Stage stage) {
         mainWindow = new MainWindow(stage, ui, storage, tasks);
         mainWindow.show();
-//            Parent root = FXMLLoader.load(getClass().getResource("/view/MainWindow.fxml"));
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-            /*
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
-            AnchorPane ap = fxmlLoader.load();
-            Scene scene = new Scene(ap);
-            stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
-            stage.show();
-            */
+
     }
 
 }

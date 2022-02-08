@@ -37,9 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Button sendButton;
 
-    private Label textLbl;
-
-//    private Duke duke;
+    //private Duke duke;
 
     private Image userImage;
     private Image dukeImage;
@@ -53,22 +51,18 @@ public class MainWindow extends UiPart<Stage> {
     }
     @FXML
     public void initialize() {
-        textLbl = new Label("Hello");
         userImage = new Image(Duke.class.getResourceAsStream("/images/DaUser.png"));
         dukeImage = new Image(Duke.class.getResourceAsStream("/images/DaDuke.png"));
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                //textLbl,
-//                new TestView().getDukeDialog("duke test msg"),
-                new TestView("duke test msg").getRoot(),
                 DialogBox.getDukeDialog("hello", dukeImage).getRoot(),
                 DialogBox.getDukeDialog("list", dukeImage).getRoot()
         );
     }
 
-//    public void setDuke(Duke d) {
-//        duke = d;
-//    }
+/*    public void setDuke(Duke d) {
+        duke = d;
+    }*/
 
     public void show() {
         stage.show();
@@ -84,10 +78,8 @@ public class MainWindow extends UiPart<Stage> {
         Command c = new Parser().parse(input);
         c.setData(tasks);
         String response = c.execute();
-        textLbl = new Label(response);
-//        String response = duke.getResponse(input);
+        //String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
-                textLbl,
                 DialogBox.getUserDialog(input, userImage).getRoot(),
                 DialogBox.getDukeDialog(response, dukeImage).getRoot()
         );
