@@ -60,7 +60,7 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
 
-        if (input.equals("bye")) {
+        if (input.matches("b|bye")) {
             Timer myTimer = new Timer();
             myTimer.schedule(new TimerTask() {
                 @Override
@@ -68,7 +68,7 @@ public class MainWindow extends AnchorPane {
                     exit();
                     System.exit(0);
                 }
-            }, 2000);
+            }, 1500);
         }
     }
 }

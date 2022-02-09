@@ -16,7 +16,7 @@ public class Parser {
      */
     public static boolean hasTask(String command) throws DukeException {
         // Exit the program
-        if (command.equals("bye")) {
+        if (command.matches("b|bye")) {
             Ui.bye();
             return true;
         } else {
@@ -29,9 +29,11 @@ public class Parser {
             }
 
             switch (command) {
+            case "l":
             case "list":
                 Ui.echoList();
                 break;
+            case "f":
             case "find":
                 try {
                     Ui.echoFind(words[1].trim());
@@ -39,6 +41,7 @@ public class Parser {
                     throw new DukeException(Ui.echoNoDesc("find"), err);
                 }
                 break;
+            case "t":
             case "todo":
                 try {
                     TaskList.addTodo(words[1].trim());
@@ -46,6 +49,7 @@ public class Parser {
                     throw new DukeException(Ui.echoNoDesc("todo"), err);
                 }
                 break;
+            case "d":
             case "deadline":
                 try {
                     TaskList.addDeadline(words[1].trim());
@@ -53,6 +57,7 @@ public class Parser {
                     throw new DukeException(Ui.echoNoBy(), err);
                 }
                 break;
+            case "e":
             case "event":
                 try {
                     TaskList.addEvent(words[1].trim());
@@ -60,6 +65,7 @@ public class Parser {
                     throw new DukeException(Ui.echoNoAt(), err);
                 }
                 break;
+            case "del":
             case "delete":
                 try {
                     TaskList.doDelete(words[1]);
@@ -69,6 +75,7 @@ public class Parser {
                     throw new DukeException(Ui.echoNoTaskNum("delete"), err);
                 }
                 break;
+            case "c":
             case "done":
                 try {
                     TaskList.doDone(words[1]);

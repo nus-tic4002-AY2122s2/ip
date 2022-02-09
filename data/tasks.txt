@@ -14,4 +14,4 @@ D # 1 # write a book # Sep 23 2021
 T # 1 # borrow JavaFx Textbook 2022
 D # 0 # attend the Maths Quiz # Oct 6 2021
 E # 0 # attend exhibition Expo@Changi venue # 2-4:30pm Fri
-T # 0 # read up on Java Modules configuration
+T # 1 # read up on Java Modules configuration
