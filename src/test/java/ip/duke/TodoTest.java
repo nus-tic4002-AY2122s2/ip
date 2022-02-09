@@ -22,7 +22,7 @@ public class TodoTest {
     public void toFileStringTest() {
         Todo task = new Todo("borrow a book");
         task.setDone();
-        assertEquals("T : 1 : borrow a book", task.toFileString());
+        assertEquals("T # 1 # borrow a book", task.toFileString());
     }
 
 }

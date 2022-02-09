@@ -67,3 +67,5 @@ checkstyle {
 run {
     standardInput = System.in
 }
+
+

@@ -1,5 +1,6 @@
-package ip.duke.gui;
+package ip.duke;
 
+import ip.duke.gui.Main;
 import javafx.application.Application;
 
 public class Launcher {

@@ -32,7 +32,7 @@ public class Ui {
 
     // Bye/exit message
     public static void bye() {
-        System.out.print("LisGenie : ");
+        System.out.println("LisGenie : ");
         System.out.printf("Bye. Hope to see you again soon!%n");
     }
 
@@ -44,19 +44,35 @@ public class Ui {
     }
 
     public static void echoAdded(Task input) {
-        System.out.print("LisGenie : ");
+        System.out.println("LisGenie : ");
         System.out.println("Got it. I've added this task:");
         postUpdate(input);
     }
 
+    /**
+     * Prints out the task details
+     * post-execution, with current size of TASKS.
+     *
+     * @param input A Task object
+     *              concerned.
+     */
+    public static void postUpdate(Task input) {
+        System.out.printf("%13s", " ");
+        System.out.printf("[%c][%s] %s%n", input.getId(), input.getStatusIcon(), input);
+
+        int count = TaskList.listSize();
+        System.out.printf("%11s", " ");
+        System.out.printf("Now you have %d %s in the list.%n", count, count == 1 ? "task" : "tasks");
+    }
+
     public static void echoDelete(Task item) {
-        System.out.print("LisGenie : ");
+        System.out.println("LisGenie : ");
         System.out.println("Noted. I've removed this task:");
         postUpdate(item);
     }
 
     public static void echoDone(Task item) {
-        System.out.print("LisGenie : ");
+        System.out.println("LisGenie : ");
         System.out.println("Nice! I've marked this task as done:");
         System.out.printf("%13s", " ");
         System.out.printf("[%s] %s%n", item.getStatusIcon(), item);
@@ -67,12 +83,12 @@ public class Ui {
     }
 
     public static void echoEmptyInput() {
-        System.out.print("LisGenie : ");
+        System.out.println("LisGenie : ");
         System.out.println("eh...Om! Empty string to skip here, O Master! Retry again?");
     }
 
     public static void echoList() {
-        System.out.print("LisGenie : ");
+        System.out.println("LisGenie : ");
         System.out.printf("Here are the tasks in your list:%n");
 
         int counter = 1;
@@ -84,7 +100,7 @@ public class Ui {
     }
 
     public static void echoFind(String word) {
-        System.out.print("LisGenie : ");
+        System.out.println("LisGenie : ");
         System.out.printf("Here are the matching tasks in your list:%n");
 
         int counter = 1;
@@ -113,13 +129,13 @@ public class Ui {
     }
 
     public static void echoNoEntries() {
-        System.out.print("LisGenie : ");
+        System.out.println("LisGenie : ");
         System.out.println("O! Task not in list, Master? Add a task? Retry?");
     }
 
     // This method informs the user an unknown or invalid input is entered
     public static void echoNonInput() {
-        System.out.print("LisGenie : ");
+        System.out.println("LisGenie : ");
         System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(| Master?");
     }
 
@@ -134,22 +150,6 @@ public class Ui {
     public static void echoOffList(int idx) {
         System.out.print("LisGenie : ");
         System.out.println("Item position outside of list (1 - 100): " + (idx + 1) + " Omm??");
-    }
-
-    /**
-     * Prints out the task details
-     * post-execution, with current size of TASKS.
-     *
-     * @param input A Task object
-     *              concerned.
-     */
-    public static void postUpdate(Task input) {
-        System.out.printf("%13s", " ");
-        System.out.printf("[%c][%s] %s%n", input.getId(), input.getStatusIcon(), input);
-
-        int count = TaskList.listSize();
-        System.out.printf("%11s", " ");
-        System.out.printf("Now you have %d %s in the list.%n", count, count == 1 ? "task" : "tasks");
     }
 
     public static void showLoadingError(DukeException err) {
