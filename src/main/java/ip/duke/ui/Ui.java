@@ -175,5 +175,4 @@ public class Ui {
         System.out.print("           ");
         System.out.println("        Delete some unused old records before proceeding O Master!\"");
     }
-
 }

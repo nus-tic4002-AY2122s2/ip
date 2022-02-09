@@ -1,5 +1,7 @@
 package ip.duke.parser;
 
+import java.util.Objects;
+
 import ip.duke.exceptions.DukeException;
 import ip.duke.tasklist.TaskList;
 import ip.duke.ui.Ui;
@@ -36,7 +38,7 @@ public class Parser {
             case "f":
             case "find":
                 try {
-                    Ui.echoFind(words[1].trim());
+                    Ui.echoFind(Objects.requireNonNull(words)[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err) {
                     throw new DukeException(Ui.echoNoDesc("find"), err);
                 }
@@ -44,7 +46,7 @@ public class Parser {
             case "t":
             case "todo":
                 try {
-                    TaskList.addTodo(words[1].trim());
+                    TaskList.addTodo(Objects.requireNonNull(words)[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err) {
                     throw new DukeException(Ui.echoNoDesc("todo"), err);
                 }
@@ -52,7 +54,7 @@ public class Parser {
             case "d":
             case "deadline":
                 try {
-                    TaskList.addDeadline(words[1].trim());
+                    TaskList.addDeadline(Objects.requireNonNull(words)[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err) {
                     throw new DukeException(Ui.echoNoBy(), err);
                 }
@@ -60,7 +62,7 @@ public class Parser {
             case "e":
             case "event":
                 try {
-                    TaskList.addEvent(words[1].trim());
+                    TaskList.addEvent(Objects.requireNonNull(words)[1].trim());
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err) {
                     throw new DukeException(Ui.echoNoAt(), err);
                 }
@@ -68,7 +70,7 @@ public class Parser {
             case "del":
             case "delete":
                 try {
-                    TaskList.doDelete(words[1]);
+                    TaskList.doDelete(Objects.requireNonNull(words)[1]);
                 } catch (NumberFormatException ex) {
                     throw new DukeException(Ui.echoNotNum("delete"), ex);
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err) {
@@ -78,7 +80,7 @@ public class Parser {
             case "c":
             case "done":
                 try {
-                    TaskList.doDone(words[1]);
+                    TaskList.doDone(Objects.requireNonNull(words)[1]);
                 } catch (NumberFormatException ex) {
                     throw new DukeException(Ui.echoNotNum("done"), ex);
                 } catch (NullPointerException | ArrayIndexOutOfBoundsException err) {

@@ -8,7 +8,7 @@ plugins {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'ip.duke.gui.Launcher'
+                'Main-Class': 'ip.duke.Launcher'
         )
     }
 }
@@ -52,7 +52,7 @@ test {
 }
 
 application {
-    mainClassName = "ip.duke.gui.Launcher"
+    mainClassName = "ip.duke.Launcher"
 }
 
 shadowJar {
