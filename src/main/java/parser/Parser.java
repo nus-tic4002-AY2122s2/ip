@@ -13,6 +13,7 @@ import commands.ListCommand;
 import commands.MarkAsDoneCommand;
 import exceptions.DukeDateTimeError;
 import exceptions.DukeTaskInputException;
+import commands.Schedule;
 
 public class Parser {
 
@@ -205,7 +206,7 @@ public class Parser {
      * @return return the Command created accordingly
      * @throws DukeTaskInputException handles all the errors about the user input
      */
-    public static Command parse(String fullCommand) throws DukeTaskInputException {
+    public static Command parse(String fullCommand) throws DukeTaskInputException, DukeDateTimeError {
 
         String[] inputWords = fullCommand.split(" ");
         String firstWord = inputWords[0].toLowerCase();
@@ -227,6 +228,8 @@ public class Parser {
             return createAddCommand(firstWord, inputWords);
         case "find":
             return new FindCommand(inputWords[1]);
+        case "Schedule":
+            return new Schedule(inputWords[1]);
         default:
             break;
         }
