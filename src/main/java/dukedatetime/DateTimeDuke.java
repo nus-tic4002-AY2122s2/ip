@@ -43,12 +43,23 @@ public class DateTimeDuke {
     }
 
     /**
-     * The method to convert DateTimeDuke type to String in patter: yyyy-MM-dd HH:mm
+     * The method to convert DateTimeDuke type to String in pattern: yyyy-MM-dd HH:mm
      *
      * @return DateTime information in String in MMM d yyyy HH:mm
      */
     public String convertToStringTypeII() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return localDateTime.format(formatter);
+    }
+
+    /**
+     * The method to convert DateTimeDuke type to String in pattern: yyyy-MM-dd
+     *
+     * @return DateTime information in String in yyyy-MM-dd format
+     */
+    public String convertToStringTypeIII() {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return localDateTime.format(formatter);
     }
 }
