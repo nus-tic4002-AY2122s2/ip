@@ -41,6 +41,11 @@ public class AddCommand extends Command {
     private String addTodoTask(Vector<Task> list) {
 
         Todo inputTask = new Todo (description);
+        boolean isDuplicated = duplicatedCheck(inputTask, list);
+
+        if(isDuplicated) {
+            return "The task you input is duplicated.\nPlease check again.";
+        }
         list.add(inputTask);
 
         String echoInfo = Ui.printTodoAddedOutput(inputTask, list.size());
@@ -58,6 +63,11 @@ public class AddCommand extends Command {
         String date = Parser.toExtractDate(inputWords);
 
         Deadline newTask = new Deadline(description, false, date);
+        boolean isDuplicated = duplicatedCheck(newTask, list);
+
+        if(isDuplicated) {
+            return "The task you input is duplicated.\nPlease check again.";
+        }
 
         list.add(newTask);
 
@@ -78,6 +88,12 @@ public class AddCommand extends Command {
 
 
         Event newTask = new Event(description, false, startingDateTime, endingDateTime);
+
+        boolean isDuplicated = duplicatedCheck(newTask, list);
+
+        if(isDuplicated) {
+            return "The task you input is duplicated.\nPlease check again.";
+        }
 
         list.add(newTask);
 
