@@ -25,7 +25,7 @@ test {
 }
 
 shadowJar {
-    archiveBaseName = "ip"
+    archiveBaseName = "Duke"
     archiveClassifier = null
 }
 
