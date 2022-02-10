@@ -14,7 +14,10 @@ import java.util.Iterator;
 import java.util.Scanner;
 import Duke.Parser;
 
-
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 /**
  * The Duke program implements an application that
  * a personal Assistant Chatbot that helps to keep track various of daily items.
@@ -23,12 +26,21 @@ import Duke.Parser;
  * @version 1.0
  * @since   2021-08-16
  */
-public class Duke  {
+public class Duke extends Application {
 
     private static Ui ui;
 
     public void run(){
         ui.showWelcome();
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 
     public static void main(String[] args){
