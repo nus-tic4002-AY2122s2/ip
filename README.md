@@ -1,7 +1,8 @@
+[![Java CI](https://github.com/l-shihao/ip/actions/workflows/gradle.yml/badge.svg)](https://github.com/l-shihao/ip/actions/workflows/gradle.yml)
 # 2022 Feb Update
 Latest _Duke Chatbot_ **GUI** support:
 
-<img src="docs/pic/dukegui.jpeg" width="360">
+<img src="docs/pic/dukegui.png" width="360">
 
 ----
 # Run the program 
