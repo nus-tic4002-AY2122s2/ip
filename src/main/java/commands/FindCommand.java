@@ -62,12 +62,6 @@ public class FindCommand extends Command {
         Vector<Task> matchedTaskList = new Vector<>();
         for (Task task: list) {
             String description = task.getDescription().toLowerCase();
-/*            String[] descriptionWords = description.split(" ");
-            for (String word : descriptionWords) {
-                if (word.equals(keyword)) {
-                    matchedTaskList.add(task);
-                }
-            }*/
 
             if(description.contains(keyword)) {
                 matchedTaskList.add(task);

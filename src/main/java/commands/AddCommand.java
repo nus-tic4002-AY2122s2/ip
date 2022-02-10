@@ -124,4 +124,30 @@ public class AddCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
+    private boolean duplicatedCheck(Task inputTask, Vector<Task> list) {
+
+        String inputDescription = inputTask.getDescription();
+        String inputType = inputTask.getType();
+
+        for(Task tsk : list) {
+
+            String tskDescription = tsk.getDescription();
+            String tskType = tsk.getType();
+
+            if(tskType.equals(inputType)) {
+                if(tskType.equals("T") && tskDescription.equals(inputDescription)) {
+                    return true;
+                } else if(tskDescription.equals(inputDescription)) {
+                    if(tskType.equals("D") && tsk.getDeadlineDateTimeString().equals(inputTask.getDeadlineDateTimeString())) {
+                        return true;
+                    } else if(tskType.equals("E") && tsk.getStartingDateTime().equals(inputTask.getStartingDateTime())) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
 }
