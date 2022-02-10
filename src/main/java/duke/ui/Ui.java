@@ -30,15 +30,6 @@ public class Ui {
         this.out = out;
     }
 
-//    /**
-//     * Prints the welcome message upon the start of the application.
-//     */
-//    public void showWelcome() {
-//        System.out.println("Hello from\n" + LOGO);
-//        System.out.println(SEPARATE_LINE);
-//        System.out.println("Hello! I am Duke\nWhat can I do for you?");
-//        System.out.println(SEPARATE_LINE);
-//    }
 
     /**
      * Prints the welcome message upon the start of the application.
@@ -59,7 +50,7 @@ public class Ui {
         return line;
     }
 
-    public void showResponse(String commandResult){
+    public void showResponse(String commandResult) {
         out.println(commandResult);
     }
 

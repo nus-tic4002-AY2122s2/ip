@@ -32,6 +32,6 @@ public class SortCommand extends Command {
         for (int i = 1; i <= taskList.getSize(); i++) {
             commandResult += i + ". " + taskList.getTaskByIdx(i).toString() + "\n";
         }
-        return  commandResult;
+        return commandResult;
     }
 }

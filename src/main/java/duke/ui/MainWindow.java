@@ -4,15 +4,12 @@ import duke.Duke;
 import duke.commands.Command;
 import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.task.TaskList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -38,12 +35,15 @@ public class MainWindow extends UiPart<Stage> {
     private Button sendButton;
 
 
-
     //private Duke duke;
 
     private Image userImage;
     private Image dukeImage;
 
+    /**
+     * Creates a {@code MainWindow} with the given {@code Stage}, {@code Ui},
+     * {@code Storage} and {@code TaskList}
+     */
     public MainWindow(Stage stage, Ui ui, Storage storage, TaskList tasks) {
         super(FXML, stage);
         this.stage = stage;
@@ -51,6 +51,10 @@ public class MainWindow extends UiPart<Stage> {
         this.storage = storage;
         this.tasks = tasks;
     }
+
+    /**
+     * initialize the MainWindow
+     */
     @FXML
     public void initialize() {
         userImage = new Image(Duke.class.getResourceAsStream("/images/DaUser.png"));
@@ -62,9 +66,6 @@ public class MainWindow extends UiPart<Stage> {
         );
     }
 
-/*    public void setDuke(Duke d) {
-        duke = d;
-    }*/
 
     public void show() {
         stage.show();

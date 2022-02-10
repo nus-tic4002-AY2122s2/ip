@@ -1,23 +1,15 @@
 package duke.ui;
 
-import java.io.IOException;
 import java.util.Collections;
 
-import duke.Duke;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -41,16 +33,12 @@ public class DialogBox extends UiPart<Region> {
     @FXML
     private TextFlow textFlow;
 
-//    @FXML
-//    private Label testTxt;
-
 
     private DialogBox(String text, Image img, boolean isUser) {
         super(FXML);
         dialog.setText(text);
         displayPicture.setFill(new ImagePattern(img));
         textFlow.setStyle(isUser ? "-fx-background-color: #cde6c8" : "-fx-background-color: #ffffff");
-
     }
 
     /**

@@ -1,13 +1,14 @@
 package duke.ui;
 
-import duke.Duke;
-import duke.Main;
-import javafx.fxml.FXMLLoader;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.net.URL;
 
-import static java.util.Objects.requireNonNull;
+import duke.Duke;
+import javafx.fxml.FXMLLoader;
+
+
 
 /**
  * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.

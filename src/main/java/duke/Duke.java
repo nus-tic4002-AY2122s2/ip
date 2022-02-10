@@ -12,9 +12,6 @@ import duke.task.TaskList;
 import duke.ui.MainWindow;
 import duke.ui.Ui;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Duke extends Application {
