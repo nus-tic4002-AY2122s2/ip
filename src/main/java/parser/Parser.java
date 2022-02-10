@@ -228,7 +228,7 @@ public class Parser {
             return createAddCommand(firstWord, inputWords);
         case "find":
             return new FindCommand(inputWords[1]);
-        case "Schedule":
+        case "schedule":
             return new Schedule(inputWords[1]);
         default:
             break;

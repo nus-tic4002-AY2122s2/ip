@@ -107,8 +107,6 @@ public class Duke {
 
         Duke dk = new Duke (filePath);
 
-
-        //echoInfo = String.valueOf(dk.taskList.size());
         echoInfo = dk.runDuke(input);
 
         return echoInfo;
