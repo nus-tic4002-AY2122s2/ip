@@ -11,10 +11,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 /**
  * An example of a custom control using FXML.
@@ -26,16 +33,24 @@ public class DialogBox extends UiPart<Region> {
     private static final String FXML = "DialogBox.fxml";
 
     @FXML
-    private Label dialog;
+    private Text dialog;
     @FXML
-    private ImageView displayPicture;
+    private Circle displayPicture;
     @FXML
     private HBox dialogBoxPane;
+    @FXML
+    private TextFlow textFlow;
 
-    private DialogBox(String text, Image img) {
+//    @FXML
+//    private Label testTxt;
+
+
+    private DialogBox(String text, Image img, boolean isUser) {
         super(FXML);
         dialog.setText(text);
-        displayPicture.setImage(img);
+        displayPicture.setFill(new ImagePattern(img));
+        textFlow.setStyle(isUser ? "-fx-background-color: #cde6c8" : "-fx-background-color: #ffffff");
+
     }
 
     /**
@@ -49,11 +64,11 @@ public class DialogBox extends UiPart<Region> {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        return new DialogBox(text, img, true);
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        var db = new DialogBox(text, img, false);
         db.flip();
         return db;
     }

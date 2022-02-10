@@ -7,10 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
+<?import java.net.URL?>
 
 <fx:root title="Duke" type="Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <scene>
       <Scene>
+          <stylesheets>
+              <URL value="@MainTheme.css" />
+          </stylesheets>
          <root>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0">
                 <children>

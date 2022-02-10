@@ -37,6 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Button sendButton;
 
+
+
     //private Duke duke;
 
     private Image userImage;
@@ -56,7 +58,7 @@ public class MainWindow extends UiPart<Stage> {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog("hello", dukeImage).getRoot(),
-                DialogBox.getDukeDialog("list", dukeImage).getRoot()
+                DialogBox.getDukeDialog("I am Duke", dukeImage).getRoot()
         );
     }
 
