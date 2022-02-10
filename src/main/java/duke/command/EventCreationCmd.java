@@ -49,7 +49,7 @@ public class EventCreationCmd implements UndoableCommand {
                 list.add(event);
                 Message.taskAdd(list);
             } catch (DateTimeParseException e) {
-                System.out.println("Event DateTime Format: /at YYYY-MM-DD HHMM-HHMM");
+                Message.setBuffer("Event DateTime Format: /at YYYY-MM-DD HHMM-HHMM");
             }
         }
     }

@@ -63,6 +63,18 @@ public class CommandFactory implements Iterable {
         }
     }
 
+    /**
+     * returns String of all cmd keys
+     * @return
+     */
+    public String getAllKeyString() {
+        String str = "";
+        for (String key : commands.keySet()) {
+            str += key + System.lineSeparator();
+        }
+        return str;
+    }
+
     @Override
     public Iterator iterator() {
         return commands.keySet().iterator();

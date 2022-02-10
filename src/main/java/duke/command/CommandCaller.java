@@ -53,7 +53,7 @@ public class CommandCaller implements PropertyChangeListener {
             try {
                 throw new UnknownCommandException();
             } catch (UnknownCommandException e) {
-                Message.echo(e.getMessage());
+                Message.setBuffer(e.getMessage());
             }
         } else {
             this.runCommand(commandFactory.get(key), args);

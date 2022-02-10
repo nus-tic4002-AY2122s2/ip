@@ -35,7 +35,7 @@ public class TaskDeleteCmd implements UndoableCommand {
                 deletedTasks.add(0, "\t" + task.toString());
                 list.removeAt(index);
             } catch (Exception e) {
-                Message.echo(Message.exceptionInvalidArgs());
+                Message.setBuffer(Message.exceptionInvalidArgs());
             }
         }
         Message.taskDelete(deletedTasks);

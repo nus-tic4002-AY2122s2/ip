@@ -33,13 +33,13 @@ public class DlCreationCmd implements UndoableCommand {
             try {
                 throw new NumArgsException();
             } catch (NumArgsException e) {
-                Message.echo(e.getMessage());
+                Message.setBuffer(e.getMessage());
             }
         } else if (parts.length != 2) {
             try {
                 throw new NoDateException();
             } catch (NoDateException e) {
-                Message.echo(e.getMessage());
+                Message.setBuffer(e.getMessage());
             }
         } else {
             try {
@@ -49,7 +49,7 @@ public class DlCreationCmd implements UndoableCommand {
                 list.add(dl);
                 Message.taskAdd(list);
             } catch (DateTimeParseException e) {
-                System.out.println("Event DateTime Format: /by YYYY-MM-DD HMM");
+                Message.setBuffer("Event DateTime Format: /by YYYY-MM-DD HMM");
             }
         }
     }

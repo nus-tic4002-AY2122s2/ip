@@ -9,6 +9,7 @@ import duke.storage.TempTaskList;
  * and amend the messages that will print on screen
  */
 public final class Message {
+    private static String buffer = "";
     public Message() { }
 
     /**
@@ -21,12 +22,41 @@ public final class Message {
     }
 
     /**
-     * add Task msg
-     * @param input
+     * Take raw String returns formated string
+     * @param raw
+     * @return Formated String
      */
-    public static void taskAdd (String input) {
-        System.out.print("\tadded:");
-        echo(input);
+    public static String stringf(String raw) {
+        return raw
+             + System.lineSeparator();
+    }
+
+    /**
+     * get buffer
+     * @return buffer
+     */
+    public static String getBuffer() {
+        return buffer;
+    }
+
+    /**
+     * set buffer
+     * @param text
+     * @return buffer
+     */
+    public static String setBuffer(String text) {
+        buffer = text;
+        return buffer;
+    }
+
+    /**
+     * append to buffer
+     * @param text
+     * @return buffer
+     */
+    public static String appendBuffer(String text) {
+        buffer += text;
+        return buffer;
     }
 
     /**
@@ -34,15 +64,18 @@ public final class Message {
      * @param tasks
      */
     public static void taskAdd(TempTaskList tasks) {
-        System.out.println("\tadded: " + tasks.get(tasks.size() - 1).toString());
+        String repeat = "added: "
+                      + tasks.get(tasks.size() - 1).toString();
+        buffer = repeat;
         tasks.tellStats();
     }
 
     /**
-     * empty list msg
+     * return String empty list msg
+     * @return msg
      */
-    public static void emptyList() {
-        System.out.println("\tZero task, add something new!");
+    public static String emptyList() {
+        return "Zero task, add something new!";
     }
 
     /**
@@ -50,8 +83,9 @@ public final class Message {
      * @param tasks
      */
     public static void taskDelete(ArrayList tasks) {
-        System.out.println("\tRoger. Below get removed: ");
-        tasks.stream().forEach(System.out::println);
+        String delete = "Roger. Below get removed: ";
+        buffer = delete;
+        tasks.stream().forEach(t -> buffer += t.toString());
     }
 
     /**
@@ -60,8 +94,9 @@ public final class Message {
      * @param index
      */
     public static void taskDone(TempTaskList tasks, int index) {
-        System.out.println("\tMarked below as DONE:");
-        System.out.println("\t" + tasks.get(index).toString());
+        buffer = "Marked below as DONE:"
+                + System.lineSeparator()
+                + tasks.get(index).toString();
         tasks.tellStats();
     }
 
@@ -71,8 +106,9 @@ public final class Message {
      * @param index
      */
     public static void taskUndone(TempTaskList tasks, int index) {
-        System.out.println("\tMarked below as UNDONE:");
-        System.out.println("\t" + tasks.get(index).toString());
+        buffer = "Marked below as UNDONE:"
+                + System.lineSeparator()
+                + tasks.get(index).toString();
         tasks.tellStats();
     }
 
@@ -82,8 +118,8 @@ public final class Message {
      * @param numDoneTask
      */
     public static void tellTaskNum(int numTask, int numDoneTask) {
-        System.out.println("\tTask completion status: "
-                            + numDoneTask + " / " + numTask);
+        buffer += "Task completion status: "
+                + numDoneTask + " / " + numTask;
     }
 
     public static void exit() {
@@ -109,14 +145,17 @@ public final class Message {
     /**
      * duke linus text string
      */
-    public static void greeting() {
+    public static String greeting() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("👋 from\n" + logo);
-
-        System.out.println("You may spell your wish 🧞\n");
+        return "Bonjour~ from"
+                + System.lineSeparator()
+                + logo
+                + System.lineSeparator()
+                + "You may spell your wish:"
+                + System.lineSeparator();
     }
 }

@@ -27,6 +27,23 @@ public class TempTaskList extends TempList<Task> {
         }
     }
 
+    /**
+     * return String buffer version of above print()
+     * @return buffer
+     */
+    public String list() {
+        if (list.size() == 0) {
+            return Message.emptyList();
+        }
+        String buffer = "";
+        int i = 1;
+        for (Task task : list) {
+            buffer += Message.stringf(i + ". " + task.toString());
+            i++;
+        }
+        return buffer;
+    }
+
     public int count() {
         return list.size();
     }

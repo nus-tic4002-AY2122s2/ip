@@ -11,7 +11,8 @@ public class Launcher {
      * @param args
      */
     public static void main(String[] args) {
-        Application.launch(Duke.class, args);
+        Application.launch(MainApp.class, args);
+        // new Next(System.getProperty("user.dir") + "/data/next.txt").run();
     }
 }
 

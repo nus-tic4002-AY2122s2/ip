@@ -45,7 +45,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.Duke"
+    mainClassName = "duke.Launcher"
 }
 
 shadowJar {
@@ -58,7 +58,7 @@ checkstyle {
 }
 
 javafx {
-    // version = "17"
+    version = "17"
     modules = [ 'javafx.controls', 'javafx.fxml']
 }
 

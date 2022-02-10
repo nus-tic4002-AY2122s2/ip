@@ -1,3 +1,9 @@
+# 2022 Feb Update
+Latest _Duke Chatbot_ **GUI** support:
+
+<img src="pic/dukegui.jpeg" width="360">
+
+----
 # Run the program 
 
 ## Get jar file

@@ -18,10 +18,12 @@ public class FindCmd implements Command {
         String key = StringParser.join(args);
         AtomicInteger i = new AtomicInteger(1);
         list.stream()
-                .filter(t -> t.getTitle().contains(key))
+                .filter(t -> t.getTitle().contains(key.strip()))
                 .forEach(t ->
-                        Message.echo(
-                                Integer.toString(i.getAndIncrement())
-                                        + ". " + t.toString()));
+                        Message.appendBuffer(
+                                        i.getAndIncrement()
+                                             + ". "
+                                             + t.toString()
+                                             + System.lineSeparator()));
     }
 }

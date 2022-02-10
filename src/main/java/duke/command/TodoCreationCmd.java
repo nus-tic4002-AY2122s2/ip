@@ -23,7 +23,7 @@ public class TodoCreationCmd implements UndoableCommand {
             try {
                 throw new NumArgsException();
             } catch (NumArgsException e) {
-                Message.echo(e.getMessage());
+                Message.setBuffer(e.getMessage());
             }
         } else {
             list.add(new Todo(arg));

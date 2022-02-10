@@ -25,7 +25,7 @@ public class TaskMarkDoneCmd implements UndoableCommand {
                 list.markDoneAt(index);
                 Message.taskDone(list, index);
             } catch (Exception e) {
-                Message.echo(Message.exceptionInvalidArgs());
+                Message.setBuffer(Message.exceptionInvalidArgs());
             }
         }
     }
