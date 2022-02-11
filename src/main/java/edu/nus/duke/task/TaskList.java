@@ -18,16 +18,6 @@ public class TaskList {
         tasks = new ArrayList<>();
     }
 
-    // Getter
-    /**
-     * Return the tasks size as an integer.
-     *
-     * @return tasks size.
-     */
-    public int getListSize() {
-        return tasks.size();
-    }
-
     /**
      * Print tasks with total count, filtered by date or text.
      *
