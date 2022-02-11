@@ -4,7 +4,6 @@ package edu.nus.duke.ui;
  * Class that deals with interactions with the user
  */
 public class Ui {
-    // Methods
     /**
      * Print a message and separator line to {@code System.out}.
      *

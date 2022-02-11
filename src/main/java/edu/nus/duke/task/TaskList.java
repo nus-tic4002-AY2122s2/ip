@@ -12,22 +12,10 @@ import edu.nus.duke.parser.Parser;
  * Class that contains the task list
  */
 public class TaskList {
-    // Variables
     private ArrayList<Task> tasks;
 
-    // Constructor
     public TaskList() {
         tasks = new ArrayList<>();
-    }
-
-    // Getter
-    /**
-     * Return the tasks size as an integer.
-     *
-     * @return tasks size.
-     */
-    public int getListSize() {
-        return tasks.size();
     }
 
     /**
@@ -99,7 +87,6 @@ public class TaskList {
         return tasksCopy;
     }
 
-    // Setter
     /**
      * Add a task and return feedback string to the user.
      *
@@ -183,13 +170,14 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    // Methods
     private boolean isExclude(Task task, LocalDate date, String text) {
         if (date != null) {
             if (task instanceof Deadline) {
-                return !((Deadline) task).getBy().toLocalDate().equals(date);
+                LocalDate d = ((Deadline) task).getBy().toLocalDate();
+                return !(d.equals(date));
             } else if (task instanceof Event) {
-                return !((Event) task).getAt().toLocalDate().equals(date);
+                LocalDate d = ((Event) task).getAt().toLocalDate();
+                return !(d.equals(date));
             } else {
                 return true;
             }

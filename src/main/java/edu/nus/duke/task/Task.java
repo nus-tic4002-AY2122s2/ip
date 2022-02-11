@@ -6,20 +6,15 @@ import edu.nus.duke.storage.Storage;
  * Represent a task, for use as abstract class.
  */
 public abstract class Task {
-    // Variables
     protected static final String SAVE_SEP = Storage.getSaveSep();
     protected char prefix;
     protected String taskName;
     protected boolean isDone = false;
 
-    // Constructor
-
     protected Task(char prefix, String taskName) {
         this.prefix = prefix;
         this.taskName = taskName;
     }
-
-    // Getter
 
     /**
      * Returns task prefix.
@@ -68,7 +63,6 @@ public abstract class Task {
         return (prefix + SAVE_SEP + doneIdx + SAVE_SEP + taskName);
     }
 
-    // Setter
     /**
      * Set a task to done.
      */

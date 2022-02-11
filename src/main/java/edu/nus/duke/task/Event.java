@@ -8,10 +8,7 @@ import edu.nus.duke.parser.Parser;
  * Represent an event with start that extends from Task.
  */
 public class Event extends Task {
-    // Variables
     protected LocalDateTime at;
-
-    // Constructor
 
     /**
      * Constructor of Event class.
@@ -36,7 +33,6 @@ public class Event extends Task {
         this.isDone = isDone;
     }
 
-    // Getter
     @Override
     public String getTask() {
         return (super.getTask() + " (at: " + Parser.printDt(at) + ")");

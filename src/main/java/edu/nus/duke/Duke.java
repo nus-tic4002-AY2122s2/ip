@@ -16,12 +16,10 @@ import edu.nus.duke.task.TaskList;
  * Class of the Duke app.
  */
 public class Duke {
-    // Variables
     private TaskList taskList;
     private CommandDataHistory commandDataHistory;
     private Storage storage;
 
-    // Constructor
     /**
      * Constructor of Duke class.
      *
@@ -32,8 +30,6 @@ public class Duke {
         commandDataHistory = new CommandDataHistory();
         storage = new Storage(filePath, taskList);
     }
-
-    // Methods
 
     /**
      * Execute Duke logic and return feedback to user.
