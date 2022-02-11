@@ -29,6 +29,7 @@ public class Duke {
     public static final String DATA_PATH = "data/tasks.txt";
     private static final String BACKUP_PATH = "backup_db/backup.txt";
     private static final PrintStream newStreamOut;
+    private static final PrintStream stdStreamOut = System.out;
     private static final ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
     private static LinkedHashSet<Task> tasks;
 
@@ -67,6 +68,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        System.setOut(stdStreamOut);
         new Duke(DATA_PATH).run();
     }
 
