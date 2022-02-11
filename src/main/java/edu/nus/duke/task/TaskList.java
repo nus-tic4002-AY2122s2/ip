@@ -173,9 +173,11 @@ public class TaskList {
     private boolean isExclude(Task task, LocalDate date, String text) {
         if (date != null) {
             if (task instanceof Deadline) {
-                return !((Deadline) task).getBy().toLocalDate().equals(date);
+                LocalDate d = ((Deadline) task).getBy().toLocalDate();
+                return !(d.equals(date));
             } else if (task instanceof Event) {
-                return !((Event) task).getAt().toLocalDate().equals(date);
+                LocalDate d = ((Event) task).getAt().toLocalDate();
+                return !(d.equals(date));
             } else {
                 return true;
             }
