@@ -8,10 +8,8 @@ import edu.nus.duke.parser.Parser;
  * Represent a deadline with due that extends from Task.
  */
 public class Deadline extends Task {
-    // Variables
     protected LocalDateTime by;
 
-    // Constructor
     /**
      * Constructor of Deadline class.
      *
@@ -35,7 +33,6 @@ public class Deadline extends Task {
         this.isDone = isDone;
     }
 
-    // Getter
     @Override
     public String getTask() {
         return (super.getTask() + " (by: " + Parser.printDt(by) + ")");

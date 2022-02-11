@@ -12,10 +12,8 @@ import edu.nus.duke.parser.Parser;
  * Class that contains the task list
  */
 public class TaskList {
-    // Variables
     private ArrayList<Task> tasks;
 
-    // Constructor
     public TaskList() {
         tasks = new ArrayList<>();
     }
@@ -99,7 +97,6 @@ public class TaskList {
         return tasksCopy;
     }
 
-    // Setter
     /**
      * Add a task and return feedback string to the user.
      *
@@ -183,7 +180,6 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    // Methods
     private boolean isExclude(Task task, LocalDate date, String text) {
         if (date != null) {
             if (task instanceof Deadline) {

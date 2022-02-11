@@ -18,7 +18,6 @@ import edu.nus.duke.ui.Ui;
  * Class that deals with loading tasks from the file and saving tasks in the file
  */
 public class Storage {
-    // Variables
     private static final String SAVE_SEP = ";";
     private final String filePath;
 
@@ -36,7 +35,6 @@ public class Storage {
         }
     }
 
-    // Getter
     /**
      * Return string of save separator.
      *
@@ -46,7 +44,6 @@ public class Storage {
         return SAVE_SEP;
     }
 
-    // Methods
     private void loadData(File f, TaskList taskList) {
         try {
             Scanner s = new Scanner(f);

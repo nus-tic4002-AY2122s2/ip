@@ -24,13 +24,11 @@ import edu.nus.duke.task.Todo;
  * Class that deals with making sense of the user command
  */
 public class Parser {
-    // Variables
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String DT_FORMAT = "yyyy-MM-dd'T'HH:mm";
     private static final String DATE_FORMAT_PRINT = "d MMM yy";
     private static final String DT_FORMAT_PRINT = "d MMM yy h:mm a";
 
-    // Methods
     private static void rejectBadInput(String input) throws DukeDisallowInputException {
         if (input.contains(Storage.getSaveSep())) {
             throw new DukeDisallowInputException();

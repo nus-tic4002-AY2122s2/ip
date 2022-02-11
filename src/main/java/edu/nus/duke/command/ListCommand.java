@@ -8,11 +8,9 @@ import edu.nus.duke.task.TaskList;
  * Represent list command that extends from Command.
  */
 public class ListCommand extends Command {
-    // Variables
     public static final String CMD = "list";
     private LocalDate dateFilter;
 
-    // Constructor
     public ListCommand() {
     }
 
@@ -20,7 +18,6 @@ public class ListCommand extends Command {
         this.dateFilter = dateFilter;
     }
 
-    // Methods
     @Override
     public CommandResult run(TaskList taskList, CommandDataHistory commandDataHistory) {
         String message = "Here are the tasks in your list:";
