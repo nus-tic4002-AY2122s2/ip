@@ -164,22 +164,23 @@ public class AddCommand extends Command {
             String tskDescription = tsk.getDescription();
             String tskType = tsk.getType();
 
-            if (tskType.equals("T")
-                && tskType.equals(inputType)
-                && tskDescription.equals(inputDescription)) {
+            boolean todoDuplicatedChecker = tskType.equals("T")
+                    && tskType.equals(inputType)
+                    && tskDescription.equals(inputDescription);
 
+            boolean deadlineDuplicatedChecker = tskType.equals("D")
+                    && tsk.getDeadlineDateTimeString().equals(inputTask.getDeadlineDateTimeString())
+                    && tskDescription.equals(inputDescription);
+
+            boolean eventDuplicatedChecker = tskType.equals("E")
+                    && tsk.getStartingDateTime().equals(inputTask.getStartingDateTime())
+                    && tskDescription.equals(inputDescription);
+
+            if (todoDuplicatedChecker) {
                 return true;
-            }
-
-            if (tskType.equals("D")
-                && tsk.getDeadlineDateTimeString().equals(inputTask.getDeadlineDateTimeString())
-                && tskDescription.equals(inputDescription)) {
+            } else if (deadlineDuplicatedChecker) {
                 return true;
-            }
-
-            if (tskType.equals("E")
-                && tsk.getStartingDateTime().equals(inputTask.getStartingDateTime())
-                && tskDescription.equals(inputDescription)) {
+            } else if (eventDuplicatedChecker) {
                 return true;
             }
         }
