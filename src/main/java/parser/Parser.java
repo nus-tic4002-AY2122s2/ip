@@ -11,9 +11,9 @@ import commands.ExitCommand;
 import commands.FindCommand;
 import commands.ListCommand;
 import commands.MarkAsDoneCommand;
+import commands.Schedule;
 import exceptions.DukeDateTimeError;
 import exceptions.DukeTaskInputException;
-import commands.Schedule;
 
 public class Parser {
 
@@ -201,10 +201,10 @@ public class Parser {
 
     /**
      * The method to parse every input command
-     *
      * @param fullCommand the full input command by user
      * @return return the Command created accordingly
      * @throws DukeTaskInputException handles all the errors about the user input
+     * @throws DukeDateTimeError the error about variable date String's input date format
      */
     public static Command parse(String fullCommand) throws DukeTaskInputException, DukeDateTimeError {
 

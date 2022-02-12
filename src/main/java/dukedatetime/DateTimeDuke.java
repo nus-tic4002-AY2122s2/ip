@@ -22,6 +22,7 @@ public class DateTimeDuke {
      * The method to initialize DateTimeDuke
      *
      * @param date the string contain year, month, day, hour, and minute. Format: yyyy-MM-dd HH:mm
+     * @throws DukeDateTimeError the error about variable date String's input date format
      */
     public DateTimeDuke(String date) throws DukeDateTimeError {
         try {
@@ -57,7 +58,7 @@ public class DateTimeDuke {
      *
      * @return DateTime information in String in yyyy-MM-dd format
      */
-    public String convertToStringTypeIII() {
+    public String convertToStringType3() {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return localDateTime.format(formatter);

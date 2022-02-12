@@ -33,10 +33,10 @@ public class Schedule extends Command {
 
             switch (tskType) {
             case "D":
-                tskDate = tsk.getDeadlineTime().convertToStringTypeIII();
+                tskDate = tsk.getDeadlineTime().convertToStringType3();
                 break;
             case "E":
-                tskDate = tsk.getStartingTime().convertToStringTypeIII();
+                tskDate = tsk.getStartingTime().convertToStringType3();
                 break;
             default:
                 break;
@@ -54,7 +54,7 @@ public class Schedule extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeDateTimeError, DukeTaskInputException {
         Vector<Task> list = taskList.getVectorList();
-        Vector<Task> matchedTaskList = getMatchedTasks(list, this.date.convertToStringTypeIII());
+        Vector<Task> matchedTaskList = getMatchedTasks(list, this.date.convertToStringType3());
 
         String echoInfo = "";
 
