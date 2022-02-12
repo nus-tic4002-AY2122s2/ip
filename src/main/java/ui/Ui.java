@@ -1,7 +1,5 @@
 package ui;
 
-import java.util.Scanner;
-
 import taskclasses.Deadline;
 import taskclasses.Event;
 import taskclasses.Task;
