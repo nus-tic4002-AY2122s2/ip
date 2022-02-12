@@ -12,24 +12,6 @@ public class Ui {
     public Ui () {}
 
     /**
-     * The greeting with some instruction
-     */
-    public void showGreetingMessage() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
-        toPrintSeparateLine();
-        System.out.println("     Hello! I'm Duke");
-        System.out.println("     What can I do for you?");
-        toPrintSeparateLine();
-        System.out.println("");
-    }
-
-    /**
      * The greeting with some instruction in GUI
      */
     public static String showGreetingMessageGui() {
@@ -47,34 +29,6 @@ public class Ui {
     }
 
     /**
-     * The method to print loading error message
-     */
-    public void showLoadingError() {
-        ErrorMessage.showLoadingError();
-    }
-
-    /**
-     * Print out Separated_Line onto screen
-     */
-    public static void toPrintSeparateLine() {
-        System.out.print("    ");
-        for (int i = 0; i < 100; i++) {
-            System.out.print("_");
-        }
-        System.out.println("");
-    }
-
-    /**
-     * The method to read user input
-     * @return user input information in String type
-     */
-    public String readCommand() {
-        String input;
-        Scanner in = new Scanner(System.in);
-        return input = in.nextLine();
-    }
-
-    /**
      * The method to print the message just after task be deleted successfully
      * @param deletedTask task be deleted
      * @param taskListRemainingSize the task list size after deletion
@@ -83,9 +37,7 @@ public class Ui {
         TaskDeletedMessage taskDeletedMessage = new TaskDeletedMessage(deletedTask, taskListRemainingSize);
         String echoInfo = taskDeletedMessage.printTaskDeletedMessage();
 
-        //return echoInfo;
-
-        return "Deleted Task";
+        return echoInfo;
     }
 
     /**
@@ -148,14 +100,6 @@ public class Ui {
                 + "     Now you have " + listQty + " tasks in the list.";
 
         return echoInfo;
-    }
-
-    /**
-     * Goodbye Output
-     */
-    public static void printGoodbyeOutput() {
-
-        System.out.println("     Bye. Hope to see you again soon!");
     }
 
     /**
