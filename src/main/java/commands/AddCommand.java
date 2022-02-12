@@ -43,7 +43,7 @@ public class AddCommand extends Command {
         Todo inputTask = new Todo (description);
         boolean isDuplicated = duplicatedCheck(inputTask, list);
 
-        if(isDuplicated) {
+        if (isDuplicated) {
             return "The task you input is duplicated.\nPlease check again.";
         }
         list.add(inputTask);
@@ -65,7 +65,7 @@ public class AddCommand extends Command {
         Deadline newTask = new Deadline(description, false, date);
         boolean isDuplicated = duplicatedCheck(newTask, list);
 
-        if(isDuplicated) {
+        if (isDuplicated) {
             return "The task you input is duplicated.\nPlease check again.";
         }
 
@@ -91,7 +91,7 @@ public class AddCommand extends Command {
 
         boolean isDuplicated = duplicatedCheck(newTask, list);
 
-        if(isDuplicated) {
+        if (isDuplicated) {
             return "The task you input is duplicated.\nPlease check again.";
         }
 
@@ -128,7 +128,6 @@ public class AddCommand extends Command {
             break;
         }
 
-        //return "Add Command";
         return echoInfo;
     }
 
@@ -146,18 +145,20 @@ public class AddCommand extends Command {
         String inputDescription = inputTask.getDescription();
         String inputType = inputTask.getType();
 
-        for(Task tsk : list) {
+        for (Task tsk : list) {
 
             String tskDescription = tsk.getDescription();
             String tskType = tsk.getType();
 
-            if(tskType.equals(inputType)) {
-                if(tskType.equals("T") && tskDescription.equals(inputDescription)) {
+            if (tskType.equals(inputType)) {
+                if (tskType.equals("T") && tskDescription.equals(inputDescription)) {
                     return true;
-                } else if(tskDescription.equals(inputDescription)) {
-                    if(tskType.equals("D") && tsk.getDeadlineDateTimeString().equals(inputTask.getDeadlineDateTimeString())) {
+                } else if (tskDescription.equals(inputDescription)) {
+                    if (tskType.equals("D")
+                            && tsk.getDeadlineDateTimeString().equals(inputTask.getDeadlineDateTimeString())) {
                         return true;
-                    } else if(tskType.equals("E") && tsk.getStartingDateTime().equals(inputTask.getStartingDateTime())) {
+                    } else if (tskType.equals("E")
+                            && tsk.getStartingDateTime().equals(inputTask.getStartingDateTime())) {
                         return true;
                     }
                 }

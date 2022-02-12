@@ -63,7 +63,7 @@ public class FindCommand extends Command {
         for (Task task: list) {
             String description = task.getDescription().toLowerCase();
 
-            if(description.contains(keyword)) {
+            if (description.contains(keyword)) {
                 matchedTaskList.add(task);
             }
         }
