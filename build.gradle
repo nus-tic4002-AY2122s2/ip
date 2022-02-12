@@ -1,4 +1,4 @@
-plugins {
+ylugins {
     id 'java'
     id 'application'
     id 'checkstyle'
