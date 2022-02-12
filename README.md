@@ -2,7 +2,7 @@
 # 2022 Feb Update
 Latest _Duke Chatbot_ **GUI** support:
 
-<img src="docs/pic/dukegui.png" width="360">
+<img src="docs/pic/dukegui.png" width="500">
 
 ----
 # Run the program 

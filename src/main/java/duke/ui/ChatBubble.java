@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -20,7 +22,7 @@ public class ChatBubble extends HBox {
     @FXML
     private Label dialog;
     @FXML
-    private Label profile;
+    private ImageView emoji;
     @FXML
     private Circle pbg;
     @FXML
@@ -31,7 +33,7 @@ public class ChatBubble extends HBox {
     private StackPane head;
 
 
-    private ChatBubble(String emoji, String text) {
+    private ChatBubble(Image emoji, String text) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/ChatBubble.fxml"));
             fxmlLoader.setController(this);
@@ -40,7 +42,7 @@ public class ChatBubble extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        profile.setText(emoji);
+        this.emoji.setImage(emoji);
         dialog.setText(text);
 
         bbg.widthProperty().bind(dialog.widthProperty());
@@ -69,13 +71,13 @@ public class ChatBubble extends HBox {
         this.bubble.setAlignment(pos);
     }
 
-    public static ChatBubble getUserDialog(String emoji, String input) {
+    public static ChatBubble getUserDialog(Image emoji, String input) {
         var chatBubble = new ChatBubble(emoji, input);
 
         return chatBubble;
     }
 
-    public static ChatBubble getDukeDialog(String emoji, String reply) {
+    public static ChatBubble getDukeDialog(Image emoji, String reply) {
         var chatBubble = new ChatBubble(emoji, reply);
         chatBubble.setPbgColor("f5ecb3");
         chatBubble.setBbgColor("D0D7D9");

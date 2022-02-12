@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -29,6 +30,9 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
     private Stage stage;
 
+    private Image genie = new Image(this.getClass().getResourceAsStream("/image/genie.png"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/image/user.png"));
+
     /**
      * Constructor
      * @param stage
@@ -47,7 +51,7 @@ public class MainWindow extends AnchorPane {
             throw new RuntimeException(e);
         }
         dialogContainer.getChildren().addAll(
-                ChatBubble.getDukeDialog("   🧞", Message.greeting())
+                ChatBubble.getDukeDialog(genie, Message.greeting())
         );
     }
 
@@ -66,8 +70,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
-            ChatBubble.getUserDialog("   🙋️", input),
-            ChatBubble.getDukeDialog("   🧞", response)
+            ChatBubble.getUserDialog(user, input),
+            ChatBubble.getDukeDialog(genie, response)
         );
         userInput.clear();
     }

@@ -21,7 +21,7 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "x" : " "); // mark done task with x
     }
 
     public String getTitle() {
@@ -42,7 +42,7 @@ public abstract class Task {
     public String toString() {
         String status = "[ ]";
         if (isDone()) {
-            status = "[✓]";
+            status = "[x]";
         }
         return status + " " + title;
     }
