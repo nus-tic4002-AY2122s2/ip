@@ -44,7 +44,10 @@ public class AddCommand extends Command {
         boolean isDuplicated = duplicatedCheck(inputTask, list);
 
         if (isDuplicated) {
-            return "The task you input is duplicated.\nPlease check again.";
+
+            String duplicatedErrorMessage;
+            duplicatedErrorMessage = "The task you input is duplicated.\nPlease check again.";
+            return duplicatedErrorMessage;
         }
         list.add(inputTask);
 
@@ -58,6 +61,9 @@ public class AddCommand extends Command {
      * The output (message print onto screen) will be included in this method after task added
      *
      * @param list the entire task list
+     * @return The message about the adding;
+     * @throws DukeTaskInputException handle all the errors during user input
+     * @throws DukeDateTimeError the error about variable date String's input date format
      */
     private String addDeadlineTask (Vector<Task> list) throws DukeTaskInputException, DukeDateTimeError {
         String date = Parser.toExtractDate(inputWords);
@@ -66,7 +72,11 @@ public class AddCommand extends Command {
         boolean isDuplicated = duplicatedCheck(newTask, list);
 
         if (isDuplicated) {
-            return "The task you input is duplicated.\nPlease check again.";
+
+            String duplicatedErrorMessage;
+            duplicatedErrorMessage = "The task you input is duplicated.\nPlease check again.";
+
+            return duplicatedErrorMessage;
         }
 
         list.add(newTask);
@@ -75,10 +85,11 @@ public class AddCommand extends Command {
     }
 
     /**
-     * To add Event type task to the task list
-     * The output (message print onto screen) will be included in this method after task added
-     *
+     * The function to add event task to the task list
      * @param list the entire task list
+     * @return The message about the adding;
+     * @throws DukeTaskInputException handle all the errors during user input
+     * @throws DukeDateTimeError the error about variable date String's input date format
      */
     private String addEventTask (Vector<Task> list) throws DukeTaskInputException, DukeDateTimeError {
 
@@ -92,7 +103,10 @@ public class AddCommand extends Command {
         boolean isDuplicated = duplicatedCheck(newTask, list);
 
         if (isDuplicated) {
-            return "The task you input is duplicated.\nPlease check again.";
+
+            String duplicatedErrorMessage;
+            duplicatedErrorMessage = "The task you input is duplicated.\nPlease check again.";
+            return duplicatedErrorMessage;
         }
 
         list.add(newTask);
@@ -150,18 +164,23 @@ public class AddCommand extends Command {
             String tskDescription = tsk.getDescription();
             String tskType = tsk.getType();
 
-            if (tskType.equals(inputType)) {
-                if (tskType.equals("T") && tskDescription.equals(inputDescription)) {
-                    return true;
-                } else if (tskDescription.equals(inputDescription)) {
-                    if (tskType.equals("D")
-                            && tsk.getDeadlineDateTimeString().equals(inputTask.getDeadlineDateTimeString())) {
-                        return true;
-                    } else if (tskType.equals("E")
-                            && tsk.getStartingDateTime().equals(inputTask.getStartingDateTime())) {
-                        return true;
-                    }
-                }
+            if (tskType.equals("T")
+                && tskType.equals(inputType)
+                && tskDescription.equals(inputDescription)) {
+
+                return true;
+            }
+
+            if (tskType.equals("D")
+                && tsk.getDeadlineDateTimeString().equals(inputTask.getDeadlineDateTimeString())
+                && tskDescription.equals(inputDescription)) {
+                return true;
+            }
+
+            if (tskType.equals("E")
+                && tsk.getStartingDateTime().equals(inputTask.getStartingDateTime())
+                && tskDescription.equals(inputDescription)) {
+                return true;
             }
         }
 
