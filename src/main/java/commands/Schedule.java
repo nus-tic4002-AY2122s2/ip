@@ -33,18 +33,18 @@ public class Schedule extends Command {
 
             switch (tskType) {
             case "D":
-               tskDate = tsk.getDeadlineTime().convertToStringTypeIII();
-               break;
+                tskDate = tsk.getDeadlineTime().convertToStringTypeIII();
+                break;
             case "E":
-               tskDate = tsk.getStartingTime().convertToStringTypeIII();
-               break;
+                tskDate = tsk.getStartingTime().convertToStringTypeIII();
+                break;
             default:
-               break;
+                break;
             }
 
-            if(tskDate.equals(scheduleDate)) {
+            if (tskDate.equals(scheduleDate)) {
 
-               matchedTasks.add(tsk);
+                matchedTasks.add(tsk);
             }
         }
 
