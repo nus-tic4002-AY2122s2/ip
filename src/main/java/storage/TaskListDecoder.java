@@ -18,6 +18,7 @@ class TaskListDecoder {
      * @param storageInformation All the data extracted from txt file in String type Vector format
      * @return all the extracted task in Task type Vector format
      * @throws DukeStorageError handles all the errors about storage
+     * @throws DukeDateTimeError the error about variable date String's input date format
      */
     static Vector<Task> decodeTaskList(Vector<String> storageInformation) throws DukeStorageError, DukeDateTimeError {
         Vector<Task> decodedTaskList = new Vector<>();
@@ -36,6 +37,7 @@ class TaskListDecoder {
      * @param taskString The single task String extracted from txt file
      * @return The task created based on the single task String
      * @throws DukeStorageError handles all the errors about storage
+     * @throws DukeDateTimeError the error about variable date String's input date format
      */
     private static Task decodeTask(String taskString) throws DukeStorageError, DukeDateTimeError {
 

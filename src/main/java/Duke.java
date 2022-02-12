@@ -28,13 +28,11 @@ public class Duke {
      */
     public Duke(String filePath) throws IOException {
         ui = new Ui();
-        //ui.showGreetingMessage();
         storage = new Storage(filePath);
 
         try {
             taskList = new TaskList(storage.load());
         } catch (DukeStorageError | DukeDateTimeError e) {
-            //ui.showLoadingError();
             taskList = new TaskList();
         }
     }

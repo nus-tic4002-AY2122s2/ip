@@ -25,17 +25,9 @@ public class Storage {
     private final String rootDir = rootPath.normalize().toString();
     private Path path = Paths.get(rootDir + "/" + defaultStorageFilepath);
 
-
-    /**
-     * Constructs StorageFile with default file path
-     */
-    public Storage() {
-        path = Paths.get(rootDir + "/" + defaultStorageFilepath);
-    }
-
     /**
      * The method to initialize Storage
-     * @param filePath
+     * @param filePath storage file path
      */
     public Storage (String filePath) {
         path = Paths.get(filePath);
