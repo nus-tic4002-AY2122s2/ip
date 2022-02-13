@@ -110,7 +110,7 @@ Our Value Proposition is that the app provides, throughout the app use, a visual
 
 ## LisGenie GUI App Class UML Diagram
 
-![LisGenie UML Class Diagram](/src/LisGenie_UML.png)
+![LisGenie UML Class Diagram](LisGenie_UML.png)
 
 
 ## Glossary
@@ -135,6 +135,6 @@ Our Value Proposition is that the app provides, throughout the app use, a visual
   
   
 ## Sample "list" instruction - GUI ChatBox Output Display:
-![LisGenie ChatBox](/src/lisgenieChatBox.png)
+![LisGenie ChatBox](lisgenieChatBox.png)
 
 
