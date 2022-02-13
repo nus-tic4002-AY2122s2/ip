@@ -11,13 +11,11 @@
 ## Design
 
 **LisGenie GUI App** leverages on the help of a total 13 Java classes, viz. **Duke, Parser, Task, Tasklist, Todo, Deadline, Event, Launcher, DukeException, Storage** for the 
-main app logic support and **Main, MainWindow, DialogBox** for the JavaFx GUI support, together with 2 auxiliary fxml files **DialogBox.fxml and MainWindows.fxml**. Judicious use 
-of Java API LinkedHashset<Task>'s non-duplicates properties, preserved input data order and fast location traits, for Tasks storage, allows a single user good at the keyboard 
-to make, enquire, delete or register bookings or current status of appointments online fast.
+main app logic support and **Main, MainWindow, DialogBox** for the JavaFx GUI support, together with 2 auxiliary fxml files **DialogBox.fxml and MainWindows.fxml**. Judicious use of Java API LinkedHashset<Task>'s non-duplicates properties, preserved input data order and fast location traits, for Tasks storage, allows a single user good at the keyboard to make, enquire, delete or register bookings or current status of appointments online fast.
 
-- LisGenie Chatbot GUI App is an extension or GUI version of the CLI app **LisGenie ChatBot Task Manager 2.0**    
+- LisGenie Chatbot GUI V3.1 App is an extension and GUI version of the CLI app **LisGenie ChatBot Task Manager 2.0**    
 - It allows for command short forms which were not available last time round
-- The visual interface is designed for easy reading and takes into considerations the computer-human interactions principles, for a simple esthetic appeal of each essential
+- The visual interface is designed for easy reading, and takes into considerations the computer-human interactions principles for a simple esthetic appeal of each essential
 visual component affording easy usage, so user will not find using the App intimidating or boring 
 
 
@@ -26,24 +24,26 @@ visual component affording easy usage, so user will not find using the App intim
 ### Integration of Duke Class with JavaFx GUI Program
 
 #### Highlights:
-1) Duke Class is modified so that all processed outputs to console are configured and redirected to a class-level ByteArrayOutputStream _newConsole_. This affords easy 
-  redirection of captured messages into LisGenie GUI chatbox via the _handleUserInput method_ found inside MainWindow controller Class (which handles-cum-chatbot messages display).    
-2) An instance of Duke Class is created in Main Class to load and enable the main app logic flows subsequently
-3) The MainWindow Class carries a setDuke method that will create a first Greeting Meesage from LisGenie chatbot, upon app opening. It also handles property binding for the 
+1. Duke Class is modified so that all processed outputs to console are redirected to a class-level ByteArrayOutputStream _newConsole_. This affords easy 
+  redirection of captured console messages into LisGenie GUI chatbox, via the _handleUserInput method_ found inside MainWindow controller Class, which handles user-cum-chatbot messages display.    
+2. An instance of Duke Class is created in Main Class to load and enable the main app logic flows subsequently
+3. The MainWindow Class carries a setDuke method that will create a first Greeting Message from LisGenie chatbot, upon app opening. It will handle property binding for the 
   scrollPane _vvalueProperty_ to the dialogueContainer _heightproperty_
-4) Subsequently, the user will type into the textfield and either press enter or sendButton to begin conversations with the chatbot
-5) All necessary JavaFx event handlers are set via the MainWindow.fxml file.
+4. Subsequently, the user will type into the textfield and either press enter or sendButton to begin conversations with the chatbot
+5. All necessary JavaFx event handlers are set via the MainWindow.fxml file.
   
 
 #### Design considerations:
-Considerations in the design of app logic have been specially given for the optimization of operations in terms of time and space complexity wherever possible. 
-In terms of class design principles, Single Responsibility Principle is adhered to rather well. This allows strong cohesion with minimal coupling for those
-classes, especially for the seperating out of the program logic parts from the GUI parts. From early on, the main code base follows the Open-Closed Principle closely as the 
-author intends for easy refactoring and felicitous code extensions "lego-style" any time. This will save precious time and uncalled for headaches later on.
-I have attempted to keep the code KISS as much as possible, whereby the program flow is simple and uncluttered. Furthermore, variable names and functions method names are also rather intuitive, improving the readability for the code reader.
+Considerations in the design of app logic have been specially given to optimise operations in terms of time and space complexity wherever possible. 
+In terms of class design principles, Single Responsibility Principle is adhered to rather well. This allows for strong cohesion, with minimal coupling for those
+classes - especially for the seperating out of the program logic parts from the GUI parts. 
+
+From early on, the main code base follows the Open-Closed Principle as closely as possible, as the author intends for easy refactoring and felicitous code extensions "lego-style" any time. This will save precious time and stave off headaches later on.
+  
+The code is kept KISS as much as possible, to keep the program flow simple and uncluttered throughout, variable names and functions method names are also rather intuitive, improving the readability for the code reader.
 
 In a nutshell, the design patterns and principles were implemented OOP style throughout for easy scalability and modularity.
-With this approach, the earlier set down framework / design policies allows for more features to be added on faster while still keeping in check the complexity (such as coupling) of the application body codes.
+With this approach, the earlier set down framework / design policies allow for more features to be added on more rapidly while still keeping in check the complexity (such as coupling) of the application body codes.
 
 ## Product scope
 **Target user profile:**
@@ -76,10 +76,7 @@ Our example target user can be a Student that is currently schooling. As an acti
 
 ### Value proposition
 
-
-LisGenie GUI Chatbot provides a user-friendly, consistent and error-free interface, as well as helpful message feedback or alerts to users, throughout the app use. The CLI-GUI Task Manager, using the CLI-type interface with minimal GUI support, will help the user edit appointments easily with single commands entered into the textfield, or sent via a click of the sendButton provided in the opened chatbot window.
-
-Users are able to make, check, delete, view, change, and update status of tasks in real-time using this application.
+LisGenie GUI Chatbot provides a user-friendly, consistent and error-free interface, as well as helpful message feedback or alerts to users, throughout the app use. The GUI Task Manager version, using the CLI-type interface with minimal GUI support, will help the user edit appointments easily with single commands entered into the textfield, or sent via a click of the sendButton provided in the opened chatbot window. Users are able to make, check, delete, view, change, and update status of tasks in real-time using this application.
 
 Our Value Proposition is that the app provides, throughout the app use, a visually appealing and easy-to-use consistent user interface, assisting message feedbacks and or alerts fast and a capability to felicitously lead the user to his tasks with minimal cost overheads in time.
 
@@ -97,7 +94,7 @@ Our Value Proposition is that the app provides, throughout the app use, a visual
 |v2.0|student|I can save or load at start up my tasks database|not need to re-create them everytime I start the app|
 |v2.0|structured student or user|I can see my tasks as they have been entered chronologically|have a clear distinct view of the various tasks|
 |v2.0|on-the-go user|I can use command short forms instead of spelling out the full command name|save time inputting lots of entries|
-|v2.0|busy person|I can quit the application immediately without the need to do a manual save|move on to my other activities quickly|
+|v2.0|busy person|I can quit the application immediately without the need to do manual saves|move on to my other activities quickly|
 
 
 ## Non-Functional Requirements
