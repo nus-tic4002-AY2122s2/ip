@@ -24,7 +24,7 @@ Setting up and getting started.</a>
 task list.
 <br> The working flow of the findCommand is shown in the sequence diagram below.
 
-<img src="docs/GUI_Find Task Sequencial Diagram.png" width="800" height=auto>
+![Image of find command](./GUI_Find Task Sequencial Diagram.png)
 
 * List Command <br>
 The user execute `list` command to show all the tasks in the list.<br/>
@@ -32,7 +32,7 @@ UI scanned `list` command from user, `Execution` create a new `ListCommand`
 and `run()` to get the tasks from Arraylist, taskList return the tasks to GUI 
 and show to user. <br/>
 
-<img src="docs/GUI_List Command Sequencial Diagram.png" width="800" height=auto> <br/>
+![Image of list command](./GUI_List Command Sequencial Diagram.png)
 
 * Delete Command
 <br> The user execute `delete 5` command to delete the 5th task in the task list.
@@ -42,7 +42,7 @@ and `run()` method in `Delete` class will be executed to remove the 5th item.
 After the task be removed, the delete information will be printed to show user 
 which the deleted task's details and remaining task quantity in the task list.
 
-<img src="docs/GUI_Delete Task Sequencial Diagram.png" width="800" height=auto>
+![Image of todo command](./GUI_Delete Task Sequencial Diagram.png)
 
 * Todo Command
 <br> The user execute `todo take taxi` command to add the todo task which the
@@ -51,7 +51,7 @@ description is `take taxi` and which the task type is `todo` to the task list.
  in execution variable, the `addCommand` will be generated and `execute()` method 
  in `addCommand` will add the todo task to task list
  
- <img src="docs/GUI_todo Task Sequencial Diagram.png" width="800" height=auto>
+![Image of todo command](./GUI_todo Task Sequencial Diagram.png)
 
 * Deadline Command
 <br> The user execute `deadline sleep /by 2022-02-11 22:59` command to add the
@@ -61,7 +61,7 @@ be generated after user input scanned and in execution variable, the `addCommand
 will be generated and `execute()` method in `addCommand` will add the deadline task 
 to task list
 
-<img src="docs/GUI_deadline Task Sequencial Diagram.png" width="800" height=auto>
+![Image of deadline command](./GUI_deadline Task Sequencial Diagram.png)
 
 * Event Command
 <br> The user execute `event party /at 2022-02-11 22:59 -> 2022-02-12 16:00` command to add the
@@ -71,7 +71,7 @@ be generated after user input scanned and in execution variable, the `addCommand
 will be generated and `execute()` method in `addCommand` will add the deadline task 
 to task list
 
-<img src="docs/GUI_event Task Sequencial Diagram.jpg" width="800" height=auto>
+![Image of event command](./GUI_event_Task_Sequencial_Diagram.jpg)
 
 
 ## Appendix: Requirements
