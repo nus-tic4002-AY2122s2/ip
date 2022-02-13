@@ -2,17 +2,17 @@
 
 ## Features
 
-An Online CLI-type App for users who can type fast on their keyboards!
+A GUI version of an Online CLI-type App for users who can type fast on their keyboards!
 
 ### Feature-An easy to use Task Manager
 
-A callable online store and point-of-contact for a single user to register in the tasks that he/she often does.
+A callable online database Store and point-of-contact for a single user to register in the tasks that he/she often does.
 
 - E.g. todo, deadlines and events tasks.
 
 ### Feature A Lively ChatBot Service
 
-User will be able to chat with LisGenie, the funny ChatBot, who helps in the tasks parsing, creation, storage and admin.
+User will be able to chat with LisGenie, the funny ChatBot, who helps in the tasks parsing, creation, storage and administration.
 
 - Admin tasks include IO errors recovery via backup file, `done`, `delete`, `find`, `list`, `bye` commands, among
   others.
@@ -21,12 +21,14 @@ User will be able to chat with LisGenie, the funny ChatBot, who helps in the tas
 ## Usage <all commands in lowercase>
 
 ### `bye` - Action Describe
+_Available command short form: b_
 
 exit the LisGenie App.
 
 Example of usage:
 
 `bye`
+  
 
 Expected outcome: display bye message to user.
 
@@ -37,6 +39,7 @@ Bye. Hope to see you again soon!
 ```
 
 ### `list` - Action Describe
+_Available command short form: l_
 
 display the task database to user.
 
@@ -56,6 +59,7 @@ Description of the outcome.
 ```
 
 ### `delete` - Action Describe
+_Available command short form: del_
 
 delete a numbered task from the online database list.
 
@@ -74,6 +78,7 @@ Now you have 11 tasks in the list.
 ```
 
 ### `find` - Action Describe
+  _Available command short form: f_
 
 find all tasks that contain a word inputted by the user.
 
@@ -92,6 +97,7 @@ Here are the matching tasks in your list:
 ```
 
 ### `done` - Action Describe
+  _Available command short form: c_
 
 update the done status of a task by its numbered position in the list.
 
@@ -110,6 +116,7 @@ Here are the matching tasks in your list:
 ```
 
 ### `todo` - Action Describe
+  _Available command short form: t_
 
 add a Todo task into the database.
 
@@ -128,6 +135,7 @@ Now you have 11 tasks in the list.
 ```
 
 ### `deadline` - Action Describe
+  _Available command short form: d_
 
 add a Deadline task into the database.
 
@@ -146,6 +154,7 @@ Now you have 12 tasks in the list.
 ```
 
 ### `event` - Action Describe
+  _Available command short form: e_
 
 add a Event task into the database.
 
