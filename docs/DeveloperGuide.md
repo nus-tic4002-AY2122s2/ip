@@ -11,13 +11,9 @@ Setting up and getting started.</a>
 * *Logic component* (Execution, Command, Parser)
 * *Model component* (Item, Expense, Income)
 * *Storage component* (Storage)
-* *Common classes* (ItemList)
-
-
-
+* *Common classes* (TaskList)
 
 ## Implementation (Sequence Diagram)
-
 
 * Find Command
 <br> The user execute `find KEYWORD` command to search tasks contain `KEYWORD` in the 
