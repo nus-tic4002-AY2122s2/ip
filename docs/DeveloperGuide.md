@@ -40,120 +40,101 @@ Considerations in the design of app logic have been specially given for the opti
 In terms of class design principles, Single Responsibility Principle is adhered to rather well. This allows strong cohesion with minimal coupling for those
 classes, especially for the seperating out of the program logic parts from the GUI parts. From early on, the main code base follows the Open-Closed Principle closely as the 
 author intends for easy refactoring and felicitous code extensions "lego-style" any time. This will save precious time and uncalled for headaches later on.
-I have attempted to keep the code KISS as much as possible, whereby the program flow is simple and uncluttered. Furthermore, variable names and functions method names are also rather
-intuitive, improving the readability for the code reader.
+I have attempted to keep the code KISS as much as possible, whereby the program flow is simple and uncluttered. Furthermore, variable names and functions method names are also rather intuitive, improving the readability for the code reader.
 
 In a nutshell, the design patterns and principles were implemented OOP style throughout for easy scalability and modularity.
-With this approach, the earlier set down framework / design policies allows for more features to be added on faster while still keeping in check the complexity (such as coupling) 
-of the application body codes.
+With this approach, the earlier set down framework / design policies allows for more features to be added on faster while still keeping in check the complexity (such as coupling) of the application body codes.
 
 ## Product scope
 **Target user profile:**
 
-- has a need to manage a number of fast bookings
-- prefer desktop apps vs other types
+- has a need to manage a number of fast tasks management / registering
+- prefer standard desktop apps vs other types
 - can type fast
 - prefers using the keyboard over mouse interactions
-- is reasonably comfortable using CLI apps
+- is reasonably comfortable using CLI or GUI supported CLI apps
 
-**Value proposition:** manage contacts faster than a typical mouse/GUI driven app
+**Value proposition:** manage tasks additions, edits or saves faster than a typical mouse/GUI driven app
 
 
 ### Target user profile
 
-Target User: John
+Target User: Tom, 
 
-Age: 18 (typical)
+Age: 12+ (typical)
 
-Occupation: Student
+Occupation: Student, or an adult user
 
-Education: Currently in Poly or JC
+Education: Secondary Level, Computer Literate
 
-Commitments: CCAs, recreational activities, Studies
+Commitments: CCAs, recreational activities, Studies or any important Work Events
 
 Traits: Is technologically literate, active in activities, comfortable typing commands
 
-Our target user is a Student that is currently schooling. As an active student, the Target User has multiple activities that may be hard to keep track of. With the scheduler, John will be able to plan and organize multiple appointments at the same time.
+Our example target user can be a Student that is currently schooling. As an active student, the Target User has multiple activities that may be hard to keep track of. With the scheduler, Tom will be able to plan and organize multiple appointments at the same time.
 
 
 ### Value proposition
 
 
-JustBook provides a user-friendly, consistent and error-free interface, as well as helpful message feedback or alerts to users, throughout the app use. The scheduler can be customized into working on the basis of various time durations (6 months, monthly, weekly etc.). Using the CLI-type interface, the user will be able to edit multiple appointments easily with minimal commands / single commands.
+LisGenie GUI Chatbot provides a user-friendly, consistent and error-free interface, as well as helpful message feedback or alerts to users, throughout the app use. The CLI-GUI Task Manager, using the CLI-type interface with minimal GUI support, will help the user edit appointments easily with single commands entered into the textfield, or sent via a click of the sendButton provided in the opened chatbot window.
 
-Users are able to make, check, delete, view, change, and source in real-time for available slots for appointments using this application. This application will display a range of time slots available for users to choose from, may also list available dates and unavailable dates when the User is trying to schedule an appointment. The User can also choose to work on a 6-calendar-months view / basis (coming feature), or per month, per week, down to a day’s view / basis.  
+Users are able to make, check, delete, view, change, and update status of tasks in real-time using this application.
 
-Possible enhancements include appointment data printout, a file backup in the background to act as a redundancy measure for unforeseen disruption, alerts for the User if so scheduled, etc. 
-
-Our Value Proposition is that our scheduler provides, throughout the app use, a consistent, user-friendly and error-free interface, assisting message feedback or alerts and a capability to suggest time slots to the user, in addition to the time slots available (coming feature). The scheduler can be customized to work on the basis of various time durations (monthly, weekly, daily etc.). Using the CLI-type interface, the user will be able to edit multiple appointments easily with minimal commands / single commands.
+Our Value Proposition is that the app provides, throughout the app use, a visually appealing and easy-to-use consistent user interface, assisting message feedbacks and or alerts fast and a capability to felicitously lead the user to his tasks with minimal cost overheads in time.
 
 
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see help usage instructions|refer to them when I forget how to use the application|
-|v1.0|regular user|I can add in a booking entry in one line|make an entry and have it stored online fast|
-|v1.0|a quick user|I can edit a booking entry description|modify an entry description easily at will|
-|v1.0|date planner|I find a booking item by date|locate a to-do without having to go through the entire list|
-|v1.0|efficient student|I can order all my tasks and appointment by their due date|order all my tasks and appointment by their due date|
-|v1.0|systematic student|I can see my list upfront |know what tasks I have clear for the day|
-|v1.0|active student|I can view the block of outstanding schedules for the month displayed (coming feature)|check if I can add further bookings for that month|
-|v1.0|fast-moving student|I can view the the day's block of remaining schedules|remind myself of the schedules done and which ones left to attend to that day|
-|v1.0|studious student|I can input a blocking period into the database|so that I'm unable to book within that critical period|
-|v2.0|student|I can save or load at start up my appointments and schedule|not need to re-create them everytime I log in|
-|v2.0|structured student|I can see my appointments arranged together and tasks arranged together|have a clear distinct view of appointments and tasks|
-|v2.0|student who always does late minute work|I want to see tasks or appointments going to be due being highlighted to me in ordered deadline date and time|can meet the deadline (coming feature)|
-|v2.0|social student|I can view the block of weekend outstanding schedules for the entire current month displayed|check if I can add further bookings for the weekends|
-|v2.0|busy student|I can quit the application immediately with an automatic save|move on to my other activities quickly|
+|v1.0|new user|see help usage instructions|refer to them when I forget how to use the application (coming feature)|
+|v1.0|regular user|I can add in a task entry in one line|make an entry and have it stored online fast|
+|v1.0|a quick user|I can edit a booking entry description|modify an entry description easily at will (coming feature)|
+|v1.0|date planner|I find a booking item by date|locate a to-do without having to go through the entire list (coming feature)|
+|v1.0|systematic person|I can see my list upfront |know what tasks I have currently|
+|v2.0|active student|I can update the done status of a task|check if I have done the task or not|
+|v2.0|student|I can save or load at start up my tasks database|not need to re-create them everytime I start the app|
+|v2.0|structured student or user|I can see my tasks as they have been entered chronologically|have a clear distinct view of the various tasks|
+|v2.0|on-the-go user|I can use command short forms instead of spelling out the full command name|save time inputting lots of entries|
+|v2.0|busy person|I can quit the application immediately without the need to do a manual save|move on to my other activities quickly|
 
 
 ## Non-Functional Requirements
-1. Users are able to run the application as long as Java11 is installed
-2. The application has been designed to handle up to 100’s of user appointments optimally without affecting its performance.
+1. Users are able to run the application as long as Java 11 is installed.
+2. The application has been designed to handle up to 100’s of user appointments optimally, without affecting its performance.
 3. The application should preferably be executable on Windows OS or compatible software-emulated terminal.
-4. User-friendly features incorporated in helpful messages feedback and diagnostic prompts (more to come) 
+4. User-friendly features incorporated in helpful messages feedback and diagnostic prompts.
+5. Enable LisGenie App window to be resizable instead of staying a fixed size (future feature). 
 
 
-## JustBook's Process Workflow
+## LisGenie GUI App Class UML Diagram
 
-![workflow](JustBook_process_diag.png)
-
-Fig 4. - JustBook App Activity Diagram<br/><br/>
-The diagram illustrates the possible branches leading to various outcomes based on the user's decisions.
-
-The model illustrates a possible regular process flow of a user starting up the JustBook application with an upcoming feature.
-The user launches the application and is prompted to log in: if the user does not have an account within the application,
-the user will be prompted to create an account and redirected to log in again _(coming feature)_. Following that, the 
-user is presented with options on utilising the application as illustrated in the diagram. Current version has the user
-enter a chosen username instead.
+![LisGenie UML Class Diagram](/src/LisGenie_UML.png)
 
 
 ## Glossary
 
 * **Mainstream OS** - Windows, Linux, Unix, OS-X
-* **JustBook App**  - A single-user command line app for making and storing student bookings online 
-* **CLI**           - Command Line Interface
-* **booking**       - A typed entry consisting of booking text description, a start DateTime and end DateTime 
-* **ISO (time standard)** - For Java time Standards, it follows this format: "yyyy-MM-dd HH:mm"
-* **DateTime**     - Java LocalDateTime implemented with format as "yyy-M-d HH:mm", using a 24 hr format
+* **LisGenie GUI App**  - A single-user command line app with minimal GUI support, for making, storing and managing task registration online 
+* **CLI** - Command Line Interface
+* **GUI** - Graphical User Interface
+* **Task** - A User input string specifying the description of and or its due date of a todo, deadline or event task 
+* **JavaFx** - a set of graphics and media packages that enables developers to design, create, test, debug, and deploy rich client applications that operate consistently across diverse platforms
+
 
 ## Instructions for manual testing
 
 - Ensure Java jdk 11 is installed
-- Download the justbook.jar file from Release v2.0
-- Obtain a sample test file, e.g. justbook.txt with saved entries (correctly formatted)
-- Copy the sample test file to a local folder named data
-- start up the app, eg.` java -jar justbook.jar` via a windows cmd or compatible terminal
-- Type in a username of your choice
-- Type `show --all` or `show all` to check the display list tallies with those saved in the justbook.txt file
-- Sample instruction:
+- Download the LisGenie.jar file from Release v3.1
+- Double-click on the jar file or open a terminal window and cd to the folder or location of the downloaded LisGenie.jar file and type:
+```Java
+`java -jar {filename}.jar`, e.g. `java -jar lisGenie.jar`
+```
+- Enter an App CLI command into the textbox provided, then press enter, or click the sendButton to start bot chat.
+  
+  
+## Sample "list" instruction - GUI ChatBox Output Display:
+![LisGenie ChatBox](/src/lisgenieChatBox.png)
 
-<img width="552" alt="Screenshot 2021-10-22 at 12 40 41 PM" src="https://user-images.githubusercontent.com/88772711/138399952-42c4ebfa-ac1a-4a35-922b-c9979d7b1402.png">
 
-## Instructions for IO/Regression testing
-1. Navigate to text-ui-test folder
-2. Depending on your (User's) OS, if Windows, run runtestmain.bat, if Linux or macOS, navigate to the test folders and run runtest.sh
-3. The CMD window or shell output will display if the comparison between the expected output and actual output are the same
-4. If there are any differences, they will be displayed at the CMD or shell window as well.
-5. The regression test would have passed if no differences are found.
