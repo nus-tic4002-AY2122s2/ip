@@ -33,6 +33,11 @@ sourceSets {
             srcDirs = ['src/main']
         }
     }
+    test{
+        java{
+            srcDirs = ['src/test']
+        }
+    }
 }
 application {
     mainClassName = "duke.Duke"
