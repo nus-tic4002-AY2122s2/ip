@@ -4,7 +4,7 @@ package duke.task;
  * The parent class of Deadline, Event and Todo.
  * */
 public class Task {
-    protected String description;
+    public String description;
     protected boolean isDone;
 
     /**

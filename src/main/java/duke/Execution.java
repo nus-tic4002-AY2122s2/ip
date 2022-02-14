@@ -7,6 +7,7 @@ import duke.command.ListCommand;
 import duke.command.AddEventCommand;
 import duke.command.DeleteCommand;
 import duke.command.FindCommand;
+import duke.command.EditCommand;
 import duke.command.ByeCommand;
 import duke.exception.CommandException;
 
@@ -31,7 +32,7 @@ public class Execution {
     private static void checkCommand(String command) throws CommandException {
         if (!(command.equals("todo") || command.equals("deadline") || command.equals("event")
                 || command.equals("bye") || command.equals("list") || command.equals("done")
-                || command.equals("delete") || command.equals("find"))) {
+                || command.equals("delete") || command.equals("find") || command.equals("edit"))) {
             throw new CommandException();
         }
     }
@@ -65,6 +66,9 @@ public class Execution {
                 break;
             case "find":
                 new FindCommand(fullCommand).run(taskList);
+                break;
+            case "edit":
+                new EditCommand(fullCommand).run(taskList);
                 break;
             case "bye":
                 new ByeCommand(fullCommand).run(taskList);
