@@ -1,4 +1,4 @@
-package taskTest;
+package task;
 
 import duke.task.Todo;
 import org.junit.jupiter.api.Test;

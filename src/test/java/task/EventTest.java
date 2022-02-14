@@ -1,4 +1,4 @@
-package taskTest;
+package task;
 
 import duke.Parser;
 import duke.task.Event;
