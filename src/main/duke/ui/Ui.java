@@ -13,6 +13,9 @@ import duke.task.TaskList;
 public class Ui {
     private Scanner input;
 
+    public Ui() {
+        input = new Scanner(System.in);
+    }
     public void printTask(Task t) {
         System.out.println(t.toString());
     }
@@ -29,6 +32,9 @@ public class Ui {
         System.out.println("No events on this date.");
     }
 
+    /**
+     * @param results
+     */
     public void printFindResultsMsg(ArrayList<Task> results) {
         if (results.size() != 0) {
             System.out.println("Here are the matching tasks in your list:\n");
@@ -38,6 +44,9 @@ public class Ui {
         }
     }
 
+    /**
+     * @param t
+     */
     public void printEditTaskMsg(Task t) {
         System.out.println(String.format("Editing task: %s", t.toString()));
         System.out.println(String.format("Input new description for %s.", t.getClass().getSimpleName()));
@@ -47,20 +56,33 @@ public class Ui {
         System.out.println("Input new date for event/deadline.");
     }
 
+    /**
+     * @param tasks
+     */
     public void printAddMsg(TaskList tasks) {
         System.out.println("Got it. I've added this task:");
-        System.out.println(tasks.get(tasks.size() - 1).toString());   //increment size after printing the task added.
-        System.out.println(String.format("Now you have %d %s in the list.", tasks.size(), (tasks.size() > 1) ? "tasks" : "task"));
+        System.out.println(tasks.get(tasks.size() - 1).toString()); //increment size after printing the task added.
+        System.out.println(String.format("Now you have %d %s in the list.",
+                tasks.size(), (tasks.size() > 1) ? "tasks" : "task"));
     }
 
     public void printByeMsg() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
+    /**
+     * @param currTask
+     * @param tasks
+     */
     public void printDeleteMsg(Task currTask, TaskList tasks) {
-        System.out.println(String.format("Noted. I've removed this task:\n %s\nNow you have %d tasks in the list.", currTask, tasks.size()));
+        System.out.println(String.format("Noted. I've removed this task:"
+                + "\n %s\nNow you have %d tasks in the list.", currTask, tasks.size()));
     }
 
+    /**
+     * @param t
+     * @param pos
+     */
     public void printDoneMsg(TaskList t, int pos) {
         Task currTask = t.get(pos);
         if (currTask.isDone()) {
@@ -94,8 +116,4 @@ public class Ui {
         return inputStr;
     }
 
-    public Ui() {
-        input = new Scanner(System.in);
-
-    }
 }

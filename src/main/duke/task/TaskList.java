@@ -41,6 +41,9 @@ public class TaskList {
         return listTasks(tasks);
     }
 
+    /**
+     * @return a formatted list from listTasks()
+     */
     public String printTasks() {
         String list = listTasks();
         System.out.print(list);
@@ -90,6 +93,10 @@ public class TaskList {
         return tasks.add(t);
     }
 
+    /**
+     * @param i
+     * @return
+     */
     public Task remove(int i) {
         if (i < this.size()) {
             return tasks.remove(i);
@@ -102,6 +109,10 @@ public class TaskList {
         return tasks.get(i);
     }
 
+    /**
+     * @param s
+     * @return
+     */
     public ArrayList<Task> find(String s) {
         ArrayList<Task> result = new ArrayList<>();
         for (Task t : tasks) {
@@ -112,6 +123,9 @@ public class TaskList {
         return result;
     }
 
+    /**
+     * @param i
+     */
     public void done(int i) {
         Task currTask = get(i);
         assert currTask != null;
@@ -122,6 +136,10 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * @param pos
+     * @param t
+     */
     public void edit(int pos, Task t) {
         assert pos < tasks.size();
         tasks.set(pos, t);

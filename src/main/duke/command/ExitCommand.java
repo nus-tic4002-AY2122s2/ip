@@ -6,6 +6,10 @@ import duke.ui.Ui;
 
 public class ExitCommand extends Command {
 
+    public ExitCommand() {
+        bExit = true;
+    }
+
     /**
      * Writes to savefile, then prints goodbye message on console, finally flags for console to exit.
      */
@@ -15,7 +19,4 @@ public class ExitCommand extends Command {
         ui.printByeMsg();
     }
 
-    public ExitCommand() {
-        bExit = true;
-    }
 }
