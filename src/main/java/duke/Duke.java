@@ -17,7 +17,7 @@ public class Duke {
         this.filePath = "data/duke.txt";
     }
 
-    private void run() {
+    public void run() {
         Storage storage = new Storage(filePath);
         storage.loadFile(taskList);
         UI.welcome();
