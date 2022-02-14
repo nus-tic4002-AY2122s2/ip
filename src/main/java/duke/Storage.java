@@ -5,8 +5,8 @@ import duke.task.Event;
 import duke.task.Todo;
 
 import java.io.BufferedReader;
-import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -38,14 +38,14 @@ public class Storage {
                 case "T":
                     taskList.tasks.add(new Todo(command[2].trim()));
                     taskList.size++;
-                    if (command[1].trim().equals("\u2713")) {
+                    if (command[1].trim().equals("Y")) {
                         taskList.tasks.get(taskList.size - 1).markAsDone();
                     }
                     break;
                 case "E":
                     taskList.tasks.add(new Event(command[2].trim(), command[3].trim(),
                             Parser.convertDate(command[3].trim())));
-                    if (command[1].trim().equals("\u2713")) {
+                    if (command[1].trim().equals("Y")) {
                         taskList.tasks.get(taskList.size - 1).markAsDone();
                     }
                     taskList.size++;
@@ -53,11 +53,13 @@ public class Storage {
                 case "D":
                     taskList.tasks.add(new Deadline(command[2].trim(), command[3].trim(),
                             Parser.convertDate(command[3].trim())));
-                    if (command[1].trim().equals("\u2713")) {
+                    if (command[1].trim().equals("Y")) {
                         taskList.tasks.get(taskList.size - 1).markAsDone();
                     }
                     taskList.size++;
                     break;
+                default:
+                    System.out.println("Data format is not correct.");
                 }
             }
         } catch (IOException e) {
@@ -73,13 +75,12 @@ public class Storage {
      * */
     public void saveFile(TaskList taskList) {
         try {
-            FileOutputStream out = new FileOutputStream(filePath);
+            FileWriter fw = new FileWriter(filePath);
+
             for (int i = 0; i < taskList.tasks.size(); i++) {
-                String s = taskList.tasks.get(i).save_toString() + System.lineSeparator();
-                byte b[] = s.getBytes();
-                out.write(b);
+                fw.write(taskList.tasks.get(i).save_toString() + System.lineSeparator());
             }
-            out.close();
+            fw.close();
         } catch (IOException e) {
             System.out.println("Oops!! Cannot save file!");
         }

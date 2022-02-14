@@ -1,6 +1,13 @@
 package duke;
 
-import duke.command.*;
+import duke.command.AddDeadlineCommand;
+import duke.command.AddTodoCommand;
+import duke.command.DoneCommand;
+import duke.command.ListCommand;
+import duke.command.AddEventCommand;
+import duke.command.DeleteCommand;
+import duke.command.FindCommand;
+import duke.command.ByeCommand;
 import duke.exception.CommandException;
 
 /**
@@ -63,6 +70,8 @@ public class Execution {
                 new ByeCommand(fullCommand).run(taskList);
                 isExit = true;
                 break;
+            default:
+                System.out.println("Command is not correct!");
             }
         } catch (CommandException e) {
             System.out.println("OOPS!!! Pls key in the valid command");
