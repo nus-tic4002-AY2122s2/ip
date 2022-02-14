@@ -45,18 +45,18 @@ public class Storage {
                 case "E":
                     taskList.tasks.add(new Event(command[2].trim(), command[3].trim(),
                             Parser.convertDate(command[3].trim())));
+                    taskList.size++;
                     if (command[1].trim().equals("Y")) {
                         taskList.tasks.get(taskList.size - 1).markAsDone();
                     }
-                    taskList.size++;
                     break;
                 case "D":
                     taskList.tasks.add(new Deadline(command[2].trim(), command[3].trim(),
                             Parser.convertDate(command[3].trim())));
+                    taskList.size++;
                     if (command[1].trim().equals("Y")) {
                         taskList.tasks.get(taskList.size - 1).markAsDone();
                     }
-                    taskList.size++;
                     break;
                 default:
                     System.out.println("Data format is not correct.");

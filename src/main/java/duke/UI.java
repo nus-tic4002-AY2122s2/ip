@@ -20,7 +20,7 @@ public class UI {
                 + "|____/ \\__,_|_|\\_\\___|";
         System.out.println("Hello from\n" + logo);
         splitLine();
-        System.out.println("Hello! I'm duke.Duke");
+        System.out.println("Hello! I'm Duke.");
         System.out.println("What can I do for you?");
         splitLine();
     }

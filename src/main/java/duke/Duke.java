@@ -1,6 +1,7 @@
 package duke;
 
 import duke.task.Task;
+import javafx.application.Application;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,10 @@ public class Duke {
                 UI.splitLine();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Duke().run();
     }
 
     /**
