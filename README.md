@@ -12,6 +12,13 @@
 }
 ```
 
+### Gradle, and why even YCombinator hates it.
+[Link To Source](https://news.ycombinator.com/item?id=25801986)
+
+### Gradle Links that helped with setup:
+- [Cannot find main class](https://stackoverflow.com/questions/24924932/gradle-could-not-find-or-load-main-class)
+- [Example build.gradle for custom project layout](https://docs.gradle.org/current/userguide/java_plugin.html)
+
 ## Key classes in `/src/main/java`
 > │   Duke.java  
 > │  
@@ -44,17 +51,29 @@
 > │       Ui.java
 
 ## Task List
-- [ ] Coding Standard
-- [ ] Code Quality
-- [ ] Packages
-- [ ] Level 6
-- [ ] Level 7
-- [ ] Level 8
-- [ ] Level 9
-- [ ] More OOP
-- [ ] Jar
-- [ ] J-Unit
-- [ ] Java Docs
+### Work In Progress
+- [ ] Gradle
+- [ ] CheckStyle
+- [ ] Level 10
+- [ ] Release New Jar
+- [ ] Continuous Integration
+- [ ] Add an Extension
+- [ ] Update Website
+- [ ] Final Submission
+
+
+### Completed Tasks
+- [X] Coding Standard
+- [X] Code Quality
+- [X] Packages
+- [X] Level 6
+- [X] Level 7
+- [X] Level 8
+- [X] Level 9
+- [X] More OOP
+- [X] Jar
+- [X] J-Unit
+- [X] Java Docs
 
 
 ## Why C#/.NET is superior
