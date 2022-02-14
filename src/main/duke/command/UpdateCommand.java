@@ -15,14 +15,32 @@ import duke.ui.Ui;
  */
 public class UpdateCommand extends Command {
 
+    private Operation operation;
+    private int position;
+    private Task task;
+
+
+    /**
+     * @param operation
+     * @param task
+     */
+    public UpdateCommand(Operation operation, Task task) {
+        this.operation = operation;
+        this.task = task;
+    }
+
+    /**
+     * @param operation
+     * @param pos
+     */
+    public UpdateCommand(Operation operation, int pos) { //inputted index is not valid. Try again.
+        this.operation = operation;
+        position = pos;
+    }
 
     public enum Operation {
         Done, Delete, Add, Edit;
     }
-
-    private Operation operation;
-    private int position;
-    private Task task;
 
     public Task getTask() {
         return task;
@@ -47,50 +65,41 @@ public class UpdateCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         switch (operation) {
-            case Add:
-                tasks.add(task);
-                ui.printAddMsg(tasks);
-                break;
-            case Done:
-                ui.printDoneMsg(tasks, position);
-                tasks.done(position);
-                break;
-            case Delete:
-                ui.printDeleteMsg(tasks.remove(position), tasks);
-                break;
-            case Edit:
-                Task e_task = tasks.get(position);
-                ui.printEditTaskMsg(e_task);
-                e_task.setDescription(ui.readCommand());
-                if (e_task.getClass() == Deadline.class || e_task.getClass() == Event.class) {
-                    ui.printEditDateMsg();
-                    String date_str = ui.readCommand();
-                    if (e_task.getClass() == Deadline.class) {
-                        Deadline d = (Deadline) e_task;
-                        d.setDeadline(date_str);
-                        e_task = d;
-                    } else {
-                        Event e = (Event) e_task;
-                        e.setStart_endTime(date_str);
-                        e_task = e;
-                    }
+        case Add:
+            tasks.add(task);
+            ui.printAddMsg(tasks);
+            break;
+        case Done:
+            ui.printDoneMsg(tasks, position);
+            tasks.done(position);
+            break;
+        case Delete:
+            ui.printDeleteMsg(tasks.remove(position), tasks);
+            break;
+        case Edit:
+            Task eTask = tasks.get(position);
+            ui.printEditTaskMsg(eTask);
+            eTask.setDescription(ui.readCommand());
+            if (eTask.getClass() == Deadline.class || eTask.getClass() == Event.class) {
+                ui.printEditDateMsg();
+                String dateStr = ui.readCommand();
+                if (eTask.getClass() == Deadline.class) {
+                    Deadline d = (Deadline) eTask;
+                    d.setDeadline(dateStr);
+                    eTask = d;
+                } else {
+                    Event e = (Event) eTask;
+                    e.setStartEndTime(dateStr);
+                    eTask = e;
                 }
-                tasks.edit(position, e_task);
-                ui.printTask(tasks.get(position));
-                break;
-            default:
-                ui.printErrorMsg(new DukeUnknownException());
-                break;
+            }
+            tasks.edit(position, eTask);
+            ui.printTask(tasks.get(position));
+            break;
+        default:
+            ui.printErrorMsg(new DukeUnknownException());
+            break;
         }
     }
 
-    public UpdateCommand(Operation operation, int pos) {    //inputted index is not valid. Try again.
-        this.operation = operation;
-        position = pos;
-    }
-
-    public UpdateCommand(Operation operation, Task task) {
-        this.operation = operation;
-        this.task = task;
-    }
 }

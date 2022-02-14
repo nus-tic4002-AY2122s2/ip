@@ -1,11 +1,11 @@
 package duke.ui;
 
-import duke.task.Task;
-import duke.task.TaskList;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Primarily for printing messages to console, also passes input to Parser. Refer to A-MoreOOP
@@ -20,18 +20,20 @@ public class Ui {
     public void printEventsOnDateMsg(LocalDateTime dt) {
         System.out.println(String.format("Events and Deadlines on %s", dt.toLocalDate().toString()));
     }
+
     public void printEventsOnDateMsg(String dt) {
         System.out.println(String.format("Events and Deadlines on %s", dt));
     }
+
     public void printNoEventOnDateMsg() {
         System.out.println("No events on this date.");
     }
 
-    public void printFindResultsMsg(ArrayList<Task> results){
-        if(results.size() != 0) {
+    public void printFindResultsMsg(ArrayList<Task> results) {
+        if (results.size() != 0) {
             System.out.println("Here are the matching tasks in your list:\n");
             System.out.println(TaskList.listTasks(results));
-        }else {
+        } else {
             System.out.println("No results found!");
         }
     }

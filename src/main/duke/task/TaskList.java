@@ -1,29 +1,46 @@
 package duke.task;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.exception.DukeUnknownException;
 import duke.storage.Storage;
 
-import java.util.ArrayList;
 
 /**
- * Class representative of List of Task with helper methods. contains the task list e.g., it has operations to add/delete tasks in the list.
+ * Class representative of List of Task with helper methods.
+ * contains the task list e.g., it has operations to add/delete tasks in the list.
  * Refer to More OOP.
  */
 public class TaskList {
     private ArrayList<Task> tasks;
 
-    public static String listTasks(ArrayList<Task> task_list) {
+    /**
+     * @param s
+     * @throws DukeException
+     */
+    public TaskList(Storage s) throws DukeException {
+        tasks = new ArrayList<>();
+        s.readSaveFile(this);
+    }
+
+    /**
+     * @param taskList
+     * @return
+     */
+    public static String listTasks(ArrayList<Task> taskList) {
         String tasksStr = "";
         int i = 0;
-        for (Task t : task_list) {
+        for (Task t : taskList) {
             tasksStr += String.format("%d: %s\n", ++i, t);
         }
         return tasksStr;
     }
+
     public String listTasks() {
         return listTasks(tasks);
     }
+
     public String printTasks() {
         String list = listTasks();
         System.out.print(list);
@@ -32,6 +49,7 @@ public class TaskList {
 
     /**
      * Parses the string passed over from the UpdateCommand (Add) and adds into the list.
+     *
      * @param s
      * @return True if successfully added, else False.
      * @throws DukeException
@@ -39,30 +57,30 @@ public class TaskList {
     public boolean add(String s) throws DukeException {
         Task t;
         boolean done = true;
-        String[] str_arr = s.split(" ");
-        int startDescIndex = s.indexOf(String.format("[%c]", Task.CHECKMARK));  // done
-        int lastDescIndex = s.length();
-        if (startDescIndex == -1) {
-            startDescIndex = s.indexOf(String.format("[%c]", Task.CROSSMARK));  //not done
+        String[] strArr = s.split(" ");
+        int startDescInd = s.indexOf(String.format("[%c]", Task.CHECKMARK)); // done
+        int lastDescInd = s.length();
+        if (startDescInd == -1) {
+            startDescInd = s.indexOf(String.format("[%c]", Task.CROSSMARK)); //not done
             done = false;
         }
-        switch (str_arr[1].charAt(1)) {
-            case 'D':
-                //1: [D][X] tic2002 (by: today)
-                lastDescIndex = s.lastIndexOf(" (by: ");
-                t = new Deadline(s.substring(startDescIndex + 4, lastDescIndex), s.substring(lastDescIndex + 6, s.length() - 1));
-                break;
-            case 'E':
-                //2: [E][X] tp visit (at: today)
-                lastDescIndex = s.lastIndexOf(" (at: ");
-                t = new Event(s.substring(startDescIndex + 4, lastDescIndex), s.substring(lastDescIndex + 6, s.length() - 1));
-                break;
-            case 'T':
-                //234: [T][X] awd
-                t = new ToDo(s.substring(startDescIndex + 4, lastDescIndex));
-                break;
-            default:
-                throw new DukeUnknownException();
+        switch (strArr[1].charAt(1)) {
+        case 'D':
+            //1: [D][X] tic2002 (by: today)
+            lastDescInd = s.lastIndexOf(" (by: ");
+            t = new Deadline(s.substring(startDescInd + 4, lastDescInd), s.substring(lastDescInd + 6, s.length() - 1));
+            break;
+        case 'E':
+            //2: [E][X] tp visit (at: today)
+            lastDescInd = s.lastIndexOf(" (at: ");
+            t = new Event(s.substring(startDescInd + 4, lastDescInd), s.substring(lastDescInd + 6, s.length() - 1));
+            break;
+        case 'T':
+            //234: [T][X] awd
+            t = new ToDo(s.substring(startDescInd + 4, lastDescInd));
+            break;
+        default:
+            throw new DukeUnknownException();
         }
         t.setDone(done);
         return tasks.add(t);
@@ -73,9 +91,11 @@ public class TaskList {
     }
 
     public Task remove(int i) {
-        if (i < this.size())
+        if (i < this.size()) {
             return tasks.remove(i);
-        else throw new IndexOutOfBoundsException("Index out of bounds");
+        } else {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
     }
 
     public Task get(int i) {
@@ -107,8 +127,4 @@ public class TaskList {
         tasks.set(pos, t);
     }
 
-    public TaskList(Storage s) throws DukeException {
-        tasks = new ArrayList<>();
-        s.readSaveFile(this);
-    }
 }

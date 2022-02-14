@@ -1,8 +1,5 @@
 package duke.storage;
 
-import duke.exception.DukeException;
-import duke.task.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,6 +7,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
+
+import duke.exception.DukeException;
+import duke.task.TaskList;
 
 /**
  * deals with loading tasks from the file and saving tasks in the file. Refer to More OOP.
@@ -52,7 +52,7 @@ public class Storage {
         Path p = f.toPath();
 
         try {
-            if(!Files.exists(p.getParent())){
+            if (!Files.exists(p.getParent())) {
                 //System.out.println(String.format("%s directory does not exist.", p.getParent().toAbsolutePath()));
                 p.getParent().toFile().mkdir();
             }
@@ -69,7 +69,7 @@ public class Storage {
     }
 
     public Storage(String path_str) {
-        this.path_str = (!path_str.isEmpty() || !path_str.isBlank())? path_str : "duke.txt";
+        this.path_str = (!path_str.isEmpty() || !path_str.isBlank()) ? path_str : "duke.txt";
     }
 
 }

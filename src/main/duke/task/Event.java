@@ -1,45 +1,50 @@
 package duke.task;
 
-import duke.exception.DukeMissingDescException;
-
 import java.time.LocalDateTime;
+
+import duke.exception.DukeMissingDescException;
 
 /**
  * Task with specific date of occurrence, can understand dates and times.
  * Refer to Level 8
  */
 public class Event extends Task {
-    private LocalDateTime start_endTime;
-    private String raw_start_endTime;
+    private LocalDateTime startEndTime;
+    private String rawStartEndTime;
 
-    public String getRaw_start_endTime() {
-        return raw_start_endTime;
+    /**
+     * @param description
+     * @param startEndTime
+     * @throws DukeMissingDescException
+     */
+    public Event(String description, String startEndTime) throws DukeMissingDescException {
+        super(description);
+        setStartEndTime(startEndTime);
+    }
+
+    public String getRawStartEndTime() {
+        return rawStartEndTime;
     }
 
     /**
      * @return start_endTime if string was valid ISO DateTime, else null.
      */
-    public LocalDateTime getStart_endTime() {
-        return start_endTime;
+    public LocalDateTime getStartEndTime() {
+        return startEndTime;
     }
 
     /**
      * tries to set start_endTime if parsable.
-     * @param start_endTime string passed in by user input
+     * @param startEndTime string passed in by user input
      */
-    public void setStart_endTime(String start_endTime) {
-        this.raw_start_endTime = start_endTime;
-        this.start_endTime = Parser.parseDateTimeStr(start_endTime);
-    }
-
-    public Event(String description, String start_endTime) throws DukeMissingDescException {
-        super(description);
-        setStart_endTime(start_endTime);
+    public void setStartEndTime(String startEndTime) {
+        this.rawStartEndTime = startEndTime;
+        this.startEndTime = Parser.parseDateTimeStr(startEndTime);
     }
 
     @Override
     public String toString() {
-        String dateStr = (getStart_endTime() != null) ? getStart_endTime().toString() : getRaw_start_endTime();
+        String dateStr = (getStartEndTime() != null) ? getStartEndTime().toString() : getRawStartEndTime();
         return String.format("[E]%s (at: %s)", super.toString(), dateStr);
     }
 }

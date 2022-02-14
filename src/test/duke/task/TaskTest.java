@@ -1,13 +1,15 @@
 package duke.task;
 
-import duke.exception.DukeMissingDescException;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import duke.exception.DukeMissingDescException;
 
 
 public class TaskTest {
     @Test
-    public void SetDoneTest() throws DukeMissingDescException {
+    public void setDoneTest() throws DukeMissingDescException {
         Task t = new ToDo("Test Task.");
         t.setDone(false);
         assertEquals(false, t.isDone);
@@ -15,7 +17,7 @@ public class TaskTest {
         assertEquals(true, t.isDone);
     }
     @Test
-    public void SetDescriptionTest() throws DukeMissingDescException {
+    public void setDescriptionTest() throws DukeMissingDescException {
         String desc = "Test Task.";
         Task t = new ToDo(desc);
         desc = "Updated Description";

@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.exception.DukeMissingDescException;
-
 import java.time.LocalDateTime;
+
+import duke.exception.DukeMissingDescException;
 
 /**
  * Deadline can understand dates and times.
@@ -10,33 +10,45 @@ import java.time.LocalDateTime;
  */
 public class Deadline extends Task {
     private LocalDateTime deadline;
-    private String raw_deadline;
+    private String rawDeadline;
+
+
+    /**
+     * Constructor
+     * @param description
+     * @param deadline
+     * @throws DukeMissingDescException
+     */
+    public Deadline(String description, String deadline) throws DukeMissingDescException {
+        super(description);
+        setDeadline(deadline);
+    }
+
     /**
      * @return DateTime representation of this Deadline object
      */
     public LocalDateTime getDeadline() {
         return deadline;
     }
-    public String getRaw_deadline(){
-        return raw_deadline;
+
+    public String getRawDeadline() {
+        return rawDeadline;
     }
+
     /**
      * Sets or updates this object's deadline.
+     *
      * @param deadline
      */
     public void setDeadline(String deadline) {
-        this.raw_deadline = deadline;
+        this.rawDeadline = deadline;
         this.deadline = Parser.parseDateTimeStr(deadline);
     }
 
-    public Deadline(String description, String deadline) throws DukeMissingDescException {
-        super(description);
-        setDeadline(deadline);
-    }
 
     @Override
     public String toString() {
-        String dateString = (getDeadline() != null) ? getDeadline().toString() : getRaw_deadline();
+        String dateString = (getDeadline() != null) ? getDeadline().toString() : getRawDeadline();
         return String.format("[D]%s (by: %s)", super.toString(), dateString);
     }
 }

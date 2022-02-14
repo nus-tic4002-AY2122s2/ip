@@ -12,7 +12,7 @@ public abstract class Command {
 
     protected boolean bExit = false;
 
-    public boolean isExit(){
+    public boolean isExit() {
         return bExit;
     }
 

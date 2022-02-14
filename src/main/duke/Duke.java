@@ -12,6 +12,9 @@ public class Duke {
     private Ui ui;
     private Storage storage;
 
+    /**
+     * Main class Duke Constructor
+     */
     public Duke() {
         storage = new Storage("data/duke.txt");
         ui = new Ui();
