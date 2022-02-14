@@ -42,7 +42,7 @@ From early on, the main code base follows the Open-Closed Principle as closely a
   
 The code is kept KISS as much as possible, to keep the program flow simple and uncluttered throughout, variable names and functions method names are also rather intuitive, improving the readability for the code reader.
 
-In a nutshell, the design patterns and principles were implemented OOP style throughout for easy scalability and modularity.
+In a nutshell, the design patterns and principles were implemented OOP style throughout for easy scalability, maintainability and modularity.
 With this approach, the earlier set down framework / design policies allow for more features to be added on more rapidly while still keeping in check the complexity (such as coupling) of the application body codes.
 
 ## Product scope
@@ -102,7 +102,8 @@ Our Value Proposition is that the app provides, throughout the app use, a visual
 2. The application has been designed to handle up to 100’s of user appointments optimally, without affecting its performance.
 3. The application should preferably be executable on Windows OS or compatible software-emulated terminal.
 4. User-friendly features incorporated in helpful messages feedback and diagnostic prompts.
-5. Enable LisGenie App window to be resizable instead of staying a fixed size (future feature). 
+5. LisGenie App window to be resizable instead of staying a fixed size (future feature). 
+6. Code base has been designed for robustness, easy scalability, modularity and maintenance.
 
 
 ## LisGenie GUI App Class UML Diagram
