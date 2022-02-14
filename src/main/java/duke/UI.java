@@ -84,6 +84,11 @@ public class UI {
         }
     }
 
+    public static void editMessage(ArrayList<Task> tasks, int index) {
+        System.out.println("Noted. I've edited this item: ");
+        System.out.println((index + 1) + "." + tasks.get(index).toString());
+    }
+
     /**
      * Prints bye message of duke.
      * */

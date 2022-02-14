@@ -63,4 +63,8 @@ public class Parser {
             return null;
         }
     }
+
+    public static String editedItem(String fullCommand) {
+        return fullCommand.split(" / ")[1];
+    }
 }
