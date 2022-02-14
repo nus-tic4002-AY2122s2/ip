@@ -10,16 +10,16 @@ public class TaskTest {
 
     @Test
     void getStatusIconTest() {
-        assertEquals("\u2718", task.getStatusIcon());
+        assertEquals("N", task.getStatusIcon());
     }
 
     @Test
     void toStringTest() {
-        assertEquals("[\u2718] join sports club", task.toString());
+        assertEquals("[N] join sports club", task.toString());
     }
 
     @Test
     void save_toStringTest() {
-        assertEquals("\u2718 | join sports club", task.save_toString());
+        assertEquals("N | join sports club", task.save_toString());
     }
 }

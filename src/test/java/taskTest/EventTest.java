@@ -11,16 +11,16 @@ public class EventTest {
 
     @Test
     void getStatusIconTest() {
-        assertEquals("\u2718", event.getStatusIcon());
+        assertEquals("N", event.getStatusIcon());
     }
 
     @Test
     void toStringTest() {
-        assertEquals("[E][\u2718] meeting (at: 10月 20 2021)", event.toString());
+        assertEquals("[E][N] meeting (at: 10月 20 2021)", event.toString());
     }
 
     @Test
     void save_toStringTest() {
-        assertEquals("E | \u2718 | meeting | 20-10-2021", event.save_toString());
+        assertEquals("E | N | meeting | 20-10-2021", event.save_toString());
     }
 }

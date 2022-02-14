@@ -11,16 +11,16 @@ public class DeadlineTest {
 
     @Test
     void getStatusIconTest() {
-        assertEquals("\u2718", deadline.getStatusIcon());
+        assertEquals("N", deadline.getStatusIcon());
     }
 
     @Test
     void toStringTest() {
-        assertEquals("[D][\u2718] return book (by: 10月 20 2021)", deadline.toString());
+        assertEquals("[D][N] return book (by: 10月 20 2021)", deadline.toString());
     }
 
     @Test
     void save_toStringTest() {
-        assertEquals("D | \u2718 | return book | 20-10-2021", deadline.save_toString());
+        assertEquals("D | N | return book | 20-10-2021", deadline.save_toString());
     }
 }

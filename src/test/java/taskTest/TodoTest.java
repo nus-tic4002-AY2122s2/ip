@@ -10,16 +10,16 @@ public class TodoTest {
 
     @Test
     void getStatusIconTest() {
-        assertEquals("\u2718", todo.getStatusIcon());
+        assertEquals("N", todo.getStatusIcon());
     }
 
     @Test
     void toStringTest() {
-        assertEquals("[T][\u2718] join sports club", todo.toString());
+        assertEquals("[T][N] join sports club", todo.toString());
     }
 
     @Test
     void save_toStringTest() {
-        assertEquals("T | \u2718 | join sports club", todo.save_toString());
+        assertEquals("T | N | join sports club", todo.save_toString());
     }
 }
