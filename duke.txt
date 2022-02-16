@@ -1,2 +1,2 @@
 [T][✓] read book
-[T][✗] watch
+[T][ ] watch

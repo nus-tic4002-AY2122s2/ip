@@ -24,7 +24,7 @@ public class TaskList {
      * @return true if the tasks was marked as done, else return false
      */
     private boolean isDone(String myString) {
-        return !myString.toLowerCase().contains("[✘]");
+        return !myString.toLowerCase().contains("[ ]");
     }
 
     /**

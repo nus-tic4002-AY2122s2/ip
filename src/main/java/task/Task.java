@@ -13,7 +13,7 @@ public abstract class Task {
     }
 
     private String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2717"); //return tick or X symbols
+        return (isDone ? "\u2713" : " "); //return tick or X symbols
     }
 
     /**
