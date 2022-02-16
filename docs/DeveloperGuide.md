@@ -3,15 +3,22 @@
 
 ## Design & implementation
 
-![](../../../../Downloads/developer_guide.drawio.png)
+  ![developer_guide drawio](https://user-images.githubusercontent.com/54314980/154280747-a0f4e6c7-96d7-4bf5-b627-c4ec5f907e4e.png)
+
 Diagram 1.0 Overall flow of the system
 
 
-![](../../../../Downloads/developer_guide_user.drawio.png)
+
+
+
+
+![developer_guide_user drawio](https://user-images.githubusercontent.com/54314980/154280786-f840b5c5-3d2f-46fe-bbfa-6e2c94d94906.png)
+
 Diagram 1.1 User interaction with the system
 
 `DialogBox.getUserDialog(input),
 DialogBox.getDukeDialog(input)`
+
 Manage user input and the message return to the user.
 
 
@@ -33,7 +40,7 @@ Currently, with the tradition of handwritten in a calendar book, it takes time f
 With this chatbot, users are able to search task using keyword.
 
 
-2.Non-economic friendly.
+2. Non-economic friendly.
 
 Books are made up of papers and papers are from trees. The more book we use, more trees are cut down.
 
@@ -48,11 +55,17 @@ These make the task management more interactive and enjoyable as well as increas
 ## User Stories
 
 | As a ... | I want to ... | So that I can ...|
+
 |--------|----------|---------------|------------------|
+
 |new user|Be greeted by application “Hi I’m Duke. How can I assist you today?” |Be aware that the application is running.|
+
 |user|Add a task |Not forget about the details.|
+
 |user|Delete a task  |Free up the list.|
+
 |user|View all tasks  | Refer to my past tasks that I've done before.|
+
 
 
 ## Non-Functional Requirements
