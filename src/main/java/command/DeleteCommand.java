@@ -19,10 +19,12 @@ public class DeleteCommand extends Command {
 
     /**
      * Executes DeleteCommand.
-     *  @param tasks   The tasks stored in an ArrayList.
+     * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
-     * @return
+     * @param exCommand The previous command entered. 
+     * @throws DukeException If the inputted index is out of range. 
+     * @return The delete confirmation response.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
@@ -33,10 +35,10 @@ public class DeleteCommand extends Command {
             num = Integer.parseInt(input.replaceAll("[\\D]", ""));
         }
         if (num > 0 && num <= tasks.sizeOfTask()) {
-            Task echo = tasks.returnTask(num - 1);
+            Task task = tasks.returnTask(num - 1);
             tasks.deleteTask(num - 1);
-            deletedTasks.addTask(echo);
-            return ui.printDeleteCommand(echo, tasks.sizeOfTask());
+            deletedTasks.addTask(task);
+            return ui.printDeleteCommand(task, tasks.sizeOfTask());
         } else {
             throw new DukeException("☹ Item not found.\n");
         }

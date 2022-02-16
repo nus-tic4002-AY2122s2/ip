@@ -17,10 +17,13 @@ public class UndoCommand extends Command {
     }
 
     /**
-     * Executes DeleteCommand.
+     * Executes UndoCommand.
      *  @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
+     * @param exCommand The previous command entered.
+     * @throws DukeException If the input string is 'undo' or not understandable. 
+     * @return The response.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
