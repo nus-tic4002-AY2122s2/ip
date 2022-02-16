@@ -16,7 +16,7 @@ public class ListCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         String s = tasks.printTasks();
         if (s.isEmpty()) {
-            System.out.println("No Tasks found!");
+            ui.printToUI("No Tasks found!");
         }
     }
 }
