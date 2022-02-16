@@ -23,8 +23,9 @@ public class AddDeadlineCommand extends Command {
      * @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
+     * @param exCommand The previous command entered. 
      * @throws EmptyException If an empty description is inputted.
-     * @return
+     * @return The response.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 

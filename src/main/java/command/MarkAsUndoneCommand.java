@@ -21,7 +21,9 @@ public class MarkAsUndoneCommand extends Command {
      *  @param tasks   The tasks stored in an ArrayList.
      * @param ui      The User Interface (UI).
      * @param storage The storage to allow reading and storing of tasks from and to a txt file.
-     * @return
+     * @param exCommand The previous command entered. 
+     * @throws DukeException If the index is out of range. 
+     * @return The response.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage, TaskList deletedTasks, 
