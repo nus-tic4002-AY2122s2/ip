@@ -70,7 +70,7 @@ Some example commands you can try:
 
 ## Features
 
-### Adding a todo task: todo
+### Adding a todo task: `todo`
 
 Add a new task to the list.
 
@@ -81,7 +81,7 @@ Example:
 todo wash toilet
 
 
-### Adding a task with deadline: deadline
+### Adding a task with deadline: `deadline`
 
 Add a new task to the list.
 
@@ -92,7 +92,7 @@ Example:
 deadline return book /by Sunday
 
 
-### Adding a event task: event
+### Adding a event task: `event`
 
 Add a new task to the list.
 
