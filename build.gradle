@@ -1,4 +1,4 @@
-ylugins {
+plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
@@ -24,8 +24,12 @@ test {
     }
 }
 
+application {
+    mainClassName = "Duke"
+}
+
 shadowJar {
-    archiveBaseName = "Duke"
+    archiveBaseName = "duke"
     archiveClassifier = null
 }
 
