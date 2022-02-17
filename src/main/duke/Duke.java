@@ -33,7 +33,11 @@ public class Duke extends Application {
         } catch (DukeException e) {
             ui.printErrorMsg(e);
         } catch (IndexOutOfBoundsException e) {
+            // should be due to unable to find.
+            ui.printToUI("Unable to find task, please try again.");
+        } catch (NumberFormatException e) {
             ui.printErrorMsg(e);
+            throw e;
         }
     }
 }

@@ -44,10 +44,8 @@ public class TaskList {
     /**
      * @return a formatted list from listTasks()
      */
-    public String printTasks() {
-        String list = listTasks();
-        System.out.print(list);
-        return list;
+    public String getTasks() {
+        return listTasks();
     }
 
     /**

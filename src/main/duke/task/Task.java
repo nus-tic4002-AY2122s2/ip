@@ -19,6 +19,7 @@ public abstract class Task {
     public Task(String description) throws DukeMissingDescException {
         setDescription(description);
         if (description.isEmpty() || description.isBlank()) {
+            System.out.println(String.format("description: %s", description));
             throw new DukeMissingDescException(getClass().getSimpleName().toLowerCase());
         }
         setDone(false);

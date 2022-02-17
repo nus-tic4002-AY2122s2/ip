@@ -126,6 +126,9 @@ public class Ui {
         return textToAdd;
     }
 
+    /**
+     * @param msg
+     */
     public void printToUI(String msg) {
         System.out.println(msg);
         dialogContainer.getChildren().add(getDialogLabel(msg, Color.BLUE, true));
@@ -207,10 +210,15 @@ public class Ui {
         }
     }
 
+    /**
+     * @param e
+     */
     public void printErrorMsg(Exception e) {
-        System.out.println(e.getMessage());
+        printToUI(e.getMessage());
     }
 
+    /**
+     */
     public void printHelloMsg() {
         printToUI("Hello! I'm Duke Nuke Em.");
         printToUI("What can I do for you?");
@@ -221,13 +229,7 @@ public class Ui {
      */
     public String readCommand() {
         String inputStr = "";
-        while (inputStr.isEmpty() || inputStr.isBlank()) {
-            try {
-                inputStr = input.nextLine().strip();
-            } catch (Exception e) {
-                System.out.println("Error parsing input. Try again.");
-            }
-        }
+        
         assert !inputStr.isEmpty() && !inputStr.isBlank();
         return inputStr;
     }

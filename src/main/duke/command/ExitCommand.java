@@ -8,7 +8,6 @@ import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 
-import java.util.concurrent.TimeUnit;
 
 public class ExitCommand extends Command {
 
@@ -30,6 +29,7 @@ public class ExitCommand extends Command {
                 try {
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
+                    ui.printToUI("Interrupted exit!");
                 }
                 return null;
             }
