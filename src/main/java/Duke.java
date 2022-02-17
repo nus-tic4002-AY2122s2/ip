@@ -16,7 +16,9 @@ import java.io.IOException;
 // Individual Features:
 //Better Search - e.g., find items even if the keyword matches the item only partially.
 // Snooze - Provide a way to easily snooze/postpone/reschedule tasks.
-// 'Do within a period' task - Provide support for managing tasks that need to be done within a certain period e.g., collect certificate between Jan 15 and 25th.
+// 'Do within a period' task
+// - Provide support for managing tasks that need to be done within a certain period
+// e.g., collect certificate between Jan 15 and 25th.
 
 
 public class Duke {
@@ -31,8 +33,8 @@ public class Duke {
      * Used to create a new Duke Instance. Initialise the ui,storage and tasks.
      * tasks will load from the storage. If there is an error, it will initialise on its own.
      *
-     * @param filePath The String filePath to storage
-     * @throws IOException
+     * @param  filePath filePath to storage
+     * @throws IOException throws IOException due to incorrect input
      */
 
     public Duke(String filePath) throws IOException {
@@ -52,7 +54,7 @@ public class Duke {
      * Used to keep the Duke Chat bot running. Scan for input then Parse the input into a command
      * Afterwards, execute the command. The process will keep running until the user types "bye"
      *
-     * @throws IOException
+     * @throws IOException throws IOException due to incorrect input
      */
     public void run() throws IOException {
         Command c;

@@ -15,7 +15,7 @@ public class Task {
 
 
     /**
-     * This is a constructor for a Task
+     * This is a constructor for a Task.
      *
      * @param description This describes the activity of the task.
      */
@@ -38,7 +38,7 @@ public class Task {
 
 
     /**
-     * This is an accessor of the description
+     * This is an accessor of the description.
      *
      * @return the description of the task.
      */
@@ -56,7 +56,7 @@ public class Task {
     }
 
     /**
-     * This converts the Task to a String for printing
+     * This converts the Task to a String for printing.
      *
      * @return the Task in the form of a String
      */

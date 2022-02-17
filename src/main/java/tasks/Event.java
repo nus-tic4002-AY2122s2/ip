@@ -26,24 +26,27 @@ public class Event extends Task {
         super(description);
         int indexOfTo = at.indexOf("to");
         try {
-            this.start = LocalDateTime.parse(at.substring(0, indexOfTo).trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-            this.end = LocalTime.parse(at.substring(indexOfTo).replace("to", "").trim(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+            this.start = LocalDateTime.parse(at.substring(0, indexOfTo).trim(),
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            this.end = LocalTime.parse(at.substring(indexOfTo).replace("to", "").trim(),
+                    DateTimeFormatter.ofPattern("HH:mm:ss"));
 
 
         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
             this.start = LocalDateTime.now();
             this.end = LocalTime.now();
-            System.out.println("Invalid Date Time was set. It will be set to the current " +
-                    "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
+            System.out.println("Invalid Date Time was set. It will be set to the current "
+                    + "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
         } finally {
             if (start.toLocalTime().compareTo(end) > 0) {
-                System.out.println("Notification: For the added event, start time is after end time. The event task will still be added.");
+                System.out.println("Notification: For the added event, "
+                        + "start time is after end time. The event task will still be added.");
             }
         }
     }
 
     /**
-     * This is a accessor for the object "at"
+     * This is a accessor for the object "at".
      *
      * @return the location of the event.
      */
@@ -64,16 +67,19 @@ public class Event extends Task {
     public void rescheduleAt(String at) {
         int indexOfTo = at.indexOf("to");
         try {
-            this.start = LocalDateTime.parse(at.substring(0, indexOfTo).trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-            this.end = LocalTime.parse(at.substring(indexOfTo).replace("to", "").trim(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+            this.start = LocalDateTime.parse(at.substring(0, indexOfTo).trim(),
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            this.end = LocalTime.parse(at.substring(indexOfTo).replace("to",
+                    "").trim(), DateTimeFormatter.ofPattern("HH:mm:ss"));
         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
             this.start = LocalDateTime.now();
             this.end = LocalTime.now();
-            System.out.println("Invalid Date Time was set. It will be set to the current " +
-                    "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
+            System.out.println("Invalid Date Time was set. It will be set to the current "
+                    + "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
         } finally {
             if (start.toLocalTime().compareTo(end) > 0) {
-                System.out.println("Notification: For the added event, start time is after end time. The event task will still be added.");
+                System.out.println("Notification: For the added event, start time is after end time. "
+                        + "The event task will still be added.");
             }
         }
     }

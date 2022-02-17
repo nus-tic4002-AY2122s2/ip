@@ -1,7 +1,16 @@
 package parser;//deals with making sense of the user command
 
 
-import commands.*;
+import commands.AddCommand;
+import commands.ChangeDoneCommand;
+import commands.ClearListCommand;
+import commands.Command;
+import commands.DeleteCommand;
+import commands.ExitCommand;
+import commands.FindCommand;
+import commands.HelpCommand;
+import commands.ListCommand;
+import commands.RescheduleCommand;
 import exceptions.DukeException;
 
 
@@ -13,7 +22,7 @@ import exceptions.DukeException;
 public class Parser {
 
     /**
-     * Constructor for Parser
+     * Constructor for Parser.
      */
     public Parser() {
     }
@@ -21,8 +30,8 @@ public class Parser {
     /**
      * This parses the input gotten from the ui. This method will parse and return the appropriate Command.
      *
-     * @param input
-     * @return Command
+     * @param input A string input.
+     * @return Command Returns a command class for execution
      * @throws DukeException When the input for option number in various Commands is not a number or when the input
      *                       for Adding a new Task is incomplete.
      */
@@ -43,76 +52,76 @@ public class Parser {
 
 
         switch (commandWord) {
-            case "bye":
-                return new ExitCommand();
-            case "blah":
-                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        case "bye":
+            return new ExitCommand();
+        case "blah":
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
 
-            case "list":
-                return new ListCommand();
+        case "list":
+            return new ListCommand();
 
-            case "/clear":
-                return new ClearListCommand();
+        case "/clear":
+            return new ClearListCommand();
 
-            case "/help":
-                return new HelpCommand();
+        case "/help":
+            return new HelpCommand();
 
-            case "find":
-                keyword = input.replaceFirst("find", "").trim();
-                return new FindCommand(keyword);
+        case "find":
+            keyword = input.replaceFirst("find", "").trim();
+            return new FindCommand(keyword);
 
-            case "done":
-                try {
-                    option = Integer.parseInt(input.replaceFirst("done", "").trim());
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Error: Invalid option number, your input is not a number");
-                }
+        case "done":
+            try {
+                option = Integer.parseInt(input.replaceFirst("done", "").trim());
+            } catch (NumberFormatException e) {
+                throw new DukeException("Error: Invalid option number, your input is not a number");
+            }
 
-                return new ChangeDoneCommand(option, true);
+            return new ChangeDoneCommand(option, true);
 
-            case "undone":
-                try {
-                    option = Integer.parseInt(input.replaceFirst("undone", "").trim());
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Error: Invalid option number, your input is not a number");
-                }
+        case "undone":
+            try {
+                option = Integer.parseInt(input.replaceFirst("undone", "").trim());
+            } catch (NumberFormatException e) {
+                throw new DukeException("Error: Invalid option number, your input is not a number");
+            }
 
-                return new ChangeDoneCommand(option, false);
+            return new ChangeDoneCommand(option, false);
 
 
-            case "delete":
-                try {
-                    option = Integer.parseInt(input.replace("delete", "").trim());
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Error: Invalid option number, your input is not a number");
-                }
-                return new DeleteCommand(option);
+        case "delete":
+            try {
+                option = Integer.parseInt(input.replace("delete", "").trim());
+            } catch (NumberFormatException e) {
+                throw new DukeException("Error: Invalid option number, your input is not a number");
+            }
+            return new DeleteCommand(option);
 
-            case "reschedule":
-                index = input.indexOf("/new");
-                secPart = input.substring(index);
-                secPart = secPart.replaceFirst("/new", "").trim();
+        case "reschedule":
+            index = input.indexOf("/new");
+            secPart = input.substring(index);
+            secPart = secPart.replaceFirst("/new", "").trim();
 
-                try {
-                    option = Integer.parseInt
-                            (input.substring(0, index).replaceFirst("reschedule", "").trim());
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Error: Invalid option number, your input is not a number");
-                }
+            try {
+                option = Integer.parseInt(input.substring(0, index).replaceFirst("reschedule",
+                        "").trim());
+            } catch (NumberFormatException e) {
+                throw new DukeException("Error: Invalid option number, your input is not a number");
+            }
 
-                return new RescheduleCommand(option, secPart);
+            return new RescheduleCommand(option, secPart);
 
-            case "todo":
-                description = input.replaceFirst("todo", "").trim();
-                return new AddCommand("todo", description, secPart);
+        case "todo":
+            description = input.replaceFirst("todo", "").trim();
+            return new AddCommand("todo", description, secPart);
 
-            case "event":
-            case "deadline":
-                return parseAddCommandSpecialTask(commandWord, input);
+        case "event":
+        case "deadline":
+            return parseAddCommandSpecialTask(commandWord, input);
 
-            default:
-                description = input;
-                return new AddCommand("task", description, secPart);
+        default:
+            description = input;
+            return new AddCommand("task", description, secPart);
 
         }
     }
@@ -124,16 +133,16 @@ public class Parser {
         String secPart = "";
         String separator = "";
         switch (taskType) {
-            case "event":
-                separator = "/at";
-                break;
+        case "event":
+            separator = "/at";
+            break;
 
-            case "deadline":
-                separator = "/by";
-                break;
+        case "deadline":
+            separator = "/by";
+            break;
 
-            default:
-                throw new DukeException("Error: Incomplete Command for Add Task.");
+        default:
+            throw new DukeException("Error: Incomplete Command for Add Task.");
         }
 
         try {
@@ -144,12 +153,12 @@ public class Parser {
             description = description.replaceFirst(taskType, "").trim();
         } catch (StringIndexOutOfBoundsException e) {
             switch (taskType) {
-                case "event":
-                    throw new DukeException("Error: Incomplete Command for Add Event");
-                case "deadline":
-                    throw new DukeException("Error: Incomplete Command for Add Deadline.");
-                default:
-                    throw new DukeException("Error: Incomplete Command for Adding a special task.");
+            case "event":
+                throw new DukeException("Error: Incomplete Command for Add Event");
+            case "deadline":
+                throw new DukeException("Error: Incomplete Command for Add Deadline.");
+            default:
+                throw new DukeException("Error: Incomplete Command for Adding a special task.");
             }
         }
 

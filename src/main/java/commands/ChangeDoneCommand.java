@@ -2,8 +2,8 @@ package commands;
 
 import exceptions.DukeException;
 import storage.Storage;
+import tasks.TaskList;
 import ui.Ui;
-import tasks.*;
 
 
 /**
@@ -44,8 +44,8 @@ public class ChangeDoneCommand extends Command {
                 doneLevel = " not done:";
             }
 
-            ui.printMessage(System.lineSeparator() + "Nice! I've marked this task as" + doneLevel +
-                    System.lineSeparator() + tasks.get(option - 1).toString());
+            ui.printMessage(System.lineSeparator() + "Nice! I've marked this task as" + doneLevel
+                    + System.lineSeparator() + tasks.get(option - 1).toString());
 
 
         } catch (IndexOutOfBoundsException e) {

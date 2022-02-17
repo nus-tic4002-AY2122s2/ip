@@ -15,7 +15,7 @@ public class Deadline extends Task {
     private LocalDateTime by;
 
     /**
-     * This is a constructor for the Deadline class
+     * This is a constructor for the Deadline class.
      *
      * @param description This describe the task for the deadline
      * @param by          This represents the date and time of the deadline
@@ -26,14 +26,14 @@ public class Deadline extends Task {
             this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
         } catch (DateTimeParseException e) {
             this.by = LocalDateTime.now();
-            System.out.println("Invalid Date Time set for /by. It will be set to the current " +
-                    "time. Format should be \"dd/MM/yyyy HH:mm:ss\" ");
+            System.out.println("Invalid Date Time set for /by. It will be set to the current "
+                    + "time. Format should be \"dd/MM/yyyy HH:mm:ss\" ");
         }
 
     }
 
     /**
-     * This is an accessor of the "by" object which represents the date and time of the dateline
+     * This is an accessor of the "by" object which represents the date and time of the dateline.
      *
      * @return the dateline of the task
      */
@@ -47,8 +47,8 @@ public class Deadline extends Task {
             this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("dd/M/yyyy HH:mm:ss"));
         } catch (DateTimeParseException e) {
             this.by = LocalDateTime.now();
-            System.out.println("Invalid Date Time set for /by. It will be set to the current " +
-                    "time. Format should be \"dd/MM/yyyy HH:mm:ss\" ");
+            System.out.println("Invalid Date Time set for /by. It will be set to the current "
+                    + "time. Format should be \"dd/MM/yyyy HH:mm:ss\" ");
         }
     }
 

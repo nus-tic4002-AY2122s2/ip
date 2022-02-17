@@ -2,8 +2,8 @@ package commands;
 
 import exceptions.DukeException;
 import storage.Storage;
+import tasks.TaskList;
 import ui.Ui;
-import tasks.*;
 
 /**
  * This represents the AddCommand class which adds a specific task to the task list.
@@ -14,7 +14,7 @@ public class AddCommand extends Command {
     String taskSecondPart;
 
     /**
-     * This is a constructor for the AddCommand
+     * This is a constructor for the AddCommand.
      *
      * @param type        This indicates the type or subclass of Task
      * @param description This describes the activity of the Task
@@ -41,8 +41,8 @@ public class AddCommand extends Command {
         tasks.addTask(taskType, taskDescription, taskSecondPart);
 
         int size = tasks.getSize();
-        ui.printMessage(System.lineSeparator() + "Got it. I've added this task:" +
-                System.lineSeparator() + tasks.get(size - 1).toString());
+        ui.printMessage(System.lineSeparator() + "Got it. I've added this task:"
+                + System.lineSeparator() + tasks.get(size - 1).toString());
 
         tasks.printNumberOfTasks();
     }

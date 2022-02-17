@@ -4,7 +4,11 @@ import tasks.Deadline;
 import tasks.Event;
 import tasks.TaskList;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -15,7 +19,7 @@ import java.util.ArrayList;
 public class Storage {
 
     private File directory;
-    private File f;
+    private File fi;
     private String filePath;
 
     //For reading files
@@ -38,11 +42,11 @@ public class Storage {
             this.directory.mkdir();
         }
 
-        this.f = new File(filePath);
+        this.fi = new File(filePath);
 
-        if (this.f.isFile() == false || this.f.exists() == false) {
+        if (this.fi.isFile() == false || this.fi.exists() == false) {
             System.out.println("File \"duke.text\" is not found, creating a new one");
-            this.f.createNewFile();
+            this.fi.createNewFile();
         }
 
         this.filePath = filePath;
@@ -72,23 +76,23 @@ public class Storage {
         for (int i = 0; i < size; i++) {
             temp = tasks.get(i).getClass().toString();
             switch (temp) {
-                case "class tasks.Task":
-                    firstPart = "O | ";
-                    break;
-                case "class tasks.ToDo":
-                    firstPart = "T | ";
-                    break;
-                case "class tasks.Deadline":
-                    firstPart = "D | ";
-                    secPart = " | " + ((Deadline) tasks.get(i)).getBy();
-                    break;
-                case "class tasks.Event":
-                    firstPart = "E | ";
-                    secPart = " | " + ((Event) tasks.get(i)).getAt();
-                    break;
-                default:
-                    System.out.println("Did not get Class from Task List:" + tasks.get(i).toString());
-                    continue;
+            case "class tasks.Task":
+                firstPart = "O | ";
+                break;
+            case "class tasks.ToDo":
+                firstPart = "T | ";
+                break;
+            case "class tasks.Deadline":
+                firstPart = "D | ";
+                secPart = " | " + ((Deadline) tasks.get(i)).getBy();
+                break;
+            case "class tasks.Event":
+                firstPart = "E | ";
+                secPart = " | " + ((Event) tasks.get(i)).getAt();
+                break;
+            default:
+                System.out.println("Did not get Class from Task List:" + tasks.get(i).toString());
+                continue;
             }
 
             done = (tasks.get(i).getIsDone()) ? 1 : 0;
@@ -109,8 +113,8 @@ public class Storage {
      * @return a list of tasks that are written as strings
      */
     public ArrayList<String[]> load() throws IOException {
-        this.f = new File(this.filePath);
-        this.fr = new FileReader(this.f);
+        this.fi = new File(this.filePath);
+        this.fr = new FileReader(this.fi);
         this.br = new BufferedReader(this.fr);
         this.parsedFile = new ArrayList<String[]>();
         String line;

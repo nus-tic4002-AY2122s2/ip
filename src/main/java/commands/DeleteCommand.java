@@ -2,8 +2,8 @@ package commands;
 
 import exceptions.DukeException;
 import storage.Storage;
+import tasks.TaskList;
 import ui.Ui;
-import tasks.*;
 
 /**
  * This represents the command to delete a specific task from the task list.
@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
      * @param tasks   This is the Task List that contains the list of tasks.
      * @param ui      This is the ui, to be used for scanning and printing
      * @param storage This is the storage, used to read and write over the file.
-     * @throws
+     * @throws DukeException throws IOException due to incorrect input
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
