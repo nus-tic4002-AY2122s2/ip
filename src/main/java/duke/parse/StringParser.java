@@ -5,6 +5,11 @@ import java.beans.PropertyChangeSupport;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -215,6 +220,39 @@ public class StringParser {
         }
 
         return time;
+    }
+
+    public static ArrayList<String> getTags(String title) {
+        ArrayList<String> all = new ArrayList<>();
+        Pattern Tag = Pattern.compile(" :(.+):");
+        Matcher m = Tag.matcher(title);
+        while (m.find()) {
+            all.add(m.group());
+        }
+        ArrayList<String> tagList = new ArrayList<>();
+        if (all.size() == 0) {
+            return null;
+        }
+
+        String[] tags = all.get(0).split(":");
+        for (int i = 1; i < tags.length; i++) {
+            tagList.add(tags[i].strip().toLowerCase());
+        }
+        return tagList;
+    }
+
+    public static Optional<HashSet<String>> getTagSet(String title) {
+        ArrayList<String> tags = new ArrayList<>();
+        HashSet<String> tagSet = new HashSet<>();
+        tags = getTags(title);
+        if (tags == null) {
+            return Optional.empty();
+        }
+
+        for (String tag : tags) {
+            tagSet.add(tag);
+        }
+        return Optional.of(tagSet);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {

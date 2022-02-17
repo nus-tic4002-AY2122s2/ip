@@ -32,7 +32,7 @@ public class TaskDeleteCmd implements UndoableCommand {
         for (Integer index : indexes) {
             try {
                 task = list.get(index);
-                deletedTasks.add(0, "\t" + task.toString());
+                deletedTasks.add(0, task.toString());
                 list.removeAt(index);
             } catch (Exception e) {
                 Message.setBuffer(Message.exceptionInvalidArgs());

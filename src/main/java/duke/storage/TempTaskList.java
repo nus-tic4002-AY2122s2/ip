@@ -38,7 +38,7 @@ public class TempTaskList extends TempList<Task> {
         String buffer = "";
         int i = 1;
         for (Task task : list) {
-            buffer += Message.stringf(i + ". " + task.toString());
+            buffer += Message.stringf(i + "." + task.toString());
             i++;
         }
         return buffer;

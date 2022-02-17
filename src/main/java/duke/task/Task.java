@@ -1,5 +1,10 @@
 package duke.task;
 
+import java.util.HashSet;
+import java.util.Optional;
+
+import duke.parse.StringParser;
+
 /**
  * SuperClass , Abstract Class
  * Also, a Receiver Class in Command Pattern
@@ -9,15 +14,17 @@ public abstract class Task {
     protected static int taskCount = 0;
     protected String title;
     protected boolean isDone;
+    protected Optional<HashSet<String>> tags;
 
     /**
      * constractor to initiate new instance of Task
      * @param title
      */
     public Task(String title) {
-        this.title = title;
+        this.title = title.replaceAll(" :(.+):", "");
         this.isDone = false;
         taskCount++;
+        tags = StringParser.getTagSet(title);
     }
 
     public String getStatusIcon() {
@@ -44,6 +51,20 @@ public abstract class Task {
         if (isDone()) {
             status = "[x]";
         }
-        return status + " " + title;
+        if (!tags.isPresent()) {
+            return status + " " + title;
+        } else {
+            return status + " " + title
+                    + " "
+                    + printTags();
+        }
+    }
+
+    private String printTags() {
+        String alltag = "";
+        for (String tag : tags.get()) {
+            alltag += ":" + tag;
+        }
+        return alltag + ":";
     }
 }

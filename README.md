@@ -2,7 +2,9 @@
 # 2022 Feb Update
 Latest _Duke Chatbot_ **GUI** support:
 
-<img src="docs/pic/dukegui.png" width="500">
+<img src="docs/pic/dukegui.png" width="520">
+
+Just double click the download `duke.jar` file from the [release](https://github.com/l-shihao/ip/releases/tag/v0.5.0) to run the application.
 
 ----
 # Run the program 
