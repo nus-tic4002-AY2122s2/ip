@@ -128,6 +128,8 @@ public class Duke extends Application {
         try {
             String command = new Parser().parseInput(userInput);
             switch (command) {
+            case "greet":
+                return (Message.getVal("GREETING",""));
             case "bye":
                 return (Message.getVal("BYE_MESSAGE"));
             case "todo":

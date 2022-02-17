@@ -33,11 +33,6 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 ```
     
 Hi I’m Duke
-  ____        _        
- |  _ \\ _   _| | _____ 
- | | | | | | | |/ / _ \\
- | |_| | |_| |   <  __/
- |____/ \\__,_|_|\\_\\__
 How can I assist you today?
 	
    ```

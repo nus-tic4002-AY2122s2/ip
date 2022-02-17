@@ -44,6 +44,9 @@ public class Parser {
         if (userInput.contains("help")) {
             command = "help";
         }
+        if (userInput.contains("greet")) {
+            command = "greet";
+        }
         return command;
     }
 

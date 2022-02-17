@@ -24,6 +24,24 @@ public class Storage {
         BufferedReader fileRead = new BufferedReader(new FileReader("TaskDB.txt"));
         String line = fileRead.readLine();
         while (line != null) {
+
+            if (line.contains("todo")) {
+                Main.taskList.addToDo(line);
+                line = fileRead.readLine();
+                continue;
+            }
+            if (line.contains("deadline")) {
+                Main.taskList.addDeadline(line);
+                line = fileRead.readLine();
+                continue;
+            }
+
+            if (line.contains("event")) {
+                Main.taskList.addDeadline(line);
+                line = fileRead.readLine();
+                continue;
+            }
+
             line = fileRead.readLine();
         }
         System.out.println("You have " + taskList.getSize() + " tasks in your record.");

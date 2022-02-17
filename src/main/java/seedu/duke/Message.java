@@ -10,7 +10,7 @@ public class Message {
 
     static {
         Map<String,String> message = new HashMap<>();
-        message.put("GREETING","Hi I’m Duke\n[input]\nHow can I assist you today?");
+        message.put("GREETING","Hi I am Duke\n[input]\nHow can I assist you today?");
         message.put("HELP_MESSAGE", "Please refer to the user guide for a quick reference.\n"
                 + "If you have any other question, do drop us an email at support@duke.com. See you!");
         message.put("BYE_MESSAGE", "Bye. Your tasks have been recorded.\n Hope to see you again soon!");

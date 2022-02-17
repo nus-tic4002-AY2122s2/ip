@@ -61,4 +61,11 @@ public class DialogBox extends HBox {
         db.flip();
         return db;
     }
+
+    public static DialogBox getGreeting() { //, Image img
+        var reply = Duke.run("greet");
+        var db = new DialogBox(reply);//text, img
+        db.flip();
+        return db;
+    }
 }
