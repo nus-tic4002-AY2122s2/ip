@@ -7,11 +7,15 @@ Setting up and getting started.</a>
 ## Design 
 
 * *Architecture*
-* *UI component* (CLI, Input/ Output)  
+* *UI component* (JavaFx, Fxml)  
 * *Logic component* (Execution, Command, Parser)
-* *Model component* (Item, Expense, Income)
+* *Model component* (Task, Todo, Deadline, Event)
 * *Storage component* (Storage)
 * *Common classes* (TaskList)
+
+##### Class Diagram
+
+![Image of Class Diagram](./Class Diagram.png)
 
 ## Implementation (Sequence Diagram)
 

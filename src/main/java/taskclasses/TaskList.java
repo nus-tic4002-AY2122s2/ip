@@ -40,39 +40,6 @@ public class TaskList {
     }
 
     /**
-     * The method to add task into the main task list
-     *
-     * @param task task which is going to be added
-     */
-    public void addTask(Task task) {
-        list.add(task);
-    }
-
-    /**
-     * The method to get date time of the particular task in the main task list
-     *
-     * @param taskIndex the index of the task in the list
-     * @return date time
-     * @throws DukeStorageError handles all errors about storage
-     */
-    public String getDateTime(int taskIndex) throws DukeStorageError {
-        Task task = list.get(taskIndex);
-
-        String taskType = task.getType();
-
-        switch (taskType) {
-        case "E":
-            return task.getStartingDateTime();
-        case "D":
-            return task.getDeadlineDateTimeString();
-        default:
-            break;
-        }
-
-        throw new DukeStorageError();
-    }
-
-    /**
      * The method to get particular task from the main task list
      *
      * @param index the index of the task
@@ -80,46 +47,6 @@ public class TaskList {
      */
     public Task getTask(int index) {
         return list.get(index);
-    }
-
-    /**
-     * The method to print entire task list
-     */
-    public void toPrintEntireTaskList() {
-        if (list.isEmpty()) {
-            System.out.println("     Here is no task in your list.");
-            return;
-        }
-
-        System.out.println("     Here are the task(s) in your list:");
-
-        for (int i = 0; i < list.size(); i++) {
-            int j = i + 1;
-            Task task = list.get(i);
-
-            System.out.print("     " + j + "."
-                    + "[" + task.getType() + "]"
-                    + "[" + task.getStatusIcon() + "] "
-                    + task.getDescription());
-
-            String taskType = task.getType();
-
-            switch (taskType) {
-            case "E":
-                String eventStartingDateTime = task.getStartingDateTime();
-                String eventEndingDateTime = task.getEndingDateTime();
-                System.out.println(" (at: " + eventStartingDateTime + " ---> " + eventEndingDateTime + ")");
-
-                break;
-            case "D":
-                String deadlineDateTime = task.getDeadlineDateTimeString();
-                System.out.println(" (by: " + deadlineDateTime + ")");
-
-                break;
-            default:
-                System.out.println("");
-            }
-        }
     }
 
     /**
