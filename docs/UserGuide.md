@@ -26,7 +26,7 @@ Duke is a desktop app for tasks, optimized for use via a Command Line Interface 
 Prerequisites: JDK 11, update Intellij to the most recent version.
 
 1. Ensure you have Java 11 or above installed in your computer.
-2. Download the latest duke.jar from here.
+2. Download the latest duke.jar from [here](https://github.com/lowyanshuang/ip/releases).
 3. Copy the file to the folder you want to use as the home folder.
 4. Double-click the file to start the app. The GUI will greet you with:
 
