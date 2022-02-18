@@ -8,18 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import duke.commands.AddCommand;
-import duke.commands.ClearCommand;
-import duke.commands.Command;
-import duke.commands.DeleteCommand;
-import duke.commands.DoneCommand;
-import duke.commands.ExitCommand;
-import duke.commands.FindCommand;
-import duke.commands.HelpCommand;
-import duke.commands.IncorrectCommand;
-import duke.commands.ListCommand;
-import duke.commands.SortCommand;
-import duke.commands.ViewDoneCommand;
+import duke.commands.*;
 import duke.common.Utils;
 import duke.exception.IllegalValueException;
 import duke.task.Deadline;
@@ -51,6 +40,10 @@ public class Parser {
                     + " at/(?<atYear>\\d{4})" + "-" + "(?<atMonth>\\d{2})" + "-" + "(?<atDay>\\d{2})"
                     + " " + "(?<atHour>\\d{2})(?<atMin>\\d{2})");
 
+    public static final Pattern BASIC_TIME_FORMAT =
+            Pattern.compile("(?<year>\\d{4})" + "-" + "(?<month>\\d{2})" + "-" + "(?<day>\\d{2})"
+                    + " " + "(?<hour>\\d{2})(?<minute>\\d{2})");
+
 
     public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>\\d+(?:\\s+\\d+)*)");
 
@@ -60,6 +53,9 @@ public class Parser {
                     + " " + "(?<hour>\\d{2})(?<minute>\\d{2})");
     public static final Pattern VIEW_DONE_TASK_BY_TIME_FORMAT =
             Pattern.compile("from/(?<fromTime>[^/]+)" + " to/(?<toTime>[^/]+)");
+
+    public static final Pattern UPDATE_FORMAT =
+            Pattern.compile("(?<targetIndex>\\d+)" + "\\s+(?<toUpdate>desc|description|due)" + "\\s+(?<newValue>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -94,6 +90,9 @@ public class Parser {
             return prepareFind(arguments);
         case ViewDoneCommand.COMMAND_WORD:
             return prepareViewDone(arguments);
+        case UpdateCommand.COMMAND_WORD:
+            return prepareUpdate(arguments);
+
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -109,6 +108,7 @@ public class Parser {
         }
 
     }
+
 
 
     /**
@@ -255,6 +255,33 @@ public class Parser {
         }
 
     }
+
+    private Command prepareUpdate(String args) {
+
+        Matcher matcher = UPDATE_FORMAT.matcher(args.trim());
+        if(matcher.matches()){
+            int targetIndex = Integer.parseInt(matcher.group("targetIndex"));
+            String toUpdate = matcher.group("toUpdate");
+            String newValue = matcher.group("newValue");
+            Matcher matcher1 = BASIC_TIME_FORMAT.matcher(newValue.trim());
+            if(matcher1.matches()){
+                return new UpdateCommand<>(targetIndex,toUpdate,
+                        LocalDateTime.of(Integer.parseInt(matcher1.group("year")),
+                        Integer.parseInt(matcher1.group("month")),
+                        Integer.parseInt(matcher1.group("day")),
+                        Integer.parseInt(matcher1.group("hour")),
+                        Integer.parseInt(matcher1.group("minute"))));
+            }
+            else {
+                return new UpdateCommand<>(targetIndex,toUpdate,newValue);
+            }
+        }else {
+            return new IncorrectCommand("This is a incorrect update format, "
+                    + " you may type 'help' to see all the commands.");
+        }
+
+    }
+
 
 
     /**
