@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 public class SaveCommand extends Command{
 
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws FileNotFoundException {
-        tasks.save(storage);
+    public String execute(TaskList tasks, UI ui, Storage storage) throws FileNotFoundException {
+        return tasks.save(storage);
     }
 }

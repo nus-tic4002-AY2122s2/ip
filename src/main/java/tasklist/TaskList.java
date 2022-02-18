@@ -27,23 +27,19 @@ public class TaskList {
         return taskList.add(t);
     }
 
-    public void printOutput(ArrayList<Task> taskList) {
-        UI.addSpaces("%sHere are the tasks in your list:",5);
-        for (int i = 0; i < taskList.size(); i++) {
-            UI.addSpaces("%s" + (i + 1) + ". " + taskList.get(i).toString(),5);
-        }
-    }
-
     /**
      * Outputs all the tasks
      */
-    public void list() {
+    public String list() {
+        String message = "";
         try {
             checkListEmpty(taskList);
-            printOutput(taskList);
+            message = UI.printOutput(taskList);
         } catch (ListEmptyException e) {
-            UI.printListEmpty();
+            message = UI.printListEmpty();
         }
+
+        return message;
     }
 
     /****
@@ -51,7 +47,8 @@ public class TaskList {
      *
      * @throws FileNotFoundException if file can't be found
      */
-    public void save(Storage s) throws FileNotFoundException {
+    public String save(Storage s) throws FileNotFoundException {
+        String message = "";
         String list = "";
         try {
             checkListEmpty(taskList);
@@ -59,10 +56,12 @@ public class TaskList {
                 list += taskList.get(i).saveFormat() + "\n";
             }
             s.writeToFile(list);
-            UI.printTaskSaved();
+            message = UI.printTaskSaved();
         }catch  (ListEmptyException e) {
-            UI.printListEmpty();
+            message = UI.printListEmpty();
         }
+
+        return message;
     }
 
     /****
@@ -70,7 +69,8 @@ public class TaskList {
      *
      * @param line the command that user input
      */
-    public void markedAsDone(String line) {
+    public String markedAsDone(String line) {
+        String message = "";
         try {
             checkListEmpty(taskList);
             String theStrIndex = line.substring(5);
@@ -82,23 +82,24 @@ public class TaskList {
                 checkIndexOutOfRange(taskList.size(), intArr[i]);
             }
 
-            UI.printMarkedAsDone();
+            message += UI.printMarkedAsDone();
 
             for (int i = 0; i < intArr.length; i++) {
                 Task t = taskList.get(intArr[i] - 1);
                 t.markAsDone();
-                UI.addSpaces("%s" + t.toString(),6);
+                message += t.toString() + "\n";
             }
 
         } catch (NumberFormatException e) {
-            UI.printNumberFormatException();
+            message = UI.printNumberFormatException();
         }
         catch (IndexOutOfRangeException e) {
-            UI.printIndexOutOfRangeException();
+            message = UI.printIndexOutOfRangeException();
         }
         catch  (ListEmptyException e) {
-            UI.printListEmpty();
+            message = UI.printListEmpty();
         }
+        return message;
     }
 
     /****
@@ -106,7 +107,8 @@ public class TaskList {
      *
      * @param line the command that user input
      */
-    public void deleteTask(String line) {
+    public String deleteTask(String line) {
+        String message = "";
         try {
             checkListEmpty(taskList);
             String theStrIndex = line.substring(7);
@@ -119,23 +121,24 @@ public class TaskList {
                 checkIndexOutOfRange(taskList.size(), intArr[i]);
             }
 
-            UI.printRemoveTask();
+            message += UI.printRemoveTask();
 
             for (int i = 0; i < intArr.length; i++) {
                 Task t = taskList.get(intArr[i]-(i+1));
-                UI.addSpaces("%s" + t.toString(),6);
+                message += t.toString() + "\n";
                 taskList.remove(intArr[i]-(i+1));
             }
 
-            UI.printNumberOfTasks(taskList);
+            message += UI.printNumberOfTasks(taskList);
 
         } catch (NumberFormatException e) {
-            UI.printNumberFormatException();
+            message = UI.printNumberFormatException();
         } catch (IndexOutOfRangeException e) {
-            UI.printIndexOutOfRangeException();
+            message = UI.printIndexOutOfRangeException();
         } catch  (ListEmptyException e) {
-            UI.printListEmpty();
+            message = UI.printListEmpty();
         }
+        return message;
     }
 
     /****
@@ -144,9 +147,10 @@ public class TaskList {
      * @param line the command that user input
      * @throws ParseException if date format is not dd MMM yyyy
      */
-    public void searchDate(String line) throws ParseException {
+    public String searchDate(String line) throws ParseException {
         ArrayList<Task> foundTasks = new ArrayList<>();
         String[] str;
+        String message = "";
         try {
             checkListEmpty(taskList);
             checkInvalidWordSearch(line);
@@ -215,13 +219,14 @@ public class TaskList {
                     }
                 }
             }
-            UI.printOutput((foundTasks));
+            message = UI.printOutput((foundTasks));
         } catch (StringFormatException e) {
-            UI.printStringFormatException();
+            message= UI.printStringFormatException();
         } catch (ListEmptyException e) {
-            UI.printListEmpty();
+            message = UI.printListEmpty();
         }
 
+        return message;
     }
 
     /****
@@ -229,7 +234,8 @@ public class TaskList {
      *
      * @param line the command that user input
      */
-    public void event(String line) {
+    public String event(String line) {
+        String message = "";
         try {
             checkEmptyEventDescription(line.trim());
             //e.g event dinner /at 12 oct 2019
@@ -250,12 +256,13 @@ public class TaskList {
                 Task t = new Event(taskDescription, "Date not specified");
                 taskList.add(t);
             }
-            UI.printTask(taskList);
+            message = UI.printTask(taskList);
         } catch (EmptyEventDescriptionException e) {
-            UI.printEmptyEventDescriptionException();
+            message = UI.printEmptyEventDescriptionException();
         } catch (ParseException e) {
-            UI.printParseException();
+            message = UI.printParseException();
         }
+        return message;
     }
 
     /****
@@ -263,7 +270,8 @@ public class TaskList {
      *
      * @param line the command that user input
      */
-    public void deadline(String line) {
+    public String deadline(String line) {
+        String message = "";
         try {
             checkEmptyDeadlineDescription(line.trim());
             if (line.contains("/by")) {
@@ -283,12 +291,13 @@ public class TaskList {
                 Task t = new Deadline(taskDescription, "Date not specified");
                 taskList.add(t);
             }
-            UI.printTask(taskList);
+            message = UI.printTask(taskList);
         } catch (EmptyDeadlineDescriptionException e) {
-            UI.printEmptyDeadlineDescriptionException();
+            message = UI.printEmptyDeadlineDescriptionException();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        return message;
     }
 
     /****
@@ -296,16 +305,18 @@ public class TaskList {
      *
      * @param line the command that user input
      */
-    public void todo(String line) {
+    public String todo(String line) {
+        String message = "";
         try {
             checkEmptyToDoDescription(line.trim());
             String taskDescription = line.substring(5);
             Task t = new ToDo(taskDescription);
             taskList.add(t);
-            UI.printTask(taskList);
+            message = UI.printTask(taskList);
         } catch (EmptyToDoDescriptionException e){
-            UI.printEmptyToDoDescriptionException();
+            message = UI.printEmptyToDoDescriptionException();
         }
+        return message;
     }
 
     /****
@@ -313,15 +324,18 @@ public class TaskList {
      *
      * @param line the command that user input
      */
-    public void processInvalidTask(String line) {
+    public String processInvalidTask(String line) {
+        String message = "";
         try {
             checkEmpty(line);
             checkInvalidWord(line);
         } catch (EmptyException e) {
-            UI.printEmptyException();
+            message = UI.printEmptyException();
         } catch (StringFormatException e){
-            UI.printStringFormatException();
+            message = UI.printStringFormatException();
         }
+
+        return message;
     }
 
     /****

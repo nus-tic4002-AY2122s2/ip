@@ -12,7 +12,7 @@ public class AddTodoCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
-        tasks.todo(userInput);
+    public String execute(TaskList tasks, UI ui, Storage storage) {
+        return tasks.todo(userInput);
     }
 }

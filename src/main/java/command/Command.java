@@ -14,5 +14,5 @@ public abstract class Command {
     public boolean isExit(){
         return bExit;
     }
-    public abstract void execute(TaskList tasks, UI ui, Storage storage) throws FileNotFoundException, ParseException;
+    public abstract String execute(TaskList tasks, UI ui, Storage storage) throws FileNotFoundException, ParseException;
 }

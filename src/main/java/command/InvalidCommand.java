@@ -12,7 +12,7 @@ public class InvalidCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
-        tasks.processInvalidTask(userInput);
+    public String execute(TaskList tasks, UI ui, Storage storage) {
+        return tasks.processInvalidTask(userInput);
     }
 }

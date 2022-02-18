@@ -12,7 +12,7 @@ public class AddDeadlineCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
-        tasks.deadline(userInput);
+    public String execute(TaskList tasks, UI ui, Storage storage) {
+        return tasks.deadline(userInput);
     }
 }
