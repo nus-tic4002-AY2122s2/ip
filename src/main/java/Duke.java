@@ -1,6 +1,11 @@
 import commands.Command;
 import exceptions.DukeException;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+
 import parser.Parser;
 import storage.Storage;
 import tasks.TaskList;
@@ -16,7 +21,7 @@ import java.io.IOException;
 // e.g., collect certificate between Jan 15 and 25th.
 
 
-public class Duke extends Application{
+public class Duke {
 
     private Storage storage;
     private TaskList tasks;
@@ -75,8 +80,19 @@ public class Duke extends Application{
 
     }
 
-
     public static void main(String[] args) throws IOException {
+        //Application.launch(Duke.class, args);
         new Duke("data/tasks_list.txt").run();
     }
+
+
+    //@Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
+    }
+
 }
