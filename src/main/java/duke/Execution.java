@@ -41,44 +41,35 @@ public class Execution {
      * Execute new command.
      * @param taskList task list to be updated
      * */
-    public void execute(TaskList taskList) {
+    public String execute(TaskList taskList) {
         try {
             checkCommand(command);
 
             switch (command) {
             case "list":
-                new ListCommand(fullCommand).run(taskList);
-                break;
+                return new ListCommand(fullCommand).run(taskList);
             case "done":
-                new DoneCommand(fullCommand).run(taskList);
-                break;
+                return new DoneCommand(fullCommand).run(taskList);
             case "todo":
-                new AddTodoCommand(fullCommand).run(taskList);
-                break;
+                return new AddTodoCommand(fullCommand).run(taskList);
             case "deadline":
-                new AddDeadlineCommand(fullCommand).run(taskList);
-                break;
+                return new AddDeadlineCommand(fullCommand).run(taskList);
             case "event":
-                new AddEventCommand(fullCommand).run(taskList);
-                break;
+                return new AddEventCommand(fullCommand).run(taskList);
             case "delete":
-                new DeleteCommand(fullCommand).run(taskList);
-                break;
+                return new DeleteCommand(fullCommand).run(taskList);
             case "find":
-                new FindCommand(fullCommand).run(taskList);
-                break;
+                return new FindCommand(fullCommand).run(taskList);
             case "edit":
-                new EditCommand(fullCommand).run(taskList);
-                break;
+                return new EditCommand(fullCommand).run(taskList);
             case "bye":
-                new ByeCommand(fullCommand).run(taskList);
                 isExit = true;
-                break;
+                return new ByeCommand(fullCommand).run(taskList);
             default:
-                System.out.println("Command is not correct!");
+                return "Command is not correct!";
             }
         } catch (CommandException e) {
-            System.out.println("OOPS!!! Pls key in the valid command");
+            return "OOPS!!! Pls key in the valid command";
         }
     }
 }

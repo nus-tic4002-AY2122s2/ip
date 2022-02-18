@@ -20,5 +20,5 @@ public abstract class Command {
      * Abstract method to execute new command.
      * @param taskList task list to be updated
      * */
-    public abstract void run(TaskList taskList);
+    public abstract String run(TaskList taskList);
 }

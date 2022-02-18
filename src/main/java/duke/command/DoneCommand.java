@@ -24,16 +24,16 @@ public class DoneCommand extends Command {
      * Method to execute done command.
      * @param taskList task list to be updated
      * */
-    public void run(TaskList taskList) {
+    public String run(TaskList taskList) {
         try {
             checkElement(fullCommand);
             int index = Parser.taskNumber(fullCommand);
             taskList.done(index);
-            UI.doneMessage(taskList.tasks, index);
+            return UI.doneMessage(taskList.tasks, index);
         } catch (LackOfIndexException e) {
-            System.out.println("OOPS!!! Pls key in the number of the task");
+            return "OOPS!!! Pls key in the number of the task";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("OOPS!!! The number of task is invalid");
+            return "OOPS!!! The number of task is invalid";
         }
     }
 }

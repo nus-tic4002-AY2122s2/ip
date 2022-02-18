@@ -41,7 +41,7 @@ public class AddEventCommand extends Command {
      * Method to execute add-event command.
      * @param taskList task list to be updated.
      * */
-    public void run(TaskList taskList) {
+    public String run(TaskList taskList) {
         try {
             checkDescription(fullCommand);
             String description = Parser.description(fullCommand);
@@ -51,13 +51,13 @@ public class AddEventCommand extends Command {
             checkDateFormat(at);
             taskList.addEvent(description, date, at);
             int size = taskList.size;
-            UI.addMessage(taskList.tasks.get(size - 1), size);
+            return UI.addMessage(taskList.tasks.get(size - 1), size);
         } catch (LackOfDescriptionException e) {
-            System.out.println("OOPS!!! Pls key in the description for the task");
+            return  "OOPS!!! Pls key in the description for the task";
         } catch (LackOfDateException e) {
-            System.out.println("OOPS!!! Pls key in the date for the task");
+            return "OOPS!!! Pls key in the date for the task";
         } catch (DateFormatException e) {
-            System.out.println("Please use format dd-MM-yyyy for date");
+            return "Please use format dd-MM-yyyy for date";
         }
     }
 }

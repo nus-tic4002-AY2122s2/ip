@@ -16,7 +16,7 @@ public class ListCommand extends Command {
      * Method to execute list command.
      * @param taskList task list to be updated
      * */
-    public void run(TaskList taskList) {
-        UI.listMessage(taskList.tasks);
+    public String run(TaskList taskList) {
+        return UI.listMessage(taskList.tasks);
     }
 }

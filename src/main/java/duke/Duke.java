@@ -8,10 +8,11 @@ import java.util.ArrayList;
 public class Duke {
     private TaskList taskList;
     private String filePath;
+    public boolean isExit;
 
     /**
      * Create new Duke with new task list and filepath for loading and saving data.
-     * */
+     */
     public Duke() {
         ArrayList<Task> tasks = new ArrayList<>();
         this.taskList = new TaskList(tasks);
@@ -21,14 +22,14 @@ public class Duke {
     public void run() {
         Storage storage = new Storage(filePath);
         storage.loadFile(taskList);
-        UI.welcome();
-        boolean isExit = false;
+        System.out.println(UI.welcome());
+        isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = UI.readCommand();
                 Execution execution = new Execution(fullCommand);
                 UI.splitLine();
-                execution.execute(taskList);
+                System.out.println(execution.execute(taskList));
                 storage.saveFile(taskList);
                 isExit = execution.isExit;
             } catch (Exception e) {
@@ -48,6 +49,11 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     String getResponse(String input) {
-        return "Duke heard: " + input;
+        try{
+            Execution execution = new Execution(input);
+            return execution.execute(taskList);
+        } catch (Exception e) {
+            return "OOPS!!! I'm sorry, but I don't know what that means :-(";
+        }
     }
 }

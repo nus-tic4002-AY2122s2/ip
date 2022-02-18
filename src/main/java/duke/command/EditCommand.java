@@ -5,7 +5,7 @@ import duke.TaskList;
 import duke.UI;
 import duke.exception.LackOfIndexException;
 
-public class EditCommand extends Command{
+public class EditCommand extends Command {
     /**
      * Create new edit command.
      * @param fullCommand user full command.
@@ -24,16 +24,16 @@ public class EditCommand extends Command{
      * Method to execute edit command.
      * @param taskList task list to be updated
      * */
-    public void run(TaskList taskList) {
+    public String run(TaskList taskList) {
         try {
             checkElement(fullCommand);
             int index = Parser.taskNumber(fullCommand);
             taskList.tasks.get(index).description = Parser.editedItem(fullCommand);
-            UI.editMessage(taskList.tasks, index);
+            return UI.editMessage(taskList.tasks, index);
         } catch (LackOfIndexException e) {
-            System.out.println("OOPS!!! Pls key in the number of the task");
+            return "OOPS!!! Pls key in the number of the task";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("OOPS!!! The number of task is invalid");
+            return "OOPS!!! The number of task is invalid";
         }
     }
 }

@@ -16,7 +16,7 @@ public class ByeCommand extends Command {
      * Method to execute bye command.
      * @param taskList task list to be updated
      * */
-    public void run(TaskList taskList) {
-        UI.byeMessage();
+    public String run(TaskList taskList) {
+        return UI.byeMessage();
     }
 }

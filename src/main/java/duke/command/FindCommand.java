@@ -27,15 +27,15 @@ public class FindCommand extends Command {
      * Method to execute find command.
      * @param taskList task list to be found.
      * */
-    public void run(TaskList taskList) {
+    public String run(TaskList taskList) {
         try {
             checkElement(fullCommand);
             String keyword = Parser.description(fullCommand);
             ArrayList<Integer> findResult = new ArrayList<>();
             taskList.find(keyword, findResult);
-            UI.findMessage(taskList.tasks, findResult);
+            return UI.findMessage(taskList.tasks, findResult);
         } catch (LackOfKeywordException e) {
-            System.out.println("OOPS!!! Please key in the keyword you want to search");
+            return "OOPS!!! Please key in the keyword you want to search";
         }
     }
 }

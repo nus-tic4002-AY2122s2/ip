@@ -25,17 +25,17 @@ public class DeleteCommand extends Command {
      * Method to execute delete command.
      * @param taskList task list to be updated
      * */
-    public void run(TaskList taskList) {
+    public String run(TaskList taskList) {
         try {
             checkElement(fullCommand);
             int index = Parser.taskNumber(fullCommand);
             Task deletedTask = taskList.tasks.get(index);
             taskList.delete(index);
-            UI.deleteMessage(deletedTask, taskList.size);
+            return UI.deleteMessage(deletedTask, taskList.size);
         } catch (LackOfIndexException e) {
-            System.out.println("OOPS!!! Pls key in the number of the task");
+            return "OOPS!!! Pls key in the number of the task";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("OOPS!!! The number of task is invalid");
+            return "OOPS!!! The number of task is invalid";
         }
     }
 }
