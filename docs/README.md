@@ -1,29 +1,7 @@
-# User Guide
+# DukePro
 
-## Features 
+DukePro is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI).
 
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
-
-## Usage
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
+Useful links:
+* [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
