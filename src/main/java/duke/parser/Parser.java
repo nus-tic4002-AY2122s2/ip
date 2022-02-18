@@ -8,7 +8,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import duke.commands.*;
+import duke.commands.AddCommand;
+import duke.commands.ClearCommand;
+import duke.commands.Command;
+import duke.commands.DeleteCommand;
+import duke.commands.DoneCommand;
+import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
+import duke.commands.HelpCommand;
+import duke.commands.IncorrectCommand;
+import duke.commands.ListCommand;
+import duke.commands.SortCommand;
+import duke.commands.UpdateCommand;
+import duke.commands.ViewDoneCommand;
 import duke.common.Utils;
 import duke.exception.IllegalValueException;
 import duke.task.Deadline;
@@ -259,23 +271,22 @@ public class Parser {
     private Command prepareUpdate(String args) {
 
         Matcher matcher = UPDATE_FORMAT.matcher(args.trim());
-        if(matcher.matches()){
+        if (matcher.matches()) {
             int targetIndex = Integer.parseInt(matcher.group("targetIndex"));
             String toUpdate = matcher.group("toUpdate");
             String newValue = matcher.group("newValue");
             Matcher matcher1 = BASIC_TIME_FORMAT.matcher(newValue.trim());
-            if(matcher1.matches()){
-                return new UpdateCommand<>(targetIndex,toUpdate,
+            if (matcher1.matches()) {
+                return new UpdateCommand<>(targetIndex, toUpdate,
                         LocalDateTime.of(Integer.parseInt(matcher1.group("year")),
                         Integer.parseInt(matcher1.group("month")),
                         Integer.parseInt(matcher1.group("day")),
                         Integer.parseInt(matcher1.group("hour")),
                         Integer.parseInt(matcher1.group("minute"))));
+            } else {
+                return new UpdateCommand<>(targetIndex, toUpdate, newValue);
             }
-            else {
-                return new UpdateCommand<>(targetIndex,toUpdate,newValue);
-            }
-        }else {
+        } else {
             return new IncorrectCommand("This is a incorrect update format, "
                     + " you may type 'help' to see all the commands.");
         }
