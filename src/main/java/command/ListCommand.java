@@ -8,7 +8,7 @@ import tasklist.TaskList;
 public class ListCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
-        tasks.list();
+    public String execute(TaskList tasks, UI ui, Storage storage) {
+        return tasks.list();
     }
 }

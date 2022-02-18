@@ -14,7 +14,7 @@ public class FindCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws ParseException {
-        tasks.searchDate(userInput);
+    public String execute(TaskList tasks, UI ui, Storage storage) throws ParseException {
+        return tasks.searchDate(userInput);
     }
 }

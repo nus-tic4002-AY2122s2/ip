@@ -12,7 +12,7 @@ public class DoneCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
-        tasks.markedAsDone(userInput);
+    public String execute(TaskList tasks, UI ui, Storage storage) {
+        return tasks.markedAsDone(userInput);
     }
 }
