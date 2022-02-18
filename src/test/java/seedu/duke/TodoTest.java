@@ -9,11 +9,13 @@ public class TodoTest {
 
     @Test
     void testGetTaskDetails() {
-        assertEquals("[T][ ] borrow book", new Todo("borrow book"));
+        Todo task = new Todo("borrow book");
+        assertEquals("[T][ ] borrow book", task.getTaskDetails());
     }
 
     @Test
     void testGetTaskDetails2() {
-        assertEquals("[T][ ] borrow book", new Todo("borrow book", true));
+        Todo task = new Todo("borrow book", true);
+        assertEquals("[T][X] borrow book", task.getTaskDetails());
     }
 }
