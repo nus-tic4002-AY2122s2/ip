@@ -11,12 +11,12 @@
 ## Design
 
 **LisGenie GUI App** leverages on the help of a total 13 Java classes, viz. **Duke, Parser, Task, Tasklist, Todo, Deadline, Event, Launcher, DukeException, Storage** for the 
-main app logic support and **Main, MainWindow, DialogBox** for the JavaFx GUI support, together with 2 auxiliary fxml files **DialogBox.fxml and MainWindows.fxml**. Judicious use of Java API LinkedHashset<Task>'s non-duplicates properties, preserved input data order and fast location traits, for Tasks storage, allows a single user good at the keyboard to make, enquire, delete or register bookings or current status of appointments online fast.
+main app logic work and **Main, MainWindow, DialogBox** controller classes with JavaFx GUI support, together with 2 auxiliary fxml files **DialogBox.fxml and MainWindows.fxml** for the GUI code. Judicious use of Java API LinkedHashset<Task>'s no-duplicates properties, preserved input data order and fast location traits, for Tasks storage, allows a single user good at the keyboard to make, enquire, delete or register bookings or current status of appointments online fast.
 
-- LisGenie Chatbot GUI V3.1 App is an extension and GUI version of the CLI app **LisGenie ChatBot Task Manager 2.0**    
-- It allows for command short forms which were not available last time round
+- LisGenie Chatbot GUI V3.1 App is a GUI extension version of the CLI app **LisGenie ChatBot Task Manager 2.0**    
+- It allows for command short forms usage which were not available in the previous verson
 - The visual interface is designed for easy reading, and takes into considerations the computer-human interactions principles for a simple esthetic appeal of each essential
-visual component affording easy usage, so user will not find using the App intimidating or boring 
+visual component affording easy usage, so user will not find using the App intimidating, confusing or boring 
 
 
 ## Implementation
@@ -24,26 +24,26 @@ visual component affording easy usage, so user will not find using the App intim
 ### Integration of Duke Class with JavaFx GUI Program
 
 #### Highlights:
-1. Duke Class is modified so that all processed outputs to console are redirected to a class-level ByteArrayOutputStream _newConsole_. This affords easy 
+1. Duke Class is modified so that all processed outputs to console are redirected to a class-level ByteArrayOutputStream _newConsole_. This facilitates easy 
   redirection of captured console messages into LisGenie GUI chatbox, via the _handleUserInput method_ found inside MainWindow controller Class, which handles user-cum-chatbot messages display.    
 2. An instance of Duke Class is created in Main Class to load and enable the main app logic flows subsequently
-3. The MainWindow Class carries a setDuke method that will create a first Greeting Message from LisGenie chatbot, upon app opening. It will handle property binding for the 
+3. The MainWindow Class carries a setDuke method that will create a first Greeting Message from LisGenie chatbot, upon app opening. It also handles property binding for the 
   scrollPane _vvalueProperty_ to the dialogueContainer _heightproperty_
 4. Subsequently, the user will type into the textfield and either press enter or sendButton to begin conversations with the chatbot
-5. All necessary JavaFx event handlers are set via the MainWindow.fxml file.
+5. All necessary JavaFx event handlers are set in the MainWindow.fxml file.
   
 
 #### Design considerations:
-Considerations in the design of app logic have been specially given to optimise operations in terms of time and space complexity wherever possible. 
+Considerations in the design of app logic have been specially given to optimise operations in terms of time and space complexity, wherever possible. 
 In terms of class design principles, Single Responsibility Principle is adhered to rather well. This allows for strong cohesion, with minimal coupling for those
 classes - especially for the seperating out of the program logic parts from the GUI parts. 
 
-From early on, the main code base follows the Open-Closed Principle as closely as possible, as the author intends for easy refactoring and felicitous code extensions "lego-style" any time. This will save precious time and stave off headaches later on.
+From early on, the main code base follows the Open-Closed Principle as closely as possible, as the author intends for easy refactoring and felicitous code extensions "lego-style" any time. This will save precious time and avoid headaches later on.
   
-The code is kept KISS as much as possible, to keep the program flow simple and uncluttered throughout, variable names and functions method names are also rather intuitive, improving the readability for the code reader.
+The code is kept KISS as much as possible, to keep the program flow simple and uncluttered throughout; variable names and functions method names are also rather intuitive, improving further the code readability for the reader.
 
-In a nutshell, the design patterns and principles were implemented OOP style throughout for easy scalability, maintainability and modularity.
-With this approach, the earlier set down framework / design policies allow for more features to be added on more rapidly while still keeping in check the complexity (such as coupling) of the application body codes.
+In a nutshell, the design patterns and principles were implemented OOP style throughout, especially for easy scalability, maintainability and modularity.
+With this approach, the earlier set down framework or design policies allow for more features to be added on more rapidly while still keeping in check the complexity (such as coupling) of the application body codes.
 
 ## Product scope
 **Target user profile:**
@@ -117,7 +117,7 @@ Our Value Proposition is that the app provides, throughout the app use, a visual
 * **LisGenie GUI App**  - A single-user command line app with minimal GUI support, for making, storing and managing task registration online 
 * **CLI** - Command Line Interface
 * **GUI** - Graphical User Interface
-* **Task** - A User input string specifying the description of and or its due date of a todo, deadline or event task 
+* **Task** - A User input string specifying the description of a todo, deadline or event task (may also include the due date)
 * **JavaFx** - a set of graphics and media packages that enables developers to design, create, test, debug, and deploy rich client applications that operate consistently across diverse platforms
 
 
