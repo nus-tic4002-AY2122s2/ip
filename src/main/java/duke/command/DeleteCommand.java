@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
      * @param storage The Storage which will save the list of task to
      * @throws DukeException Any expected error
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (tasks.getSize() <= 0) {
             throw new DukeException("Empty task list. Nothing to delete");
         }
@@ -39,8 +39,9 @@ public class DeleteCommand extends Command {
             int taskIndex = Integer.parseInt(commandInstruction.substring(7)) - 1;
             String deletedTask = tasks.getTask(taskIndex).toString();
             tasks.remove(taskIndex);
-            ui.displayDeleteMsg(deletedTask, tasks.getSize());
+            String deleteMsg = ui.displayDeleteMsg(deletedTask, tasks.getSize());
             storage.save(tasks);
+            return new CommandResult(deleteMsg);
         } catch (NumberFormatException e) {
             throw new DukeException("Please key in task number");
         } catch (IndexOutOfBoundsException e) {

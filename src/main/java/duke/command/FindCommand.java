@@ -29,7 +29,7 @@ public class FindCommand extends Command {
      * @param storage the Storage
      * @throws DukeException any expected error
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (tasks.getSize() <= 0) {
             throw new DukeException("Sorry. There isn't a list");
         }
@@ -48,11 +48,13 @@ public class FindCommand extends Command {
             }
         }
         if (tempTasksList.size() == 0) {
-            ui.showNoMatchFound();
+            return new CommandResult(ui.showNoMatchFound());
         } else {
+            String stringList = "";
             for (int i = 0; i < tempTasksList.size(); i++) {
-                ui.showTaskInfo(tempTasksList.get(i));
+                stringList = stringList + ui.showTaskInfo(tempTasksList.get(i)) + "\n";
             }
+            return new CommandResult(stringList);
         }
 
     }

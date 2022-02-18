@@ -28,7 +28,7 @@ public class DoneCommand extends Command {
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (tasks.getSize() <= 0) {
             throw new DukeException("Empty task list. Nothing to delete");
         }
@@ -46,12 +46,14 @@ public class DoneCommand extends Command {
             doneTask.editDone(true);
             String taskString = doneTask.toString();
             int getTaskIndex = doneTask.getTaskIndex() + 1;
-            Ui.doneMsg(taskString, getTaskIndex);
+            CommandResult commandResult = new CommandResult(Ui.doneMsg(taskString, getTaskIndex));
+            storage.save(tasks);
+            return commandResult;
         } catch (NumberFormatException e) {
             throw new DukeException("Please key in task number");
         }
 
-        storage.save(tasks);
+
     }
 
 

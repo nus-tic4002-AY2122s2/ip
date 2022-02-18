@@ -32,7 +32,7 @@ public class DeadlineCommand extends Command {
      * @param storage the Storage
      * @throws DukeException any expected error
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             commandInstruction.substring(9);
         } catch (StringIndexOutOfBoundsException e) {
@@ -45,8 +45,9 @@ public class DeadlineCommand extends Command {
         String taskDes = commandInstruction.substring(9, dividerPosition2);
         String taskDateTime = commandInstruction.substring(dividerPosition2 + 5);
         Deadline deadline = deadlineTimeSetter(taskDes, taskDateTime);
-        tasks.addTask(deadline);
+        CommandResult commandResult = tasks.addTask(deadline);
         storage.save(tasks);
+        return commandResult;
     }
 
     /**

@@ -23,8 +23,9 @@ public class ExitCommand extends Command {
      * @param ui The Ui class which will help to display to the user
      * @param storage The Storage which will save the list of task to
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showExit();
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) {
+
+        return new CommandResult(ui.showExit(),Boolean.TRUE);
     }
 
     /**

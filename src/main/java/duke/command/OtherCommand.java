@@ -24,18 +24,18 @@ public class OtherCommand extends Command {
      * @param storage The storage
      * @throws DukeException any expected error
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         switch(commandInstruction) {
         case "hi":
-            ui.displayMsg("Hello to you too! :)");
-            break;
+            return new CommandResult("Hello to you too! :)");
+
         case "help":
-            ui.displayListOfHelpFunction();
-            break;
+            return new CommandResult(ui.displayListOfHelpFunction());
+
         case "clearlist":
             tasks.clearAll();
-            ui.displayMsg("List of Tasks has all been clear, you have an empty list now.");
-            break;
+            return new CommandResult("List of Tasks has all been clear, you have an empty list now.");
+
         default:
             throw new DukeException("Shouldn't have error here");
         }

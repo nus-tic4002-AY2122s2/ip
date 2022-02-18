@@ -32,7 +32,7 @@ public class EventCommand extends Command {
      * @param storage The Storage which will save the list of task to
      * @throws DukeException Any expected error
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             commandInstruction.substring(6);
         } catch (StringIndexOutOfBoundsException e) {
@@ -45,8 +45,9 @@ public class EventCommand extends Command {
         String taskDes = commandInstruction.substring(6, dividerPosition2);
         String taskDateTime = commandInstruction.substring(dividerPosition2 + 5);
         Event event = eventTimeSetter(taskDes, taskDateTime);
-        tasks.addTask(event);
+        CommandResult commandResult = tasks.addTask(event);
         storage.save(tasks);
+        return commandResult;
     }
 
     /**

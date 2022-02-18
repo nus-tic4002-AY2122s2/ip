@@ -28,7 +28,7 @@ public class ToDoCommand extends Command {
      * @param storage the Storage
      * @throws DukeException any expected error
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             commandInstruction.substring(5);
         } catch (StringIndexOutOfBoundsException e) {
@@ -37,8 +37,9 @@ public class ToDoCommand extends Command {
         ToDo todo = new ToDo(commandInstruction.substring(5));
         //Checking whether the task has been created as a ToDo before adding and saving
         assert todo.getTaskType() == TaskType.TODO;
-        tasks.addTask(todo);
+        CommandResult commandResult = tasks.addTask(todo);
         storage.save(tasks);
+        return commandResult;
     }
 
 

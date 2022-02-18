@@ -33,7 +33,7 @@ public abstract class Command {
      * @param storage The Storage which will save the list of task to
      * @throws DukeException Any expected error
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         throw new DukeException("Error for command execute!");
     }
 

@@ -24,14 +24,15 @@ public class ListCommand extends Command {
      * @param storage the Storage
      * @throws DukeException any expected error
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (tasks.isEmpty()) {
             throw new DukeException("Empty task list");
         }
+        String stringList = "";
         for (int i = 0; i < tasks.getSize(); i++) {
-            ui.showTaskInfo(tasks.getTask(i));
+            stringList = stringList + ui.showTaskInfo(tasks.getTask(i)) + "\n";
         }
-
+        return new CommandResult(stringList);
 
     }
 }
