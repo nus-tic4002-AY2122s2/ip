@@ -1,17 +1,12 @@
 import commands.Command;
 import exceptions.DukeException;
+import javafx.application.Application;
 import parser.Parser;
 import storage.Storage;
 import tasks.TaskList;
 import ui.Ui;
 
-
 import java.io.IOException;
-
-//TODO: CLEAN UP!
-//TODO: Exceptions - Probably could double check more,
-// Work on Individual Features more
-// Double check on assertions
 
 // Individual Features:
 //Better Search - e.g., find items even if the keyword matches the item only partially.
@@ -21,7 +16,7 @@ import java.io.IOException;
 // e.g., collect certificate between Jan 15 and 25th.
 
 
-public class Duke {
+public class Duke extends Application{
 
     private Storage storage;
     private TaskList tasks;
