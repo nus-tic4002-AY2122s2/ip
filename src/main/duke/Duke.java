@@ -22,6 +22,9 @@ public class Duke extends Application {
         tasks = new TaskList(storage);
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     /**
      *
