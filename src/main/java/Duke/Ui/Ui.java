@@ -17,7 +17,7 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
 
         System.out.print(seperatorLine);
-        System.out.println("Hello! I'm Duke\n"
+        System.out.println("Hello! I'm Duke.Duke\n"
                 + "What can I do for you");
         System.out.println(seperatorLine);
     }
@@ -29,7 +29,7 @@ public class Ui {
     }
 
     /***
-     * print out error when Duke can't regconize the task keywords
+     * print out error when Duke.Duke can't regconize the task keywords
      */
     public static void keywordError() {
         System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -74,7 +74,7 @@ public class Ui {
     }
 
     public static void deleteNumberOutOfList() {
-        System.out.println("☹ OOPS!!! Only have "+task_count+ " in the list. Duke only can delete less than this number:" + task_count);
+        System.out.println("☹ OOPS!!! Only have "+task_count+ " in the list. Duke.Duke only can delete less than this number:" + task_count);
     }
 
 }

@@ -1,3 +1,5 @@
+package Duke;
+
 import Duke.Command.Deadline;
 import Duke.Command.Event;
 import Duke.Command.Todo;
@@ -12,7 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
-import Duke.Parser;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -39,7 +40,7 @@ import javafx.scene.Node;
 
 
 /**
- * The Duke program implements an application that
+ * The Duke.Duke program implements an application that
  * a personal Assistant Chatbot that helps to keep track various of daily items.
  *
  * @author  jr-mojito
@@ -200,7 +201,7 @@ public class Duke extends Application {
 
     /**
      * Iteration 2:
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Duke.Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     private void handleUserInput() {
@@ -218,8 +219,8 @@ public class Duke extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
+    String getResponse(String input) {
+        return "Duke.Duke heard: " + input;
     }
 
 
