@@ -1,7 +1,6 @@
 package duke;
 
 import duke.task.Task;
-import javafx.application.Application;
 
 import java.util.ArrayList;
 
