@@ -12,6 +12,7 @@ import duke.command.Command;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
+import duke.command.SortCommand;
 import duke.command.UpdateCommand;
 import duke.exception.DukeException;
 import duke.exception.DukeMissingDescException;
@@ -163,6 +164,9 @@ public class Parser {
             op = UpdateCommand.Operation.valueOf(firstStr.substring(0, 1).toUpperCase() + firstStr.substring(1));
             parsedCommand = (!firstStr.equals("edit"))
                     ? new UpdateCommand(op, pos) : new UpdateCommand(UpdateCommand.Operation.Edit, pos);
+            break;
+        case "sort":
+            parsedCommand = new SortCommand();
             break;
         case "check":
             if (strings.length > 1) {

@@ -6,11 +6,11 @@ import duke.exception.DukeMissingDescException;
  * Abstract Task class cannot be directly instantiated, only subclasses can.
  */
 public abstract class Task {
-    public static final char CHECKMARK = '\u2713';
-    public static final char CROSSMARK = '\u274C';
+    public static final char CHECKMARK = 'o';
+    public static final char CROSSMARK = 'x';
 
     protected boolean isDone;
-    protected String description;
+    private String description;
 
     /**
      * @param description

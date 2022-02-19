@@ -20,7 +20,7 @@ public class TaskList {
      * @throws DukeException
      */
     public TaskList(Storage s) throws DukeException {
-        tasks = new ArrayList<>();
+        tasks = new ArrayList<Task>();
         s.readSaveFile(this);
     }
 
@@ -44,8 +44,8 @@ public class TaskList {
     /**
      * @return a formatted list from listTasks()
      */
-    public String getTasks() {
-        return listTasks();
+    public ArrayList<Task> getTasks() {
+        return tasks;
     }
 
     /**
