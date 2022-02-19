@@ -2,10 +2,13 @@ package duke.command;
 
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
+import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.TaskType;
 import duke.task.ToDo;
 import duke.ui.Ui;
+
+import java.util.ArrayList;
 
 /**
  * Command to Create a new ToDos task
@@ -34,12 +37,35 @@ public class ToDoCommand extends Command {
         } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("Todo command can't be empty");
         }
-        ToDo todo = new ToDo(commandInstruction.substring(5));
+        String taskDes = commandInstruction.substring(5);
+        ToDo todo = new ToDo(taskDes);
         //Checking whether the task has been created as a ToDo before adding and saving
         assert todo.getTaskType() == TaskType.TODO;
-        CommandResult commandResult = tasks.addTask(todo);
+        tasks.addTask(todo);
+        CommandResult commandResult = duplicateDetector(taskDes, tasks, todo);
         storage.save(tasks);
         return commandResult;
+    }
+
+    private CommandResult duplicateDetector(String taskDes, TaskList tasks, Task task){
+        ArrayList<Task> tempTasksList = new ArrayList<>();
+        for (int i = 0; i < tasks.getSize() - 1; i++) {
+            Task currentTasksClass = tasks.getTask(i);
+            String theStringTask = currentTasksClass.getTaskDescription();
+            if (theStringTask.equals(taskDes)) {
+                tempTasksList.add(currentTasksClass);
+            }
+        }
+        if (tempTasksList.size() == 0) {
+            return new CommandResult(Ui.displayAddMessage(task.toString(), tasks.getSize()));
+        } else {
+            String duplicate = Ui.displayDuplicateAddMessage(task.toString(), tasks.getSize(), tempTasksList.size() - 1);
+            for (int i = 0; i < tempTasksList.size(); i++) {
+                duplicate += Ui.showTaskInfo(tempTasksList.get(i)) + "\n";
+            }
+            return new CommandResult(duplicate);
+        }
+
     }
 
 

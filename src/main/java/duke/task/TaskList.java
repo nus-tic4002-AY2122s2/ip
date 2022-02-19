@@ -54,11 +54,9 @@ public class TaskList {
      * Adding of task into the task list and set the task index as well as display the action after it has been added
      * @param s the task that the user requested to be added
      */
-    public static CommandResult addTask(Task s) {
+    public static void addTask(Task s) {
         tasks.add(s);
         s.setTaskIndex(tasks.size() - 1);
-        return new CommandResult(Ui.displayAddMessage(s.toString(), tasks.size()));
-
     }
 
     /**

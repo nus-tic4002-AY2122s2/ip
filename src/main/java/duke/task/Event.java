@@ -62,6 +62,7 @@ public class Event extends Task {
                 : taskDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
+
     /**
      * Return the task type with the task that the user input and whether it is done or not
      * @return the task in String

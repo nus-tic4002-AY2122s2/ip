@@ -3,11 +3,13 @@ package duke.command;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 import duke.dukeexception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.Deadline;
+import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
@@ -45,7 +47,8 @@ public class DeadlineCommand extends Command {
         String taskDes = commandInstruction.substring(9, dividerPosition2);
         String taskDateTime = commandInstruction.substring(dividerPosition2 + 5);
         Deadline deadline = deadlineTimeSetter(taskDes, taskDateTime);
-        CommandResult commandResult = tasks.addTask(deadline);
+        tasks.addTask(deadline);
+        CommandResult commandResult = duplicateDetector(taskDes, tasks, deadline);
         storage.save(tasks);
         return commandResult;
     }
@@ -74,6 +77,27 @@ public class DeadlineCommand extends Command {
         } catch (DateTimeParseException e) {
             throw new DukeException("Please set date as YYYY-MM-DD");
         }
+    }
+
+    private CommandResult duplicateDetector(String taskDes, TaskList tasks, Task task){
+        ArrayList<Task> tempTasksList = new ArrayList<>();
+        for (int i = 0; i < tasks.getSize() - 1; i++) {
+            Task currentTasksClass = tasks.getTask(i);
+            String theStringTask = currentTasksClass.getTaskDescription();
+            if (theStringTask.equals(taskDes)) {
+                tempTasksList.add(currentTasksClass);
+            }
+        }
+        if (tempTasksList.size() == 0) {
+            return new CommandResult(Ui.displayAddMessage(task.toString(), tasks.getSize()));
+        } else {
+            String duplicate = Ui.displayDuplicateAddMessage(task.toString(), tasks.getSize(), tempTasksList.size() - 1);
+            for (int i = 0; i < tempTasksList.size(); i++) {
+                duplicate += Ui.showTaskInfo(tempTasksList.get(i)) + "\n";
+            }
+            return new CommandResult(duplicate);
+        }
+
     }
 
 }

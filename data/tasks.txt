@@ -2,3 +2,10 @@
 2 | D | 0 | lol | 2020-02-02
 3 | E | 0 | Dinner and Dance | 2021-09-23
 4 | D | 0 | school fees | 2021-09-24
+5 | T | 0 | help
+6 | T | 0 | things
+7 | T | 0 | sleep
+8 | T | 0 | idk
+9 | T | 0 | as
+10 | T | 0 | as
+11 | T | 0 | as

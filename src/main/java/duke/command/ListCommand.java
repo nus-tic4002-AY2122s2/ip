@@ -30,7 +30,7 @@ public class ListCommand extends Command {
         }
         String stringList = "";
         for (int i = 0; i < tasks.getSize(); i++) {
-            stringList = stringList + ui.showTaskInfo(tasks.getTask(i)) + "\n";
+            stringList += ui.showTaskInfo(tasks.getTask(i)) + "\n";
         }
         return new CommandResult(stringList);
 

@@ -52,7 +52,7 @@ public class FindCommand extends Command {
         } else {
             String stringList = "";
             for (int i = 0; i < tempTasksList.size(); i++) {
-                stringList = stringList + ui.showTaskInfo(tempTasksList.get(i)) + "\n";
+                stringList += ui.showTaskInfo(tempTasksList.get(i)) + "\n";
             }
             return new CommandResult(stringList);
         }

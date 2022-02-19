@@ -14,6 +14,8 @@ public class ToDo extends Task {
         taskType = TaskType.TODO;
     }
 
+
+
     /**
      * When this function is called, it will return the task type with the task that the user input
      * and whether it is done or not

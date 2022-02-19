@@ -75,6 +75,7 @@ public class Duke {
      */
     String getResponse(String input) {
         CommandResult commandResult = run(input);
+
         return commandResult.getFeedbackToUser();
     }
 
