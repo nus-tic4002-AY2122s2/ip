@@ -18,24 +18,11 @@ All you need to do is,
 And it is **FREE**!
 
 Features:
- 
- Managing deadlines (coming soon)
- Reminders (coming soon)
 
 - [x] Managing tasks
-- [ ] Managing deadlines
-- [ ] Schedule events
+- [x] Managing deadlines
+- [x] Schedule events
 
-----------------------------------
-
-If you Java programmer, you can use it to practice Java too. Here's the `main` method:
-
-```public class Main {
-    public static void main(String[] args) {
-        Application.launch(MainApp.class, args);
-    }
-}
-```
 
 Useful links:
 * [User Guide](UserGuide.md)
