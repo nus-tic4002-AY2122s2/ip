@@ -2,9 +2,6 @@ package duke.task;
 
 import java.util.ArrayList;
 
-import duke.command.CommandResult;
-import duke.ui.Ui;
-
 /**
  * Store the list of task for the program to call and use
  */

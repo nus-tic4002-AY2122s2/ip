@@ -79,7 +79,7 @@ public class DeadlineCommand extends Command {
         }
     }
 
-    private CommandResult duplicateDetector(String taskDes, TaskList tasks, Task task){
+    private CommandResult duplicateDetector(String taskDes, TaskList tasks, Task task) {
         ArrayList<Task> tempTasksList = new ArrayList<>();
         for (int i = 0; i < tasks.getSize() - 1; i++) {
             Task currentTasksClass = tasks.getTask(i);
@@ -91,7 +91,8 @@ public class DeadlineCommand extends Command {
         if (tempTasksList.size() == 0) {
             return new CommandResult(Ui.displayAddMessage(task.toString(), tasks.getSize()));
         } else {
-            String duplicate = Ui.displayDuplicateAddMessage(task.toString(), tasks.getSize(), tempTasksList.size() - 1);
+            String duplicate = Ui.displayDuplicateAddMessage(task.toString(),
+                    tasks.getSize(), tempTasksList.size() - 1);
             for (int i = 0; i < tempTasksList.size(); i++) {
                 duplicate += Ui.showTaskInfo(tempTasksList.get(i)) + "\n";
             }

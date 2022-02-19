@@ -25,7 +25,7 @@ public class ExitCommand extends Command {
      */
     public CommandResult execute(TaskList tasks, Ui ui, Storage storage) {
 
-        return new CommandResult(ui.showExit(),Boolean.TRUE);
+        return new CommandResult(ui.showExit(), Boolean.TRUE);
     }
 
     /**

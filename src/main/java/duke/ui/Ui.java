@@ -1,6 +1,5 @@
 package duke.ui;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.task.Task;
@@ -106,6 +105,12 @@ public class Ui {
                 + " tasks in the list.");
     }
 
+    /**
+     * Display Message after an adding of Tasks and display the number of total Tasks with duplicates
+     * @param thatTask the task that has been added
+     * @param numberOfTask the total number of task in the list
+     * @param dups the total number of duplicate task in the list
+     */
     public static String displayDuplicateAddMessage(String thatTask, int numberOfTask, int dups) {
         return ("Added: "
                 + thatTask

@@ -14,26 +14,16 @@ import duke.ui.Ui;
  */
 public class Duke {
 
+    private static Duke duke;
+
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    public static Duke _Final;
+
 
     private Duke() {
 
     };
-
-    public static Duke createInstance() {
-        if (_Final == null) {
-            _Final = new Duke("data/tasks.txt");
-        }
-        return  _Final; // Converting NusModList to Singleton Class to only have 1 Instance for easier retrieval
-    }
-
-    public static Duke sharedInstance() {
-        return  _Final;
-    }
-
 
     /**
      * Constructs the Duke class
@@ -51,21 +41,44 @@ public class Duke {
         }
     }
 
+
+    /**
+     * Create instance of Duke
+     *
+     */
+    public static Duke createInstance() {
+        if (duke == null) {
+            duke = new Duke("data/tasks.txt");
+        }
+        return duke; // Converting NusModList to Singleton Class to only have 1 Instance for easier retrieval
+    }
+
+
+    /**
+     * Shared instance of Duke
+     */
+    public static Duke sharedInstance() {
+        return duke;
+    }
+
+
+
     /**
      * this function will run the Duke program
      */
     public CommandResult run(String input) {
         CommandResult commandResult;
-        try{
-                String fullCommand = input;
+        try {
+            String fullCommand = input;
 
-                Command c = Parser.parse(fullCommand);
-                commandResult = c.execute(tasks, ui, storage);
-            } catch (DukeException e) {
-                commandResult = new CommandResult(e.getMessage());
-            }
-        return commandResult;
+            Command c = Parser.parse(fullCommand);
+            commandResult = c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            commandResult = new CommandResult(e.getMessage());
         }
+
+        return commandResult;
+    }
 
 
 
