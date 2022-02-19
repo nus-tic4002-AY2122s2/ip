@@ -129,7 +129,8 @@ public final class Message {
      * @param numDoneTask
      */
     public static void tellTaskNum(int numTask, int numDoneTask) {
-        buffer += "Task completion status: "
+        buffer += System.lineSeparator()
+                + "Task completion status: "
                 + numDoneTask + " / " + numTask;
     }
 
