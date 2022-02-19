@@ -50,7 +50,7 @@ Feedback and Contact Us | Provide information to user to contact the creator of 
 ---
 
 ## <a id="2">2. Installation of Duke </a>
-You can go to my GitHub [Duke](https://github.com/YangShuogeng/ip) repository page and click the button `clone` or `download` and download the zip file. Once the zip file downloaded, extract the file and locate the Duke `JAR` file. You can assess the `JAR` file to startup Duke.
+You can go to my GitHub [Duke v3.0](https://github.com/YangShuogeng/ip/releases/tag/A-Release) repository page and click the button `duke.jar` under `Assets` and download the jar file directly. Once the jar file downloaded, you can assess the `JAR` file to startup Duke.
 
 ---
 
@@ -64,7 +64,6 @@ Here are the list of features of the Duke system:
 3. Delete task
 4. Find task
 5. Mark task as done
-6. bye
 
 ---
 
@@ -82,7 +81,6 @@ event [desc] /at [starting time] -> [ending time] | To add a Event type task int
 find [keyword] | To find all task which the description contain the keyword
 done [index] | To mark the specified task status as done in the task list
 delete [index] | Tp delete the specified task from the task list
-bye | Save the current task list to local and close Duke
 
 Input time format: YYYY-MM-DD Hour(0-23):Minute(0-59)
 
@@ -92,57 +90,49 @@ Input:
 
 Expected outcome:
 
-![Image of todoOutcome](./outcome_todo.png)
+![Image of todoOutcome](./GUI output todo read book.png)
 
  Input:
  > event project meeting /at 2021-09-25 11:00 -> 2021-09-25 12:30
 
 Expected outcome:
 
-![Image of eventOutcome](./outcome_event.png)
+![Image of eventOutcome](./GUI output event.png)
 
 Input:
 > deadline return book /by 2021-12-12 18:00
 
 Expected outcome:
 
-![Image of deadlineOutcome](./outcome_deadline.png)
+![Image of deadlineOutcome](./GUI output deadline.png)
 
 Input:
 > list
 
 Expected outcome:
 
-![Image of listOutcome](./outcome_list.png)
+![Image of listOutcome](./GUI output list.png)
 
 Input:
 > done 2
 
 Expected outcome:
 
-![Image of doneOutcome](./outcome_done.png)
+![Image of doneOutcome](./GUI output done.png)
 
 Input:
 > delete 1
 
 Expected outcome:
 
-![Image of deleteOutcome](./outcome_delete.png)
+![Image of deleteOutcome](./GUI output delete.png)
 
 Input:
 > list
 
 Expected outcome:
 
-![Image of lastListOutcome](./outcome_lastList.png)
-
-
-Input:
-> bye
-
-Expected outcome:
-
-![Image of byeOutcome](./outcome_bye.png)
+![Image of lastListOutcome](./GUI list.png)
 
 ---
 
