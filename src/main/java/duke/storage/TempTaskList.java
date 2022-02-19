@@ -71,5 +71,12 @@ public class TempTaskList extends TempList<Task> {
         list.get(index).markDone();
         support.firePropertyChange("list", null, list);
     }
-
+    /**
+     * add tag at index
+     * @param index
+     */
+    public void tagAt(int index, String tag) {
+        list.get(index).tagging(tag);
+        support.firePropertyChange("list", null, list);
+    }
 }

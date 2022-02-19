@@ -1,6 +1,6 @@
 [T][x] world peace
 [T][x] seek love
-[T][x] end pandemic
+[T][x] end pandemic :covid:vaccine:
 [T][x] try stream map filter
 [E][ ] meeting with board (at: 01.Jan.22 09:00 - 15:30)
 [D][x] submit homework (by: 27.Sep.21 23:59)
@@ -8,3 +8,4 @@
 [T][ ] world war II
 [T][ ] buy sci-fi world magazine
 [T][ ] test: tags :java:4002:ip:nus:
+[E][ ] test: event with tags :add:world:test: (at: 19.Feb.22 10:00 - 11:30)

@@ -43,7 +43,21 @@ public abstract class Task {
     public void markUnDone() {
         this.isDone = false;
     }
-
+    public Optional<HashSet<String>> getTags() {
+        return tags;
+    }
+    /**
+     * append tag to tags
+     * @param tag
+     */
+    public void tagging(String tag) {
+        if (tags.isPresent()) {
+            tags.get().add(tag);
+        } else {
+            tags = Optional.of(new HashSet<>());
+            tags.get().add(tag);
+        }
+    }
 
     @Override
     public String toString() {

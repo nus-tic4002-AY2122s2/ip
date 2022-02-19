@@ -113,6 +113,17 @@ public final class Message {
     }
 
     /**
+     * task add tags
+     * @param tasks
+     * @param index
+     */
+    public static void taskTagged(TempTaskList tasks, int index) {
+        buffer = "Tags after append:"
+                + System.lineSeparator()
+                + tasks.get(index).toString();
+    }
+
+    /**
      * msg prints [1/5] [done/total] task
      * @param numTask
      * @param numDoneTask
