@@ -37,8 +37,18 @@ public class Duke {
         }
     }
 
+    /**
+     * initialize Duke function
+     */
     public Duke() {
+        ui = new Ui();
+        storage = new Storage("");
 
+        try {
+            taskList = new TaskList(storage.load());
+        } catch (DukeStorageError | DukeDateTimeError | IOException e) {
+            taskList = new TaskList();
+        }
     }
 
     /**

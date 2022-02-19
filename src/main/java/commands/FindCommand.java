@@ -2,7 +2,6 @@ package commands;
 
 import java.util.Vector;
 
-import exceptions.DukeTaskInputException;
 import storage.Storage;
 import taskclasses.Task;
 import taskclasses.TaskList;
@@ -27,10 +26,9 @@ public class FindCommand extends Command {
      * @param taskList contain all the task
      * @param ui Ui class
      * @param storage Storage class
-     * @throws DukeTaskInputException throw all errors about input command
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeTaskInputException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
 
         Vector<Task> list = taskList.getVectorList();
         Vector<Task> matchedTaskList = getMatchedTasks(list);
