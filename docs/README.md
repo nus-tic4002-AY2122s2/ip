@@ -1,9 +1,8 @@
 # Duke
 
-# DukeIP
 > A wise man once said "To plan is to organise"
 
-DukeIP frees your mind of having to remember things you need to do. It's,
+Duke frees your mind of having to remember things you need to do. It's,
 
 - text-based
 - easy to learn
