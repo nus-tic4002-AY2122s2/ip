@@ -90,35 +90,35 @@ Input:
 
 Expected outcome:
 
-![Image of todoOutcome](./GUI output todo read book.png)
+![Image of todoOutcome](./GUI_output_todo_read_book.png)
 
  Input:
  > event project meeting /at 2021-09-25 11:00 -> 2021-09-25 12:30
 
 Expected outcome:
 
-![Image of eventOutcome](./GUI output event.png)
+![Image of eventOutcome](./GUI_output_event.png)
 
 Input:
 > deadline return book /by 2021-12-12 18:00
 
 Expected outcome:
 
-![Image of deadlineOutcome](./GUI output deadline.png)
+![Image of deadlineOutcome](./GUI_output_deadline.png)
 
 Input:
 > list
 
 Expected outcome:
 
-![Image of listOutcome](./GUI output list.png)
+![Image of listOutcome](./GUI_output_list.png)
 
 Input:
 > done 2
 
 Expected outcome:
 
-![Image of doneOutcome](./GUI output done.png)
+![Image of doneOutcome](./GUI_output_done.png)
 
 Input:
 > delete 1
