@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Duke {
     private TaskList taskList;
-    private String filePath;
+    private Storage storage;
     public boolean isExit;
 
     /**
@@ -16,14 +16,13 @@ public class Duke {
     public Duke() {
         ArrayList<Task> tasks = new ArrayList<>();
         this.taskList = new TaskList(tasks);
-        this.filePath = "data/duke.txt";
+        this.storage = new Storage("data/duke.txt");
+        storage.loadFile(taskList);
+        this.isExit = false;
     }
 
     public void run() {
-        Storage storage = new Storage(filePath);
-        storage.loadFile(taskList);
         System.out.println(UI.welcome());
-        isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = UI.readCommand();
@@ -48,10 +47,13 @@ public class Duke {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    String getResponse(String input) {
-        try{
+    public String getResponse(String input) {
+        try {
             Execution execution = new Execution(input);
-            return execution.execute(taskList);
+            String response = execution.execute(taskList);
+            storage.saveFile(taskList);
+            isExit = execution.isExit;
+            return response;
         } catch (Exception e) {
             return "OOPS!!! I'm sorry, but I don't know what that means :-(";
         }
