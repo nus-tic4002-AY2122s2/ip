@@ -1,5 +1,9 @@
 package duke.commands;
 
+import duke.task.Task;
+
+import java.time.LocalDateTime;
+
 /**
  * Update the task based on the element that want to be updated
  * @param <T> the new value for updated task, e.g. description, due etc.
@@ -23,8 +27,20 @@ public class UpdateCommand<T> extends Command {
 
     @Override
     public String execute() {
-        String commandResult = "";
-        commandResult = Integer.toString(targetIndex) + " " + toUpdate + " " + newValue.toString();
+        String commandResult;
+        Task target = taskList.getTaskByIdx(targetIndex);
+        String original = target.toString();
+        switch (toUpdate) {
+        case "desc":
+        case "description":
+            target.updateTask((String) newValue);
+            break;
+        case "tasktime":
+        default:
+            target.updateTask((LocalDateTime) newValue);
+            break;
+        }
+        commandResult = original + "\nupdated to\n" + taskList.getTaskByIdx(targetIndex).toString();
         return commandResult;
     }
 }

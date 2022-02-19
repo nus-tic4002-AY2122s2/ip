@@ -38,6 +38,13 @@ public class Deadline extends Task {
     }
 
     @Override
+    public void updateTask(LocalDateTime newValue){
+        this.by = newValue;
+
+    }
+
+
+    @Override
     public boolean equals(Object obj) {
 
         if (!super.equals(obj)) {

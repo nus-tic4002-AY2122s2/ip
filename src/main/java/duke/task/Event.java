@@ -38,6 +38,12 @@ public class Event extends Task {
     }
 
     @Override
+    public void updateTask(LocalDateTime newValue){
+        this.at = newValue;
+
+    }
+
+    @Override
     public String getTaskType() {
         return TASK_TYPE;
     }

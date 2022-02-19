@@ -75,6 +75,16 @@ public abstract class Task {
         return taskTime;
     }
 
+    public void updateTask(String newValue) {
+        this.description = newValue;
+    }
+
+    public void updateTask(LocalDateTime newValue){
+        this.taskTime = newValue;
+
+    }
+
+
     @Override
     public boolean equals(Object obj) {
 
