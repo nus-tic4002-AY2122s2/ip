@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+//*
+// Individual Project for TIC4002 2022 Jan-May
+//
+// *//
 public class Duke {
 
     public static ArrayList<Task> Tasks = new ArrayList<>();
