@@ -7,7 +7,10 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.task.ToDo;
 import duke.ui.Ui;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 
 
 /**
@@ -77,24 +80,49 @@ public class UpdateCommand extends Command {
             ui.printDeleteMsg(tasks.remove(position), tasks);
             break;
         case Edit:
+
             Task eTask = tasks.get(position);
+            ui.setEditingTodo(eTask.getClass() == ToDo.class);
             ui.printEditTaskMsg(eTask);
-            eTask.setDescription(ui.readCommand());
-            if (eTask.getClass() == Deadline.class || eTask.getClass() == Event.class) {
-                ui.printEditDateMsg();
-                String dateStr = ui.readCommand();
-                if (eTask.getClass() == Deadline.class) {
-                    Deadline d = (Deadline) eTask;
-                    d.setDeadline(dateStr);
-                    eTask = d;
-                } else {
-                    Event e = (Event) eTask;
-                    e.setStartEndTime(dateStr);
-                    eTask = e;
+            ui.setAwaitingInput(true);
+            //basically get a task here that keeps running in the background till the description and date are received.
+            javafx.concurrent.Task<Void> sleeper = new javafx.concurrent.Task<>() {
+                @Override
+                protected Void call() throws Exception {
+                    try {
+                        do {
+                            Thread.sleep(500);
+                        } while (ui.isAwaitingInput());
+                    } catch (InterruptedException e) {
+                        ui.printToUI("Interrupted exit!");
+                    }
+                    return null;
                 }
-            }
-            tasks.edit(position, eTask);
-            ui.printTask(tasks.get(position));
+            };
+            sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent event) {
+                    Task finalETask = eTask;
+                    finalETask.setDescription(ui.getNewDesc());
+                    if (finalETask.getClass() == Deadline.class || finalETask.getClass() == Event.class) {
+                        ui.printEditDateMsg();
+                        String dateStr = ui.getNewDateStr();
+                        if (finalETask.getClass() == Deadline.class) {
+                            Deadline d = (Deadline) finalETask;
+                            d.setDeadline(dateStr);
+                            finalETask = d;
+                        } else {
+                            Event e = (Event) finalETask;
+                            e.setStartEndTime(dateStr);
+                            finalETask = e;
+                        }
+                    }
+                    tasks.edit(position, finalETask);
+                    ui.printTask(tasks.get(position));
+                    ui.resetInputStrings();
+                }
+            });
+            new Thread(sleeper).start();
             break;
         default:
             ui.printErrorMsg(new DukeUnknownException());

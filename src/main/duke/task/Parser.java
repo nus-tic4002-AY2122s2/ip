@@ -149,6 +149,12 @@ public class Parser {
         case "delete":
         case "done":
         case "edit":
+            // TODO: add support for searching by string.
+            System.out.println(strings[1]);
+            boolean containsLetters = strings[1].matches(".*[a-zA-Z]+.*");
+            if (containsLetters) {
+                throw new DukeUnknownException("Command doesn't accept alphabetical characters.");
+            }
             int pos = Integer.parseInt(strings[1]) - 1; //pos.minValue = 0, cannot be negative.
             if (pos < 0) {
                 throw new IndexOutOfBoundsException("invalid number detected, please input a number starting from 1.");
@@ -199,6 +205,7 @@ public class Parser {
         return createdTask;
     }
 
+    //TODO: make function more intuitive for Event/Deadline
     private static Task parseEventOrDeadline(String[] inputStrs) throws DukeMissingDescException {
         String tempStr1 = "";
         String tempStr2 = "";
@@ -210,6 +217,7 @@ public class Parser {
             tempStr2 = tempStr2.concat(String.format("%s ", inputStrs[i]));
         }
         tempStr1 = tempStr1.strip();
+
         tempStr2 = tempStr2.strip();
         return (inputStrs[0].equals("event")) ? new Event(tempStr1, tempStr2) : new Deadline(tempStr1, tempStr2);
     }

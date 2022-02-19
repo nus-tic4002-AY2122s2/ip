@@ -52,8 +52,8 @@
 
 ## Task List
 ### Work In Progress
-- [ ] Gradle
-- [ ] CheckStyle
+- [X] Gradle
+- [X] CheckStyle
 - [ ] Level 10
 - [ ] Release New Jar
 - [ ] Continuous Integration
