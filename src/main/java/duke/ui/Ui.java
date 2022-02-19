@@ -16,7 +16,8 @@ public class Ui {
         String logo = "(\\ /)\n"
                     + "( . .)\n"
                     + "C(\")(\")\n";
-        String message = "Hello from\n"
+        String message = "Hello from DUKE!\n"
+                + "Let me summon my magic bunny to help you! \n"
                 + logo
                 + "What can I do for you?\n";
 

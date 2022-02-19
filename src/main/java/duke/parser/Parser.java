@@ -53,6 +53,8 @@ public class Parser {
         case ("delete"):
             return new DeleteCommand(fullCommand);
         case "hi":
+        case "hello":
+        case "yo":
         case "help":
         case "clearlist":
             return new OtherCommand(fullCommand);

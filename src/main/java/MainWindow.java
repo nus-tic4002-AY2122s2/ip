@@ -29,7 +29,8 @@ public class MainWindow extends AnchorPane {
     private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/rockSpirit.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/rabbit.jpg"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/robot2.jpg"));
+    private Image bunnyImage = new Image(this.getClass().getResourceAsStream("/images/rabbit.jpg"));
 
     /**
      * initialize
@@ -54,7 +55,7 @@ public class MainWindow extends AnchorPane {
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, bunnyImage)
         );
         userInput.clear();
         if (response.equals("Bye. Hope to see you again soon!")) {
@@ -76,7 +77,7 @@ public class MainWindow extends AnchorPane {
         Timeline exitingProgram = new Timeline(
                 new KeyFrame(Duration.seconds(11 - i), event -> {
                     dialogContainer.getChildren().addAll(
-                            DialogBox.getDukeDialog("Closing in " + i + " sec", dukeImage)
+                            DialogBox.getDukeDialog("Closing in " + i + " sec", bunnyImage)
                     ); }
                 ));
         exitingProgram.setCycleCount(1);

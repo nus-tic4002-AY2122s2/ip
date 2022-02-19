@@ -25,8 +25,10 @@ public class OtherCommand extends Command {
      * @throws DukeException any expected error
      */
     public CommandResult execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        switch(commandInstruction) {
+        switch(commandInstruction.toLowerCase()) {
         case "hi":
+        case "hello":
+        case "yo":
             return new CommandResult("Hello to you too! :)");
 
         case "help":
