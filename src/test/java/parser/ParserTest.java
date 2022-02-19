@@ -4,7 +4,7 @@ import commands.AddCommand;
 import commands.ListCommand;
 import commands.DeleteCommand;
 
-import tasks.*;
+import tasks.TaskList;
 import ui.Ui;
 import storage.Storage;
 
@@ -12,7 +12,7 @@ import storage.Storage;
 import exceptions.DukeException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParserTest {
 

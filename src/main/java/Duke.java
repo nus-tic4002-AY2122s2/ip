@@ -1,3 +1,5 @@
+
+
 import commands.Command;
 import exceptions.DukeException;
 import javafx.application.Application;
@@ -21,7 +23,7 @@ import java.io.IOException;
 // e.g., collect certificate between Jan 15 and 25th.
 
 
-public class Duke {
+public class Duke extends Application {
 
     private Storage storage;
     private TaskList tasks;
@@ -32,12 +34,12 @@ public class Duke {
     /**
      * Used to create a new Duke Instance. Initialise the ui,storage and tasks.
      * tasks will load from the storage. If there is an error, it will initialise on its own.
-     *
-     * @param  filePath filePath to storage
      * @throws IOException throws IOException due to incorrect input
      */
 
-    public Duke(String filePath) throws IOException {
+    /*
+    public Duke() throws IOException {
+        String filePath = "";
         ui = new Ui();
         storage = new Storage(filePath);
         parser = new Parser();
@@ -48,7 +50,7 @@ public class Duke {
             tasks = new TaskList();
         }
     }
-
+    */
 
     /**
      * Used to keep the Duke Chat bot running. Scan for input then Parse the input into a command
@@ -80,13 +82,7 @@ public class Duke {
 
     }
 
-    public static void main(String[] args) throws IOException {
-        //Application.launch(Duke.class, args);
-        new Duke("data/tasks_list.txt").run();
-    }
-
-
-    //@Override
+    @Override
     public void start(Stage stage) {
         Label helloWorld = new Label("Hello World!"); // Creating a new Label control
         Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
