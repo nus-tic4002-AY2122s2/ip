@@ -50,7 +50,7 @@ public class Duke {
         if (duke == null) {
             duke = new Duke("data/tasks.txt");
         }
-        return duke; // Converting NusModList to Singleton Class to only have 1 Instance for easier retrieval
+        return duke; // Converting duke to Singleton Class to only have 1 Instance for easier retrieval
     }
 
 
@@ -83,8 +83,7 @@ public class Duke {
 
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Function to run duke and get response
      */
     String getResponse(String input) {
         CommandResult commandResult = run(input);
