@@ -60,12 +60,12 @@ public class MainWindow extends AnchorPane {
         if (response.equals("Bye. Hope to see you again soon!")) {
 
             Timeline exitingProgram = new Timeline(
-                    new KeyFrame(Duration.seconds(11), event -> {
+                    new KeyFrame(Duration.seconds(11), event -> { //11 sec till closing of apps
                         Platform.exit(); }
                     ));
             exitingProgram.setCycleCount(Animation.INDEFINITE);
             exitingProgram.play();
-            for (int i = 10; i > 0; i--) {
+            for (int i = 10; i > 0; i--) { //10 sec of countdown
                 countdown(i);
             }
 
