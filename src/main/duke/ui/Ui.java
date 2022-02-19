@@ -24,19 +24,27 @@ import javafx.stage.Stage;
  */
 public class Ui {
     private Duke duke;
+    private boolean awaitingInput;
+    private boolean isEditingTodo;
     private Scanner input;
     private ScrollPane scrollPane;
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
     private VBox dialogContainer;
+    private String newDesc;
+    private String newDateStr;
+
 
     /**
-     * @param duke reference to main duke program
+     * @param duke  reference to main duke program
      * @param stage reference to stage used in JavaFX
      */
     public Ui(Duke duke, Stage stage) {
         this.duke = duke;
+        awaitingInput = false;
+        newDesc = "";
+        newDateStr = "";
         input = new Scanner(System.in);
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -86,7 +94,19 @@ public class Ui {
             String a = userInput.getText();
             if (!(a.isEmpty() || a.isBlank())) {
                 dialogContainer.getChildren().add(getDialogLabel(a, Color.DARKGREEN, false));
-                duke.runOnce(a);
+                if (awaitingInput) {
+                    if (newDesc.isBlank() || newDesc.isEmpty()) {
+                        newDesc = a;
+                        if (isEditingTodo()) {
+                            setAwaitingInput(false);
+                        }
+                    } else if (newDateStr.isBlank() || newDateStr.isEmpty()) {
+                        newDateStr = a;
+                        setAwaitingInput(false);
+                    }
+                } else {
+                    duke.runOnce(a);
+                }
                 userInput.clear();
             }
         });
@@ -95,7 +115,19 @@ public class Ui {
             String a = userInput.getText();
             if (!(a.isEmpty() || a.isBlank())) {
                 dialogContainer.getChildren().add(getDialogLabel(a, Color.DARKGREEN, false));
-                duke.runOnce(a);
+                if (awaitingInput) {
+                    if (newDesc.isBlank() || newDesc.isEmpty()) {
+                        newDesc = a;
+                        if (isEditingTodo()) {
+                            setAwaitingInput(false);
+                        }
+                    } else if (newDateStr.isBlank() || newDateStr.isEmpty()) {
+                        newDateStr = a;
+                        setAwaitingInput(false);
+                    }
+                } else {
+                    duke.runOnce(a);
+                }
                 userInput.clear();
             }
         });
@@ -106,6 +138,39 @@ public class Ui {
         printHelloMsg();
     }
 
+
+    public boolean isEditingTodo() {
+        return isEditingTodo;
+    }
+
+    public void setEditingTodo(boolean editingTodo) {
+        isEditingTodo = editingTodo;
+    }
+
+
+    public boolean isAwaitingInput() {
+        return awaitingInput;
+    }
+
+    public void setAwaitingInput(boolean awaitingInput) {
+        this.awaitingInput = awaitingInput;
+    }
+
+    public String getNewDesc() {
+        return newDesc;
+    }
+
+    public String getNewDateStr() {
+        return newDateStr;
+    }
+
+    /**
+     * Resets input string after editing a task
+     */
+    public void resetInputStrings() {
+        newDesc = "";
+        newDateStr = "";
+    }
 
     /**
      * Iteration 1:
@@ -218,20 +283,11 @@ public class Ui {
     }
 
     /**
+     *
      */
     public void printHelloMsg() {
         printToUI("Hello! I'm Duke Nuke Em.");
         printToUI("What can I do for you?");
-    }
-
-    /**
-     * @return reads user's input to be parsed by Parser
-     */
-    public String readCommand() {
-        String inputStr = "";
-        
-        assert !inputStr.isEmpty() && !inputStr.isBlank();
-        return inputStr;
     }
 
 }
