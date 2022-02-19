@@ -125,14 +125,14 @@ Input:
 
 Expected outcome:
 
-![Image of deleteOutcome](./GUI output delete.png)
+![Image of deleteOutcome](./GUI_output_delete.png)
 
 Input:
 > list
 
 Expected outcome:
 
-![Image of lastListOutcome](./GUI list.png)
+![Image of lastListOutcome](./GUI_list.png)
 
 ---
 
