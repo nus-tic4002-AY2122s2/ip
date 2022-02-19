@@ -40,4 +40,3 @@ If you Java programmer, you can use it to practice Java too. Here's the `main` m
 Useful links:
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
-* [About Us](AboutUs.md)
