@@ -243,28 +243,32 @@ public class Duke extends Application {
 
         Tasks tasks= new Tasks("");
 
-        String commandInput= fullCommand[0];
-        String taskInput = fullCommand[1];
-
-        switch (commandInput){
+        switch (fullCommand[0]){
         case ("todo"):
-            Todo todo = new Todo(taskInput);
-            Task task = new Task(false, todo.toString());
+            try {
+                Todo todo = new Todo(fullCommand[1]);
+                Task task = new Task(false, todo.toString());
 
-            addedList.add(task);
-            Label userText2 = new Label(userInput.getText());
-            Label dukeText2 = new Label("Got it. I've added this task:" + "\n" + taskInput);
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(userText2, new ImageView(user)),
-                    DialogBox.getDukeDialog(dukeText2, new ImageView(duke))
-            );
-            userInput.clear();
+                addedList.add(task);
+                Label userText2 = new Label(userInput.getText());
+                Label dukeText2 = new Label("Got it. I've added this task:" + "\n" + fullCommand[1]);
+                dialogContainer.getChildren().addAll(
+                        DialogBox.getUserDialog(userText2, new ImageView(user)),
+                        DialogBox.getDukeDialog(dukeText2, new ImageView(duke))
+                );
+                userInput.clear();
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                Label dukeTextTodoException = new Label("☹ OOPS!!!\n The todo description cannot be empty.  \n");
+                dialogContainer.getChildren().addAll(
+                        DialogBox.getExceptionDialog(dukeTextTodoException, new ImageView(duke))
+                );
+            }
             break;
 
         case ("list"):
             try{
-                int sizeOfList = addedList.toArray().length;
-                if (sizeOfList != 0){
+                if (addedList.toArray().length != 0){
                     int indexList = 0;
                     Iterator itr = addedList.iterator();
                     Label userText3 = new Label(userInput.getText());
@@ -276,7 +280,7 @@ public class Duke extends Application {
                     StringBuilder stringBuilder = new StringBuilder();
                     String finalString = "";
 
-                    stringBuilder.append("Here are the TaskPackage. \nTask in your list:\n");
+                    stringBuilder.append("\nHere are the TaskPackage. \nTask in your list:\n");
 
                     while (itr.hasNext()) {
                         Task t = (Task) itr.next();
@@ -290,7 +294,7 @@ public class Duke extends Application {
                     );
                     userInput.clear();
                 }
-                else if (sizeOfList == 0){
+                else if (addedList.toArray().length == 0){
                     Label dukeTextEmptyList = new Label("☹ OOPS!!! There are no daily items in the list.\n");
                     dialogContainer.getChildren().add(
                             DialogBox.getExceptionDialog(dukeTextEmptyList, new ImageView(duke))
@@ -308,12 +312,13 @@ public class Duke extends Application {
         case("done"):
             try{
 
-                Integer doneIndexInput = Integer.parseInt(taskInput)-1;
-                Integer doneIndex = Integer.parseInt(taskInput);
+                Integer doneIndexInput = Integer.parseInt(fullCommand[1])-1;
+                Integer doneIndex = Integer.parseInt(fullCommand[1]);
 
                 int index = 0;
                 boolean isWithinSizeLimit = doneIndex <= addedList.toArray().length;
                 boolean isOverSizeLimit = doneIndex > addedList.toArray().length;
+
 
                 Iterator itrDone = this.addedList.iterator();
                 while (itrDone.hasNext()) {
@@ -333,7 +338,7 @@ public class Duke extends Application {
                         DialogBox.getUserDialog(userTextDone, new ImageView(user))
                 );
 
-                if(isWithinSizeLimit && doneIndex > 0 ){
+                if(doneIndex <= addedList.toArray().length && doneIndex > 0 ){
                     stringBuilderDone.append("\n    "+ "Nice! I've marked this task item:"+ doneIndex + " as done\n");
                     finalStringDone = stringBuilderDone.toString();
                     dialogContainer.getChildren().add(
@@ -341,8 +346,8 @@ public class Duke extends Application {
                     );
                     userInput.clear();
                 }
-                else if (isOverSizeLimit || doneIndex <= 0){
-                    stringBuilderDone.append("☹ OOPS!!! Something went wrong");
+                else if(doneIndex > addedList.toArray().length || doneIndex <= 0){
+                    stringBuilderDone.append("\n☹ OOPS!!! Something went wrong");
                     stringBuilderDone.append("\n 1. The item of a done is not in the list.");
                     stringBuilderDone.append("\n 2. The item no should not be negative");
                     stringBuilderDone.append("\nPlease list all the item\n");
@@ -364,7 +369,7 @@ public class Duke extends Application {
 
         case("event"):
             try {
-                if (taskInput != "") {
+                if (fullCommand[1] != " ") {
                     int task_stringIndex_After_taskWord = 0;
                     String task_words ="", by_words = " ";
 
@@ -375,6 +380,8 @@ public class Duke extends Application {
                     if ( userInput.getText().contains("/")) {
                         by_string =  userInput.getText().indexOf("/");
                         task_words =  userInput.getText().substring(task_stringIndex_After_taskWord, by_string);
+                    }
+                    else if( userInput.getText().contains("bye")){
                     }
                     else{
                         task_words =  userInput.getText().substring(task_stringIndex_After_taskWord);
@@ -393,7 +400,7 @@ public class Duke extends Application {
                             DialogBox.getUserDialog(userTextEvent, new ImageView(user))
                     );
 
-                    stringBuilderEvent.append("    " + "Got it. I've added this task:");
+                    stringBuilderEvent.append("\n    " + "Got it. I've added this task:\n");
                     stringBuilderEvent.append("\n    " + userInput.getText().substring(6) +"\n");
 
                     finalStringEvent = stringBuilderEvent.toString();
@@ -413,7 +420,7 @@ public class Duke extends Application {
 
         case("deadline"):
             try {
-                if (taskInput != "") {
+                if (fullCommand[1] != "") {
                     String task_words ="";
                     String by_words = " ";
 
@@ -424,6 +431,8 @@ public class Duke extends Application {
                     if (userInput.getText().contains("/")) {
                         by_string = userInput.getText().indexOf("/");
                         task_words = userInput.getText().substring(task_stringIndex_After_taskWord, by_string);
+                    }
+                    else if(userInput.getText().contains("bye")){
                     }
                     else{
                         task_words = userInput.getText().substring(task_stringIndex_After_taskWord);
@@ -442,7 +451,7 @@ public class Duke extends Application {
                             DialogBox.getUserDialog(userTextEvent, new ImageView(user))
                     );
 
-                    stringBuilderEvent.append("    " + "Got it. I've added this task:");
+                    stringBuilderEvent.append("\n    " + "Got it. I've added this task:\n");
                     stringBuilderEvent.append("\n    " + userInput.getText().substring(9)+"\n" );
                     stringBuilderEvent.append("\n    " + "Now you have " + tasks.getNumOfList() + " tasks in the list.\n");
 
@@ -452,28 +461,32 @@ public class Duke extends Application {
                             DialogBox.getDukeDialog(new Label(finalStringEvent), new ImageView(duke))
                     );
                     userInput.clear();
+
                 }
             } catch (IndexOutOfBoundsException e) {
-                Label dukeTextDeadlineException = new Label("☹ OOPS!!!\n The deadline description cannot be empty. \n");
+                Label userTextDelete= new Label(userInput.getText());
+
                 dialogContainer.getChildren().addAll(
-                        DialogBox.getUserDialog(dukeTextDeadlineException, new ImageView(user))
+                        DialogBox.getUserDialog(userTextDelete, new ImageView(user))
                 );
+                System.out.println("☹ OOPS!!! The delete cannot be empty.");
             }
             break;
 
         case("delete"):
             try{
-                Integer deleteIndex = Integer.parseInt(taskInput);
-                this.addedList.remove(Integer.parseInt(taskInput)-1);
+                Integer deleteIndex = Integer.parseInt(fullCommand[1]);
+                this.addedList.remove(Integer.parseInt(fullCommand[1])-1);
                 StringBuilder stringBuilderDelete= new StringBuilder();
                 String finalStringDelete="";
 
-                stringBuilderDelete.append("    "+ "Nice! I've deleted item:"+ deleteIndex+"\n");
+                stringBuilderDelete.append("\n    "+ "Nice! I've deleted item:"+ deleteIndex+"\n");
                 finalStringDelete = stringBuilderDelete.toString();
                 dialogContainer.getChildren().addAll(
                         DialogBox.getDukeDialog(new Label(finalStringDelete), new ImageView(duke))
                 );
                 userInput.clear();
+                break;
             } catch (IndexOutOfBoundsException e){
                 Label dukeTextDeleteException = new Label("☹ OOPS!!! Please enter correct delete item no. \n");
                 dialogContainer.getChildren().addAll(
@@ -496,13 +509,15 @@ public class Duke extends Application {
                 );
 
                 int saveIndex = 0;
+                stringBuilderEvent.append("\n-------------------------------\n");
                 Iterator saveItr = addedList.iterator();
                 while (saveItr.hasNext()){
                     Task t = (Task)saveItr.next();
                     fw.write("  " + ++saveIndex +"[" + (t.status ?"\u2713": "\u2718") +"]" + t.desc + System.lineSeparator());
                 }
 
-                stringBuilderEvent.append("File save successfully to dukesave.txt\n");
+                stringBuilderEvent.append("\nFile save successfully to dukesave.txt\n");
+                stringBuilderEvent.append("\n-------------------------------\n");
 
                 finalStringSave = stringBuilderEvent.toString();
 
@@ -529,8 +544,9 @@ public class Duke extends Application {
                 int listPrintFind = 0;
                 int index1 = 0;
 
-                if(taskInput != "") {
+                if(fullCommand[1]!="") {
                     String searchWord = userInput.getText().substring(5);
+
                     StringBuilder stringBuilder = new StringBuilder();
                     String finalStringFind = "";
 
@@ -559,6 +575,7 @@ public class Duke extends Application {
                         userInput.clear();
                     }
                 }
+
             } catch (ArrayIndexOutOfBoundsException e){
                 Label dukeTextFindException = new Label("☹ OOPS!!! \nThe finding keywords is missing\n");
                 dialogContainer.getChildren().add(
@@ -744,7 +761,7 @@ public class Duke extends Application {
                     System.out.println("Something went wrong" + e.getMessage());
                 }
                 break;
-                
+
             default:
             }
         }
