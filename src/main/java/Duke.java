@@ -526,6 +526,52 @@ public class Duke extends Application {
             }
             break;
 
+        case ("find"):
+            try{
+                int listPrintFind = 0;
+                int index1 = 0;
+
+                if(fullCommand[1]!="") {
+                    String searchWord = userInput.getText().substring(5);
+
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String finalStringFind = "";
+
+                    stringBuilder.append("Here are the matching task in your list\n");
+
+                    for (int i = 0; i < addedList.toArray().length; i++) {
+                        ++index1;
+                        if (addedList.get(i).desc.contains(searchWord.trim())) {
+                            stringBuilder.append("\n " + index1 + ". " + "[" + addedList.get(i).status + "]" + addedList.get(i).desc);
+                            listPrintFind++;
+                        }
+                    }
+                    finalStringFind = stringBuilder.toString();
+
+                    if(listPrintFind != 0) {
+                        dialogContainer.getChildren().add(
+                                DialogBox.getDukeDialog(new Label(finalStringFind), new ImageView(duke))
+                        );
+                        userInput.clear();
+                    }
+                    else if(listPrintFind == 0){
+                        Label dukeTextFind = new Label("☹ OOPS!!! \nNot matching found on the list\"\n");
+                        dialogContainer.getChildren().add(
+                                DialogBox.getExceptionDialog(dukeTextFind, new ImageView(duke))
+                        );
+                        userInput.clear();
+                    }
+                }
+
+            } catch (ArrayIndexOutOfBoundsException e){
+                Label dukeTextFindException = new Label("☹ OOPS!!! \nThe finding keywords is missing\n");
+                dialogContainer.getChildren().add(
+                        DialogBox.getExceptionDialog(dukeTextFindException, new ImageView(duke))
+                );
+                userInput.clear();
+            }
+            break;
+
         default:
             Label dukeTextWrongCmd= new Label("☹ OOPS!!! \nPlease refer User Guide enter correct command");
             dialogContainer.getChildren().add(
