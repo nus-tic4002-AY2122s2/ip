@@ -52,7 +52,7 @@ public class Duke extends Application {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     private boolean isRunning = true;
-    Command c;
+    Command co;
 
     /**
      * Used to create a new Duke Instance. Initialise the ui,storage and tasks.
@@ -144,7 +144,7 @@ public class Duke extends Application {
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
 
-        AnchorPane.setLeftAnchor(userInput , 1.0);
+        AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
 
@@ -153,14 +153,14 @@ public class Duke extends Application {
 
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
-            if(isRunning == false){
+            if (isRunning == false) {
                 Platform.exit();
             }
         });
 
         userInput.setOnAction((event) -> {
             handleUserInput();
-            if(isRunning == false){
+            if (isRunning == false) {
                 Platform.exit();
             }
         });
@@ -203,12 +203,12 @@ public class Duke extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input){
+    private String getResponse(String input) {
 
         try {
-            c = parser.parse(input);
-            c.execute(tasks, ui, storage);
-            isRunning = c.isRunning();
+            co = parser.parse(input);
+            co.execute(tasks, ui, storage);
+            isRunning = co.isRunning();
         } catch (DukeException | IOException e) {
             return "Error!";
         }

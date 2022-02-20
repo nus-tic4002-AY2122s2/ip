@@ -1,6 +1,8 @@
 package ui;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 
 /**
@@ -88,7 +90,7 @@ public class Ui {
     public String getMessages() {
         String reply = "";
 
-        for(int i = 0; i < messages.size(); i ++){
+        for (int i = 0; i < messages.size(); i++) {
             reply = reply + messages.get(i) + "\n";
         }
         return reply;
