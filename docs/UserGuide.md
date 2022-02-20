@@ -23,18 +23,23 @@ Duke frees your mind of having to remember things you need to do. It's,
 ### Tracking and managing of Task
 
 Duke will help you to track and manage your tasks with ease. Tasks could be group into ToDos, Events or Deadlines.
+![TrackAndManage](https://user-images.githubusercontent.com/43517460/154832139-c25ddec6-c4f9-4d87-a094-57e6fc205852.PNG)
 
 ### Storing of task
 
 Duke will save your task such that when you start up Duke the next time, your saved task will appear.
+![StoringOfTask](https://user-images.githubusercontent.com/43517460/154832135-095ebef2-3e54-4634-9c50-f676630d84ba.PNG)
 
 ### Finding of your task
 
 Duke will help and find and return a list of task using keywords which you would like to find.
+![FindingStudy](https://user-images.githubusercontent.com/43517460/154832131-8403e700-68b9-44af-9f7a-388eb6434e69.PNG)
 
 ### Inform duplicate task
 
 Duke will inform you if you add another task with the same description as an existing one.
+![duplicate](https://user-images.githubusercontent.com/43517460/154832128-edddda39-fd26-4c7a-9e8e-758887fbcf67.PNG)
+
 
 ### List of command available
 Here are a list of commands you can enter, and the explanations of what the commands do:
