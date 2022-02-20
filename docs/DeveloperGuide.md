@@ -24,6 +24,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 ![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
 **Note:** The lifeline for `c:Command` should end at destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<br><br>
 
 ## Appendix: Requirements
 
