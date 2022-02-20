@@ -15,14 +15,14 @@ Participant ":TaskList" as taskList STORAGE_COLOR
 activate ui UI_COLOR
 
 
-user -[USER_COLOR]> ui : "list all"
+user -[USER_COLOR]> ui : "list"
 
-ui -[UI_COLOR]> duke : getResponse()
+ui -[UI_COLOR]> duke : getResponse("list")
 
 activate duke DUKE_COLOR
 
 
-duke -[DUKE_COLOR]> parser : parse("list all")
+duke -[DUKE_COLOR]> parser : parse("list")
 activate parser LOGIC_COLOR
 
 parser --[LOGIC_COLOR]> duke
