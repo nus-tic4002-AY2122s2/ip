@@ -21,22 +21,24 @@ public class InputEventHandler implements EventHandler {
     @Override
     public void handle(Event event) {
         String a = ui.getUserInput().getText();
-        if (!(a.isEmpty() || a.isBlank())) {
-            ui.getDialogContainer().getChildren().add(ui.getDialogLabel(a, Color.DARKGREEN, false));
-            if (ui.isAwaitingInput()) {
-                if (ui.getNewDesc().isBlank() || ui.getNewDesc().isEmpty()) {
-                    ui.setNewDesc(a);
-                    if (ui.isEditingTodo()) {
-                        ui.setAwaitingInput(false);
-                    }
-                } else if (ui.getNewDateStr().isBlank() || ui.getNewDateStr().isEmpty()) {
-                    ui.setNewDateStr(a);
+        //early exit if the input is empty.
+        if ((a.isEmpty() || a.isBlank())) {
+            return;
+        }
+        ui.getDialogContainer().getChildren().add(ui.getDialogLabel(a, Color.DARKGREEN, false));
+        if (ui.isAwaitingInput()) {
+            if (ui.getNewDesc().isBlank() || ui.getNewDesc().isEmpty()) {
+                ui.setNewDesc(a);
+                if (ui.isEditingTodo()) {
                     ui.setAwaitingInput(false);
                 }
-            } else {
-                duke.runOnce(a);
+            } else if (ui.getNewDateStr().isBlank() || ui.getNewDateStr().isEmpty()) {
+                ui.setNewDateStr(a);
+                ui.setAwaitingInput(false);
             }
-            ui.getUserInput().clear();
+        } else {
+            duke.runOnce(a);
         }
+        ui.getUserInput().clear();
     }
 }
