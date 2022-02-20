@@ -210,18 +210,20 @@ public class TaskList {
     /**
      * This prints the Tasks in the Task List.
      */
-    public void printList() {
+    public String printList() {
+        String reply = "";
         int size = this.tasks.size();
         if (size == 0) {
-            System.out.println(System.lineSeparator() + "Task List is empty.");
-            return;
+            reply = "Task List is empty.";
+            return reply;
         }
 
-        System.out.println(System.lineSeparator() + "Task List:");
+        reply = "Task List:\n";
         for (int i = 0; i < size; i++) {
-            System.out.println(System.lineSeparator() + (i + 1) + "." + this.tasks.get(i).toString());
+            reply = reply + (i + 1) + "." + this.tasks.get(i).toString() + "\n";
         }
 
+        return reply;
     }
 
 

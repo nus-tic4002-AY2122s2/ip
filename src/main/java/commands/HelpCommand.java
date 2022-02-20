@@ -14,7 +14,7 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
-        ui.printMessage("Inputs in commands (Input is described within the square brackets):\n"
+        ui.storeMessage("Inputs in commands (Input is described within the square brackets):\n"
                 + "[description] is a string that describes the task.\n"
                 + "[Date and Time] refers to the input date. It goes by the format \"dd/MM/yyyy HH:mm:ss\". "
                 + "Eg. 02/12/20 10:10:10\n"

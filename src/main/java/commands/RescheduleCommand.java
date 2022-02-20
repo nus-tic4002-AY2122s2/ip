@@ -7,9 +7,6 @@ import tasks.TaskList;
 import tasks.Deadline;
 import ui.Ui;
 
-import java.io.IOException;
-import java.time.format.DateTimeParseException;
-
 public class RescheduleCommand extends Command {
 
     String newDateTime;
@@ -26,10 +23,10 @@ public class RescheduleCommand extends Command {
 
             if (tasks.get(this.option - 1) instanceof Deadline) {
                 ((Deadline) (tasks.get(this.option - 1))).rescheduleBy(this.newDateTime);
-                ui.printMessage("Rescheduled Date time: " + tasks.get(this.option - 1).toString());
+                ui.storeMessage("Rescheduled Date time: " + tasks.get(this.option - 1).toString());
             } else if (tasks.get(this.option - 1) instanceof Event) {
                 ((Event) (tasks.get(this.option - 1))).rescheduleAt(this.newDateTime);
-                ui.printMessage("Rescheduled Date time: " + tasks.get(this.option - 1).toString());
+                ui.storeMessage("Rescheduled Date time: " + tasks.get(this.option - 1).toString());
             } else {
                 throw new DukeException("Error: You did not reschedule on a Deadline or Event");
             }

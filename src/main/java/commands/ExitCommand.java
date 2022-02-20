@@ -30,9 +30,9 @@ public class ExitCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         assert (!running) : "running should not be true at this stage. It should be false";
-        ui.printMessage("Executing Exit Command: Saving Task List to storage");
+        ui.storeMessage("Executing Exit Command: Saving Task List to storage");
         storage.save(tasks);
-        ui.printMessage("Finished saving Task List to storage");
+        ui.storeMessage("Finished saving Task List to storage");
     }
 
     public static void printHelp() {

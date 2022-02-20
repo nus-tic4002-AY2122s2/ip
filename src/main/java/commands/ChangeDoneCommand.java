@@ -44,7 +44,7 @@ public class ChangeDoneCommand extends Command {
                 doneLevel = " not done:";
             }
 
-            ui.printMessage(System.lineSeparator() + "Nice! I've marked this task as" + doneLevel
+            ui.storeMessage(System.lineSeparator() + "Nice! I've marked this task as" + doneLevel
                     + System.lineSeparator() + tasks.get(option - 1).toString());
 
 

@@ -1,6 +1,6 @@
 package ui;
 
-import java.util.Scanner;
+import java.util.*;
 
 
 /**
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Ui {
     public String input;
     Scanner scan;
-
+    List<String> messages;
 
     /**
      * This is the constructor for Ui. It initialises the scan and input objects.
@@ -20,6 +20,7 @@ public class Ui {
 
         this.input = "";
         scan = new Scanner(System.in);
+        messages = new ArrayList<String>();
     }
 
     /**
@@ -76,8 +77,21 @@ public class Ui {
         System.out.println("Did not load Task List from Filepath");
     }
 
-    public void printMessage(String message) {
-        System.out.println(message);
+    public void storeMessage(String message) {
+        messages.add(message);
+    }
+
+    public void clearMessages() {
+        messages.clear();
+    }
+
+    public String getMessages() {
+        String reply = "";
+
+        for(int i = 0; i < messages.size(); i ++){
+            reply = reply + messages.get(i) + "\n";
+        }
+        return reply;
     }
 
 }
