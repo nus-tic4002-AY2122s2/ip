@@ -278,14 +278,14 @@ public class Parser {
             String newValue = matcher.group("newValue");
             Matcher matcher1 = BASIC_TIME_FORMAT.matcher(newValue.trim());
             if (matcher1.matches()) {
-                return new UpdateCommand<>(targetIndex, toUpdate,
+                return new UpdateCommand<LocalDateTime>(targetIndex, toUpdate,
                         LocalDateTime.of(Integer.parseInt(matcher1.group("year")),
                         Integer.parseInt(matcher1.group("month")),
                         Integer.parseInt(matcher1.group("day")),
                         Integer.parseInt(matcher1.group("hour")),
                         Integer.parseInt(matcher1.group("minute"))));
             } else {
-                return new UpdateCommand<>(targetIndex, toUpdate, newValue);
+                return new UpdateCommand<String>(targetIndex, toUpdate, newValue);
             }
         } else {
             return new IncorrectCommand("This is a incorrect update format, "
