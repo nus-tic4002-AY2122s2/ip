@@ -1,6 +1,18 @@
 # User Guide
-Duke is a desktop app for managing your daily tasksi via _command line interface_ (CLI).
+Duke is a desktop app for managing your daily tasks with a beautiful chatbot _graphical user interface_ (GUI) and _command line interface_ (CLI) like command input.
 
+`Update 2022-Feb:`
+## Summary of Updates:
+### Tagging Support 
+Tags is a useful tool to lebel your tasks for organization so later you could find them tasks in the same group in one shot. 
+
+The tagging syntax follows the basics from [emacs org-mode way](https://orgmode.org/manual/Tags.html). Tag will be surrounded by single colon like`:work:`, multiple tags can be defined as `:work:urgent:`.
+
+### GUI 
+Now user can enjoy a beautiful chatbot chatbot like interface as the sample image below:
+![](./pic/dukegui.png)
+
+----
 ## Features
 
 ### Task Types
@@ -16,6 +28,11 @@ Besides creation of the above mentioned tasks, Duke provides basic functionaliti
 + [mark one or multiple tasks done at once](#done---Mark-selected-tasks-done)
 + [delete one or multiple tasks done at once](#delete---Delete-seleted-tasks)
 + [find tasks that contains certain keywords](#find---Find-tasks-containing-keywords)
+
+`Update 2022-Feb:`
++ add tasks with tags 
++ tag existing task
++ find tasks with certain tag
 
 ### Storage
 The program will create a `./data` folder (under same directory where user stores the `jar` file), under which a text file called `duke.txt` will store the tasks in plain text. So when the program starts next time, all the record can be read and retrived.
@@ -45,12 +62,12 @@ Format: `list`
 
 Example outcome:
 ```
- 1. [T][✓] world peace
- 2. [T][ ] seek love
- 3. [T][✓] end pandemic
- 4. [T][✓] try stream map filter
- 5. [E][ ] meeting with board (at: 01.Jan.22 09:00 - 15:30)
- 6. [D][✓] submit homework (by: 27.Sep.21 23:59)
+ 1.[T][x] world peace
+ 2.[T][ ] seek love
+ 3.[T][x] end pandemic :covid:vaccine:
+ 4.[T][x] try stream map filter
+ 5.[E][ ] meeting with board (at: 01.Jan.22 09:00 - 15:30)
+ 6.[D][x] submit homework (by: 27.Sep.21 23:59)
 ```
 ### `done` - Mark selected tasks done
 
@@ -62,10 +79,10 @@ Example: `done 1 2`
 Expected outcome:
 ```
  Marked below as DONE:
- [T][✓] world peace
+ [T][x] world peace
  Task completion status: 4 / 7
  Marked below as DONE:
- [T][✓] seek love
+ [T][x] seek love
  Task completion status: 5 / 7
 ```
 
@@ -84,34 +101,37 @@ Expected outcome:
  Task completion status: 5 / 7
 ```
 
+`Update 2022-Feb:`
 ### `todo` - Add Todo
 
-Format: `todo TITLE`
+Format: `todo TITLE :TAG1:TAG2:...:`
 
-Example: `todo buy milk`
+Example: `todo buy milk :personal:shopping:15min:`
 
 Expected outcome:
 ```
- added: [T][ ] buy milk
+ added: [T][ ] buy milk :personal:shopping:15min
  Task completion status: 5 / 8
 ```
 
+`Update 2022-Feb:`
 ### `event` - Add Event at date time range
 
-Format: `event TITLE /at DATE TIME-TIME`
+Format: `event TITLE :TAG1:TAG2:...: /at DATE TIME-TIME`
 - recommended date time range format: `yyyy-MM-dd HHmm-HHmm`
 
-Example: `event meeting with board /at 2022-01-01 0900-1530`
+Example: `event meeting with board :work: /at 2022-01-01 0900-1530`
 
 Expected outcome:
 ```
- added: [E][ ] meeting with board (at: 01.Jan.22 09:00 - 15:30)
+ added: [E][ ] meeting with board :work: (at: 01.Jan.22 09:00 - 15:30)
  Task completion status: 5 / 8
 ```
 
+`Update 2022-Feb:`
 ### `deadline` - Add Deadline by date time
 
-Format: `deadline TITLE /by DATE TIME`
+Format: `deadline TITLE :TAG1:TAG2:...: /by DATE TIME`
 - recommended date time range format: `yyyy-MM-dd HHmm`
 
 Example: `deadline submit homework /by 2021-09-27 2359`
@@ -122,13 +142,41 @@ Expected outcome:
  Task completion status: 5 / 8
 ```
 
-### `find` - Find tasks containing keywords
+`Update 2022-Feb:`
+### `tag` - Append tags to a task 
+Format: `tag INDEX TAG1 TAG2 ...`
 
-Format: `find KEYWORDS`
-
-Example: `find map`
+Example: `tag 3 Covid vaccine`
 
 Expected outcome:
 ```
- 1. [T][✓] try stream map filter
+ Tags after append:
+ [T][x] end pandemic :covid:vaccine:
+```
+
+
+`Update 2022-Feb:`
+### `find` - Find tasks containing keywords
+
+search the occurrences of keywords from title and tags.
+Format: `find KEYWORDS`
+
+Example: `find world`
+
+Expected outcome:
+```
+ 1.[E][ ] test: event with tags :add:world:test: (at: 19.Feb.22 10:00 - 11:30)
+ 2.[T][x] world peace
+ 3.[T][ ] world war II
+ 4.[T][ ] buy sci-fi world magazine :10min:
+```
+
+only filter by a tag
+Format: `find :TAG:`
+
+Example: `find :world:`
+
+Expected outcome:
+```
+ 1.[E][ ] test: event with tags :add:world:test: (at: 19.Feb.22 10:00 - 11:30)
 ```

@@ -4,9 +4,12 @@ Duke is a desktop app for managing your daily tasks with a beautiful chatbot _gr
 
 ## Content
 
-#### [User Guide](./UserGuide.md)
++ [User Guide](./UserGuide.md)
 
-#### [Developer Guide](./DeveloperGuide.md)
++ [Developer Guide](./DeveloperGuide.md)
 
-![img](./UI.png|width=500)
++ [Releases](https://github.com/l-shihao/ip/releases)
+
+## Sample Screenshot
+![GUI](./UI.png|width=500px)
 

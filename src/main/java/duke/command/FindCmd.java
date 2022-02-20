@@ -28,7 +28,7 @@ public class FindCmd implements Command {
                     .forEach(t ->
                             Message.appendBuffer(
                                     i.getAndIncrement()
-                                            + ". "
+                                            + "."
                                             + t.toString()
                                             + System.lineSeparator()));
             return;
@@ -40,7 +40,7 @@ public class FindCmd implements Command {
                 .forEach(t ->
                         Message.appendBuffer(
                                 i.getAndIncrement()
-                                        + ". "
+                                        + "."
                                         + t.toString()
                                         + System.lineSeparator()));
         /*
@@ -51,7 +51,7 @@ public class FindCmd implements Command {
                 .forEach(t ->
                         Message.appendBuffer(
                                         i.getAndIncrement()
-                                             + ". "
+                                             + "."
                                              + t.toString()
                                              + System.lineSeparator()));
 
