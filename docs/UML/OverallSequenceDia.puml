@@ -5,8 +5,6 @@
 Actor User as user USER_COLOR
 Participant ":MainWindow" as ui UI_COLOR
 Participant ":Duke" as duke DUKE_COLOR
-
-
 Participant ":Parser" as parser LOGIC_COLOR
 Participant ":Command" as command MODEL_COLOR
 Participant ":TaskList" as taskList STORAGE_COLOR
