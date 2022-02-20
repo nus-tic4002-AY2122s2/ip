@@ -26,6 +26,25 @@ The *Sequence Diagram* below shows how the components interact with each other f
 **Note:** The lifeline for `c:Command` should end at destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 <br><br>
 
+### Command Component
+Commands are implemented via an abstract `Command` class, with concrete Commands inheriting from it.
+
+![CommandClassDiagram](images/CommandClassDiagram.png)
+<br><br>
+
+#### CommandResult
+
+The `run()` function of abstract `Command` class returns a `CommandResult` data type, which contains below 2 variables.
+* Feedback `String` to be displayed back to the user.
+* IsExit `Boolean` to indicate if the app should exit.
+<br><br>
+
+#### CommandDataHistory
+The `undo` command is implemented with help of a `CommandDataHistory` class.
+* For keeping of a copy of `TaskList` before every `Command` execution.
+* Appending is implemented with iteration of all existing `Task`, copying and re-creating new `Task` `Object`.  
+<br><br>
+
 ## Appendix: Requirements
 
 ### User Stories
