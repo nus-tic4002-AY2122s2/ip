@@ -67,7 +67,8 @@ public class Parser {
             Pattern.compile("from/(?<fromTime>[^/]+)" + " to/(?<toTime>[^/]+)");
 
     public static final Pattern UPDATE_FORMAT =
-            Pattern.compile("(?<targetIndex>\\d+)" + "\\s+(?<toUpdate>desc|description|tasktime)" + "\\s+(?<newValue>.*)");
+            Pattern.compile("(?<targetIndex>\\d+)" + "\\s+(?<toUpdate>desc|description|tasktime)"
+                    + "\\s+(?<newValue>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -276,7 +277,7 @@ public class Parser {
             String toUpdate = matcher.group("toUpdate");
             String newValue = matcher.group("newValue");
             Matcher matcher1 = BASIC_TIME_FORMAT.matcher(newValue.trim());
-            if (matcher1.matches() ) {
+            if (matcher1.matches()) {
                 return new UpdateCommand<>(targetIndex, toUpdate,
                         LocalDateTime.of(Integer.parseInt(matcher1.group("year")),
                         Integer.parseInt(matcher1.group("month")),

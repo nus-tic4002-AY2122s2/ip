@@ -38,7 +38,7 @@ public class Event extends Task {
     }
 
     @Override
-    public void updateTask(LocalDateTime newValue){
+    public void updateTask(LocalDateTime newValue) {
         this.at = newValue;
 
     }

@@ -1,8 +1,10 @@
 package duke.commands;
 
+import java.time.LocalDateTime;
+
 import duke.task.Task;
 
-import java.time.LocalDateTime;
+
 
 /**
  * Update the task based on the element that want to be updated

@@ -38,7 +38,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public void updateTask(LocalDateTime newValue){
+    public void updateTask(LocalDateTime newValue) {
         this.by = newValue;
 
     }

@@ -79,7 +79,11 @@ public abstract class Task {
         this.description = newValue;
     }
 
-    public void updateTask(LocalDateTime newValue){
+    /**
+     * update the tasktime of the task
+     * @param newValue /at or /by time in Event and Deadline task
+     */
+    public void updateTask(LocalDateTime newValue) {
         this.taskTime = newValue;
 
     }
