@@ -96,7 +96,7 @@ public class Duke extends Application {
         storage = new Storage(filePath);
         parser = new Parser();
         try {
-            tasks = new TaskList(storage.load());
+            tasks = new TaskList(storage.load(), ui);
         } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();

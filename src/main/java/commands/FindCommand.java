@@ -32,7 +32,7 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.findList(keyword);
+        ui.storeMessage(tasks.findList(keyword));
     }
 
     public static void printHelp(Ui ui) {

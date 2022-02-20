@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import ui.Ui;
 
 /**
  * This represents the Event Class. It includes a String at.
@@ -22,7 +23,7 @@ public class Event extends Task {
      * @param description This describes the activity of the event.
      * @param at          This indicates the time period for the event.
      */
-    public Event(String description, String at) {
+    public Event(String description, String at, Ui ui) {
         super(description);
         int indexOfTo = at.indexOf("to");
         try {
@@ -35,11 +36,11 @@ public class Event extends Task {
         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
             this.start = LocalDateTime.now();
             this.end = LocalTime.now();
-            System.out.println("Invalid Date Time was set. It will be set to the current "
+            ui.storeMessage("Invalid Date Time was set. It will be set to the current "
                     + "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
         } finally {
             if (start.toLocalTime().compareTo(end) > 0) {
-                System.out.println("Notification: For the added event, "
+                ui.storeMessage("Notification: For the added event, "
                         + "start time is after end time. The event task will still be added.");
             }
         }
@@ -64,7 +65,7 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + getAt() + ")";
     }
 
-    public void rescheduleAt(String at) {
+    public void rescheduleAt(String at, Ui ui) {
         int indexOfTo = at.indexOf("to");
         try {
             this.start = LocalDateTime.parse(at.substring(0, indexOfTo).trim(),
@@ -74,11 +75,11 @@ public class Event extends Task {
         } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
             this.start = LocalDateTime.now();
             this.end = LocalTime.now();
-            System.out.println("Invalid Date Time was set. It will be set to the current "
+            ui.storeMessage("Invalid Date Time was set. It will be set to the current "
                     + "time. Format should be \"dd/MM/yyyy HH:mm:ss to HH:mm:ss\" ");
         } finally {
             if (start.toLocalTime().compareTo(end) > 0) {
-                System.out.println("Notification: For the added event, start time is after end time. "
+                ui.storeMessage("Notification: For the added event, start time is after end time. "
                         + "The event task will still be added.");
             }
         }

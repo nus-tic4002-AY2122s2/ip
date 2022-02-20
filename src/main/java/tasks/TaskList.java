@@ -2,7 +2,7 @@ package tasks;
 
 
 import exceptions.DukeException;
-
+import ui.Ui;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -37,7 +37,7 @@ public class TaskList {
      * @throws DukeException This is thrown when the parsedFile does not follow the expected format
      *                       for the class Type section.
      */
-    public TaskList(ArrayList<String[]> parsedFile) throws DukeException {
+    public TaskList(ArrayList<String[]> parsedFile, Ui ui) throws DukeException {
         this.tasks = new ArrayList<Task>();
         int size = 0;
         try {
@@ -60,11 +60,11 @@ public class TaskList {
                     this.tasks.add(new Deadline(parsedFile.get(i)[2],
                             (LocalDateTime.parse(parsedFile.get(i)[3],
                                     DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
-                                    .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))));
+                                    .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))), ui));
                 } catch (DateTimeParseException e) {
                     System.out.println("Timing for added deadline invalid," + " using the time now");
                     this.tasks.add(new Deadline(parsedFile.get(i)[2],
-                            LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
+                            LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")), ui));
                 }
                 break;
 
@@ -80,7 +80,7 @@ public class TaskList {
                             DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
                             .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
 
-                    this.tasks.add(new Event(parsedFile.get(i)[2], start + end));
+                    this.tasks.add(new Event(parsedFile.get(i)[2], start + end, ui));
 
                 } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
                     System.out.println("Timing for added event invalid,"
@@ -88,7 +88,7 @@ public class TaskList {
                     this.tasks.add(new Event(parsedFile.get(i)[2],
                             LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
                                     + " - "
-                                    + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))));
+                                    + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")), ui));
                 }
                 break;
 
@@ -145,7 +145,7 @@ public class TaskList {
      * @param secondPart  This is meant for Deadlines and Events tasks.
      * @throws DukeException This happens when the taskType is not one of the subclasses.
      */
-    public void addTask(String taskType, String description, String secondPart) throws DukeException {
+    public void addTask(String taskType, String description, String secondPart, Ui ui) throws DukeException {
 
         switch (taskType) {
         case "task":
@@ -155,10 +155,10 @@ public class TaskList {
             this.tasks.add(new ToDo(description));
             break;
         case "event":
-            this.tasks.add(new Event(description, secondPart));
+            this.tasks.add(new Event(description, secondPart, ui));
             break;
         case "deadline":
-            this.tasks.add(new Deadline(description, secondPart));
+            this.tasks.add(new Deadline(description, secondPart, ui));
             break;
         default:
             throw new DukeException("Error: Incorrect Task Type in addTask Method");
@@ -172,7 +172,8 @@ public class TaskList {
      *
      * @param keyword This is the keyword which the Task List will search for containing the keyword
      */
-    public void findList(String keyword) {
+    public String findList(String keyword) {
+        String reply = "";
         int size = this.tasks.size();
         int total = 0;
         String classType = "";
@@ -194,16 +195,17 @@ public class TaskList {
         }
         ;
 
-        System.out.println(System.lineSeparator() + "Tasks that contain the keyword \"" + keyword + "\":");
+        reply = "Tasks that contain the keyword \"" + keyword + "\":\n";
         for (int i = 0; i < size; i++) {
 
             if (this.tasks.get(i).toString().contains(keyword)
                     || classType.equals(this.tasks.get(i).getClass().toString())) {
                 total = total + 1;
-                System.out.println(System.lineSeparator() + (total) + "." + this.tasks.get(i).toString());
+                reply = reply + (total) + "." + this.tasks.get(i).toString() + "\n";
             }
 
         }
+        return reply;
     }
 
 

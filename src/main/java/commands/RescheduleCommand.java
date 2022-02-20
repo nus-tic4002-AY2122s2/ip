@@ -10,6 +10,7 @@ import ui.Ui;
 public class RescheduleCommand extends Command {
 
     String newDateTime;
+    String newEndTime;
     int option = 0;
 
     public RescheduleCommand(int option, String newDateTime) {
@@ -22,10 +23,10 @@ public class RescheduleCommand extends Command {
         try {
 
             if (tasks.get(this.option - 1) instanceof Deadline) {
-                ((Deadline) (tasks.get(this.option - 1))).rescheduleBy(this.newDateTime);
+                ((Deadline) (tasks.get(this.option - 1))).rescheduleBy(this.newDateTime, ui);
                 ui.storeMessage("Rescheduled Date time: " + tasks.get(this.option - 1).toString());
             } else if (tasks.get(this.option - 1) instanceof Event) {
-                ((Event) (tasks.get(this.option - 1))).rescheduleAt(this.newDateTime);
+                ((Event) (tasks.get(this.option - 1))).rescheduleAt(this.newDateTime, ui);
                 ui.storeMessage("Rescheduled Date time: " + tasks.get(this.option - 1).toString());
             } else {
                 throw new DukeException("Error: You did not reschedule on a Deadline or Event");

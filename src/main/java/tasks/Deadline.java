@@ -3,6 +3,7 @@ package tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import ui.Ui;
 
 
 /**
@@ -20,13 +21,13 @@ public class Deadline extends Task {
      * @param description This describe the task for the deadline
      * @param by          This represents the date and time of the deadline
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by, Ui ui) {
         super(description);
         try {
             this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
         } catch (DateTimeParseException e) {
             this.by = LocalDateTime.now();
-            System.out.println("Invalid Date Time set for /by. It will be set to the current "
+            ui.storeMessage("Invalid Date Time set for /by. It will be set to the current "
                     + "time. Format should be \"dd/MM/yyyy HH:mm:ss\" ");
         }
 
@@ -42,12 +43,12 @@ public class Deadline extends Task {
     }
 
 
-    public void rescheduleBy(String by) {
+    public void rescheduleBy(String by, Ui ui) {
         try {
             this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("dd/M/yyyy HH:mm:ss"));
         } catch (DateTimeParseException e) {
             this.by = LocalDateTime.now();
-            System.out.println("Invalid Date Time set for /by. It will be set to the current "
+            ui.storeMessage("Invalid Date Time set for /by. It will be set to the current "
                     + "time. Format should be \"dd/MM/yyyy HH:mm:ss\" ");
         }
     }
