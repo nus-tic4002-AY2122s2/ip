@@ -84,6 +84,13 @@ Format: `delete INDEX`
 Example: `delete 4`
 
 &nbsp;
+### Undo command: `undo`
+Restore Duke to the state before the previous *undoable* command was executed.
+* *Undoable* commands: `todo`, `deadline`, `event`, `done`, `delete`.
+
+Format: `undo`
+
+&nbsp;
 ### Exit program: `bye`
 Exit the program.
 
