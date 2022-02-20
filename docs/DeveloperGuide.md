@@ -36,3 +36,9 @@ The *Sequence Diagram* below shows how the components interact with each other f
 | user | delete a task | I can declutter task that are no longer valid |
 | user | filter tasks by keyword | I can quickly find a task |
 | new user | undo previous command | I can quickly rollback a mistake |
+<br>
+
+### Non-Functional Requirements
+1. Should work on Windows, Mac and Ubuntu with Java 11 installed.
+1. Each command should execute within 5 seconds.
+1. Should be able to hold up to 1000 tasks without noticeable degrade in performance.
