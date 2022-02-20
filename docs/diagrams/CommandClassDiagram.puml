@@ -1,0 +1,16 @@
+@startuml
+hide empty members
+skinparam groupInheritance 4
+
+
+class Command
+
+Command <|-- AddCommand
+Command <|-- DeleteCommand
+Command <|-- DoneCommand
+Command <|-- ExitCommand
+Command <|-- FindCommand
+Command <|-- ListCommand
+Command <|-- UndoCommand
+
+@enduml
