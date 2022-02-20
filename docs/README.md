@@ -23,7 +23,7 @@ Features:
 - [x] Managing deadlines
 - [x] Schedule events
 
-Interface:
+Interface:  
 <img src=Ui.png width="400">
 
 Useful links:
