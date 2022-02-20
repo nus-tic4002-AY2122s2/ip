@@ -1,17 +1,14 @@
 # User Guide
-**Duke** is a Personal Assistant Chatbot, that will help to keep track of your tasks.
+**Duke** is a personal assistant chatbot for managing tasks, optimised for use via Command Line Interface (CLI), with a Graphical User Interface (GUI) output.
 
 ## Start
 1. Ensure `Java 11` is installed.
 1. Download the latest `jar` release from [here](https://github.com/TanChiaChun/ip/releases).
-1. Run `Terminal` from directory where the `jar` file is downloaded to.
-1. Execute command `java -jar Duke.jar`.
-1. You should be greeted with below message.
-```
-Hello! I'm Duke
-What can I do for you?
-____________________________________________________________
-```
+1. Move the `jar` file to the folder you want to use as *home folder* for Duke.
+1. Double-click the `jar` file to start the app.
+1. You should be greeted with below GUI.
+
+![Ui](Ui.png)
 
 ## Features
 
