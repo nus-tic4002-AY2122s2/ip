@@ -1,20 +1,20 @@
 @startuml
 'https://plantuml.com/object-diagram
 
-object Duke
-object Ui
-object TaskList
-object Storage
-object Event
-object ToDo
-object Deadline
+object "<u>:Duke" As Duke
+object "<u>:Ui" As Ui
+object "<u>:TaskList" As TaskList
+object "<u>:Storage" As Storage
+object "<u>e1:Event" As Event
+object "<u>t1:ToDo" As ToDo
+object "<u>d1:Deadline" As Deadline
 
 Ui - Duke
-Duke "1" --> "1" TaskList : Has
+Duke  -- TaskList
 Duke - Storage
-TaskList --> "0..*" Event : Contains
-TaskList --> "0..*" ToDo : Contains
-TaskList --> "0..*" Deadline : Contains
+TaskList --> Event
+TaskList -->  ToDo
+TaskList -->  Deadline
 
 
 
