@@ -14,5 +14,5 @@ The *Architecture Diagram* above explains the high-level design of the app.
 * `Duke`: Main control of back-end logic.
 * `Parser`: Make sense of user input.
 * `Command`: Execute instruction.
-* `Task`: Hold app data in memory.
+* `TaskList`: Hold app data in memory.
 * `Storage`: Read data from and write data to hard disk.

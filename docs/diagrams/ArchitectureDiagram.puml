@@ -8,10 +8,10 @@ package "JavaFX" {
 [Main] -down-> [Duke]
 () "User" .down..> [MainWindow]
 [MainWindow] .> [Duke]
-[Duke] -down-> [Task]
+[Duke] -down-> [TaskList]
 [Duke] ----> [Storage]
 [Duke] -left-> [Parser]
 [Parser] -down-> [Command]
 [Duke] .down.> [Command]
-[Command] .> [Task]
+[Command] .> [TaskList]
 @enduml
