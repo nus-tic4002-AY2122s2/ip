@@ -60,6 +60,6 @@ run{
     standardInput = System.in
 }
 
-sourceSets.main.java.srcDirs = ['src']
+//sourceSets.main.java.srcDirs = ['src']
 mainClassName = "Launcher"
 
