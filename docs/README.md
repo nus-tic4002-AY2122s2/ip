@@ -23,7 +23,7 @@ Features:
 - [x] Managing deadlines
 - [x] Schedule events
 
-Interface:  
+How Duke looks like:  
 <img src=Ui.png width="400">
 
 Useful links:
