@@ -1,0 +1,48 @@
+@startuml
+actor User
+
+User -> ":MainWindow" : "todo borrow book"
+activate ":MainWindow"
+
+":MainWindow" -> ":Duke" : getResponse()
+activate ":Duke"
+
+":Duke" -> "<<class>>\nParser" : parseInput()
+activate "<<class>>\nParser"
+
+create "c:Command"
+"<<class>>\nParser" -> "c:Command"
+activate "c:Command"
+
+"c:Command" --> "<<class>>\nParser" : c
+deactivate "c:Command"
+
+"<<class>>\nParser" --> ":Duke" : c
+deactivate "<<class>>\nParser"
+
+":Duke" -> "c:Command" : run()
+activate "c:Command"
+
+"c:Command" -> ":TaskList" : addTask()
+activate ":TaskList"
+
+":TaskList" --> "c:Command"
+deactivate ":TaskList"
+
+"c:Command" --> ":Duke"
+deactivate "c:Command"
+destroy "c:Command"
+
+":Duke" -> ":Storage" : writeToFile()
+activate ":Storage"
+
+":Storage" --> ":Duke"
+deactivate ":Storage"
+
+":Duke" --> ":MainWindow"
+deactivate ":Duke"
+
+":MainWindow" --> User
+deactivate ":MainWindow"
+
+@enduml
