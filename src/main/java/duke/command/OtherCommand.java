@@ -36,7 +36,7 @@ public class OtherCommand extends Command {
 
         case "clearlist":
             tasks.clearAll();
-            return new CommandResult("List of Tasks has all been clear, you have an empty list now.");
+            return new CommandResult("List of Tasks has all been cleared, you have an empty list now.");
 
         default:
             throw new DukeException("Shouldn't have error here");

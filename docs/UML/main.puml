@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+
+package "Command classes"{
+Class "{abstract}\nCommand" as Command
+Class AddCommand
+Class DeleteCommand
+Class ExitCommand
+Class ListCommand
+Class LoadFromStorageCommand
+Class MyListCommand
+Class SaveToStorageCommand
+Class ViewCommand
+}
+
+package Duke{
+Class Duke
+}
+
+package Api{
+Class Api
+}
+
+package Module{
+Class Module
+Class NusModList
+Class Semesterdata
+Class UserList
+}
+
+package Parser{
+Class Parser
+}
+
+package Storage{
+Class Storage
+}
+
+package Ui{
+Class Ui
+}
+
+Duke ..> Ui
+Duke ..> Api
+Duke ..> Parser
+Duke ..> Command
+Duke ..> NusModList
+
+Api ..> NusModList
+Api ..> Module
+
+NusModList ..> Module
+NusModList ..> NusModList
+
+Module ..> Semesterdata
+
+Parser ..> Command
+
+AddCommand -up-|> Command
+DeleteCommand -up-|> Command
+ExitCommand -up-|> Command
+ListCommand -up-|> Command
+MyListCommand -up-|> Command
+LoadFromStorageCommand -up-|> Command
+SaveToStorageCommand -up-|> Command
+ViewCommand -up-|> Command
+
+UserList ..> UserList
+
+Storage ..> UserList
+
+AddCommand ..> UserList
+ViewCommand ..> UserList
+
+ListCommand ..> NusModList
+ListCommand ..> Module
+
+SaveToStorageCommand ..> Storage
+LoadFromStorageCommand ..> Storage
+
+
+@enduml

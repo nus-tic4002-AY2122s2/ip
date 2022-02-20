@@ -54,7 +54,7 @@ public class ToDoCommand extends Command {
         for (int i = 0; i < tasks.getSize() - 1; i++) {
             Task currentTasksClass = tasks.getTask(i);
             String theStringTask = currentTasksClass.getTaskDescription();
-            if (theStringTask.equals(taskDes)) {
+            if (theStringTask.equalsIgnoreCase(taskDes)) {
                 tempTasksList.add(currentTasksClass);
             }
         }
@@ -62,7 +62,7 @@ public class ToDoCommand extends Command {
             return new CommandResult(Ui.displayAddMessage(task.toString(), tasks.getSize()));
         } else {
             String duplicate = Ui.displayDuplicateAddMessage(task.toString(),
-                    tasks.getSize(), tempTasksList.size() - 1);
+                    tasks.getSize(), tempTasksList.size());
             for (int i = 0; i < tempTasksList.size(); i++) {
                 duplicate += Ui.showTaskInfo(tempTasksList.get(i)) + "\n";
             }

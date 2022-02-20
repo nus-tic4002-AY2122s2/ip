@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+
+package "Command classes"{
+Class Command #FFFFFF
+
+}
+
+package Duke{
+Class Duke
+}
+
+package Api{
+Class Api #FFFFFF
+}
+
+package Module{
+
+Class NusModList #FFFFFF
+
+}
+
+package Parser{
+Class Parser #FFFFFF
+}
+
+package Storage{
+Class Storage #FFFFFF
+}
+
+package Ui{
+Class Ui #FFFFFF
+}
+
+Duke ..> Ui
+Duke ..> Api
+Duke ..> Parser
+Duke ..> Command
+Duke ..> NusModList
+
+Api ..> NusModList
+Storage ..> NusModList
+
+Command ..> Storage
+
+Parser ..> Command
+
+@enduml

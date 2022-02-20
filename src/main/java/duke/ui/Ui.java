@@ -16,7 +16,7 @@ public class Ui {
         String logo = "(\\ /)\n"
                     + "( . .)\n"
                     + "C(\")(\")\n";
-        String message = "Hello from DUKE!\n"
+        String message = "Hello from Duke!\n"
                 + "Let me summon my magic bunny to help you! \n"
                 + logo
                 + "What can I do for you?\n";
@@ -147,7 +147,7 @@ public class Ui {
      */
     public static String displayListOfHelpFunction() {
         String everything = "";
-        String head = ("List of command that DUKE have: \n"
+        String head = ("List of command that Duke have: \n"
                 + "(*Command are not case sensitive)\n"
                 + "(**Words with double * are case sensitive)\n");
         everything += head;

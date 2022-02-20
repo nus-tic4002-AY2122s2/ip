@@ -1,6 +1,7 @@
 package duke.command;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
@@ -43,7 +44,7 @@ public class FindCommand extends Command {
         for (int i = 0; i < tasks.getSize(); i++) {
             Task currentTasksClass = tasks.getTask(i);
             String theStringTask = currentTasksClass.getTaskDescription();
-            if (theStringTask.contains(keyword)) {
+            if (theStringTask.toLowerCase().contains(keyword.toLowerCase())) {
                 tempTasksList.add(currentTasksClass);
             }
         }

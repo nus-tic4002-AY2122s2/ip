@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+
+
+
+Participant ":Duke" as duke DUKE_COLOR
+Participant ":UI" as ui UI_COLOR
+Actor User as user USER_COLOR
+Participant ":Parser" as parser LOGIC_COLOR
+Participant ":Command" as command MODEL_COLOR
+Participant ":NusModList" as nusModList STORAGE_COLOR
+
+activate duke DUKE_COLOR
+
+duke -[DUKE_COLOR]> ui: readCommand()
+activate ui UI_COLOR
+
+user -[USER_COLOR]> ui : "list all"
+ui --[UI_COLOR]> duke
+deactivate ui
+
+duke -[DUKE_COLOR]> parser : parse("list all")
+activate parser LOGIC_COLOR
+
+parser --[LOGIC_COLOR]> duke
+deactivate parser
+
+duke -[DUKE_COLOR]> command : execute
+activate command MODEL_COLOR
+
+command -[MODEL_COLOR]> nusModList: getModListForYear
+activate nusModList STORAGE_COLOR
+nusModList --[LOGIC_COLOR]> command
+deactivate nusModList
+
+command -[LOGIC_COLOR]> ui: printShortModuleInfo()
+activate ui UI_COLOR
+ui --[LOGIC_COLOR]> command
+deactivate ui
+deactivate command
+
+@enduml
