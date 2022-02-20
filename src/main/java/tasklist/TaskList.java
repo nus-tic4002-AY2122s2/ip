@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
 public class TaskList {
@@ -317,6 +318,23 @@ public class TaskList {
             message = UI.printEmptyToDoDescriptionException();
         }
         return message;
+    }
+
+    public String sortType() {
+        ArrayList<Task> copiedArray = taskList;
+        copiedArray.sort(Comparator.comparingInt(this::getTaskType));
+        return UI.printOutput(copiedArray);
+    }
+
+    private char getTaskType(Task task) {
+        if ((task.getClass().equals(ToDo.class))) {
+            return 'T';
+        } else if ((task.getClass().equals(Deadline.class))) {
+            return 'D';
+        } else if ((task.getClass().equals(Event.class))) {
+            return 'E';
+        }
+        return 0;
     }
 
     /****

@@ -44,6 +44,10 @@ public class Parser {
                 parsedCommand = new AddTodoCommand(userInput);
                 break;
 
+            case "sort":
+                parsedCommand = new SortCommand ();
+                break;
+
             default:
                 parsedCommand = new InvalidCommand(userInput);
                 break;
