@@ -10,28 +10,46 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+The Design consist of different classes and component like Ui, Storage, Parser, TaskList, MainWindow and Duke.
+
+### Class UML Diagram
+![image](https://user-images.githubusercontent.com/43517460/154843168-57f4e984-e936-43d5-b7a6-b03f7829b3af.png)
+
+The two classes called Launcher and Main are responsible for,  
+At app launch: Initializes the components in the correct sequence, and connects them up with each other.  
+At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+The rest of the App consists of four components.  
+
+UI: The UI of the App. (MainWindow, Ui and DialogBox)  
+Logic: The command executor. (Parser, Command)  
+Model: Holds the data of the App in memory. (Tasks, TaskList)  
+Storage: Reads data from, and writes data to, the hard disk. (Storage)  
+
+The Ui component will work together with Duke which will work together with the Logic, Model and Storage component to execute the command enter by the user.
+
+### Sequence Diagram
+![image](https://user-images.githubusercontent.com/43517460/154844136-04d131f7-caf0-4390-a2b4-e34067241956.png)
 
 
-Overview
-![image](https://user-images.githubusercontent.com/43517460/141647688-eaeb4429-adce-4b07-8880-19a1ec8c8265.png)
+### Object diagram
+![image](https://user-images.githubusercontent.com/43517460/154842316-e60b952a-9929-403e-b4a7-187c8022935b.png)
 
 
-Command component
-![image](https://user-images.githubusercontent.com/43517460/141647430-0364958b-006a-407a-aa2e-873ea0b65c1b.png)
 
-Module component
-![image](https://user-images.githubusercontent.com/43517460/141647609-91b453de-9d9f-44f6-b72a-332efaa60474.png)
+## Target user profile
 
+has a need to manage and track daily tasks
+prefers desktop apps over other types
+prefers typing to mouse interactions
+is reasonably comfortable using CLI apps  
 
-## Product scope
-### Target user profile
+## Value proposition
 
-{Describe the target user profile}
+keep record of tasks
+track daily tasks easily
+avoid missing some important tasks
 
-### Value proposition
-
-{Describe the value proposition: what problem does it solve?}
 
 ## User Stories
 
@@ -54,19 +72,13 @@ Module component
 
 - Each request should be processed within 3 seconds.
 - Program to function properly on different operating systems.
-- Program should have a 95 percent chance that the component can be fixed in 24 hours.
-- Program should be available all time during a month.
-- Program should not experience critical failure.
+- Program should be easily add in new function or new modules.
+- Command should be easy to use and understand.
+- GUI should be as simple and neat as possible.
 
 
+## Glossary
 
-Non-Functional Requirements
-Should work on any mainstream OS as long as it has Java 11 or above installed.
-Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance.
-The system reacts to the given input is within a few seconds.
-The system allows developers to add in more functions or extent the function through modification of exiting functionality.
-The command should be simple enough so that users are able to accomplish most of the tasks faster using typing than using the mouse.
-Should be easy for new users to get used to usage fast.
-
-Glossary
 Mainstream OS: Windows, Linux, Unix, OS-X
+CLI - Command Line Interface
+GUI - Graphical User Interface
