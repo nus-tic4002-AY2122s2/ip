@@ -243,14 +243,17 @@ public class Duke extends Application {
 
         Tasks tasks= new Tasks("");
 
-        switch (fullCommand[0]){
+        String commandInput= fullCommand[0];
+        String taskInput = fullCommand[1];
+
+        switch (commandInput){
         case ("todo"):
-            Todo todo = new Todo(fullCommand[1]);
+            Todo todo = new Todo(taskInput);
             Task task = new Task(false, todo.toString());
 
             addedList.add(task);
             Label userText2 = new Label(userInput.getText());
-            Label dukeText2 = new Label("Got it. I've added this task:" + "\n" + fullCommand[1]);
+            Label dukeText2 = new Label("Got it. I've added this task:" + "\n" + taskInput);
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(userText2, new ImageView(user)),
                     DialogBox.getDukeDialog(dukeText2, new ImageView(duke))
@@ -305,8 +308,8 @@ public class Duke extends Application {
         case("done"):
             try{
 
-                Integer doneIndexInput = Integer.parseInt(fullCommand[1])-1;
-                Integer doneIndex = Integer.parseInt(fullCommand[1]);
+                Integer doneIndexInput = Integer.parseInt(taskInput)-1;
+                Integer doneIndex = Integer.parseInt(taskInput);
 
                 int index = 0;
                 boolean isWithinSizeLimit = doneIndex <= addedList.toArray().length;
@@ -361,7 +364,7 @@ public class Duke extends Application {
 
         case("event"):
             try {
-                if (fullCommand[1] != "") {
+                if (taskInput != "") {
                     int task_stringIndex_After_taskWord = 0;
                     String task_words ="", by_words = " ";
 
@@ -410,7 +413,7 @@ public class Duke extends Application {
 
         case("deadline"):
             try {
-                if (fullCommand[1] != "") {
+                if (taskInput != "") {
                     String task_words ="";
                     String by_words = " ";
 
@@ -451,19 +454,17 @@ public class Duke extends Application {
                     userInput.clear();
                 }
             } catch (IndexOutOfBoundsException e) {
-                Label userTextDelete= new Label(userInput.getText());
-
+                Label dukeTextDeadlineException = new Label("☹ OOPS!!!\n The deadline description cannot be empty. \n");
                 dialogContainer.getChildren().addAll(
-                        DialogBox.getUserDialog(userTextDelete, new ImageView(user))
+                        DialogBox.getUserDialog(dukeTextDeadlineException, new ImageView(user))
                 );
-                System.out.println("☹ OOPS!!! The delete cannot be empty.");
             }
             break;
 
         case("delete"):
             try{
-                Integer deleteIndex = Integer.parseInt(fullCommand[1]);
-                this.addedList.remove(Integer.parseInt(fullCommand[1])-1);
+                Integer deleteIndex = Integer.parseInt(taskInput);
+                this.addedList.remove(Integer.parseInt(taskInput)-1);
                 StringBuilder stringBuilderDelete= new StringBuilder();
                 String finalStringDelete="";
 
@@ -528,7 +529,7 @@ public class Duke extends Application {
                 int listPrintFind = 0;
                 int index1 = 0;
 
-                if(fullCommand[1]!="") {
+                if(taskInput != "") {
                     String searchWord = userInput.getText().substring(5);
                     StringBuilder stringBuilder = new StringBuilder();
                     String finalStringFind = "";
