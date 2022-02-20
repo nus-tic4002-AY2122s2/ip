@@ -1,10 +1,12 @@
 @startuml
 package "JavaFX" {
-    [Launcher] -> [Main]
-    [Main] -> [MainWindow]
+    [Main]
+    [MainWindow]
 }
+[Launcher] -down-> [Main]
+[Main] -> [MainWindow]
 [Main] -down-> [Duke]
-[User] .down.> [MainWindow]
+[User] .down..> [MainWindow]
 [MainWindow] .> [Duke]
 [Duke] -down-> [Task]
 [Duke] ----> [Storage]
