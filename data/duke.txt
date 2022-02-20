@@ -1,7 +1,7 @@
 D|1|return book|2021-08-05 1005|2021-08-01 1800
 T|1|go exercising|2021-09-05 2229
 T|0|borrow book|
-E|0|tic4002 meeting|2022-01-01 1900|
+E|0|TIC4002 tP discussion|2022-02-23 2000|
 D|1|write proposal for project A|2021-09-30 1800|2021-09-25 1814
 E|0|tba4001 project group discussion|2021-09-15 1800|
 E|0|project A group discussion|2021-09-14 1800|
