@@ -77,7 +77,6 @@ public class Duke extends Application {
         dialogContainer.getChildren().add(welcome);
     }
 
-
     public static class DialogBox extends HBox {
 
         private Label text;
@@ -160,7 +159,7 @@ public class Duke extends Application {
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
-        // You will need to import `javafx.scene.layout.Region` for this.
+        // import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         userInput.setPrefWidth(325.0);
@@ -188,8 +187,6 @@ public class Duke extends Application {
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-
-        //Part 3. Add functionality to handle user input.
 
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
@@ -735,33 +732,6 @@ public class Duke extends Application {
                 }
                 break;
 
-            case ("find"):
-
-                if(cli[1]!="") {
-                    String searchWord = echo.substring(5);
-                    int count_todo_find = tasks.getNumOfList();
-                    System.out.println(Ui.seperatorLine2);
-                    System.out.println("Here are the matching task in your list");
-
-                    int listPrintFind = 0;
-                    int index1 = 0;
-
-                    for (int i = 0; i<addedList.toArray().length; i++) {
-                        ++index1;
-                        if(addedList.get(i).desc.toString().contains(searchWord.trim())){
-                            System.out.println("        " + index1 + ". " + "[" + addedList.get(i).status+ "]" + addedList.get(i).desc);
-                            listPrintFind++;
-                        }
-                    }
-
-                    if(listPrintFind == 0){
-                        System.out.println("Not matching found on the list");
-                    }
-
-                    System.out.println(Ui.seperatorLine2);
-
-                    break;
-                }
             default:
             }
         }
