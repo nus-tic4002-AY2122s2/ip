@@ -13,14 +13,14 @@ public class UI {
      * Returns welcome message of duke.
      * */
     public static String welcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        //String logo = " ____        _        \n"
+        //        + "|  _ \\ _   _| | _____ \n"
+        //        + "| | | | | | | |/ / _ \\\n"
+        //        + "| |_| | |_| |   <  __/\n"
+        //        + "|____/ \\__,_|_|\\_\\___|\n";
 
-        return "Hello from\n" + logo
-                + "I'm Duke. What can I do for you?";
+        return "Hello, I'm Duke.\n"
+                + "What can I do for you?";
     }
 
     /**
