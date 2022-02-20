@@ -19,7 +19,7 @@
 1. ```Object diagram```<br/>
    ![](ObjectDiagram.png)
 
-   
+
 ## Appendix: Requirements
 
 ### Product scope
