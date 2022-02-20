@@ -24,3 +24,15 @@ The *Sequence Diagram* below shows how the components interact with each other f
 ![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
 **Note:** The lifeline for `c:Command` should end at destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+## Appendix: Requirements
+
+### User Stories
+| As a | I want to | So that |
+| --- | --- | --- |
+| forgetful user | add task | I can action on them later |
+| user | see all tasks | I can plan my execution strategy |
+| user | mask a task as done | I am more productive |
+| user | delete a task | I can declutter task that are no longer valid |
+| user | filter tasks by keyword | I can quickly find a task |
+| new user | undo previous command | I can quickly rollback a mistake |
