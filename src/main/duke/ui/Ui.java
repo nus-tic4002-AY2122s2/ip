@@ -90,47 +90,8 @@ public class Ui {
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        sendButton.setOnMouseClicked((event) -> {
-            String a = userInput.getText();
-            if (!(a.isEmpty() || a.isBlank())) {
-                dialogContainer.getChildren().add(getDialogLabel(a, Color.DARKGREEN, false));
-                if (awaitingInput) {
-                    if (newDesc.isBlank() || newDesc.isEmpty()) {
-                        newDesc = a;
-                        if (isEditingTodo()) {
-                            setAwaitingInput(false);
-                        }
-                    } else if (newDateStr.isBlank() || newDateStr.isEmpty()) {
-                        newDateStr = a;
-                        setAwaitingInput(false);
-                    }
-                } else {
-                    duke.runOnce(a);
-                }
-                userInput.clear();
-            }
-        });
-
-        userInput.setOnAction((event) -> {
-            String a = userInput.getText();
-            if (!(a.isEmpty() || a.isBlank())) {
-                dialogContainer.getChildren().add(getDialogLabel(a, Color.DARKGREEN, false));
-                if (awaitingInput) {
-                    if (newDesc.isBlank() || newDesc.isEmpty()) {
-                        newDesc = a;
-                        if (isEditingTodo()) {
-                            setAwaitingInput(false);
-                        }
-                    } else if (newDateStr.isBlank() || newDateStr.isEmpty()) {
-                        newDateStr = a;
-                        setAwaitingInput(false);
-                    }
-                } else {
-                    duke.runOnce(a);
-                }
-                userInput.clear();
-            }
-        });
+        sendButton.setOnMouseClicked(new InputEventHandler(duke, this));
+        userInput.setOnAction(new InputEventHandler(duke, this));
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
@@ -139,7 +100,26 @@ public class Ui {
     }
 
 
-    public boolean isEditingTodo() {
+    public TextField getUserInput() {
+        return userInput;
+    }
+
+    public VBox getDialogContainer() {
+        return dialogContainer;
+    }
+
+
+    protected void setNewDesc(String newDesc) {
+        this.newDesc = newDesc;
+    }
+
+
+    protected void setNewDateStr(String newDateStr) {
+        this.newDateStr = newDateStr;
+    }
+
+
+    protected boolean isEditingTodo() {
         return isEditingTodo;
     }
 
@@ -179,7 +159,7 @@ public class Ui {
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
      */
-    private Label getDialogLabel(String text, Color c, boolean makeBold) {
+    protected Label getDialogLabel(String text, Color c, boolean makeBold) {
         // You will need to import `javafx.scene.control.Label`.
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
