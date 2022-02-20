@@ -2,22 +2,25 @@
 !include style.puml
 
 
-
-Participant ":Duke" as duke DUKE_COLOR
-Participant ":UI" as ui UI_COLOR
 Actor User as user USER_COLOR
+Participant ":MainWindow" as ui UI_COLOR
+Participant ":Duke" as duke DUKE_COLOR
+
+
 Participant ":Parser" as parser LOGIC_COLOR
 Participant ":Command" as command MODEL_COLOR
-Participant ":NusModList" as nusModList STORAGE_COLOR
+Participant ":TaskList" as taskList STORAGE_COLOR
+
+
+activate ui UI_COLOR
+
+
+user -[USER_COLOR]> ui : "list all"
+
+ui -[UI_COLOR]> duke : getResponse()
 
 activate duke DUKE_COLOR
 
-duke -[DUKE_COLOR]> ui: readCommand()
-activate ui UI_COLOR
-
-user -[USER_COLOR]> ui : "list all"
-ui --[UI_COLOR]> duke
-deactivate ui
 
 duke -[DUKE_COLOR]> parser : parse("list all")
 activate parser LOGIC_COLOR
@@ -28,15 +31,19 @@ deactivate parser
 duke -[DUKE_COLOR]> command : execute
 activate command MODEL_COLOR
 
-command -[MODEL_COLOR]> nusModList: getModListForYear
-activate nusModList STORAGE_COLOR
-nusModList --[LOGIC_COLOR]> command
-deactivate nusModList
+command -[MODEL_COLOR]> taskList: getTask()
+activate taskList STORAGE_COLOR
+taskList --[LOGIC_COLOR]> command
+deactivate taskList
 
-command -[LOGIC_COLOR]> ui: printShortModuleInfo()
-activate ui UI_COLOR
-ui --[LOGIC_COLOR]> command
-deactivate ui
+command --[LOGIC_COLOR]> duke
 deactivate command
+
+duke --[LOGIC_COLOR]> ui
+deactivate duke
+
+ui --[LOGIC_COLOR]> user
+deactivate ui
+
 
 @enduml

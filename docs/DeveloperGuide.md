@@ -2,8 +2,11 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-* [NUSMods API V2](https://api.nusmods.com/v2/)
+[https://se-education.org/](https://se-education.org/)
+
+## **Setting up, getting started**
+
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Design & implementation
 
@@ -34,12 +37,18 @@ Module component
 
 |Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|I can refer to them when I forget how to use the application|
-|v1.0|new user|download NMP for free from github|I will not incur any costs|
-|v2.0|user|view a specific module|I can view module information that is relevant to me|
-|v2.0|user|view my list of added modules|I can do a review of what modules I’ve been interested in|
-|v2.0|user|remove modules from my list of added modules|my list will only contain the modules that I wanted|
-|v2.0|user|view all modules offered for the term|I can bid for my modules|
+|v1.0|new user|know what kind of command there are|I can what are the feature and how I can use them|
+|v1.0|new user|know how to add a task |I can record the task to track|
+|v1.0|new user|view the list of task |I can see all my task that I need to do|
+|v1.0|new user|delete a task |If I keyed in wrongly, I can remove it|
+|v1.0|new user|mark a task as done |I can know which task are done instead of deleting it from record|
+|v1.5|semi-new user|save my task for future use|Once I switch on the app, the task I recorded previously are still there|
+|v2.0|user|find a task using keywords|I can easily check for the information I need|
+|v2.0|user|group my task to ToDo, Event and Deadlines |I can have more types of task to keep track and include time for specific task|
+|v2.0|user|clear my current list of task |I don't have to delete one by one|
+|v3.0|user|have a GUI instead of CLI | it feels more like a chatbot and look nicer|
+|v3.0|user|be informed if I have keyed in a task with a similar description | I know I had keyed in a duplicated task|
+|v3.0|user|have a countdown for closing of the app | I know that the app is responding and is closing|
 
 ## Non-Functional Requirements
 
@@ -51,6 +60,13 @@ Module component
 
 
 
-## Instructions for manual testing
+Non-Functional Requirements
+Should work on any mainstream OS as long as it has Java 11 or above installed.
+Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance.
+The system reacts to the given input is within a few seconds.
+The system allows developers to add in more functions or extent the function through modification of exiting functionality.
+The command should be simple enough so that users are able to accomplish most of the tasks faster using typing than using the mouse.
+Should be easy for new users to get used to usage fast.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+Glossary
+Mainstream OS: Windows, Linux, Unix, OS-X

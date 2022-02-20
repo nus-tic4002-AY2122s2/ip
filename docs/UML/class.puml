@@ -1,0 +1,75 @@
+@startuml
+hide circle
+
+abstract class  "{abstract}\nTask" As Task
+abstract class "{abstract}\nCommand" As Command
+class Launcher
+class Main
+class MainWindow
+class Duke{
+createInstance()
+getResponse()
+}
+class DialogBox
+class Ui
+class ToDo
+class Event
+class Deadline
+class TaskList {
+ArrayList<> tasks
+getSize()
+clearAll()
+addTask(Task)
+remove(int)
+}
+class Parser
+class ToDoCommand
+class OtherCommand
+class ListCommand
+class FindCommand
+class ExitCommand
+class DeleteCommand
+class DeadlineCommand
+class DoneCommand
+class EventCommand
+class CommandResult
+
+Main <-- Launcher
+MainWindow <-- Main
+
+MainWindow -> Duke
+Main -> Duke
+MainWindow -> DialogBox
+
+Ui <-- Duke
+Duke -> Parser
+Duke --> TaskList
+Duke --> Storage
+
+Duke -> CommandResult
+
+
+Parser -> Command
+Command <|--- ToDoCommand
+Command <|--- OtherCommand
+Command <|- ListCommand
+Command <|-- FindCommand
+Command <|-- ExitCommand
+Command <|--- DeleteCommand
+DeadlineCommand --|> Command
+DoneCommand --|> Command
+EventCommand --|> Command
+
+TaskList --> Task
+
+enum TaskType {
+TODO
+EVENT
+DEADLINE
+}
+TaskType <- Task
+Task <|-- Event
+Task <|-- Deadline
+Task <|-- ToDo
+
+@enduml

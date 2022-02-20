@@ -49,7 +49,7 @@ Here are a list of commands you can enter, and the explanations of what the comm
 | hi                    | Say hi to Duke                                                                                                  |
 | todo                  | Add a new to-do task to the list.                                                                                                 |
 | event                 | Add an event task to the list. |
-| deadlines             | add a deadline task to the list.                                  |
+| deadline              | add a deadline task to the list.                                  |
 | list                  | List all your current task.          |
 | find                  | Find a task.                  |
 | done                  | Saves your current personal list.                                                                                                         |
