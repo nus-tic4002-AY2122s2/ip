@@ -18,7 +18,7 @@ public class ClearListCommand extends Command {
         tasks.printList();
     }
 
-    public static void printHelp() {
-        System.out.println("Clearing the task list: /clear");
+    public static void printHelp(Ui ui) {
+        ui.storeMessage("Clearing the task list: /clear");
     }
 }

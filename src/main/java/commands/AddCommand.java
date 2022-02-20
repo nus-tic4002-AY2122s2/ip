@@ -47,11 +47,11 @@ public class AddCommand extends Command {
         tasks.printNumberOfTasks();
     }
 
-    public static void printHelp() {
-        System.out.println("Adding a generic task: [description]");
-        System.out.println("Adding a ToDo task: todo [description]");
-        System.out.println("Adding a Deadline task: deadline [description] /by [Date and Time]");
-        System.out.println("Adding an Event task: event [description] /at [Date and Time] to [Time]");
+    public static void printHelp(Ui ui) {
+        ui.storeMessage("Adding a generic task: [description]");
+        ui.storeMessage("Adding a ToDo task: todo [description]");
+        ui.storeMessage("Adding a Deadline task: deadline [description] /by [Date and Time]");
+        ui.storeMessage("Adding an Event task: event [description] /at [Date and Time] to [Time]");
     }
 
     public String getTaskType() {

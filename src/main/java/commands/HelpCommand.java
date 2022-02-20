@@ -27,15 +27,14 @@ public class HelpCommand extends Command {
                 + "\n"
                 + "The commands for the respective features are after the semi-colon\":\"\n");
 
-        AddCommand.printHelp();
-        RescheduleCommand.printHelp();
-
-        ChangeDoneCommand.printHelp();
-        DeleteCommand.printHelp();
-        ClearListCommand.printHelp();
-        ExitCommand.printHelp();
-        FindCommand.printHelp();
-        ListCommand.printHelp();
+        AddCommand.printHelp(ui);
+        RescheduleCommand.printHelp(ui);
+        ChangeDoneCommand.printHelp(ui);
+        DeleteCommand.printHelp(ui);
+        ClearListCommand.printHelp(ui);
+        ExitCommand.printHelp(ui);
+        FindCommand.printHelp(ui);
+        ListCommand.printHelp(ui);
 
     }
 }

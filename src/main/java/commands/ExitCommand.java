@@ -35,8 +35,8 @@ public class ExitCommand extends Command {
         ui.storeMessage("Finished saving Task List to storage");
     }
 
-    public static void printHelp() {
-        System.out.println("To close this application: bye");
+    public static void printHelp(Ui ui) {
+        ui.storeMessage("To close this application: bye");
     }
 
 }
