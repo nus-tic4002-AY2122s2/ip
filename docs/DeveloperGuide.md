@@ -44,7 +44,7 @@ The above commands will extend to `Command` class.
 
 ### UML diagram
 ##whole class diagram
-<img src="/pic/ClassDiagram.png">
+<img src="pic/ClassDiagram.png">
 
 
 
