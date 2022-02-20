@@ -1,0 +1,370 @@
+@startuml
+class Main {
+    +{static} main(args : String[]) : void
+}
+
+class Duke {
+    -ui : Ui
+    -storage : Storage
+    -tasks : TaskList
+    -mainWindow : MainWindow
+
+    +init() : void
+    +start(stage : Stage) : void
+}
+
+class Storage {
+    +{static} DEFAULT_STORAGE_FILEPATH : String
+    +path : Path
+
+    +Storage(filePath : String)
+    -{static} isValidPath(filePath : Path) : boolean
+    +save(taskList : TaskList) : void
+    +load() : TaskList
+}
+
+class Ui {
+    -{static} SEPARATE_LINE : String
+    -{static} ERROR_LOADING_MSG : String
+    -{static} LOGO : String
+    -in : Scanner
+    -out : PrintStream
+
+    +Ui()
+    +Ui(in : InputStream, out : PrintStream)
+    +showWelcome() : String
+    +readCommand() : String
+    +showResponse(commandResult : String) : void
+    +showLine() : void
+    +showError(message : String) : void
+    +showLoadingError() :void
+}
+abstract class UiPart<T> {
+    +{static} FXML_FILE_FOLDER : String = /view/
+    -fxmlLoader : FXMLLoader
+
+    +UiPart(fxmlFileUrl : URL)
+    +UiPart(fxmlFileName : String)
+    +UiPart(fxmlFileUrl : URL, root : T)
+    +UiPart(fxmlFileName : String, root : T)
+    +getRoot() : T
+    -loadFxmlFile(location : URL, root : T) : void
+    -{static}getFxmlFileUrl(fxmlFileName : String) : URL
+}
+class MainWindow {
+    -{static}FXML : String = MainWindow.fxml
+    -stage : Stage
+    -ui : Ui
+    -storage : Storage
+    -tasks : TaskList
+    -scrollPane : ScrollPane
+    -dialogContainer : VBox
+    -userInput : TextField
+    -sendButton : Button
+    -userImage : Image
+    -dukeImage : Image
+
+    +MainWindow(stage : Stage, ui : Ui, storage : Storage, tasks : TaskList)
+    +initialize() : void
+    +show() : void
+    -handleUserInput() :void
+}
+class DialogBox {
+    -{static}FXML : String = DialogBox.fxml
+    -dialog : Text
+    -displayPicture : Circle
+    -dialogBoxPane : HBox
+    -textFlow : TextFlow
+
+    -DialogBox(text : String, img : Image, isUser : boolean)
+    -flip() : void
+    +{static}getUserDialog(text : String, img : Image) : DialogBox
+    +{static}getDukeDialog(text : String, img : Image) : DialogBox
+
+}
+UiPart <|-- DialogBox
+UiPart <|-- MainWindow
+
+
+class Parser {
+    +{static} BASIC_COMMAND_FORMAT : Pattern
+    +{static} KEYWORDS_ARGS_FORMAT : Pattern
+    +{static} TASK_TYPE_DEADLINE_ARGS_FORMAT : Pattern
+    +{static} TASK_TYPE_EVENT_ARGS_FORMAT : Pattern
+    +{static} BASIC_TIME_FORMAT : Pattern
+    +{static} TASK_INDEX_ARGS_FORMAT : Pattern
+    +{static} TASK_DONE_TIME_FORMAT : Pattern
+    +{static} VIEW_DONE_TASK_BY_TIME_FORMAT : Pattern
+    +{static} UPDATE_FORMAT : Pattern
+
+    +parse(inputCommand : String) : Command
+    -prepareAddTodo(args : String) : Command
+    -prepareAddDeadline(args : String) : Command
+    -prepareAddEvent(args : String) : Command
+    -prepareDone(args : String) : Command
+    -prepareDelete(args : String) :Command
+    -prepareFind(args : String) :Command
+    -prepareViewDone(args : String) :Command
+    -prepareUpdate(args : String) : Command
+
+    -parseArgsAsDisplayedIndex(args : String) : int[]
+}
+class Command {
+    #taskList: TaskList
+    -targetIndex : int[]
+
+    #Command()
+    +Command(targetIndex : int[])
+    -setTargetIndex(targetIndex : int[]) : void
+    +getTargetIndex() :int[]
+    +execute() : String
+    +setData(taskList : TaskList) :void
+}
+class AddCommand {
+    +{static} COMMAND_WORD_ONE : String = todo
+    +{static} COMMAND_WORD_TWO : String = deadline
+    +{static} COMMAND_WORD_THREE : String = event
+    +{static} MESSAGE_USAGE : String
+    -toAdd : Task
+
+    +AddCommand(toAdd : Task)
+    +execute() : String
+}
+class ClearCommand {
+    +{static} COMMAND_WORD : String = clear
+    +{static} MESSAGE_USAGE : String
+
+    +execute() : String
+}
+class DeleteCommand {
+    +{static} COMMAND_WORD : String = delete
+    +{static} MESSAGE_USAGE : String
+
+    +DeleteCommand(targetIndex : int[])
+    +execute() : String
+}
+class DoneCommand {
+     +{static} COMMAND_WORD : String = done
+     +{static} MESSAGE_USAGE : String
+     -finishTime : LocalDateTime
+
+     +DoneCommand(targetIndex : int[]>, finishTime : LocalDateTime)
+     +execute() : String
+}
+class ExitCommand {
+     +{static} COMMAND_WORD : String = bye
+     +{static} MESSAGE_USAGE : String
+
+     +execute() : String
+     +{static} isExit(command : Command) : boolean
+}
+
+class FindCommand {
+     +{static} COMMAND_WORD : String = find
+     +{static} MESSAGE_USAGE : String
+     -keywords : Set<String>
+     -isCombined : boolean
+
+     +FindCommand(keywords : Set<String>)
+     +FindCommand(keywords : Set<String>, isCombined : boolean)
+     +execute() : String
+     -getTasksFromKeyword(keywords : Set<String>, isCombined : boolean) : List<Task>
+}
+class HelpCommand {
+     +{static} COMMAND_WORD : String = help
+     +{static} MESSAGE_USAGE : String
+
+     +execute() : String
+}
+class IncorrectCommand {
+    +feedbackToUser : String
+
+    +IncorrectCommand(feedbackToUser : String)
+    +execute() : String
+}
+class ListCommand {
+    +{static} COMMAND_WORD : String = list
+    +{static} MESSAGE_USAGE : String
+
+    +execute() : String
+}
+class SortCommand {
+    +{static} COMMAND_WORD : String = sort
+    +{static} MESSAGE_USAGE : String
+
+    +execute() : String
+}
+class UpdateCommand<T> {
+    +{static} COMMAND_WORD : String = update
+    +{static} MESSAGE_USAGE : String
+    -targetIndex : int
+    -toUpdate : String
+    -newValue : T
+
+    +UpdateCommand(targetIndex : int, toUpdate : String, newValue :T)
+    +execute() : String
+}
+class ViewDoneCommand {
+    +{static} COMMAND_WORD : String = viewdone
+    +{static} MESSAGE_USAGE : String
+    -fromTime : LocalDateTime
+    -toTime : LocalDateTime
+
+    +ViewDoneCommand(fromTime : LocalDateTime, toTime : LocalDateTime)
+    +execute() : String
+    -getTasksFromTimePeriod(fromTime : LocalDateTime, toTime : LocalDateTime) : List<Task>
+}
+
+class TaskListDecoder {
+    +{static} TODO_TXT_FILE_FORMAT : Pattern
+    +{static} DEADLINE_TXT_FILE_FORMAT : Pattern
+    +{static} EVENT_TXT_FILE_FORMAT : Pattern
+
+    +{static} decodeTaskList(encodedTasklist : List<String>) : TaskList
+    -{static} decodeTaskFromString(encodedTask : String) : Task
+}
+class TaskListEncorder {
+    +{static} encodeTaskList(toSave : TaskList) : List<String>
+    -{static} encodeTaskToString(task : Task) : String
+}
+
+TaskListDecoder ..> TaskList
+TaskListEncorder ..> TaskList
+TaskListDecoder ..> Task
+TaskListEncorder ..> Task
+Storage ..> TaskListEncorder
+Storage ..> TaskListDecoder
+Storage ..> TaskList
+
+class TaskList {
+    -taskList : List<Task>
+
+    +TaskList()
+    +TaskList(tasks : Collection<Task>)
+    +TaskList(source : TaskList)
+    +addTask(toAdd : Task) : void
+    +contains(toCheck : Task) : boolean
+    +getTaskByIdx(taskIdx : int) : Task
+    +removeTasks(toRemove : List<Task>) : void
+    +getSize() : int
+    +getTasks() : List<Task>
+    +getAllTasks() : TaskList
+    +clear() : void
+    +iterator() : Iterator<Task>
+}
+interface Iterable<Task>
+TaskList ..|> Iterable
+TaskList --> "*" Task
+TaskList ..> TaskList
+
+abstract class Task {
+   -{static} TASK_TYPE : String
+   -description : String
+   -isDone : boolean
+   -taskTime : LocalDateTime
+   -finishTime : LocalDateTime
+
+   +Task(description : String)
+   +Task(description : String, isDone : boolean, finishTime : LocalDateTime)
+   +getFinishTime() : LocalDateTime
+   +getStatusIcon() : String
+   +markAsDone(finishTime : LocalDateTime) : void
+   +getDescription() : String
+   +isDone（）: boolean
+   +getTaskType() : String
+   +getTaskTime() : LocalDateTime
+   +updateTask(newValue : String) : void
+   +updateTask(newValue : LocalDateTime) : void
+   +equals(obj : Object) : boolean
+   +toString() : String
+}
+class Todo {
+   -{static} TASK_TYPE : String = T
+
+   +Todo(description : String)
+   +Todo(description : String, isDone : boolean, finishTime : LocalDateTime)
+   +getTaskType() : String
+   +equals(obj : Object) : boolean
+   +toString() : String
+}
+class Deadline {
+   -{static} TASK_TYPE : String = D
+   #by : LocalDateTime
+
+   +Deadline(description : String, by : LocalDateTime)
+   +Deadline(description : String, by : LocalDateTime, isDone : boolean, finishTime : LocalDateTime)
+   +getTaskTime() : LocalDateTime
+   +getTaskType() : String
+   +updateTask(newValue : LocalDateTime) : void
+   +equals(obj : Object) : boolean
+   +toString() : String
+}
+class Event {
+   -{static} TASK_TYPE : String = E
+   #at : LocalDateTime
+
+   +Event(description : String, at : LocalDateTime)
+   +Event(description : String, at : LocalDateTime, isDone : boolean, finishTime : LocalDateTime)
+   +getTaskTime() : LocalDateTime
+   +getTaskType() : String
+   +updateTask(newValue : LocalDateTime) : void
+   +equals(obj : Object) : boolean
+   +toString() : String
+}
+
+Task <|-- Todo
+Task <|-- Deadline
+Task <|-- Event
+
+class Utils {
+   +{static} BASIC_DATE_TIME_FORMAT : Pattern
+   +{static}getDatetimeFromString(timeString : String) : LocalDateTime
+}
+
+Main ..> Duke
+Duke --> "1" Ui
+Duke --> "1" Storage
+Duke --> "1" TaskList
+Duke --> "1" MainWindow
+
+MainWindow --> "1" Ui
+MainWindow --> "1" Storage
+MainWindow --> "1" TaskList
+MainWindow ..> Command
+
+Parser ..> Command
+Parser ..> AddCommand
+Parser ..> ClearCommand
+Parser ..> DeleteCommand
+Parser ..> DoneCommand
+Parser ..> ExitCommand
+Parser ..> FindCommand
+Parser ..> HelpCommand
+Parser ..> ListCommand
+Parser ..> IncorrectCommand
+Parser ..> SortCommand
+Parser ..> UpdateCommand
+Parser ..> ViewDoneCommand
+
+Command <|-- Command
+Command <|-- AddCommand
+Command <|-- ClearCommand
+Command <|-- DeleteCommand
+Command <|-- DoneCommand
+Command <|-- ExitCommand
+Command <|-- FindCommand
+Command <|-- HelpCommand
+Command <|-- ListCommand
+Command <|-- IncorrectCommand
+Command <|-- SortCommand
+Command <|-- UpdateCommand
+Command <|-- ViewDoneCommand
+
+Command --> "1" TaskList
+AddCommand --> Task
+DeleteCommand ..> Task
+FindCommand ..> Task
+
+
+
+@enduml
