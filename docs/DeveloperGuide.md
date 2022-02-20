@@ -43,7 +43,8 @@ The above commands will extend to `Command` class.
 `Storage` Class have two main function `load()` and `save()`, which is used to load and save the task into a .txt file
 
 ### UML diagram
-##whole class diagram
+
+## whole class diagram
 <img src="pic/ClassDiagram.png">
 
 
