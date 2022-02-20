@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+//    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
+//    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 
     String javaFxVersion = '11'
 
@@ -44,11 +44,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "Laucher"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "duke2"
     archiveClassifier = null
 }
 
@@ -59,3 +59,7 @@ checkstyle {
 run{
     standardInput = System.in
 }
+
+sourceSets.main.java.srcDirs = ['src']
+mainClassName = "Launcher"
+

@@ -12,7 +12,7 @@
 * Thanks to Prof Damith C.Rajapakse and Boyd Anderson provide comprehensive material to guide my personal projects
 
 ## Setting up, getting started
-**Refer to the guide** <a href="https://github.com/jr-mojito/ip/blob/master/docs/UserGuide.md">Setting up and getting started.</a>
+**Refer to the guide** <a href="https://jr-mojito.github.io/ip/UserGuide.html">Setting up and getting started.</a>
 
 ## Design
 
