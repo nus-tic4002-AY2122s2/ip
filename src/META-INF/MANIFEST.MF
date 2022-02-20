@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: Launcher
+Class-Path: D:\NUS\YEAR 4\TIC4002 Software Engineering Practicum II\IP_2
+ 0220129\src\main\java
+
