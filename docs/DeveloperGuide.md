@@ -48,14 +48,14 @@ The `undo` command is implemented with help of a `CommandDataHistory` class.
 ## Appendix: Requirements
 
 ### User Stories
-| As a | I want to | So that |
-| --- | --- | --- |
-| forgetful user | add task | I can action on them later |
-| user | see all tasks | I can plan my execution strategy |
-| user | mask a task as done | I am more productive |
-| user | delete a task | I can declutter task that are no longer valid |
-| user | filter tasks by keyword | I can quickly find a task |
-| new user | undo previous command | I can quickly rollback a mistake |
+| As a           | I want to               | So that                                       |
+|----------------|-------------------------|-----------------------------------------------|
+| forgetful user | add task                | I can action on them later                    |
+| user           | see all tasks           | I can plan my execution strategy              |
+| user           | mask a task as done     | I am more productive                          |
+| user           | delete a task           | I can declutter task that are no longer valid |
+| user           | filter tasks by keyword | I can quickly find a task                     |
+| new user       | undo previous command   | I can quickly rollback a mistake              |
 <br>
 
 ### Non-Functional Requirements
