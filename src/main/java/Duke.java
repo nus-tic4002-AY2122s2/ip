@@ -151,6 +151,13 @@ public class Duke extends Application {
         //Step 3. Add functionality to handle user input.
 
 
+        Label dukeIntro = new Label(ui.printIntro());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(dukeIntro, new ImageView(duke))
+        );
+
+
+
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
             if (isRunning == false) {
@@ -167,8 +174,6 @@ public class Duke extends Application {
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-
-
 
     }
 
@@ -210,9 +215,9 @@ public class Duke extends Application {
             co.execute(tasks, ui, storage);
             isRunning = co.isRunning();
         } catch (DukeException | IOException e) {
-            return "Error!";
+            return e.getMessage();
         }
-        return "Duke heard:\n" + ui.getMessages();
+        return "Duke Replied:\n" + ui.getMessages();
     }
 
 }

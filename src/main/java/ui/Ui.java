@@ -28,14 +28,9 @@ public class Ui {
     /**
      * This prints the intro logo of Duke.
      */
-    public void printIntro() {
-        String intro = "Hello from\n"
-                + " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(intro);
+    public String printIntro() {
+        String intro = "Hello from Duke! Type \"/help\" for help with commands! \n";
+        return intro;
     }
 
     /**
