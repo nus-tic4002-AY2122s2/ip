@@ -103,16 +103,34 @@ public class Duke extends Application {
             this.getChildren().setAll(tmp);
         }
 
+        /**
+         * Flips the User dialog box such that the ImageView is on the left and text on the right
+         * @param l Text to Label properties
+         * @param iv Display picture of User
+         * @return Dialog box with Picture and Label field
+         */
         public static DialogBox getUserDialog(Label l, ImageView iv) {
             return new DialogBox(l, iv);
         }
 
+        /**
+         * Flips the Duke dialog box such that the ImageView is on the left and text on the right
+         * @param l Text to Label properties
+         * @param iv Display picture of Duke
+         * @return Dialog box with Picture and Label field
+         */
         public static DialogBox getDukeDialog(Label l, ImageView iv) {
             var db = new DialogBox(l, iv);
             db.flip();
             return db;
         }
 
+        /**
+         * Flips the Duke's exception dialog box such that the ImageView is on the left and text on the right
+         * @param l Text to Label properties
+         * @param iv Display picture of Duke
+         * @return Dialog box with Picture and Label field
+         */
         public static DialogBox getExceptionDialog(Label l, ImageView iv) {
             var db = new DialogBox(l, iv);
             db.flip();
@@ -194,7 +212,6 @@ public class Duke extends Application {
         userInput.setOnAction((event) -> {
             handleUserInput();
         });
-
     }
 
     /**
@@ -211,11 +228,13 @@ public class Duke extends Application {
         return textToAdd;
     }
 
-
     /**
      * Iteration 2:
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates three dialog boxes, one echoing user input, the other containing Duke's reply with correct user input
+     * and then appends them to the dialog container,
+     * and the other Duke's reply exception message to user and then appends them to
+     * the dialog container.
+     * Clears the user input after processing.
      */
     private void handleUserInput() {
 
@@ -507,64 +526,16 @@ public class Duke extends Application {
             }
             break;
 
-        case ("find"):
-            try{
-                int listPrintFind = 0;
-                int index1 = 0;
-
-                if(fullCommand[1]!="") {
-                    String searchWord = userInput.getText().substring(5);
-
-                    StringBuilder stringBuilder = new StringBuilder();
-                    String finalStringFind = "";
-
-                    stringBuilder.append("Here are the matching task in your list\n");
-
-                    for (int i = 0; i < addedList.toArray().length; i++) {
-                        ++index1;
-                        if (addedList.get(i).desc.contains(searchWord.trim())) {
-                            stringBuilder.append("\n " + index1 + ". " + "[" + addedList.get(i).status + "]" + addedList.get(i).desc);
-                            listPrintFind++;
-                        }
-                    }
-                    finalStringFind = stringBuilder.toString();
-
-                    if(listPrintFind != 0) {
-                        dialogContainer.getChildren().add(
-                                DialogBox.getDukeDialog(new Label(finalStringFind), new ImageView(duke))
-                        );
-                        userInput.clear();
-                    }
-                    else if(listPrintFind == 0){
-                        Label dukeTextFind = new Label("☹ OOPS!!! \nNot matching found on the list\"\n");
-                        dialogContainer.getChildren().add(
-                                DialogBox.getExceptionDialog(dukeTextFind, new ImageView(duke))
-                        );
-                        userInput.clear();
-                    }
-                }
-
-            } catch (ArrayIndexOutOfBoundsException e){
-                Label dukeTextFindException = new Label("☹ OOPS!!! \nThe finding keywords is missing\n");
-                dialogContainer.getChildren().add(
-                        DialogBox.getExceptionDialog(dukeTextFindException, new ImageView(duke))
-                );
-                userInput.clear();
-            }
-            break;
-
         default:
             Label dukeTextWrongCmd= new Label("☹ OOPS!!! \nPlease refer User Guide enter correct command");
             dialogContainer.getChildren().add(
                     DialogBox.getExceptionDialog(dukeTextWrongCmd, new ImageView(duke))
             );
-
         }
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generate a response from user input.
      */
     private static String getResponse(String input) {
         fullCommand = input.split(" ");
@@ -731,7 +702,7 @@ public class Duke extends Application {
                     System.out.println("Something went wrong" + e.getMessage());
                 }
                 break;
-
+                
             default:
             }
         }
