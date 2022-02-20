@@ -16,3 +16,11 @@ The *Architecture Diagram* above explains the high-level design of the app.
 * `Command`: Execute instruction.
 * `TaskList`: Hold app data in memory.
 * `Storage`: Read data from and write data to hard disk.
+<br><br>
+
+#### Interaction Between Architecture Components
+The *Sequence Diagram* below shows how the components interact with each other for scenario when the user issues command `todo borrow book`.
+
+![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
+
+**Note:** The lifeline for `c:Command` should end at destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
