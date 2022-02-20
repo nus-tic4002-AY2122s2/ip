@@ -12,6 +12,11 @@ The tagging syntax follows the basics from [emacs org-mode way](https://orgmode.
 Now user can enjoy a beautiful chatbot chatbot like interface as the sample image below:
 ![](./pic/dukegui.png)
 
+### Setup 
+
+Download `ip.jar` file from the latest [release](https://github.com/l-shihao/ip/releases), 
+double click to run the application (JDK 11 is required).
+
 ----
 ## Features
 
@@ -23,23 +28,23 @@ There are 3 types of task that Duke recognizes – Todo, Event and Deadline:
 
 ### Operations
 Besides creation of the above mentioned tasks, Duke provides basic functionalities to manipulate the tasks, such as:
-+ [list all the tasks](#list---List-all-tasks)
-+ [list all the command keywords](#cmd---List-all-commend-keywords)
-+ [mark one or multiple tasks done at once](#done---Mark-selected-tasks-done)
-+ [delete one or multiple tasks done at once](#delete---Delete-seleted-tasks)
-+ [find tasks that contains certain keywords](#find---Find-tasks-containing-keywords)
++ list all the tasks
++ list all the command keywords
++ mark one or multiple tasks done at once
++ delete one or multiple tasks done at once
++ find tasks that contains certain keywords
 
 `Update 2022-Feb:`
-+ add tasks with tags 
-+ tag existing task
-+ find tasks with certain tag
++ [add tasks with tags](UserGuide.md#todo---Add-Todo)
++ [tag existing task](UserGuide.md#tag---Append-tags-to-a-task)
++ [find tasks with certain tag](UserGuide.md#Only-filter-by-a-tag)
 
 ### Storage
 The program will create a `./data` folder (under same directory where user stores the `jar` file), under which a text file called `duke.txt` will store the tasks in plain text. So when the program starts next time, all the record can be read and retrived.
 
 ## Usage
 
-### `cmd` - List all command keywords
+### `cmd` List all command keywords
 
 Format: `cmd`
 
@@ -51,6 +56,7 @@ Expected outcome:
  todo
  find
  cmd
+ tag
  event
  deadline
  done
@@ -158,7 +164,8 @@ Expected outcome:
 `Update 2022-Feb:`
 ### `find` - Find tasks containing keywords
 
-search the occurrences of keywords from title and tags.
+#### Search the occurrences of keywords from title and tags
+
 Format: `find KEYWORDS`
 
 Example: `find world`
@@ -171,7 +178,8 @@ Expected outcome:
  4.[T][ ] buy sci-fi world magazine :10min:
 ```
 
-only filter by a tag
+#### Only filter by a tag
+
 Format: `find :TAG:`
 
 Example: `find :world:`
