@@ -509,7 +509,6 @@ public class Duke extends Application {
                 );
 
                 int saveIndex = 0;
-                stringBuilderEvent.append("\n-------------------------------\n");
                 Iterator saveItr = addedList.iterator();
                 while (saveItr.hasNext()){
                     Task t = (Task)saveItr.next();
@@ -517,7 +516,6 @@ public class Duke extends Application {
                 }
 
                 stringBuilderEvent.append("\nFile save successfully to dukesave.txt\n");
-                stringBuilderEvent.append("\n-------------------------------\n");
 
                 finalStringSave = stringBuilderEvent.toString();
 
