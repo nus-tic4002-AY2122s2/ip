@@ -1,7 +1,5 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-import java.time.format.DateTimeParseException;
+import java.io.*;
+import java.time.format.*;
 
 public class Duke {
 
