@@ -17,7 +17,6 @@ import Duke.Parser;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.effect.InnerShadow;
 import javafx.stage.Stage;
 import javafx.scene.layout.Region;
 
@@ -483,7 +482,6 @@ public class Duke extends Application {
                 );
 
                 int saveIndex = 0;
-                stringBuilderEvent.append("\n-------------------------------\n");
                 Iterator saveItr = addedList.iterator();
                 while (saveItr.hasNext()){
                     Task t = (Task)saveItr.next();
@@ -491,7 +489,6 @@ public class Duke extends Application {
                 }
 
                 stringBuilderEvent.append("\nFile save successfully to dukesave.txt\n");
-                stringBuilderEvent.append("\n-------------------------------\n");
 
                 finalStringSave = stringBuilderEvent.toString();
 
