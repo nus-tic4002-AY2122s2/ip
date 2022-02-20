@@ -33,7 +33,7 @@
 
 * keep record of tasks in the laptop
 * track daily tasks effectively
-* mark done when tasks is done.
+* marked as done when task is done.
 
 ### User Stories
 
@@ -46,9 +46,9 @@
 
 ### Non-Functional Requirements
 
-* Should work on any mainstream OS as long as it has Java 11 or above installed.
-* Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance.
-* The command should be simple enough so that users are able to accomplish most of the tasks faster using typing than using the mouse.
+* Should work on any mainstream OS that Java 11 or above installed.
+* Should be able to hold up to 1000 tasks.
+* The application with GUI design are easier for user to interact with DUKE Chatbot that helps to keep track various of daily items.
 
 ### Glossary
 

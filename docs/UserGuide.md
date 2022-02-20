@@ -7,7 +7,7 @@ a personal Assistant Chatbot that helps to keep track various of daily items.
 
 1. Open the project into Intellij as follows:
 2. Configure the project to use **JDK 11** (not other versions) <br>
-3. After that, locate the `src/main/java/Launcher.java` file, right-click it, and choose `Run Launcher.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output: <br>
+3. Locate the `src/main/java/Launcher.java` file, click and choose `Run Launcher.main()`  <br>
    ![DUKE Personal Assistant](Ui.png)
    
 ## Quick Start
@@ -49,9 +49,7 @@ a personal Assistant Chatbot that helps to keep track various of daily items.
 
 ## Usage
 
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
+### Describe the action and its outcome.
 
 Example of usage:
 
@@ -64,7 +62,7 @@ Example of usage:
 * `find meeting`
 
 
-##Demo:
+## Demo:
 
 ### Add Todo ```todo ``` 
 
