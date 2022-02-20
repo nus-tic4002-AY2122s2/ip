@@ -1,0 +1,15 @@
+@startuml
+package "JavaFX" {
+    [Launcher] -> [Main]
+    [Main] -> [MainWindow]
+}
+[Main] -down-> [Duke]
+[User] .down.> [MainWindow]
+[MainWindow] .> [Duke]
+[Duke] -down-> [Task]
+[Duke] ----> [Storage]
+[Duke] -left-> [Parser]
+[Parser] -down-> [Command]
+[Duke] .down.> [Command]
+[Command] .> [Task]
+@enduml
