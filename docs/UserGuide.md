@@ -8,7 +8,7 @@
 1. Double-click the `jar` file to start the app.
 1. You should be greeted with below GUI.
 
-![Ui](Ui.png)
+![Ui](images/Ui_Init.png)
 
 ## Features
 
