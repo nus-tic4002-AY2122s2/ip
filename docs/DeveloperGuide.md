@@ -12,24 +12,13 @@
 * Thanks to Prof Damith C.Rajapakse and Boyd Anderson provide comprehensive material to guide my personal projects
 
 ## Setting up, getting started
-**Refer to the guide** <a href="https://github.com/jr-mojito/ip/blob/master/docs/UserGuide.md">Setting up and getting started.</a>
+**Refer to the guide** <a href="https://jr-mojito.github.io/ip/UserGuide.html">Setting up and getting started.</a>
 
 ## Design
 
-* *Common classes* (TaskList)
+1. ```Object diagram```<br/>
+   ![](ObjectDiagram.png)
 
-1. ```Class diagram (refer to the image below)```<br/>
-   <img src="Diagram/Class_Diagram.png" width="2500" height=auto>
-2. ```Object diagram```<br/>
-   <img src="Diagram/Object_Diagram.png" width="2500" height=auto>
-
-## Implementation (Sequence Diagram)
-
-* List Command <br>
-  The user execute `list` command to show all the items in the list.<br/>
-  UI scanned `list` command from user, `Command` create a new `ListCommand` and `run()` to get the tasks from Arraylist, taskList return the tasks to UI and show to user. <br/>
-
-<img src="Diagram/Sequence_Diagram.png" width="800" height=auto> <br/>
 
 ## Appendix: Requirements
 
