@@ -8,7 +8,7 @@
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-## Design & implementation
+## Design
 
 The Design consist of different classes and component like Ui, Storage, Parser, TaskList, MainWindow and Duke.
 
@@ -26,21 +26,40 @@ Logic: The command executor. (Parser, Command)
 Model: Holds the data of the App in memory. (Tasks, TaskList)  
 Storage: Reads data from, and writes data to, the hard disk. (Storage)  
 
-The Ui component will work together with Duke which will work together with the Logic, Model and Storage component to execute the command enter by the user.
+The Ui component will work together with Duke to get the user input. And Duke will work together with the Logic (Parser), Model (TaskList) and Storage (Storage) component to execute the command enter by the user.
+
 
 ### Sequence Diagram
+An example of the sequence diagram when the user key in the list command:
 ![image](https://user-images.githubusercontent.com/43517460/154844136-04d131f7-caf0-4390-a2b4-e34067241956.png)
 
 
 ### Object diagram
 ![image](https://user-images.githubusercontent.com/43517460/154842316-e60b952a-9929-403e-b4a7-187c8022935b.png)
 
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+
+### Search for duplicate task
+
+When the user used the Event, Deadline or Todo command, during the execution of the adding into the TaskList, there will be a search for the same task description against the current list. If there are duplicate task description, the task will be added into a temporary ArrayList<Task> which at the end of adding, will inform the user that there are duplicate task description. The current task description will still be added to the list in case the user still wants to keep it (He can remove it using the remove command if he does not want to keep it). 
+  The search for duplicate will be done: 
+  1. across all task without regards to the type of task (e.g. Event, Todo, Deadline, etc.)
+  2. regardless of capitalization (i.e. Does not matter if the word is in Lower case or upper case)
+  
+
+### Exit Command
+  
+  The Exit Command consist of `Bye`, `Quit` and `Exit`. After the user has given the command, Duke will say goodbye to the user before doing a countdown to close the program. The code made used of `javafx.animation.Timeline` to set a timer of 11sec before the application is close. This is such that user would know that the app is closing due to the program instead being unsure if the app has properly closed or crash. The user is also able to see that Duke has said goodbye to them instead of suddenly closing.  
+  The program uses a few `javafx.animation.Timeline` to close the program. The first one was use to set a timer of 11sec to close the program. After that, the program will have a loop of 10 cycle to create 10 more timer, 1 each from 10 sec to 1 sec, to display the countdown to the user.
+  
 
 
 ## Target user profile
 
-has a need to manage and track daily tasks
-prefers desktop apps over other types
+has a lot of activities going on and need tracking
+prefers using computer instead of phone
 prefers typing to mouse interactions
 is reasonably comfortable using CLI apps  
 
