@@ -10,13 +10,13 @@ Duke is a chat-bot application that helps you to manage your daily tasks through
     * [Marks task(s) as done](#marks-task(s)-as-done)
     * [Deletes task(s)](#deletes-task(s))
     * [Lists all task(s)](#lists-all-task(s))
-    * [Finds specific task type](#finds-specific-task-type)
+    * [Finds task(s) with specific task type](#finds-task(s)-with-specific-task-type)
     * [Finds task(s) based on date](#finds-task(s)-based-on-date)
     * [Finds task(s) based on from date](#finds-task(s)-based-on-from-date)
     * [Finds task(s) based on date range](#finds-task(s)-based-on-date-range)
     * [Sort all task(s) by task types](#sort-all-task(s)-by-task-types)
     * [Saves all task(s)](#saves-all-task(s)])
-    * [Exit Duke](#exit-duke])
+    * [Exit programme ](#exit-programme])
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -28,8 +28,8 @@ Duke is a chat-bot application that helps you to manage your daily tasks through
 5. Type the command in the command input box and press `Enter` key or `Send` button to execute.
 6. Refer to the **Features** below for details of each command.
 
-## Features
-### Adds a todo task - `todo <description>`
+## <ins>Features</ins>
+### <ins>Adds a todo task</ins> - `todo <description>`
 
 Adds a todo task to the current tasklist
 
@@ -45,7 +45,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### Adds an event task with date - `event <description> /at <date>`
+### <ins>Adds an event task with date</ins> - `event <description> /at <date>`
 
 Adds an event task with date to the current tasklist
 
@@ -61,7 +61,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### Adds an event task without date - `event <description>`
+### <ins>Adds an event task without date</ins> - `event <description>`
 
 Adds an event task without date to the current tasklist
 
@@ -77,7 +77,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### Adds a deadline task with date - `deadline <description> /by <date>`
+### <ins>Adds a deadline task with date</ins> - `deadline <description> /by <date>`
 
 Adds a deadline task with date to the current tasklist
 
@@ -94,7 +94,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### Adds a deadline task without date - `deadline <description>`
+### <ins>Adds a deadline task without date</ins> - `deadline <description>`
 
 Adds a deadline task without date to the current tasklist
 
@@ -110,7 +110,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### Marks a todo/event/deadline task(s) as done - `done <index>`
+### <ins>Marks a todo/event/deadline task(s) as done</ins> - `done <index>`
 
 Marks a todo/event/deadline task(s) as done to the current tasklist
 
@@ -126,7 +126,7 @@ Nice! I've marked this task(s) as done:
 [E][X] wedding (at: 02 Aug 2021)
 ```
 
-### Deletes todo/event/deadline task(s) - `delete <index>`
+### <ins>Deletes task(s)</ins> - `delete <index>`
 
 Deletes todo/event/deadline task(s) in the current tasklist
 
@@ -143,7 +143,7 @@ Noted. I've removed this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### Lists all task(s) - `list`
+### <ins>Lists all task(s)</ins> - `list`
 
 Lists all task(s) in the current tasklist
 
@@ -163,7 +163,7 @@ Here are the tasks in your list:
 6. [D][ ] bills (by: Date not specified)
 7. [E][ ] exhibition (at: Date not specified)
 ```
-### Finds all todo/event/deadline task(s) - `find all <tasks>`
+### <ins>Finds task(s) with specific task type</ins> - `find all <tasks>`
 
 Finds todo/event/deadline task(s) in the current tasklist
 
@@ -180,7 +180,7 @@ Here are the tasks in your list:
 3. [E][ ] exhibition (at: Date not specified)
 ```
 
-### Finds todo/event/deadline task(s) based on date - `find <tasks> on <date>`
+### <ins>Finds task(s) based on date</ins> - `find <tasks> on <date>`
 
 Finds todo/event/deadline task(s) based on date in the current tasklist
 
@@ -195,7 +195,7 @@ Here are the tasks in your list:
 1. [E][ ] meeting (at: 08 Jun 2021)
 ```
 
-### Finds todo/event/deadline task(s) based on from date - `find <tasks> from <date>`
+### <ins>Finds task(s) based on from date</ins> - `find <tasks> from <date>`
 
 Finds todo/event/deadline task(s) based on from date in the current tasklist
 
@@ -210,7 +210,7 @@ Here are the tasks in your list:
 1. [E][ ] workshop (at: 17 Jul 2021)
 ```
 
-### Finds todo/event/deadline task(s) based on date range - `find <tasks> between <date> to <date>`
+### <ins>Finds task(s) based on date range</ins> - `find <tasks> between <date> to <date>`
 
 Finds todo/event/deadline task(s) based on date range in the current tasklist
 
@@ -225,7 +225,7 @@ Here are the tasks in your list:
 1. [E][ ] meeting (at: 08 Jun 2021)
 ```
 
-### Sort all task(s) by task types - `sort`
+### <ins>Sort all task(s) by task types</ins> - `sort`
 
 
 Sort all task(s) by task types in the current tasklist
@@ -248,7 +248,7 @@ Here are the tasks in your list:
 [T][] report
 ```
 
-### Saves all task(s) - `save`
+### <ins>Saves all task(s)</ins> - `save`
 
 Saves all task(s) in the current tasklist
 
@@ -262,7 +262,7 @@ Expected outcome:
 Tasks saved!
 ```
 
-### Exit programme - `bye`
+### <ins>Exit programme</ins> - `bye`
 
 Exit Duke
 
