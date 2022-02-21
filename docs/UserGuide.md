@@ -29,7 +29,7 @@ Duke is a chat-bot application that helps you to manage your daily tasks through
 6. Refer to the **Features** below for details of each command.
 
 ## <ins>Features</ins>
-### <ins>Adds a todo task</ins> - `todo <description>`
+### <ins>Adds a todo task - `todo <description>`</ins>
 
 Adds a todo task to the current tasklist
 
