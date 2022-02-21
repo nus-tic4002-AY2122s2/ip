@@ -45,7 +45,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### <ins>Adds an event task with date</ins> - `event <description> /at <date>`
+### <ins>Adds an event task with date - `event <description> /at <date>`</ins>
 
 Adds an event task with date to the current tasklist
 
@@ -61,7 +61,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### <ins>Adds an event task without date</ins> - `event <description>`
+### <ins>Adds an event task without date - `event <description>`</ins>
 
 Adds an event task without date to the current tasklist
 
@@ -77,7 +77,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### <ins>Adds a deadline task with date</ins> - `deadline <description> /by <date>`
+### <ins>Adds a deadline task with date - `deadline <description> /by <date>`</ins>
 
 Adds a deadline task with date to the current tasklist
 
@@ -94,7 +94,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### <ins>Adds a deadline task without date</ins> - `deadline <description>`
+### <ins>Adds a deadline task without date - `deadline <description>`</ins>
 
 Adds a deadline task without date to the current tasklist
 
@@ -110,7 +110,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### <ins>Marks a todo/event/deadline task(s) as done</ins> - `done <index>`
+### <ins>Marks a todo/event/deadline task(s) as done - `done <index>`</ins>
 
 Marks a todo/event/deadline task(s) as done to the current tasklist
 
@@ -126,7 +126,7 @@ Nice! I've marked this task(s) as done:
 [E][X] wedding (at: 02 Aug 2021)
 ```
 
-### <ins>Deletes task(s)</ins> - `delete <index>`
+### <ins>Deletes task(s) - `delete <index>`</ins>
 
 Deletes todo/event/deadline task(s) in the current tasklist
 
@@ -143,7 +143,7 @@ Noted. I've removed this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### <ins>Lists all task(s)</ins> - `list`
+### <ins>Lists all task(s) - `list`</ins>
 
 Lists all task(s) in the current tasklist
 
@@ -163,7 +163,7 @@ Here are the tasks in your list:
 6. [D][ ] bills (by: Date not specified)
 7. [E][ ] exhibition (at: Date not specified)
 ```
-### <ins>Finds task(s) with specific task type</ins> - `find all <tasks>`
+### <ins>Finds task(s) with specific task type - `find all <tasks>`</ins>
 
 Finds todo/event/deadline task(s) in the current tasklist
 
@@ -180,7 +180,7 @@ Here are the tasks in your list:
 3. [E][ ] exhibition (at: Date not specified)
 ```
 
-### <ins>Finds task(s) based on date</ins> - `find <tasks> on <date>`
+### <ins>Finds task(s) based on date - `find <tasks> on <date>`</ins>
 
 Finds todo/event/deadline task(s) based on date in the current tasklist
 
@@ -195,7 +195,7 @@ Here are the tasks in your list:
 1. [E][ ] meeting (at: 08 Jun 2021)
 ```
 
-### <ins>Finds task(s) based on from date</ins> - `find <tasks> from <date>`
+### <ins>Finds task(s) based on from date - `find <tasks> from <date>`</ins>
 
 Finds todo/event/deadline task(s) based on from date in the current tasklist
 
@@ -210,7 +210,7 @@ Here are the tasks in your list:
 1. [E][ ] workshop (at: 17 Jul 2021)
 ```
 
-### <ins>Finds task(s) based on date range</ins> - `find <tasks> between <date> to <date>`
+### <ins>Finds task(s) based on date range - `find <tasks> between <date> to <date>`</ins>
 
 Finds todo/event/deadline task(s) based on date range in the current tasklist
 
@@ -225,7 +225,7 @@ Here are the tasks in your list:
 1. [E][ ] meeting (at: 08 Jun 2021)
 ```
 
-### <ins>Sort all task(s) by task types</ins> - `sort`
+### <ins>Sort all task(s) by task types - `sort`</ins>
 
 
 Sort all task(s) by task types in the current tasklist
@@ -248,7 +248,7 @@ Here are the tasks in your list:
 [T][] report
 ```
 
-### <ins>Saves all task(s)</ins> - `save`
+### <ins>Saves all task(s) - `save`</ins>
 
 Saves all task(s) in the current tasklist
 
@@ -262,7 +262,7 @@ Expected outcome:
 Tasks saved!
 ```
 
-### <ins>Exit programme</ins> - `bye`
+### <ins>Exit programme - `bye`</ins>
 
 Exit Duke
 
