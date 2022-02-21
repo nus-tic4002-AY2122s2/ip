@@ -30,28 +30,9 @@ public class Duke {
         }
     }
 
-/*    public void run() {
-        ui.printDuke();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.printLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (FileNotFoundException | ParseException e) {
-                e.printStackTrace();
-            } finally {
-                ui.printLine();
-            }
-        }
-    }*/
-
     public String getResponse(String input, Stage stage) {
-        boolean isExit = false;
+        boolean isExit;
         String response = "";
-        //while (!isExit) {
             try {
                 Command c = Parser.parse(input);
                 response = c.execute(tasks, ui, storage);
@@ -62,11 +43,6 @@ public class Duke {
             } catch (FileNotFoundException | ParseException e) {
                 e.printStackTrace();
             }
-        //}
         return response;
     }
-
-   /* public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
-    }*/
 }

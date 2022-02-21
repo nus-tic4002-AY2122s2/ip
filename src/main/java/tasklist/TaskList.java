@@ -35,9 +35,9 @@ public class TaskList {
         String message = "";
         try {
             checkListEmpty(taskList);
-            message = UI.printOutput(taskList);
+            message = UI.taskListDetails(taskList);
         } catch (ListEmptyException e) {
-            message = UI.printListEmpty();
+            message = UI.listEmpty();
         }
 
         return message;
@@ -57,9 +57,9 @@ public class TaskList {
                 list += taskList.get(i).saveFormat() + "\n";
             }
             s.writeToFile(list);
-            message = UI.printTaskSaved();
+            message = UI.taskSaved();
         }catch  (ListEmptyException e) {
-            message = UI.printListEmpty();
+            message = UI.listEmpty();
         }
 
         return message;
@@ -72,8 +72,10 @@ public class TaskList {
      */
     public String markedAsDone(String line) {
         String message = "";
+        String[] userInputArr = line.trim().split(" ");
         try {
             checkListEmpty(taskList);
+            checkNumOfInput(userInputArr.length);
             String theStrIndex = line.substring(5);
             String[] theStrIndexArr = theStrIndex.split(",");
             int[] intArr = new int[theStrIndexArr.length];
@@ -83,7 +85,7 @@ public class TaskList {
                 checkIndexOutOfRange(taskList.size(), intArr[i]);
             }
 
-            message += UI.printMarkedAsDone();
+            message += UI.markedAsDone();
 
             for (int i = 0; i < intArr.length; i++) {
                 Task t = taskList.get(intArr[i] - 1);
@@ -92,13 +94,16 @@ public class TaskList {
             }
 
         } catch (NumberFormatException e) {
-            message = UI.printNumberFormatException();
+            message = UI.numberFormatException();
         }
         catch (IndexOutOfRangeException e) {
-            message = UI.printIndexOutOfRangeException();
+            message = UI.indexOutOfRangeException();
         }
         catch  (ListEmptyException e) {
-            message = UI.printListEmpty();
+            message = UI.listEmpty();
+        }
+        catch (StringFormatException e) {
+            message = UI.stringFormatException();
         }
         return message;
     }
@@ -110,8 +115,10 @@ public class TaskList {
      */
     public String deleteTask(String line) {
         String message = "";
+        String[] userInputArr = line.trim().split(" ");
         try {
             checkListEmpty(taskList);
+            checkNumOfInput(userInputArr.length);
             String theStrIndex = line.substring(7);
             String[] theStrIndexArr = theStrIndex.split(",");
             int[] intArr = new int[theStrIndexArr.length];
@@ -122,7 +129,7 @@ public class TaskList {
                 checkIndexOutOfRange(taskList.size(), intArr[i]);
             }
 
-            message += UI.printRemoveTask();
+            message += UI.removedTask();
 
             for (int i = 0; i < intArr.length; i++) {
                 Task t = taskList.get(intArr[i]-(i+1));
@@ -130,14 +137,16 @@ public class TaskList {
                 taskList.remove(intArr[i]-(i+1));
             }
 
-            message += UI.printNumberOfTasks(taskList);
+            message += UI.numberOfTasks(taskList);
 
         } catch (NumberFormatException e) {
-            message = UI.printNumberFormatException();
+            message = UI.numberFormatException();
         } catch (IndexOutOfRangeException e) {
-            message = UI.printIndexOutOfRangeException();
+            message = UI.indexOutOfRangeException();
         } catch  (ListEmptyException e) {
-            message = UI.printListEmpty();
+            message = UI.listEmpty();
+        } catch (StringFormatException e) {
+            message = UI.stringFormatException();
         }
         return message;
     }
@@ -163,7 +172,7 @@ public class TaskList {
                 Date date = dateFormat.parse(str[1]);
                 //Get task type e.g event
                 String taskType = str[0].substring(5).toLowerCase();
-
+                checkInvalidWord(taskType);
                 //Loop taskList to check conditions for findDate
                 for (int i = 0; i < taskList.size(); i++) {
                     if (taskList.get(i).findDate(date, taskType)) {
@@ -179,7 +188,7 @@ public class TaskList {
                 //Format string "12 oct 2019" to date
                 Date date = dateFormat.parse(str[1]);
                 String taskType = str[0].substring(5).toLowerCase();
-
+                checkInvalidWord(taskType);
                 //Loop taskList to check conditions for findFromDateRange
                 for (int i = 0; i < taskList.size(); i++) {
                     if (taskList.get(i).findFromDateRange(date, taskType)) {
@@ -198,7 +207,7 @@ public class TaskList {
                 Date date1 = dateFormat.parse(dateRange[0]);
                 Date date2 = dateFormat.parse(dateRange[1]);
                 String taskType = str[0].substring(5).toLowerCase();
-
+                checkInvalidWord(taskType);
                 //Loop taskList to check conditions for findBetweenDateRange
                 for (int i = 0; i < taskList.size(); i++) {
                     if (taskList.get(i).findBetweenDateRange(date1, date2, taskType)) {
@@ -212,7 +221,7 @@ public class TaskList {
                 str = line.split(" ", 3);
                 //e.g "events"
                 String type = str[2].toLowerCase();
-
+                checkInvalidWord(type);
                 //Loop taskList to check conditions for taskType
                 for (int i = 0; i < taskList.size(); i++) {
                     if (taskList.get(i).taskType(type)) {
@@ -220,11 +229,11 @@ public class TaskList {
                     }
                 }
             }
-            message = UI.printOutput((foundTasks));
+            message = UI.taskListDetails((foundTasks));
         } catch (StringFormatException e) {
-            message= UI.printStringFormatException();
+            message= UI.stringFormatException();
         } catch (ListEmptyException e) {
-            message = UI.printListEmpty();
+            message = UI.listEmpty();
         }
 
         return message;
@@ -257,11 +266,11 @@ public class TaskList {
                 Task t = new Event(taskDescription, "Date not specified");
                 taskList.add(t);
             }
-            message = UI.printTask(taskList);
+            message = UI.taskAddedDetails(taskList);
         } catch (EmptyEventDescriptionException e) {
-            message = UI.printEmptyEventDescriptionException();
+            message = UI.emptyEventDescriptionException();
         } catch (ParseException e) {
-            message = UI.printParseException();
+            message = UI.parseException();
         }
         return message;
     }
@@ -292,9 +301,9 @@ public class TaskList {
                 Task t = new Deadline(taskDescription, "Date not specified");
                 taskList.add(t);
             }
-            message = UI.printTask(taskList);
+            message = UI.taskAddedDetails(taskList);
         } catch (EmptyDeadlineDescriptionException e) {
-            message = UI.printEmptyDeadlineDescriptionException();
+            message = UI.emptyDeadlineDescriptionException();
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -310,12 +319,13 @@ public class TaskList {
         String message = "";
         try {
             checkEmptyToDoDescription(line.trim());
+
             String taskDescription = line.substring(5);
             Task t = new ToDo(taskDescription);
             taskList.add(t);
-            message = UI.printTask(taskList);
+            message = UI.taskAddedDetails(taskList);
         } catch (EmptyToDoDescriptionException e){
-            message = UI.printEmptyToDoDescriptionException();
+            message = UI.emptyToDoDescriptionException();
         }
         return message;
     }
@@ -323,7 +333,7 @@ public class TaskList {
     public String sortType() {
         ArrayList<Task> copiedArray = taskList;
         copiedArray.sort(Comparator.comparingInt(this::getTaskType));
-        return UI.printOutput(copiedArray);
+        return UI.taskListDetails(copiedArray);
     }
 
     private char getTaskType(Task task) {
@@ -348,9 +358,9 @@ public class TaskList {
             checkEmpty(line);
             checkInvalidWord(line);
         } catch (EmptyException e) {
-            message = UI.printEmptyException();
+            message = UI.emptyException();
         } catch (StringFormatException e){
-            message = UI.printStringFormatException();
+            message = UI.stringFormatException();
         }
 
         return message;
@@ -454,5 +464,15 @@ public class TaskList {
         }
     }
 
-
+    /****
+     * Checks user input empty description
+     *
+     * @param numOfInput the command that user input
+     * @throws StringFormatException if description does not hit the if conditions
+     */
+    static void checkNumOfInput(Integer numOfInput) throws StringFormatException {
+        if (numOfInput == 1) {
+            throw new StringFormatException ();
+        }
+    }
 }

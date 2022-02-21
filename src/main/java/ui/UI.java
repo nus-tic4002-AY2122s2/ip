@@ -11,7 +11,7 @@ public class UI {
         input = new Scanner(System.in);
 
     }
-    public static String printDuke() {
+    public static String welcomeDuke() {
         String message = "";
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -23,33 +23,27 @@ public class UI {
         return message;
     }
 
-    /**
-     * Reads user input
-     */
-    public String readCommand() {
-        return input.nextLine();
-    }
-
     public static String bye() {
         return ("Bye. Hope to see you again soon!");
     }
 
-    public static String printAddedTask(ArrayList<Task> taskList) {
-        return taskList.get(taskList.size() - 1).toString();
+    public static String addedTask(ArrayList<Task> taskList) {
+        String taskName = taskList.get(taskList.size() - 1).toString();
+        return taskName;
     }
 
-    public static String printTask(ArrayList<Task> taskList) {
+    public static String taskAddedDetails(ArrayList<Task> taskList) {
         String message="";
 
         message += "Got it. I've added this task: \n";
-        message += printAddedTask(taskList) + "\n";
-        message += printNumberOfTasks(taskList) + "\n";
+        message += addedTask(taskList) + "\n";
+        message += numberOfTasks(taskList) + "\n";
 
         return message;
 
     }
 
-    public static String printOutput(ArrayList<Task> taskList) {
+    public static String taskListDetails(ArrayList<Task> taskList) {
         String message = "";
         message += "Here are the tasks in your list: \n";
         for (int i = 0; i < taskList.size(); i++) {
@@ -58,55 +52,55 @@ public class UI {
         return message;
     }
 
-    public static String printListEmpty() {
+    public static String listEmpty() {
         return "List is empty!";
     }
 
-    public static String printNumberOfTasks( ArrayList<Task> taskList) {
+    public static String numberOfTasks( ArrayList<Task> taskList) {
         return "Now you have " + (taskList.size()) + " tasks in the list.";
     }
 
-    public static String printMarkedAsDone() {
+    public static String markedAsDone() {
         return "Nice! I've marked this task(s) as done: \n";
     }
 
-    public static String printRemoveTask() {
+    public static String removedTask() {
         return "Noted. I've removed this task: \n";
     }
 
-    public static String printTaskSaved() {
+    public static String taskSaved() {
         return "Tasks saved!";
     }
 
-    public static String printParseException() {
+    public static String parseException() {
         return "OOPS!!! Please enter DD MMM YYYY date format.";
     }
 
-    public static String printEmptyException() {
+    public static String emptyException() {
         return "OOPS!!! The description cannot be empty.";
     }
 
-    public static String printStringFormatException() {
+    public static String stringFormatException() {
         return "OOPS!!! I'm sorry, but I don't know what that means.";
     }
 
-    public static String printEmptyToDoDescriptionException() {
+    public static String emptyToDoDescriptionException() {
         return "OOPS!!! The description of a todo cannot be empty.";
     }
 
-    public static String printEmptyEventDescriptionException() {
+    public static String emptyEventDescriptionException() {
         return "OOPS!!! The description of a event cannot be empty.";
     }
 
-    public static String printEmptyDeadlineDescriptionException() {
+    public static String emptyDeadlineDescriptionException() {
         return "OOPS!!! The description of a deadline cannot be empty.";
     }
 
-    public static String printNumberFormatException() {
+    public static String numberFormatException() {
         return "OOPS!!! I'm sorry, but I don't know what that means.";
     }
 
-    public static String printIndexOutOfRangeException() {
+    public static String indexOutOfRangeException() {
         return "OOPS!!! Out of Range!";
     }
 
