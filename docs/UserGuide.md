@@ -110,7 +110,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### <ins>Marks a todo/event/deadline task(s) as done - `done <index>`</ins>
+### <ins>Marks task(s) as done - `done <index>`</ins>
 
 Marks a todo/event/deadline task(s) as done to the current tasklist
 
