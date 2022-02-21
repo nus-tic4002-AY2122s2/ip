@@ -10,13 +10,13 @@ Duke is a chat-bot application that helps you to manage your daily tasks through
     * [Marks task(s) as done](#marks-task(s)-as-done)
     * [Deletes task(s)](#deletes-task(s))
     * [Lists all task(s)](#lists-all-task(s))
-    * [Finds specific task type](#finds-specific-task-type)
+    * [Finds task(s) with specific task type](#finds-task(s)-with-specific-task-type)
     * [Finds task(s) based on date](#finds-task(s)-based-on-date)
     * [Finds task(s) based on from date](#finds-task(s)-based-on-from-date)
     * [Finds task(s) based on date range](#finds-task(s)-based-on-date-range)
     * [Sort all task(s) by task types](#sort-all-task(s)-by-task-types)
     * [Saves all task(s)](#saves-all-task(s)])
-    * [Exit Duke](#exit-duke])
+    * [Exit programme ](#exit-programme])
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -110,7 +110,7 @@ Got it. I've added this task:
 Now you have <numberOfTasks> tasks in the list.
 ```
 
-### Marks a todo/event/deadline task(s) as done - `done <index>`
+### Marks task(s) as done - `done <index>`
 
 Marks a todo/event/deadline task(s) as done to the current tasklist
 
@@ -126,7 +126,7 @@ Nice! I've marked this task(s) as done:
 [E][X] wedding (at: 02 Aug 2021)
 ```
 
-### Deletes todo/event/deadline task(s) - `delete <index>`
+### Deletes task(s) - `delete <index>`
 
 Deletes todo/event/deadline task(s) in the current tasklist
 
@@ -163,7 +163,7 @@ Here are the tasks in your list:
 6. [D][ ] bills (by: Date not specified)
 7. [E][ ] exhibition (at: Date not specified)
 ```
-### Finds all todo/event/deadline task(s) - `find all <tasks>`
+### Finds task(s) with specific task type - `find all <tasks>`
 
 Finds todo/event/deadline task(s) in the current tasklist
 
@@ -180,7 +180,7 @@ Here are the tasks in your list:
 3. [E][ ] exhibition (at: Date not specified)
 ```
 
-### Finds todo/event/deadline task(s) based on date - `find <tasks> on <date>`
+### Finds task(s) based on date - `find <tasks> on <date>`
 
 Finds todo/event/deadline task(s) based on date in the current tasklist
 
@@ -195,7 +195,7 @@ Here are the tasks in your list:
 1. [E][ ] meeting (at: 08 Jun 2021)
 ```
 
-### Finds todo/event/deadline task(s) based on from date - `find <tasks> from <date>`
+### Finds task(s) based on from date - `find <tasks> from <date>`
 
 Finds todo/event/deadline task(s) based on from date in the current tasklist
 
@@ -210,7 +210,7 @@ Here are the tasks in your list:
 1. [E][ ] workshop (at: 17 Jul 2021)
 ```
 
-### Finds todo/event/deadline task(s) based on date range - `find <tasks> between <date> to <date>`
+### Finds task(s) based on date range - `find <tasks> between <date> to <date>`
 
 Finds todo/event/deadline task(s) based on date range in the current tasklist
 
@@ -274,7 +274,7 @@ Expected outcome:
 
 Exit Duke.
 
-## <ins>FAQ</ins>
+## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
@@ -283,7 +283,7 @@ Exit Duke.
 2. Create a data folder in the same path as the executable file in the other computer.
 3. Put the txt file there. 
 
-## <ins>Command Summary</ins>
+## Command Summary
 
 **Action** | **Format** | **Examples**
 ------------- | ----------------- | -------------------
