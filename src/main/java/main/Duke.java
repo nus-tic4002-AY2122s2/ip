@@ -2,10 +2,13 @@ package main;
 
 import main.parsers.ParserText;
 import main.taskLists.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
+// Level 10 - JavaFx
+import main.DialogBox;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,12 +23,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import javafx.geometry.Pos;
-import javafx.scene.layout.HBox;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 
 //*
 // Individual Project for TIC4002 2022 Jan-May
@@ -35,13 +32,17 @@ public class Duke extends Application {
 
     public static ArrayList<Task> Tasks = new ArrayList<>();
 
-    // JavaFX
+    // JavaFX Variables
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
 
+    //TODO: Refactor to use getResourcesAsStream, Can't get image to show.
+
+    private Image user = new Image("C:\\Users\\yrall\\Documents\\ip\\src\\main\\resources\\images\\DaUser.png");
+    private Image duke = new Image("C:\\Users\\yrall\\Documents\\ip\\src\\main\\resources\\images\\DaDuke.png");
 
     public static void main(String[] args) throws DukeException, IOException {
 
@@ -63,8 +64,6 @@ public class Duke extends Application {
         storage.save();
 
     }
-
-    // Writing First Program JavaFX
 
     @Override
     public void start(Stage stage) {
@@ -130,10 +129,18 @@ public class Duke extends Application {
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
+        //Part 3. Add functionality to handle user input.
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
     }
 
     /**
-     * JavaFX Iteration 1:
+     * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
@@ -147,6 +154,21 @@ public class Duke extends Application {
     }
 
     /**
+     * Iteration 2:
+     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * the dialog container. Clears the user input after processing.
+     */
+    private void handleUserInput() {
+        Label userText = new Label(userInput.getText());
+        Label dukeText = new Label(getResponse(userInput.getText()));
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userText, new ImageView(user)),
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+        );
+        userInput.clear();
+    }
+
+    /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
@@ -154,21 +176,4 @@ public class Duke extends Application {
         return "Duke heard: " + input;
     }
 
-    public class DialogBox extends HBox {
-
-        private Label text;
-        private ImageView displayPicture;
-
-        public DialogBox(Label l, ImageView iv) {
-            text = l;
-            displayPicture = iv;
-
-            text.setWrapText(true);
-            displayPicture.setFitWidth(100.0);
-            displayPicture.setFitHeight(100.0);
-
-            this.setAlignment(Pos.TOP_RIGHT);
-            this.getChildren().addAll(text, displayPicture);
-        }
-    }
 }
