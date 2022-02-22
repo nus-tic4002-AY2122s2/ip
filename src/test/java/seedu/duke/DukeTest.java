@@ -12,4 +12,9 @@ class DukeTest {
         assertTrue(true);
     }
 
+    @Test
+    public void sampleTest() {
+        assertTrue(true);
+    }
+
 }
