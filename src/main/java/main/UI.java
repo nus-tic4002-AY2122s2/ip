@@ -1,5 +1,6 @@
 package main;
 
+import javafx.scene.control.Label;
 import main.taskLists.Task;
 
 import java.util.Set;
@@ -134,5 +135,17 @@ public class UI {
         }
 
         System.out.println("\t____________________________________________________________");
+    }
+
+    public static String welcome() {
+        String message = "";
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        message += "Hello from\n" + logo;
+        message +="Hello! I'm Duke\n" + "What can I do for you?\n";
+        return message;
     }
 }
