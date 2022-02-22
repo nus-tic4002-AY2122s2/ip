@@ -1,29 +1,9 @@
-# User Guide
+# Duke
 
-## Features 
+Duke is a schedule tracker that allows users to plan their to-do tasks, deadlines and events. Duke aims 
+to empower users with intuitive and helpful features that will improve user's experience.
 
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
-
-## Usage
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
+Useful links:
+* [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
+* [UI](Ui.png)
