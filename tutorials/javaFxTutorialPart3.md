@@ -110,13 +110,12 @@ Image|Filename
 ![DaDuke](assets/DaUser.png) | `DaUser.png`
 ![DaUser](assets/DaDuke.png) | `DaDuke.png`
 
-
 ```java
 public class Duke extends Application {
-    // ...
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-    // ...
+   // ...
+   private Image user = new Image(this.getClass().getResourceAsStream("/resources/images/DaUser.png"));
+   private Image duke = new Image(this.getClass().getResourceAsStream("/resources/images/DaDuke.png"));
+   // ...
 }
 ```
 
