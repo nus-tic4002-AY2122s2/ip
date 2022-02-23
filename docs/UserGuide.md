@@ -1,5 +1,4 @@
-
-## AIR REC - TEAM 5
+## User Guide
 
 Air Rec is a desktop app for managing flight records, optimized for use via a Command Line Interface (CLI). User will not have to remember flight details and it can be found easily with commands.
 
@@ -9,9 +8,10 @@ Air Rec is a desktop app for managing flight records, optimized for use via a Co
     2. Showing all flights: `show all`
     3. Showing upcoming flight: `show upcoming` [to be implemented in v3.0]
     4. Deleting a flight: `delete`
-    5. Help: `help`
-    6. Search a flight: `search`
-    7. Exiting the program : `bye`
+    5. Edit a flight detail: `edit` [to be implemented in v3.0]
+    6. Help: `help`
+    7. Search a flight: `search`
+    8. Exiting the program : `bye`
 
 3. FAQ
 4. Command summary
@@ -45,8 +45,10 @@ Some example commands you can try:
     3. show upcoming: List out the flight that is the first index of the list
 
     4. delete 3 : Deletes the 3rd flight shown in the current list.
+    
+    5. edit 2 /from new location: Edit old from with new from change the key word 'from' with other key word to edit the flight detail. 
 
-    5. exit : Exit the application.
+    6. exit : Exit the application.
 
 6. Duke has auto-save and auto-load function. The list is being save as a text file named "Duke.txt" which is auto created and overwritten in the root folder.
 
@@ -61,7 +63,8 @@ Some example commands you can try:
 ### Adding a flight: add
 
 Adds a new flight trip to the list.
-NOTE: For version 1.1 Air Rec will be reading the descriptions after add as a full string. We will work on to process these strings into data on version 1.2 onwards.
+NOTE: For version 1.1 Air Rec will be reading the descriptions after add as a full string. We will work on to process 
+these strings into data on version 1.2 onwards.
 
 Format: [add] [/from] [depart details] [/to] [destination] [/date] [date & time of departure] [/price] [price of trip]
 
@@ -101,6 +104,17 @@ Format: [delete] [index]
 Example:
 
 delete 3
+
+
+### Edit a flight: `edit`
+
+Edit a trip flight detail from the list
+
+Format: [edit] [index] [/command] [new data]
+
+Example: 
+
+edit 2 /date 2021-12-25
 
 
 ### Help: `help`
@@ -146,7 +160,7 @@ Action | Format, Examples
 <b>show all</b> | Format: [show] [all] Example: show all
 <b>show upcoming</b> | Format: [show] [upcoming] Example: show upcoming [to be implemented in v3.0]
 <b>search</b> | Format: [search] [keyword] Example: search Australia
+<b>edit</b> | Format: [edit] [index] [/from] [from details] Example: edit 2 /from Japan
 <b>help</b> | Format: [help] 
 <b>delete</b> | Format: [delete] [index] Example: delete 3
 <b>bye</b> | Format: [bye] Example: bye
-
