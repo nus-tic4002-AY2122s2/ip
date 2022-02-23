@@ -149,6 +149,11 @@ public class ParserText<T> {
                 }
                 break;
 
+            case "WIPE":
+                new DeleteCommand(0);
+                dukePrint("Got it, deleted all of your tasks!");
+                break;
+
             default:
                 dukePrint("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
 

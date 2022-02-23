@@ -10,8 +10,27 @@ public class DeleteCommand extends Command<Integer> {
 
 
     public DeleteCommand(Integer input) throws DukeException {
-        this.execute(input);
+
+        // messy code
+        if (input >= 1) {
+            this.execute(input);
+        } else {
+            this.DeleteAll();
+        }
     }
+
+
+    public void DeleteAll() throws DukeException {
+
+        try {
+            Tasks.clear();
+        } catch (Exception e) {
+            UI.dukePrint("\tI can't delete something that does not exist. Maybe try 'list' to list current tasks?");
+        }
+
+
+    }
+
 
     @Override
     public void execute(Integer input) throws DukeException {
