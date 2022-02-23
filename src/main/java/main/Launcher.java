@@ -1,7 +1,7 @@
 package main;
 
 import javafx.application.Application;
-import main.Main;
+
 
 /**
  * A launcher class to workaround classpath issues.

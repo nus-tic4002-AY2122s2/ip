@@ -5,17 +5,11 @@ import main.parsers.ParserText;
 import main.taskLists.Task;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//*
-// Individual Project for TIC4002 2022 Jan-May
-//
-// *//
 public class Duke {
 
     public static ArrayList<Task> Tasks = new ArrayList<>();
@@ -42,8 +36,14 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * This is a basic parser created for the GUI application.
+     * Existing Parser output is captured from the console and saved
+     * as a String.
+     *
+     * @param
+     * input - User Input to the application from JavaGX
+     * @throws DukeException - catches Duke exceptions and returns a suitable message to the user
+     * @throws IOException
      */
     public String getResponse(String input, Stage stage) {
         String response = "";
