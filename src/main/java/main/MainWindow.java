@@ -30,8 +30,8 @@ public class MainWindow extends AnchorPane {
     private Stage stage;
 
     //TODO : Refactor, unable to load images properly
-    private Image userImage = new Image("C:\\Users\\yrall\\Documents\\ip\\src\\main\\resources\\images\\DaUser.png");
-    private Image dukeImage = new Image("C:\\Users\\yrall\\Documents\\ip\\src\\main\\resources\\images\\DaDuke.png");
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @FXML
     public void initialize() {
