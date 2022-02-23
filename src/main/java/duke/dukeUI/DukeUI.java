@@ -51,6 +51,6 @@ public class DukeUI{
     }
 
     public void showError(String errorMessage){
-        System.out.println("☹ OOPS!!! " + errorMessage);
+        System.out.println("OOPS!!! " + errorMessage);
     }
 }
