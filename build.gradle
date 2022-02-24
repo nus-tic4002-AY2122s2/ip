@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 checkstyle {
     project.ext.checkstyleVersion = '9.2.1'
@@ -31,4 +31,12 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 
+}
+
+application {
+    mainClassName = "Launcher"
+}
+
+shadowJar {
+    archiveBaseName = "duke"
 }
