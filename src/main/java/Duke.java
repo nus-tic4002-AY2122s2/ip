@@ -84,11 +84,27 @@ public class Duke extends Application {
 
         //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
+            try {
+                handleUserInput();
+            }
+            catch (DukeException e) {
+                e.printStackTrace();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         userInput.setOnAction((event) -> {
-            handleUserInput();
+            try {
+                handleUserInput();
+            }
+            catch (DukeException e) {
+                e.printStackTrace();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
     }
@@ -112,7 +128,7 @@ public class Duke extends Application {
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
-    private void handleUserInput() {
+    private void handleUserInput() throws DukeException, IOException {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
@@ -126,8 +142,104 @@ public class Duke extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
+    private String getResponse(String input) throws IOException, DukeException {
+        Ui ui = new Ui();
+        TaskLists taskList = new TaskLists();
+        Storage textFile = new Storage();
+        boolean online = true;
+        String command = null;
+        String message = null;
+        String result = null;
+        try {
+            message = input.trim();
+            command = new Parser().parseInput(message);
+            switch (command) {
+                case "todo":
+                    try {
+                        taskList.addToDo(message);
+                        textFile.saveFile(taskList.getList());
+                    } catch (StringIndexOutOfBoundsException e) {
+                        result = ui.showToDoEmptyError();
+                        break;
+                    }
+                    result = ui.showTaskAdded(taskList.displayLatestTask(), taskList.getSize());
+                    break;
+                case "deadline":
+                    try {
+                        taskList.addDeadline(message);
+                        textFile.saveFile(taskList.getList());
+                    } catch (StringIndexOutOfBoundsException e) {
+                        result = ui.showDeadlineEmptyError();
+                        break;
+                    } catch (DateTimeParseException e) {
+                        result = ui.showDateTimeError();
+                        break;
+                    }
+                    result = ui.showTaskAdded(taskList.displayLatestTask(), taskList.getSize());
+                    break;
+                case "event":
+                    try {
+                        taskList.addEvent(message);
+                        textFile.saveFile(taskList.getList());
+                    } catch (StringIndexOutOfBoundsException e) {
+                        result = ui.showEventEmptyError();
+                        break;
+                    }
+                    result = ui.showTaskAdded(taskList.displayLatestTask(), taskList.getSize());
+                    break;
+                case "list":
+                    try {
+                        result = ui.showList(taskList.displayList());
+                    } catch (DukeExceptionEmptyList e) {
+                        result = ui.showListEmptyError();
+                        break;
+                    }
+                    break;
+                case "delete":
+                    try {
+                        result = ui.showDeletedTask(taskList.deleteTask(message), taskList);
+                        textFile.saveFile(taskList.getList());
+                    } catch (DukeExceptionInvalidTaskInputFormat e) {
+                        result = ui.showInvalidTaskFormatError();
+                        break;
+                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        result = ui.showInvalidTaskNumberError();
+                        break;
+                    }
+                    break;
+                case "done":
+                    try {
+                        result = ui.showDoneTask(taskList.doneTask(message));
+                        break;
+                    } catch (DukeExceptionInvalidTaskInputFormat e) {
+                        result = ui.showInvalidTaskFormatError();
+                        break;
+                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        result = ui.showInvalidTaskNumberError();
+                        break;
+                    }
+                case "find":
+                    try {
+                        result = ui.showFindResult((taskList.findTask(message)));
+                        break;
+                    } catch (DukeExceptionEmptyList e) {
+                        result = ui.showListEmptyError();
+                        break;
+                    } catch (DukeExceptionFindNoResult e) {
+                        result = ui.showFindNoResult();
+                        break;
+                    }
+                case "bye":
+                    online = false;
+                    result = ui.showOffline();
+                    break;
+                default:
+                    result = ui.showUnknownInputError();
+            }
+        } catch (IOException e) {
+            ui.showFileError();
+        }
+        return result;
     }
 
     public static void main(String[] args) throws IOException, DukeException {

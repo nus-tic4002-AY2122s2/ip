@@ -28,14 +28,14 @@ public class Ui {
     /**
      * Shows welcome message with logo.
      */
-    public void showWelcomeMessage() {
+    public String showWelcomeMessage() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String welcome = "Hello! I'm Duke\n\tWhat can i do for you?\n";
-        System.out.println(logo + showLine() + welcome + showLine());
+        return logo + showLine() + welcome + showLine();
     }
 
     /**
@@ -44,10 +44,10 @@ public class Ui {
      * @param taskDetails A String of details of the current task added.
      * @param listSize    The current size of the list.
      */
-    public void showTaskAdded(String taskDetails, int listSize) {
+    public String showTaskAdded(String taskDetails, int listSize) {
         String currentTask = "Got it. I've added this task:\n\t\t" + taskDetails;
         String numberOfTask = "\n\tNow you have " + listSize + " tasks in the list.\n";
-        System.out.println(showLine() + currentTask + numberOfTask + showLine());
+        return ( currentTask + numberOfTask );
     }
 
     /**
@@ -56,10 +56,10 @@ public class Ui {
      * @param deletedTask A String of details of the current deleted task.
      * @param tasklist    The current tasklist.
      */
-    public void showDeletedTask(String deletedTask, TaskLists tasklist) {
+    public String showDeletedTask(String deletedTask, TaskLists tasklist) {
         String deletedTaskMessage = "Noted. I've removed this task: \n\t\t" + deletedTask;
         String deletedTaskMessage2 = "\tNow you have " + tasklist.getSize() + " tasks in the list.\n";
-        System.out.println(showLine() + deletedTaskMessage + deletedTaskMessage2 + showLine());
+        return ( deletedTaskMessage + deletedTaskMessage2 );
     }
 
     /**
@@ -67,9 +67,9 @@ public class Ui {
      *
      * @param doneTask A string of the description of the task.
      */
-    public void showDoneTask(String doneTask) {
+    public String showDoneTask(String doneTask) {
         String doneMessage = "Nice! I've marked this task as done: \n\t" + doneTask;
-        System.out.println(showLine() + doneMessage + showLine());
+        return doneMessage;
     }
 
     /**
@@ -77,9 +77,9 @@ public class Ui {
      *
      * @param list String of current task list.
      */
-    public void showList(String list) {
+    public String showList(String list) {
         String listTask = "Here are the Tasks in your list:\n\t" + list + "\n";
-        System.out.println(showLine() + listTask + showLine());
+        return listTask;
     }
 
     /**
@@ -87,104 +87,104 @@ public class Ui {
      *
      * @param list String of matching result list.
      */
-    public void showFindResult(String list) {
+    public String showFindResult(String list) {
         String listResult = "Here are the matching tasks in your list:\n\t" + list + "\n";
-        System.out.println(showLine() + listResult + showLine());
+        return listResult;
     }
 
     /**
      * Displays goodbye message to users when they type in "bye".
      */
-    public void showOffline() {
+    public String showOffline() {
         String goodbye = "Bye. Hope to see you again soon!\n";
-        System.out.println(showLine() + goodbye + showLine());
+        return goodbye;
     }
 
     /**
      * When user inputs a file that is not in the correct format or erroneous file.
      */
-    public void showFileInputError() { //can be for files input
+    public String showFileInputError() { //can be for files input
         String errorMessage = "There is something wrong with the previous file, please check the content\n\tof the file. I'm unable to load the past task list.\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
     /**
      * When user inputs a ToDO task yet not stating the description of the task.
      */
-    public void showToDoEmptyError() {
+    public String showToDoEmptyError() {
         String errorMessage = "\u2639 OOPS!!! The description of a todo cannot be empty.\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
     /**
      * When user inputs an unknown command for duke to understand and process.
      */
-    public void showUnknownInputError() {
+    public String showUnknownInputError() {
         String errorMessage = ":( OOPS!!! I'm sorry, but I don't know what that means :-(\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
     /**
      * When user inputs a Deadlines task yet not stating the description of the task.
      */
-    public void showDeadlineEmptyError() {
+    public String showDeadlineEmptyError() {
         String errorMessage = "\u2639 OOPS!!! The description of the deadline cannot be empty.\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
     /**
      * When user inputs a Events task yet not stating the description of the task.
      */
-    public void showEventEmptyError() {
+    public String showEventEmptyError() {
         String errorMessage = "\u2639 OOPS!!! The description of the event cannot be empty.\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
     /**
      * When duke access an empty list.
      */
-    public void showListEmptyError() {
+    public String showListEmptyError() {
         String errorMessage = "\u2639 You have an empty list.\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
     /**
      * When user inputs an invalid task format.
      */
-    public void showInvalidTaskFormatError() {
+    public String showInvalidTaskFormatError() {
         String errorMessage = "You've entered an invalid format of Task, please check your input format again.\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
     /**
      * When user inputs a task numnber which is not in the index of the current list size.
      */
-    public void showInvalidTaskNumberError() {
+    public String showInvalidTaskNumberError() {
         String errorMessage = "You've entered an invalid value for Task, please key in valid task number.\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
     /**
      * Error while duke is reading the file. Maybe the content of the file or the filepath error.
      */
-    public void showFileError() {
+    public String showFileError() {
         String errorMessage = "Duke is unable to read your file, please check your input filepath again.\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
     /**
      * Error while duke is reading the file. Maybe the content of the file or the filepath error.
      */
-    public void showDateTimeError() {
+    public String showDateTimeError() {
         String errorMessage = "Please check your date and time format and re-enter it according to the stated format\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
     /**
      * When the find command is activated, duke is unable to find the relating task with the user's input.
      */
-    public void showFindNoResult() {
+    public String showFindNoResult() {
         String errorMessage = "Sorry, I am unable to find any task like that.\n";
-        System.out.println(showLine() + errorMessage + showLine());
+        return errorMessage;
     }
 
 }
