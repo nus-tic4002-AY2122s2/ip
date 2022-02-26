@@ -1,9 +1,6 @@
 import task.Task;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Storage {
@@ -32,6 +29,13 @@ public class Storage {
         }
         fw.write(s);
         fw.close();
+    }
+
+    public static void saveToDB() throws IOException {
+        FileWriter fileWriter = new FileWriter("duke.txt", true);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        fileWriter.close();
+        printWriter.close();
     }
 
     /**

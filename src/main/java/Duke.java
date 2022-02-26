@@ -18,14 +18,14 @@ public class Duke extends Application {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @Override
-    public void start(Stage stage)  throws IOException, DukeException {
+    public void start(Stage stage)  throws IOException, DukeException, DukeExceptionFileInput {
         Ui ui = new Ui();
         TaskLists taskList = new TaskLists();
         Storage textFile = new Storage();
         try {
             textFile.readFile(taskList);
-            textFile.saveFile(taskList.getList());
-        } catch (DukeExceptionFileInput e) {
+        } catch (FileNotFoundException e) {
+            textFile.saveToDB();
             ui.showFileInputError();
         }
         //Step 1. Setting up required components
@@ -244,6 +244,7 @@ public class Duke extends Application {
         } catch (IOException e) {
             ui.showFileError();
         }
+        textFile.saveFile(taskList.getList());
         return result;
     }
 
