@@ -18,7 +18,16 @@ public class Duke extends Application {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage)  throws IOException, DukeException {
+        Ui ui = new Ui();
+        TaskLists taskList = new TaskLists();
+        Storage textFile = new Storage();
+        try {
+            textFile.readFile(taskList);
+            textFile.saveFile(taskList.getList());
+        } catch (DukeExceptionFileInput e) {
+            ui.showFileInputError();
+        }
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
@@ -85,7 +94,7 @@ public class Duke extends Application {
         //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
             try {
-                handleUserInput();
+                handleUserInput(taskList, textFile);
             }
             catch (DukeException e) {
                 e.printStackTrace();
@@ -97,7 +106,7 @@ public class Duke extends Application {
 
         userInput.setOnAction((event) -> {
             try {
-                handleUserInput();
+                handleUserInput(taskList, textFile);
             }
             catch (DukeException e) {
                 e.printStackTrace();
@@ -128,9 +137,9 @@ public class Duke extends Application {
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
-    private void handleUserInput() throws DukeException, IOException {
+    private void handleUserInput(TaskLists taskList, Storage textFile) throws DukeException, IOException {
         Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
+        Label dukeText = new Label(getResponse(userInput.getText(), taskList, textFile));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
@@ -142,11 +151,8 @@ public class Duke extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input) throws IOException, DukeException {
+    private String getResponse(String input, TaskLists taskList, Storage textFile)  throws IOException, DukeException {
         Ui ui = new Ui();
-        TaskLists taskList = new TaskLists();
-        Storage textFile = new Storage();
-        boolean online = true;
         String command = null;
         String message = null;
         String result = null;
@@ -230,7 +236,6 @@ public class Duke extends Application {
                         break;
                     }
                 case "bye":
-                    online = false;
                     result = ui.showOffline();
                     break;
                 default:
