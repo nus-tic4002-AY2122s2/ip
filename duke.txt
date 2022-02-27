@@ -1,0 +1,2 @@
+E| 1 | john birthday | tampines
+T| 1 | homework 

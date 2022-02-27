@@ -33,6 +33,9 @@ public class Parser {
         if (userInput.contains("find")) {
             command = "find";
         }
+        if (userInput.contains("tag")) {
+            command = "tag";
+        }
         return command;
     }
 

@@ -18,13 +18,14 @@ public class Duke extends Application {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @Override
-    public void start(Stage stage)  throws IOException, DukeException, DukeExceptionFileInput {
+    public void start(Stage stage) throws IOException, DukeException, DukeExceptionFileInput {
         Ui ui = new Ui();
         TaskLists taskList = new TaskLists();
         Storage textFile = new Storage();
         try {
             textFile.readFile(taskList);
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             textFile.saveToDB();
             ui.showFileInputError();
         }
@@ -73,7 +74,7 @@ public class Duke extends Application {
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
 
-        AnchorPane.setLeftAnchor(userInput , 1.0);
+        AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
         //Step 3. Add functionality to handle user input.
@@ -121,6 +122,7 @@ public class Duke extends Application {
     /**
      * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
+     *
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
      */
@@ -151,7 +153,7 @@ public class Duke extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input, TaskLists taskList, Storage textFile)  throws IOException, DukeException {
+    private String getResponse(String input, TaskLists taskList, Storage textFile) throws IOException, DukeException {
         Ui ui = new Ui();
         String command = null;
         String message = null;
@@ -164,7 +166,8 @@ public class Duke extends Application {
                     try {
                         taskList.addToDo(message);
                         textFile.saveFile(taskList.getList());
-                    } catch (StringIndexOutOfBoundsException e) {
+                    }
+                    catch (StringIndexOutOfBoundsException e) {
                         result = ui.showToDoEmptyError();
                         break;
                     }
@@ -174,10 +177,12 @@ public class Duke extends Application {
                     try {
                         taskList.addDeadline(message);
                         textFile.saveFile(taskList.getList());
-                    } catch (StringIndexOutOfBoundsException e) {
+                    }
+                    catch (StringIndexOutOfBoundsException e) {
                         result = ui.showDeadlineEmptyError();
                         break;
-                    } catch (DateTimeParseException e) {
+                    }
+                    catch (DateTimeParseException e) {
                         result = ui.showDateTimeError();
                         break;
                     }
@@ -187,7 +192,8 @@ public class Duke extends Application {
                     try {
                         taskList.addEvent(message);
                         textFile.saveFile(taskList.getList());
-                    } catch (StringIndexOutOfBoundsException e) {
+                    }
+                    catch (StringIndexOutOfBoundsException e) {
                         result = ui.showEventEmptyError();
                         break;
                     }
@@ -196,7 +202,8 @@ public class Duke extends Application {
                 case "list":
                     try {
                         result = ui.showList(taskList.displayList());
-                    } catch (DukeExceptionEmptyList e) {
+                    }
+                    catch (DukeExceptionEmptyList e) {
                         result = ui.showListEmptyError();
                         break;
                     }
@@ -205,10 +212,12 @@ public class Duke extends Application {
                     try {
                         result = ui.showDeletedTask(taskList.deleteTask(message), taskList);
                         textFile.saveFile(taskList.getList());
-                    } catch (DukeExceptionInvalidTaskInputFormat e) {
+                    }
+                    catch (DukeExceptionInvalidTaskInputFormat e) {
                         result = ui.showInvalidTaskFormatError();
                         break;
-                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                    }
+                    catch (NumberFormatException | IndexOutOfBoundsException e) {
                         result = ui.showInvalidTaskNumberError();
                         break;
                     }
@@ -217,10 +226,12 @@ public class Duke extends Application {
                     try {
                         result = ui.showDoneTask(taskList.doneTask(message));
                         break;
-                    } catch (DukeExceptionInvalidTaskInputFormat e) {
+                    }
+                    catch (DukeExceptionInvalidTaskInputFormat e) {
                         result = ui.showInvalidTaskFormatError();
                         break;
-                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                    }
+                    catch (NumberFormatException | IndexOutOfBoundsException e) {
                         result = ui.showInvalidTaskNumberError();
                         break;
                     }
@@ -228,11 +239,26 @@ public class Duke extends Application {
                     try {
                         result = ui.showFindResult((taskList.findTask(message)));
                         break;
-                    } catch (DukeExceptionEmptyList e) {
+                    }
+                    catch (DukeExceptionEmptyList e) {
                         result = ui.showListEmptyError();
                         break;
-                    } catch (DukeExceptionFindNoResult e) {
+                    }
+                    catch (DukeExceptionFindNoResult e) {
                         result = ui.showFindNoResult();
+                        break;
+                    }
+                case "tag":
+                    try {
+                        result = ui.showTagDone(taskList.tagTask(message));
+                        break;
+                    }
+                    catch (DukeExceptionInvalidTaskInputFormat e) {
+                        result = ui.showInvalidTaskFormatError();
+                        break;
+                    }
+                    catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        result = ui.showInvalidTaskNumberError();
                         break;
                     }
                 case "bye":
@@ -241,14 +267,16 @@ public class Duke extends Application {
                 default:
                     result = ui.showUnknownInputError();
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             ui.showFileError();
         }
         textFile.saveFile(taskList.getList());
         return result;
     }
+}
 
-    public static void main(String[] args) throws IOException, DukeException {
+ /*   public static void main(String[] args) throws IOException, DukeException {
         run();
     }
 
@@ -362,3 +390,4 @@ public class Duke extends Application {
         textFile.saveFile(taskList.getList());
     }
 }
+*/

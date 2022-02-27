@@ -52,7 +52,7 @@ public class TaskLists {
         String answer = "";
         for (int i = 0; i < getSize(); i++) {
             answer = (answer + index + "." + this.list.get(i).getType() + this.list.get(i).getTaskStatus() + " "
-                    + this.list.get(i).getTask() + " " + this.list.get(i).getDetails());
+                    + this.list.get(i).getTask() + " " + this.list.get(i).getDetails() + " " + this.list.get(i).getTag());
             index++;
             if (i == getSize() - 1) {
                 continue;
@@ -107,7 +107,7 @@ public class TaskLists {
         assert number > 1 : "This selected number must be greater than 1 as the task's list index starts from 1 and " +
                 "there is no negative task number.";
         return list.get(number).getType() + list.get(number).getTaskStatus() + " " + list.get(number).getTask() + " "
-                + list.get(number).getDetails() + "\n";
+                + list.get(number).getDetails() + " " + list.get(number).getTag() + "\n";
     }
 
     /**
@@ -186,6 +186,26 @@ public class TaskLists {
         int index = Integer.parseInt(number);
         index = index - 1;
         this.list.get(index).setTaskDone();
+        String selectedTask = displaySelectedTask(index);
+        return selectedTask;
+    }
+
+    /**
+     * Duke updates a task as defined by users.
+     *
+     * @param message The selected task defined by user to be edited according to the input.
+     * @return The task that was set as done.
+     * @throws DukeExceptionInvalidTaskInputFormat when users' input is not readable by duke.
+     */
+    public String tagTask(String message) throws DukeExceptionInvalidTaskInputFormat {
+        if (message.length() < 4 || message.charAt(3) != ' ' || message.charAt(4) == ' ' || !message.contains("#") ) {
+            throw new DukeExceptionInvalidTaskInputFormat();
+        }
+        String number = message.substring(4,message.indexOf('#')-1).trim();
+        String tag = message.substring(message.indexOf('#'));
+        int index = Integer.parseInt(number);
+        index = index - 1;
+        this.list.get(index).tagTask(tag);
         String selectedTask = displaySelectedTask(index);
         return selectedTask;
     }

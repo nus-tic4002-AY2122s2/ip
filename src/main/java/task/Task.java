@@ -2,12 +2,14 @@ package task;
 
 public abstract class Task {
     protected String description;
+    protected String tag;
     protected boolean isDone;
     protected char type;
 
     public Task(String description) {
         this.description = description.trim();
         this.isDone = false;
+        this.tag = "#empty";
     }
 
     /**
@@ -24,6 +26,15 @@ public abstract class Task {
      */
     public void setTaskDone() {
         this.isDone = true;
+    }
+
+    /**
+     * Returns the tag of the current task
+     *
+     * @return A string of the current task's tag.
+     */
+    public String getTag() {
+        return this.tag;
     }
 
     /**
@@ -58,6 +69,14 @@ public abstract class Task {
      */
     public String getDescription() {
         return this.description;
+    }
+
+    /**
+     * Tags the task
+     *
+     */
+    public void tagTask(String message) {
+        this.tag = message;
     }
 
 }

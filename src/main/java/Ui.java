@@ -152,7 +152,7 @@ public class Ui {
      * When user inputs an invalid task format.
      */
     public String showInvalidTaskFormatError() {
-        String errorMessage = "You've entered an invalid format of Task, please check your input format again.\n";
+        String errorMessage = "You've entered an invalid format of Task/Command, please check your input format again. You can refer to the user guide for the right input format. \n";
         return errorMessage;
     }
 
@@ -185,6 +185,14 @@ public class Ui {
     public String showFindNoResult() {
         String errorMessage = "Sorry, I am unable to find any task like that.\n";
         return errorMessage;
+    }
+
+    /**
+     * When the user enter an invlaid task number,  duke is unable to find the relating task with the user's input.
+     */
+    public static String showTagDone(String tagTask) {
+        String tagMessage = "Nice! I've tagged this task: \n\t" + tagTask;
+        return tagMessage;
     }
 
 }
