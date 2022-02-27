@@ -31,7 +31,7 @@ public class ExitCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         assert (!running) : "running should not be true at this stage. It should be false";
         ui.storeMessage("Executing Exit Command: Saving Task List to storage");
-        storage.save(tasks);
+        ui.storeMessage(storage.save(tasks));
         ui.storeMessage("Finished saving Task List to storage");
     }
 

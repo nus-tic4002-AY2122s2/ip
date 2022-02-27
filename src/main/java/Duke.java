@@ -93,7 +93,7 @@ public class Duke extends Application {
 
         String filePath = "data/tasks.txt";
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(filePath, ui);
         parser = new Parser();
         try {
             tasks = new TaskList(storage.load(), ui);

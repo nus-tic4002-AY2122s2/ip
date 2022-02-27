@@ -43,7 +43,7 @@ public class TaskList {
         try {
             size = parsedFile.size();
         } catch (NullPointerException e) {
-            System.out.println("Error: Null pointer from parsedFile in TaskList initialisation");
+            ui.storeMessage("Error: Null pointer from parsedFile in TaskList initialisation");
         }
 
         for (int i = 0; i < size; i++) {
@@ -62,7 +62,7 @@ public class TaskList {
                                     DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
                                     .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))), ui));
                 } catch (DateTimeParseException e) {
-                    System.out.println("Timing for added deadline invalid," + " using the time now");
+                    ui.storeMessage("Timing for added deadline invalid," + " using the time now");
                     this.tasks.add(new Deadline(parsedFile.get(i)[2],
                             LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")), ui));
                 }
@@ -83,7 +83,7 @@ public class TaskList {
                     this.tasks.add(new Event(parsedFile.get(i)[2], start + end, ui));
 
                 } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
-                    System.out.println("Timing for added event invalid,"
+                    ui.storeMessage("Timing for added event invalid,"
                             + " using the time now");
                     this.tasks.add(new Event(parsedFile.get(i)[2],
                             LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
@@ -232,7 +232,7 @@ public class TaskList {
     /**
      * This prints the total number of tasks in the task list.
      */
-    public void printNumberOfTasks() {
+    public String printNumberOfTasks() {
         int total = tasks.size();
         String ending;
         if (total != 1) {
@@ -241,7 +241,7 @@ public class TaskList {
             ending = " task in the list";
         }
 
-        System.out.println("Now you have " + total + ending);
+        return ("Now you have " + total + ending);
 
     }
 

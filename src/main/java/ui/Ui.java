@@ -43,8 +43,8 @@ public class Ui {
     /**
      * This prints the farewell message when the user types "bye".
      */
-    public void printBye() {
-        System.out.println(System.lineSeparator() + "Bye. Hope to see you again soon!");
+    public String printBye() {
+        return (System.lineSeparator() + "Bye. Hope to see you again soon!");
     }
 
     /**
@@ -70,8 +70,8 @@ public class Ui {
      * This prints the specific loading error when the Task List
      * did not load from storage.
      */
-    public void showLoadingError() {
-        System.out.println("Did not load Task List from Filepath");
+    public String showLoadingError() {
+        return ("Did not load Task List from Filepath");
     }
 
     public void storeMessage(String message) {

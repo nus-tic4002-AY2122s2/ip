@@ -3,6 +3,7 @@ package storage;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.TaskList;
+import ui.Ui;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,18 +35,18 @@ public class Storage {
      *
      * @param filePath This is the filePath of the text file.
      */
-    public Storage(String filePath) throws IOException {
+    public Storage(String filePath, Ui ui) throws IOException {
 
         this.directory = new File("data");
         if (this.directory.isDirectory() == false || this.directory.exists() == false) {
-            System.out.println("Directory \"data\" is not found, creating a new one");
+            ui.storeMessage("Directory \"data\" is not found, creating a new one");
             this.directory.mkdir();
         }
 
         this.fi = new File(filePath);
 
         if (this.fi.isFile() == false || this.fi.exists() == false) {
-            System.out.println("File \"duke.text\" is not found, creating a new one");
+            ui.storeMessage("File \"duke.text\" is not found, creating a new one");
             this.fi.createNewFile();
         }
 
@@ -57,14 +58,15 @@ public class Storage {
      *
      * @param tasks This is the list of tasks that the user has entered.
      */
-    public void save(TaskList tasks) throws IOException {
+    public String save(TaskList tasks) throws IOException {
+        String reply = "";
 
         FileWriter fw = new FileWriter(this.filePath);
 
         int size = tasks.getSize();
         if (size == 0) {
-            System.out.println("Task List is empty. Nothing to save.");
-            return;
+            return ("Task List is empty. Nothing to save.");
+
         }
 
         String temp = "";
@@ -91,7 +93,7 @@ public class Storage {
                 secPart = " | " + ((Event) tasks.get(i)).getAt();
                 break;
             default:
-                System.out.println("Did not get Class from Task List:" + tasks.get(i).toString());
+                reply = reply + ("Did not get Class from Task List:" + tasks.get(i).toString());
                 continue;
             }
 
@@ -103,6 +105,7 @@ public class Storage {
 
         }
         fw.close();
+        return reply;
     }
 
     /**

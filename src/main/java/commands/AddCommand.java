@@ -44,7 +44,7 @@ public class AddCommand extends Command {
         ui.storeMessage("Got it. I've added this task:"
                 + System.lineSeparator() + tasks.get(size - 1).toString());
 
-        tasks.printNumberOfTasks();
+        ui.storeMessage(tasks.printNumberOfTasks());
     }
 
     public static void printHelp(Ui ui) {
