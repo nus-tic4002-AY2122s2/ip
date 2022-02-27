@@ -21,7 +21,7 @@ public class Storage {
         String s = "";
         for (int j = 0; j < list.size(); j++) {
             s = s + list.get(j).getType() + " " + list.get(j).getTaskStatus() + " " + list.get(j).getTask() + " "
-                    + list.get(j).getDetails() + System.lineSeparator();
+                    + list.get(j).getDetails() + " " + list.get(j).getTag() + System.lineSeparator();
             s = s.replace("(by:", "|").replace("(at:", "|").
                     replace(")", "").replaceAll("\\[", "").
                     replaceAll("]", "|").replace("\u2713", "1 ").
@@ -44,37 +44,45 @@ public class Storage {
      * @throws IOException If the filepath has some problems.
      * @throws DukeException If the file context is not in the duke's list format.
      */
-    public void readFile(TaskLists tasks) throws IOException, DukeExceptionFileInput {
+    public void readFile(TaskLists tasks) throws IOException, DukeExceptionFileInput, DukeExceptionInvalidTaskInputFormat {
         BufferedReader s = null;
         s = new BufferedReader(new FileReader(DEFAULT_PATH));
         String input = null;
+        String tag = null;
         while ((input = s.readLine()) != null) {
             if (input.charAt(0) == 'T' || input.charAt(0) == 'E' || input.charAt(0) == 'D' || input.charAt(0) == 'A') {
                 char status = input.charAt(3);
                 assert status == '0' || status == '1' : "At this point in time, task status should be either " +
                         "done(1) or not done(0), please check your task status in Duke.txt again.";
+                int tagNumber = input.indexOf("#");
                 switch (Character.toString(input.charAt(0))) {
                     case "T":
-                        input = input.substring(6);
+                        tag = input.substring(tagNumber);
+                        input = input.substring(6, tagNumber-1);
                         tasks.addToDo("task " + input);
+                        tasks.tagTask("tag " + tasks.getSize() + " " + tag);
                         if (status == '1') {
                             int index = tasks.getSize() - 1;
                             tasks.getList().get(index).setTaskDone();
                         }
                         break;
                     case "E":
-                        input = input.substring(6);
+                        tag = input.substring(tagNumber);
+                        input = input.substring(6, tagNumber-1);
                         input = input.replace("|", "/at");
                         tasks.addEvent("event" + input);
+                        tasks.tagTask("tag " + tasks.getSize() + " " + tag);
                         if (status == '1') {
                             int index = tasks.getSize() - 1;
                             tasks.getList().get(index).setTaskDone();
                         }
                         break;
                     case "D":
-                        input = input.substring(6);
+                        tag = input.substring(tagNumber);
+                        input = input.substring(6, tagNumber-1);
                         input = input.replace("|", "/by");
                         tasks.addDeadline("_deadline" + input);
+                        tasks.tagTask("tag " + tasks.getSize() + " " + tag);
                         if (status == '1') {
                             int index = tasks.getSize() - 1;
                             tasks.getList().get(index).setTaskDone();
