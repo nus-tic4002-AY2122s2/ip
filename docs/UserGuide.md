@@ -42,27 +42,6 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 	________________________________________________________________
 	
    ```
- 5. Type the command in the command box and press Enter to execute it. e.g. typing list and pressing Enter will display all task that you have saved so far in the window.
-Some example commands you can try:
-
-	1. list : Lists all tasks available in the list.
-
-	1. todo homework1 : Adds a todo task named homework to the list.
-
-	1. event Birthday party /at John’s house : Adds an event task named Birthday party  with the location at John's house
-
-	1. deadline project task 1 /by Tuesday: Adds a deadline task named project task 1 with a deadline by the upcoming Tuesday.
-
-	1. delete3 : Deletes the 3rd task shown in the current task list.
-
-	1. find work : Find a task by searching for the keyword work
-
-	1. bye : Exits the application.
-
-6. Duke has auto-save and auto-load function. The list is being save as a text file named "Duke.txt" which is auto created and overwritten in the root folder.
-
-7. Refer to the Features below for details of each command.
-
 ### GUI: 
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
