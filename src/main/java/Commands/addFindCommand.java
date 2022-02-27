@@ -2,7 +2,6 @@ package Commands;
 
 import Storage.Storage;
 import TaskList.TaskList;
-import Tasks.Task;
 import Ui.Ui;
 
 public class addFindCommand extends Command {
@@ -17,7 +16,7 @@ public class addFindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage){
+    public String execute(TaskList tasklist, Ui ui, Storage storage){
         String details = "";
         ui.Line();
         for(int i = 0; i < tasklist.getSize(); i++){
@@ -31,5 +30,6 @@ public class addFindCommand extends Command {
 
         }
         ui.Line();
+        return details;
     }
 }

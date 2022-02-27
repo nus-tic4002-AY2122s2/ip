@@ -3,8 +3,6 @@ import Storage.*;
 import Ui.*;
 import TaskList.*;
 
-import Tasks.Task;
-
 import java.io.UnsupportedEncodingException;
 
 public abstract class Command {
@@ -59,5 +57,5 @@ public abstract class Command {
         return this.exit;
     }
 
-    public abstract void execute(TaskList tasklist, Ui ui, Storage storage) throws UnsupportedEncodingException;
+    public abstract String execute(TaskList tasklist, Ui ui, Storage storage) throws UnsupportedEncodingException;
 }

@@ -29,6 +29,22 @@ public class Ui {
 
     }
 
+    public static String welcome(){
+//        String line = ;
+
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+        printLines(line);
+        System.out.println("     Hello! I'm Duke");
+        System.out.println("     What can I do for you?");
+        printLines(line);
+        return line + logo + "     Hello! I'm Duke" + "     What can I do for you?" + line;
+    }
+
     public String userInput;
     public Scanner scan = new Scanner( System.in ); // To getting userinput
 
@@ -50,8 +66,9 @@ public class Ui {
         printLines(line);
         System.out.println("      Got it. I've added this task:");
         System.out.println("       " + insert.toString());
-        System.out.println("     Now you have " +  Integer.toString(tasklist.getSize()) +  " tasks in the list.");
+        System.out.println("     Now you have " +  Integer.toString(tasklist.getSize()) +  "");
         printLines(line);
+//        return line + "\n" + "      Got it. I've added this task:\n" + "       " + insert.toString() + "\n" + "     Now you have " + Integer.toString(tasklist.getSize()) + " tasks in the list.\n" + line;
     }
 
     /**
@@ -59,19 +76,27 @@ public class Ui {
      * @param tasklist
      */
     public void newTodo(TaskList tasklist){
-
+        String message = "";
         printLine();
         System.out.println("      Got it. I've added this task:");
         System.out.println("     " + tasklist.getTask(tasklist.getSize()-1).getDescription());
         printLine();
+        message += line + "\n";
+        message += "      Got it. I've added this task:\n";
+        message += "     " + tasklist.getTask(tasklist.getSize()-1).getDescription() + "\n";
+//        return message;
     }
 
     /**
      * prints the Done Messages
      */
     public void newDone(){
+        String msg = "";
         printLine();
         System.out.println("     Nice! I've marked this task as done:");
+        msg += line + "\n";
+        msg += "     Nice! I've marked this task as done:\n";
+//        return msg;
     }
 
     /**
@@ -82,6 +107,11 @@ public class Ui {
         printLine();
         System.out.println("     Bye. Hope to see you again soon!");
         printLine();
+        String msg = "";
+        msg += line + "\n";
+        msg += "     Bye. Hope to see you again soon!\n";
+        msg += line + "\n";
+//        return msg;
     }
 
 

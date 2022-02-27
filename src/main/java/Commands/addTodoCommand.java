@@ -1,7 +1,5 @@
 package Commands;
 
-import Parser.Parser;
-import Parser.myMethods;
 import Tasks.*;
 import Storage.Storage;
 import TaskList.TaskList;
@@ -16,9 +14,10 @@ public class addTodoCommand extends Command{
     }
 
 
-    public void execute(TaskList tasklist, Ui ui, Storage storage){
+    public String execute(TaskList tasklist, Ui ui, Storage storage){
         Task newTask = new toDos(description);
         tasklist.addTask(newTask);
         ui.newTodo(tasklist);
+        return null;
     }
 }

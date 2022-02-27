@@ -2,7 +2,6 @@ package Commands;
 
 import Storage.Storage;
 import TaskList.TaskList;
-import Tasks.Task;
 import Ui.Ui;
 
 import java.io.UnsupportedEncodingException;
@@ -15,7 +14,8 @@ public class addListCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) throws UnsupportedEncodingException {
+    public String execute(TaskList tasklist, Ui ui, Storage storage) throws UnsupportedEncodingException {
         ui.displayTaskList(description, tasklist);
+        return null;
     }
 }

@@ -64,7 +64,9 @@ public class Parser {
                     return find(userInput);
 
                 default:
-                    throw new DukeException("     Please Key in a correct Command.");
+//                    throw new DukeException("     Please Key in a correct Command.");
+//                    String invalid = "\t☹ OOPS!!! I'm Sorry, Please Key in a valid Command :-(";
+                    return new invalidCommand(userInput);
             }
         }
 //        catch (DukeEmptyExceptions e){

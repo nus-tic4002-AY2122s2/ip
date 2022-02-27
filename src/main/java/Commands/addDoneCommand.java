@@ -18,10 +18,11 @@ public class addDoneCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) throws StringIndexOutOfBoundsException {
+    public String execute(TaskList tasklist, Ui ui, Storage storage) throws StringIndexOutOfBoundsException {
         ui.newDone();
         tasklist.getTask(idx).markAsDone();
         System.out.println("       " + tasklist.getTask(idx).getDescription());
         ui.Line();
+        return null;
     }
 }

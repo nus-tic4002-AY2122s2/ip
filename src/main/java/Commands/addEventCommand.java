@@ -6,7 +6,6 @@ import Tasks.Events;
 import Tasks.Task;
 import Ui.Ui;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class addEventCommand extends Command {
@@ -33,11 +32,13 @@ public class addEventCommand extends Command {
      * @param tasklist
      * @param ui
      * @param storage
+     * @return
      */
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage){
+    public String execute(TaskList tasklist, Ui ui, Storage storage){
         Task newTask = new Events(description, by);
         tasklist.addTask(newTask);
         ui.newTask(newTask, tasklist);
+        return null;
     }
 }

@@ -6,7 +6,6 @@ import Tasks.Deadlines;
 import Tasks.Task;
 import Ui.Ui;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class addDeadlineCommand extends Command {
@@ -23,9 +22,10 @@ public class addDeadlineCommand extends Command {
 
 
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage){
+    public String execute(TaskList tasklist, Ui ui, Storage storage){
         Task newTask = new Deadlines(description, dte);
         tasklist.addTask(newTask);
         ui.newTask(newTask, tasklist);
+        return null;
     }
 }
