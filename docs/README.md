@@ -1,29 +1,7 @@
-# User Guide
+# Duke
 
-## Features 
+**Duke** is a personal assistant chatbot for managing tasks, optimised for use via Command Line Interface (CLI), with a Graphical User Interface (GUI) output.
 
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
-
-## Usage
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
+Useful links:
+* [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
