@@ -8,7 +8,7 @@ Thanks to NUS fundamental code for Duke as well as the idea and inspiration behi
 
 ### Sequence Diagram
 
-<img src="images/Duke_start_Sequence_Diagram.png" width="280px" alt="sequence-diagram" />
+<img src="Duke_start_Sequence_Diagram.png" width="280px" alt="sequence-diagram" />
 
 The **_Sequence Diagram_** given above explains the sequence when the app is started.
 
