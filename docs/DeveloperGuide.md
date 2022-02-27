@@ -22,8 +22,8 @@
 #### Design considerations:
 
 We tried to adhere to a Command design pattern as much as possible. In terms of design principles, for the refactored Command classes, they have adhered to Single Responsibility Principle rather well. This allows strong cohesion with minimal coupling for those
-classes. However, certain principles such as Open-Closed Principle was adhered as much as possible. We have to tried to follow the Open to addition, close to modification principle.
-The new GUI change was more similar to an addition, with minimal modification
+classes. However, certain principles such as Open-Closed Principle was adhered as much as possible. I have to tried to follow the Open to addition, close to modification principle as much as possible.
+The new GUI change was more similar to an addition, with minimal modification to previous existing code. The Ui class/object serves to act as a stack of messages of sorts, allowing Duke to output a following sequence of messages. The Launcher class will thus be launching the application.
 
 ## Product scope
 **Target user profile:**
@@ -57,3 +57,10 @@ Some of these tasks include events, deadlines, todo as such. The user could resc
 - start up the app, eg.` java -jar duke.jar` via a windows cmd or compatible terminal
 - Type `/help` for instructions
 
+## Diagrams
+![Class Diagram.](ClassDiagram1.png)
+
+![Sequence Diagram.](SequenceDiagram.png)
+
+## BCD Extension
+- Find tasks that contain a keyword (fully or partially)
