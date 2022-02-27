@@ -51,7 +51,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 3. Copy the file to the folder you want to use as the home folder for your Duke.
 4. Double-click the file to start the app. The GUI will pop out.
 
-<img src="Ui.png" width="1080px" alt="Ui" />
+<img src="Ui.png" width="680px" alt="Ui" />
 6. Type the command in the command box and press Enter to execute it. e.g. typing list and pressing Enter will display all task that you have saved so far in the window.
 Some example commands you can try:
 
