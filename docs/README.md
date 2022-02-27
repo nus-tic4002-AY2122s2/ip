@@ -1,7 +1,3 @@
-# Duke project template
-
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
-
 ## User Guide
 
 Duke is an interactive desktop app for managing your day to day tasking list, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, duke can get your contact management tasks done faster than traditional GUI apps.
@@ -15,13 +11,14 @@ Duke is an interactive desktop app for managing your day to day tasking list, op
 	1. Marking/unmarking tasks as done: done
 	1. Deleting a task: delete
 	1. Finding a task: find
-	1. Exiting duke: bye
-	1. Saving the data
+	2. Tag a task: tag
+	3. Exiting duke: bye
+	4. Saving the data
 1. FAQ
 1. Command summary
 
-
 ## Quick Start
+### CLI interface:
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
 
@@ -45,7 +42,15 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 	________________________________________________________________
 	
    ```
- 5. Type the command in the command box and press Enter to execute it. e.g. typing list and pressing Enter will display all task that you have saved so far in the window.
+### GUI: 
+
+Prerequisites: JDK 11, update Intellij to the most recent version.
+
+1. Ensure you have Java 11 or above installed in your computer.
+2. Download the latest DukeV2.2.jar from here.
+3. Copy the file to the folder you want to use as the home folder for your Duke.
+4. Double-click the file to start the app. The GUI will pop out.
+5. Type the command in the command box and press Enter to execute it. e.g. typing list and pressing Enter will display all task that you have saved so far in the window.
 Some example commands you can try:
 
 	1. list : Lists all tasks available in the list.
@@ -59,6 +64,8 @@ Some example commands you can try:
 	1. delete3 : Deletes the 3rd task shown in the current task list.
 
 	1. find work : Find a task by searching for the keyword work
+  
+  1. tag 2 #birthday : Tag task index 2 within the tasklist with a unique label.
 
 	1. bye : Exits the application.
 
@@ -157,6 +164,20 @@ find p
 
 find party
 
+### Tagging a task: tag
+
+Tags a selected task with a unique label as input by user.
+
+Format: [done] [Task’s index in list] [#uniquelabel]
+
+Example:
+
+tag 1 #birthday
+
+tag 2 #homework
+
+tag 3 #project
+
 ### Exiting duke: bye
 
 This will exit the application.
@@ -168,6 +189,13 @@ Example:
 bye
 
 Bye
+
+
+## FAQ
+
+<b>Q</b>: How do I save multiple trip?
+
+<b>A</b>: You only can save one trip at a time.
 
 ### Saving the data
 
@@ -188,4 +216,5 @@ Action | Format, Examples
 <b>list</b> | Format: [list]
 <b>done</b> | Format: [done] [Task’s index in list] Example: delete1
 <b>find</b> | Format: [find] [keyword] Example: find work
+<b>tag</b> | Format: [tag] [Task’s index in list] [#uniquelabel] Example: tag 2 #homework
 <b>bye</b> | Format: [bye]
