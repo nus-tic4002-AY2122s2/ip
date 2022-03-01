@@ -1,0 +1,6 @@
+E| 1 | john birthday | tampines #birthday
+T| 1 | homework  #empty
+D| 0 | john | 05 Mar 2022 1611 #home
+T| 0 | homework 3  #homework
+T| 0 | project alpha  #empty
+D| 0 | project alpha - setup repo | 28 Feb 2022 1803 # project-alpha
