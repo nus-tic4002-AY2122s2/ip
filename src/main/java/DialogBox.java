@@ -28,14 +28,13 @@ public class DialogBox extends HBox {
         try {
             URL resDia = MainWindow.class.getResource("/view/DialogBox.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader(resDia);
-//            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
         displayPicture.setImage(img);
     }

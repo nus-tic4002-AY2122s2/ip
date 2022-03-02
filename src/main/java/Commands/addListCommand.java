@@ -15,7 +15,8 @@ public class addListCommand extends Command {
 
     @Override
     public String execute(TaskList tasklist, Ui ui, Storage storage) throws UnsupportedEncodingException {
-        ui.displayTaskList(description, tasklist);
-        return null;
+//        System.out.println("reached here right");
+//        ui.displayTaskList(description, tasklist);
+        return ui.getTaskList(description, tasklist);
     }
 }

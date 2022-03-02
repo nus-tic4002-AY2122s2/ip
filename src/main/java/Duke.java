@@ -26,6 +26,7 @@ public class Duke {
         storage = new Storage("/" + filename);
         try {
             tasklist = new TaskList(storage.load());
+
         } catch (ParseException | IOException e){
 //            ui.showLoadingError();
             tasklist = new TaskList();
@@ -100,14 +101,13 @@ public class Duke {
         String response = "";
         Parser pas = new Parser();
 
-        parser = new Parser();
         ByteArrayOutputStream strBuffer = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(strBuffer);
         PrintStream old = System.out;
         System.setOut(ps);
         try {
             Command c = Parser.parse(input, tasklist);
-            c.execute(tasklist, ui, storage);
+            response = c.execute(tasklist, ui, storage);
             pas.parsedInput(input);
             isExit = c.isExit();
             if (isExit) {

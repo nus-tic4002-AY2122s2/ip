@@ -157,6 +157,27 @@ public class Ui {
         printLines(line);
     }
 
+    // Returning Task Class List
+    public String getTaskList(String input,TaskList tasklist) throws UnsupportedEncodingException {
+        String msg = "";
+//        System.out.println(input);
+
+        printLines(line);
+        System.out.println("     Here are the tasks in your list:");
+        msg += line + "\n";
+        msg += "     Here are the tasks in your list:\n";
+        for(int i = 0; i < tasklist.getSize(); i++){
+            int idx = i+1;
+            PrintStream out = new PrintStream(System.out, true, "UTF-8");
+            System.out.println("     "+ idx + ". " + tasklist.getTask(i).toString() );
+            msg += "     " + idx + ". " + tasklist.getTask(i).toString() + "\n";
+        }
+        printLines(line);
+        msg += line + "\n";
+        return msg;
+
+    }
+
 
 
     /**

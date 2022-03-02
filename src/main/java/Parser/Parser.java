@@ -200,6 +200,7 @@ public class Parser {
 //                System.out.println(inputs[i]);
 //                description += " " + inputs[i];
 //            }
+        System.out.println("what is inputs : " + inputs);
         try {
             if(inputs.substring(inputs.indexOf("todo")).length() == 4){
                 throw new DukeEmptyExceptions("todo");
@@ -219,7 +220,12 @@ public class Parser {
             throw new NumberFormatException("     ☹ OOPS!!! The task number must be a numerical value.");
 
         } catch (Exception e){
-            throw new DukeException("     Caught an Exception ");
+            System.out.println("did i reach here all the time");
+
+//            throw new DukeException("     Caught an Exception ");
+//            System.out.println("     Caught an Exception ");
+            return new invalidCommand("     Caught an Exception ");
+
         }
         //return new addTodoCommand(new myMethods().parsed(inputs)[1]);
     }

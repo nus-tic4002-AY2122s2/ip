@@ -24,16 +24,12 @@ public class Storage {
     }
 
     public ArrayList<String> load() throws FileNotFoundException {
-        System.out.println("when is load called");
         ArrayList<String> output = new ArrayList<>();
-        System.out.println("file path is " + file_path);
         File f = new File(file_path);
         Scanner scan = new Scanner(f);
         while (scan.hasNextLine()) {
-            System.out.println("Did it enter here");
             output.add(scan.nextLine());
         }
-        System.out.println("what is length of output" + output.size());
         scan.close();
         return output;
     }
