@@ -1,25 +1,39 @@
-l# User Guide
+# User Guide
 
 ## Introduction
-
-**Duke**
+ Duke is a Personal Assistant Chatbot that helps the user keep track of various tasks. These tasks include ToDos, Deadlines and events.
+ The user would be able to input various commands in order execute the different features. If the commands are incorrect, an error message would be displayed.
 
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `Duke`.
 
-## Features 
-
-Program designed for someone who are avid keyboarders,  for Single User use. 
-
 ### Load application: `java -jar duke.jar`
 Load application and all records from previous session (if any) inside the JustBook application.
 **Format**: `java -jar duke.jar`
 
-<ins>**_Example of usage_**<ins>
+## Set Up
+In the terminal, through gradle:
+To compile the java files:
+
+`gradlew shadowjar` 
+
+The jar file will be at build/libs, named as "launcher-all.jar". Rename the jar file to duke.jar
+
+Alternatively, to run the file:
+
+`gradlew run`
+
+or
 
 `java -jar duke.jar`
+
+
+## Features 
+
+Program designed for someone who are avid keyboarders,  for Single User use. 
+
 
 ### Adding a generic task: `[description]`
 Adds a generic task
@@ -101,10 +115,19 @@ To print the list of commands available
 
 
 
-
-
 ## Command Summary
-[ 'Cheat Sheet' of **CLI COMMANDS** - _case-sensitive_ ]
+###Inputs in commands:
+The input description will be in the square brackets "[ ]".
+eg. [Time] refers to an input that is related to time.
+
+1. `[description]` is a string that describes the task.
+2. `[Date and Time]` refers to the input date and time. It goes by the format "dd/MM/yyyy HH:mm:ss". Eg. 02/12/20 10:10:10
+3. `[Time]` refers to the Time format of "HH:mm:ss" where they represent the hours, minutes and seconds.
+4. `[option]` refers to the option number. The option number for each task can be viewed when the tasks are printed
+ as a list.(this can be seen by the command `list`)
+5. `[keyword]` refers to the phrase or word that you want to search for.
+
+
 ###Commands:
 The commands for the respective features are after the semi-colon":"
 
