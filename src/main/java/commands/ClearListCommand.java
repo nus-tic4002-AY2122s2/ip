@@ -15,7 +15,7 @@ public class ClearListCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         ui.storeMessage("Clearing all tasks in the tasklist.");
         tasks.clearAllTasks();
-        tasks.printList();
+        ui.storeMessage(tasks.printList());
     }
 
     public static void printHelp(Ui ui) {

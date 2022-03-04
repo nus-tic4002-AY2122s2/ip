@@ -42,7 +42,7 @@ public class AddCommand extends Command {
 
         int size = tasks.getSize();
         ui.storeMessage("Got it. I've added this task:"
-                + System.lineSeparator() + tasks.get(size - 1).toString());
+                + "\n" + tasks.get(size - 1).toString());
 
         ui.storeMessage(tasks.printNumberOfTasks());
     }

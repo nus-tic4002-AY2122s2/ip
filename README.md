@@ -4,11 +4,17 @@
 In the terminal, through gradle:
 To compile the java files:
 
-`gradlew build` 
+`gradlew shadowjar` 
 
-To run the file:
+The jar file will be at build/libs, named as "launcher-all.jar". Rename the jar file to duke.jar
+
+Alternatively, to run the file:
 
 `gradlew run`
+
+or
+
+`java -jar duke.jar`
 
 ## Introduction
  Duke is a Personal Assistant Chatbot that helps the user keep track of various tasks. These tasks include ToDos, Deadlines and events.

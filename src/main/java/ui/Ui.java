@@ -44,7 +44,7 @@ public class Ui {
      * This prints the farewell message when the user types "bye".
      */
     public String printBye() {
-        return (System.lineSeparator() + "Bye. Hope to see you again soon!");
+        return ("\n" + "Bye. Hope to see you again soon!");
     }
 
     /**
@@ -53,7 +53,7 @@ public class Ui {
      * @return the input scanned from user
      */
     public String scanForInput() {
-        System.out.println(System.lineSeparator() + "What can I do for you? For help, type \"/help\". ");
+        System.out.println("\n" + "What can I do for you? For help, type \"/help\". ");
         return this.scan.nextLine();
     }
 

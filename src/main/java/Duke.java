@@ -98,7 +98,7 @@ public class Duke extends Application {
         try {
             tasks = new TaskList(storage.load(), ui);
         } catch (DukeException e) {
-            ui.showLoadingError();
+            ui.storeMessage(ui.showLoadingError());
             tasks = new TaskList();
         }
 
@@ -214,9 +214,12 @@ public class Duke extends Application {
             co = parser.parse(input);
             co.execute(tasks, ui, storage);
             isRunning = co.isRunning();
-        } catch (DukeException | IOException e) {
-            return e.getMessage();
+        } catch (DukeException e) {
+            ui.storeMessage(e.getErrorMessage());
+        } catch (IOException e) {
+            ui.storeMessage("Your input was incorrect. Please input again. type /help for help.");
         }
+
         return "Duke Replied:\n" + ui.getMessages();
     }
 

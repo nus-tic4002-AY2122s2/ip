@@ -6,7 +6,7 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [windows-latest]
+        platform: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
 
     steps:
@@ -32,6 +32,23 @@ jobs:
 
       - name: Build and check with Gradle
         run: ./gradlew check
+
+      - name: Compile in Windows
+          if: runner.os == 'Windows'
+          run: gradlew shadowjar
+
+      - name: Compile in Linux (*NIX)
+          if: runner.os == 'Linux'
+          run: gradlew shadowjar
+
+      - name: Compile in MacOS (MacOS)
+          if: runner.os == 'macOS'
+          run: gradlew shadowjar
+
+
+
+
+
 
 
 

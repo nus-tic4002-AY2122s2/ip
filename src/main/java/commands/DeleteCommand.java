@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Input option for Delete Command invalid.");
         }
-        tasks.printList();
+        ui.storeMessage(tasks.printList());
     }
 
     public static void printHelp(Ui ui) {
