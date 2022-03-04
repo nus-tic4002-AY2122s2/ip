@@ -35,15 +35,15 @@ jobs:
 
       - name: Compile in Windows
         if: always() && runner.os == 'Windows'
-        run: gradlew shadowjar
+        run: ./gradlew shadowjar
 
       - name: Compile in Linux (*NIX)
         if: always() && runner.os == 'Linux'
-        run: gradlew shadowjar
+        run: ./gradlew shadowjar
 
       - name: Compile in MacOS (MacOS)
         if: always() && runner.os == 'macOS'
-        run: gradlew shadowjar
+        run: ./gradlew shadowjar
 
 
 
