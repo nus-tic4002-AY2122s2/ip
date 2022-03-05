@@ -6,6 +6,10 @@ plugins {
 //    id 'jacoco'
 }
 
+checkstyle {
+    toolVersion = '8.29'
+}
+
 //mainClassName = 'seedu.address.Main'
 
 //repositories {
