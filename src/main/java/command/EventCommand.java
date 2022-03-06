@@ -8,7 +8,7 @@ import taskList.TaskList;
 public class EventCommand extends Command {
     private final String taskDescription;
     private final String at;
-    boolean status;
+    private final boolean status;
 
     public EventCommand(String taskDescription, String at, boolean status) {
         this.taskDescription = taskDescription;

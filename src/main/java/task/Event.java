@@ -3,7 +3,7 @@ package task;
 public class Event extends Task {
     protected String at;
 
-    public Event(String description,  String at,  boolean status) {
+    public Event(String description, String at, boolean status) {
         super(description);
         this.at = at;
         this.setStatus(status);
@@ -17,6 +17,6 @@ public class Event extends Task {
     @Override
     public String toDataFormat() {
         String status = this.isDone ? "1" : "0";
-        return "E"+ "|" + status + "|" + this.description + "|" +this.at;
+        return "E" + "|" + status + "|" + this.description + "|" + this.at;
     }
 }

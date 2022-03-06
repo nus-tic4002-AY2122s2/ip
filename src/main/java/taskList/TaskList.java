@@ -1,6 +1,7 @@
 package taskList;
 
 import java.util.ArrayList;
+
 import exception.ErrorHandler;
 import task.Task;
 
@@ -11,7 +12,7 @@ public class TaskList {
     /**
      * A list of different task type
      */
-    private ArrayList<Task> list = new ArrayList<>();
+    private final ArrayList<Task> list = new ArrayList<>();
 
     public TaskList() {
     }
@@ -21,24 +22,26 @@ public class TaskList {
      * @param task is a type of task, could be Event, Deadline
      * @throws ErrorHandler customized error
      */
-    public void addItem (Task task) throws ErrorHandler {
+    public void addItem(Task task) throws ErrorHandler {
         this.list.add(task);
     }
 
-    public ArrayList<Task> getList() { return this.list; }
+    public ArrayList<Task> getList() {
+        return this.list;
+    }
 
     /**
      * @param index remove data from the list t given index
      */
-    public void removeItem (int index) {
+    public void removeItem(int index) {
         this.list.remove(index);
     }
-  
+
     /**
      * @return list of string which is representing all tasks information in a readable string format.
      * For printing purpose
      */
-    public ArrayList<String> getSerializedList () {
+    public ArrayList<String> getSerializedList() {
         ArrayList<String> taskList = new ArrayList<>();
 
         for (Task task : this.list) {
@@ -51,10 +54,10 @@ public class TaskList {
     /**
      * @return list of task in a format which is ready for saving to local file
      */
-    public String [] getFileDataFormatList() {
+    public String[] getFileDataFormatList() {
         ArrayList<String> dataLine = new ArrayList<>();
 
-        for (Task task: this.list) {
+        for (Task task : this.list) {
             dataLine.add(task.toDataFormat());
         }
 
@@ -77,11 +80,13 @@ public class TaskList {
      * @param word is used to search for tasks
      * @return serialized array of tasks
      */
-    public ArrayList<String> findTasks (String word) {
+    public ArrayList<String> findTasks(String word) {
         ArrayList<String> filteredTasks = new ArrayList<>();
 
         for (Task task : this.list) {
-            if (!task.getDescription().contains(word)) continue;
+            if (!task.getDescription().contains(word)) {
+                continue;
+            }
             filteredTasks.add(task.toString());
         }
         return filteredTasks;

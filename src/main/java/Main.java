@@ -1,7 +1,7 @@
-import javafx.stage.Stage;
 import javafx.application.Application;
-import ui.UiManager;
+import javafx.stage.Stage;
 import taskExecutor.TaskExecutor;
+import ui.UiManager;
 
 public class Main extends Application {
     private UiManager uiManager;

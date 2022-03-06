@@ -1,6 +1,6 @@
 package task;
 
-public class Todo extends Task{
+public class Todo extends Task {
     public Todo(String description, boolean status) {
         super(description);
         this.setStatus(status);
@@ -11,7 +11,7 @@ public class Todo extends Task{
      */
     @Override
     public String toString() {
-        return "[T]" +  "[" + this.getStatusIcon() + "] " + this.description;
+        return "[T]" + "[" + this.getStatusIcon() + "] " + this.description;
     }
 
     /**
@@ -20,6 +20,6 @@ public class Todo extends Task{
     @Override
     public String toDataFormat() {
         String status = this.isDone ? "1" : "0";
-        return "T"+ "|" + status + "|" + this.description;
+        return "T" + "|" + status + "|" + this.description;
     }
 }

@@ -26,16 +26,16 @@ public class Storage {
         ArrayList<String> data = new ArrayList<>();
 
         try {
-            File file = new File(root + this.filePath);    //creates a new file instance
-            FileReader fr = new FileReader(file);   //reads the file
-            BufferedReader br = new BufferedReader(fr);  //creates a buffering character input stream
+            File file = new File(root + this.filePath); //creates a new file instance
+            FileReader fr = new FileReader(file); //reads the file
+            BufferedReader br = new BufferedReader(fr); //creates a buffering character input stream
             String line;
 
             while ((line = br.readLine()) != null) {
                 data.add(line);
             }
 
-            fr.close();    //closes the stream and release the resources
+            fr.close(); //closes the stream and release the resources
         } catch (FileNotFoundException e) {
             throw new ErrorHandler(ErrorMessage.ERROR_FINDING_FILE);
         } catch (IOException e) {
