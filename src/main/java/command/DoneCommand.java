@@ -4,12 +4,11 @@ import constant.ErrorMessage;
 import exception.ErrorHandler;
 import storage.Storage;
 import taskList.TaskList;
-import ui.Ui;
 
-public class DoneCommand extends Command{
-    private int taskNumber;
+public class DoneCommand extends Command {
+    private final int taskNumber;
 
-    public DoneCommand(String taskNumber) throws ErrorHandler{
+    public DoneCommand(String taskNumber) throws ErrorHandler {
         try {
             int index = Integer.parseInt(taskNumber);
             this.taskNumber = index;
@@ -19,11 +18,15 @@ public class DoneCommand extends Command{
     }
 
     @Override
-    public void execute(Storage storage, Ui ui, TaskList taskList) throws ErrorHandler {
+    public void execute(Storage storage, TaskList taskList) throws ErrorHandler {
         if (this.taskNumber > 0 && this.taskNumber <= taskList.getSize()) {
             taskList.setStatus(this.taskNumber - 1, true);
             this.saveData(storage, taskList);
-            ui.printMarkedDone(taskList.getTask(this.taskNumber - 1).toString());
+            String information =
+                "Nice! I've marked this task as done:\n" + taskList.getTask(this.taskNumber - 1).toString();
+
+            this.executionResult.setSystemMsg(information);
+
         } else {
             throw new ErrorHandler("In Command, " + ErrorMessage.INVALID_TASK_NUMBER);
         }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.MainWindow">
+    <children>
+      <Label layoutX="8.0" layoutY="14.0" prefHeight="17.0" prefWidth="231.0" text="User Input" />
+        <TextField fx:id="userInput" layoutX="8.0" layoutY="31.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="386.0" />
+      <Label layoutX="8.0" layoutY="79.0" prefHeight="17.0" prefWidth="231.0" text="System Information" />
+      <TextArea fx:id="systemOutput" layoutX="8.0" layoutY="96.0" prefHeight="101.0" prefWidth="386.0" />
+      <Label layoutX="8.0" layoutY="205.0" prefHeight="17.0" prefWidth="231.0" text="Result" />
+      <VBox layoutX="8.0" layoutY="225.0" prefHeight="368.0" prefWidth="386.0">
+         <children>
+            <ListView fx:id="taskListView" prefHeight="369.0" prefWidth="386.0" />
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>
