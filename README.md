@@ -30,12 +30,17 @@ This is a Java program which helps users to keep track their tasks. There are th
 User could also mark task as done to keep track the status of the task.
 
 ## User guide
-User should interact with the software through terminal with these key-words:
-1. List - display the list of task including the status of the task status
-2. Todo - to add a todo task
-3. Deadline - to add a deadline task
-4. Event - to add an event task
-5. Done - to mark task as done
-6. Delete - to delete a task
-7. Find - to find tasks that matches the given search word
-8. Bye - exit the program
+User should interact with the software through Ui interface:
+- Uer input section is for you to key in commands which are listed as follows:
+   1. List - display the list of task including the status of the task status
+   2. Todo - to add a todo task
+   3. Deadline - to add a deadline task
+   4. Event - to add an event task
+   5. Done - to mark task as done
+   6. Delete - to delete a task
+   7. Find - to find tasks that matches the given search word
+   8. Bye - exit the program
+
+- System information section will display system generated information like errors, or action feedbacks. e.g. you
+  have successfully added a new task.
+- Result section will show a list of task which corresponds to user command
