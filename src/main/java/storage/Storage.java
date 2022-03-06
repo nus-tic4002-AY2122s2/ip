@@ -10,33 +10,33 @@ import java.util.ArrayList;
 
 public class Storage {
     private final Path root = FileSystems.getDefault().getPath("").toAbsolutePath();
-    private String filePath;
+    private final String filePath;
 
-
-    public Storage (String filePath) {
-        this.filePath = "/" +filePath;
+    public Storage(String filePath) {
+        this.filePath = "/" + filePath;
     }
 
     /**
      * This method is used to load data from a local file and parse the format then save as a List of task
-     * @throws ErrorHandler customized error
+     *
      * @return array of strings tha is loaded from file
+     * @throws ErrorHandler customized error
      */
-    public String [] loadData () throws ErrorHandler  {
+    public String[] loadData() throws ErrorHandler {
         ArrayList<String> data = new ArrayList<>();
 
         try {
-            File file=new File(root + this.filePath);    //creates a new file instance
-            FileReader fr=new FileReader(file);   //reads the file
-            BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+            File file = new File(root + this.filePath);    //creates a new file instance
+            FileReader fr = new FileReader(file);   //reads the file
+            BufferedReader br = new BufferedReader(fr);  //creates a buffering character input stream
             String line;
 
-            while((line=br.readLine())!=null) {
+            while ((line = br.readLine()) != null) {
                 data.add(line);
             }
 
             fr.close();    //closes the stream and release the resources
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new ErrorHandler(ErrorMessage.ERROR_FINDING_FILE);
         } catch (IOException e) {
             throw new ErrorHandler(ErrorMessage.ERROR_LOADING_FILE);
@@ -46,13 +46,14 @@ public class Storage {
 
     /**
      * Save list of task into local file
+     *
      * @throws ErrorHandler customized error
      */
-    public void saveData(String [] data) throws ErrorHandler {
+    public void saveData(String[] data) throws ErrorHandler {
         try {
             FileWriter fileWriter = new FileWriter(root + this.filePath);
 
-            for(String line: data) {
+            for (String line : data) {
                 fileWriter.write(line);
                 fileWriter.write("\n");
             }
