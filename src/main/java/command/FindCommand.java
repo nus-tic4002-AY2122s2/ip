@@ -22,6 +22,10 @@ public class FindCommand extends Command {
             index += 1;
         }
 
+        if (filteredList.size() < 1) {
+            this.executionResult.setSystemMsg("No task contains the key word");
+        }
+
         this.executionResult.setResult(filteredList.toArray(new String[0]));
     }
 }

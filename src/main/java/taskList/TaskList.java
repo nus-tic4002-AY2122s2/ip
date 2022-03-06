@@ -84,12 +84,42 @@ public class TaskList {
         ArrayList<String> filteredTasks = new ArrayList<>();
 
         for (Task task : this.list) {
-            if (!task.getDescription().contains(word)) {
+
+            if (!checkFuzzySearch(task.getDescription(), word)) {
                 continue;
             }
             filteredTasks.add(task.toString());
         }
         return filteredTasks;
+    }
+
+    private boolean checkFuzzySearch(String content, String keyword) {
+        String formattedKeyword = keyword.replaceAll("\\s", "").toLowerCase();
+
+        if (formattedKeyword.equals("")) {
+            return false;
+        }
+
+        int searchIndex = 0;
+        String formattedContent = content.replaceAll("\\s", "").toLowerCase();
+
+        int matchingKeywordLen = formattedKeyword.length();
+        int contentLen = formattedContent.length();
+
+        if (contentLen < matchingKeywordLen) {
+            return false;
+        }
+
+        for (int i = 0; i < matchingKeywordLen; i++) {
+            // Update the index to current matched index
+            // e,g "hello world".indexOf("o", 0) -> 4
+            // e,g "hello world".indexOf("l", 4) -> 9
+            searchIndex = formattedContent.indexOf(formattedKeyword.charAt(i), searchIndex);
+            if (searchIndex < 0 || searchIndex >= contentLen) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
