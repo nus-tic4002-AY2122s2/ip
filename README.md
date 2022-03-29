@@ -62,3 +62,6 @@ Steps for publishing documentation to the public:
 1. Scroll down to the `GitHub Pages` section.
 1. Set the `source` as `master branch /docs folder`.
 1. Optionally, use the `choose a theme` button to choose a theme for your documentation.
+
+## Acknowledgements
+Reused structure from https://github.com/AY2122S1-TIC4001-F18-5/tp
