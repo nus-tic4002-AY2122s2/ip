@@ -57,5 +57,5 @@ public abstract class Command {
         return this.exit;
     }
 
-    public abstract String execute(TaskList tasklist, Ui ui, Storage storage) throws UnsupportedEncodingException;
+    public abstract String execute(TaskList tasklist, Ui ui, Storage storage) throws UnsupportedEncodingException, InterruptedException;
 }

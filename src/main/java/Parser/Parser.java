@@ -107,6 +107,9 @@ public class Parser {
             return new addFindCommand(tmp[1]);
         }
         catch (ArrayIndexOutOfBoundsException e){
+            System.out.println(ui.getLine());
+            System.out.println("   Search command cannot be empty, Please enter something after the space after, find ");
+            System.out.println(ui.getLine());
             throw new DukeException("     Search command cannot be empty");
         }
     }
@@ -120,15 +123,18 @@ public class Parser {
     private static Command list(String inputs, TaskList tasklist) throws DukeException{
         try {
             if(tasklist.getSize() == 0){
+                ui.Line();
+                System.out.println("     ☹ OOPS!!! The list is empty.");
+                ui.Line();
                 throw new DukeException("     ☹ OOPS!!! The list is empty.");
             }
 
             return new addListCommand(inputs);
         }
         catch (DukeException e){
-//            ui.Line();
-//            System.out.println("     ☹ OOPS!!! The list is empty.");
-//            ui.Line();
+            ui.Line();
+            System.out.println("     ☹ OOPS!!! The list is empty.");
+            ui.Line();
             throw new DukeException("     ☹ OOPS!!! The list is empty.");
         }
     }
@@ -158,10 +164,11 @@ public class Parser {
         }
         try {
             if(inputs.substring(inputs.indexOf("delete")).length() == 6){
+//                System.out.println("delete");
                 throw new DukeEmptyExceptions("delete");
             }
             if((inputs.substring(inputs.indexOf("delete")+7, inputs.length())).trim().equals("")){
-                System.out.println("GOT HERE");
+
                 throw new DukeEmptyExceptions("delete");
             }
             int t = Integer.parseInt((inputs.substring(inputs.indexOf("delete")+7).trim()));
@@ -178,9 +185,15 @@ public class Parser {
         } catch (DukeEmptyExceptions e){
             throw new DukeEmptyExceptions("delete");
         } catch (NumberFormatException e){
+            ui.Line();
+            System.out.println("     ☹ OOPS!!! The task number must be a numerical value.");
+            ui.Line();
             throw new NumberFormatException("     ☹ OOPS!!! The task number must be a numerical value.");
 
         } catch (DukeOutOfBoundsException e){
+            ui.Line();
+            System.out.println("     ☹ OOPS!!! The task number must be within range.");
+            ui.Line();
             throw new DukeOutOfBoundsException("     ☹ OOPS!!! The task number must be within range.");
         }
     }
@@ -200,7 +213,7 @@ public class Parser {
 //                System.out.println(inputs[i]);
 //                description += " " + inputs[i];
 //            }
-        System.out.println("what is inputs : " + inputs);
+
         try {
             if(inputs.substring(inputs.indexOf("todo")).length() == 4){
                 throw new DukeEmptyExceptions("todo");
@@ -215,15 +228,20 @@ public class Parser {
 //            throw new DukeEmptyExceptions(e.getMessage());
             throw new DukeEmptyExceptions("todo");
         } catch (NumberFormatException e){
+            ui.Line();
+            System.out.println("     ☹ OOPS!!! The task number must be a numerical value.");
+            ui.Line();
 //            System.out.println("     ☹ OOPS!!! The task number must be a numerical value.");
 //            throw new NumberFormatException("     ☹ OOPS!!! The task number must be a numerical value.");
             throw new NumberFormatException("     ☹ OOPS!!! The task number must be a numerical value.");
 
         } catch (Exception e){
-            System.out.println("did i reach here all the time");
+//            System.out.println("did i reach here all the time");
 
 //            throw new DukeException("     Caught an Exception ");
-//            System.out.println("     Caught an Exception ");
+            ui.Line();
+            System.out.println("     Caught an Exception ");
+            ui.Line();
             return new invalidCommand("     Caught an Exception ");
 
         }
@@ -256,6 +274,7 @@ public class Parser {
         try {
             if(inputs.substring(inputs.indexOf("done")).length() == 4
                     || inputs.substring(inputs.indexOf("done")+5, inputs.length()).trim().equals("")){
+                System.out.println("done");
                 throw new DukeEmptyExceptions("done");
             }
             if(tmp.equals("")){
@@ -266,20 +285,30 @@ public class Parser {
 //                throw new DukeOutOfBoundsException("done");
 //            }
             if(storeTaskNo > tasklist.getSize() || storeTaskNo > t || storeTaskNo == 0 || t > tasklist.getSize()) {
+                ui.Line();
+                System.out.println("     ☹ OOPS!!!  The task number must be within range.");
                 throw new DukeOutOfBoundsException("     ☹ OOPS!!!  The task number must be within range.");
             }
             if(parsed(inputs)[1].toString()==null){
 //                throw new NumberFormatException();
+                ui.Line();
+                System.out.println("     ☹ OOPS!!! The task number must be a numerical value.");
+                ui.Line();
                 throw new NumberFormatException("     ☹ OOPS!!! The task number must be a numerical value.");
             }
             return new addDoneCommand(storeTaskNo-1);
         }
         catch (NumberFormatException e){
             ui.Line();
+            System.out.println("     ☹ OOPS!!! The task number must be a numerical value.");
+            ui.Line();
             throw new NumberFormatException("     ☹ OOPS!!! The task number must be a numerical value.");
-            //ui.Line();
+//            ui.Line();
         }
         catch (DukeOutOfBoundsException e){
+            ui.Line();
+            System.out.println("     ☹ OOPS!!! The task number must be within range.");
+            ui.Line();
             throw new DukeOutOfBoundsException("     ☹ OOPS!!! The task number must be within range.");
 
         }catch (DukeEmptyExceptions e){
@@ -308,10 +337,16 @@ public class Parser {
             return new addDeadlineCommand(des, new myMethods().dteToString(inputs));
         }
         catch (StringIndexOutOfBoundsException e){
+            ui.Line();
+            System.out.println("     Please key in Correct Syntax: [deadline] [description] [/by] [dd-mmm-yyyy HHmm]");
+            ui.Line();
             throw new DukeOutOfBoundsException("     Please key in Correct Syntax: [deadline] [description] [/by] [dd-mmm-yyyy HHmm]");
         }
         catch (InvalidDateException e){
 //            throw new InvalidDateException(e.getMessage());
+            ui.Line();
+            System.out.println("     ☹ OOPS!!! Date, Syntax Wrong, Please use : DD-MMMM-YYYY(13-Oct-2019) HHmm (1000)");
+            ui.Line();
             throw new InvalidDateException("     ☹ OOPS!!! Date, Syntax Wrong, Please use : DD-MMMM-YYYY(13-Oct-2019) HHmm (1000)");
         }
     }
@@ -343,6 +378,9 @@ public class Parser {
         }
         catch (NumberFormatException e){
 //            throw new NumberFormatException("     ☹ OOPS!!! The task number must be a numerical value." + ui.getLine());
+            ui.Line();
+            System.out.println("     ☹ OOPS!!! The task number must be a numerical value.");
+            ui.Line();
             throw new NumberFormatException("     ☹ OOPS!!! The task number must be a numerical value.");
         }
     }

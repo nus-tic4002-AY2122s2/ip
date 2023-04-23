@@ -7,9 +7,10 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 import Parser.*;
+import javafx.application.Platform;
 
 public class Ui {
-    private static final String line = "    ____________________________________________________________";
+    private static final String line = "    _____________________________________________________";
     /**
      * Prints welcome message of duke.
      * */
@@ -103,7 +104,7 @@ public class Ui {
      * Show goodbye message
      */
     public void showGoodBye(){
-        System.out.println(userInput);
+//        System.out.println(userInput);
         printLine();
         System.out.println("     Bye. Hope to see you again soon!");
         printLine();
@@ -111,6 +112,7 @@ public class Ui {
         msg += line + "\n";
         msg += "     Bye. Hope to see you again soon!\n";
         msg += line + "\n";
+//        Platform.exit();
 //        return msg;
     }
 

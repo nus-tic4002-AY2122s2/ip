@@ -1,6 +1,17 @@
 # Duke
 
-**Duke** is a personal assistant chatbot for managing tasks, optimised for use via Command Line Interface (CLI), with a Graphical User Interface (GUI) output.
+
+**Duke** 
+A friendly and simple personal assistant chatbot for managing tasks
+for use via Command Line Interface (CLI), with a Graphical User Interface (GUI) output.
+Hello from
+____        _
+|  _ \ _   _| | _____
+| | | | | | | |/ / _ \
+| |_| | |_| |   <  __/
+|____/ \__,_|_|\_\___|
+   ```
+
 
 Useful links:
 * [User Guide](UserGuide.md)
