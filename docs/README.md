@@ -1,29 +1,7 @@
-# User Guide
+# iP - Project Duke
 
-## Features 
+**The IP is based on the generic project called _[Project Duke](https://nus-tic4001-ay2122s1.github.io/website/se-book-adapted/projectDuke/index.html)_.** which is a `CLI` text-based project and implemented with the `GUI` feature to display a graphic chatbot layout for the command and command result.
 
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
-
-## Usage
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
+## Links
+* [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
