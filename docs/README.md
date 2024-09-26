@@ -1,29 +1,7 @@
-# User Guide
+# LisGenie GUI ChatBot - A Java / JavaFX Program
 
-## Features 
+**LisGenie: An easy-to-use GUI version of Task Manager v2.0 (CLI-based App)**
 
-### Feature-ABC
-
-Description of the feature.
-
-### Feature-XYZ
-
-Description of the feature.
-
-## Usage
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
+Useful links:
+* [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
