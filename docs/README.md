@@ -1,29 +1,18 @@
-# User Guide
+# Duke
 
-## Features 
 
-### Feature-ABC
+**Duke** 
+A friendly and simple personal assistant chatbot for managing tasks
+for use via Command Line Interface (CLI), with a Graphical User Interface (GUI) output.
+Hello from
+____        _
+|  _ \ _   _| | _____
+| | | | | | | |/ / _ \
+| |_| | |_| |   <  __/
+|____/ \__,_|_|\_\___|
+   ```
 
-Description of the feature.
 
-### Feature-XYZ
-
-Description of the feature.
-
-## Usage
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
+Useful links:
+* [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
